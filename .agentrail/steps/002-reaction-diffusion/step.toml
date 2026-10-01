@@ -1,6 +1,6 @@
 number = 2
 slug = "reaction-diffusion"
-status = "pending"
+status = "in-progress"
 description = "grids step 2: demos/reaction-diffusion. Gray-Scott on U and V: the Laplacian ..."
 role = "production"
 context_files = []

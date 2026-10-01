@@ -1,0 +1,46 @@
+#!/usr/bin/env xetal
+# Reaction-diffusion (Gray-Scott): two chemicals U and V on a grid.
+# U is fed in, V eats U to make more V (U + 2V -> 3V), V is removed,
+# and both spread to their neighbours. Every step is a few array
+# expressions over the whole grid: shifts for the spreading, products
+# for the reaction. The patterns (spots, mazes, coral) appear by
+# themselves.
+
+# The grid size, how fast U and V spread, the feed rate f and the kill
+# rate k (these give a maze), and the steps to run.
+n := 32
+du := 0.2
+dv := 0.1
+f := 0.029
+k := 0.057
+steps := 1200
+
+# A matrix as one plane of a rank-3 array, for stacking with c_at.
+u:p_lane := { m -> (1 c_at s_hape m) r_eshape m }
+# -- the Laplacian: four shifted copies minus four times the centre ----
+# How much a cell differs from its four neighbours (the edges wrap).
+u:l_ap := { x -> ((1 o_-_1 x) + (-1 o_-_1 x) + (1 o_-_2 x) + -1 o_-_2 x) - 4.0 * x }
+# -- one step for every cell at once -----------------------------------
+# The state is two planes, U and V. Spread (du, dv times the Laplacian),
+# react (u * v * v turns U into V), feed U (f), remove V (f + k).
+u:s_tep := { s ->
+  u := 1 s_elect s
+  v := 2 s_elect s
+  uvv := u * v * v
+  (u:p_lane u + ((du * u:l_ap u) - uvv) + f * 1.0 - u) c_at u:p_lane v + ((dv * u:l_ap v) + uvv) - (f + k) * v
+}
+# -- end of the core ---------------------------------------------------
+
+# Start: U everywhere, a square of V off the centre.
+sq := ((o_ffsets n) >= 10) & (o_ffsets n) < 16
+seed := f_loat sq '& t_able sq
+s0 := (u:p_lane 1.0 - 0.5 * seed) c_at u:p_lane 0.25 * seed
+s_hape s0
+
+# Run the steps, and draw V: a character per cell by how much V it has.
+s := steps 'u:s_tep p_ower s0
+v := 2 s_elect s
+(1 + f_loor 4.99 * (v m_in 0.399) / 0.4) s_elect " .:o@"
+
+# The total of V, rounded: the pattern has grown from the seed's 9.0.
+(f_loor 0.5 + 100 * '+ r_/ r_avel v) / 100
