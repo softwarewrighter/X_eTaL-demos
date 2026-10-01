@@ -1,0 +1,9 @@
+# One demo's description: read by scripts/demos.py for the tests, the
+# README's demo list and the live catalog (pages/index.html).
+slug = "mandelbrot"
+title = "Mandelbrot"
+summary = "Every point of the picture iterated at once: z becomes z * z + c over the whole grid. Step k up and watch the set appear; click a point for its orbit, or zoom in."
+concepts = ["broadcasting with table", "function power", "masks", "rank-3 state"]
+status = "live"
+order = 20
+needs = ["complex numbers"]
