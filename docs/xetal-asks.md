@@ -14,6 +14,7 @@ workaround in use.
 | ------ | ---- | --- | ----- | ---------- |
 | open | feature | Complex numbers (already planned upstream) | mandelbrot, julia | two Float planes for the real and imaginary parts |
 | open | feature | Nested arrays: `e_ach` returning a vector per item | mandelbrot (orbit table) | two `e_ach` passes, one per part |
+| open | feature | Number literals with an exponent (`1.5e-7`) | mandelbrot (deep zoom), any demo passing small or large Floats into a program | the host writes plain decimals with 17 significant digits |
 | open | feature | Transpose (already planned upstream) | attention, embedding-explorer | to be found when the demo is written |
 | open | bug | A vendored build reports the outer repo's commit as its own | all (`xetal --version`, the web footer) | `just xetal-version` prints `vendor/xetal/VENDORED` beside it |
 | open | feature | A per-operation evaluation trace (the planned stepping debugger) exposed through `xetal-play` | microscope (all) | trace per statement / named binding only |
@@ -65,3 +66,21 @@ but `e_ach` rejects a vector per item: `e_ach needs a single value
 from each call (nested arrays come later)`. The demo runs the orbit
 twice, selecting the real parts and then the imaginary parts. Nested
 arrays are already planned upstream.
+
+### Number literals with an exponent
+
+A page that writes values into an X_eTaL program (a view's centre and
+width) must spell every Float as an X_eTaL literal. Rust's shortest
+float formatting switches to exponent form for small values, and
+X_eTaL's lexer rejects it:
+
+```
+$ xetal eval -e "1.5e-5 + 0"
+error[bad-number]: a number must be followed by a space, symbol or bracket at 3..4
+```
+
+The Mandelbrot page hit this after about 16 zooms (width 3 / 2^16).
+Workaround: the page writes plain decimals (`0.000045776367187500`),
+which X_eTaL reads correctly at any size. Ask: accept `e`/`E`
+exponents in Float literals (and print very large or small Floats
+the same way, so output can be read back).

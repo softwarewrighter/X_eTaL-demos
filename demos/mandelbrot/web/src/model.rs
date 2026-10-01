@@ -4,7 +4,7 @@ use std::rc::Rc;
 
 use yew::Reducible;
 
-use crate::micro::{orbit, run, Frame, View};
+use crate::micro::{orbit, run, Frame, View, MIN_WIDTH};
 use crate::view::Stage;
 
 pub const K_MAX: usize = 64;
@@ -22,6 +22,8 @@ pub struct Model {
     pub focus: Stage,
     /// How long the last X_eTaL run took, in milliseconds.
     pub ms: f64,
+    /// Why the last change was not shown (the page keeps the last good picture).
+    pub notice: Option<String>,
 }
 
 pub enum Action {
@@ -59,6 +61,7 @@ impl Model {
             zooming: false,
             focus: Stage::Iterate,
             ms: 0.0,
+            notice: None,
         }
         .rerun()
     }
@@ -77,21 +80,32 @@ impl Model {
         self
     }
 
-    fn click(self, y: usize, x: usize) -> Self {
-        match self.zooming {
-            true => {
-                let view = self.view.zoom(y, x, 2.0);
-                let selected = (view.rows / 2, view.cols / 2);
-                Model { view, selected, ..self }.rerun()
-            }
-            false => Model { selected: (y, x), ..self }.reorbit(),
+    /// `next`, if X_eTaL ran it; else this model, saying why not.
+    fn or_keep(self, next: Model) -> Model {
+        match &next.frame {
+            Ok(_) => Model { notice: None, ..next },
+            Err(e) => Model { notice: Some(format!("X_eTaL could not run that view: {e}")), playing: false, ..self },
         }
+    }
+
+    fn click(self, y: usize, x: usize) -> Self {
+        if !self.zooming {
+            return Model { selected: (y, x), notice: None, ..self }.reorbit();
+        }
+        let view = self.view.zoom(y, x, 2.0);
+        if view.w < MIN_WIDTH {
+            let notice = "That is as deep as 64-bit floats can go: zoom out or reset.".to_string();
+            return Model { notice: Some(notice), ..self };
+        }
+        let selected = (view.rows / 2, view.cols / 2);
+        let next = Model { view, selected, ..self.clone() }.rerun();
+        self.or_keep(next)
     }
 
     fn tick(self) -> Self {
         match self.k >= K_MAX {
             true => Model { playing: false, ..self },
-            false => Model { k: self.k + 1, ..self }.rerun(),
+            false => self.clone().or_keep(Model { k: self.k + 1, ..self }.rerun()),
         }
     }
 }
@@ -108,12 +122,12 @@ impl Reducible for Model {
     fn reduce(self: Rc<Self>, action: Action) -> Rc<Self> {
         let m = (*self).clone();
         Rc::new(match action {
-            Action::SetK(k) => Model { k: k.min(K_MAX), ..m }.rerun(),
+            Action::SetK(k) => m.clone().or_keep(Model { k: k.min(K_MAX), ..m }.rerun()),
             Action::Tick => m.tick(),
             Action::TogglePlay if !m.playing && m.k >= K_MAX => Model { k: 0, playing: true, ..m }.rerun(),
             Action::TogglePlay => Model { playing: !m.playing, ..m },
             Action::Click(y, x) => m.click(y, x),
-            Action::ZoomOut => Model { view: View { w: m.view.w * 2.0, ..m.view }, ..m }.rerun(),
+            Action::ZoomOut => m.clone().or_keep(Model { view: View { w: m.view.w * 2.0, ..m.view }, ..m }.rerun()),
             Action::Reset => Model { zooming: m.zooming, ..Model::new() },
             Action::Zooming(z) => Model { zooming: z, ..m },
             Action::Focus(s) => Model { focus: s, ..m },

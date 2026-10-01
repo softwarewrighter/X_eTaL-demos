@@ -57,7 +57,7 @@ fn controls(m: &UseReducerHandle<Model>) -> Html {
                 <input type="checkbox" checked={zooming} onclick={act(m, move || Action::Zooming(!zooming))} />
                 {"Click zooms in"}
             </label>
-            <span class="gen">{format!("centre {:.6} {:+.6}i, width {:.3e}; X_eTaL ran in {:.0} ms", m.view.cx, m.view.cy, m.view.w, m.ms)}</span>
+            <span class="gen">{format!("centre {:.6} {:+.6}i, width {:.3e}, zoom {:.0}x; X_eTaL ran in {:.0} ms", m.view.cx, m.view.cy, m.view.w, 3.0 / m.view.w, m.ms)}</span>
         </div>
     }
 }
@@ -202,6 +202,7 @@ pub fn app() -> Html {
             <p class="lede">{"Every point c of the picture iterated at once: z becomes z \u{00d7} z + c, over the whole grid, as one array expression. Step k up and watch the set appear."}</p>
             <nav class="timeline">{ for STAGES.iter().map(|&s| stage_chip(&model, s)) }</nav>
             { controls(&model) }
+            { for model.notice.iter().map(|n| html! { <p class="notice" role="status">{n}</p> }) }
         </header>
         <main>{body}</main>
         { footer() }

@@ -1,4 +1,4 @@
-use mandelbrot_web::micro::{core, escape, orbit, orbit_def, run, View, SOURCE};
+use mandelbrot_web::micro::{core, escape, lit, orbit, orbit_def, run, View, MIN_WIDTH, SOURCE};
 
 const SMALL: View = View { rows: 12, cols: 18, cx: -0.6, cy: 0.0, w: 3.0 };
 
@@ -73,4 +73,22 @@ fn the_orbit_agrees_with_the_grid() {
     if escape(&o).is_none() {
         assert!((a * a + b * b - f.m2[y * 18 + x]).abs() < 1e-9);
     }
+}
+
+#[test]
+fn literals_have_no_exponent_and_round_trip() {
+    for x in [0.0, 1.0, -0.6, 3.0 / 65536.0, -1.234e-11, 2.5e-300, 123456.789, 1e-12] {
+        let s = lit(x);
+        assert!(!s.contains('e') && s.contains('.'), "{x} as {s}");
+        assert!((s.parse::<f64>().unwrap() - x).abs() <= x.abs() * 1e-15, "{x} as {s}");
+    }
+}
+
+#[test]
+fn a_deep_zoom_still_runs() {
+    // Zoomed in 40 times (width 3 / 2^40 = 2.7e-12) around a point of the edge.
+    let v = View { rows: 4, cols: 6, cx: -0.743643887037151, cy: 0.131825904205330, w: 3.0 / 2f64.powi(40) };
+    assert!(v.w > MIN_WIDTH);
+    run(&v, 10).unwrap();
+    orbit(v.point(1, 1), 10).unwrap();
 }
