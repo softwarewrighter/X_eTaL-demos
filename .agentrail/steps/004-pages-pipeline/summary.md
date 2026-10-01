@@ -1,0 +1,1 @@
+Live site pipeline: build-catalog.py (cards from demo.toml, provenance footer), build-pages.sh (trunk per demo web app into pages/<slug>/), serve-pages.sh, pages.yml upload-only workflow; Pages enabled via gh api (build_type workflow); deploy run 36908994336 succeeded; https://softwarewrighter.github.io/X_eTaL-demos/ serves the (empty) catalog. Self-test covers catalog cards.
