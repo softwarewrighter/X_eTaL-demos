@@ -1,0 +1,1 @@
+Demo sub-project layout: demos/_template (demo.toml schema, README skeleton, program, expected/), scripts/demos.py (list/check/json), scripts/test-demos.sh (stdout+stderr goldens, web/ cargo test, test.sh, XETAL_BLESS), new-demo.sh, run-demo.sh, selftest-demos.sh in gate; just demos/new-demo/run/show/test/test-demo/bless; README layout docs.
