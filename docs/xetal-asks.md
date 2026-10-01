@@ -14,6 +14,7 @@ workaround in use.
 | ------ | ---- | --- | ----- | ---------- |
 | open | feature | Complex numbers (already planned upstream) | mandelbrot, julia | two Float planes for the real and imaginary parts |
 | open | feature | Transpose (already planned upstream) | attention, embedding-explorer | to be found when the demo is written |
+| open | bug | A vendored build reports the outer repo's commit as its own | all (`xetal --version`, the web footer) | `just xetal-version` prints `vendor/xetal/VENDORED` beside it |
 | open | feature | A per-operation evaluation trace (the planned stepping debugger) exposed through `xetal-play` | microscope (all) | trace per statement / named binding only |
 
 ## Details
@@ -39,3 +40,18 @@ the nine rotations, their sum, the comparison masks). Statement-level
 capture gives only named results. A trace of each Core application
 with its value, type and shape (the source span it came from) would
 let the timeline step inside a line.
+
+### Build provenance in a vendored build
+
+`xetal-cli`'s and `xetal-chrome`'s `build.rs` take the commit from
+`git rev-parse --short HEAD` in the directory being built. Built from
+`vendor/xetal/` inside this repo, `xetal --version` says
+`Commit: 486edcd` (this repo's commit), not the X_eTaL commit it was
+built from (06d39fa). The same would show in a demo's footer.
+
+Repro: copy a committed X_eTaL tree into another git repository, build
+`xetal-cli`, run `xetal --version`.
+
+Ask: let an environment variable (for example `XETAL_BUILD_SHA`)
+override the git lookup in both `build.rs` files, so a vendoring repo
+can pass the vendored commit.

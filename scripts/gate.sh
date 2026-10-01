@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
-# The pre-commit gate: every demo's tests, then ASCII-only markdown for
-# the docs we own. Later steps add the vendored build and the goldens.
+# The pre-commit gate: the vendored X_eTaL (scripts/check-vendor.sh),
+# every demo's tests, then ASCII-only markdown for the docs we own.
 #   scripts/gate.sh
 set -euo pipefail
 root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$root"
+"$root/scripts/check-vendor.sh"
 "$root/scripts/test-demos.sh"
 md=(README.md docs/plan.md docs/xetal-asks.md)
 for f in demos/*/README.md; do [ -e "$f" ] && md+=("$f"); done

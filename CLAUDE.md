@@ -307,7 +307,9 @@ Read before working:
    README.md, `*.xtl`, expected/ goldens, test.sh, and web/ its own
    Cargo workspace). A demo never reaches into another demo.
 2. X_eTaL is used only through the vendored snapshot in
-   `vendor/xetal/` (once step vendor-xetal lands): `just vendor [REF]`
+   `vendor/xetal/` (`just xetal` builds its CLI into
+   `target/xetal/`; `scripts/check-vendor.sh` and the probe in
+   `tools/vendor-probe/` check it in the gate): `just vendor [REF]`
    refreshes it from a COMMITTED ref of `../X_eTaL`, at a saga start or
    when an ask has landed, never mid-step, always in its own commit
    with the goldens re-run. Never edit files under `vendor/`.
@@ -346,6 +348,9 @@ Read before working:
 ```bash
 just                      # list recipes
 just gate                 # pre-commit gate
+just xetal-version        # which X_eTaL commit is vendored
+just eval "EXPR"          # evaluate with the vendored xetal
+just vendor [REF]         # refresh vendor/xetal/ (own commit)
 agentrail status          # current saga state
 agentrail next            # current step + context
 agentrail plan            # the saga plan
