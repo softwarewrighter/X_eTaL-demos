@@ -4,7 +4,8 @@
 #     pictures to work/draw/<slug>/) and its stdout must equal
 #     expected/<name>.out and its stderr expected/<name>.err (empty when
 #     there is no .err file);
-#   - web/ (a Cargo workspace), when present: cargo test;
+#   - web/ (a Cargo workspace), when present: cargo test, and cargo
+#     check for wasm32 (the browser build);
 #   - test.sh, when present and executable: run it.
 # XETAL_BLESS=1 rewrites the expected files instead (review the diff!).
 # XETAL_DEMOS_DIR overrides demos/ (scripts/selftest-demos.sh uses it).
@@ -57,6 +58,8 @@ for slug in ${slugs[@]+"${slugs[@]}"}; do
   if [ -f "$d/web/Cargo.toml" ]; then
     (cd "$d/web" && cargo test -q --workspace >/dev/null 2>&1) \
       && echo "ok: $slug/web" || { echo "FAIL: $slug/web"; (cd "$d/web" && cargo test -q --workspace) || true; fail=1; }
+    (cd "$d/web" && cargo check -q --target wasm32-unknown-unknown >/dev/null 2>&1) \
+      && echo "ok: $slug/web (wasm32)" || { echo "FAIL: $slug/web (wasm32)"; (cd "$d/web" && cargo check -q --target wasm32-unknown-unknown) || true; fail=1; }
   fi
   if [ -x "$d/test.sh" ]; then
     "$d/test.sh" && echo "ok: $slug/test.sh" || { echo "FAIL: $slug/test.sh"; fail=1; }

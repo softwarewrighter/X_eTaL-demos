@@ -109,6 +109,12 @@ Each demo is a sub-project, `demos/<slug>/`:
 
 Pictures a program shows (`[]S_HOW`) are written to `work/draw/<slug>/`.
 
+The web apps share one shell, `shared/microscope/`: running X_eTaL
+and reading arrays back, the decorated source with the current stage
+highlighted, canvases, stage chips, panels, header and footer. Its
+[README](shared/microscope/README.md) walks through adding a demo's
+web app.
+
 ## The live site
 
 ```bash
@@ -131,9 +137,8 @@ and the bundled X_eTaL builds and is checked by the gate (its
 command-line interpreter, and its library natively and for
 WebAssembly). The demo layout, its test runner and the live catalog
 are in place, and the Life microscope, Mandelbrot and
-reaction-diffusion demos are live. Next, a shared microscope view
-taken from those three pages, then Julia, the wave tank, the cellular
-automata lab and Langton's ant. See
+reaction-diffusion demos are live, on a shared page shell. Next:
+Julia, the wave tank, the cellular automata lab and Langton's ant. See
 [`docs/plan.md`](docs/plan.md) for the roadmap.
 
 ## Documentation

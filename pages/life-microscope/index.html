@@ -6,8 +6,8 @@
   <title>Life Microscope</title>
   
 <script type="module">
-import init, * as bindings from '/X_eTaL-demos/life-microscope/life-microscope-web-5e1a45c0cd59b66d.js';
-const wasm = await init({ module_or_path: '/X_eTaL-demos/life-microscope/life-microscope-web-5e1a45c0cd59b66d_bg.wasm' });
+import init, * as bindings from '/X_eTaL-demos/life-microscope/life-microscope-web-9d6ae068e6837620.js';
+const wasm = await init({ module_or_path: '/X_eTaL-demos/life-microscope/life-microscope-web-9d6ae068e6837620_bg.wasm' });
 
 
 window.wasmBindings = bindings;
@@ -18,100 +18,7 @@ dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
 </script>
   
   <link rel="icon" href="/X_eTaL-demos/life-microscope/favicon-99a73c3cc5eb5037.ico" integrity="sha384-jh2niQ+i5iuRZ34bhA1G/1+MK+pPTNQ94fC6FXNo9emBA7ontKzntF2GbIdkvkpI"/>
-  <style>
-    :root {
-      --bg: #fbfaf7; --fg: #1d1d1f; --muted: #5f6368; --card: #ffffff; --line: #e3e0d8;
-      --accent: #2457c5; --on: #1d1d1f; --off: #f0eee8; --sel: #e8590c;
-      --s3: #2f9e44; --s4: #1971c2;
-      --t-builtin: #1c5fd4; --t-user: #2b8a3e; --t-arg: #a61e8f; --t-num: #9c6500; --t-sym: #0b7285;
-    }
-    @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-      --bg: #141518; --fg: #e8e6e3; --muted: #a0a4ab; --card: #1d1f23; --line: #30333a;
-      --accent: #8fb0ff; --on: #f1efe9; --off: #26292f; --sel: #ff8a4c;
-      --s3: #69db7c; --s4: #74c0fc;
-      --t-builtin: #8fb0ff; --t-user: #8ce99a; --t-arg: #f783ac; --t-num: #ffd43b; --t-sym: #66d9e8;
-    } }
-    :root[data-theme="dark"] {
-      --bg: #141518; --fg: #e8e6e3; --muted: #a0a4ab; --card: #1d1f23; --line: #30333a;
-      --accent: #8fb0ff; --on: #f1efe9; --off: #26292f; --sel: #ff8a4c;
-      --s3: #69db7c; --s4: #74c0fc;
-      --t-builtin: #8fb0ff; --t-user: #8ce99a; --t-arg: #f783ac; --t-num: #ffd43b; --t-sym: #66d9e8;
-    }
-    * { box-sizing: border-box; }
-    body { margin: 0; background: var(--bg); color: var(--fg);
-      font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
-    header, main, footer { max-width: 1180px; margin: 0 auto; padding: 0 16px; }
-    header { padding-top: 20px; }
-    .brand { display: flex; align-items: center; gap: 14px; }
-    .brand h1 { margin: 0; font-size: 1.7rem; }
-    .logo { height: 44px; width: auto; border-radius: 6px; display: block; }
-    .lede { color: var(--muted); margin: 8px 0 12px; }
-    code, .line { font-family: "JuliaMono", "DejaVu Sans Mono", Menlo, ui-monospace, monospace; }
-    .line { display: block; font-size: 1.25rem; padding: 12px 14px; background: var(--card);
-      border: 1px solid var(--line); border-radius: 10px; overflow-x: auto; white-space: pre; }
-    .line { line-height: 2.1; }
-    .hl { background: #e5dbff; box-shadow: 0 0 0 2px #9775fa; border-radius: 4px; padding: .15em .1em;
-      -webkit-box-decoration-break: clone; box-decoration-break: clone; color: #1d1d1f; }
-    .hl .t-builtin { color: #1c5fd4; } .hl .t-user { color: #2b8a3e; } .hl .t-arg { color: #a61e8f; }
-    .hl .t-num { color: #8a5a00; } .hl .t-sym { color: #0b7285; } .hl .t-plain { color: #1d1d1f; }
-    code.xtl { font-size: 1.05em; }
-    h2 code.xtl { font-weight: 400; }
-    .t-builtin { color: var(--t-builtin); } .t-user { color: var(--t-user); } .t-arg { color: var(--t-arg); }
-    .t-num { color: var(--t-num); } .t-sym { color: var(--t-sym); }
-    .timeline { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; align-items: stretch; }
-    .stage { display: flex; flex-direction: column; gap: 2px; padding: 6px 10px; border-radius: 8px;
-      border: 1px solid var(--line); background: var(--card); color: var(--fg); cursor: pointer;
-      font: inherit; text-align: left; }
-    .stage.active { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
-    .stage .sname { font-weight: 600; font-size: .8rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
-    .stage .shape { font-size: .8rem; color: var(--muted); }
-    .controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 14px; }
-    .controls button, .controls select { font: inherit; padding: 5px 12px; border-radius: 8px;
-      border: 1px solid var(--line); background: var(--card); color: var(--fg); cursor: pointer; }
-    .controls button:hover { border-color: var(--accent); }
-    .toggle { display: flex; gap: 6px; align-items: center; color: var(--muted); }
-    .gen { color: var(--muted); margin-left: auto; font-variant-numeric: tabular-nums; }
-    .layout { display: grid; grid-template-columns: minmax(280px, 380px) 1fr; gap: 16px; align-items: start; }
-    .col { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
-    .panel { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
-    .panel.focus { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
-    .panel h2 { font-size: 1rem; margin: 0 0 4px; }
-    .note { color: var(--muted); margin: 0 0 10px; font-size: .9rem; }
-    .grid { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); aspect-ratio: 1; }
-    .grid.big { width: 100%; }
-    .grid.mid { width: min(100%, 240px); }
-    .grid.mini { width: 100%; }
-    .cell { background: var(--off); display: flex; align-items: center; justify-content: center;
-      font-size: .62rem; font-variant-numeric: tabular-nums; min-width: 0; overflow: hidden; }
-    .grid.big .cell { cursor: pointer; }
-    .cell.on { background: var(--on); }
-    .cell.heat { background: hsl(214 75% calc(96% - var(--heat) * 7%)); color: #1d1d1f; }
-    .cell.heat.hot { color: #ffffff; }
-    .cell.heat.s3 { outline: 2px solid var(--s3); outline-offset: -2px; }
-    .cell.heat.s4 { outline: 2px solid var(--s4); outline-offset: -2px; }
-    .cell.sel { box-shadow: inset 0 0 0 2px var(--sel); }
-    .nine { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; max-width: 520px; }
-    .nine figure { margin: 0; }
-    .nine figcaption { text-align: center; font-size: .8rem; color: var(--muted); font-family: ui-monospace, monospace; }
-    .pair { display: flex; gap: 16px; flex-wrap: wrap; }
-    .pair .grid { width: min(100%, 220px); }
-    .nbhd { border-collapse: collapse; margin: 4px 0 10px; }
-    .nbhd td { width: 34px; height: 34px; text-align: center; border: 1px solid var(--line); font-weight: 600; }
-    .nbhd td.on { background: var(--on); color: var(--bg); }
-    .nbhd td.off { background: var(--off); }
-    .nbhd tr:nth-child(2) td:nth-child(2) { box-shadow: inset 0 0 0 2px var(--sel); }
-    .calc code { background: var(--off); padding: 2px 6px; border-radius: 4px; }
-    .error { color: #c92a2a; white-space: pre-wrap; }
-    footer { color: var(--muted); font-size: .85rem; padding-top: 18px; padding-bottom: 28px;
-      margin-top: 20px; border-top: 1px solid var(--line); }
-    footer a { color: var(--accent); }
-    footer .sep { margin: 0 8px; }
-    @media (max-width: 760px) {
-      .layout { grid-template-columns: 1fr; }
-      .line { font-size: 1rem; }
-      .gen { margin-left: 0; width: 100%; }
-    }
-  </style>
-<link rel="modulepreload" href="/X_eTaL-demos/life-microscope/life-microscope-web-5e1a45c0cd59b66d.js" crossorigin="anonymous" integrity="sha384-f2tIBhhvrvcouM+Kp8BkmmrefO8UW8cHE6wnpMZx4c7CI8L2tnn+CQ9vOF/xtcTS"><link rel="preload" href="/X_eTaL-demos/life-microscope/life-microscope-web-5e1a45c0cd59b66d_bg.wasm" crossorigin="anonymous" integrity="sha384-ClZI05rBMNiyQ5kE1fJFiAMNm+d2SVDsHHd+Glhyry0uOAoknng3ZrltTwJwTVy6" as="fetch" type="application/wasm"></head>
+  <link rel="stylesheet" href="/X_eTaL-demos/life-microscope/microscope-4b6fa03ed069243a.css" integrity="sha384-7mHIr1F2Pj3sZOENwMqABHCxke1EZGeejnYT3vkgkaK5QffgUvLKa9dUNPw1eVwQ"/>
+<link rel="modulepreload" href="/X_eTaL-demos/life-microscope/life-microscope-web-9d6ae068e6837620.js" crossorigin="anonymous" integrity="sha384-ycMjqGjkFdTHm35DbUojq+/ewwtPj+Rx0cWMEIWtCZR4b6PRKjyVTHPaD1Bq1lay"><link rel="preload" href="/X_eTaL-demos/life-microscope/life-microscope-web-9d6ae068e6837620_bg.wasm" crossorigin="anonymous" integrity="sha384-3it0fdpjiFel/H4YI94qxe1Eg18p3roBobWe52MNL6BmOzm0hhbHhuSRe+ZHRilZ" as="fetch" type="application/wasm"></head>
 <body></body>
 </html>

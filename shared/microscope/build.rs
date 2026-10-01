@@ -15,7 +15,7 @@ fn run(cmd: &str, args: &[&str]) -> String {
 }
 
 fn vendored() -> String {
-    let text = std::fs::read_to_string("../../../vendor/xetal/VENDORED").unwrap_or_default();
+    let text = std::fs::read_to_string("../../vendor/xetal/VENDORED").unwrap_or_default();
     text.lines()
         .find_map(|l| l.strip_prefix("commit = \""))
         .map(|c| c.chars().take(7).collect())
@@ -27,6 +27,6 @@ fn main() {
     println!("cargo:rustc-env=BUILD_HOST={}", run("hostname", &["-s"]));
     println!("cargo:rustc-env=BUILD_TIMESTAMP={}", run("date", &["-u", "+%Y%m%dT%H%M%S"]));
     println!("cargo:rustc-env=XETAL_SHA={}", vendored());
-    println!("cargo:rerun-if-changed=../../../vendor/xetal/VENDORED");
-    println!("cargo:rerun-if-changed=../../../.git/HEAD");
+    println!("cargo:rerun-if-changed=../../vendor/xetal/VENDORED");
+    println!("cargo:rerun-if-changed=../../.git/HEAD");
 }

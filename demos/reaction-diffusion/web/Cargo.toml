@@ -7,11 +7,10 @@ license = "MIT"
 publish = false
 
 [dependencies]
-xetal-play = { path = "../../../vendor/xetal/components/web/crates/xetal-play" }
+microscope = { path = "../../../shared/microscope" }
 yew = { version = "0.21", features = ["csr"] }
 gloo-timers = "0.3"
-wasm-bindgen = "0.2"
-web-sys = { version = "0.3", features = ["HtmlCanvasElement", "CanvasRenderingContext2d", "ImageData", "HtmlInputElement", "HtmlSelectElement", "DomRect", "Element", "Window", "Performance"] }
+web-sys = { version = "0.3", features = ["HtmlInputElement", "HtmlSelectElement"] }
 console_error_panic_hook = "0.1"
 
 [workspace]

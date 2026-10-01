@@ -3,7 +3,6 @@
 //! (tested natively); the rest is the page.
 
 pub mod app;
-pub mod canvas;
 pub mod colour;
 pub mod micro;
 pub mod model;
