@@ -353,6 +353,8 @@ just eval "EXPR"          # evaluate with the vendored xetal
 just new-demo SLUG "T"    # start a demo from demos/_template
 just run SLUG / show SLUG # run a demo / as a notebook
 just test-demo SLUG       # its goldens; just bless SLUG rewrites them
+just pages                # build pages/ (commit it; push publishes)
+just serve-pages          # preview pages/ under /X_eTaL-demos/
 just vendor [REF]         # refresh vendor/xetal/ (own commit)
 agentrail status          # current saga state
 agentrail next            # current step + context

@@ -108,13 +108,28 @@ Each demo is a sub-project, `demos/<slug>/`:
 
 Pictures a program shows (`[]S_HOW`) are written to `work/draw/<slug>/`.
 
+## The live site
+
+```bash
+just serve SLUG       # one demo's web app at http://127.0.0.1:8095/, rebuilt on change
+just pages            # build the whole site into pages/
+just serve-pages      # preview pages/ at http://127.0.0.1:8096/X_eTaL-demos/
+```
+
+The site is built locally: `just pages` builds every demo that has a
+web app into `pages/<slug>/` and writes the catalog, `pages/index.html`,
+from the demos' `demo.toml` files. `pages/` is committed, and pushing it
+to `main` runs a GitHub Actions workflow
+(`.github/workflows/pages.yml`) that only publishes the folder, at
+<https://softwarewrighter.github.io/X_eTaL-demos/>.
+
 ## Status
 
 Early. The project process, plan and build scaffolding are in place,
 and the bundled X_eTaL builds and is checked by the gate (its
 command-line interpreter, and its library natively and for
-WebAssembly). The demo layout and its test runner are in place. The
-live catalog and the first demo (the Life microscope) come next. See
+WebAssembly). The demo layout, its test runner and the live catalog
+are in place. The first demo, the Life microscope, comes next. See
 [`docs/plan.md`](docs/plan.md) for the roadmap.
 
 ## Documentation
