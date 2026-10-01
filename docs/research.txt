@@ -1,0 +1,548 @@
+consider X_eTaL.  What amazing, topical, visual demos could we add?
+
+Given where X_eTaL is heading—typed arrays, concise APL-like composition, readable pretty-printing, and a visual execution/debugger—I think the demo suite can become a major part of the language’s identity.
+
+The sweet spot is:
+
+small X_eTaL program → visually striking result → step through the array transformations → reveal something technically interesting.
+
+That is particularly timely because current ML work is heavily interested in sparse MoE routing, interpretability, state-space models, world models, multimodality, and small/efficient models. For example, 2026 ICML work is explicitly studying MoE experts as interpretable computational units, while other current work examines routing discontinuities and alternative routing formulations. World models and state-space models are similarly active areas.
+
+My candidate X_eTaL visual-demo portfolio
+Demo	Visual payoff	X_eTaL concepts	Difficulty
+1. Conway Life microscope	★★★★★	shifts, neighborhoods, reduction, masks	already started
+2. Tiny CNN sees digits	★★★★★	windows, convolution, tensors	low
+3. MoE routing microscope	★★★★★	masks, top-k, gather/scatter, tensors	medium
+4. Transformer attention microscope	★★★★★	matrix multiply, softmax, masks	medium
+5. Reaction-diffusion / Turing patterns	★★★★★	stencil computation, iteration	low
+6. Mandelbrot / Julia explorer	★★★★★	broadcasting, complex arrays, masks	low
+7. Cellular automata laboratory	★★★★★	neighborhood transforms	low
+8. Langton's Ant / emergent behavior	★★★★☆	state arrays, indexing	low
+9. Tiny world model	★★★★★	tensors, prediction, recurrence	medium/high
+10. 1.58-bit neural network	★★★★☆	ternary arrays, dot products	medium
+11. Diffusion from noise	★★★★★	tensor transforms, iteration	medium
+12. Embedding-space explorer	★★★★☆	matrices, distance, reduction	medium
+13. N-body / gravity simulation	★★★★★	broadcasting, pairwise arrays	medium
+14. Wave equation / interference	★★★★★	stencil, numerical arrays	low
+15. Image-processing pipeline	★★★★★	reshape, convolution, masks	very low
+
+I wouldn't implement them in that order, though.
+
+1. Reaction-diffusion: probably the next killer demo
+5
+
+This may actually be a better language demonstration than Life.
+
+Implement the Gray-Scott reaction-diffusion equations on a 2-D array.
+
+You start with something like:
+
+U V
+
+two matrices representing chemical concentrations.
+
+Each frame conceptually does:
+
+laplacian(U)
+laplacian(V)
+
+dU = Du*lap(U) - U*V*V + feed
+dV = Dv*lap(V) + U*V*V - kill
+
+The browser shows a beautiful continuously evolving organic texture.
+
+Why X_eTaL wins
+
+The important operation is fundamentally:
+
+apply the same local stencil over an entire rank-2 array.
+
+So the visualizer can show:
+
+input array
+    ↓
+shift north
+shift south
+shift east
+shift west
+    ↓
+weighted sum
+    ↓
+laplacian
+    ↓
+new array
+
+Click any pixel and show its neighborhood and calculation.
+
+That makes the X_eTaL execution model visible.
+
+2. MoE Routing Microscope
+
+This one fits unusually well with your other work.
+
+Imagine 16 little expert boxes:
+
+ E0  E1  E2  E3
+ E4  E5  E6  E7
+ E8  E9 E10 E11
+E12 E13 E14 E15
+
+Enter:
+
+The quick brown fox jumps over the lazy dog.
+
+Tokens flow across the screen.
+
+For each token X_eTaL computes something conceptually like:
+
+scores ← token × router_weights
+experts ← top 2 scores
+
+Then animate:
+
+"brown" ───────→ E3
+        └──────→ E11
+
+while displaying the routing vector:
+
+[.02 .01 .04 .61 .03 ... .21 ...]
+The really interesting experiment
+
+Have a slider perturb the token embedding:
+
+x
+x + ε
+
+and display where the selected expert suddenly changes.
+
+That's not just pedagogical decoration. Recent work analyzes exactly this property: sparse top-k routing creates discontinuity boundaries where very similar inputs can select substantially different experts.
+
+So you could visually show the expert decision regions.
+
+That's a terrific X_eTaL demo because it combines:
+
+array programming
+modern ML
+your MoE work
+interpretability
+an actual current research question
+
+And current interpretability research suggests experts can exhibit fairly fine-grained computational specialization rather than merely representing broad subject domains.
+
+3. CNN: "How does the machine see a 7?"
+5
+
+Draw an MNIST digit with the mouse.
+
+Show the 28×28 matrix beside it.
+
+Then:
+
+28×28
+   ↓ convolution
+26×26×8
+   ↓ ReLU
+26×26×8
+   ↓ pool
+13×13×8
+   ↓
+...
+   ↓
+[0.00 0.01 ... 0.94 ...]
+
+But make every stage clickable.
+
+Click one convolution output cell:
+
+       input                  kernel
+
+  0  0  1                   -1  0  1
+  0  1  1        ×          -1  0  1
+  0  0  1                   -1  0  1
+
+             ↓
+
+             3
+
+Now the user understands both CNNs and X_eTaL array operations.
+
+This could reuse quite a bit conceptually from your existing MLPL CNN/formula work.
+
+4. Attention microscope
+
+Input:
+
+the animal didn't cross the street because it was tired
+
+Show the attention matrix as a heatmap:
+
+             the animal didn't cross ... it ...
+the          ░
+animal           █
+didn't
+cross
+...
+it               █████
+
+Then expose the X_eTaL transformations:
+
+Q ← X × Wq
+K ← X × Wk
+V ← X × Wv
+
+S ← Q × transpose(K)
+A ← softmax(S / sqrt(d))
+Y ← A × V
+
+Each line becomes an inspectable array transformation.
+
+Click:
+
+Q × Kᵀ
+
+and literally animate rows meeting columns.
+
+Especially valuable for X_eTaL
+
+Matrix notation and array-language notation suddenly converge.
+
+Instead of explaining attention with a pile of framework objects, you are showing that most of it is just array algebra.
+
+5. Mandelbrot / Julia explorer
+6
+
+This is almost mandatory for an array language.
+
+Generate a matrix of complex coordinates:
+
+C ← complex-grid(width,height)
+Z ← 0
+
+then repeatedly:
+
+Z ← Z×Z + C
+
+while masking escaped cells.
+
+The visualizer can show:
+
+iteration 0
+iteration 1
+iteration 2
+...
+
+and the array gradually becomes the Mandelbrot set.
+
+Click any pixel and show:
+
+c = -0.743643 + 0.131825i
+
+z0 = 0
+z1 = ...
+z2 = ...
+...
+
+It demonstrates broadcasting extremely naturally.
+
+6. "One rule → a universe": cellular automata
+
+Life should become one member of a larger CA laboratory.
+
+For example:
+
+Rule 30
+Rule 90
+Rule 110
+Life
+Brian's Brain
+Wireworld
+Langton's Ant
+
+Especially Rule 30 / 90 / 110.
+
+The visualization grows downward:
+
+               █
+              ███
+             ██  █
+            ██ ████
+...
+
+Then let users modify the rule array.
+
+The X_eTaL program should ideally be tiny.
+
+This teaches:
+
+boolean arrays
+neighborhood indexing
+lookup tables
+iteration
+shape
+rank
+
+without needing ML at all.
+
+7. 1.58-bit neural network
+
+This could connect X_eTaL to another very current theme and to your ternary work.
+
+Represent weights visually:
+
+-1   →  ◀
+ 0   →  ·
++1   →  ▶
+
+A layer becomes a matrix like:
+
+▶ · ◀ ▶ ▶ ·
+· ▶ ▶ ◀ · ◀
+◀ ◀ · ▶ ▶ ▶
+
+Feed an input vector through it and animate:
+
+activation
+    ×
+ternary weights
+    ↓
+accumulators
+    ↓
+activation
+
+Then compare:
+
+FP32
+FP16
+INT8
+1.58-bit
+
+by showing storage, operations, and output error, rather than just giving numbers.
+
+This also gives X_eTaL a reason to have especially good visualization of types.
+
+8. Tiny world model
+
+World models are particularly topical in 2026: they're being investigated across robotics, embodied AI, autonomous driving, video generation and planning.
+
+But don't try to make an enormous generative-video model.
+
+Make the world's state an array.
+
+For example:
+
+┌──────────────┐
+│       ●      │
+│              │
+│   ███        │
+│______________│
+└──────────────┘
+
+A ball moves under gravity.
+
+The model sees:
+
+frame(t-2)
+frame(t-1)
+frame(t)
+
+and predicts:
+
+frame(t+1)
+
+Display:
+
+actual future       predicted future
+
+     ●                    ●
+                           
+
+       ●                   ●
+
+with error highlighted.
+
+Then let the user alter gravity.
+
+Now the model must discover:
+
+what kind of world am I in?
+
+That's an understandable world model without billions of parameters.
+
+9. N-body gravity
+
+This is another case where array notation can be spectacular.
+
+Put 50 bodies on screen.
+
+For every pair:
+
+Δ ← position_i - position_j
+r ← magnitude Δ
+F ← mass_i × mass_j / r²
+
+The important thing is that X_eTaL shouldn't write the double loop.
+
+Broadcasting creates the:
+
+N × N × dimensions
+
+pairwise displacement tensor.
+
+Your debugger could literally show this cube.
+
+Then reduce it:
+
+N×N×2
+  ↓
+N×2
+
+to obtain forces.
+
+That is an unusually good explanation of why array languages are powerful.
+
+10. Wave tank
+
+Have users click somewhere in a 2-D surface.
+
+Ripples spread outward.
+
+Click twice:
+
+       )))))     (((((
+          )))   (((
+             )X(
+          (((   )))
+       (((((     )))))
+
+and interference patterns emerge.
+
+Then add:
+
+barriers
+double slit
+circular obstacles
+different propagation speeds
+
+This gives you:
+
+Young's double-slit experiment implemented as an array program.
+
+The X_eTaL debugger can expose the finite-difference stencil at any selected point.
+
+Visually fantastic, mathematically legitimate, and relatively easy.
+
+11. Diffusion / denoising
+
+Start with:
+
+████░█░░██░█░████░░█
+
+and progressively reveal an image.
+
+But the interesting visualization would be three synchronized panels:
+
+noise          prediction        reconstructed
+
+plus a graph of:
+
+noise level
+signal estimate
+error
+
+Click an intermediate tensor to inspect it.
+
+It gives people an intuitive way into diffusion without pretending the browser demo is a giant image model.
+
+12. PCA / embedding explorer
+
+Put 100–1000 objects in a high-dimensional matrix:
+
+1000 × 64
+
+then project:
+
+64 → 3
+
+and display the result as a rotatable point cloud.
+
+Have sliders select dimensions/components.
+
+More interestingly, show:
+
+original tensor
+      ↓
+center
+      ↓
+covariance
+      ↓
+eigenvectors
+      ↓
+projection
+      ↓
+3-D visualization
+
+This is perfect for an array-language execution microscope.
+
+A particularly X_eTaL-specific feature
+
+Rather than building these as twelve unrelated demos, I would build one visual execution architecture.
+
+Every demo has four synchronized views:
+
+┌───────────────────────────────────────────────────────────┐
+│ X_eTaL source                                             │
+│                                                           │
+│      expression being evaluated                           │
+├───────────────────────┬───────────────────────────────────┤
+│ ARRAY / SHAPE         │ VISUAL WORLD                      │
+│                       │                                   │
+│ [64 64 2]             │        evolving simulation        │
+│ [64 64]               │                                   │
+│ [64 64 8]             │                                   │
+│                       │                                   │
+├───────────────────────┴───────────────────────────────────┤
+│ execution timeline                                        │
+│                                                          │
+│  input → each → table → reduce → mask → output            │
+│                         ▲                                 │
+└───────────────────────────────────────────────────────────┘
+
+Scrub the timeline backward and forward.
+
+Click any operation.
+
+Then show:
+
+value + type + shape + rank + operation + before/after visualization.
+
+That becomes much more than a debugger.
+
+It becomes an array-language microscope.
+
+What I'd build first
+
+I'd make the initial X_eTaL visual gallery around five demos:
+
+Life — composition
+Mandelbrot — broadcasting
+Reaction-diffusion — stencils and iteration
+CNN/MNIST — ML tensors
+MoE Router Microscope — modern sparse ML
+
+That creates a really nice progression:
+
+boolean grid
+     ↓
+numeric grid
+     ↓
+dynamic numerical system
+     ↓
+neural network
+     ↓
+modern sparse model
+
+Then I'd add N-body specifically to demonstrate pairwise broadcasting, attention for matrix/tensor algebra, and the tiny world model as the more ambitious showcase.
+
+The MoE demo in particular could become a bridge between X_eTaL and moe-microscope rather than duplicating the latter: X_eTaL supplies a tiny executable mathematical definition; the microscope shows every intermediate array. Recent work makes that unusually topical because MoE interpretability, routing strategy, efficiency and expert specialization are all active research questions.
+
+The larger design principle I'd adopt is: every X_eTaL demo should contain at least one moment where a conventional programmer sees an animation of a complicated loop nest and realizes that the X_eTaL program describes the whole operation directly as an array transformation. That is the compelling argument for the language, not merely character count.

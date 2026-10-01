@@ -1,0 +1,153 @@
+# X_eTaL-demos -- Implementation Plan
+
+A gallery of small, visual, topical X_eTaL programs, each runnable from
+the command line and live in the browser. The source of the ideas is
+`docs/research.txt` (archival, not normative); this plan turns every
+suggestion there into sagas and steps.
+
+Development is driven by agentrail sagas (one active saga in
+`.agentrail/`, finished sagas archived to `.agentrail-archive/`), as in
+`../X_eTaL`. Every step ends with the gate (`just gate`), docs updated,
+a detailed commit to `main` (with the `.agentrail/` changes), a push,
+and then `agentrail complete`.
+
+## Guiding principle
+
+Every demo follows the same arc:
+
+> small X_eTaL program -> visually striking result -> step through the
+> array transformations -> reveal something technically interesting.
+
+and contains at least one moment where a reader sees an animated loop
+nest and realizes the X_eTaL program states the whole operation as one
+array transformation. That, not character count, is the argument for
+the language.
+
+## Architecture decisions
+
+| # | Decision | Why |
+| - | -------- | --- |
+| A1 | X_eTaL is **vendored** into `vendor/xetal/` as a source snapshot of a committed ref of `../X_eTaL` (`just vendor [REF]`, default `HEAD`), recorded in `vendor/xetal/VENDORED` (SHA, date, subject). Uncommitted work in `../X_eTaL` is never vendored. | X_eTaL is developed in parallel; demos need a recent but stable interpreter, refreshed deliberately, never moving under a step. |
+| A2 | The vendored CLI is built into `target/xetal/` (`just xetal`), and every recipe runs that binary, not one on the PATH. | Reproducible: a demo's goldens are tied to `VENDORED`. |
+| A3 | Each demo is its own sub-project, `demos/<slug>/`: `demo.toml` (title, one-line summary, concepts, status), `README.md` (the per-demo doc), `<slug>.xtl` programs, `expected/` goldens, and `web/` (its own Cargo workspace: a Yew app depending on the vendored `xetal-play` by path). | Demos evolve independently; one broken demo never blocks another. |
+| A4 | The shared browser shell (the "array-language microscope": source, array/shape panel, visual world, execution timeline) lives in `shared/microscope/`, a Cargo workspace the demos depend on by path. | The four synchronized views are the same for every demo (research: "one visual execution architecture"). |
+| A5 | The live site is built **locally** into `pages/` (`just pages`): a catalog page `pages/index.html` generated from every `demos/*/demo.toml`, plus `pages/<slug>/` from trunk. `pages/` is committed; `.github/workflows/pages.yml` only uploads it (nothing is built on GitHub). | Same model as `../X_eTaL`: simple, fast, deterministic deploys. |
+| A6 | A feature X_eTaL lacks, or a bug a demo uncovers, is **not** worked around silently and not fixed here: it is recorded in `docs/xetal-asks.md` (what, why, which demo, a minimal repro), and the demo uses a documented workaround or waits. | X_eTaL owns its language decisions; this repo is a consumer. |
+| A7 | `just` is the entry point for everything (build, test, run each demo, serve, pages, gate); recipes call `scripts/*.sh`. | One way to do things, usable without `just` too. |
+
+## Gallery order
+
+Implementable demos come first; a demo that needs an X_eTaL feature
+that does not exist yet (`docs/xetal-asks.md`) is **deferred** to the
+last saga, until its asks land in a vendored release. Each demo's
+first step starts with a short feasibility check against the vendored
+interpreter; if it turns out to be blocked, the ask is filed and the
+step moves to the deferred saga (`agentrail reorder` / `insert`).
+
+The research's progression is kept within what can be built now:
+
+```
+boolean grid -> numeric grid -> dynamic system -> neural net -> sparse model
+   Life          Mandelbrot     reaction-diffusion   CNN        MoE router
+```
+
+| Demo (slug) | Visual payoff | X_eTaL concepts | Now? | Saga |
+| ----------- | ------------- | --------------- | ---- | ---- |
+| life-microscope | Life, every rotation and sum visible | rotate, reduce, masks | yes | 1 |
+| mandelbrot | the set grows iteration by iteration; click a pixel for its orbit | broadcasting, masks | yes (two Float planes) | 3 |
+| julia | Julia sets, c picked on the Mandelbrot view | broadcasting, masks | yes | 3 |
+| reaction-diffusion | Gray-Scott organic textures; click a pixel for its stencil | stencils, iteration | yes | 3 |
+| wave-tank | ripples, interference, double slit | finite-difference stencil | yes | 3 |
+| ca-lab | Rule 30/90/110, Life, Brian's Brain, Wireworld; edit the rule | lookup tables, neighborhoods | yes | 3 |
+| langtons-ant | emergent highway | state arrays, masks | yes (one-hot masks, no amend) | 3 |
+| nbody | 50 bodies; the N x N x 2 displacement cube reduced to forces | pairwise broadcasting (table), reduce | yes | 4 |
+| image-pipeline | blur, edges, threshold on a picture | reshape, convolution, masks | yes (synthetic images) | 4 |
+| ternary-net | 1.58-bit weights; FP32/FP16/INT8/ternary compared | ternary arrays, inner product | yes | 4 |
+| moe-router | tokens routed to 16 experts; epsilon slider shows routing discontinuities | top-k (grade), masks, select | yes | 4 |
+| cnn-digits | draw a digit, see every conv/ReLU/pool stage | windows, convolution, tensors | likely (weights read from a file; speed to check) | 4 |
+| attention | Q, K, V, softmax heatmap; rows meeting columns | matrix product, softmax, transpose | deferred: transpose | 5 |
+| embedding-explorer | PCA 64 -> 3 point cloud, every stage inspectable | covariance, eigenvectors, transpose | deferred: transpose | 5 |
+| world-model | predict frame t+1; change gravity | recurrence, learning | deferred: training speed, records | 5 |
+| diffusion | noise -> prediction -> reconstruction panels | tensor transforms, iteration | deferred: a learned denoiser | 5 |
+
+The microscope (saga 2) is built first at statement granularity, which
+works today; stepping inside a line waits on the per-operation trace
+ask.
+
+## Saga 1 -- foundation  [ACTIVE]
+
+Goal: the process, the vendored interpreter, the demo sub-project
+layout, the live-site pipeline, and one demo published end to end.
+
+| # | Step slug | Delivers |
+| - | --------- | -------- |
+| 1 | scaffold | agentrail saga, CLAUDE.md/AGENTS.md, README (intro, summary, demo list, build, status, copyright, license), COPYRIGHT, LICENSE, .gitignore, justfile, `scripts/gate.sh`, this plan, `docs/xetal-asks.md` |
+| 2 | vendor-xetal | `scripts/vendor-xetal.sh` + `just vendor [REF]` (git archive of a committed ref of `../X_eTaL`: components, lib, userlibs, .cargo), `vendor/xetal/VENDORED`, `just xetal` builds the CLI into `target/xetal/`, `just xetal-version`; gate checks the vendored build |
+| 3 | demo-layout | the sub-project template (`demos/_template/`), `just new-demo SLUG`, `demo.toml` schema, golden runner (`scripts/test-demos.sh`: run each `*.xtl` with the vendored binary, diff against `expected/`), `just run SLUG`, `just test` |
+| 4 | pages-pipeline | `scripts/build-catalog.sh` (catalog `pages/index.html` from `demo.toml`), `scripts/build-pages.sh`, `.github/workflows/pages.yml`, footer with build provenance (commit, vendored X_eTaL SHA), README link to the catalog; verify the deploy on GitHub |
+| 5 | life-microscope | first demo end to end: Life programs + goldens, a web app showing the board and the nine rotated boards and their sum, published and linked |
+
+## Saga 2 -- microscope (the shared visual execution shell)
+
+Goal: the four synchronized views from the research, reusable by every
+demo: X_eTaL source with the expression being evaluated highlighted;
+array panel (value, type, shape, rank); the visual world; an execution
+timeline that can be scrubbed backward and forward, any operation
+clickable for before/after.
+
+| # | Step slug | Delivers |
+| - | --------- | -------- |
+| 1 | trace-model | a demo-side trace: each named binding / statement of a program evaluated in order through `xetal-play`, its value, type and shape captured (no evaluator changes; a finer per-operation trace is an X_eTaL ask) |
+| 2 | array-views | renderers for rank 0-3 arrays: numbers, heatmap, boolean grid, ternary glyphs, image |
+| 3 | timeline | scrubbable timeline, play/pause/step, click to inspect |
+| 4 | shell-layout | the four-pane layout, source highlighting, phone layout, help dialog, footer |
+| 5 | adopt-life | life-microscope moved onto the shell; retrospective |
+
+## Saga 3 -- grids and dynamics (implementable now)
+
+| # | Step slug | Delivers |
+| - | --------- | -------- |
+| 1 | mandelbrot | complex grid by broadcasting (two Float planes until X_eTaL has complex numbers), escape masks per iteration, click a pixel to see its orbit z0, z1, ... |
+| 2 | julia | Julia sets on the same program, c chosen by clicking the Mandelbrot view |
+| 3 | reaction-diffusion | Gray-Scott on U and V; the Laplacian as four shifts and a weighted sum, shown step by step; click a pixel for its neighborhood and arithmetic; feed/kill presets |
+| 4 | wave-tank | click for ripples; interference; barriers, double slit, obstacles, speeds; the stencil at any point |
+| 5 | ca-lab | elementary CA (Rule 30, 90, 110) growing downward, the rule as an editable lookup array; Life, Brian's Brain, Wireworld |
+| 6 | langtons-ant | the ant as state arrays and masks; the highway emerges |
+| 7 | gallery-1-release | catalog, README, per-demo docs, screenshots, retrospective |
+
+## Saga 4 -- physics and ML (implementable now)
+
+| # | Step slug | Delivers |
+| - | --------- | -------- |
+| 1 | nbody | N x N x 2 displacements by broadcasting, the cube shown, reduced to N x 2 forces; integration; no loops in the program |
+| 2 | image-pipeline | reshape, blur, edge detection, threshold on an image, every stage shown |
+| 3 | ternary-net | weights as -1/0/+1 glyphs, activation x ternary weights -> accumulators -> activation; FP32/FP16/INT8/1.58-bit storage, ops and error compared |
+| 4 | moe-router | 16 experts, a sentence's tokens routed by `token x router_weights`, top-2; animated routes and the routing vector |
+| 5 | moe-epsilon | perturb an embedding x + epsilon with a slider and show where the selected experts jump (the routing-discontinuity regions); link to moe-microscope |
+| 6 | cnn-weights | a tiny MNIST CNN trained offline (script in `demos/cnn-digits/train/`), weights exported as X_eTaL-readable data |
+| 7 | cnn-digits | draw a 28 x 28 digit; conv -> ReLU -> pool -> dense -> softmax in X_eTaL; click any conv output to see input patch x kernel = value |
+| 8 | gallery-2-release | catalog, docs, retrospective |
+
+## Saga 5 -- deferred (blocked on asks)
+
+Not started until the asks each demo needs have landed in a vendored
+X_eTaL release; the saga opens with a vendor refresh and a
+feasibility re-check, and the microscope gains stepping inside a line
+if the per-operation trace has landed.
+
+| # | Step slug | Delivers | Waits on |
+| - | --------- | -------- | -------- |
+| 1 | attention | Q = X Wq, K, V, S = Q K^T, A = softmax(S / sqrt d), Y = A V, each line inspectable; the heatmap for "the animal didn't cross the street because it was tired"; rows meeting columns animated | transpose |
+| 2 | embedding-explorer | 1000 x 64 -> center -> covariance -> eigenvectors -> projection -> rotatable 3-D cloud | transpose |
+| 3 | world-model | ball under gravity as an array world; a tiny model predicts frame t+1 from t-2..t; actual vs predicted with error; change gravity and watch it adapt | training speed, maybe records |
+| 4 | diffusion | noise / prediction / reconstruction panels with noise level, signal estimate and error plotted | a learned denoiser (weights + speed) |
+| 5 | gallery-3-release | catalog, docs, final retrospective | |
+
+## Cross-cutting
+
+- Refresh the vendored X_eTaL (`just vendor`) at the start of a saga, or
+  when an ask in `docs/xetal-asks.md` has landed upstream; never in the
+  middle of a step. The refresh is its own commit, with the goldens
+  re-run.
+- When an ask lands, remove the workaround in the same step that
+  refreshes the vendor, and mark the ask done.
