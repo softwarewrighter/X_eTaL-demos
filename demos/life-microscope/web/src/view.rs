@@ -85,15 +85,24 @@ pub fn range(stage: Stage) -> (usize, usize) {
     }
 }
 
-/// The line drawn decorated, the part computing `focus` highlighted.
-pub fn line(focus: Stage) -> Html {
-    let (lo, hi) = range(focus);
-    let segs = decorate(LINE).into_iter().map(|s| {
+fn segments(src: &str, lo: usize, hi: usize) -> Html {
+    let segs = decorate(src).into_iter().map(|s| {
         let mut class = classes!(css(s.class));
-        if s.raw.start >= lo && s.raw.end <= hi && s.class != Class::Space {
+        if s.raw.start >= lo && s.raw.end <= hi {
             class.push("hl");
         }
         html! { <span {class}>{s.text}</span> }
     });
-    html! { <code class="line">{ for segs }</code> }
+    html! { <>{ for segs }</> }
+}
+
+/// Any X_eTaL snippet, drawn decorated (as X_eTaL renders it).
+pub fn code(src: &str) -> Html {
+    html! { <code class="xtl">{ segments(src, 1, 0) }</code> }
+}
+
+/// The line drawn decorated, the part computing `focus` highlighted.
+pub fn line(focus: Stage) -> Html {
+    let (lo, hi) = range(focus);
+    html! { <code class="line">{ segments(LINE, lo, hi) }</code> }
 }

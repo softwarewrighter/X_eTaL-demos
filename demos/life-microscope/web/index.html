@@ -6,22 +6,23 @@
   <title>Life Microscope</title>
   <link data-trunk rel="rust" data-bin="life-microscope-web" />
   <link data-trunk rel="copy-file" href="../../../images/modern-xetal-logo.jpg" />
+  <link data-trunk rel="icon" href="../../../images/favicon.ico" />
   <style>
     :root {
       --bg: #fbfaf7; --fg: #1d1d1f; --muted: #5f6368; --card: #ffffff; --line: #e3e0d8;
-      --accent: #2457c5; --on: #1d1d1f; --off: #f0eee8; --sel: #e8590c; --hl: #ffe9a8;
+      --accent: #2457c5; --on: #1d1d1f; --off: #f0eee8; --sel: #e8590c;
       --s3: #2f9e44; --s4: #1971c2;
       --t-builtin: #1c5fd4; --t-user: #2b8a3e; --t-arg: #a61e8f; --t-num: #9c6500; --t-sym: #0b7285;
     }
     @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
       --bg: #141518; --fg: #e8e6e3; --muted: #a0a4ab; --card: #1d1f23; --line: #30333a;
-      --accent: #8fb0ff; --on: #f1efe9; --off: #26292f; --sel: #ff8a4c; --hl: #4a3f12;
+      --accent: #8fb0ff; --on: #f1efe9; --off: #26292f; --sel: #ff8a4c;
       --s3: #69db7c; --s4: #74c0fc;
       --t-builtin: #8fb0ff; --t-user: #8ce99a; --t-arg: #f783ac; --t-num: #ffd43b; --t-sym: #66d9e8;
     } }
     :root[data-theme="dark"] {
       --bg: #141518; --fg: #e8e6e3; --muted: #a0a4ab; --card: #1d1f23; --line: #30333a;
-      --accent: #8fb0ff; --on: #f1efe9; --off: #26292f; --sel: #ff8a4c; --hl: #4a3f12;
+      --accent: #8fb0ff; --on: #f1efe9; --off: #26292f; --sel: #ff8a4c;
       --s3: #69db7c; --s4: #74c0fc;
       --t-builtin: #8fb0ff; --t-user: #8ce99a; --t-arg: #f783ac; --t-num: #ffd43b; --t-sym: #66d9e8;
     }
@@ -37,7 +38,12 @@
     code, .line { font-family: "JuliaMono", "DejaVu Sans Mono", Menlo, ui-monospace, monospace; }
     .line { display: block; font-size: 1.25rem; padding: 12px 14px; background: var(--card);
       border: 1px solid var(--line); border-radius: 10px; overflow-x: auto; white-space: pre; }
-    .line .hl { background: var(--hl); border-radius: 3px; }
+    .line { line-height: 2.1; }
+    .hl { background: #e5dbff; outline: 2px solid #9775fa; padding: .22em 0; }
+    .hl.t-builtin { color: #1c5fd4; } .hl.t-user { color: #2b8a3e; } .hl.t-arg { color: #a61e8f; }
+    .hl.t-num { color: #8a5a00; } .hl.t-sym { color: #0b7285; } .hl.t-plain { color: #1d1d1f; }
+    code.xtl { font-size: 1.05em; }
+    h2 code.xtl { font-weight: 400; }
     .t-builtin { color: var(--t-builtin); } .t-user { color: var(--t-user); } .t-arg { color: var(--t-arg); }
     .t-num { color: var(--t-num); } .t-sym { color: var(--t-sym); }
     .timeline { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; align-items: stretch; }

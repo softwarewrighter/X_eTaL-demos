@@ -6,7 +6,7 @@ use yew::prelude::*;
 
 use crate::micro::{Anatomy, OFFSETS, PATTERNS};
 use crate::model::{Action, Model, Stage, COLS, ROWS, STAGES};
-use crate::view::{grid, line, Grid, Paint};
+use crate::view::{code, grid, line, Grid, Paint};
 
 const REPO: &str = "https://github.com/softwarewrighter/X_eTaL-demos";
 
@@ -21,7 +21,7 @@ fn stage_info(s: Stage) -> (&'static str, &'static str, String) {
         Stage::Board => ("board", "_r", rc),
         Stage::Rotate => ("rotate", "-1 0 1 o_-_12", format!("3 3 {rc}")),
         Stage::Sum => ("sum", "'+ r_/_12", rc),
-        Stage::Masks => ("compare", "S = 3, b * S = 4", format!("{rc}, {rc}")),
+        Stage::Masks => ("compare", "s = 3 ; b * s = 4", format!("{rc}, {rc}")),
         Stage::Next => ("add", "+", rc),
     }
 }
@@ -33,7 +33,7 @@ fn timeline(m: &UseReducerHandle<Model>) -> Html {
         html! {
             <button {class} onclick={act(m, move || Action::Focus(s))}>
                 <span class="sname">{name}</span>
-                <code>{code}</code>
+                { self::code(code) }
                 <span class="shape">{format!("[{shape}]")}</span>
             </button>
         }
@@ -67,11 +67,11 @@ fn controls(m: &UseReducerHandle<Model>) -> Html {
     }
 }
 
-fn panel(m: &Model, stage: Stage, title: &str, note: &str, body: Html) -> Html {
+fn panel(m: &Model, stage: Stage, title: &str, src: &str, note: &str, body: Html) -> Html {
     let class = classes!("panel", (m.focus == stage).then_some("focus"));
     html! {
         <section {class}>
-            <h2>{title}</h2>
+            <h2>{title}{" "}{code(src)}</h2>
             <p class="note">{note}</p>
             {body}
         </section>
@@ -110,7 +110,7 @@ fn inspector(m: &Model, a: &Anatomy) -> Html {
             <h2>{format!("Cell row {}, column {}", y + 1, x + 1)}</h2>
             <p class="note">{"Its value in each of the nine shifted boards: its 3 by 3 neighbourhood."}</p>
             <table class="nbhd">{ for rows }</table>
-            <p class="calc"><code>{format!("S = {s}")}</code>{"  "}<code>{format!("(S = 3) + {alive} * (S = 4) = {}", a.next[i])}</code></p>
+            <p class="calc">{"S is "}{code(&s.to_string())}{", and "}{code(&format!("({s} = 3) + {alive} * {s} = 4"))}{" is "}{code(&a.next[i].to_string())}</p>
             <p class="note">{why}</p>
         </section>
     }
@@ -124,14 +124,14 @@ fn arrays(model: &UseReducerHandle<Model>, a: &Anatomy) -> Html {
     html! {
         <div class="layout">
             <div class="col">
-                { panel(m, Stage::Board, "The board  b", "Click a cell to inspect it (or tick \"Click draws cells\"). The edges wrap around.", board) }
+                { panel(m, Stage::Board, "The board", "b", "Click a cell to inspect it (or tick \"Click draws cells\"). The edges wrap around.", board) }
                 { inspector(m, a) }
             </div>
             <div class="col">
-                { panel(m, Stage::Rotate, "1. Rotate by every offset: -1 0 1 o_-_12 b", "Nine copies of the board, shifted by -1, 0 or +1 rows and columns: a 3 by 3 by 16 by 16 array. In each copy the selected cell holds one of its neighbours.", shifted(m, a)) }
-                { panel(m, Stage::Sum, "2. Sum over the two offset axes: '+ r_/_12", "S: each cell plus its eight neighbours, the nine copies added together at once. No loop over cells, no loop over neighbours.", small(m, &a.sum, Paint::Sum)) }
-                { panel(m, Stage::Masks, "3. Compare: S = 3 and b * S = 4", "Two boolean boards: alive next whatever it is now (S = 3), and alive now with three neighbours (S = 4).", html!{ <div class="pair">{small(m, &a.three, Paint::Cells)}{small(m, &a.four, Paint::Cells)}</div> }) }
-                { panel(m, Stage::Next, "4. Add: the next board", "(S = 3) + b * (S = 4): the whole rule, for every cell at once.", small(m, &a.next, Paint::Cells)) }
+                { panel(m, Stage::Rotate, "1. Rotate by every offset:", "-1 0 1 o_-_12 b", "Nine copies of the board, shifted by -1, 0 or +1 rows and columns: a 3 by 3 by 16 by 16 array. In each copy the selected cell holds one of its neighbours.", shifted(m, a)) }
+                { panel(m, Stage::Sum, "2. Sum over the two offset axes:", "s := '+ r_/_12 r", "S: each cell plus its eight neighbours, the nine copies added together at once. No loop over cells, no loop over neighbours.", small(m, &a.sum, Paint::Sum)) }
+                { panel(m, Stage::Masks, "3. Compare:", "s = 3 ; b * s = 4", "Two boolean boards: alive next whatever it is now (S = 3), and alive now with three neighbours (S = 4).", html!{ <div class="pair">{small(m, &a.three, Paint::Cells)}{small(m, &a.four, Paint::Cells)}</div> }) }
+                { panel(m, Stage::Next, "4. Add, the next board:", "(s = 3) + b * s = 4", "The whole rule, for every cell at once.", small(m, &a.next, Paint::Cells)) }
             </div>
         </div>
     }
