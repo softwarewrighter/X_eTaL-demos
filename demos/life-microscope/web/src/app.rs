@@ -4,43 +4,35 @@ use gloo_timers::callback::Interval;
 use web_sys::HtmlSelectElement;
 use yew::prelude::*;
 
+use microscope::cells::{grid, Grid, Paint};
+use microscope::chrome::{chip, footer, header, panel as frame};
+use microscope::source::code;
+
 use crate::micro::{Anatomy, OFFSETS, PATTERNS};
 use crate::model::{Action, Model, Stage, COLS, ROWS, STAGES};
-use crate::view::{code, grid, line, Grid, Paint};
-
-const REPO: &str = "https://github.com/softwarewrighter/X_eTaL-demos";
+use crate::view::line;
 
 fn act(m: &UseReducerHandle<Model>, a: impl Fn() -> Action + 'static) -> Callback<MouseEvent> {
     let d = m.dispatcher();
     Callback::from(move |_| d.dispatch(a()))
 }
 
-fn stage_info(s: Stage) -> (&'static str, &'static str, String, String) {
-    let rc = format!("{ROWS} {COLS}");
+fn stage_info(s: Stage) -> (&'static str, &'static str, Vec<usize>, String) {
     let board = format!("{ROWS} rows by {COLS} columns");
     match s {
-        Stage::Board => ("board", "_r", rc, board),
-        Stage::Rotate => ("rotate", "-1 0 1 o_-_12", format!("3 3 {rc}"),
+        Stage::Board => ("board", "_r", vec![ROWS, COLS], board),
+        Stage::Rotate => ("rotate", "-1 0 1 o_-_12", vec![3, 3, ROWS, COLS],
             format!("3 row offsets by 3 column offsets by a {ROWS} by {COLS} board: nine shifted boards")),
-        Stage::Sum => ("sum", "'+ r_/_12", rc, format!("{board}: the two offset axes summed away")),
-        Stage::Masks => ("compare", "s = 3 ; b * s = 4", rc, format!("two boards, each {board}")),
-        Stage::Next => ("add", "+", rc, board),
+        Stage::Sum => ("sum", "'+ r_/_12", vec![ROWS, COLS], format!("{board}: the two offset axes summed away")),
+        Stage::Masks => ("compare", "s = 3 ; b * s = 4", vec![ROWS, COLS], format!("two boards, each {board}")),
+        Stage::Next => ("add", "+", vec![ROWS, COLS], board),
     }
 }
 
 fn timeline(m: &UseReducerHandle<Model>) -> Html {
     let chips = STAGES.iter().map(|&s| {
-        let (name, code, shape, meaning) = stage_info(s);
-        let class = classes!("stage", (m.focus == s).then_some("active"));
-        html! {
-            <button {class} onclick={act(m, move || Action::Focus(s))}>
-                <span class="sname">{name}</span>
-                { self::code(code) }
-                <span class="shape" title={format!("the array's shape (s_hape): {meaning}")}>
-                    { self::code(&format!("s_hape = {shape}")) }
-                </span>
-            </button>
-        }
+        let (name, src, dims, meaning) = stage_info(s);
+        chip(name, src, &dims, &meaning, m.focus == s, act(m, move || Action::Focus(s)))
     });
     html! { <nav class="timeline">{ for chips }</nav> }
 }
@@ -72,14 +64,7 @@ fn controls(m: &UseReducerHandle<Model>) -> Html {
 }
 
 fn panel(m: &Model, stage: Stage, title: &str, src: &str, note: &str, body: Html) -> Html {
-    let class = classes!("panel", (m.focus == stage).then_some("focus"));
-    html! {
-        <section {class}>
-            <h2>{title}{" "}{code(src)}</h2>
-            <p class="note">{note}</p>
-            {body}
-        </section>
-    }
+    frame(title, src, note, m.focus == stage, body)
 }
 
 fn small(m: &Model, cells: &[u8], paint: Paint) -> Html {
@@ -141,25 +126,6 @@ fn arrays(model: &UseReducerHandle<Model>, a: &Anatomy) -> Html {
     }
 }
 
-fn sep() -> Html {
-    html! { <span class="sep">{ "\u{00b7}" }</span> }
-}
-
-/// The footer, as the X_eTaL live demo shows it, plus the vendored
-/// X_eTaL commit and the way back to the catalog.
-fn footer() -> Html {
-    html! {
-        <footer>
-            <span>{ "Copyright (c) 2026 Michael A Wright" }</span>{ sep() }
-            <span>{ "MIT License" }</span>{ sep() }
-            <a href={REPO} target="_blank">{ "Repository" }</a>{ sep() }
-            <a href="../">{ "All demos" }</a>{ sep() }
-            <span>{ format!("X_eTaL {}", env!("XETAL_SHA")) }</span>{ sep() }
-            <span>{ format!("build (host {}, sha {}, {})", env!("BUILD_HOST"), env!("BUILD_SHA"), env!("BUILD_TIMESTAMP")) }</span>
-        </footer>
-    }
-}
-
 #[function_component(App)]
 pub fn app() -> Html {
     let model = use_reducer(|| Model::new(0));
@@ -177,11 +143,7 @@ pub fn app() -> Html {
     html! {
         <>
         <header>
-            <div class="brand">
-                <a href="../"><img class="logo" src="modern-xetal-logo.jpg" alt="X_eTaL" /></a>
-                <h1>{"Life microscope"}</h1>
-            </div>
-            <p class="lede">{"Conway's Life is one line of X_eTaL. Step it and watch every array that line builds; read it right to left."}</p>
+            { header("Life microscope", "Conway's Life is one line of X_eTaL. Step it and watch every array that line builds; read it right to left.") }
             { line(model.focus) }
             { timeline(&model) }
             { controls(&model) }

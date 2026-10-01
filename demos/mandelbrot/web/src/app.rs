@@ -6,13 +6,14 @@ use gloo_timers::callback::Interval;
 use web_sys::HtmlInputElement;
 use yew::prelude::*;
 
-use crate::canvas::Canvas;
+use microscope::canvas::Canvas;
+use microscope::chrome::{chip, footer, header, notice, panel as frame};
+use microscope::source::code;
+
 use crate::colour;
 use crate::micro::{escape, Frame};
 use crate::model::{Action, Model, K_MAX};
-use crate::view::{code, shape, source, Stage, STAGES};
-
-const REPO: &str = "https://github.com/softwarewrighter/X_eTaL-demos";
+use crate::view::{source, Stage, STAGES};
 
 fn act(m: &UseReducerHandle<Model>, a: impl Fn() -> Action + 'static) -> Callback<MouseEvent> {
     let d = m.dispatcher();
@@ -27,14 +28,7 @@ fn stage_chip(m: &UseReducerHandle<Model>, s: Stage) -> Html {
         Stage::Iterate => ("k steps", "k 'u:s_tep p_ower", vec![3, r, c], "the state after k steps".into()),
         Stage::Measure => ("measure", "counts := 3 s_elect z", vec![r, c], "one number per point".into()),
     };
-    let class = classes!("stage", (m.focus == s).then_some("active"));
-    html! {
-        <button {class} onclick={act(m, move || Action::Focus(s))}>
-            <span class="sname">{name}</span>
-            { code(src) }
-            { shape(&dims, &meaning) }
-        </button>
-    }
+    chip(name, src, &dims, &meaning, m.focus == s, act(m, move || Action::Focus(s)))
 }
 
 fn controls(m: &UseReducerHandle<Model>) -> Html {
@@ -63,14 +57,7 @@ fn controls(m: &UseReducerHandle<Model>) -> Html {
 }
 
 fn panel(m: &Model, stage: Option<Stage>, title: &str, src: &str, note: &str, body: Html) -> Html {
-    let class = classes!("panel", (stage.is_some() && m.focus == stage.unwrap()).then_some("focus"));
-    html! {
-        <section {class}>
-            <h2>{title}{" "}{code(src)}</h2>
-            <p class="note">{note}</p>
-            {body}
-        </section>
-    }
+    frame(title, src, note, stage == Some(m.focus), body)
 }
 
 fn picture(model: &UseReducerHandle<Model>, f: &Frame) -> Html {
@@ -147,25 +134,6 @@ fn orbit_panel(m: &Model) -> Html {
     panel(m, None, "The orbit of the marked point:", "k 'u:o_rbit p_ower 0.0 0.0", "z0, z1, ... for this one c, computed by a second X_eTaL program. The circle is |z| = 2.", body)
 }
 
-fn sep() -> Html {
-    html! { <span class="sep">{ "\u{00b7}" }</span> }
-}
-
-/// The footer, as the X_eTaL live demo shows it, plus the vendored
-/// X_eTaL commit and the way back to the catalog.
-fn footer() -> Html {
-    html! {
-        <footer>
-            <span>{ "Copyright (c) 2026 Michael A Wright" }</span>{ sep() }
-            <span>{ "MIT License" }</span>{ sep() }
-            <a href={REPO} target="_blank">{ "Repository" }</a>{ sep() }
-            <a href="../">{ "All demos" }</a>{ sep() }
-            <span>{ format!("X_eTaL {}", env!("XETAL_SHA")) }</span>{ sep() }
-            <span>{ format!("build (host {}, sha {}, {})", env!("BUILD_HOST"), env!("BUILD_SHA"), env!("BUILD_TIMESTAMP")) }</span>
-        </footer>
-    }
-}
-
 #[function_component(App)]
 pub fn app() -> Html {
     let model = use_reducer(Model::new);
@@ -178,7 +146,7 @@ pub fn app() -> Html {
     }
     let body = match &model.frame {
         Ok(f) => html! {
-            <div class="layout">
+            <div class="layout even">
                 <div class="col">{ picture(&model, f) }{ orbit_panel(&model) }</div>
                 <div class="col">
                     <section class={classes!("panel", "code")}>
@@ -195,14 +163,10 @@ pub fn app() -> Html {
     html! {
         <>
         <header>
-            <div class="brand">
-                <a href="../"><img class="logo" src="modern-xetal-logo.jpg" alt="X_eTaL" /></a>
-                <h1>{"Mandelbrot"}</h1>
-            </div>
-            <p class="lede">{"Every point c of the picture iterated at once: z becomes z \u{00d7} z + c, over the whole grid, as one array expression. Step k up and watch the set appear."}</p>
+            { header("Mandelbrot", "Every point c of the picture iterated at once: z becomes z \u{00d7} z + c, over the whole grid, as one array expression. Step k up and watch the set appear.") }
             <nav class="timeline">{ for STAGES.iter().map(|&s| stage_chip(&model, s)) }</nav>
             { controls(&model) }
-            { for model.notice.iter().map(|n| html! { <p class="notice" role="status">{n}</p> }) }
+            { notice(&model.notice) }
         </header>
         <main>{body}</main>
         { footer() }

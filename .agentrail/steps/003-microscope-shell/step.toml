@@ -1,6 +1,6 @@
 number = 3
 slug = "microscope-shell"
-status = "pending"
+status = "in-progress"
 description = "grids step 3: shared/microscope, a Cargo workspace the demos depend on by pat..."
 role = "production"
 context_files = []

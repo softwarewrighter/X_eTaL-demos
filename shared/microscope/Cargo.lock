@@ -813,17 +813,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "reaction-diffusion-web"
-version = "0.1.0"
-dependencies = [
- "console_error_panic_hook",
- "gloo-timers 0.3.0",
- "microscope",
- "web-sys",
- "yew",
-]
-
-[[package]]
 name = "rustversion"
 version = "1.0.23"
 source = "registry+https://github.com/rust-lang/crates.io-index"

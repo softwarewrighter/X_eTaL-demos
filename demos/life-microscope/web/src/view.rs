@@ -1,122 +1,24 @@
-//! Drawing the arrays: boards, the sum heatmap, and the decorated line.
+//! The part of the Life line that computes each stage, and the line
+//! drawn decorated with it highlighted.
 
-use xetal_play::{decorate, Class};
-use yew::prelude::*;
+use microscope::source::{find, line as decorated, Range, NONE};
+use yew::Html;
 
 use crate::micro::LINE;
 use crate::model::Stage;
 
-/// How a grid's cells are coloured.
-#[derive(Clone, Copy, PartialEq)]
-pub enum Paint {
-    /// 0 / 1 cells.
-    Cells,
-    /// 0..9 sums, shaded, numbers shown.
-    Sum,
-}
-
-pub struct Grid<'a> {
-    pub cells: &'a [u8],
-    pub rows: usize,
-    pub cols: usize,
-    pub paint: Paint,
-    pub selected: Option<(usize, usize)>,
-    pub size: &'static str,
-    pub onclick: Option<Callback<(usize, usize)>>,
-}
-
-fn cell(g: &Grid, y: usize, x: usize) -> Html {
-    let v = g.cells[y * g.cols + x];
-    let mut class = classes!("cell");
-    if g.selected == Some((y, x)) {
-        class.push("sel");
-    }
-    let (style, text) = match g.paint {
-        Paint::Cells => {
-            class.push(if v == 1 { "on" } else { "off" });
-            (String::new(), String::new())
-        }
-        Paint::Sum => {
-            let text = if v == 0 { String::new() } else { v.to_string() };
-            (format!("--heat:{}", v.min(9)), text)
-        }
-    };
-    if g.paint == Paint::Sum {
-        class.push("heat");
-        class.push(match v { 3 => "s3", 4 => "s4", _ => "" });
-        if v >= 5 {
-            class.push("hot");
-        }
-    }
-    let onclick = g.onclick.clone().map(|cb| Callback::from(move |_: MouseEvent| cb.emit((y, x))));
-    html! { <div {class} {style} {onclick}>{text}</div> }
-}
-
-pub fn grid(g: Grid) -> Html {
-    let style = format!("grid-template-columns: repeat({}, 1fr)", g.cols);
-    let cells = (0..g.rows).flat_map(|y| (0..g.cols).map(move |x| (y, x)));
-    html! {
-        <div class={classes!("grid", g.size)} {style}>
-            { for cells.map(|(y, x)| cell(&g, y, x)) }
-        </div>
-    }
-}
-
-fn css(class: Class) -> &'static str {
-    match class {
-        Class::Builtin => "t-builtin",
-        Class::UserFunc | Class::LibFunc | Class::Macro => "t-user",
-        Class::LambdaArg => "t-arg",
-        Class::Number | Class::Exponent => "t-num",
-        Class::Symbol | Class::Quote => "t-sym",
-        Class::Comment => "t-comment",
-        _ => "t-plain",
-    }
-}
-
 /// The byte range of LINE that computes `stage`.
-pub fn range(stage: Stage) -> (usize, usize) {
-    let find = |s: &str| LINE.find(s).map(|i| (i, i + s.len())).unwrap_or((0, 0));
+pub fn range(stage: Stage) -> Range {
     match stage {
-        Stage::Board => LINE.rfind("_r").map(|i| (i, i + 2)).unwrap_or((0, 0)),
-        Stage::Rotate => find("-1 0 1 o_-_12 _r"),
-        Stage::Sum => find("'+ r_/_12"),
-        Stage::Masks => find("(_l = 3) + _r * _l = 4"),
-        Stage::Next => find("{ (_l = 3) + _r * _l = 4 } _r"),
+        Stage::Board => LINE.rfind("_r").map_or(NONE, |i| (i, i + 2)),
+        Stage::Rotate => find(LINE, "-1 0 1 o_-_12 _r"),
+        Stage::Sum => find(LINE, "'+ r_/_12"),
+        Stage::Masks => find(LINE, "(_l = 3) + _r * _l = 4"),
+        Stage::Next => find(LINE, "{ (_l = 3) + _r * _l = 4 } _r"),
     }
-}
-
-fn segments(src: &str, lo: usize, hi: usize) -> Html {
-    // Runs of segments inside lo..hi are wrapped in one highlight block.
-    let mut out: Vec<Html> = Vec::new();
-    let mut run: Vec<Html> = Vec::new();
-    let flush = |run: &mut Vec<Html>, out: &mut Vec<Html>| {
-        if !run.is_empty() {
-            let inner = std::mem::take(run);
-            out.push(html! { <span class="hl">{ for inner }</span> });
-        }
-    };
-    for s in decorate(src) {
-        let inside = s.raw.start >= lo && s.raw.end <= hi && s.class != Class::Comment;
-        let seg = html! { <span class={css(s.class)}>{s.text}</span> };
-        if inside {
-            run.push(seg);
-        } else {
-            flush(&mut run, &mut out);
-            out.push(seg);
-        }
-    }
-    flush(&mut run, &mut out);
-    html! { <>{ for out }</> }
-}
-
-/// Any X_eTaL snippet, drawn decorated (as X_eTaL renders it).
-pub fn code(src: &str) -> Html {
-    html! { <code class="xtl">{ segments(src, 1, 0) }</code> }
 }
 
 /// The line drawn decorated, the part computing `focus` highlighted.
 pub fn line(focus: Stage) -> Html {
-    let (lo, hi) = range(focus);
-    html! { <code class="line">{ segments(LINE, lo, hi) }</code> }
+    decorated(LINE, range(focus))
 }

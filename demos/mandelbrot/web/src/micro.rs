@@ -12,16 +12,12 @@ const ORBIT_START: &str = "u:o_rbit :=";
 /// The core of the program: helpers, c by broadcasting, the step, k
 /// steps, |z|^2 and the counts.
 pub fn core() -> &'static str {
-    let a = SOURCE.find(CORE_START).unwrap_or(0);
-    let b = SOURCE.find(CORE_END).unwrap_or(SOURCE.len());
-    &SOURCE[a..b]
+    section(SOURCE, CORE_START, CORE_END)
 }
 
 /// The definition of one step of a single point's orbit.
 pub fn orbit_def() -> &'static str {
-    let a = SOURCE.find(ORBIT_START).unwrap_or(0);
-    let b = SOURCE[a..].find('\n').map_or(SOURCE.len(), |i| a + i);
-    &SOURCE[a..b]
+    section(SOURCE, ORBIT_START, "\n")
 }
 
 /// Where the picture looks: its size in pixels, its centre and width.
@@ -73,17 +69,8 @@ pub struct Frame {
 /// a centre near 1), 64-bit floats can no longer tell pixels apart.
 pub const MIN_WIDTH: f64 = 1e-12;
 
-/// `x` as an X_eTaL Float literal: plain decimal digits (X_eTaL number
-/// literals have no exponent), with 17 significant digits.
-pub fn lit(x: f64) -> String {
-    if x == 0.0 || !x.is_finite() {
-        return "0.0".into();
-    }
-    let digits = (16 - x.abs().log10().floor() as i64).clamp(1, 330) as usize;
-    let s = format!("{x:.digits$}");
-    let s = s.trim_end_matches('0');
-    if s.ends_with('.') { format!("{s}0") } else { s.to_string() }
-}
+pub use microscope::run::lit;
+use microscope::run::{numbers, output, section};
 
 fn params(v: &View, k: usize) -> String {
     format!(
@@ -100,24 +87,7 @@ pub fn program(v: &View, k: usize) -> String {
 }
 
 fn floats(line: &str, want: usize) -> Result<Vec<f64>, String> {
-    let v: Result<Vec<f64>, _> = line.split_whitespace().map(str::parse).collect();
-    let v = v.map_err(|e| format!("unexpected output {:.60}: {e}", line))?;
-    match v.len() == want {
-        true => Ok(v),
-        false => Err(format!("expected {want} numbers, got {}", v.len())),
-    }
-}
-
-fn output(src: &str, lines: usize) -> Result<Vec<String>, String> {
-    let run = xetal_play::run(src, 1);
-    if !run.err.is_empty() {
-        return Err(run.err);
-    }
-    let out: Vec<String> = run.out.lines().map(str::to_string).collect();
-    match out.len() == lines {
-        true => Ok(out),
-        false => Err(format!("expected {lines} lines of output, got {}", out.len())),
-    }
+    numbers(line, want)
 }
 
 /// Run `k` steps of the view `v` through X_eTaL.

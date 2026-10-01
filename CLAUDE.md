@@ -305,7 +305,9 @@ Read before working:
 
 1. Each demo is its own sub-project, `demos/<slug>/` (demo.toml,
    README.md, `*.xtl`, expected/ goldens, test.sh, and web/ its own
-   Cargo workspace). A demo never reaches into another demo.
+   Cargo workspace). A demo never reaches into another demo; what pages
+   share lives in `shared/microscope` (see its README: how to add a
+   demo's web app, and the page conventions).
 2. X_eTaL is used only through the vendored snapshot in
    `vendor/xetal/` (`just xetal` builds its CLI into
    `target/xetal/`; `scripts/check-vendor.sh` and the probe in

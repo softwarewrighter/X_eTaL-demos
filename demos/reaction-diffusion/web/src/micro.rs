@@ -10,21 +10,15 @@ const CORE_END: &str = "# -- end of the core";
 
 /// The core: the Laplacian and the step.
 pub fn core() -> &'static str {
-    let a = SOURCE.find(CORE_START).unwrap_or(0);
-    let b = SOURCE.find(CORE_END).unwrap_or(SOURCE.len());
-    &SOURCE[a..b]
+    section(SOURCE, CORE_START, CORE_END)
 }
 
-/// `x` as an X_eTaL Float literal: plain decimal (X_eTaL literals have
-/// no exponent), 17 significant digits; sizes under 1e-15 are written 0.
+use microscope::run::{lit_or_zero, matrix, numbers, output, section};
+
+/// `x` as an X_eTaL Float literal; sizes under 1e-15 are written 0
+/// (V decays towards 0, and the grid goes into every run as text).
 pub fn lit(x: f64) -> String {
-    if x.abs() < 1e-15 || !x.is_finite() {
-        return "0.0".into();
-    }
-    let digits = (16 - x.abs().log10().floor() as i64).clamp(1, 32) as usize;
-    let s = format!("{x:.digits$}");
-    let s = s.trim_end_matches('0');
-    if s.ends_with('.') { format!("{s}0") } else { s.to_string() }
+    lit_or_zero(x, 1e-15)
 }
 
 /// The rates: how fast U and V spread, the feed f and the kill k.
@@ -102,11 +96,6 @@ pub struct Anatomy {
     pub next: Grid,
 }
 
-fn matrix(name: &str, n: usize, xs: &[f64]) -> String {
-    let body: Vec<String> = xs.iter().map(|&x| lit(x)).collect();
-    format!("{name} := ({n} c_at {n}) r_eshape {}\n", body.join(" "))
-}
-
 /// The program that runs `steps` (at least 1) steps from `g`, printing
 /// the arrays of the last one.
 pub fn program(g: &Grid, r: &Rates, steps: usize) -> String {
@@ -121,30 +110,19 @@ pub fn program(g: &Grid, r: &Rates, steps: usize) -> String {
          r_avel 1 s_elect s1\nr_avel 2 s_elect s1\n",
         steps.max(1) - 1
     );
-    format!("{params}{}{}{}{run}", core(), matrix("u0", g.n, &g.u), matrix("v0", g.n, &g.v))
+    let m = |name: &str, xs: &[f64]| matrix(name, g.n, g.n, xs.iter().map(|&x| lit(x)));
+    format!("{params}{}{}{}{run}", core(), m("u0", &g.u), m("v0", &g.v))
 }
 
 fn floats(line: &str, want: usize) -> Result<Vec<f64>, String> {
-    let v: Result<Vec<f64>, _> = line.split_whitespace().map(str::parse).collect();
-    let v = v.map_err(|e| format!("unexpected output {:.60}: {e}", line))?;
-    match v.len() == want {
-        true => Ok(v),
-        false => Err(format!("expected {want} numbers, got {}", v.len())),
-    }
+    numbers(line, want)
 }
 
 /// Run `steps` steps of `g` through X_eTaL.
 pub fn run(g: &Grid, r: &Rates, steps: usize) -> Result<Anatomy, String> {
-    let out = xetal_play::run(&program(g, r, steps), 1);
-    if !out.err.is_empty() {
-        return Err(out.err);
-    }
-    let lines: Vec<&str> = out.out.lines().collect();
-    if lines.len() != 7 {
-        return Err(format!("expected 7 lines of output, got {}", lines.len()));
-    }
+    let lines = output(&program(g, r, steps), 7)?;
     let nn = g.n * g.n;
-    let a = |i: usize| floats(lines[i], nn);
+    let a = |i: usize| floats(&lines[i], nn);
     Ok(Anatomy {
         u: a(0)?,
         v: a(1)?,

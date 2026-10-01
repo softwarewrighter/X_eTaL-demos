@@ -4,6 +4,8 @@ use std::rc::Rc;
 
 use yew::Reducible;
 
+use microscope::run::now;
+
 use crate::micro::{preset, run, Anatomy, Grid, Rates};
 use crate::view::Stage;
 
@@ -36,17 +38,6 @@ pub enum Action {
     Seeding(bool),
     PerFrame(usize),
     Focus(Stage),
-}
-
-fn now() -> f64 {
-    #[cfg(target_arch = "wasm32")]
-    {
-        web_sys::window().and_then(|w| w.performance()).map_or(0.0, |p| p.now())
-    }
-    #[cfg(not(target_arch = "wasm32"))]
-    {
-        0.0
-    }
 }
 
 impl Model {
