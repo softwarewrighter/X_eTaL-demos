@@ -1,0 +1,9 @@
+number = 1
+slug = "mandelbrot"
+status = "in-progress"
+description = "grids step 1: demos/mandelbrot. X_eTaL program: c as a grid of points by broa..."
+role = "production"
+context_files = []
+created_at = "2026-10-01T13:45:32"
+task_type = "demo"
+commits = []

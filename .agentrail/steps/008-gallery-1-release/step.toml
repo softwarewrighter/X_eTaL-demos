@@ -1,0 +1,9 @@
+number = 8
+slug = "gallery-1-release"
+status = "pending"
+description = "grids step 8: release: catalog order and summaries, README demo list and stat..."
+role = "production"
+context_files = []
+created_at = "2026-10-01T13:45:32"
+task_type = "release"
+commits = []

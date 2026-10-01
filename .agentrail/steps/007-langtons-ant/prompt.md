@@ -1,0 +1,1 @@
+grids step 7: demos/langtons-ant on the shell: the ant as a one-hot position mask and a direction, the board flipped by masks (no amend; file an ask if a functional update would make it clearer), many steps per frame; the highway emerges after ~10000 steps (measure speed). CLI + golden, web, docs, live.

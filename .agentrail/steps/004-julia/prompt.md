@@ -1,0 +1,1 @@
+grids step 4: demos/julia on the shell (or the mandelbrot demo extended, whichever is cleaner): Julia sets from the same iteration with c fixed and z0 the grid; pick c by clicking a small Mandelbrot view; presets. CLI + golden, web, docs, live.

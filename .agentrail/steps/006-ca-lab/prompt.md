@@ -1,0 +1,1 @@
+grids step 6: demos/ca-lab on the shell: elementary CA (Rule 30, 90, 110) growing downward with the rule as an editable 8-entry lookup array (neighbourhood -> index via shifts and weights 4 2 1); 2-D rules (Life, Brian's Brain, Wireworld) as lookup tables on neighbour counts and states. CLI + golden, web, docs, live.

@@ -1,0 +1,9 @@
+number = 5
+slug = "wave-tank"
+status = "pending"
+description = "grids step 5: demos/wave-tank on the shell: the 2-D wave equation as a finite..."
+role = "production"
+context_files = []
+created_at = "2026-10-01T13:45:32"
+task_type = "demo"
+commits = []
