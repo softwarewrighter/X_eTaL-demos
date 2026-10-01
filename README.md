@@ -84,13 +84,37 @@ commit of `../X_eTaL`) or `just vendor REF`; only committed X_eTaL
 work is ever copied, and the refresh is committed on its own after
 `just gate` passes.
 
+## Running and adding demos
+
+```bash
+just demos                           # the demos, in catalog order
+just run SLUG                        # run a demo's program
+just show SLUG                       # the same as a notebook: each statement, then its output
+just test-demo SLUG                  # check its output against expected/
+just new-demo wave-tank "Wave tank"  # start a new demo from demos/_template
+just bless SLUG                      # rewrite its expected output (review the diff)
+```
+
+Each demo is a sub-project, `demos/<slug>/`:
+
+| File | What it is |
+| ---- | ---------- |
+| `demo.toml` | title, one-line summary, concepts, status (draft, live, deferred), catalog order, the X_eTaL asks it needs |
+| `README.md` | the demo's own page: what you see, the program, how it works |
+| `*.xtl` | its X_eTaL programs; each is run by the tests (seed 1) |
+| `expected/` | each program's expected output (`NAME.out`, and `NAME.err` when it should fail) |
+| `web/` | its browser app (a Cargo workspace), when it has one |
+| `test.sh` | any further tests, when it has them |
+
+Pictures a program shows (`[]S_HOW`) are written to `work/draw/<slug>/`.
+
 ## Status
 
 Early. The project process, plan and build scaffolding are in place,
 and the bundled X_eTaL builds and is checked by the gate (its
 command-line interpreter, and its library natively and for
-WebAssembly). The demo layout, the live catalog and the first demo
-(the Life microscope) come next. See
+WebAssembly). The demo layout and its test runner are in place. The
+live catalog and the first demo (the Life microscope) come next. See
 [`docs/plan.md`](docs/plan.md) for the roadmap.
 
 ## Documentation

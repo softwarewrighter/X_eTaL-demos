@@ -1,6 +1,6 @@
 number = 3
 slug = "demo-layout"
-status = "pending"
+status = "in-progress"
 description = "foundation step 3: the demo sub-project layout. demos/_template/ (demo.toml w..."
 role = "production"
 context_files = []
