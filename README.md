@@ -36,7 +36,8 @@ catalog.
 | Demo | What you see | Array ideas | Status |
 | ---- | ------------ | ----------- | ------ |
 | [Life microscope](demos/life-microscope/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/life-microscope/)) | Conway's Life, with the nine shifted boards and their sum | rotate, reduce, masks | live |
-| Mandelbrot and Julia | the set appearing iteration by iteration; a pixel's orbit | broadcasting, masks | planned |
+| [Mandelbrot](demos/mandelbrot/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/mandelbrot/)) | the set appearing step by step; a point's orbit; zoom | broadcasting, masks | live |
+| Julia | Julia sets, c picked on the Mandelbrot view | broadcasting, masks | planned |
 | Reaction-diffusion | Gray-Scott textures; one pixel's stencil arithmetic | stencils, iteration | planned |
 | Wave tank | ripples, interference, a double slit | finite differences | planned |
 | Cellular automata lab | Rule 30, 90, 110, Brian's Brain, Wireworld | lookup tables, neighborhoods | planned |
@@ -129,9 +130,10 @@ Early. The project process, plan and build scaffolding are in place,
 and the bundled X_eTaL builds and is checked by the gate (its
 command-line interpreter, and its library natively and for
 WebAssembly). The demo layout, its test runner and the live catalog
-are in place, and the first demo, the Life microscope, is live. The
-shared microscope view and the grid and dynamics demos (Mandelbrot,
-Julia, reaction-diffusion, wave tank) come next. See
+are in place, and the Life microscope and Mandelbrot demos are live.
+Reaction-diffusion comes next, then a shared microscope view taken
+from those three pages, then Julia, the wave tank, the cellular
+automata lab and Langton's ant. See
 [`docs/plan.md`](docs/plan.md) for the roadmap.
 
 ## Documentation

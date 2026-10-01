@@ -112,7 +112,7 @@ per-operation trace ask.
 
 | # | Step slug | Delivers |
 | - | --------- | -------- |
-| 1 | mandelbrot | complex grid by broadcasting (two Float planes until X_eTaL has complex numbers), escape masks per iteration, the set appearing iteration by iteration, click a pixel to see its orbit z0, z1, ...; zoom by clicking |
+| 1 | mandelbrot | DONE: the page includes `mandelbrot.xtl` and runs its marked core (no copy); 90 x 135 at k = 32 in ~300 ms in Chrome; canvas drawing; k slider and play re-run X_eTaL; orbit by a second program (two `e_ach` passes: no nested arrays); zoom. Planned: complex grid by broadcasting (two Float planes until X_eTaL has complex numbers), escape masks per iteration, the set appearing iteration by iteration, click a pixel to see its orbit z0, z1, ...; zoom by clicking |
 | 2 | reaction-diffusion | Gray-Scott on U and V; the Laplacian as four shifts and a weighted sum, shown step by step; click a pixel for its neighbourhood and arithmetic; feed/kill presets |
 | 3 | microscope-shell | `shared/microscope/`: what the three pages share pulled out (X_eTaL runner + `r_avel` parsing, array views: boards, heatmaps, numbers; decorated source with highlighted stage; stage timeline with shapes; inspector frame; header, footer, logo, help); the three demos moved onto it with their tests unchanged |
 | 4 | julia | Julia sets on the Mandelbrot program, c picked by clicking the Mandelbrot view |

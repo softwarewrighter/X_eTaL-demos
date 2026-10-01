@@ -13,6 +13,7 @@ workaround in use.
 | Status | Kind | Ask | Demos | Workaround |
 | ------ | ---- | --- | ----- | ---------- |
 | open | feature | Complex numbers (already planned upstream) | mandelbrot, julia | two Float planes for the real and imaginary parts |
+| open | feature | Nested arrays: `e_ach` returning a vector per item | mandelbrot (orbit table) | two `e_ach` passes, one per part |
 | open | feature | Transpose (already planned upstream) | attention, embedding-explorer | to be found when the demo is written |
 | open | bug | A vendored build reports the outer repo's commit as its own | all (`xetal --version`, the web footer) | `just xetal-version` prints `vendor/xetal/VENDORED` beside it |
 | open | feature | A per-operation evaluation trace (the planned stepping debugger) exposed through `xetal-play` | microscope (all) | trace per statement / named binding only |
@@ -55,3 +56,12 @@ Repro: copy a committed X_eTaL tree into another git repository, build
 Ask: let an environment variable (for example `XETAL_BUILD_SHA`)
 override the git lookup in both `build.rs` files, so a vendoring repo
 can pass the vendored commit.
+
+### Nested arrays from `e_ach`
+
+The Mandelbrot orbit is z0 .. zn for one c, each z a pair. The natural
+program is `'{ n -> n 'u:o_rbit p_ower 0.0 0.0 } e_ach o_ffsets 11`,
+but `e_ach` rejects a vector per item: `e_ach needs a single value
+from each call (nested arrays come later)`. The demo runs the orbit
+twice, selecting the real parts and then the imaginary parts. Nested
+arrays are already planned upstream.
