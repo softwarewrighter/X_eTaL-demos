@@ -68,20 +68,29 @@ Prerequisites:
 - for the gate (maintainers): `sw-markdown-checker`
 
 ```bash
-just            # list the tasks
-just test       # every demo's tests
-just gate       # the pre-commit gate
+just                                 # list the tasks
+just xetal                           # build the bundled X_eTaL interpreter
+just eval "'+ r_/_2 2 3 r_eshape r_ange 6"   # try it: row sums, 6 15
+just test                            # every demo's tests
+just gate                            # the pre-commit gate
 ```
 
-The demos run a copy of X_eTaL kept in this repository (a snapshot of a
-known-good version), so they do not change under you as X_eTaL
-develops.
+The demos run a copy of X_eTaL kept in this repository under
+`vendor/xetal/` (a snapshot of a known-good commit, recorded in
+`vendor/xetal/VENDORED`), so they do not change under you as X_eTaL
+develops. `just xetal-version` shows which commit it is. Maintainers
+refresh it from a sibling checkout with `just vendor` (the latest
+commit of `../X_eTaL`) or `just vendor REF`; only committed X_eTaL
+work is ever copied, and the refresh is committed on its own after
+`just gate` passes.
 
 ## Status
 
-Early. The project process, plan and build scaffolding are in place;
-the X_eTaL snapshot, the demo layout, the live catalog and the first
-demo (the Life microscope) come next. See
+Early. The project process, plan and build scaffolding are in place,
+and the bundled X_eTaL builds and is checked by the gate (its
+command-line interpreter, and its library natively and for
+WebAssembly). The demo layout, the live catalog and the first demo
+(the Life microscope) come next. See
 [`docs/plan.md`](docs/plan.md) for the roadmap.
 
 ## Documentation
