@@ -350,6 +350,9 @@ just                      # list recipes
 just gate                 # pre-commit gate
 just xetal-version        # which X_eTaL commit is vendored
 just eval "EXPR"          # evaluate with the vendored xetal
+just new-demo SLUG "T"    # start a demo from demos/_template
+just run SLUG / show SLUG # run a demo / as a notebook
+just test-demo SLUG       # its goldens; just bless SLUG rewrites them
 just vendor [REF]         # refresh vendor/xetal/ (own commit)
 agentrail status          # current saga state
 agentrail next            # current step + context

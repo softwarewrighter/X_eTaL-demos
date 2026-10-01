@@ -28,11 +28,35 @@ eval expr:
 check-vendor:
     scripts/check-vendor.sh
 
-# Run every demo's tests
+# The demos, in catalog order
+demos:
+    @scripts/demos.py list
+
+# Start a demo sub-project from demos/_template: just new-demo wave-tank "Wave tank"
+new-demo slug title:
+    scripts/new-demo.sh "$1" "$2"
+
+# Run a demo's program (default SLUG.xtl) with the vendored xetal: just run life-microscope
+run slug file="":
+    @scripts/run-demo.sh "$1" ${2:+"$2"}
+
+# Run a demo's program as a notebook: each statement drawn, then its output
+show slug file="":
+    @scripts/run-demo.sh --echo "$1" ${2:+"$2"}
+
+# Test every demo: expected outputs, web/ tests, test.sh (XETAL_BLESS=1 rewrites expected/)
 test:
     scripts/test-demos.sh
 
-# The full pre-commit gate: vendored X_eTaL, demo tests, ASCII-only markdown
+# Test one demo: just test-demo life-microscope
+test-demo slug:
+    scripts/test-demos.sh "$1"
+
+# Rewrite one demo's expected outputs from its programs (review the diff!)
+bless slug:
+    XETAL_BLESS=1 scripts/test-demos.sh "$1"
+
+# The full pre-commit gate: vendored X_eTaL, demo tooling, demo tests, ASCII-only markdown
 gate:
     scripts/gate.sh
 

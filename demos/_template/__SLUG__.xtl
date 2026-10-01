@@ -1,0 +1,5 @@
+#!/usr/bin/env xetal
+# __TITLE__: replace this program. Each top-level *.xtl in the demo
+# directory is run by `just test` (with --seed 1) and its output
+# compared with expected/<name>.out (and .err when it has one).
+'+ r_/ r_ange 10
