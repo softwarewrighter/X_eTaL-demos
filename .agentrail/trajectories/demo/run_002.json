@@ -1,0 +1,11 @@
+{
+  "task_type": "demo",
+  "state": {
+    "number": 2,
+    "step": "reaction-diffusion"
+  },
+  "action": "CLI stability/preset exploration; model+tests; Yew canvas page; headless screenshots; gate; deploy watch",
+  "result": "success",
+  "reward": 1,
+  "timestamp": "2026-10-01T15:28:26"
+}
