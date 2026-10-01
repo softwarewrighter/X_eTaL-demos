@@ -56,6 +56,18 @@ test-demo slug:
 bless slug:
     XETAL_BLESS=1 scripts/test-demos.sh "$1"
 
+# Build the live site into pages/ (committed; the Pages workflow publishes it)
+pages:
+    scripts/build-pages.sh
+
+# Serve the built pages/ as GitHub Pages will: http://127.0.0.1:8096/X_eTaL-demos/
+serve-pages port="8096":
+    scripts/serve-pages.sh "$1"
+
+# Serve one demo's web app locally, rebuilt on change: just serve life-microscope
+serve slug port="8095":
+    cd demos/{{slug}}/web && trunk serve --release --port {{port}} --address 127.0.0.1
+
 # The full pre-commit gate: vendored X_eTaL, demo tooling, demo tests, ASCII-only markdown
 gate:
     scripts/gate.sh

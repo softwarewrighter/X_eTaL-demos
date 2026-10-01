@@ -1,6 +1,6 @@
 number = 4
 slug = "pages-pipeline"
-status = "pending"
+status = "in-progress"
 description = "foundation step 4: the live site. scripts/build-catalog.sh writes pages/index..."
 role = "production"
 context_files = []
