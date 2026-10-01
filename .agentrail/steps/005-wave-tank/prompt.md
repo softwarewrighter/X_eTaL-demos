@@ -1,0 +1,1 @@
+grids step 5: demos/wave-tank on the shell: the 2-D wave equation as a finite-difference stencil (u_next = 2u - u_prev + c^2 lap u, damping), click to drop ripples, interference, barriers/double slit/obstacles as masks, speed map; the stencil at any point. CLI + golden, web, docs, live.

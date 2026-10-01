@@ -1,0 +1,9 @@
+number = 7
+slug = "langtons-ant"
+status = "pending"
+description = "grids step 7: demos/langtons-ant on the shell: the ant as a one-hot position ..."
+role = "production"
+context_files = []
+created_at = "2026-10-01T13:45:32"
+task_type = "demo"
+commits = []

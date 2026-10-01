@@ -54,24 +54,24 @@ boolean grid -> numeric grid -> dynamic system -> neural net -> sparse model
 | Demo (slug) | Visual payoff | X_eTaL concepts | Now? | Saga |
 | ----------- | ------------- | --------------- | ---- | ---- |
 | life-microscope | Life, every rotation and sum visible | rotate, reduce, masks | yes | 1 |
-| mandelbrot | the set grows iteration by iteration; click a pixel for its orbit | broadcasting, masks | yes (two Float planes) | 3 |
-| julia | Julia sets, c picked on the Mandelbrot view | broadcasting, masks | yes | 3 |
-| reaction-diffusion | Gray-Scott organic textures; click a pixel for its stencil | stencils, iteration | yes | 3 |
-| wave-tank | ripples, interference, double slit | finite-difference stencil | yes | 3 |
-| ca-lab | Rule 30/90/110, Life, Brian's Brain, Wireworld; edit the rule | lookup tables, neighborhoods | yes | 3 |
-| langtons-ant | emergent highway | state arrays, masks | yes (one-hot masks, no amend) | 3 |
-| nbody | 50 bodies; the N x N x 2 displacement cube reduced to forces | pairwise broadcasting (table), reduce | yes | 4 |
-| image-pipeline | blur, edges, threshold on a picture | reshape, convolution, masks | yes (synthetic images) | 4 |
-| ternary-net | 1.58-bit weights; FP32/FP16/INT8/ternary compared | ternary arrays, inner product | yes | 4 |
-| moe-router | tokens routed to 16 experts; epsilon slider shows routing discontinuities | top-k (grade), masks, select | yes | 4 |
-| cnn-digits | draw a digit, see every conv/ReLU/pool stage | windows, convolution, tensors | likely (weights read from a file; speed to check) | 4 |
-| attention | Q, K, V, softmax heatmap; rows meeting columns | matrix product, softmax, transpose | deferred: transpose | 5 |
-| embedding-explorer | PCA 64 -> 3 point cloud, every stage inspectable | covariance, eigenvectors, transpose | deferred: transpose | 5 |
-| world-model | predict frame t+1; change gravity | recurrence, learning | deferred: training speed, records | 5 |
-| diffusion | noise -> prediction -> reconstruction panels | tensor transforms, iteration | deferred: a learned denoiser | 5 |
+| mandelbrot | the set grows iteration by iteration; click a pixel for its orbit | broadcasting, masks | yes (two Float planes) | 2 |
+| julia | Julia sets, c picked on the Mandelbrot view | broadcasting, masks | yes | 2 |
+| reaction-diffusion | Gray-Scott organic textures; click a pixel for its stencil | stencils, iteration | yes | 2 |
+| wave-tank | ripples, interference, double slit | finite-difference stencil | yes | 2 |
+| ca-lab | Rule 30/90/110, Life, Brian's Brain, Wireworld; edit the rule | lookup tables, neighborhoods | yes | 2 |
+| langtons-ant | emergent highway | state arrays, masks | yes (one-hot masks, no amend) | 2 |
+| nbody | 50 bodies; the N x N x 2 displacement cube reduced to forces | pairwise broadcasting (table), reduce | yes | 3 |
+| image-pipeline | blur, edges, threshold on a picture | reshape, convolution, masks | yes (synthetic images) | 3 |
+| ternary-net | 1.58-bit weights; FP32/FP16/INT8/ternary compared | ternary arrays, inner product | yes | 3 |
+| moe-router | tokens routed to 16 experts; epsilon slider shows routing discontinuities | top-k (grade), masks, select | yes | 3 |
+| cnn-digits | draw a digit, see every conv/ReLU/pool stage | windows, convolution, tensors | likely (weights read from a file; speed to check) | 3 |
+| attention | Q, K, V, softmax heatmap; rows meeting columns | matrix product, softmax, transpose | deferred: transpose | 4 |
+| embedding-explorer | PCA 64 -> 3 point cloud, every stage inspectable | covariance, eigenvectors, transpose | deferred: transpose | 4 |
+| world-model | predict frame t+1; change gravity | recurrence, learning | deferred: training speed, records | 4 |
+| diffusion | noise -> prediction -> reconstruction panels | tensor transforms, iteration | deferred: a learned denoiser | 4 |
 
-The microscope (saga 2) is built first at statement granularity, which
-works today; stepping inside a line waits on the per-operation trace
+The shared microscope (saga 2, step 3) works at statement
+granularity, which works today; stepping inside a line waits on the per-operation trace
 ask.
 
 ## Saga 1 -- foundation  [DONE]
@@ -101,35 +101,27 @@ is the model for saga 2's statement-level trace. The page's footer and
 logo follow the X_eTaL live demo; a "Literate docs" footer link waits
 until this repo has its own literate documents.
 
-## Saga 2 -- microscope (the shared visual execution shell)
+## Saga 2 -- grids: demos first, then the shared microscope  [ACTIVE]
 
-Goal: the four synchronized views from the research, reusable by every
-demo: X_eTaL source with the expression being evaluated highlighted;
-array panel (value, type, shape, rank); the visual world; an execution
-timeline that can be scrubbed backward and forward, any operation
-clickable for before/after.
-
-| # | Step slug | Delivers |
-| - | --------- | -------- |
-| 1 | trace-model | a demo-side trace: each named binding / statement of a program evaluated in order through `xetal-play`, its value, type and shape captured (no evaluator changes; a finer per-operation trace is an X_eTaL ask) |
-| 2 | array-views | renderers for rank 0-3 arrays: numbers, heatmap, boolean grid, ternary glyphs, image |
-| 3 | timeline | scrubbable timeline, play/pause/step, click to inspect |
-| 4 | shell-layout | the four-pane layout, source highlighting, phone layout, help dialog, footer |
-| 5 | adopt-life | life-microscope moved onto the shell; retrospective |
-
-## Saga 3 -- grids and dynamics (implementable now)
+Reordered at the user's request (2026-10-01): two more demos before
+the shared shell, so the shell is extracted from three working pages
+rather than designed ahead of them. The microscope works at statement
+granularity (each intermediate array printed with `r_avel` and read
+back, as the Life page does); stepping inside a line waits on the
+per-operation trace ask.
 
 | # | Step slug | Delivers |
 | - | --------- | -------- |
-| 1 | mandelbrot | complex grid by broadcasting (two Float planes until X_eTaL has complex numbers), escape masks per iteration, click a pixel to see its orbit z0, z1, ... |
-| 2 | julia | Julia sets on the same program, c chosen by clicking the Mandelbrot view |
-| 3 | reaction-diffusion | Gray-Scott on U and V; the Laplacian as four shifts and a weighted sum, shown step by step; click a pixel for its neighborhood and arithmetic; feed/kill presets |
-| 4 | wave-tank | click for ripples; interference; barriers, double slit, obstacles, speeds; the stencil at any point |
-| 5 | ca-lab | elementary CA (Rule 30, 90, 110) growing downward, the rule as an editable lookup array; Life, Brian's Brain, Wireworld |
-| 6 | langtons-ant | the ant as state arrays and masks; the highway emerges |
-| 7 | gallery-1-release | catalog, README, per-demo docs, screenshots, retrospective |
+| 1 | mandelbrot | complex grid by broadcasting (two Float planes until X_eTaL has complex numbers), escape masks per iteration, the set appearing iteration by iteration, click a pixel to see its orbit z0, z1, ...; zoom by clicking |
+| 2 | reaction-diffusion | Gray-Scott on U and V; the Laplacian as four shifts and a weighted sum, shown step by step; click a pixel for its neighbourhood and arithmetic; feed/kill presets |
+| 3 | microscope-shell | `shared/microscope/`: what the three pages share pulled out (X_eTaL runner + `r_avel` parsing, array views: boards, heatmaps, numbers; decorated source with highlighted stage; stage timeline with shapes; inspector frame; header, footer, logo, help); the three demos moved onto it with their tests unchanged |
+| 4 | julia | Julia sets on the Mandelbrot program, c picked by clicking the Mandelbrot view |
+| 5 | wave-tank | click for ripples; interference; barriers, double slit, obstacles, speeds; the stencil at any point |
+| 6 | ca-lab | elementary CA (Rule 30, 90, 110) growing downward, the rule as an editable lookup array; Life, Brian's Brain, Wireworld |
+| 7 | langtons-ant | the ant as state arrays and masks; the highway emerges |
+| 8 | gallery-1-release | catalog, README, per-demo docs, screenshots, retrospective |
 
-## Saga 4 -- physics and ML (implementable now)
+## Saga 3 -- physics and ML (implementable now)
 
 | # | Step slug | Delivers |
 | - | --------- | -------- |
@@ -142,7 +134,7 @@ clickable for before/after.
 | 7 | cnn-digits | draw a 28 x 28 digit; conv -> ReLU -> pool -> dense -> softmax in X_eTaL; click any conv output to see input patch x kernel = value |
 | 8 | gallery-2-release | catalog, docs, retrospective |
 
-## Saga 5 -- deferred (blocked on asks)
+## Saga 4 -- deferred (blocked on asks)
 
 Not started until the asks each demo needs have landed in a vendored
 X_eTaL release; the saga opens with a vendor refresh and a

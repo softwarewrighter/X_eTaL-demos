@@ -1,30 +1,29 @@
-# foundation
+# grids
 
-Saga 1 of X_eTaL-demos (docs/plan.md): the process, the vendored
-interpreter, the demo sub-project layout, the live-site pipeline, and
-one demo (life-microscope) published end to end.
+Saga 2 of X_eTaL-demos (docs/plan.md): grid and dynamics demos, with
+the shared microscope shell extracted from the first three working
+pages (Life, Mandelbrot, reaction-diffusion) rather than designed
+ahead of them (user's choice, 2026-10-01).
 
-Model: ../X_eTaL (agentrail process, justfile -> scripts/*.sh, pages/
-built locally and published by .github/workflows/pages.yml which only
-uploads the committed folder).
+Model for every demo: demos/life-microscope (CLI .xtl + golden; web/
+Yew app on the vendored xetal-play that re-runs an X_eTaL program and
+reads back each intermediate array printed with r_avel; native tests
+of the model; decorated source with the stage highlighted; stage
+timeline with shapes; inspector; X_eTaL logo and footer).
 
-Rules: each demo is its own sub-project under demos/<slug>/; X_eTaL is
-used only through the vendored snapshot in vendor/xetal/ (refreshed
-deliberately with `just vendor`); missing X_eTaL features and bugs go in
-docs/xetal-asks.md, never worked around silently; demos that cannot be
-built with today's X_eTaL are deferred (docs/plan.md saga 5). Every
-step: tests pass (`just gate`), docs updated, .gitignore valid, a
-detailed commit to main including .agentrail/, push, then
-`agentrail complete`.
+Rules: as saga 1 (CLAUDE.md). Missing X_eTaL features or bugs go in
+docs/xetal-asks.md with the workaround named in the demo's README.
+Every step: just gate, docs, .gitignore, detailed commit to main with
+.agentrail/, push; for a demo with a web app also just pages, commit
+pages/, verify the deploy and the live page.
 
 ## Steps
 
-1. scaffold -- process, CLAUDE.md, README, license files, justfile,
-   gate, docs/plan.md, docs/xetal-asks.md.
-2. vendor-xetal -- `just vendor [REF]`, vendor/xetal/VENDORED,
-   `just xetal` builds the vendored CLI into target/xetal/.
-3. demo-layout -- demos/_template, `just new-demo SLUG`, demo.toml,
-   golden runner, `just run SLUG`.
-4. pages-pipeline -- catalog page from demo.toml, build-pages,
-   pages.yml workflow, footer provenance, README link; deploy verified.
-5. life-microscope -- first demo end to end, published.
+1. mandelbrot
+2. reaction-diffusion
+3. microscope-shell
+4. julia
+5. wave-tank
+6. ca-lab
+7. langtons-ant
+8. gallery-1-release

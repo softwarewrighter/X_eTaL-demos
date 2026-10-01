@@ -1,0 +1,9 @@
+number = 4
+slug = "julia"
+status = "pending"
+description = "grids step 4: demos/julia on the shell (or the mandelbrot demo extended, whic..."
+role = "production"
+context_files = []
+created_at = "2026-10-01T13:45:32"
+task_type = "demo"
+commits = []

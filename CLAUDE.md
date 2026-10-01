@@ -318,7 +318,7 @@ Read before working:
    workaround). Do not fix X_eTaL from this repo and do not hide a
    workaround: name it in the ask and in the demo's README.
 4. Demos that cannot be built with the vendored X_eTaL are deferred
-   (plan saga 5) until their asks land; implementable demos first.
+   (plan saga 4) until their asks land; implementable demos first.
 5. `just` is the entry point (recipes call `scripts/*.sh`). New tasks
    get a recipe.
 6. The live site is built locally into `pages/` (`just pages`) and

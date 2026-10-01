@@ -1,0 +1,1 @@
+grids step 8: release: catalog order and summaries, README demo list and status, every per-demo README checked (program, how it works, run it, workarounds), screenshots of each demo in its README, docs/xetal-asks.md current, saga retrospective in docs/plan.md.
