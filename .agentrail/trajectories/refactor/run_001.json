@@ -1,0 +1,11 @@
+{
+  "task_type": "refactor",
+  "state": {
+    "number": 3,
+    "step": "microscope-shell"
+  },
+  "action": "diffed duplicated modules; new crate; migrated demos via scripted edits; native+wasm checks; headless screenshots before/after; gate; deploy",
+  "result": "success",
+  "reward": 1,
+  "timestamp": "2026-10-01T16:20:45"
+}
