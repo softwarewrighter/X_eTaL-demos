@@ -67,3 +67,7 @@ planes; with complex numbers the step would be `z * z + c`. Listed in
 [`docs/xetal-asks.md`](../../docs/xetal-asks.md). The orbit table is
 computed as two `e_ach` passes (real parts, then imaginary parts),
 because `e_ach` cannot yet return a vector per item (nested arrays).
+X_eTaL number literals have no exponent (`1.5e-7`), so the page writes
+the view's numbers into the program as plain decimals. Zooming stops at
+a width of about 1e-12, where 64-bit floats can no longer tell
+neighbouring pixels apart (a limit of the arithmetic, not of X_eTaL).

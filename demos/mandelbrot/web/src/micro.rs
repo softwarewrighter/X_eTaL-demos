@@ -69,10 +69,26 @@ pub struct Frame {
     pub counts: Vec<f64>,
 }
 
+/// The smallest width the page zooms to: below about 1e-13 (relative to
+/// a centre near 1), 64-bit floats can no longer tell pixels apart.
+pub const MIN_WIDTH: f64 = 1e-12;
+
+/// `x` as an X_eTaL Float literal: plain decimal digits (X_eTaL number
+/// literals have no exponent), with 17 significant digits.
+pub fn lit(x: f64) -> String {
+    if x == 0.0 || !x.is_finite() {
+        return "0.0".into();
+    }
+    let digits = (16 - x.abs().log10().floor() as i64).clamp(1, 330) as usize;
+    let s = format!("{x:.digits$}");
+    let s = s.trim_end_matches('0');
+    if s.ends_with('.') { format!("{s}0") } else { s.to_string() }
+}
+
 fn params(v: &View, k: usize) -> String {
     format!(
-        "rows := {}\ncols := {}\ncx := {:?}\ncy := {:?}\nw := {:?}\nk := {k}\naspect := 1.0\n",
-        v.rows, v.cols, v.cx, v.cy, v.w
+        "rows := {}\ncols := {}\ncx := {}\ncy := {}\nw := {}\nk := {k}\naspect := 1.0\n",
+        v.rows, v.cols, lit(v.cx), lit(v.cy), lit(v.w)
     )
 }
 
@@ -125,7 +141,7 @@ pub fn orbit_program(c: (f64, f64), n: usize) -> String {
     let each = |part: u8| {
         format!("'{{ n -> {part} s_elect n 'u:o_rbit p_ower 0.0 0.0 }} e_ach o_ffsets {}\n", n + 1)
     };
-    format!("cr0 := {:?}\nci0 := {:?}\n{}\n{}{}", c.0, c.1, orbit_def(), each(1), each(2))
+    format!("cr0 := {}\nci0 := {}\n{}\n{}{}", lit(c.0), lit(c.1), orbit_def(), each(1), each(2))
 }
 
 /// The orbit z0 .. zn of c, as X_eTaL computes it (it may overflow to
