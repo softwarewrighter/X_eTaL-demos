@@ -1,0 +1,9 @@
+# One demo's description: read by scripts/demos.py for the tests, the
+# README's demo list and the live catalog (pages/index.html).
+slug = "life-microscope"
+title = "Life microscope"
+summary = "Conway's Life in one line of X_eTaL, with every array the line builds drawn: the nine shifted boards, their sum, the two masks, the next board. Click a cell to see its arithmetic."
+concepts = ["rotate along axes", "reduce over axes", "comparison masks", "scalar extension"]
+status = "live"
+order = 10
+needs = []

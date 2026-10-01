@@ -34,25 +34,39 @@ h1 { font-size: 2rem; margin: 0 0 8px; letter-spacing: -0.01em; }
 .links a:hover { text-decoration:underline; }
 .empty { color:var(--muted); padding: 24px 0 48px; }
 footer { border-top:1px solid var(--line); padding-top:16px; padding-bottom:32px; color:var(--muted); font-size:.85rem; }
-footer p { margin: 4px 0; }
+footer .sep { margin: 0 8px; }
+.brand { display:flex; align-items:center; gap:16px; margin-bottom: 8px; }
+.brand h1 { margin: 0; }
+.logo { height: 56px; width: auto; border-radius: 8px; }
 code { font-family: ui-monospace, "JuliaMono", Menlo, monospace; }
 </style>
 </head>
 <body>
 <main>
 <header>
-<h1>X_eTaL Demos</h1>
+<div class="brand"><img class="logo" src="modern-xetal-logo.jpg" alt="X_eTaL"><h1>Demos</h1></div>
 <p class="lede">Small programs in <a href="https://github.com/softwarewrighter/X_eTaL">X_eTaL</a>, a typed array language,
 that make something worth watching. Each one shows its program beside the result, so you
 can see a whole loop nest happen as one array expression.</p>
 </header>
-<p class="empty">The first demo is on its way.</p>
+<section class="grid">
+<article class="card" id="life-microscope">
+<span class="status live">Live</span>
+<h2>Life microscope</h2>
+<p>Conway&#x27;s Life in one line of X_eTaL, with every array the line builds drawn: the nine shifted boards, their sum, the two masks, the next board. Click a cell to see its arithmetic.</p>
+<div class="chips"><span class="chip">rotate along axes</span><span class="chip">reduce over axes</span><span class="chip">comparison masks</span><span class="chip">scalar extension</span></div>
+<div class="links"><a href="life-microscope/">Open the demo</a> <a href="https://github.com/softwarewrighter/X_eTaL-demos/tree/main/demos/life-microscope#readme">How it works</a></div>
+</article>
+</section>
 </main>
 <footer>
-<p>Copyright (c) 2026 Michael A Wright. MIT License.
-<a href="https://github.com/softwarewrighter/X_eTaL-demos">Source on GitHub</a>.</p>
-<p>Built from <code>b39af0b</code> with X_eTaL <a href="https://github.com/softwarewrighter/X_eTaL/commit/06d39facdb9d850303fd2fb5b2a0366efbaacde0"><code>06d39fa</code></a>
-on max.local, 2026-10-01 18:41 UTC.</p>
+<span>Copyright (c) 2026 Michael A Wright</span><span class="sep">&middot;</span>
+<span>MIT License</span><span class="sep">&middot;</span>
+<a href="https://github.com/softwarewrighter/X_eTaL-demos" target="_blank">Repository</a><span class="sep">&middot;</span>
+<span>X_eTaL <a href="https://github.com/softwarewrighter/X_eTaL/commit/06d39facdb9d850303fd2fb5b2a0366efbaacde0" target="_blank">06d39fa</a></span><span class="sep">&middot;</span>
+<span>Build Host max</span><span class="sep">&middot;</span>
+<span>Build Commit 3a75ffa</span><span class="sep">&middot;</span>
+<span>Build Time 2026-10-01T20:13:35Z</span>
 </footer>
 </body>
 </html>

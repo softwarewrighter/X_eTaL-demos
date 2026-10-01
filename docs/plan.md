@@ -74,7 +74,7 @@ The microscope (saga 2) is built first at statement granularity, which
 works today; stepping inside a line waits on the per-operation trace
 ask.
 
-## Saga 1 -- foundation  [ACTIVE]
+## Saga 1 -- foundation  [DONE]
 
 Goal: the process, the vendored interpreter, the demo sub-project
 layout, the live-site pipeline, and one demo published end to end.
@@ -85,7 +85,21 @@ layout, the live-site pipeline, and one demo published end to end.
 | 2 | vendor-xetal | DONE: vendored 06d39fa; `scripts/vendor-xetal.sh` takes components, lib, userlibs, demos (xetal-libs and xetal-web embed the last three), .cargo, LICENSE, COPYRIGHT; `tools/vendor-probe` proves an outside workspace can use xetal-play natively and for wasm32; the root `.cargo/config.toml` carries X_eTaL's wasm stack size. Planned: `scripts/vendor-xetal.sh` + `just vendor [REF]` (git archive of a committed ref of `../X_eTaL`: components, lib, userlibs, .cargo), `vendor/xetal/VENDORED`, `just xetal` builds the CLI into `target/xetal/`, `just xetal-version`; gate checks the vendored build |
 | 3 | demo-layout | DONE: `demos/_template`, `scripts/demos.py` (list, check, json over `demo.toml`), `scripts/test-demos.sh` (goldens stdout+stderr, web/ cargo test, test.sh; `XETAL_BLESS=1`), `scripts/new-demo.sh`, `scripts/run-demo.sh`, `scripts/selftest-demos.sh` in the gate; recipes demos, new-demo, run, show, test, test-demo, bless. Planned: the sub-project template (`demos/_template/`), `just new-demo SLUG`, `demo.toml` schema, golden runner (`scripts/test-demos.sh`: run each `*.xtl` with the vendored binary, diff against `expected/`), `just run SLUG`, `just test` |
 | 4 | pages-pipeline | DONE: `scripts/build-catalog.py` (cards from `demos.py json`, light/dark, footer with this repo's and the vendored X_eTaL commit), `scripts/build-pages.sh` (trunk per demo web app into `pages/<slug>/`, stale ones removed), `scripts/serve-pages.sh`, `.github/workflows/pages.yml` (upload only), Pages enabled with build type workflow; recipes pages, serve-pages, serve. Planned: `scripts/build-catalog.sh` (catalog `pages/index.html` from `demo.toml`), `scripts/build-pages.sh`, `.github/workflows/pages.yml`, footer with build provenance (commit, vendored X_eTaL SHA), README link to the catalog; verify the deploy on GitHub |
-| 5 | life-microscope | first demo end to end: Life programs + goldens, a web app showing the board and the nine rotated boards and their sum, published and linked |
+| 5 | life-microscope | DONE: `life-microscope.xtl` (+ golden), web app (model tested natively: the line matches the CLI program, a blinker turns, the parts add up, shifted boards hold neighbours, a glider moves; Yew page with decorated line, stage timeline, nine shifted boards, S heatmap, masks, next, cell inspector, play/step/patterns/draw), X_eTaL logo and footer style, live. Planned: first demo end to end: Life programs + goldens, a web app showing the board and the nine rotated boards and their sum, published and linked |
+
+### Saga 1 retrospective
+
+Delivered the process, the vendored X_eTaL with a gate check that an
+outside workspace can use `xetal-play` natively and for wasm32, the
+demo sub-project layout with a self-tested golden runner, the live
+catalog (built locally, published by an upload-only workflow), and
+the Life microscope, live. Learned: the X_eTaL engine is fast enough to
+re-run a whole program per generation in the browser (16 x 16 board,
+a few ms), so a demo can get every intermediate array by printing
+`r_avel` of each and parsing the output, with no X_eTaL changes; that
+is the model for saga 2's statement-level trace. The page's footer and
+logo follow the X_eTaL live demo; a "Literate docs" footer link waits
+until this repo has its own literate documents.
 
 ## Saga 2 -- microscope (the shared visual execution shell)
 

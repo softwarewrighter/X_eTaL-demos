@@ -1,0 +1,30 @@
+#!/usr/bin/env xetal
+# Conway's Life under the microscope: the whole rule is one line, and
+# every array it builds on the way is shown here.
+
+u:l_ife := { ('+ r_/_12 -1 0 1 o_-_12 _r) { (_l = 3) + _r * _l = 4 } _r }
+
+# A glider on a 6 by 6 board (the edges wrap around).
+b := 6 6 r_eshape 0 1 0 0 0 0  0 0 1 0 0 0  1 1 1 0 0 0  0 0 0 0 0 0  0 0 0 0 0 0  0 0 0 0 0 0
+b
+
+# Rotate the board by every offset -1 0 1 along both axes: a 3 by 3
+# arrangement of shifted boards, one for each neighbour (and the cell).
+r := -1 0 1 o_-_12 b
+s_hape r
+
+# Sum over those two axes: S, each cell plus its eight neighbours.
+s := '+ r_/_12 r
+s
+
+# A cell is alive next if S is 3 (born, or alive with 2 neighbours) ...
+s = 3
+# ... or if it is alive and S is 4 (alive with 3 neighbours).
+b * s = 4
+
+# Together, the next board: what the one line computes.
+(s = 3) + b * s = 4
+u:l_ife b
+
+# Four steps later the glider has moved one cell down and to the right.
+4 'u:l_ife p_ower b

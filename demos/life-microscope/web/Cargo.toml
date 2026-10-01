@@ -1,0 +1,16 @@
+[package]
+name = "life-microscope-web"
+description = "The Life microscope in the browser: the X_eTaL Life line run on a board, every intermediate array drawn"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+publish = false
+
+[dependencies]
+xetal-play = { path = "../../../vendor/xetal/components/web/crates/xetal-play" }
+yew = { version = "0.21", features = ["csr"] }
+gloo-timers = "0.3"
+web-sys = { version = "0.3", features = ["HtmlSelectElement"] }
+console_error_panic_hook = "0.1"
+
+[workspace]
