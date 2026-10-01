@@ -1,0 +1,11 @@
+{
+  "task_type": "demo",
+  "state": {
+    "number": 1,
+    "step": "mandelbrot"
+  },
+  "action": "CLI prototype+timing; model with include_str core; Yew canvas UI; headless Chrome screenshots; gate; deploy watch",
+  "result": "success",
+  "reward": 1,
+  "timestamp": "2026-10-01T14:36:56"
+}
