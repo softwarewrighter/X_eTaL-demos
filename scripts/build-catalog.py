@@ -5,9 +5,9 @@
 
 One card per demo (scripts/demos.py json, catalog order): title,
 summary, concepts, status, a link to its live page (pages/<slug>/, when
-it has a web app) and to its README. The footer gives the copyright,
-the license, the repository, and the build's provenance: this repo's
-commit and the vendored X_eTaL commit.
+it has a web app) and to its README. The footer is the X_eTaL live
+demo's: copyright, license, the repository, and the build's provenance
+(host, this repo's commit, time), plus the vendored X_eTaL commit.
 """
 import datetime
 import html
@@ -59,14 +59,17 @@ h1 {{ font-size: 2rem; margin: 0 0 8px; letter-spacing: -0.01em; }}
 .links a:hover {{ text-decoration:underline; }}
 .empty {{ color:var(--muted); padding: 24px 0 48px; }}
 footer {{ border-top:1px solid var(--line); padding-top:16px; padding-bottom:32px; color:var(--muted); font-size:.85rem; }}
-footer p {{ margin: 4px 0; }}
+footer .sep {{ margin: 0 8px; }}
+.brand {{ display:flex; align-items:center; gap:16px; margin-bottom: 8px; }}
+.brand h1 {{ margin: 0; }}
+.logo {{ height: 56px; width: auto; border-radius: 8px; }}
 code {{ font-family: ui-monospace, "JuliaMono", Menlo, monospace; }}
 </style>
 </head>
 <body>
 <main>
 <header>
-<h1>X_eTaL Demos</h1>
+<div class="brand"><img class="logo" src="modern-xetal-logo.jpg" alt="X_eTaL"><h1>Demos</h1></div>
 <p class="lede">Small programs in <a href="{xetal}">X_eTaL</a>, a typed array language,
 that make something worth watching. Each one shows its program beside the result, so you
 can see a whole loop nest happen as one array expression.</p>
@@ -74,10 +77,13 @@ can see a whole loop nest happen as one array expression.</p>
 {body}
 </main>
 <footer>
-<p>Copyright (c) 2026 Michael A Wright. MIT License.
-<a href="{repo}">Source on GitHub</a>.</p>
-<p>Built from <code>{commit}</code> with X_eTaL <a href="{xetal}/commit/{xsha}"><code>{xshort}</code></a>
-on {host}, {stamp}.</p>
+<span>Copyright (c) 2026 Michael A Wright</span><span class="sep">&middot;</span>
+<span>MIT License</span><span class="sep">&middot;</span>
+<a href="{repo}" target="_blank">Repository</a><span class="sep">&middot;</span>
+<span>X_eTaL <a href="{xetal}/commit/{xsha}" target="_blank">{xshort}</a></span><span class="sep">&middot;</span>
+<span>Build Host {host}</span><span class="sep">&middot;</span>
+<span>Build Commit {commit}</span><span class="sep">&middot;</span>
+<span>Build Time {stamp}</span>
 </footer>
 </body>
 </html>
@@ -117,8 +123,8 @@ def main():
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(PAGE.format(
         body=body, repo=REPO, xetal=XETAL, commit=git("rev-parse", "--short", "HEAD"),
-        xsha=vend["commit"], xshort=vend["commit"][:7], host=socket.gethostname(),
-        stamp=datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")))
+        xsha=vend["commit"], xshort=vend["commit"][:7], host=socket.gethostname().split(".")[0],
+        stamp=datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")))
     print(f"catalog: {out} ({len(demos)} demo(s))")
 
 

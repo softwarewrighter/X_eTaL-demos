@@ -30,5 +30,6 @@ for d in "$root"/pages/*/; do
   s="$(basename "$d")"
   printf '%s\n' ${keep[@]+"${keep[@]}"} | grep -qx "$s" || { echo "removing pages/$s/"; rm -rf "$d"; }
 done
+cp "$root/images/modern-xetal-logo.jpg" "$root/pages/"
 "$root/scripts/build-catalog.py"
 echo "pages/ built; commit it (git add pages/) and push to publish."

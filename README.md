@@ -35,7 +35,7 @@ catalog.
 
 | Demo | What you see | Array ideas | Status |
 | ---- | ------------ | ----------- | ------ |
-| Life microscope | Conway's Life, with the nine shifted boards and their sum | rotate, reduce, masks | planned |
+| [Life microscope](demos/life-microscope/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/life-microscope/)) | Conway's Life, with the nine shifted boards and their sum | rotate, reduce, masks | live |
 | Mandelbrot and Julia | the set appearing iteration by iteration; a pixel's orbit | broadcasting, masks | planned |
 | Reaction-diffusion | Gray-Scott textures; one pixel's stencil arithmetic | stencils, iteration | planned |
 | Wave tank | ripples, interference, a double slit | finite differences | planned |
@@ -51,8 +51,8 @@ catalog.
 | Tiny world model | predicting the next frame of a ball's world | recurrence, prediction | waiting on X_eTaL |
 | Diffusion from noise | an image denoised step by step | tensor transforms | waiting on X_eTaL |
 
-Each demo's name will link to its own page in `demos/<name>/README.md`
-once it exists. What the "waiting" demos need from X_eTaL is listed in
+A demo's name links to its own page (`demos/<name>/README.md`) once it
+exists. What the "waiting" demos need from X_eTaL is listed in
 [`docs/xetal-asks.md`](docs/xetal-asks.md).
 
 ## Build
@@ -129,7 +129,9 @@ Early. The project process, plan and build scaffolding are in place,
 and the bundled X_eTaL builds and is checked by the gate (its
 command-line interpreter, and its library natively and for
 WebAssembly). The demo layout, its test runner and the live catalog
-are in place. The first demo, the Life microscope, comes next. See
+are in place, and the first demo, the Life microscope, is live. The
+shared microscope view and the grid and dynamics demos (Mandelbrot,
+Julia, reaction-diffusion, wave tank) come next. See
 [`docs/plan.md`](docs/plan.md) for the roadmap.
 
 ## Documentation

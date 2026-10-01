@@ -1,6 +1,6 @@
 number = 5
 slug = "life-microscope"
-status = "pending"
+status = "in-progress"
 description = "foundation step 5: the first demo end to end, demos/life-microscope/. Life pr..."
 role = "production"
 context_files = []
