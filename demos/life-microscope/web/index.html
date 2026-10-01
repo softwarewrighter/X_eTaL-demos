@@ -39,9 +39,10 @@
     .line { display: block; font-size: 1.25rem; padding: 12px 14px; background: var(--card);
       border: 1px solid var(--line); border-radius: 10px; overflow-x: auto; white-space: pre; }
     .line { line-height: 2.1; }
-    .hl { background: #e5dbff; outline: 2px solid #9775fa; padding: .22em 0; }
-    .hl.t-builtin { color: #1c5fd4; } .hl.t-user { color: #2b8a3e; } .hl.t-arg { color: #a61e8f; }
-    .hl.t-num { color: #8a5a00; } .hl.t-sym { color: #0b7285; } .hl.t-plain { color: #1d1d1f; }
+    .hl { background: #e5dbff; box-shadow: 0 0 0 2px #9775fa; border-radius: 4px; padding: .15em .1em;
+      -webkit-box-decoration-break: clone; box-decoration-break: clone; color: #1d1d1f; }
+    .hl .t-builtin { color: #1c5fd4; } .hl .t-user { color: #2b8a3e; } .hl .t-arg { color: #a61e8f; }
+    .hl .t-num { color: #8a5a00; } .hl .t-sym { color: #0b7285; } .hl .t-plain { color: #1d1d1f; }
     code.xtl { font-size: 1.05em; }
     h2 code.xtl { font-weight: 400; }
     .t-builtin { color: var(--t-builtin); } .t-user { color: var(--t-user); } .t-arg { color: var(--t-arg); }

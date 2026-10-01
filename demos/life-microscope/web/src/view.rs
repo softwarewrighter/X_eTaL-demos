@@ -69,6 +69,7 @@ fn css(class: Class) -> &'static str {
         Class::LambdaArg => "t-arg",
         Class::Number | Class::Exponent => "t-num",
         Class::Symbol | Class::Quote => "t-sym",
+        Class::Comment => "t-comment",
         _ => "t-plain",
     }
 }
@@ -86,14 +87,27 @@ pub fn range(stage: Stage) -> (usize, usize) {
 }
 
 fn segments(src: &str, lo: usize, hi: usize) -> Html {
-    let segs = decorate(src).into_iter().map(|s| {
-        let mut class = classes!(css(s.class));
-        if s.raw.start >= lo && s.raw.end <= hi {
-            class.push("hl");
+    // Runs of segments inside lo..hi are wrapped in one highlight block.
+    let mut out: Vec<Html> = Vec::new();
+    let mut run: Vec<Html> = Vec::new();
+    let flush = |run: &mut Vec<Html>, out: &mut Vec<Html>| {
+        if !run.is_empty() {
+            let inner = std::mem::take(run);
+            out.push(html! { <span class="hl">{ for inner }</span> });
         }
-        html! { <span {class}>{s.text}</span> }
-    });
-    html! { <>{ for segs }</> }
+    };
+    for s in decorate(src) {
+        let inside = s.raw.start >= lo && s.raw.end <= hi && s.class != Class::Comment;
+        let seg = html! { <span class={css(s.class)}>{s.text}</span> };
+        if inside {
+            run.push(seg);
+        } else {
+            flush(&mut run, &mut out);
+            out.push(seg);
+        }
+    }
+    flush(&mut run, &mut out);
+    html! { <>{ for out }</> }
 }
 
 /// Any X_eTaL snippet, drawn decorated (as X_eTaL renders it).

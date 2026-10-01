@@ -9,13 +9,12 @@ use crate::micro::core;
 /// The stages of one run, in the order the program computes them.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Stage {
-    Grid,
-    Step,
-    Iterate,
-    Measure,
+    Spread,
+    React,
+    Update,
 }
 
-pub const STAGES: [Stage; 4] = [Stage::Grid, Stage::Step, Stage::Iterate, Stage::Measure];
+pub const STAGES: [Stage; 3] = [Stage::Spread, Stage::React, Stage::Update];
 
 fn css(class: Class) -> &'static str {
     match class {
@@ -40,10 +39,9 @@ fn between(src: &str, from: &str, to_line_with: &str) -> (usize, usize) {
 pub fn range(stage: Stage) -> (usize, usize) {
     let src = core();
     match stage {
-        Stage::Grid => between(src, "re := ", "ci := "),
-        Stage::Step => between(src, "u:s_tep := ", "\n}"),
-        Stage::Iterate => between(src, "z := k ", "z := k "),
-        Stage::Measure => between(src, "zr := 1 s_elect z", "counts := "),
+        Stage::Spread => between(src, "u:l_ap := ", "u:l_ap := "),
+        Stage::React => between(src, "uvv := ", "uvv := "),
+        Stage::Update => between(src, "(u:p_lane u + ", "(u:p_lane u + "),
     }
 }
 

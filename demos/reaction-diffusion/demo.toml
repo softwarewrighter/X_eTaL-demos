@@ -1,0 +1,9 @@
+# One demo's description: read by scripts/demos.py for the tests, the
+# README's demo list and the live catalog (pages/index.html).
+slug = "reaction-diffusion"
+title = "Reaction-diffusion"
+summary = "Gray-Scott chemistry on a grid: mazes, coral and spots grow by themselves. Each step is four shifts and a few products over the whole grid; click a cell to see its arithmetic, or drop more chemical."
+concepts = ["stencils by rotation", "elementwise arithmetic", "function power", "rank-3 state"]
+status = "live"
+order = 30
+needs = []
