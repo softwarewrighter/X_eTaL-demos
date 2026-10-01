@@ -25,7 +25,7 @@ fn vendored() -> String {
 fn main() {
     println!("cargo:rustc-env=BUILD_SHA={}", run("git", &["rev-parse", "--short", "HEAD"]));
     println!("cargo:rustc-env=BUILD_HOST={}", run("hostname", &["-s"]));
-    println!("cargo:rustc-env=BUILD_TIMESTAMP={}", run("date", &["-u", "+%Y-%m-%dT%H:%M:%SZ"]));
+    println!("cargo:rustc-env=BUILD_TIMESTAMP={}", run("date", &["-u", "+%Y%m%dT%H%M%S"]));
     println!("cargo:rustc-env=XETAL_SHA={}", vendored());
     println!("cargo:rerun-if-changed=../../../vendor/xetal/VENDORED");
     println!("cargo:rerun-if-changed=../../../.git/HEAD");
