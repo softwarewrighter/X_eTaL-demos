@@ -7,7 +7,7 @@ One card per demo (scripts/demos.py json, catalog order): title,
 summary, concepts, status, a link to its live page (pages/<slug>/, when
 it has a web app) and to its README. The footer is the X_eTaL live
 demo's: copyright, license, the repository, and the build's provenance
-(host, this repo's commit, time), plus the vendored X_eTaL commit.
+build (host, this repo's sha, yyyymmddThhmmss), plus the vendored X_eTaL commit.
 """
 import datetime
 import html
@@ -82,9 +82,7 @@ can see a whole loop nest happen as one array expression.</p>
 <span>MIT License</span><span class="sep">&middot;</span>
 <a href="{repo}" target="_blank">Repository</a><span class="sep">&middot;</span>
 <span>X_eTaL <a href="{xetal}/commit/{xsha}" target="_blank">{xshort}</a></span><span class="sep">&middot;</span>
-<span>Build Host {host}</span><span class="sep">&middot;</span>
-<span>Build Commit {commit}</span><span class="sep">&middot;</span>
-<span>Build Time {stamp}</span>
+<span>build (host {host}, sha {commit}, {stamp})</span>
 </footer>
 </body>
 </html>
@@ -125,7 +123,7 @@ def main():
     out.write_text(PAGE.format(
         body=body, repo=REPO, xetal=XETAL, commit=git("rev-parse", "--short", "HEAD"),
         xsha=vend["commit"], xshort=vend["commit"][:7], host=socket.gethostname().split(".")[0],
-        stamp=datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")))
+        stamp=datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%S")))
     print(f"catalog: {out} ({len(demos)} demo(s))")
 
 

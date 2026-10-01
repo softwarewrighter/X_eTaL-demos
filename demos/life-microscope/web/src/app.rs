@@ -15,26 +15,30 @@ fn act(m: &UseReducerHandle<Model>, a: impl Fn() -> Action + 'static) -> Callbac
     Callback::from(move |_| d.dispatch(a()))
 }
 
-fn stage_info(s: Stage) -> (&'static str, &'static str, String) {
+fn stage_info(s: Stage) -> (&'static str, &'static str, String, String) {
     let rc = format!("{ROWS} {COLS}");
+    let board = format!("{ROWS} rows by {COLS} columns");
     match s {
-        Stage::Board => ("board", "_r", rc),
-        Stage::Rotate => ("rotate", "-1 0 1 o_-_12", format!("3 3 {rc}")),
-        Stage::Sum => ("sum", "'+ r_/_12", rc),
-        Stage::Masks => ("compare", "s = 3 ; b * s = 4", format!("{rc}, {rc}")),
-        Stage::Next => ("add", "+", rc),
+        Stage::Board => ("board", "_r", rc, board),
+        Stage::Rotate => ("rotate", "-1 0 1 o_-_12", format!("3 3 {rc}"),
+            format!("3 row offsets by 3 column offsets by a {ROWS} by {COLS} board: nine shifted boards")),
+        Stage::Sum => ("sum", "'+ r_/_12", rc, format!("{board}: the two offset axes summed away")),
+        Stage::Masks => ("compare", "s = 3 ; b * s = 4", rc, format!("two boards, each {board}")),
+        Stage::Next => ("add", "+", rc, board),
     }
 }
 
 fn timeline(m: &UseReducerHandle<Model>) -> Html {
     let chips = STAGES.iter().map(|&s| {
-        let (name, code, shape) = stage_info(s);
+        let (name, code, shape, meaning) = stage_info(s);
         let class = classes!("stage", (m.focus == s).then_some("active"));
         html! {
             <button {class} onclick={act(m, move || Action::Focus(s))}>
                 <span class="sname">{name}</span>
                 { self::code(code) }
-                <span class="shape">{format!("[{shape}]")}</span>
+                <span class="shape" title={format!("the array's shape (s_hape): {meaning}")}>
+                    { self::code(&format!("s_hape = {shape}")) }
+                </span>
             </button>
         }
     });
@@ -151,9 +155,7 @@ fn footer() -> Html {
             <a href={REPO} target="_blank">{ "Repository" }</a>{ sep() }
             <a href="../">{ "All demos" }</a>{ sep() }
             <span>{ format!("X_eTaL {}", env!("XETAL_SHA")) }</span>{ sep() }
-            <span>{ format!("Build Host {}", env!("BUILD_HOST")) }</span>{ sep() }
-            <span>{ format!("Build Commit {}", env!("BUILD_SHA")) }</span>{ sep() }
-            <span>{ format!("Build Time {}", env!("BUILD_TIMESTAMP")) }</span>
+            <span>{ format!("build (host {}, sha {}, {})", env!("BUILD_HOST"), env!("BUILD_SHA"), env!("BUILD_TIMESTAMP")) }</span>
         </footer>
     }
 }
