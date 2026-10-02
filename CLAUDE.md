@@ -286,7 +286,7 @@ a safety net for what is not yet committed.
 ## Project Overview
 
 A gallery of small, visual, topical programs in X_eTaL (the
-eXperimental eXtensible Typed Array Language, developed in
+eXperimental Extensible Typed Array Language, developed in
 `../X_eTaL`), each runnable from the command line and live in the
 browser via GitHub Pages. Every demo follows one arc: a small X_eTaL
 program, a visually striking result, the array transformations
