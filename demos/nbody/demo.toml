@@ -1,0 +1,9 @@
+# One demo's description: read by scripts/demos.py for the tests, the
+# README's demo list and the live catalog (pages/index.html).
+slug = "nbody"
+title = "N-body gravity"
+summary = "Gravity between every pair of bodies at once, with no loops: the pairs' displacements form a cube, the cube gives every pair's pull, and one reduce sums them into accelerations. A figure-eight three-body orbit, a binary star with planets, a collapsing cluster, Kepler's ellipse."
+concepts = ["broadcasting with table", "reduce along an axis", "rank-3 arrays", "leapfrog integration"]
+status = "live"
+order = 50
+needs = []

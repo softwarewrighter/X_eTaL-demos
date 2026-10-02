@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>N-body Gravity</title>
+  
+<script type="module">
+import init, * as bindings from '/X_eTaL-demos/nbody/nbody-web-78fd6cb2fc44ecdc.js';
+const wasm = await init({ module_or_path: '/X_eTaL-demos/nbody/nbody-web-78fd6cb2fc44ecdc_bg.wasm' });
+
+
+window.wasmBindings = bindings;
+
+
+dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+
+</script>
+  
+  <link rel="icon" href="/X_eTaL-demos/nbody/favicon-99a73c3cc5eb5037.ico" integrity="sha384-jh2niQ+i5iuRZ34bhA1G/1+MK+pPTNQ94fC6FXNo9emBA7ontKzntF2GbIdkvkpI"/>
+  <link rel="stylesheet" href="/X_eTaL-demos/nbody/microscope-ae3ef328a30fd32f.css" integrity="sha384-/O860+t08F+tzjrmAkkluJdl67gU0YOxX50WBRi+U6XA9KtKjUcKoE7H569/WX+V"/>
+<link rel="modulepreload" href="/X_eTaL-demos/nbody/nbody-web-78fd6cb2fc44ecdc.js" crossorigin="anonymous" integrity="sha384-9e34MR9oT6ZcZmRuaZLKe+QMB9y6V80tabWMgBKFMIkxFhGptkSkiUGnNLY7bf5g"><link rel="preload" href="/X_eTaL-demos/nbody/nbody-web-78fd6cb2fc44ecdc_bg.wasm" crossorigin="anonymous" integrity="sha384-Mw92oZuFCVKApVpxHH76mlJZilx3sCsGi3dHvRCft4wKIxOpeg1QBkTBi/3wyRwu" as="fetch" type="application/wasm"></head>
+<body></body>
+</html>

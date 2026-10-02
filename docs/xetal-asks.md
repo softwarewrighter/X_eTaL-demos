@@ -15,7 +15,7 @@ demos work with that are not asks.
 | ------ | ---- | --- | ----- | ---------- |
 | open | bug | Reading a long strand of Int literals takes quadratic time (8000 Ints: 2.1 s; as Floats: 7 ms) | ca-lab, langtons-ant (boards passed in each frame) | write Int arrays as Float literals and `f_loor` them |
 | open | speed | Whole-array arithmetic is about 50 ns per element per operation (vector kernels, planned upstream) | langtons-ant (the highway needs ~10,000 steps: 20 to 30 s natively), reaction-diffusion, mandelbrot, wave-tank | small grids, a few steps per frame, the page shows each run's time |
-| open | feature | `xetal-play`: pass arrays into a program and read them back without text, or keep a session between runs | every page that keeps state (reaction-diffusion, wave-tank, ca-lab, langtons-ant) | each frame writes the state as literal matrices and parses the printed `r_avel` lines |
+| open | feature | `xetal-play`: pass arrays into a program and read them back without text, or keep a session between runs | every page that keeps state (reaction-diffusion, wave-tank, ca-lab, langtons-ant, nbody) | each frame writes the state as literal matrices and parses the printed `r_avel` lines |
 | open | feature | Number literals with an exponent (`1.5e-7`) | mandelbrot (deep zoom), any page writing small or large Floats into a program | the page writes the shortest plain decimal that reads back exactly (`microscope::run::lit`) |
 | open | feature | Complex numbers (planned upstream) | mandelbrot, julia | two Float planes (or two numbers) for the real and imaginary parts |
 | open | feature | Nested arrays: `e_ach` returning a vector per item (planned upstream) | mandelbrot (the orbit table) | two `e_ach` passes, one per part |

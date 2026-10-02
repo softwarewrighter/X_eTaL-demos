@@ -1,0 +1,71 @@
+#!/usr/bin/env xetal
+# N-body gravity with no loops. Every pair of bodies at once: the
+# displacements of all pairs form a cube (2 x N x N, built by
+# broadcasting with t_able), the cube gives every pair's softened
+# inverse-square pull, and one reduce over the second body sums the
+# pulls into each body's acceleration. A kick-drift-kick (leapfrog)
+# step moves them all.
+
+# The figure-eight: three equal masses chasing each other round one
+# curve (Chenciner and Montgomery's orbit), G = 1.
+g := 1.0
+eps2 := 0.000001
+dt := 0.01
+m := 1.0 1.0 1.0
+steps := 50
+
+# -- the bodies' masses, spread over every pair ----------
+# mj is N x N: row i, column j holds m_j, the mass pulling.
+n := t_ally m
+mj := (o_ffsets n) 'r_ight t_able m
+# A matrix as one plane of a rank-3 array, to stack planes.
+u:p_lane := { a -> (1 c_at s_hape a) r_eshape a }
+# -- the cube: every pair's displacement, by broadcasting
+# p is 2 x N, the x row and the y row. A table of
+# differences gives x_i - x_j for every pair, N x N; the
+# tables for x and y stack into a 2 x N x N cube.
+u:c_ube := { p ->
+  x := 1 s_elect p
+  y := 2 s_elect p
+  (u:p_lane x '- t_able x) c_at u:p_lane y '- t_able y
+}
+# -- the pull: softened inverse-square -------------------
+# g m_j / (r^2 + eps2)^(3/2) for every pair: the inverse
+# square, and one more 1 / r because the displacement in
+# the cube has length r. eps2 softens close passes.
+u:p_ull := { d -> g * mj / (('+ r_/ d * d) + eps2) ^ 1.5 }
+# -- the reduction: sum over the second body -------------
+# Each plane of the cube times the pull, summed along j
+# (axis 3): the 2 x N accelerations. The diagonal, a body
+# and itself, is 0 times its pull.
+u:a_cc := { p ->
+  d := u:c_ube p
+  w := u:p_ull d
+  n_eg '+ r_/_3 d * (2 c_at s_hape w) r_eshape w
+}
+# -- one step: kick, drift, kick -------------------------
+# The state is 4 x N: the x and y rows, then the
+# velocities' x and y rows.
+u:s_tep := { s ->
+  p := 2 t_ake s
+  h := (2 d_rop s) + (dt / 2.0) * u:a_cc p
+  p1 := p + dt * h
+  p1 c_at h + (dt / 2.0) * u:a_cc p1
+}
+# -- end of the core -----------------------------------
+
+u:r_ound := { a -> (f_loat f_loor 0.5 + a * 10000.0) / 10000.0 }
+p0 := 2 3 r_eshape 0.97000436 -0.97000436 0.0 -0.24308753 0.24308753 0.0
+v0 := 2 3 r_eshape 0.466203685 0.466203685 -0.93240737 0.43236573 0.43236573 -0.86473146
+s0 := p0 c_at v0
+
+# The cube for the start, its shape, and its x plane.
+s_hape u:c_ube p0
+u:r_ound 1 s_elect u:c_ube p0
+# The accelerations at the start: one column per body.
+u:r_ound u:a_cc p0
+# After 50 steps (t = 0.5): positions, then velocities.
+s := steps 'u:s_tep p_ower s0
+u:r_ound s
+# The total momentum stays 0: the sum over bodies of m v.
+u:r_ound '+ r_/_2 (2 d_rop s) * (2 c_at n) r_eshape m

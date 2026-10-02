@@ -1,6 +1,6 @@
 number = 1
 slug = "nbody"
-status = "pending"
+status = "in-progress"
 description = "physics-ml step 1: demos/nbody. ~50 bodies; positions N x 2; the pairwise dis..."
 role = "production"
 context_files = []
