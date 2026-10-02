@@ -1,8 +1,9 @@
 number = 3
 slug = "cli-reg"
-status = "in-progress"
+status = "completed"
 description = "physics-ml inserted step: dogfooding audit fixes. (1) CLI regression tests wi..."
 role = "production"
 context_files = []
 created_at = "2026-10-02T13:53:48"
-commits = []
+completed_at = "2026-10-02T16:30:45"
+commits = ["d3fb15791c784a48d67819831b9066c9d1cba695"]
