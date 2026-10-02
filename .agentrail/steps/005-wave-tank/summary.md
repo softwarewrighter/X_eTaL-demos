@@ -1,0 +1,1 @@
+Wave tank live: wave-tank.xtl (broadcast coordinates, sponge edges, double-slit masks, 5-point Laplacian, wave-equation step with time plane) + golden; page with five X_eTaL scenes (double/single slit, two sources, lens via c2 map, open tank), click ripples, inspector, panels; 6 tests.
