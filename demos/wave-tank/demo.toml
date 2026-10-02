@@ -1,0 +1,9 @@
+# One demo's description: read by scripts/demos.py for the tests, the
+# README's demo list and the live catalog (pages/index.html).
+slug = "wave-tank"
+title = "Wave tank"
+summary = "The wave equation on a grid: waves pass through a double slit and interfere, bend through a lens of slow water, and ripple where you click. Walls, sources and lenses are masks; each step is a stencil over the whole grid."
+concepts = ["stencils by rotation", "masks", "scalar extension", "broadcasting with table"]
+status = "live"
+order = 35
+needs = []
