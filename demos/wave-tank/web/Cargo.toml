@@ -1,0 +1,16 @@
+[package]
+name = "wave-tank-web"
+description = "A wave tank in the browser: the wave equation stepped by X_eTaL on a grid; slits, sources, a lens, ripples where you click"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+publish = false
+
+[dependencies]
+microscope = { path = "../../../shared/microscope" }
+yew = { version = "0.21", features = ["csr"] }
+gloo-timers = "0.3"
+web-sys = { version = "0.3", features = ["HtmlInputElement", "HtmlSelectElement"] }
+console_error_panic_hook = "0.1"
+
+[workspace]
