@@ -1,0 +1,11 @@
+{
+  "task_type": "demo",
+  "state": {
+    "number": 2,
+    "step": "image-pipeline"
+  },
+  "action": "probed rotation by a list of amounts; xtl core + golden; microscope web app; tested in Chrome via the extension (kernel edits, stages, pixel inspector); gate, pages, screenshots",
+  "result": "success",
+  "reward": 1,
+  "timestamp": "2026-10-02T13:19:46"
+}
