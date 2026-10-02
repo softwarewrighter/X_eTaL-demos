@@ -6,7 +6,7 @@
 </p>
 
 Small programs in [X_eTaL](https://github.com/softwarewrighter/X_eTaL),
-the eXperimental eXtensible Typed Array Language, that produce
+the eXperimental Extensible Typed Array Language, that produce
 something worth watching: a cellular automaton, a fractal, an organic
 reaction-diffusion texture, a neural network seeing a digit, tokens
 being routed to experts in a sparse model.
