@@ -61,7 +61,7 @@ the measurement is in [`docs/xetal-asks.md`](../../docs/xetal-asks.md).
 just run langtons-ant          # 400 steps on a 21 by 21 board, as characters
 just show langtons-ant         # the same as a notebook
 just serve langtons-ant        # the web app at http://127.0.0.1:8095/
-just test-demo langtons-ant    # the expected output and the web app's tests
+just test-demo langtons-ant    # its CLI and browser baselines and the web app's tests
 ```
 
 ## Workarounds

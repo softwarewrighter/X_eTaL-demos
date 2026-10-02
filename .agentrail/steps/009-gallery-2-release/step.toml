@@ -1,0 +1,9 @@
+number = 9
+slug = "gallery-2-release"
+status = "pending"
+description = "physics-ml step 8: release: screenshots (just screenshots), catalog order and..."
+role = "production"
+context_files = []
+created_at = "2026-10-02T07:18:49"
+task_type = "release"
+commits = []

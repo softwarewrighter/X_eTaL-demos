@@ -1,0 +1,8 @@
+number = 3
+slug = "cli-reg"
+status = "in-progress"
+description = "physics-ml inserted step: dogfooding audit fixes. (1) CLI regression tests wi..."
+role = "production"
+context_files = []
+created_at = "2026-10-02T13:53:48"
+commits = []

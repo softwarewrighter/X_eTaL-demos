@@ -1,0 +1,4 @@
+# Text the page shows only after X_eTaL has run (scripts/browser-check.sh).
+Cell row 9, column 9
+1. Rotate by every offset:
+2. Sum over the two offset axes:

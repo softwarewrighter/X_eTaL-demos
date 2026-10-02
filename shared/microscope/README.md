@@ -35,8 +35,14 @@ highlight, panels, chips, canvases); a page links it with
 4. `src/view.rs`: the stages and the range of the core computing each.
 5. `src/model.rs` (state and actions, a Yew reducer) and `src/app.rs`
    (the page from `chrome`, `source`, `canvas` or `cells`).
-6. `just serve SLUG` while working; `just test-demo SLUG`; `just
-   pages`; set `status = "live"` in `demo.toml`.
+6. `web/browser.txt`: lines of text the page shows only once X_eTaL
+   has run (an inspector heading, a computed number), for the browser
+   test.
+7. `just serve SLUG` while working; `just pages`; `just bless SLUG`
+   creates the reg-rs baselines (`reg/cli-*` for each `.xtl`,
+   `reg/browser-SLUG` for the built page in headless Chrome); review
+   them, then `just test-demo SLUG`; set `status = "live"` in
+   `demo.toml`.
 
 Conventions: every code snippet on a page is drawn decorated, never as
 typed ASCII; shapes are shown as `s_hape`; an X_eTaL error keeps the

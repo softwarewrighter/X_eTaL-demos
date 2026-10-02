@@ -1,0 +1,3 @@
+command = "scripts/browser-check.sh langtons-ant"
+exit_code = 0
+desc = "langtons-ant: the built page run in headless Chrome shows X_eTaL's results"

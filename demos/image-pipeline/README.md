@@ -71,7 +71,7 @@ stack) takes about 70 ms natively.
 just run image-pipeline          # 20 x 40 shapes: picture, edge strength, edges, pooled edges as characters
 just show image-pipeline         # the same as a notebook
 just serve image-pipeline        # the web app at http://127.0.0.1:8095/
-just test-demo image-pipeline    # the expected output and the web app's tests
+just test-demo image-pipeline    # its CLI and browser baselines and the web app's tests
 ```
 
 ## Workarounds

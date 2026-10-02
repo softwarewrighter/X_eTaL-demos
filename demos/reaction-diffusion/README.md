@@ -56,7 +56,7 @@ the time of each run.
 just run reaction-diffusion          # a maze grown from a square, drawn as characters
 just show reaction-diffusion         # the same as a notebook
 just serve reaction-diffusion        # the web app at http://127.0.0.1:8095/
-just test-demo reaction-diffusion    # the expected output and the web app's tests
+just test-demo reaction-diffusion    # its CLI and browser baselines and the web app's tests
 ```
 
 ## Workarounds

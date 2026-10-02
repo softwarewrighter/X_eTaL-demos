@@ -1,0 +1,3 @@
+# Text the page shows only after X_eTaL has run (scripts/browser-check.sh).
+Generation 21, around cell 65
+The rule as a table:

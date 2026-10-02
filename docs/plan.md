@@ -29,7 +29,7 @@ the language.
 | - | -------- | --- |
 | A1 | X_eTaL is **vendored** into `vendor/xetal/` as a source snapshot of a committed ref of `../X_eTaL` (`just vendor [REF]`, default `HEAD`), recorded in `vendor/xetal/VENDORED` (SHA, date, subject). Uncommitted work in `../X_eTaL` is never vendored. | X_eTaL is developed in parallel; demos need a recent but stable interpreter, refreshed deliberately, never moving under a step. |
 | A2 | The vendored CLI is built into `target/xetal/` (`just xetal`), and every recipe runs that binary, not one on the PATH. | Reproducible: a demo's goldens are tied to `VENDORED`. |
-| A3 | Each demo is its own sub-project, `demos/<slug>/`: `demo.toml` (title, one-line summary, concepts, status), `README.md` (the per-demo doc), `<slug>.xtl` programs, `expected/` goldens, and `web/` (its own Cargo workspace: a Yew app depending on the vendored `xetal-play` by path). | Demos evolve independently; one broken demo never blocks another. |
+| A3 | Each demo is its own sub-project, `demos/<slug>/`: `demo.toml` (title, one-line summary, concepts, status), `README.md` (the per-demo doc), `<slug>.xtl` programs, `reg/` reg-rs baselines (each `.xtl` at the CLI, the built page in headless Chrome), and `web/` (its own Cargo workspace: a Yew app depending on the vendored `xetal-play` by path). | Demos evolve independently; one broken demo never blocks another. |
 | A4 | The shared browser shell (built in saga 2 step 3 from the first three pages; see `shared/microscope/README.md`) (the "array-language microscope": source, array/shape panel, visual world, execution timeline) lives in `shared/microscope/`, a Cargo workspace the demos depend on by path. | The four synchronized views are the same for every demo (research: "one visual execution architecture"). |
 | A5 | The live site is built **locally** into `pages/` (`just pages`): a catalog page `pages/index.html` generated from every `demos/*/demo.toml`, plus `pages/<slug>/` from trunk. `pages/` is committed; `.github/workflows/pages.yml` only uploads it (nothing is built on GitHub). | Same model as `../X_eTaL`: simple, fast, deterministic deploys. |
 | A6 | A feature X_eTaL lacks, or a bug a demo uncovers, is **not** worked around silently and not fixed here: it is recorded in `docs/xetal-asks.md` (what, why, which demo, a minimal repro), and the demo uses a documented workaround or waits. | X_eTaL owns its language decisions; this repo is a consumer. |
@@ -153,12 +153,13 @@ Learned:
 | - | --------- | -------- |
 | 1 | nbody | 2 x N x N displacements by broadcasting (component axis first: `c_at` stacks along the first axis), the cube shown, reduced to 2 x N accelerations; leapfrog; no loops in the program. Done: four presets, tests for momentum, F_ij = -F_ji, Kepler's period and a direct loop; about 3 ms per 50-body step natively |
 | 2 | image-pipeline | reshape, blur, edge detection, threshold on an image, every stage shown. Done: windows as `-1 0 1 o_-_2 -1 0 1 o_-_2 x` (3 x 3 x R x C), one filter function for blur and Sobel, max-pooling by reshape; editable kernels; about 70 ms per 96 x 96 run natively; bound-Bool ask filed |
-| 3 | ternary-net | weights as -1/0/+1 glyphs, activation x ternary weights -> accumulators -> activation; FP32/FP16/INT8/1.58-bit storage, ops and error compared |
-| 4 | moe-router | 16 experts, a sentence's tokens routed by `token x router_weights`, top-2; animated routes and the routing vector |
-| 5 | moe-epsilon | perturb an embedding x + epsilon with a slider and show where the selected experts jump (the routing-discontinuity regions); link to moe-microscope |
-| 6 | cnn-weights | a tiny MNIST CNN trained offline (script in `demos/cnn-digits/train/`), weights exported as X_eTaL-readable data |
-| 7 | cnn-digits | draw a 28 x 28 digit; conv -> ReLU -> pool -> dense -> softmax in X_eTaL; click any conv output to see input patch x kernel = value |
-| 8 | gallery-2-release | catalog, docs, retrospective |
+| 3 | cli-reg | Inserted after an audit: are the pages real? Yes: every page runs the vendored X_eTaL engine compiled to wasm on its demo's own `.xtl` (life-microscope now reads its rule from the file too). CLI goldens moved to reg-rs baselines in each demo's `reg/`; every page is also tested in headless Chrome (`scripts/browser-check.sh`, a reg-rs baseline per demo); the logo with the corrected name |
+| 4 | ternary-net | weights as -1/0/+1 glyphs, activation x ternary weights -> accumulators -> activation; FP32/FP16/INT8/1.58-bit storage, ops and error compared |
+| 5 | moe-router | 16 experts, a sentence's tokens routed by `token x router_weights`, top-2; animated routes and the routing vector |
+| 6 | moe-epsilon | perturb an embedding x + epsilon with a slider and show where the selected experts jump (the routing-discontinuity regions); link to moe-microscope |
+| 7 | cnn-weights | a tiny MNIST CNN trained offline (script in `demos/cnn-digits/train/`), weights exported as X_eTaL-readable data |
+| 8 | cnn-digits | draw a 28 x 28 digit; conv -> ReLU -> pool -> dense -> softmax in X_eTaL; click any conv output to see input patch x kernel = value |
+| 9 | gallery-2-release | catalog, docs, retrospective |
 
 ## Saga 4 -- deferred (blocked on asks)
 
@@ -176,6 +177,8 @@ if the per-operation trace has landed.
 | 5 | gallery-3-release | catalog, docs, final retrospective | |
 
 ## Cross-cutting
+
+- When X_eTaL lands the terminal request (`../X_eTaL-games/docs/xetal-terminal-request.md`: `xetal-cli` buildable for `wasm32-wasip1`, a browser terminal), refresh the vendor and consider running the pages on the real `xetal` binary instead of linking `xetal-play`; the reg-rs CLI and browser baselines stay as they are.
 
 - Refresh the vendored X_eTaL (`just vendor`) at the start of a saga, or
   when an ask in `docs/xetal-asks.md` has landed upstream; never in the

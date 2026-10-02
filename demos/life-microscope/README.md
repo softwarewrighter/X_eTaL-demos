@@ -47,7 +47,7 @@ it runs the line on the board and prints each intermediate array
 just run life-microscope          # the arrays of one step of a glider, then four steps on
 just show life-microscope         # the same as a notebook: each statement, then its output
 just serve life-microscope        # the web app at http://127.0.0.1:8095/
-just test-demo life-microscope    # the expected output and the web app's tests
+just test-demo life-microscope    # its CLI and browser baselines and the web app's tests
 ```
 
 `life-microscope.xtl` is the command-line program; `web/` is the
