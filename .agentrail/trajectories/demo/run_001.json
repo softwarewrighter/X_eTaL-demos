@@ -1,0 +1,11 @@
+{
+  "task_type": "demo",
+  "state": {
+    "number": 1,
+    "step": "nbody"
+  },
+  "action": "probed X_eTaL with just eval; wrote xtl core + golden; microscope web app (micro/view/model/app); headless Chrome screenshots to check presets; just gate, just pages, just screenshots",
+  "result": "success",
+  "reward": 1,
+  "timestamp": "2026-10-02T12:10:20"
+}
