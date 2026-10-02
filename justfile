@@ -68,6 +68,10 @@ serve-pages port="8096":
 serve slug port="8095":
     cd demos/{{slug}}/web && trunk serve --release --port {{port}} --address 127.0.0.1
 
+# Screenshot every demo (from the built pages/) into demos/<slug>/screenshot.png
+screenshots *slugs:
+    scripts/screenshots.sh "$@"
+
 # The full pre-commit gate: vendored X_eTaL, demo tooling, demo tests, ASCII-only markdown
 gate:
     scripts/gate.sh

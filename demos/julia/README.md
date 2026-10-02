@@ -10,6 +10,8 @@ around the edge of the Mandelbrot set.
 
 Live: [Julia sets](https://softwarewrighter.github.io/X_eTaL-demos/julia/)
 
+[![Julia sets: the live page](screenshot.png)](https://softwarewrighter.github.io/X_eTaL-demos/julia/)
+
 ## The program
 
 The function at the heart of `julia.xtl` (the live page runs exactly

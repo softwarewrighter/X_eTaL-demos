@@ -7,6 +7,8 @@ no loop over neighbours.
 
 Live: [the Life microscope](https://softwarewrighter.github.io/X_eTaL-demos/life-microscope/)
 
+[![Life microscope: the live page](screenshot.png)](https://softwarewrighter.github.io/X_eTaL-demos/life-microscope/)
+
 ## The program
 
 ```

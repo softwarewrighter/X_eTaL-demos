@@ -23,6 +23,8 @@ while IFS= read -r slug; do
   # The app's own index.html is the trunk entry: demos/<slug>/web/index.html.
   (cd "$web" && trunk build --release --public-url "$base/$slug/" --dist "$dist")
   rsync -a --delete "$dist/" "$root/pages/$slug/"
+  # The catalog card's picture, when the demo has one (just screenshots).
+  if [ -f "$root/demos/$slug/screenshot.png" ]; then cp "$root/demos/$slug/screenshot.png" "$root/pages/$slug/"; fi
 done < <("$root/scripts/demos.py" list)
 # Drop pages/<slug>/ of demos that no longer have a web app.
 for d in "$root"/pages/*/; do

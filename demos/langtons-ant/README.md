@@ -11,6 +11,8 @@ would move a thousand ants.
 
 Live: [Langton's ant](https://softwarewrighter.github.io/X_eTaL-demos/langtons-ant/)
 
+[![Langton's ant: the live page](screenshot.png)](https://softwarewrighter.github.io/X_eTaL-demos/langtons-ant/)
+
 ## The program
 
 The core of `langtons-ant.xtl` (the live page runs exactly this):

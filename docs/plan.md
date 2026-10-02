@@ -101,7 +101,7 @@ is the model for saga 2's statement-level trace. The page's footer and
 logo follow the X_eTaL live demo; a "Literate docs" footer link waits
 until this repo has its own literate documents.
 
-## Saga 2 -- grids: demos first, then the shared microscope  [ACTIVE]
+## Saga 2 -- grids: demos first, then the shared microscope  [DONE]
 
 Reordered at the user's request (2026-10-01): two more demos before
 the shared shell, so the shell is extracted from three working pages
@@ -119,7 +119,33 @@ per-operation trace ask.
 | 5 | wave-tank | click for ripples; interference; barriers, double slit, obstacles, speeds; the stencil at any point |
 | 6 | ca-lab | DONE: every rule a lookup table (s_elect): elementary rules with an editable 8-bit table and a history grown by rotation, 2-D rules (Life, Brian's Brain, Wireworld) as state x neighbours tables, editable, previewing the coming step; tests against direct computations; found the quadratic Int-strand read (ask filed; Float workaround 17x faster). Planned: elementary CA (Rule 30, 90, 110) growing downward, the rule as an editable lookup array; Life, Brian's Brain, Wireworld |
 | 7 | langtons-ant | the ant as state arrays and masks; the highway emerges |
-| 8 | gallery-1-release | catalog, README, per-demo docs, screenshots, retrospective |
+| 8 | gallery-1-release | DONE: `just screenshots` (headless Chrome with a watchdog) into each demo's README and the catalog cards; docs/xetal-asks.md reviewed against every workaround (10 asks, and the language properties that are not asks); retrospective. Planned: catalog, README, per-demo docs, screenshots, retrospective |
+
+### Saga 2 retrospective
+
+Delivered six more live demos (Mandelbrot, reaction-diffusion, Julia
+sets, wave tank, cellular automata lab, Langton's ant) and the shared
+page shell, extracted from the first three pages as planned. Every
+page runs its demo's own `.xtl` (included, not copied), and every
+model is tested natively against a direct computation or the
+mathematics (Gray-Scott arithmetic, the wave equation, Julia symmetry,
+elementary rules, a direct ant).
+
+Learned:
+- The "print with `r_avel`, parse, draw" model carries every demo so
+  far; the text round trip is the main cost, which led to two asks
+  (arrays in and out of `xetal-play`; quadratic Int strands, worked
+  around with Floats for a 17x speed-up).
+- The demos meet X_eTaL's speed limit (about 50 ns per element per
+  operation): fine for pictures, slow for long runs like Langton's
+  ant. Asked, with measurements.
+- Explicit numerical steps need care: reaction-diffusion diverged at
+  du 1.0 (fixed by stable rates); rotation wraps, so the wave tank
+  needed a sponge edge and Langton's ant pauses before its highway
+  wraps.
+- User feedback shaped the shell: decorated code everywhere, s_hape
+  labels, a bold highlight block, a compact footer, error notices
+  that keep the last good state, and the deep-zoom literal fix.
 
 ## Saga 3 -- physics and ML (implementable now)
 

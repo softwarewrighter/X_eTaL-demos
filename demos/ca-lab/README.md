@@ -8,6 +8,8 @@ the table and you change the universe.
 Live: [Cellular automata lab](https://softwarewrighter.github.io/X_eTaL-demos/ca-lab/)
 (the two-dimensional rules: [`#2d`](https://softwarewrighter.github.io/X_eTaL-demos/ca-lab/#2d))
 
+[![Cellular automata lab: the live page](screenshot.png)](https://softwarewrighter.github.io/X_eTaL-demos/ca-lab/)
+
 ## The program
 
 The core of `ca-lab.xtl` (the live page runs exactly this):
@@ -77,4 +79,4 @@ The page passes the 2-D board into each run as Float literals floored
 to Int: X_eTaL reads a long strand of Int literals in quadratic time
 (a 48 by 64 board took 283 ms for 4 steps that way, 16 ms as Floats;
 listed in [`docs/xetal-asks.md`](../../docs/xetal-asks.md)). Booleans
-are turned into Ints with `1 *` before they are summed or stored.
+are turned into Ints with `1 *` where they meet the Int state.
