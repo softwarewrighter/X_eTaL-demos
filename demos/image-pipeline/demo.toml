@@ -1,0 +1,9 @@
+# One demo's description: read by scripts/demos.py for the tests, the
+# README's demo list and the live catalog (pages/index.html).
+slug = "image-pipeline"
+title = "Image pipeline"
+summary = "Blur, Sobel edges, a threshold and max-pooling on a picture, each an array program. Every 3 x 3 filter is the stack of the picture's nine shifted copies times a kernel, summed; edit the kernels and click a pixel to see its window times each one."
+concepts = ["rotation by a list of amounts", "rank-4 arrays", "reduce over two axes", "reshape for pooling"]
+status = "live"
+order = 55
+needs = ["bound conditions in arithmetic"]

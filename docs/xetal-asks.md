@@ -22,6 +22,7 @@ demos work with that are not asks.
 | open | feature | A state of several arrays for `p_ower` (a tuple or record; "named records" is on the upstream wish list) | wave-tank (time), langtons-ant (direction), mandelbrot and julia (counts) | extra planes of one rank-3 array, a scalar stored in every cell |
 | open | feature | A per-operation evaluation trace (the planned stepping debugger) exposed through `xetal-play` | the microscope shell (all pages) | pages print chosen intermediate arrays with `r_avel` |
 | open | feature | Transpose (planned upstream) | attention, embedding-explorer (deferred) | none yet: those demos wait |
+| open | bug | A condition bound to a name cannot be used in arithmetic (`a := 1 2 > 0` then `1 * a`, `f_loat a` or `'+ r_/ a` is a type error), though inline `f_loat 1 2 > 0` works and lang-choices T1 says a Bool converts to Int in arithmetic | image-pipeline (masks) | bind masks as Floats: `m := f_loat (...) < r` |
 | open | bug | A vendored build reports the outer repo's commit as its own | `xetal --version` from `just xetal` | `just xetal-version` prints `vendor/xetal/VENDORED` beside it (the pages' footers read `VENDORED` directly) |
 
 ## Details
@@ -138,6 +139,28 @@ Attention is `S <- Q x transpose(K)`; PCA needs the covariance
 `X^T X`. Both read naturally only with a transpose; the two demos are
 deferred until it exists (`docs/plan.md`, saga 4).
 
+### A bound condition in arithmetic
+
+lang-choices T1 says a Bool converts to Int implicitly in arithmetic,
+and T5 says a top-level condition binding defaults to Bool. Together
+they suggest a bound mask still works in arithmetic, but it does not:
+
+```
+$ xetal eval -e "a := 1 2 > 0
+1 * a"
+error[type-mismatch]: expected a number, found Bool at 20..25
+$ xetal eval -e "a := 1 2 > 0
+f_loat a"
+error[type-mismatch]: expected a number, found Bool at 13..21
+$ xetal eval -e "f_loat 1 2 > 0"
+1.0 1.0
+```
+
+The image pipeline builds its picture from masks (a disk, a square, a
+triangle) bound by name. Workaround: bind each mask as a Float,
+`disk := f_loat (...) < 300`. Ask: let a bound Bool convert in
+arithmetic as T1 describes (or say in T5 that it does not).
+
 ### Build provenance in a vendored build
 
 `xetal-cli`'s `build.rs` takes the commit from
@@ -162,9 +185,10 @@ around them and say so where it shows.
   before it, so a program's parameters come before its functions
   (the pages put theirs first).
 - **No implicit Bool or Int to Float.** `2.5 * (x > 1)` is a type
-  error; the demos write `f_loat (x > 1)`. Bools mix with Ints
-  (`1 * (b = 1)` is an Int array) and sum (`'+ r_/` over Bools), and
-  an Int state needs Int, not Bool, values.
+  error; the demos write `f_loat (x > 1)`. Comparisons written inline
+  mix with Ints (`1 * (b = 1)` is an Int array) and sum (`'+ r_/`
+  over them), and an Int state needs Int, not Bool, values. (A
+  condition bound to a name does not convert: see the ask above.)
 - **`m_od` takes the dividend on the left** (`a m_od b` is a mod b),
   unlike APL's residue.
 - **Rotation wraps.** `o_-` rotates, so stencils see a torus; the wave

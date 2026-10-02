@@ -131,6 +131,18 @@ canvas.pic.mid { width: min(100%, 260px); }
 .forces tr.total td { font-weight: 600; border-top: 2px solid var(--line); }
 .forces td.more { color: var(--muted); text-align: left; font-style: italic; }
 .forces .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
+.kernels { display: flex; gap: 18px; flex-wrap: wrap; }
+.kname { display: flex; gap: 6px; align-items: center; margin-bottom: 6px; }
+.kname select { font: inherit; font-size: .85rem; padding: 2px 6px; border-radius: 6px;
+  border: 1px solid var(--line); background: var(--card); color: var(--fg); }
+.kgrid { display: grid; grid-template-columns: repeat(3, 84px); gap: 4px; }
+.kgrid input { width: 84px; font: inherit; font-size: .85rem; font-variant-numeric: tabular-nums; padding: 3px 4px;
+  border: 1px solid var(--line); border-radius: 6px; background: var(--card); color: var(--t-num); text-align: right; }
+.kgrid input:disabled { background: var(--off); }
+.product .crosses { align-items: center; gap: 10px; }
+.product .op { font-size: 1.3rem; color: var(--muted); }
+.product .val code { font-size: 1.1rem; }
+canvas.pic.tiny { width: 100%; }
 @media (max-width: 760px) {
   .layout { grid-template-columns: 1fr; }
   .line { font-size: 1rem; }
