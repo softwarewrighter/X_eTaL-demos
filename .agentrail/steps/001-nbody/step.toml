@@ -1,0 +1,9 @@
+number = 1
+slug = "nbody"
+status = "pending"
+description = "physics-ml step 1: demos/nbody. ~50 bodies; positions N x 2; the pairwise dis..."
+role = "production"
+context_files = []
+created_at = "2026-10-02T07:18:49"
+task_type = "demo"
+commits = []

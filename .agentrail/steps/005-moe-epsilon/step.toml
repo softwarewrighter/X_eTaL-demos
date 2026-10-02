@@ -1,0 +1,9 @@
+number = 5
+slug = "moe-epsilon"
+status = "pending"
+description = "physics-ml step 5: extend moe-router: perturb a token embedding x + epsilon*d..."
+role = "production"
+context_files = []
+created_at = "2026-10-02T07:18:49"
+task_type = "demo"
+commits = []

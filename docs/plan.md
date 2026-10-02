@@ -147,7 +147,7 @@ Learned:
   labels, a bold highlight block, a compact footer, error notices
   that keep the last good state, and the deep-zoom literal fix.
 
-## Saga 3 -- physics and ML (implementable now)
+## Saga 3 -- physics and ML (implementable now)  [ACTIVE]
 
 | # | Step slug | Delivers |
 | - | --------- | -------- |

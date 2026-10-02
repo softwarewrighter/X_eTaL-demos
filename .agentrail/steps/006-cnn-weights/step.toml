@@ -1,0 +1,9 @@
+number = 6
+slug = "cnn-weights"
+status = "pending"
+description = "physics-ml step 6: a tiny MNIST CNN (e.g. conv 3x3x8 -> ReLU -> 2x2 maxpool -..."
+role = "production"
+context_files = []
+created_at = "2026-10-02T07:18:49"
+task_type = "demo"
+commits = []
