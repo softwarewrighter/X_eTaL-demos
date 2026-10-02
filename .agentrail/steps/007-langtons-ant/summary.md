@@ -1,0 +1,1 @@
+Langton's ant live: one-hot mask ant (look/turn/flip/move as whole-array ops) + golden; page with steps/frame, last-step arithmetic, auto-pause at 11,500 (highway formed, before wrap); tests match direct simulation; speed ask (~50 ns/element/op) filed with numbers; scalar shape label.
