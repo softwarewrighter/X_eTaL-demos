@@ -115,6 +115,22 @@ canvas.pic.mid { width: min(100%, 260px); }
 .nbhd.num td { width: auto; min-width: 56px; padding: 0 4px; font-weight: 500; font-variant-numeric: tabular-nums; font-size: .85rem; }
 .nbhd.num td:empty { border: none; }
 .calc { margin: 4px 0; line-height: 1.9; }
+.sky { display: block; width: 100%; aspect-ratio: 1; background: #0f1020; border-radius: 8px; }
+.sky .trail { fill: none; stroke-width: 1.2; opacity: .55; }
+.sky .body circle { stroke: #ffffff; stroke-width: .8; }
+.sky .body circle.sel { stroke: #ff8a4c; stroke-width: 3; }
+.sky .body .hit { fill: transparent; stroke: none; cursor: pointer; }
+.sky .arrow { stroke-width: 1.4; }
+.sky .arrow.part { stroke: #b197fc; opacity: .8; }
+.sky .arrow.sum { stroke: #ff922b; stroke-width: 2.6; }
+.sky .head.part { fill: #b197fc; } .sky .head.sum { fill: #ff922b; }
+.forces { margin: 4px 0 10px; }
+.forces td:first-child, .forces th:first-child { text-align: left; }
+.forces tr.pick { cursor: pointer; }
+.forces tr.pick:hover td { background: var(--off); }
+.forces tr.total td { font-weight: 600; border-top: 2px solid var(--line); }
+.forces td.more { color: var(--muted); text-align: left; font-style: italic; }
+.forces .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
 @media (max-width: 760px) {
   .layout { grid-template-columns: 1fr; }
   .line { font-size: 1rem; }

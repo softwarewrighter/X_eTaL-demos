@@ -60,7 +60,7 @@ boolean grid -> numeric grid -> dynamic system -> neural net -> sparse model
 | wave-tank | ripples, interference, double slit | finite-difference stencil | yes | 2 |
 | ca-lab | Rule 30/90/110, Life, Brian's Brain, Wireworld; edit the rule | lookup tables, neighborhoods | yes | 2 |
 | langtons-ant | emergent highway | state arrays, masks | yes (one-hot masks, no amend) | 2 |
-| nbody | 50 bodies; the N x N x 2 displacement cube reduced to forces | pairwise broadcasting (table), reduce | yes | 3 |
+| nbody | 50 bodies; the 2 x N x N displacement cube reduced to forces | pairwise broadcasting (table), reduce | yes | 3 |
 | image-pipeline | blur, edges, threshold on a picture | reshape, convolution, masks | yes (synthetic images) | 3 |
 | ternary-net | 1.58-bit weights; FP32/FP16/INT8/ternary compared | ternary arrays, inner product | yes | 3 |
 | moe-router | tokens routed to 16 experts; epsilon slider shows routing discontinuities | top-k (grade), masks, select | yes | 3 |
@@ -151,7 +151,7 @@ Learned:
 
 | # | Step slug | Delivers |
 | - | --------- | -------- |
-| 1 | nbody | N x N x 2 displacements by broadcasting, the cube shown, reduced to N x 2 forces; integration; no loops in the program |
+| 1 | nbody | 2 x N x N displacements by broadcasting (component axis first: `c_at` stacks along the first axis), the cube shown, reduced to 2 x N accelerations; leapfrog; no loops in the program. Done: four presets, tests for momentum, F_ij = -F_ji, Kepler's period and a direct loop; about 3 ms per 50-body step natively |
 | 2 | image-pipeline | reshape, blur, edge detection, threshold on an image, every stage shown |
 | 3 | ternary-net | weights as -1/0/+1 glyphs, activation x ternary weights -> accumulators -> activation; FP32/FP16/INT8/1.58-bit storage, ops and error compared |
 | 4 | moe-router | 16 experts, a sentence's tokens routed by `token x router_weights`, top-2; animated routes and the routing vector |

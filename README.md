@@ -42,7 +42,7 @@ catalog.
 | [Wave tank](demos/wave-tank/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/wave-tank/)) | a double slit, a lens, ripples where you click | stencils, masks | live |
 | [Cellular automata lab](demos/ca-lab/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/ca-lab/)) | Rule 30, 90, 110 with an editable table; Life, Brian's Brain, Wireworld as tables | lookup tables, rotations | live |
 | [Langton's ant](demos/langtons-ant/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/langtons-ant/)) | a highway emerging from chaos | one-hot masks, rotation | live |
-| N-body gravity | 50 bodies and the pairwise force cube | pairwise broadcasting | planned |
+| [N-body gravity](demos/nbody/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/nbody/)) | a figure-eight three-body orbit, a binary with planets, a collapsing cluster; the pairwise force cube | pairwise broadcasting, reduce | live |
 | Image pipeline | blur, edges, threshold, every stage | convolution, masks | planned |
 | 1.58-bit network | ternary weights versus FP32/FP16/INT8 | ternary arrays, dot products | planned |
 | MoE routing microscope | tokens routed to 16 experts; where routing jumps | top-k, masks | planned |
