@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cellular Automata Lab</title>
+  <link data-trunk rel="rust" data-bin="ca-lab-web" />
+  <link data-trunk rel="copy-file" href="../../../images/modern-xetal-logo.jpg" />
+  <link data-trunk rel="icon" href="../../../images/favicon.ico" />
+  <link data-trunk rel="css" href="../../../shared/microscope/microscope.css" />
+  <style>
+    .tabs { display: flex; gap: 6px; margin: 4px 0 10px; }
+    .tab { font: inherit; padding: 6px 14px; border-radius: 8px; border: 1px solid var(--line);
+      background: var(--card); color: var(--fg); cursor: pointer; }
+    .tab.active { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); font-weight: 600; }
+    input.num { width: 70px; font: inherit; padding: 4px 6px; border-radius: 6px; border: 1px solid var(--line);
+      background: var(--card); color: var(--fg); }
+    .table1 { display: flex; flex-wrap: wrap; gap: 8px; }
+    .entry { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 6px 8px;
+      border: 1px solid var(--line); border-radius: 8px; background: var(--card); cursor: pointer; color: var(--fg); font: inherit; }
+    .entry:hover { border-color: var(--accent); }
+    .entry .hood { display: flex; gap: 1px; }
+    .entry .c { width: 14px; height: 14px; background: var(--off); border: 1px solid var(--line); }
+    .entry .c.on { background: var(--on); }
+    .entry .k { font-size: .75rem; color: var(--muted); }
+    .strips { border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: .8rem; overflow-x: auto; display: block; }
+    .strips th { text-align: right; padding-right: 8px; font-weight: 400; white-space: nowrap; }
+    .strips td { width: 18px; height: 20px; text-align: center; border: 1px solid var(--line); }
+    .strips td.on { background: var(--on); color: var(--bg); }
+    .strips td.off { background: var(--off); }
+    .strips td.at { box-shadow: inset 0 0 0 2px var(--sel); }
+    .table2 { border-collapse: collapse; font-variant-numeric: tabular-nums; }
+    .table2 th { font-weight: 500; font-size: .8rem; color: var(--muted); padding: 2px 6px; }
+    .table2 th.state { text-align: left; color: var(--fg); }
+    .table2 td { width: 30px; height: 28px; text-align: center; border: 1px solid var(--line); cursor: pointer; font-weight: 600; }
+    .pair figure { flex-basis: 150px; }
+  </style>
+</head>
+<body></body>
+</html>

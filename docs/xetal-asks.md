@@ -15,6 +15,7 @@ workaround in use.
 | open | feature | Complex numbers (already planned upstream) | mandelbrot, julia | two Float planes for the real and imaginary parts |
 | open | feature | Nested arrays: `e_ach` returning a vector per item | mandelbrot (orbit table) | two `e_ach` passes, one per part |
 | open | feature | Number literals with an exponent (`1.5e-7`) | mandelbrot (deep zoom), any demo passing small or large Floats into a program | the host writes plain decimals with 17 significant digits |
+| open | bug | Reading a long strand of Int literals takes quadratic time (8000 ints: 2.1 s; the same as Floats: 7 ms) | ca-lab (a 48 x 64 board per frame), any page passing Int arrays in | write Int arrays as Float literals and `f_loor` them |
 | open | feature | Transpose (already planned upstream) | attention, embedding-explorer | to be found when the demo is written |
 | open | bug | A vendored build reports the outer repo's commit as its own | all (`xetal --version`, the web footer) | `just xetal-version` prints `vendor/xetal/VENDORED` beside it |
 | open | feature | A per-operation evaluation trace (the planned stepping debugger) exposed through `xetal-play` | microscope (all) | trace per statement / named binding only |
@@ -84,3 +85,25 @@ Workaround: the page writes plain decimals (`0.000045776367187500`),
 which X_eTaL reads correctly at any size. Ask: accept `e`/`E`
 exponents in Float literals (and print very large or small Floats
 the same way, so output can be read back).
+
+### Long Int strands are slow to read
+
+Passing a board into a program as a literal strand is the demos' way
+to hand state to each run. Strands of Int literals are read in
+quadratic time; Float strands are not:
+
+| Literal strand | Time (`xetal run`, release) |
+| -------------- | --------------------------- |
+| 1000 Ints | 0.03 s |
+| 2000 Ints | 0.11 s |
+| 4000 Ints | 0.49 s |
+| 8000 Ints | 2.10 s |
+| 8000 Floats (`0.0 1.0 ...`) | 0.007 s |
+
+Repro: `python3 -c "print('b := ' + ' '.join(str(i % 2) for i in
+range(8000)) + '\nt_ally b')" > ints.xtl; time xetal run ints.xtl`.
+
+The cellular automata lab's 2-D step (a 48 x 64 board, 4 steps) took
+283 ms through `xetal-play` with an Int strand and 16 ms with the
+board written as Floats and floored (`b0 := f_loor b0f`), which is the
+workaround in use.

@@ -1,0 +1,60 @@
+#!/usr/bin/env xetal
+# A cellular automata lab. Every rule here is a lookup table: each
+# cell's neighbourhood becomes a number, by rotations and arithmetic
+# over the whole array, and the number picks the cell's next state
+# from the table. Changing the rule is changing the table.
+
+# -- one dimension: Wolfram's elementary rules -------------------------
+# A rule number's 8 bits are the table: the next state for each of the
+# 8 neighbourhoods (left, centre, right), numbered 4 * left + 2 *
+# centre + right.
+u:b_its := { rule -> (rule d_iv 2 ^ o_ffsets 8) m_od 2 }
+# The next row: each cell's neighbourhood number, by rotation, looks up
+# its next state in the table (1 + because s_elect counts from 1).
+u:r_ow := { tbl r -> (1 + (4 * -1 o_- r) + (2 * r) + 1 o_- r) s_elect tbl }
+# The history grows downward: rotate the rows up one, and put the next
+# row (of the last one) at the bottom. Start with every row the first.
+u:g_row := { tbl h ->
+  g := f_irst s_hape h
+  n := 2 s_elect s_hape h
+  keep := 1 * ((o_ffsets g) < g - 1) 'l_eft t_able o_ffsets n
+  (keep * 1 o_-_1 h) + (1 - keep) * (g c_at n) r_eshape tbl u:r_ow g s_elect h
+}
+# -- two dimensions: a table on (state, neighbours in state 1) ---------
+# Each cell's number is its state * 9 + how many of its 8 neighbours
+# are in state 1 (alive, firing, an electron's head); the table holds
+# the next state for each number.
+u:c_ount := { b -> ('+ r_/_12 -1 0 1 o_-_12 1 * b = 1) - 1 * b = 1 }
+u:l_ook := { tbl b -> (1 + (9 * b) + u:c_ount b) s_elect tbl }
+# -- end of the core ---------------------------------------------------
+
+# Rule 30 from one cell: 16 generations of a 33-cell row.
+tbl := u:b_its 30
+tbl
+r0 := 1 * (o_ffsets 33) = 16
+h := 15 '{ h -> tbl u:g_row h } p_ower (16 c_at 33) r_eshape r0
+(1 + h) s_elect ".#"
+
+# Rule 90: the Sierpinski triangle.
+tbl := u:b_its 90
+h := 15 '{ h -> tbl u:g_row h } p_ower (16 c_at 33) r_eshape r0
+(1 + h) s_elect ".#"
+
+# Life as a table: rows are the states (dead, alive), columns the count
+# of live neighbours (0 to 8). Born with 3, survives with 2 or 3.
+life := 0 0 0 1 0 0 0 0 0  0 0 1 1 0 0 0 0 0
+glider := 6 6 r_eshape 0 1 0 0 0 0  0 0 1 0 0 0  1 1 1 0 0 0  0 0 0 0 0 0  0 0 0 0 0 0  0 0 0 0 0 0
+(1 + 4 '{ b -> life u:l_ook b } p_ower glider) s_elect ".#"
+
+# Brian's Brain: off (0), firing (1), dying (2). Firing always dies,
+# dying always goes off, off fires with exactly 2 firing neighbours.
+brain := 0 0 1 0 0 0 0 0 0  2 2 2 2 2 2 2 2 2  0 0 0 0 0 0 0 0 0
+b0 := 6 6 r_eshape 0 0 0 0 0 0  0 0 1 1 0 0  0 0 0 0 0 0  0 0 0 0 0 0  0 0 0 0 0 0  0 0 0 0 0 0
+(1 + 3 '{ b -> brain u:l_ook b } p_ower b0) s_elect ".#o"
+
+# Wireworld: empty (0), electron head (1), tail (2), conductor (3).
+# Heads become tails, tails conductor; a conductor becomes a head with
+# 1 or 2 heads around it. An electron runs along a wire.
+wire := 0 0 0 0 0 0 0 0 0  2 2 2 2 2 2 2 2 2  3 3 3 3 3 3 3 3 3  3 1 1 3 3 3 3 3 3
+w0 := 3 8 r_eshape 0 0 0 0 0 0 0 0  2 1 3 3 3 3 3 3  0 0 0 0 0 0 0 0
+(1 + 3 '{ b -> wire u:l_ook b } p_ower w0) s_elect " @~-"
