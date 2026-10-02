@@ -16,6 +16,7 @@ workaround in use.
 | open | feature | Nested arrays: `e_ach` returning a vector per item | mandelbrot (orbit table) | two `e_ach` passes, one per part |
 | open | feature | Number literals with an exponent (`1.5e-7`) | mandelbrot (deep zoom), any demo passing small or large Floats into a program | the host writes plain decimals with 17 significant digits |
 | open | bug | Reading a long strand of Int literals takes quadratic time (8000 ints: 2.1 s; the same as Floats: 7 ms) | ca-lab (a 48 x 64 board per frame), any page passing Int arrays in | write Int arrays as Float literals and `f_loor` them |
+| open | feature | Evaluator speed for whole-array arithmetic (vector kernels, planned upstream) | langtons-ant (2.2 ms a step on 64 x 64; the highway needs ~10,000 steps), reaction-diffusion | fewer steps per frame; smaller grids |
 | open | feature | Transpose (already planned upstream) | attention, embedding-explorer | to be found when the demo is written |
 | open | bug | A vendored build reports the outer repo's commit as its own | all (`xetal --version`, the web footer) | `just xetal-version` prints `vendor/xetal/VENDORED` beside it |
 | open | feature | A per-operation evaluation trace (the planned stepping debugger) exposed through `xetal-play` | microscope (all) | trace per statement / named binding only |
@@ -107,3 +108,21 @@ The cellular automata lab's 2-D step (a 48 x 64 board, 4 steps) took
 283 ms through `xetal-play` with an Int strand and 16 ms with the
 board written as Floats and floored (`b0 := f_loor b0f`), which is the
 workaround in use.
+
+### Evaluator speed for whole-array arithmetic
+
+The demos' steps are a handful of whole-array operations (rotations,
+elementwise arithmetic, a reduce). Measured natively (release) through
+`xetal-play`:
+
+| Demo | Array | Per step |
+| ---- | ----- | -------- |
+| Langton's ant | 64 x 64, about 10 whole-board operations | 2.2 ms |
+| Reaction-diffusion | 64 x 64, 2 Laplacians and the update | 3.3 ms |
+| Mandelbrot | 90 x 135, one z * z + c step | about 8 ms |
+
+That is roughly 50 ns per element per operation. Langton's ant needs
+about 10,000 steps before its highway appears: 20 to 30 seconds
+natively, longer in the browser. Vector kernels for the elementwise
+and rotate primitives (already planned upstream) would make these
+demos much more responsive.

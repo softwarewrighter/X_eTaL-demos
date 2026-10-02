@@ -1,6 +1,6 @@
 number = 7
 slug = "langtons-ant"
-status = "pending"
+status = "in-progress"
 description = "grids step 7: demos/langtons-ant on the shell: the ant as a one-hot position ..."
 role = "production"
 context_files = []

@@ -1,0 +1,9 @@
+# One demo's description: read by scripts/demos.py for the tests, the
+# README's demo list and the live catalog (pages/index.html).
+slug = "langtons-ant"
+title = "Langton's ant"
+summary = "Two rules, chaos, then a highway after about 10,000 steps. The ant is a one-hot mask and a direction: looking, flipping and moving are whole-array operations, and the same code would move a thousand ants."
+concepts = ["one-hot masks", "rotation", "reduce", "function power"]
+status = "live"
+order = 45
+needs = ["evaluator speed"]
