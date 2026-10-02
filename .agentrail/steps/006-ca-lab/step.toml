@@ -1,6 +1,6 @@
 number = 6
 slug = "ca-lab"
-status = "pending"
+status = "in-progress"
 description = "grids step 6: demos/ca-lab on the shell: elementary CA (Rule 30, 90, 110) gro..."
 role = "production"
 context_files = []

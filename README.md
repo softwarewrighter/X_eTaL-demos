@@ -40,7 +40,7 @@ catalog.
 | [Julia sets](demos/julia/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/julia/)) | one function, two sets; pick c on the Mandelbrot map; c walking its edge | scalar extension | live |
 | [Reaction-diffusion](demos/reaction-diffusion/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/reaction-diffusion/)) | Gray-Scott mazes, coral and spots growing; one cell's stencil arithmetic | stencils, iteration | live |
 | [Wave tank](demos/wave-tank/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/wave-tank/)) | a double slit, a lens, ripples where you click | stencils, masks | live |
-| Cellular automata lab | Rule 30, 90, 110, Brian's Brain, Wireworld | lookup tables, neighborhoods | planned |
+| [Cellular automata lab](demos/ca-lab/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/ca-lab/)) | Rule 30, 90, 110 with an editable table; Life, Brian's Brain, Wireworld as tables | lookup tables, rotations | live |
 | Langton's ant | a highway emerging from chaos | state arrays, masks | planned |
 | N-body gravity | 50 bodies and the pairwise force cube | pairwise broadcasting | planned |
 | Image pipeline | blur, edges, threshold, every stage | convolution, masks | planned |
@@ -137,8 +137,8 @@ and the bundled X_eTaL builds and is checked by the gate (its
 command-line interpreter, and its library natively and for
 WebAssembly). The demo layout, its test runner and the live catalog
 are in place, and the Life microscope, Mandelbrot and
-reaction-diffusion, Julia set and wave tank demos are live, on a
-shared page shell. Next: the cellular automata lab and Langton's ant. See
+reaction-diffusion, Julia set, wave tank and cellular automata lab
+demos are live, on a shared page shell. Next: Langton's ant. See
 [`docs/plan.md`](docs/plan.md) for the roadmap.
 
 ## Documentation

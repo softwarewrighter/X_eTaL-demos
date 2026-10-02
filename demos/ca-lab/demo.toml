@@ -1,0 +1,9 @@
+# One demo's description: read by scripts/demos.py for the tests, the
+# README's demo list and the live catalog (pages/index.html).
+slug = "ca-lab"
+title = "Cellular automata lab"
+summary = "Every rule is a lookup table: rotations turn each cell's neighbourhood into a number and the number picks its next state. Wolfram's Rule 30, 90 and 110 with an editable 8-entry table; Life, Brian's Brain and Wireworld as editable state-by-neighbours tables."
+concepts = ["rotation", "lookup by s_elect", "reduce over axes", "function power"]
+status = "live"
+order = 40
+needs = []
