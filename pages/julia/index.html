@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Julia Sets</title>
+  
+<script type="module">
+import init, * as bindings from '/X_eTaL-demos/julia/julia-web-3936ce9abee89d0a.js';
+const wasm = await init({ module_or_path: '/X_eTaL-demos/julia/julia-web-3936ce9abee89d0a_bg.wasm' });
+
+
+window.wasmBindings = bindings;
+
+
+dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+
+</script>
+  
+  <link rel="icon" href="/X_eTaL-demos/julia/favicon-99a73c3cc5eb5037.ico" integrity="sha384-jh2niQ+i5iuRZ34bhA1G/1+MK+pPTNQ94fC6FXNo9emBA7ontKzntF2GbIdkvkpI"/>
+  <link rel="stylesheet" href="/X_eTaL-demos/julia/microscope-4b6fa03ed069243a.css" integrity="sha384-7mHIr1F2Pj3sZOENwMqABHCxke1EZGeejnYT3vkgkaK5QffgUvLKa9dUNPw1eVwQ"/>
+  <style>
+    .calls p { margin: 10px 0 4px; color: var(--muted); }
+    .calls .line { font-size: 1.1rem; }
+  </style>
+<link rel="modulepreload" href="/X_eTaL-demos/julia/julia-web-3936ce9abee89d0a.js" crossorigin="anonymous" integrity="sha384-1YfW3UnSkd42D9SzFN7k8zYR/JjWRrIvWyygjbjx4cq59JIlrDfvvtf6rQIxxDlk"><link rel="preload" href="/X_eTaL-demos/julia/julia-web-3936ce9abee89d0a_bg.wasm" crossorigin="anonymous" integrity="sha384-molR4kAd4efYIq0jrNH+gPI7xW3Nsr5F1FZt3/QHtS+y84BeWEs6mBxsO8lJivuh" as="fetch" type="application/wasm"></head>
+<body></body>
+</html>

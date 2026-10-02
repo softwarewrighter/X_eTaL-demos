@@ -3,18 +3,16 @@
 
 use std::str::FromStr;
 
-/// `x` as an X_eTaL Float literal: plain decimal digits (X_eTaL number
-/// literals have no exponent) with 17 significant digits, so it reads
-/// back as the same f64. Sizes under `floor` are written 0.0 (keeping
-/// literals short where tiny values do not matter).
+/// `x` as an X_eTaL Float literal: the shortest plain decimal that
+/// reads back as the same f64 (X_eTaL number literals have no exponent;
+/// Rust's `{}` never writes one). Sizes under `floor` are written 0.0
+/// (keeping literals short where tiny values do not matter).
 pub fn lit_or_zero(x: f64, floor: f64) -> String {
     if x == 0.0 || x.abs() < floor || !x.is_finite() {
         return "0.0".into();
     }
-    let digits = (16 - x.abs().log10().floor() as i64).clamp(1, 340) as usize;
-    let s = format!("{x:.digits$}");
-    let s = s.trim_end_matches('0');
-    if s.ends_with('.') { format!("{s}0") } else { s.to_string() }
+    let s = format!("{x}");
+    if s.contains('.') { s } else { format!("{s}.0") }
 }
 
 /// `x` as an X_eTaL Float literal that reads back exactly.
