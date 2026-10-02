@@ -1,0 +1,11 @@
+{
+  "task_type": "demo",
+  "state": {
+    "number": 7,
+    "step": "langtons-ant"
+  },
+  "action": "CLI design, model+tests vs direct sim, timing, page, screenshots revealed wrap issue -> auto-pause, gate, deploy",
+  "result": "success",
+  "reward": 1,
+  "timestamp": "2026-10-02T05:43:48"
+}
