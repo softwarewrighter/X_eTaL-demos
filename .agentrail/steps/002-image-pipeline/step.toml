@@ -1,6 +1,6 @@
 number = 2
 slug = "image-pipeline"
-status = "pending"
+status = "in-progress"
 description = "physics-ml step 2: demos/image-pipeline. A synthetic (or embedded small) gray..."
 role = "production"
 context_files = []

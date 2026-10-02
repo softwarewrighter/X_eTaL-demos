@@ -152,7 +152,7 @@ Learned:
 | # | Step slug | Delivers |
 | - | --------- | -------- |
 | 1 | nbody | 2 x N x N displacements by broadcasting (component axis first: `c_at` stacks along the first axis), the cube shown, reduced to 2 x N accelerations; leapfrog; no loops in the program. Done: four presets, tests for momentum, F_ij = -F_ji, Kepler's period and a direct loop; about 3 ms per 50-body step natively |
-| 2 | image-pipeline | reshape, blur, edge detection, threshold on an image, every stage shown |
+| 2 | image-pipeline | reshape, blur, edge detection, threshold on an image, every stage shown. Done: windows as `-1 0 1 o_-_2 -1 0 1 o_-_2 x` (3 x 3 x R x C), one filter function for blur and Sobel, max-pooling by reshape; editable kernels; about 70 ms per 96 x 96 run natively; bound-Bool ask filed |
 | 3 | ternary-net | weights as -1/0/+1 glyphs, activation x ternary weights -> accumulators -> activation; FP32/FP16/INT8/1.58-bit storage, ops and error compared |
 | 4 | moe-router | 16 experts, a sentence's tokens routed by `token x router_weights`, top-2; animated routes and the routing vector |
 | 5 | moe-epsilon | perturb an embedding x + epsilon with a slider and show where the selected experts jump (the routing-discontinuity regions); link to moe-microscope |
