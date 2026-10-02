@@ -1,6 +1,6 @@
 number = 4
 slug = "julia"
-status = "pending"
+status = "in-progress"
 description = "grids step 4: demos/julia on the shell (or the mandelbrot demo extended, whic..."
 role = "production"
 context_files = []

@@ -1,0 +1,16 @@
+[package]
+name = "julia-web"
+description = "Julia sets in the browser: the same X_eTaL function as the Mandelbrot set, with c one number and z0 the grid; pick c on a Mandelbrot map"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+publish = false
+
+[dependencies]
+microscope = { path = "../../../shared/microscope" }
+yew = { version = "0.21", features = ["csr"] }
+gloo-timers = "0.3"
+web-sys = { version = "0.3", features = ["HtmlInputElement"] }
+console_error_panic_hook = "0.1"
+
+[workspace]

@@ -8,6 +8,8 @@ fn literals_have_no_exponent_and_read_back() {
         assert_eq!(s.parse::<f64>().unwrap(), x, "{x} as {s}");
     }
     assert_eq!(lit(0.0), "0.0");
+    assert_eq!(lit(-0.8), "-0.8");
+    assert_eq!(lit(3.0), "3.0");
     assert_eq!(lit_or_zero(3e-20, 1e-15), "0.0");
 }
 
