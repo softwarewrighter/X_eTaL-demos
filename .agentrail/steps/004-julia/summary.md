@@ -1,0 +1,1 @@
+Julia live: julia.xtl with one dyadic u:i_terate giving Mandelbrot (c=grid) and Julia (c scalar, scalar extension) sets; page with picker, presets, Play along the cardioid, zoom, two calls side by side; 6 tests (symmetry, unit disk, Mandelbrot points). Shared lit() now shortest round-trip decimal.

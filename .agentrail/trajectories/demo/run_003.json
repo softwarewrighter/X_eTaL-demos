@@ -1,0 +1,11 @@
+{
+  "task_type": "demo",
+  "state": {
+    "number": 4,
+    "step": "julia"
+  },
+  "action": "language probing (partial application, binding order), design via dyadic function, model/tests, page on shell, screenshots, gate, deploy",
+  "result": "success",
+  "reward": 1,
+  "timestamp": "2026-10-01T19:09:47"
+}
