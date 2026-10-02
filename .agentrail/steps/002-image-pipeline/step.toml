@@ -1,0 +1,9 @@
+number = 2
+slug = "image-pipeline"
+status = "pending"
+description = "physics-ml step 2: demos/image-pipeline. A synthetic (or embedded small) gray..."
+role = "production"
+context_files = []
+created_at = "2026-10-02T07:18:49"
+task_type = "demo"
+commits = []

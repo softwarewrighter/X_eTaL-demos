@@ -1,0 +1,9 @@
+number = 7
+slug = "cnn-digits"
+status = "pending"
+description = "physics-ml step 7: demos/cnn-digits. Draw a 28x28 digit; X_eTaL runs conv (by..."
+role = "production"
+context_files = []
+created_at = "2026-10-02T07:18:49"
+task_type = "demo"
+commits = []

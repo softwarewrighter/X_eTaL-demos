@@ -1,0 +1,1 @@
+physics-ml step 8: release: screenshots (just screenshots), catalog order and summaries, README demo list and status, per-demo READMEs checked, docs/xetal-asks.md reviewed against every workaround, saga retrospective in docs/plan.md.
