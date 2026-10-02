@@ -52,8 +52,8 @@ catalog.
 | Tiny world model | predicting the next frame of a ball's world | recurrence, prediction | waiting on X_eTaL |
 | Diffusion from noise | an image denoised step by step | tensor transforms | waiting on X_eTaL |
 
-A demo's name links to its own page (`demos/<name>/README.md`) once it
-exists. What the "waiting" demos need from X_eTaL is listed in
+A demo's name links to its own page (`demos/<name>/README.md`, with a
+screenshot) once it exists. What the "waiting" demos need from X_eTaL is listed in
 [`docs/xetal-asks.md`](docs/xetal-asks.md).
 
 ## Build
@@ -121,6 +121,7 @@ web app.
 just serve SLUG       # one demo's web app at http://127.0.0.1:8095/, rebuilt on change
 just pages            # build the whole site into pages/
 just serve-pages      # preview pages/ at http://127.0.0.1:8096/X_eTaL-demos/
+just screenshots      # capture each demo (headless Chrome) into demos/<slug>/screenshot.png
 ```
 
 The site is built locally: `just pages` builds every demo that has a

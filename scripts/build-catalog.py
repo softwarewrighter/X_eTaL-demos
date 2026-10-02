@@ -50,6 +50,7 @@ h1 {{ font-size: 2rem; margin: 0 0 8px; letter-spacing: -0.01em; }}
 .card {{ background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px;
   display:flex; flex-direction:column; gap:10px; }}
 .card h2 {{ font-size:1.15rem; margin:0; }}
+.shot img {{ width:100%; aspect-ratio: 13 / 9; object-fit: cover; object-position: top; border-radius:8px; border:1px solid var(--line); display:block; }}
 .card p {{ margin:0; color:var(--muted); }}
 .status {{ font-size:.8rem; font-weight:600; }}
 .status.live {{ color:var(--live); }} .status.draft {{ color:var(--draft); }} .status.deferred {{ color:var(--deferred); }}
@@ -97,7 +98,11 @@ def card(m):
     links.append(f'<a href="{REPO}/tree/main/demos/{slug}#readme">How it works</a>')
     chips = "".join(f'<span class="chip">{html.escape(c)}</span>' for c in m["concepts"])
     st = m["status"]
-    return (f'<article class="card" id="{slug}">\n'
+    pic = ""
+    if m.get("web") and m.get("picture"):
+        alt = html.escape(m["title"])
+        pic = f'<a class="shot" href="{slug}/"><img src="{slug}/screenshot.png" alt="{alt}" loading="lazy"></a>\n'
+    return (f'<article class="card" id="{slug}">\n{pic}'
             f'<span class="status {st}">{STATUS[st]}</span>\n'
             f'<h2>{html.escape(m["title"])}</h2>\n'
             f'<p>{html.escape(m["summary"])}</p>\n'

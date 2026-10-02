@@ -25,6 +25,7 @@ h1 { font-size: 2rem; margin: 0 0 8px; letter-spacing: -0.01em; }
 .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px;
   display:flex; flex-direction:column; gap:10px; }
 .card h2 { font-size:1.15rem; margin:0; }
+.shot img { width:100%; aspect-ratio: 13 / 9; object-fit: cover; object-position: top; border-radius:8px; border:1px solid var(--line); display:block; }
 .card p { margin:0; color:var(--muted); }
 .status { font-size:.8rem; font-weight:600; }
 .status.live { color:var(--live); } .status.draft { color:var(--draft); } .status.deferred { color:var(--deferred); }
@@ -52,6 +53,7 @@ can see a whole loop nest happen as one array expression.</p>
 </header>
 <section class="grid">
 <article class="card" id="life-microscope">
+<a class="shot" href="life-microscope/"><img src="life-microscope/screenshot.png" alt="Life microscope" loading="lazy"></a>
 <span class="status live">Live</span>
 <h2>Life microscope</h2>
 <p>Conway&#x27;s Life in one line of X_eTaL, with every array the line builds drawn: the nine shifted boards, their sum, the two masks, the next board. Click a cell to see its arithmetic.</p>
@@ -59,6 +61,7 @@ can see a whole loop nest happen as one array expression.</p>
 <div class="links"><a href="life-microscope/">Open the demo</a> <a href="https://github.com/softwarewrighter/X_eTaL-demos/tree/main/demos/life-microscope#readme">How it works</a></div>
 </article>
 <article class="card" id="mandelbrot">
+<a class="shot" href="mandelbrot/"><img src="mandelbrot/screenshot.png" alt="Mandelbrot" loading="lazy"></a>
 <span class="status live">Live</span>
 <h2>Mandelbrot</h2>
 <p>Every point of the picture iterated at once: z becomes z * z + c over the whole grid. Step k up and watch the set appear; click a point for its orbit, or zoom in.</p>
@@ -66,6 +69,7 @@ can see a whole loop nest happen as one array expression.</p>
 <div class="links"><a href="mandelbrot/">Open the demo</a> <a href="https://github.com/softwarewrighter/X_eTaL-demos/tree/main/demos/mandelbrot#readme">How it works</a></div>
 </article>
 <article class="card" id="julia">
+<a class="shot" href="julia/"><img src="julia/screenshot.png" alt="Julia sets" loading="lazy"></a>
 <span class="status live">Live</span>
 <h2>Julia sets</h2>
 <p>One X_eTaL function gives the Mandelbrot set (c the grid) and every Julia set (c one number, extended over the grid). Pick c on the Mandelbrot map, or play c around its edge and watch the Julia set morph.</p>
@@ -73,6 +77,7 @@ can see a whole loop nest happen as one array expression.</p>
 <div class="links"><a href="julia/">Open the demo</a> <a href="https://github.com/softwarewrighter/X_eTaL-demos/tree/main/demos/julia#readme">How it works</a></div>
 </article>
 <article class="card" id="reaction-diffusion">
+<a class="shot" href="reaction-diffusion/"><img src="reaction-diffusion/screenshot.png" alt="Reaction-diffusion" loading="lazy"></a>
 <span class="status live">Live</span>
 <h2>Reaction-diffusion</h2>
 <p>Gray-Scott chemistry on a grid: mazes, coral and spots grow by themselves. Each step is four shifts and a few products over the whole grid; click a cell to see its arithmetic, or drop more chemical.</p>
@@ -80,6 +85,7 @@ can see a whole loop nest happen as one array expression.</p>
 <div class="links"><a href="reaction-diffusion/">Open the demo</a> <a href="https://github.com/softwarewrighter/X_eTaL-demos/tree/main/demos/reaction-diffusion#readme">How it works</a></div>
 </article>
 <article class="card" id="wave-tank">
+<a class="shot" href="wave-tank/"><img src="wave-tank/screenshot.png" alt="Wave tank" loading="lazy"></a>
 <span class="status live">Live</span>
 <h2>Wave tank</h2>
 <p>The wave equation on a grid: waves pass through a double slit and interfere, bend through a lens of slow water, and ripple where you click. Walls, sources and lenses are masks; each step is a stencil over the whole grid.</p>
@@ -87,6 +93,7 @@ can see a whole loop nest happen as one array expression.</p>
 <div class="links"><a href="wave-tank/">Open the demo</a> <a href="https://github.com/softwarewrighter/X_eTaL-demos/tree/main/demos/wave-tank#readme">How it works</a></div>
 </article>
 <article class="card" id="ca-lab">
+<a class="shot" href="ca-lab/"><img src="ca-lab/screenshot.png" alt="Cellular automata lab" loading="lazy"></a>
 <span class="status live">Live</span>
 <h2>Cellular automata lab</h2>
 <p>Every rule is a lookup table: rotations turn each cell&#x27;s neighbourhood into a number and the number picks its next state. Wolfram&#x27;s Rule 30, 90 and 110 with an editable 8-entry table; Life, Brian&#x27;s Brain and Wireworld as editable state-by-neighbours tables.</p>
@@ -94,6 +101,7 @@ can see a whole loop nest happen as one array expression.</p>
 <div class="links"><a href="ca-lab/">Open the demo</a> <a href="https://github.com/softwarewrighter/X_eTaL-demos/tree/main/demos/ca-lab#readme">How it works</a></div>
 </article>
 <article class="card" id="langtons-ant">
+<a class="shot" href="langtons-ant/"><img src="langtons-ant/screenshot.png" alt="Langton&#x27;s ant" loading="lazy"></a>
 <span class="status live">Live</span>
 <h2>Langton&#x27;s ant</h2>
 <p>Two rules, chaos, then a highway after about 10,000 steps. The ant is a one-hot mask and a direction: looking, flipping and moving are whole-array operations, and the same code would move a thousand ants.</p>
@@ -107,7 +115,7 @@ can see a whole loop nest happen as one array expression.</p>
 <span>MIT License</span><span class="sep">&middot;</span>
 <a href="https://github.com/softwarewrighter/X_eTaL-demos" target="_blank">Repository</a><span class="sep">&middot;</span>
 <span>X_eTaL <a href="https://github.com/softwarewrighter/X_eTaL/commit/06d39facdb9d850303fd2fb5b2a0366efbaacde0" target="_blank">06d39fa</a></span><span class="sep">&middot;</span>
-<span>build (host max, sha 10e121a, 20261002T124219)</span>
+<span>build (host max, sha 279665c, 20261002T140827)</span>
 </footer>
 </body>
 </html>

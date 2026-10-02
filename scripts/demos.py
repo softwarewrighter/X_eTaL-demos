@@ -52,6 +52,7 @@ def load():
             continue
         errs += problems(d, meta)
         meta["web"] = (d / "web" / "Cargo.toml").is_file()
+        meta["picture"] = (d / "screenshot.png").is_file()
         demos.append(meta)
     demos.sort(key=lambda m: (m.get("order", 0), m.get("slug", "")))
     return demos, errs

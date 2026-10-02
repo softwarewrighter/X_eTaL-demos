@@ -11,6 +11,8 @@ whole grid.
 
 Live: [Wave tank](https://softwarewrighter.github.io/X_eTaL-demos/wave-tank/)
 
+[![Wave tank: the live page](screenshot.png)](https://softwarewrighter.github.io/X_eTaL-demos/wave-tank/)
+
 ## The program
 
 From `wave-tank.xtl` (the live page runs these sections, with the

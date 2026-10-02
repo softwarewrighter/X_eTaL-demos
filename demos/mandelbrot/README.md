@@ -7,6 +7,8 @@ appears, step by step; click a point to see its orbit, or zoom in.
 
 Live: [Mandelbrot](https://softwarewrighter.github.io/X_eTaL-demos/mandelbrot/)
 
+[![Mandelbrot: the live page](screenshot.png)](https://softwarewrighter.github.io/X_eTaL-demos/mandelbrot/)
+
 ## The program
 
 The core of `mandelbrot.xtl` (the live page runs exactly this, with its

@@ -9,6 +9,8 @@ cells.
 
 Live: [Reaction-diffusion](https://softwarewrighter.github.io/X_eTaL-demos/reaction-diffusion/)
 
+[![Reaction-diffusion: the live page](screenshot.png)](https://softwarewrighter.github.io/X_eTaL-demos/reaction-diffusion/)
+
 ## The program
 
 The core of `reaction-diffusion.xtl` (the live page runs exactly this):
