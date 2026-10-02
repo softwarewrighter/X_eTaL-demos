@@ -1,0 +1,11 @@
+{
+  "task_type": "demo",
+  "state": {
+    "number": 6,
+    "step": "ca-lab"
+  },
+  "action": "CLI design and probing (m_od order, Bool/Int), model/tests, profiling the slow path, page, screenshots of both modes, gate, deploy",
+  "result": "success",
+  "reward": 1,
+  "timestamp": "2026-10-01T20:48:54"
+}
