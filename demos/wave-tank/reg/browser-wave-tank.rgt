@@ -1,0 +1,3 @@
+command = "scripts/browser-check.sh wave-tank"
+exit_code = 0
+desc = "wave-tank: the built page run in headless Chrome shows X_eTaL's results"

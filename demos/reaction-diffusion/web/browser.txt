@@ -1,0 +1,3 @@
+# Text the page shows only after X_eTaL has run (scripts/browser-check.sh).
+Cell row 20, column 23, in the last step
+Every number here is

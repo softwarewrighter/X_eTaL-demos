@@ -1,0 +1,9 @@
+number = 4
+slug = "ternary-net"
+status = "in-progress"
+description = "physics-ml step 3: demos/ternary-net. A small dense layer (or 2) with weights..."
+role = "production"
+context_files = []
+created_at = "2026-10-02T07:18:49"
+task_type = "demo"
+commits = []

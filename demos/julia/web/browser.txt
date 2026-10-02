@@ -1,0 +1,4 @@
+# Text the page shows only after X_eTaL has run (scripts/browser-check.sh).
+The Julia set for this c:
+Pick c on the Mandelbrot set:
+One function, two sets:

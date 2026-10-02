@@ -44,7 +44,7 @@ run slug file="":
 show slug file="":
     @scripts/run-demo.sh --echo "$1" ${2:+"$2"}
 
-# Test every demo: expected outputs, web/ tests, test.sh (XETAL_BLESS=1 rewrites expected/)
+# Test every demo: reg-rs baselines (CLI runs, the built page in headless Chrome), web/ tests (XETAL_BROWSER=0 skips the browser)
 test:
     scripts/test-demos.sh
 
@@ -52,9 +52,13 @@ test:
 test-demo slug:
     scripts/test-demos.sh "$1"
 
-# Rewrite one demo's expected outputs from its programs (review the diff!)
+# Accept one demo's current output as its reg-rs baselines, creating missing ones (review the diff!)
 bless slug:
     XETAL_BLESS=1 scripts/test-demos.sh "$1"
+
+# Load one demo's built page in headless Chrome and check it shows X_eTaL's results
+browser-check slug:
+    scripts/browser-check.sh "$1"
 
 # Build the live site into pages/ (committed; the Pages workflow publishes it)
 pages:

@@ -1,0 +1,3 @@
+command = '"$XETAL" run --seed 1 --draw "$XETAL_DRAW" wave-tank.xtl'
+exit_code = 0
+desc = "wave-tank: wave-tank.xtl run by the vendored xetal CLI"

@@ -1,13 +1,13 @@
-use life_microscope_web::micro::{examine, pattern, program, Board, LINE, PATTERNS};
+use life_microscope_web::micro::{examine, pattern, program, rule, Board, PATTERNS};
 
 fn blinker() -> Board {
     Board::with(5, 5, 1, 2, &["O", "O", "O"])
 }
 
 #[test]
-fn the_line_is_the_demos_line() {
-    let cli = include_str!("../../life-microscope.xtl");
-    assert!(cli.lines().any(|l| l == LINE), "life-microscope.xtl must define {LINE}");
+fn the_page_runs_the_command_line_programs_rule() {
+    assert!(rule().starts_with("u:l_ife := { ") && rule().ends_with('}'));
+    assert!(program(&blinker()).starts_with(rule()));
 }
 
 #[test]
@@ -17,7 +17,7 @@ fn a_blinker_turns() {
 }
 
 #[test]
-fn the_parts_add_up_to_the_line() {
+fn the_parts_add_up_to_the_rule() {
     let b = pattern(0, 8, 8);
     let a = examine(&b).unwrap();
     let parts: Vec<u8> = a.three.iter().zip(&a.four).map(|(t, f)| t + f).collect();

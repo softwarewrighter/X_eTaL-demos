@@ -1,0 +1,3 @@
+command = '"$XETAL" run --seed 1 --draw "$XETAL_DRAW" ca-lab.xtl'
+exit_code = 0
+desc = "ca-lab: ca-lab.xtl run by the vendored xetal CLI"

@@ -82,7 +82,7 @@ takes about 3 ms natively.
 just run nbody          # the figure-eight: the cube, accelerations, 50 steps, momentum
 just show nbody         # the same as a notebook
 just serve nbody        # the web app at http://127.0.0.1:8095/
-just test-demo nbody    # the expected output and the web app's tests
+just test-demo nbody    # its CLI and browser baselines and the web app's tests
 ```
 
 ## Workarounds

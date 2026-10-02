@@ -1,0 +1,3 @@
+command = '"$XETAL" run --seed 1 --draw "$XETAL_DRAW" image-pipeline.xtl'
+exit_code = 0
+desc = "image-pipeline: image-pipeline.xtl run by the vendored xetal CLI"

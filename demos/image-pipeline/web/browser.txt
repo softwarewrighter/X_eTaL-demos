@@ -1,0 +1,4 @@
+# Text the page shows only after X_eTaL has run (scripts/browser-check.sh).
+Pixel row 31, column 44
+0.8380
+0.8620

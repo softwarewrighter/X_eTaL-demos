@@ -70,7 +70,7 @@ table against Conway's rule cell by cell.
 just run ca-lab          # Rule 30, Rule 90, Life, Brian's Brain, Wireworld
 just show ca-lab         # the same as a notebook
 just serve ca-lab        # the web app at http://127.0.0.1:8095/
-just test-demo ca-lab    # the expected output and the web app's tests
+just test-demo ca-lab    # its CLI and browser baselines and the web app's tests
 ```
 
 ## Workarounds

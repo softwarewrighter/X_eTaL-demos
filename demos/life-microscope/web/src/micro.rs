@@ -2,10 +2,13 @@
 //! generation on while printing every array it builds, and those arrays
 //! read back. Nothing here knows about the browser.
 
-/// The Life rule as one line of X_eTaL: the same line the demo's
-/// `life-microscope.xtl` defines (a test keeps them the same).
-pub const LINE: &str =
-    "u:l_ife := { ('+ r_/_12 -1 0 1 o_-_12 _r) { (_l = 3) + _r * _l = 4 } _r }";
+/// The command-line program; the page runs its rule.
+pub const SOURCE: &str = include_str!("../../life-microscope.xtl");
+
+/// The Life rule as one line of X_eTaL, read from `life-microscope.xtl`.
+pub fn rule() -> &'static str {
+    SOURCE.lines().find(|l| l.starts_with("u:l_ife := ")).unwrap_or("")
+}
 
 /// The offsets the board is rotated by, along each axis.
 pub const OFFSETS: [i32; 3] = [-1, 0, 1];
@@ -71,8 +74,9 @@ pub struct Anatomy {
 pub fn program(b: &Board) -> String {
     let cells: Vec<String> = b.cells.iter().map(u8::to_string).collect();
     format!(
-        "{LINE}\nb := {} {} r_eshape {}\nr := -1 0 1 o_-_12 b\ns := '+ r_/_12 r\n\
+        "{}\nb := {} {} r_eshape {}\nr := -1 0 1 o_-_12 b\ns := '+ r_/_12 r\n\
          r_avel r\nr_avel s\nr_avel s = 3\nr_avel b * s = 4\nr_avel u:l_ife b\n",
+        rule(),
         b.rows,
         b.cols,
         cells.join(" ")

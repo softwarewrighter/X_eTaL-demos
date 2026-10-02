@@ -22,7 +22,7 @@ intermediate array.
 ```bash
 just run __SLUG__          # run the program
 just show __SLUG__         # as a notebook: each statement, then its output
-just test-demo __SLUG__    # compare with the expected output
+just test-demo __SLUG__    # its CLI baseline (reg-rs)
 ```
 
 ## Workarounds

@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Test the demo tooling itself in a scratch demos directory: new-demo
-# makes a demo that passes; a wrong expected output fails; an unexpected
-# stderr fails; XETAL_BLESS=1 repairs it; the catalog shows it (escaped,
+# makes a demo that passes; a wrong reg-rs baseline fails; an unexpected
+# error fails; XETAL_BLESS=1 repairs it; a program without a baseline
+# fails until blessed; the catalog shows it (escaped,
 # no live link without a web app); a bad demo.toml is rejected.
 #   scripts/selftest-demos.sh
 set -euo pipefail
@@ -16,16 +17,20 @@ expect() { # expect pass|fail DESCRIPTION
 "$root/scripts/new-demo.sh" probe "Probe & Co" >/dev/null
 grep -q 'title = "Probe & Co"' "$XETAL_DEMOS_DIR/probe/demo.toml"
 expect pass "a fresh demo"
-echo 56 > "$XETAL_DEMOS_DIR/probe/expected/probe.out"
-expect fail "a wrong expected output"
+echo 56 > "$XETAL_DEMOS_DIR/probe/reg/cli-probe.out"
+expect fail "a wrong baseline"
 XETAL_BLESS=1 "$t" probe >/dev/null
 expect pass "after blessing"
 printf '#!/usr/bin/env xetal\n1 +\n' > "$XETAL_DEMOS_DIR/probe/probe.xtl"
-printf '' > "$XETAL_DEMOS_DIR/probe/expected/probe.out"
 expect fail "an unexpected error"
 XETAL_BLESS=1 "$t" probe >/dev/null
-[ -s "$XETAL_DEMOS_DIR/probe/expected/probe.err" ]
+grep -q 'exit_code = 1' "$XETAL_DEMOS_DIR/probe/reg/cli-probe.rgt" || [ -s "$XETAL_DEMOS_DIR/probe/reg/cli-probe.err" ]
 expect pass "an expected error"
+printf '#!/usr/bin/env xetal\n2 * 3\n' > "$XETAL_DEMOS_DIR/probe/second.xtl"
+expect fail "a program without a baseline"
+XETAL_BLESS=1 "$t" probe >/dev/null
+[ -f "$XETAL_DEMOS_DIR/probe/reg/cli-second.rgt" ]
+expect pass "after blessing the new program"
 "$root/scripts/build-catalog.py" "$XETAL_DEMOS_DIR/index.html" >/dev/null
 grep -q '<h2>Probe &amp; Co</h2>' "$XETAL_DEMOS_DIR/index.html" \
   || { echo "selftest: the catalog has no card for the demo" >&2; exit 1; }

@@ -304,7 +304,8 @@ Read before working:
 ## Rules
 
 1. Each demo is its own sub-project, `demos/<slug>/` (demo.toml,
-   README.md, `*.xtl`, expected/ goldens, test.sh, and web/ its own
+   README.md, `*.xtl`, reg/ reg-rs baselines (cli-NAME for each .xtl,
+   browser-SLUG for its page), test.sh, and web/ its own
    Cargo workspace). A demo never reaches into another demo; what pages
    share lives in `shared/microscope` (see its README: how to add a
    demo's web app, and the page conventions).

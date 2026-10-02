@@ -1,9 +1,0 @@
-number = 4
-slug = "moe-router"
-status = "pending"
-description = "physics-ml step 4: demos/moe-router. 16 experts in a 4x4 grid; a sentence's t..."
-role = "production"
-context_files = []
-created_at = "2026-10-02T07:18:49"
-task_type = "demo"
-commits = []

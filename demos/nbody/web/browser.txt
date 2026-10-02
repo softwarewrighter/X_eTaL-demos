@@ -1,0 +1,4 @@
+# Text the page shows only after X_eTaL has run (scripts/browser-check.sh).
+Body 1: mass 1.000, at (
+the sum over j:
+the pull of body

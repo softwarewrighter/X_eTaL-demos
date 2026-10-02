@@ -91,9 +91,9 @@ work is ever copied, and the refresh is committed on its own after
 just demos                           # the demos, in catalog order
 just run SLUG                        # run a demo's program
 just show SLUG                       # the same as a notebook: each statement, then its output
-just test-demo SLUG                  # check its output against expected/
+just test-demo SLUG                  # its reg-rs baselines (CLI and browser) and web tests
 just new-demo wave-tank "Wave tank"  # start a new demo from demos/_template
-just bless SLUG                      # rewrite its expected output (review the diff)
+just bless SLUG                      # accept its current output as the baselines (review the diff)
 ```
 
 Each demo is a sub-project, `demos/<slug>/`:
@@ -103,11 +103,23 @@ Each demo is a sub-project, `demos/<slug>/`:
 | `demo.toml` | title, one-line summary, concepts, status (draft, live, deferred), catalog order, the X_eTaL asks it needs |
 | `README.md` | the demo's own page: what you see, the program, how it works |
 | `*.xtl` | its X_eTaL programs; each is run by the tests (seed 1) |
-| `expected/` | each program's expected output (`NAME.out`, and `NAME.err` when it should fail) |
-| `web/` | its browser app (a Cargo workspace), when it has one |
+| `reg/` | its reg-rs baselines: `cli-NAME` runs `NAME.xtl` with the bundled `xetal` CLI, `browser-SLUG` loads the built page in headless Chrome (`.rgt` command and exit code, `.out` / `.err`; the `.tdb` cache is not committed) |
+| `web/` | its browser app (a Cargo workspace), when it has one, with `browser.txt`: text the page shows only after X_eTaL has run |
 | `test.sh` | any further tests, when it has them |
 
 Pictures a program shows (`[]S_HOW`) are written to `work/draw/<slug>/`.
+
+Every page runs the real thing: the bundled X_eTaL engine (the
+vendored `xetal-play` crate: the same parser, type checker and
+evaluator the `xetal` CLI is built from) compiled to WebAssembly,
+running the demo's own `.xtl` file (included in the app at build
+time). The tests check it three ways: each `.xtl` at the command line
+with the bundled CLI against its reg-rs baseline; the web app's model
+natively (the same engine, the same `.xtl`) against direct
+computations; and the built page in headless Chrome
+(`scripts/browser-check.sh`), which must show results only a
+successful X_eTaL run produces and no X_eTaL error. Running them
+needs `reg-rs` (the regression-test CLI) and Google Chrome.
 
 The web apps share one shell, `shared/microscope/`: running X_eTaL
 and reading arrays back, the decorated source with the current stage

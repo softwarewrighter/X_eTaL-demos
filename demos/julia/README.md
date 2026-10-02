@@ -69,7 +69,7 @@ disk; the same function gives the Mandelbrot set's known points.
 just run julia          # a Julia set and the Mandelbrot set, as characters
 just show julia         # the same as a notebook
 just serve julia        # the web app at http://127.0.0.1:8095/
-just test-demo julia    # the expected output and the web app's tests
+just test-demo julia    # its CLI and browser baselines and the web app's tests
 ```
 
 ## Workarounds
