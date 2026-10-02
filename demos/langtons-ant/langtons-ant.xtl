@@ -1,0 +1,43 @@
+#!/usr/bin/env xetal
+# Langton's ant: on a white cell it turns right, on a black cell left;
+# it flips the cell and steps forward. From two rules comes chaos, and
+# then, after about 10000 steps, a "highway" the ant builds forever.
+# Here the ant is arrays: its position is a mask with a single 1, its
+# direction a number; no indexing, no loops, just whole-array steps.
+
+# The board's size and the number of steps.
+rows := 21
+cols := 21
+steps := 400
+
+# A matrix as one plane of a rank-3 array, for stacking with c_at.
+u:p_lane := { m -> (1 c_at s_hape m) r_eshape m }
+# -- one step of the ant -----------------------------------------------
+# The state is three planes: the board (0 white, 1 black), the ant's
+# mask (1 where it stands), and its direction (0 up, 1 right, 2 down,
+# 3 left) in every cell.
+u:s_tep := { s ->
+  b := 1 s_elect s
+  a := 2 s_elect s
+  d := f_irst r_avel 3 s_elect s
+  cell := '+ r_/ r_avel a * b
+  turn := (d + 1 + 2 * cell) m_od 4
+  flip := b + a * 1 - 2 * b
+  dy := (1 * turn = 0) - 1 * turn = 2
+  dx := (1 * turn = 3) - 1 * turn = 1
+  step := dy o_-_1 dx o_-_2 a
+  (u:p_lane flip) c_at (u:p_lane step) c_at u:p_lane turn + 0 * b
+}
+# -- end of the core ---------------------------------------------------
+
+# Start: a white board, the ant in the middle facing up.
+row := (o_ffsets rows) 'l_eft t_able o_ffsets cols
+col := (o_ffsets rows) 'r_ight t_able o_ffsets cols
+b0 := 0 * row
+a0 := 1 * (row = rows d_iv 2) & col = cols d_iv 2
+s := steps 'u:s_tep p_ower (u:p_lane b0) c_at (u:p_lane a0) c_at u:p_lane b0
+s_hape s
+
+# The board after the steps: # black, . white, A the ant.
+((1 + (1 s_elect s) + 2 * 2 s_elect s) m_in 3) s_elect ".#A"
+'+ r_/ r_avel 1 s_elect s

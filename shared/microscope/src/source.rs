@@ -74,12 +74,12 @@ pub fn find(src: &str, part: &str) -> Range {
 }
 
 /// A shape as X_eTaL's s_hape gives it, decorated, with a tooltip
-/// saying what the axes are.
+/// saying what the axes are; a scalar's shape is empty.
 pub fn shape(dims: &[usize], meaning: &str) -> Html {
     let text: Vec<String> = dims.iter().map(usize::to_string).collect();
-    html! {
-        <span class="shape" title={format!("the array's shape (s_hape): {meaning}")}>
-            { code(&format!("s_hape = {}", text.join(" "))) }
-        </span>
-    }
+    let shown = match text.is_empty() {
+        true => html! { <>{ code("s_hape") }{ " is empty: a scalar" }</> },
+        false => code(&format!("s_hape = {}", text.join(" "))),
+    };
+    html! { <span class="shape" title={format!("the array's shape (s_hape): {meaning}")}>{ shown }</span> }
 }
