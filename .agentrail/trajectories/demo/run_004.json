@@ -1,0 +1,11 @@
+{
+  "task_type": "demo",
+  "state": {
+    "number": 5,
+    "step": "wave-tank"
+  },
+  "action": "CLI prototype (wrap-around found, sponge added), model/tests, page on shell, screenshot, gate, deploy",
+  "result": "success",
+  "reward": 1,
+  "timestamp": "2026-10-01T19:59:23"
+}
