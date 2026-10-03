@@ -1,7 +1,7 @@
 //! Lambdas (L1-L7, E1) and trains (TR1-TR4).
 
 use xetal_base::{Diagnostic, Span};
-use xetal_syntax::{Fun, Lambda, Params, Target};
+use xetal_syntax::{Fun, FunKind, Lambda, Params, Target};
 
 use crate::lower::Lower;
 use xetal_ir::{Expr, Kind, Param};
@@ -107,34 +107,57 @@ impl Lower {
 
     /// Apply train elements to argument variables: `[F G] x = F (G x)`,
     /// `[F G H] x = (F x) G (H x)`, dyadically `x [F G H] y =
-    /// (x F y) G (x H y)`. Nested trains expand in place.
+    /// (x F y) G (x H y)`. Nested trains expand in place. Each
+    /// application is spanned by its element, so an error in a train
+    /// points at the element at fault, and the notes left for that
+    /// span explain what the train means there (D47).
     pub(crate) fn train_apply(
         &mut self,
         fs: &[Fun],
         left: Option<Expr>,
         right: Expr,
     ) -> Result<Expr, Diagnostic> {
-        let tine = |me: &mut Self, f: &Fun| -> Result<Expr, Diagnostic> {
-            match &left {
-                Some(l) => me.apply2(f, l.clone(), right.clone()),
-                None => match &f.kind {
-                    xetal_syntax::FunKind::Train(inner) => {
-                        me.train_apply(inner, None, right.clone())
-                    }
-                    _ => me.apply1(f, right.clone()),
-                },
+        let arity = |f: &Fun| {
+            let spelled = self.src.get(f.span.start..f.span.end)?;
+            match &f.kind {
+                FunKind::Sym(_) => xetal_catalog::find(spelled),
+                FunKind::Name(_) if !self.is_bound(spelled) => xetal_catalog::find(spelled),
+                _ => None,
             }
+            .map(|b| b.arity)
+        };
+        let notes = xetal_explain::train_notes(&self.src, fs, left.is_some(), &arity);
+        self.notes.extend(notes);
+        let tine = |me: &mut Self, f: &Fun| -> Result<Expr, Diagnostic> {
+            let e = match (&left, &f.kind) {
+                (Some(l), _) => me.apply2(f, l.clone(), right.clone()),
+                (None, FunKind::Train(inner)) => me.train_apply(inner, None, right.clone()),
+                (None, _) => me.apply1(f, right.clone()),
+            };
+            e.map(|e| at(e, f))
         };
         match fs {
             [f, g] => {
                 let inner = tine(self, g)?;
-                self.apply1(f, inner)
+                Ok(at(self.apply1(f, inner)?, f))
             }
             [f, g, h] => {
                 let (fx, hx) = (tine(self, f)?, tine(self, h)?);
-                self.apply2(g, fx, hx)
+                Ok(at(self.apply2(g, fx, hx)?, g))
             }
-            _ => unreachable!("the parser groups trains into two or three elements"),
+            _ => Err(Diagnostic::new(
+                "bad-train",
+                "a train needs two or three elements here",
+            )),
         }
     }
+}
+
+/// `e` spanned by the train element `f` (a nested train keeps the
+/// spans of its own elements).
+fn at(mut e: Expr, f: &Fun) -> Expr {
+    if !matches!(f.kind, FunKind::Train(_)) {
+        e.span = f.span;
+    }
+    e
 }

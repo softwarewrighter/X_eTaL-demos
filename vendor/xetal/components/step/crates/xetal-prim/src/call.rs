@@ -6,7 +6,6 @@ use std::io::Write;
 use xetal_base::{Diagnostic, Span};
 use xetal_catalog::find;
 
-use crate::run::err;
 use xetal_arith::{Rng, binary, compare, compare_chars, lift1, lift2, num, truth};
 use xetal_value::Value;
 use xetal_value::{as_array, to_value};
@@ -38,14 +37,17 @@ pub fn call<'a>(
 ) -> Result<Value<'a>, Diagnostic> {
     if let Some(result) = xetal_struct::call(name, args, span)
         .or_else(|| xetal_search::call(name, args, span))
+        .or_else(|| xetal_radix::call(name, args, span))
         .or_else(|| xetal_rotate::call(name, args, span))
+        .or_else(|| xetal_transpose::call(name, args, span))
         .or_else(|| xetal_system::call(name, args, span))
     {
         return result;
     }
     match (name, args) {
         ("p_rint!", [v]) => {
-            writeln!(out, "{v}").map_err(|e| err("io", span, e.to_string()))?;
+            writeln!(out, "{}", xetal_value::printed(v))
+                .map_err(|e| err("io", span, e.to_string()))?;
             Ok(v.clone())
         }
         ("r_oll!", [n]) => roll(n, rng, span),
@@ -85,6 +87,9 @@ fn scalar2<'a>(
         }
         "=" | "!=" | "<" | ">" | "<=" | ">=" | "e_q~" => match (a, b) {
             (Value::Char(x), Value::Char(y)) if name != "e_q~" => Ok(compare_chars(name, *x, *y)),
+            (Value::Boxed(_), Value::Boxed(_)) if name == "=" || name == "!=" => {
+                Ok(Value::Bool(xetal_search::equal(a, b) == (name == "=")))
+            }
             _ => Ok(compare(name, num(a, span)?, num(b, span)?)),
         },
         _ => binary(name, num(a, span)?, num(b, span)?, span),
@@ -121,4 +126,8 @@ fn unary<'a>(name: &str, a: &Value<'a>, span: Span) -> Result<Value<'a>, Diagnos
         ("l_og", n) => Ok(Value::Float(n.f().ln())),
         _ => Err(err("unknown-builtin", span, format!("bad call of {name}"))),
     }
+}
+
+fn err(code: &str, span: Span, message: impl Into<String>) -> Diagnostic {
+    Diagnostic::new(code, message).with_span(span)
 }

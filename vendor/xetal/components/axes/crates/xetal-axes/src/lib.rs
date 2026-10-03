@@ -3,8 +3,10 @@
 //! transposition kernel and the rule on runtime values.
 
 mod apply;
+mod cat;
 mod moves;
 mod rotate;
+mod transpose;
 
 pub use apply::on_axes;
 pub use moves::move_axis;

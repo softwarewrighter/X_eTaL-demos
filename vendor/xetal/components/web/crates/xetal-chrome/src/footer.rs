@@ -17,9 +17,13 @@ pub fn footer() -> Html {
             <span>{ "MIT License" }</span>{ sep() }
             <a href={REPOSITORY} target="_blank">{ "Repository" }</a>{ sep() }
             <a href="literate/index.html" target="_blank">{ "Literate docs" }</a>{ sep() }
-            <span>{ format!("Build Host {}", env!("BUILD_HOST")) }</span>{ sep() }
-            <span>{ format!("Build Commit {}", env!("BUILD_SHA")) }</span>{ sep() }
-            <span>{ format!("Build Time {}", env!("BUILD_TIMESTAMP")) }</span>
+            <a href="poster/index.html" target="_blank">{ "Syntax poster" }</a>{ sep() }
+            <span title="Built on this host, from this commit, at this time">{ format!(
+                "Build ({} {} {})",
+                env!("BUILD_HOST"),
+                env!("BUILD_SHA"),
+                env!("BUILD_TIMESTAMP")
+            ) }</span>
         </footer>
     }
 }

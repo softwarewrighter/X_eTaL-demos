@@ -8,6 +8,8 @@ mod order;
 mod power_props;
 mod props;
 mod scalar;
+mod slices;
+mod trains_props;
 
 use xetal_eval::eval_source;
 

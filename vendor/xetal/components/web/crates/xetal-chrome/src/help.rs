@@ -22,14 +22,25 @@ pub(crate) fn help_text() -> Html {
             <ul>
                 <li>{ "Type in the ASCII pane; the Rendered pane follows, and the \
                        pane below shows each statement's type (or the first error)." }</li>
-                <li><b>{ "Run" }</b>{ " (Ctrl-Enter) runs the program and shows its output, with any \
-                       pictures it draws ([]S_HOW) under it; the classics demos draw." }</li>
+                <li><b>{ "Run" }</b>{ " (Ctrl-Enter) runs the program and shows its output as it is \
+                       printed, with any pictures it draws ([]S_HOW) under it; the classics demos \
+                       draw. While it runs, a spinner turns and Run becomes " }<b>{ "Stop" }</b>
+                    { "; Clear also stops it." }</li>
+                <li><b>{ "Notebook" }</b>{ " runs the whole program showing each statement, drawn, above \
+                       its output, as just show does; " }<b>{ "Step" }</b>{ " runs the next statement only (k of n), \
+                       the one just run marked; " }<b>{ "Reset" }</b>{ " starts the steps again." }</li>
+                <li><b>{ "Boxed" }</b>{ " prints every array framed, as APL2's DISPLAY draws it \
+                       (d_isplay gives that picture as a value)." }</li>
                 <li><b>{ "Tab" }</b>{ " moves between the panes; the current one has the bright border." }</li>
                 <li><b>{ "Zoom" }</b>{ " (Ctrl-.) shows the current pane alone, and back." }</li>
+                <li>{ "On a phone the panes stack; Add to Home Screen installs the editor as \
+                       an app that works offline." }</li>
                 <li>{ "Drag the bars between the panes to resize them (this browser \
                        remembers); double-click a bar to put it back." }</li>
-                <li>{ "The drop-down opens a demo, a standard library (shown with its \
-                       exports' types) or one of your files; " }<b>{ "Clear" }</b>
+                <li><b>{ "Open" }</b>{ " lists the demos, the classics, the standard libraries (shown with \
+                       their exports' types), the other demos (Misc) and your files, each group \
+                       closed until you click it; the arrows move through it, Enter opens, Escape \
+                       closes. " }<b>{ "Clear" }</b>
                     { " (or \"(empty)\") gives an empty editor to type into." }</li>
                 <li><b>{ "Save" }</b>{ " and " }<b>{ "Save as" }</b>{ " keep files in this \
                        browser's local storage. A saved library (lib/Name.xtl) is \
@@ -92,6 +103,8 @@ fn reference() -> Html {
         ("t_ally v, s_hape v", "count, shape"),
         ("r_ev v, 1 o_- v", "reverse, rotate"),
         ("i s_elect v", "the items at positions i"),
+        ("b r_eplicate v", "keep where b is 1 (or repeat)"),
+        ("2 2 2 e_ncode 5, 2 d_ecode v", "radix digits, and back"),
         ("a m_atch b", "same shape and items"),
         ("s_ort v, w_here b", "sort, positions of 1s"),
         ("f_^3 x", "f applied 3 times"),
@@ -126,6 +139,7 @@ fn links() -> Html {
                 { for docs.iter().map(|(label, path)| html! {
                     <li><a href={doc(path)} target="_blank">{ *label }</a></li>
                 }) }
+                <li><a href="poster/index.html" target="_blank">{ "Syntax poster: reading XeTaL on one page" }</a></li>
                 <li><a href="literate/index.html" target="_blank">{ "Literate documents" }</a></li>
                 <li><a href="latex/index.html" target="_blank">{ "Every line in LaTeX" }</a></li>
             </ul>

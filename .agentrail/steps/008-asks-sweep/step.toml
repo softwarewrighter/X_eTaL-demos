@@ -1,6 +1,6 @@
 number = 8
 slug = "asks-sweep"
-status = "pending"
+status = "in-progress"
 description = "physics-ml inserted step (research3: stale downstream asks): refresh vendor/x..."
 role = "production"
 context_files = []

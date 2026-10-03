@@ -43,12 +43,16 @@ impl Unifier {
 
     /// Apply the substitution everywhere in `ty`.
     pub fn resolve(&self, ty: &Type) -> Type {
+        let mut ty = ty;
+        while let Type::Var(v) = ty {
+            match self.subst.get(v) {
+                Some(t) => ty = t,
+                None => return ty.clone(),
+            }
+        }
         match ty {
-            Type::Var(v) => match self.subst.get(v) {
-                Some(t) => self.resolve(t),
-                None => ty.clone(),
-            },
             Type::Fn(a, b) => Type::Fn(Box::new(self.resolve(a)), Box::new(self.resolve(b))),
+            Type::Box(a) => Type::Box(Box::new(self.resolve(a))),
             other => other.clone(),
         }
     }
@@ -57,12 +61,17 @@ impl Unifier {
         let (a, b) = (self.resolve(expected), self.resolve(found));
         match (&a, &b) {
             _ if a == b => Ok(()),
+            // Two variables: the found one points at the expected one,
+            // so a strand's items all point at the element's variable
+            // and resolving stays short (linear, not quadratic).
+            (Type::Var(_), Type::Var(w)) => self.bind(*w, &a, span, false),
             (Type::Var(v), t) => self.bind(*v, t, span, true),
             (t, Type::Var(v)) => self.bind(*v, t, span, false),
             (Type::Fn(a1, a2), Type::Fn(b1, b2)) => {
                 self.unify(a1, b1, span)?;
                 self.unify(a2, b2, span)
             }
+            (Type::Box(a1), Type::Box(b1)) => self.unify(a1, b1, span),
             _ => Err(
                 Diagnostic::new("type-mismatch", format!("expected {a}, found {b}"))
                     .with_span(span),
@@ -99,6 +108,7 @@ impl Unifier {
                         .with_span(span),
                 );
             }
+            Type::Box(inner) => self.constrain(inner, classes, span)?,
             _ => {}
         }
         self.subst.insert(v, t.clone());
