@@ -8,8 +8,55 @@
 Small programs in [X_eTaL](https://github.com/softwarewrighter/X_eTaL),
 the eXperimental Extensible Typed Array Language, that produce
 something worth watching: a cellular automaton, a fractal, an organic
-reaction-diffusion texture, a neural network seeing a digit, tokens
-being routed to experts in a sparse model.
+reaction-diffusion texture, waves through a double slit, gravity
+between every pair of bodies.
+
+## Start here
+
+**X_eTaL** asks what an APL-family array language would look like if
+it were designed today: whole-array programming and terse composition
+as in APL, J and BQN, but with inferred static types and typed
+functional composition from Haskell, explicit, checked interfaces in
+the spirit of Rust, and plain ASCII source (`'+ r_/ v`) drawn as
+readable typography. Programs stay short; the type checker answers
+"can these pieces actually compose?" before anything runs.
+
+**Extensible** has three meanings: libraries extend the vocabulary,
+macros extend what the language can say, native extensions extend the
+machine.
+
+- `.xtl` libraries: reusable, typed X_eTaL functions
+  (`"mx:" u_se< "Matrix"`). Ready today.
+- `.xtlm` macro libraries: new notation that expands into ordinary,
+  visible X_eTaL, which is then type-checked. Coming (X_eTaL's macros
+  saga).
+- Native extensions: Rust libraries behind typed X_eTaL facades, for
+  what the language should not reinvent (a database, a clock). Working
+  through a bridge today (hello, clock, sqlite); core support coming.
+
+**The ecosystem**, one question per repository:
+
+| Repository | What it holds | Live |
+| ---------- | ------------- | ---- |
+| [X_eTaL](https://github.com/softwarewrighter/X_eTaL) | the language: interpreter, REPL, editor, notebook, browser playground | [playground](https://softwarewrighter.github.io/X_eTaL/) |
+| [X_eTaL-demos](https://github.com/softwarewrighter/X_eTaL-demos) (here) | visual array and scientific programs | [catalog](https://softwarewrighter.github.io/X_eTaL-demos/) |
+| [X_eTaL-ML](https://github.com/softwarewrighter/X_eTaL-ML) | machine learning: ternary networks, MoE routing, a CNN, attention | [catalog](https://softwarewrighter.github.io/X_eTaL-ML/) |
+| [X_eTaL-games](https://github.com/softwarewrighter/X_eTaL-games) | interactive games and puzzles: state, input, ordinary programs | [games](https://softwarewrighter.github.io/X_eTaL-games/) |
+| [X_eTaL-libraries](https://github.com/softwarewrighter/X_eTaL-libraries) | reusable `.xtl` (and soon `.xtlm`) libraries | [libraries](https://softwarewrighter.github.io/X_eTaL-libraries/) |
+| [X_eTaL-extensions](https://github.com/softwarewrighter/X_eTaL-extensions) | native Rust extensions and their ABI | [extensions](https://softwarewrighter.github.io/X_eTaL-extensions/) |
+
+**Five minutes here:**
+
+1. Open the [live catalog](https://softwarewrighter.github.io/X_eTaL-demos/)
+   and pick a demo; Life or N-body gravity are good first ones.
+2. Read its program beside the result: each stage chip highlights the
+   code that computes it and shows the array's shape (`s_hape = ...`).
+3. Click a cell or a body: the inspector shows the arithmetic with
+   the numbers X_eTaL printed.
+4. Run it at the command line: `just run nbody` (it builds the
+   bundled X_eTaL the first time; see Build below).
+5. Change it: edit `demos/nbody/nbody.xtl` (a softening, a time step)
+   and run it again, or `just serve nbody` to see the page change.
 
 ## What this is
 

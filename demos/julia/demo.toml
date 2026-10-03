@@ -3,6 +3,8 @@
 slug = "julia"
 title = "Julia sets"
 summary = "One X_eTaL function gives the Mandelbrot set (c the grid) and every Julia set (c one number, extended over the grid). Pick c on the Mandelbrot map, or play c around its edge and watch the Julia set morph."
+idea = "The same step as Mandelbrot: c is one number here and a whole grid there, and the same code serves both (a single value extends over the grid)."
+line = "inside := f_loat 4 >= (zr * zr) + zi * zi"
 concepts = ["scalar extension", "broadcasting with table", "function power", "dyadic functions"]
 status = "live"
 order = 25

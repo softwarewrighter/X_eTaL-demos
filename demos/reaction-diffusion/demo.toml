@@ -3,6 +3,8 @@
 slug = "reaction-diffusion"
 title = "Reaction-diffusion"
 summary = "Gray-Scott chemistry on a grid: mazes, coral and spots grow by themselves. Each step is four shifts and a few products over the whole grid; click a cell to see its arithmetic, or drop more chemical."
+idea = "Diffusion is four rotated copies of the grid minus four times the grid; the reaction is elementwise. Both apply to every cell at once."
+line = "u:l_ap := { x -> ((1 o_-_1 x) + (-1 o_-_1 x) + (1 o_-_2 x) + -1 o_-_2 x) - 4.0 * x }"
 concepts = ["stencils by rotation", "elementwise arithmetic", "function power", "rank-3 state"]
 status = "live"
 order = 30

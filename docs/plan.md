@@ -198,19 +198,27 @@ live pages run the three demos, and their copies here were removed.
   free ports for servers, private Chrome profiles, and timings checked
   twice before they are believed.
 
-## Saga 5 -- start-here (an entry page, then new visual demos)  [ACTIVE]
+## Saga 5 -- start-here (an entry page, a release gate)  [ACTIVE]
 
 Asked for by the user (2026-10-03) after research3: first a
 start-here section and an ecosystem overview for this repository,
-then visual demos X_eTaL can do today (no machine learning: that is
-X_eTaL-ML's).
+then visual demos X_eTaL can do today. Reprioritized the same day
+after `../X_eTaL/docs/research4.txt`: stop adding breadth; make the
+entry page answer, in under 30 seconds, what am I looking at, why is
+it easier as an array expression, and show me the X_eTaL that did it;
+add performance regression gates; audit and tag a known-compatible
+snapshot for the six-repository release. The ecosystem front door
+belongs to core X_eTaL's site (this repo carries a copy of the
+overview until then). New demos wait until after the launch.
 
 | # | Step slug | Delivers |
 | - | --------- | -------- |
-| 1 | start-here | README and catalog: what X_eTaL is and why, the three meanings of extensible, the six repositories with links, a 5-minute path |
-| 2 | fourier-epicycles | a closed curve's discrete Fourier transform as one outer product; circles on circles tracing it; a slider for how many |
-| 3 | sandpile | the abelian sandpile: topples by rotations and masks until stable; the fractal pile; tests for stability, conservation and the abelian property |
-| 4 | gallery-3-release | screenshots, catalog, docs, asks (re-vendor if the speed fix landed), retrospective |
+| 1 | start-here | README and catalog: what X_eTaL is and why, the three meanings of extensible, the six repositories with links, a 5-minute path; each catalog card answers what, why, and the X_eTaL line (rendered by `xetal render`) |
+| 2 | perf-gate | `just bench`: the pages' programs and the showcase built-ins timed against a committed baseline; slower than 15% is flagged; run on every vendor refresh |
+| 3 | promotion-audit | re-vendor when X_eTaL's speed fix (its Saga 30) lands; every ask re-run; a promotion-blocker list; a tagged known-compatible snapshot |
+| 4 | gallery-3-release | screenshots, catalog, docs, retrospective |
+| 5 | fourier-epicycles | post-launch: a curve's Fourier transform as one outer product; circles on circles |
+| 6 | sandpile | post-launch: the abelian sandpile by rotations and masks |
 
 ## Saga 4 -- deferred (blocked on asks): MOVED to X_eTaL-ML
 
