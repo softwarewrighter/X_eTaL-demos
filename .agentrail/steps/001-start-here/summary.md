@@ -1,0 +1,1 @@
+Start here: README section (what/why X_eTaL, three meanings of extensible with honest status, six repos with live links, 5-minute path); catalog overview + per-card what/why/line (demo.toml idea + line, line verified against the .xtl, rendered by xetal render --html). Saga reprioritized per research4: perf-gate, promotion-audit, release, then post-launch demos.
