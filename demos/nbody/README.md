@@ -74,7 +74,9 @@ that X_eTaL agrees with a direct Rust double loop (accelerations and
 comes round after its period with its energy kept.
 
 A 50-body step (two accelerations, about 40,000 element operations)
-takes about 3 ms natively.
+takes about 7 ms natively with X_eTaL abb8274 (4 ms with 06d39fa:
+`t_able` got slower, an ask in
+[`docs/xetal-asks.md`](../../docs/xetal-asks.md)).
 
 ## Run it
 
@@ -89,7 +91,9 @@ just test-demo nbody    # its CLI and browser baselines and the web app's tests
 
 The cube's component axis comes first (2 x N x N rather than
 N x N x 2) because `c_at` stacks along the first axis; the reduce over
-the other body is then along axis 3. Vectors do not extend over
+the other body is then along axis 3. (X_eTaL now has `t_ranspose`, so
+`2 3 1 t_ranspose` would give the N x N x 2 layout; the program keeps
+the planes first, which reads more simply.) Vectors do not extend over
 matrices, so the masses are spread over the pairs with `t_able`
 (`mj`) and the pull over the two planes with `r_eshape`. The page
 passes the bodies into each run as a literal strand, because each run

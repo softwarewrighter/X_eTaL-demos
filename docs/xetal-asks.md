@@ -1,7 +1,9 @@
 # Asks for X_eTaL
 
 Features the demos need that X_eTaL does not have yet, and bugs the
-demos uncovered. This repo does not change X_eTaL: each ask is filed
+demos uncovered. Asks marked X_eTaL-ML came from the machine-learning
+demos, which moved there; they stay here as the record until X_eTaL-ML
+carries them. This repo does not change X_eTaL: each ask is filed
 here (and taken to `../X_eTaL`), the demo uses the workaround noted
 below or waits, and the workaround is removed when the ask lands in a
 vendored release (`vendor/xetal/VENDORED`, now X_eTaL abb8274; every
@@ -14,11 +16,11 @@ demos work with that are not asks.
 
 | Status | Kind | Ask | Demos | Workaround |
 | ------ | ---- | --- | ----- | ---------- |
-| open | speed (regression) | Since X_eTaL 06d39fa (vendored here until 2026-10-03), `t_able` is about 2.7x and `i_nner` about 1.5x slower at abb8274, while elementwise arithmetic got about 8x faster; pages that spread with `t_able` or multiply with `i_nner` got 1.7 to 2.2x slower | nbody, image-pipeline, ternary-net, moe-router, cnn-digits | none: kept abb8274 (the user's choice); waiting for the fix |
-| landed (abb8274) | bug | Reading a long strand of Int literals took quadratic time (8000 Ints: 2.1 s; now 0.00 s) | ca-lab, langtons-ant (boards passed in each frame), moe-router | removed in ca-lab and langtons-ant: boards go in as Int literals (moe-router's word numbers are X_eTaL-ML's) |
+| open | speed (regression) | Since X_eTaL 06d39fa (vendored here until 2026-10-03), `t_able` is about 2.7x and `i_nner` about 1.5x slower at abb8274, while elementwise arithmetic got about 8x faster; pages that spread with `t_able` or multiply with `i_nner` got 1.7 to 2.2x slower | nbody, image-pipeline, ternary-net (X_eTaL-ML), moe-router (X_eTaL-ML), cnn-digits (X_eTaL-ML) | none: kept abb8274 (the user's choice); waiting for the fix |
+| landed (abb8274) | bug | Reading a long strand of Int literals took quadratic time (8000 Ints: 2.1 s; now 0.00 s) | ca-lab, langtons-ant (boards passed in each frame), moe-router (X_eTaL-ML) | removed in ca-lab and langtons-ant: boards go in as Int literals (moe-router (X_eTaL-ML)'s word numbers are X_eTaL-ML's) |
 | partly landed (abb8274) | speed | Whole-array arithmetic was about 50 ns per element per operation; elementwise arithmetic is now about 8x faster (see the regression above for `t_able` and `i_nner`) | langtons-ant (the highway needs ~10,000 steps), reaction-diffusion, mandelbrot, wave-tank | small grids, a few steps per frame, the page shows each run's time |
-| open | speed | `i_nner` (matrix product) costs about 370 ns per multiply-add, slower than the same product written as broadcast-and-reduce (about 250 ns) and 7x the elementwise rate | ternary-net (a 576-point map through a 16-wide network: 0.64 s for three formats natively) | a 24 x 24 map; the page reruns only the program whose inputs changed |
-| open | feature | Grade along an axis per row (`g_rade_2 M` grades the columns as items, one vector, not each row), for top-k per row | moe-router (top-2 experts per token) | the largest by `'m_ax r_/_2`, masked out, then the largest again |
+| open | speed | `i_nner` (matrix product) costs about 370 ns per multiply-add, slower than the same product written as broadcast-and-reduce (about 250 ns) and 7x the elementwise rate | ternary-net (X_eTaL-ML) (a 576-point map through a 16-wide network: 0.64 s for three formats natively) | a 24 x 24 map; the page reruns only the program whose inputs changed |
+| open | feature | Grade along an axis per row (`g_rade_2 M` grades the columns as items, one vector, not each row), for top-k per row | moe-router (X_eTaL-ML) (top-2 experts per token) | the largest by `'m_ax r_/_2`, masked out, then the largest again |
 | open | feature | `xetal-play`: pass arrays into a program and read them back without text, or keep a session between runs | every page that keeps state (reaction-diffusion, wave-tank, ca-lab, langtons-ant, nbody) | each frame writes the state as literal matrices and parses the printed `r_avel` lines |
 | landed (abb8274) | feature | Number literals with an exponent (`1.5e-7`) | mandelbrot (deep zoom), any page writing small or large Floats into a program | removed: `microscope::run::lit` writes the shortest form, with an exponent when small |
 | open | feature | Complex numbers (planned upstream) | mandelbrot, julia | two Float planes (or two numbers) for the real and imaginary parts |
@@ -52,8 +54,8 @@ demos (natively, through `xetal-play`):
 
 | Demo run | 06d39fa | abb8274 |
 | -------- | ------- | ------- |
-| ternary-net, the FP32/FP16/INT8 maps | 0.64 s | 1.40 s |
-| ternary-net, the ternary map | 0.22 s | 0.44 s |
+| ternary-net (X_eTaL-ML), the FP32/FP16/INT8 maps | 0.64 s | 1.40 s |
+| ternary-net (X_eTaL-ML), the ternary map | 0.22 s | 0.44 s |
 | nbody, 50 bodies, 10 steps | 38 ms | 67 ms |
 | image-pipeline, 96 x 96 | 70 ms | 122 ms |
 
@@ -286,5 +288,9 @@ around them and say so where it shows.
   condition bound to a name does not convert: see the ask above.)
 - **`m_od` takes the dividend on the left** (`a m_od b` is a mod b),
   unlike APL's residue.
+- **Only a single value extends.** Arithmetic pairs arrays of the same
+  shape, and a single value extends over any shape; a vector does not
+  extend over a matrix's rows (`M * 1 2 3` is a shape error), so the
+  demos spread it with `t_able` (`(o_ffsets n) 'r_ight t_able v`).
 - **Rotation wraps.** `o_-` rotates, so stencils see a torus; the wave
   tank damps its edges (a sponge) so waves leave instead of wrapping.

@@ -1,5 +1,11 @@
 # Machine-learning demos: the move to X_eTaL-ML
 
+Done (2026-10-03): X_eTaL-ML took ternary-net, moe-router and
+cnn-digits (its live pages checked: the same results), and this
+repository removed its copies, the recipes `ternary-train` and
+`cnn-train`, `scripts/mnist.sh` and the ML-only CSS. The rest of this
+file is the handoff as it was written.
+
 The machine-learning demos move to their own repository,
 [X_eTaL-ML](https://github.com/softwarewrighter/X_eTaL-ML) (`../X_eTaL-ML`; the user's decision, 2026-10-03, following
 `../X_eTaL/docs/research3.txt`): X_eTaL-demos keeps the visual array
