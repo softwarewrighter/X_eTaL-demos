@@ -1,9 +1,10 @@
 number = 5
 slug = "moe-router"
-status = "in-progress"
+status = "completed"
 description = "physics-ml step 4: demos/moe-router. 16 experts in a 4x4 grid; a sentence's t..."
 role = "production"
 context_files = []
 created_at = "2026-10-02T07:18:49"
+completed_at = "2026-10-02T19:34:46"
 task_type = "demo"
-commits = []
+commits = ["16dad8d51fb10c642e67a16df104cb1573e6a254"]
