@@ -1,0 +1,11 @@
+{
+  "task_type": "demo",
+  "state": {
+    "number": 6,
+    "step": "moe-epsilon"
+  },
+  "action": "xtl nudge section; micro run_nudge; view strip/slice; app panel; Chrome via extension; tests; bless; gate; pages; screenshots",
+  "result": "success",
+  "reward": 1,
+  "timestamp": "2026-10-02T20:03:30"
+}
