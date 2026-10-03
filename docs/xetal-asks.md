@@ -57,6 +57,13 @@ demos (natively, through `xetal-play`):
 | nbody, 50 bodies, 10 steps | 38 ms | 67 ms |
 | image-pipeline, 96 x 96 | 70 ms | 122 ms |
 
+In the browser (the live pages, Chrome, WebAssembly) the slow-down is
+larger and erratic: image-pipeline took a steady 130 ms at 06d39fa,
+and at abb8274 971 ms on the first run, then 136, 570 and 616 ms for
+three threshold changes; ternary-net's formats went from about 550 ms
+to 2224 ms. Something beyond the native regression (memory growth,
+or a path the WebAssembly build takes) seems to be involved.
+
 Repro: save the lines above as a program, run it with `xetal run`
 built at each commit. Ask: bring `t_able` and `i_nner` back to (or
 past) their 06d39fa speed; a benchmark of both in the speed saga would
