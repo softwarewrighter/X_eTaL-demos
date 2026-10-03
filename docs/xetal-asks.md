@@ -13,6 +13,7 @@ demos work with that are not asks.
 
 | Status | Kind | Ask | Demos | Workaround |
 | ------ | ---- | --- | ----- | ---------- |
+| open | speed (regression) | Since X_eTaL 06d39fa (vendored here until 2026-10-03), `t_able` is about 2.7x and `i_nner` about 1.5x slower at abb8274, while elementwise arithmetic got about 8x faster; pages that spread with `t_able` or multiply with `i_nner` got 1.7 to 2.2x slower | nbody, image-pipeline, ternary-net, moe-router, cnn-digits | none: kept abb8274 (the user's choice); waiting for the fix |
 | open | bug | Reading a long strand of Int literals takes quadratic time (8000 Ints: 2.1 s; as Floats: 7 ms) | ca-lab, langtons-ant (boards passed in each frame) | write Int arrays as Float literals and `f_loor` them |
 | open | speed | Whole-array arithmetic is about 50 ns per element per operation (vector kernels, planned upstream) | langtons-ant (the highway needs ~10,000 steps: 20 to 30 s natively), reaction-diffusion, mandelbrot, wave-tank | small grids, a few steps per frame, the page shows each run's time |
 | open | speed | `i_nner` (matrix product) costs about 370 ns per multiply-add, slower than the same product written as broadcast-and-reduce (about 250 ns) and 7x the elementwise rate | ternary-net (a 576-point map through a 16-wide network: 0.64 s for three formats natively) | a 24 x 24 map; the page reruns only the program whose inputs changed |
@@ -28,6 +29,37 @@ demos work with that are not asks.
 | open | bug | A vendored build reports the outer repo's commit as its own | `xetal --version` from `just xetal` | `just xetal-version` prints `vendor/xetal/VENDORED` beside it (the pages' footers read `VENDORED` directly) |
 
 ## Details
+
+### Speed regression in `t_able` and `i_nner` (06d39fa to abb8274)
+
+Refreshing the vendored X_eTaL from 06d39fa to abb8274 (2026-10-03)
+made the higher-order built-ins `t_able` and `i_nner` slower, while
+elementwise arithmetic got much faster (the upstream commits include
+cd80454, "hof: higher-order built-ins as kernels, steps of the machine
+(D50)"). Both builds release, the same machine, best of runs:
+
+| Program (each line run 4 times) | 06d39fa | abb8274 |
+| ------------------------------- | ------- | ------- |
+| `y := x + x * x` on 512 x 512 | 0.41 s | 0.05 s |
+| `y := (o_ffsets 512) 'r_ight t_able r_avel 1 t_ake x` (512 x 512) | 0.11 s | 0.30 s |
+| `y := (r_avel 1 t_ake x) '* t_able r_avel 1 t_ake x` (512 x 512) | 0.12 s | 0.30 s |
+| `y := ((64 c_at 512) r_eshape x) '+ '* i_nner (512 c_at 64) r_eshape x` | 4.08 s | 5.98 s |
+| `'+ r_/_2 x`, `'+ r_/ x`, `1 o_-_2 x` | same | same |
+
+with `x := (512 c_at 512) r_eshape 0.5 0.25 0.125`. Effect on the
+demos (natively, through `xetal-play`):
+
+| Demo run | 06d39fa | abb8274 |
+| -------- | ------- | ------- |
+| ternary-net, the FP32/FP16/INT8 maps | 0.64 s | 1.40 s |
+| ternary-net, the ternary map | 0.22 s | 0.44 s |
+| nbody, 50 bodies, 10 steps | 38 ms | 67 ms |
+| image-pipeline, 96 x 96 | 70 ms | 122 ms |
+
+Repro: save the lines above as a program, run it with `xetal run`
+built at each commit. Ask: bring `t_able` and `i_nner` back to (or
+past) their 06d39fa speed; a benchmark of both in the speed saga would
+keep them there.
 
 ### Long Int strands are slow to read
 
