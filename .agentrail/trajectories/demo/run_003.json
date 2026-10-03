@@ -1,0 +1,11 @@
+{
+  "task_type": "demo",
+  "state": {
+    "number": 4,
+    "step": "ternary-net"
+  },
+  "action": "trainer in Rust, xtl core + CLI output, micro/view/model/app, Chrome via extension, reg-rs bless, gate, pages, screenshots",
+  "result": "success",
+  "reward": 1,
+  "timestamp": "2026-10-02T18:43:48"
+}
