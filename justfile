@@ -60,6 +60,10 @@ bless slug:
 browser-check slug:
     scripts/browser-check.sh "$1"
 
+# Train the ternary-net demo's network offline and write its weights into ternary-net.xtl (then just bless ternary-net)
+ternary-train:
+    cargo run --release -q --manifest-path demos/ternary-net/train/Cargo.toml
+
 # Build the live site into pages/ (committed; the Pages workflow publishes it)
 pages:
     scripts/build-pages.sh
