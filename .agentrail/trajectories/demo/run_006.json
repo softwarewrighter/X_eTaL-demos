@@ -1,0 +1,11 @@
+{
+  "task_type": "demo",
+  "state": {
+    "number": 7,
+    "step": "cnn-weights"
+  },
+  "action": "download script with checksums, Rust trainer, xtl forward pass, bless, commit",
+  "result": "success",
+  "reward": 1,
+  "timestamp": "2026-10-03T07:11:41"
+}
