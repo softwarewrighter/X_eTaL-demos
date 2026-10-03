@@ -68,8 +68,8 @@ app with its native tests and `web/browser.txt`. The pages use
 2. **attention**: Q = X Wq, K, V, S = Q K^T, A = softmax(S / sqrt d),
    Y = A V, each line inspectable; the heatmap for "the animal didn't
    cross the street because it was tired". It waited here for a
-   transpose, which has since landed upstream (`t_ranspose`, after the
-   vendored 06d39fa): it needs a vendor refresh first.
+   transpose, which has landed (`o_\` and `t_ranspose`, vendored here
+   at abb8274).
 3. **embedding-explorer**: 1000 x 64 -> centre -> covariance ->
    eigenvectors -> projection -> a rotatable 3-D point cloud (waited
    for transpose; eigenvectors by power iteration in X_eTaL).
@@ -85,8 +85,9 @@ app with its native tests and `web/browser.txt`. The pages use
 
 ## X_eTaL asks the ML demos carry
 
-From `docs/xetal-asks.md` (re-check each against a fresh vendor; some
-have landed upstream since 06d39fa):
+From `docs/xetal-asks.md`, re-checked against X_eTaL abb8274 (vendored
+here 2026-10-03): transpose, exponent literals and fast Int strands
+have landed; `t_able` and `i_nner` got slower (a regression, filed).
 
 | Ask | ML demo | Workaround now |
 | --- | ------- | -------------- |
@@ -94,9 +95,10 @@ have landed upstream since 06d39fa):
 | Grade per row (`g_rade_2` grades columns as items) | moe-router (top-2) | the largest of each row as a mask, taken out, the largest again |
 | A bound condition cannot be used in arithmetic | (image-pipeline; any mask) | bind masks as Floats |
 | `xetal-play` arrays in and out without text, or a session | every page that keeps state | literal matrices in, printed `r_avel` lines out |
-| Number literals with an exponent | any page writing small Floats | `microscope::run::lit` writes plain decimals |
-| Transpose | attention, embedding-explorer | landed upstream: refresh the vendor |
-| Long Int strands read slowly | moe-router (word numbers) | Floats, floored |
+| Number literals with an exponent | any page writing small Floats | landed in abb8274; `microscope::run::lit` uses them |
+| Transpose | attention, embedding-explorer | landed in abb8274 (`o_\`, `t_ranspose`) |
+| Long Int strands read slowly | moe-router (word numbers) | landed in abb8274: moe-router can pass Ints |
+| `t_able` and `i_nner` regression (2.7x, 1.5x slower than 06d39fa) | ternary-net (formats 0.64 -> 1.40 s), moe-router, cnn-digits | none; filed upstream |
 
 ## What X_eTaL-demos does once X_eTaL-ML has them
 

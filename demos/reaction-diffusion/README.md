@@ -62,6 +62,5 @@ just test-demo reaction-diffusion    # its CLI and browser baselines and the web
 ## Workarounds
 
 The page keeps the grid between frames and passes it into each run as
-two literal matrices of decimals (X_eTaL number literals have no
-exponent; values smaller than 1e-15 are written as 0), because each
-run is a fresh X_eTaL program.
+two literal matrices (values smaller than 1e-15 are written as 0, to
+keep them short), because each run is a fresh X_eTaL program.

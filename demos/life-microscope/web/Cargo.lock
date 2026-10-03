@@ -1227,7 +1227,9 @@ version = "0.1.0"
 dependencies = [
  "xetal-array",
  "xetal-base",
+ "xetal-kernel",
  "xetal-rotate",
+ "xetal-transpose",
  "xetal-value",
 ]
 
@@ -1248,6 +1250,8 @@ name = "xetal-core"
 version = "0.1.0"
 dependencies = [
  "xetal-base",
+ "xetal-catalog",
+ "xetal-explain",
  "xetal-ir",
  "xetal-lex",
  "xetal-syntax",
@@ -1284,12 +1288,24 @@ dependencies = [
  "xetal-hof",
  "xetal-lex",
  "xetal-lint",
+ "xetal-radix",
  "xetal-rotate",
  "xetal-search",
+ "xetal-step",
  "xetal-struct",
  "xetal-system",
+ "xetal-transpose",
  "xetal-types",
  "xetal-value",
+]
+
+[[package]]
+name = "xetal-explain"
+version = "0.1.0"
+dependencies = [
+ "xetal-base",
+ "xetal-ir",
+ "xetal-syntax",
 ]
 
 [[package]]
@@ -1306,6 +1322,7 @@ dependencies = [
  "xetal-array",
  "xetal-axes",
  "xetal-base",
+ "xetal-kernel",
  "xetal-map",
  "xetal-value",
 ]
@@ -1316,6 +1333,14 @@ version = "0.1.0"
 dependencies = [
  "xetal-base",
  "xetal-lex",
+]
+
+[[package]]
+name = "xetal-kernel"
+version = "0.1.0"
+dependencies = [
+ "xetal-base",
+ "xetal-value",
 ]
 
 [[package]]
@@ -1358,6 +1383,7 @@ dependencies = [
  "xetal-array",
  "xetal-base",
  "xetal-core",
+ "xetal-kernel",
  "xetal-value",
 ]
 
@@ -1374,12 +1400,30 @@ name = "xetal-play"
 version = "0.1.0"
 dependencies = [
  "xetal-base",
+ "xetal-core",
  "xetal-eval",
+ "xetal-grid",
  "xetal-macro",
  "xetal-program",
  "xetal-store",
  "xetal-types",
  "xetal-view",
+]
+
+[[package]]
+name = "xetal-prim"
+version = "0.1.0"
+dependencies = [
+ "xetal-arith",
+ "xetal-base",
+ "xetal-catalog",
+ "xetal-radix",
+ "xetal-rotate",
+ "xetal-search",
+ "xetal-struct",
+ "xetal-system",
+ "xetal-transpose",
+ "xetal-value",
 ]
 
 [[package]]
@@ -1400,6 +1444,15 @@ dependencies = [
  "xetal-lex",
  "xetal-macro",
  "xetal-sources",
+]
+
+[[package]]
+name = "xetal-radix"
+version = "0.1.0"
+dependencies = [
+ "xetal-array",
+ "xetal-base",
+ "xetal-value",
 ]
 
 [[package]]
@@ -1436,6 +1489,21 @@ name = "xetal-sources"
 version = "0.1.0"
 dependencies = [
  "xetal-base",
+]
+
+[[package]]
+name = "xetal-step"
+version = "0.1.0"
+dependencies = [
+ "xetal-arith",
+ "xetal-array",
+ "xetal-base",
+ "xetal-core",
+ "xetal-hof",
+ "xetal-kernel",
+ "xetal-lex",
+ "xetal-prim",
+ "xetal-value",
 ]
 
 [[package]]
@@ -1480,6 +1548,15 @@ name = "xetal-token"
 version = "0.1.0"
 dependencies = [
  "xetal-base",
+]
+
+[[package]]
+name = "xetal-transpose"
+version = "0.1.0"
+dependencies = [
+ "xetal-array",
+ "xetal-base",
+ "xetal-value",
 ]
 
 [[package]]

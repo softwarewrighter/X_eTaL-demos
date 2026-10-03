@@ -4,7 +4,8 @@ Features the demos need that X_eTaL does not have yet, and bugs the
 demos uncovered. This repo does not change X_eTaL: each ask is filed
 here (and taken to `../X_eTaL`), the demo uses the workaround noted
 below or waits, and the workaround is removed when the ask lands in a
-vendored release (`vendor/xetal/VENDORED`, now X_eTaL 06d39fa).
+vendored release (`vendor/xetal/VENDORED`, now X_eTaL abb8274; every
+ask was re-checked against it on 2026-10-03).
 
 Each entry: status (open, filed, landed, dropped), kind (feature, bug
 or speed), which demo(s) need it, why, a minimal repro or example, and
@@ -14,17 +15,17 @@ demos work with that are not asks.
 | Status | Kind | Ask | Demos | Workaround |
 | ------ | ---- | --- | ----- | ---------- |
 | open | speed (regression) | Since X_eTaL 06d39fa (vendored here until 2026-10-03), `t_able` is about 2.7x and `i_nner` about 1.5x slower at abb8274, while elementwise arithmetic got about 8x faster; pages that spread with `t_able` or multiply with `i_nner` got 1.7 to 2.2x slower | nbody, image-pipeline, ternary-net, moe-router, cnn-digits | none: kept abb8274 (the user's choice); waiting for the fix |
-| open | bug | Reading a long strand of Int literals takes quadratic time (8000 Ints: 2.1 s; as Floats: 7 ms) | ca-lab, langtons-ant (boards passed in each frame) | write Int arrays as Float literals and `f_loor` them |
-| open | speed | Whole-array arithmetic is about 50 ns per element per operation (vector kernels, planned upstream) | langtons-ant (the highway needs ~10,000 steps: 20 to 30 s natively), reaction-diffusion, mandelbrot, wave-tank | small grids, a few steps per frame, the page shows each run's time |
+| landed (abb8274) | bug | Reading a long strand of Int literals took quadratic time (8000 Ints: 2.1 s; now 0.00 s) | ca-lab, langtons-ant (boards passed in each frame), moe-router | removed in ca-lab and langtons-ant: boards go in as Int literals (moe-router's word numbers are X_eTaL-ML's) |
+| partly landed (abb8274) | speed | Whole-array arithmetic was about 50 ns per element per operation; elementwise arithmetic is now about 8x faster (see the regression above for `t_able` and `i_nner`) | langtons-ant (the highway needs ~10,000 steps), reaction-diffusion, mandelbrot, wave-tank | small grids, a few steps per frame, the page shows each run's time |
 | open | speed | `i_nner` (matrix product) costs about 370 ns per multiply-add, slower than the same product written as broadcast-and-reduce (about 250 ns) and 7x the elementwise rate | ternary-net (a 576-point map through a 16-wide network: 0.64 s for three formats natively) | a 24 x 24 map; the page reruns only the program whose inputs changed |
 | open | feature | Grade along an axis per row (`g_rade_2 M` grades the columns as items, one vector, not each row), for top-k per row | moe-router (top-2 experts per token) | the largest by `'m_ax r_/_2`, masked out, then the largest again |
 | open | feature | `xetal-play`: pass arrays into a program and read them back without text, or keep a session between runs | every page that keeps state (reaction-diffusion, wave-tank, ca-lab, langtons-ant, nbody) | each frame writes the state as literal matrices and parses the printed `r_avel` lines |
-| open | feature | Number literals with an exponent (`1.5e-7`) | mandelbrot (deep zoom), any page writing small or large Floats into a program | the page writes the shortest plain decimal that reads back exactly (`microscope::run::lit`) |
+| landed (abb8274) | feature | Number literals with an exponent (`1.5e-7`) | mandelbrot (deep zoom), any page writing small or large Floats into a program | removed: `microscope::run::lit` writes the shortest form, with an exponent when small |
 | open | feature | Complex numbers (planned upstream) | mandelbrot, julia | two Float planes (or two numbers) for the real and imaginary parts |
-| open | feature | Nested arrays: `e_ach` returning a vector per item (planned upstream) | mandelbrot (the orbit table) | two `e_ach` passes, one per part |
+| partly landed (abb8274) | feature | Nested arrays: a vector per item. `m_ap` now gives each result boxed, but nothing turns a list of boxes back into a matrix (APL's mix) | mandelbrot (the orbit table) | still two `e_ach` passes, one per part |
 | open | feature | A state of several arrays for `p_ower` (a tuple or record; "named records" is on the upstream wish list) | wave-tank (time), langtons-ant (direction), mandelbrot and julia (counts) | extra planes of one rank-3 array, a scalar stored in every cell |
 | open | feature | A per-operation evaluation trace (the planned stepping debugger) exposed through `xetal-play` | the microscope shell (all pages) | pages print chosen intermediate arrays with `r_avel` |
-| open | feature | Transpose (planned upstream) | attention, embedding-explorer (deferred) | none yet: those demos wait |
+| landed (abb8274) | feature | Transpose (`o_\`, and `t_ranspose` with a permutation) | image-pipeline (ky from kx), attention and embedding-explorer (X_eTaL-ML) | removed in image-pipeline: `ky := o_\ kx` |
 | open | bug | A condition bound to a name cannot be used in arithmetic (`a := 1 2 > 0` then `1 * a`, `f_loat a` or `'+ r_/ a` is a type error), though inline `f_loat 1 2 > 0` works and lang-choices T1 says a Bool converts to Int in arithmetic | image-pipeline (masks) | bind masks as Floats: `m := f_loat (...) < r` |
 | open | bug | A vendored build reports the outer repo's commit as its own | `xetal --version` from `just xetal` | `just xetal-version` prints `vendor/xetal/VENDORED` beside it (the pages' footers read `VENDORED` directly) |
 
@@ -62,6 +63,9 @@ past) their 06d39fa speed; a benchmark of both in the speed saga would
 keep them there.
 
 ### Long Int strands are slow to read
+
+Landed in abb8274 (8000 Ints read in 0.00 s); ca-lab and langtons-ant
+now pass their boards as Int literals. The history:
 
 Passing a board into a program as a literal strand is how the demos
 hand state to each run. Strands of Int literals are read in quadratic
@@ -115,6 +119,9 @@ and the literal-format workarounds below.
 
 ### Number literals with an exponent
 
+Landed in abb8274 (`1.5e-7`, `2.5E3` read); `microscope::run::lit`
+now writes Rust's shortest form. The history:
+
 A page that writes values into an X_eTaL program (a view's centre and
 width) must spell every Float as an X_eTaL literal. Rust's `{:?}`
 formatting uses exponent form for small values, and X_eTaL's lexer
@@ -143,6 +150,12 @@ expression broadcast over the whole grid.
 
 ### Nested arrays from `e_ach`
 
+Partly landed in abb8274: `'f m_ap v` gives each result boxed
+(`'r_ange m_ap 1 2 3`), but there is no mix to turn the boxes back into
+a matrix, so the Mandelbrot orbit still takes two passes. Ask: a mix
+(disclose every box into one array, padding as APL2 does). The
+history:
+
 The Mandelbrot orbit is z0 .. zn for one c, each z a pair. The natural
 program is `'{ n -> n 'u:o_rbit p_ower 0.0 0.0 } e_ach o_ffsets 11`,
 but `e_ach` rejects a vector per item: `e_ach needs a single value
@@ -168,6 +181,9 @@ with its value, type, shape and source span, exposed through
 `xetal-play`, would let a page step inside any line.
 
 ### Transpose
+
+Landed in abb8274: `o_\` reverses the axes, `t_ranspose` permutes them;
+image-pipeline's `ky` is `o_\ kx`. The history:
 
 Attention is `S <- Q x transpose(K)`; PCA needs the covariance
 `X^T X`. Both read naturally only with a transpose; the two demos are
@@ -232,6 +248,8 @@ triangle) bound by name. Workaround: bind each mask as a Float,
 arithmetic as T1 describes (or say in T5 that it does not).
 
 ### Build provenance in a vendored build
+
+Still open at abb8274: the vendored CLI reports this repo's commit.
 
 `xetal-cli`'s `build.rs` takes the commit from
 `git rev-parse --short HEAD` in the directory being built. Built from

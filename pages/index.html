@@ -140,14 +140,21 @@ can see a whole loop nest happen as one array expression.</p>
 <div class="chips"><span class="chip">inner product</span><span class="chip">softmax by row</span><span class="chip">top-k by masks</span><span class="chip">reduce</span><span class="chip">outer product for a path and a plane of inputs</span></div>
 <div class="links"><a href="moe-router/">Open the demo</a> <a href="https://github.com/softwarewrighter/X_eTaL-demos/tree/main/demos/moe-router#readme">How it works</a></div>
 </article>
+<article class="card" id="cnn-digits">
+<span class="status draft">In progress</span>
+<h2>Tiny CNN</h2>
+<p>A tiny convolutional network trained on MNIST reads a handwritten digit: convolution as the picture&#x27;s nine shifted copies times eight filters, ReLU, 2 x 2 max-pooling by reshape, a dense layer and softmax, every stage an array program.</p>
+<div class="chips"><span class="chip">windows by rotation</span><span class="chip">inner product</span><span class="chip">reshape for pooling</span><span class="chip">softmax</span></div>
+<div class="links"><a href="https://github.com/softwarewrighter/X_eTaL-demos/tree/main/demos/cnn-digits#readme">How it works</a></div>
+</article>
 </section>
 </main>
 <footer>
 <span>Copyright (c) 2026 Michael A Wright</span><span class="sep">&middot;</span>
 <span>MIT License</span><span class="sep">&middot;</span>
 <a href="https://github.com/softwarewrighter/X_eTaL-demos" target="_blank">Repository</a><span class="sep">&middot;</span>
-<span>X_eTaL <a href="https://github.com/softwarewrighter/X_eTaL/commit/06d39facdb9d850303fd2fb5b2a0366efbaacde0" target="_blank">06d39fa</a></span><span class="sep">&middot;</span>
-<span>build (host max, sha a7a5cf6, 20261003T030042)</span>
+<span>X_eTaL <a href="https://github.com/softwarewrighter/X_eTaL/commit/abb8274080e2ad97326ec9a7442ea89d50d92ded" target="_blank">abb8274</a></span><span class="sep">&middot;</span>
+<span>build (host max, sha 5cfca9a, 20261003T165113)</span>
 </footer>
 </body>
 </html>

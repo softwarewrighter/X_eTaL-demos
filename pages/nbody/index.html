@@ -6,8 +6,8 @@
   <title>N-body Gravity</title>
   
 <script type="module">
-import init, * as bindings from '/X_eTaL-demos/nbody/nbody-web-78fd6cb2fc44ecdc.js';
-const wasm = await init({ module_or_path: '/X_eTaL-demos/nbody/nbody-web-78fd6cb2fc44ecdc_bg.wasm' });
+import init, * as bindings from '/X_eTaL-demos/nbody/nbody-web-2d308993c4c0bfe8.js';
+const wasm = await init({ module_or_path: '/X_eTaL-demos/nbody/nbody-web-2d308993c4c0bfe8_bg.wasm' });
 
 
 window.wasmBindings = bindings;
@@ -19,6 +19,6 @@ dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
   
   <link rel="icon" href="/X_eTaL-demos/nbody/favicon-99a73c3cc5eb5037.ico" integrity="sha384-jh2niQ+i5iuRZ34bhA1G/1+MK+pPTNQ94fC6FXNo9emBA7ontKzntF2GbIdkvkpI"/>
   <link rel="stylesheet" href="/X_eTaL-demos/nbody/microscope-5e7ab35984441f71.css" integrity="sha384-sVsKEnGkOWq7tyctNqmSkvP/RsrEpy33NDF7mJerDNDAZ7O4RG4246ei23HdrK4R"/>
-<link rel="modulepreload" href="/X_eTaL-demos/nbody/nbody-web-78fd6cb2fc44ecdc.js" crossorigin="anonymous" integrity="sha384-9e34MR9oT6ZcZmRuaZLKe+QMB9y6V80tabWMgBKFMIkxFhGptkSkiUGnNLY7bf5g"><link rel="preload" href="/X_eTaL-demos/nbody/nbody-web-78fd6cb2fc44ecdc_bg.wasm" crossorigin="anonymous" integrity="sha384-Mw92oZuFCVKApVpxHH76mlJZilx3sCsGi3dHvRCft4wKIxOpeg1QBkTBi/3wyRwu" as="fetch" type="application/wasm"></head>
+<link rel="modulepreload" href="/X_eTaL-demos/nbody/nbody-web-2d308993c4c0bfe8.js" crossorigin="anonymous" integrity="sha384-nEQbHxapvnJSZ14tHR7PQSOoyJ79DP6ZDTpvq/iGoXxqe/0yJS9Qd6S7mkbf9009"><link rel="preload" href="/X_eTaL-demos/nbody/nbody-web-2d308993c4c0bfe8_bg.wasm" crossorigin="anonymous" integrity="sha384-RRKfELSfMOjIUgLE8C//orHCyYxKrl2S0lGe5ftFoVtFB4TzkKdbr6sLTkMGupYi" as="fetch" type="application/wasm"></head>
 <body></body>
 </html>

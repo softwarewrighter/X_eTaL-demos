@@ -6,8 +6,8 @@
   <title>Julia Sets</title>
   
 <script type="module">
-import init, * as bindings from '/X_eTaL-demos/julia/julia-web-704c4e75890bb87.js';
-const wasm = await init({ module_or_path: '/X_eTaL-demos/julia/julia-web-704c4e75890bb87_bg.wasm' });
+import init, * as bindings from '/X_eTaL-demos/julia/julia-web-b68d6d2678a790b2.js';
+const wasm = await init({ module_or_path: '/X_eTaL-demos/julia/julia-web-b68d6d2678a790b2_bg.wasm' });
 
 
 window.wasmBindings = bindings;
@@ -23,6 +23,6 @@ dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
     .calls p { margin: 10px 0 4px; color: var(--muted); }
     .calls .line { font-size: 1.1rem; }
   </style>
-<link rel="modulepreload" href="/X_eTaL-demos/julia/julia-web-704c4e75890bb87.js" crossorigin="anonymous" integrity="sha384-1YfW3UnSkd42D9SzFN7k8zYR/JjWRrIvWyygjbjx4cq59JIlrDfvvtf6rQIxxDlk"><link rel="preload" href="/X_eTaL-demos/julia/julia-web-704c4e75890bb87_bg.wasm" crossorigin="anonymous" integrity="sha384-FFhUweHMqPuQk8TbUdRSFZPtw07c5JpeyVEpOo8LaaKHM+/SW+/y3HoY5FyfNsra" as="fetch" type="application/wasm"></head>
+<link rel="modulepreload" href="/X_eTaL-demos/julia/julia-web-b68d6d2678a790b2.js" crossorigin="anonymous" integrity="sha384-OMnuXCQRNokm5Musmp29KieVEW+0HfkqywDpiyo8Op2LSByhnLXPXi6WVvATy1Gy"><link rel="preload" href="/X_eTaL-demos/julia/julia-web-b68d6d2678a790b2_bg.wasm" crossorigin="anonymous" integrity="sha384-BsxKMxtFgR9Qs25AsEpON1KnvkB0bCrWMQFhjc7AVjoXQ4yIRETMArNqGooh9N0A" as="fetch" type="application/wasm"></head>
 <body></body>
 </html>
