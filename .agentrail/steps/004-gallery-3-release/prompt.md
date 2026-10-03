@@ -1,0 +1,1 @@
+start-here step 4: release: screenshots, catalog order and summaries, README demo list and status, per-demo READMEs checked, docs/xetal-asks.md reviewed against every workaround (and re-vendor if X_eTaL's Saga 30 speed fix has landed: re-run every ask), saga retrospective in docs/plan.md.

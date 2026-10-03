@@ -147,7 +147,7 @@ Learned:
   labels, a bold highlight block, a compact footer, error notices
   that keep the last good state, and the deep-zoom literal fix.
 
-## Saga 3 -- physics and ML (implementable now)  [ACTIVE]
+## Saga 3 -- physics and ML (implementable now)  [DONE]
 
 The machine-learning demos move to `../X_eTaL-ML`
 (<https://github.com/softwarewrighter/X_eTaL-ML>; the user's decision,
@@ -197,6 +197,20 @@ live pages run the three demos, and their copies here were removed.
 - Process: parallel sessions share the machine (ports, Chrome, CPU):
   free ports for servers, private Chrome profiles, and timings checked
   twice before they are believed.
+
+## Saga 5 -- start-here (an entry page, then new visual demos)  [ACTIVE]
+
+Asked for by the user (2026-10-03) after research3: first a
+start-here section and an ecosystem overview for this repository,
+then visual demos X_eTaL can do today (no machine learning: that is
+X_eTaL-ML's).
+
+| # | Step slug | Delivers |
+| - | --------- | -------- |
+| 1 | start-here | README and catalog: what X_eTaL is and why, the three meanings of extensible, the six repositories with links, a 5-minute path |
+| 2 | fourier-epicycles | a closed curve's discrete Fourier transform as one outer product; circles on circles tracing it; a slider for how many |
+| 3 | sandpile | the abelian sandpile: topples by rotations and masks until stable; the fractal pile; tests for stability, conservation and the abelian property |
+| 4 | gallery-3-release | screenshots, catalog, docs, asks (re-vendor if the speed fix landed), retrospective |
 
 ## Saga 4 -- deferred (blocked on asks): MOVED to X_eTaL-ML
 
