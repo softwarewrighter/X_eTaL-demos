@@ -1,0 +1,6 @@
+# Text the page shows only after X_eTaL has run (scripts/browser-check.sh).
+5 tokens
+3 tokens
+first: expert
+gate 1 =
+its probabilities

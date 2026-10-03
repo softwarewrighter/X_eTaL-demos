@@ -16,6 +16,7 @@ demos work with that are not asks.
 | open | bug | Reading a long strand of Int literals takes quadratic time (8000 Ints: 2.1 s; as Floats: 7 ms) | ca-lab, langtons-ant (boards passed in each frame) | write Int arrays as Float literals and `f_loor` them |
 | open | speed | Whole-array arithmetic is about 50 ns per element per operation (vector kernels, planned upstream) | langtons-ant (the highway needs ~10,000 steps: 20 to 30 s natively), reaction-diffusion, mandelbrot, wave-tank | small grids, a few steps per frame, the page shows each run's time |
 | open | speed | `i_nner` (matrix product) costs about 370 ns per multiply-add, slower than the same product written as broadcast-and-reduce (about 250 ns) and 7x the elementwise rate | ternary-net (a 576-point map through a 16-wide network: 0.64 s for three formats natively) | a 24 x 24 map; the page reruns only the program whose inputs changed |
+| open | feature | Grade along an axis per row (`g_rade_2 M` grades the columns as items, one vector, not each row), for top-k per row | moe-router (top-2 experts per token) | the largest by `'m_ax r_/_2`, masked out, then the largest again |
 | open | feature | `xetal-play`: pass arrays into a program and read them back without text, or keep a session between runs | every page that keeps state (reaction-diffusion, wave-tank, ca-lab, langtons-ant, nbody) | each frame writes the state as literal matrices and parses the printed `r_avel` lines |
 | open | feature | Number literals with an exponent (`1.5e-7`) | mandelbrot (deep zoom), any page writing small or large Floats into a program | the page writes the shortest plain decimal that reads back exactly (`microscope::run::lit`) |
 | open | feature | Complex numbers (planned upstream) | mandelbrot, julia | two Float planes (or two numbers) for the real and imaginary parts |
@@ -139,6 +140,24 @@ with its value, type, shape and source span, exposed through
 Attention is `S <- Q x transpose(K)`; PCA needs the covariance
 `X^T X`. Both read naturally only with a transpose; the two demos are
 deferred until it exists (`docs/plan.md`, saga 4).
+
+### Grade per row
+
+A router keeps each token's top two experts: a top-k along each row
+of a matrix. `g_rade` grades the items along the first axis, and with
+a subscript moves that axis first, so `g_rade_2 M` grades the columns
+as whole items and returns one vector:
+
+```
+$ xetal eval -e "M := 2 4 r_eshape 0.1 0.5 0.3 0.9 0.7 0.2 0.8 0.1
+g_rade_2 M"
+1 3 2 4
+```
+
+Ask: a grade (and sort) of each row along an axis (a rank-preserving
+`g_rade` under a subscript, or a rank operator), so top-k is `k t_ake_2`
+of a per-row grade. Workaround in moe-router: the largest of each row
+(`'m_ax r_/_2`) as a mask, taken out, then the largest again.
 
 ### Inner product speed
 

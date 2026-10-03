@@ -160,6 +160,24 @@ canvas.pic.mapc { width: 100%; }
 .term { padding: 2px 6px; border-radius: 6px; border: 1px solid var(--line); font-weight: 700; }
 .term.plus { color: #2f9e44; } .term.minus { color: #e03131; }
 .outs td.best code { font-weight: 700; text-decoration: underline; }
+.routes { display: block; width: 100%; height: auto; }
+.routes .route { fill: none; stroke: var(--muted); opacity: .25; }
+.routes .route.sel { stroke: #e8590c; opacity: .95; }
+.routes .tok { fill: var(--fg); font-size: 15px; cursor: pointer; }
+.routes .tok.sel { fill: #e8590c; font-weight: 700; }
+.routes .expert rect { stroke: var(--line); stroke-width: 1; }
+.routes .expert.sel rect { stroke: #e8590c; stroke-width: 3; }
+.routes .ename { font-size: 12px; fill: #1d1d1f; }
+.routes .eload { font-size: 12px; fill: #5f3dc4; font-weight: 600; }
+input.sentence { font: inherit; padding: 5px 10px; border-radius: 8px; border: 1px solid var(--line);
+  background: var(--card); color: var(--fg); min-width: 280px; flex: 1 1 280px; }
+.egrid { border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: .85rem; }
+.egrid td { border: 1px solid var(--line); padding: 3px 6px; text-align: right; min-width: 58px; }
+.egrid td.on { background: #e5dbff; color: #1d1d1f; font-weight: 700; box-shadow: inset 0 0 0 2px #e8590c; }
+.bars { display: flex; gap: 4px; align-items: flex-end; height: 120px; }
+.bars .bar { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; }
+.bars .fill { width: 100%; background: #9775fa; border-radius: 3px 3px 0 0; min-height: 1px; }
+.bars span { font-size: .7rem; color: var(--muted); }
 @media (max-width: 760px) {
   .formats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .layout { grid-template-columns: 1fr; }
