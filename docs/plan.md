@@ -149,6 +149,15 @@ Learned:
 
 ## Saga 3 -- physics and ML (implementable now)  [ACTIVE]
 
+The machine-learning demos move to `../X_eTaL-ML`
+(<https://github.com/softwarewrighter/X_eTaL-ML>; the user's decision,
+2026-10-03, after `../X_eTaL/docs/research3.txt`): ternary-net,
+moe-router (with the nudge) and cnn-digits are copied there, and
+X_eTaL-ML plans its own sagas for the rest of the ML work. This repo
+starts no new ML demo and deletes none until X_eTaL-ML has them; the
+handoff is `docs/xetal-ml-asks.md`.
+
+
 | # | Step slug | Delivers |
 | - | --------- | -------- |
 | 1 | nbody | 2 x N x N displacements by broadcasting (component axis first: `c_at` stacks along the first axis), the cube shown, reduced to 2 x N accelerations; leapfrog; no loops in the program. Done: four presets, tests for momentum, F_ij = -F_ji, Kepler's period and a direct loop; about 3 ms per 50-body step natively |
@@ -158,10 +167,15 @@ Learned:
 | 5 | moe-router | 16 experts, a sentence's tokens routed by `token x router_weights`, top-2; animated routes and the routing vector. Done: a 37-word vocabulary of 8 features, experts on a 4 x 4 feature grid so words route by meaning; top-2 by masks (per-row grade ask filed); typed sentences |
 | 6 | moe-epsilon | perturb an embedding x + epsilon with a slider and show where the selected experts jump (the routing-discontinuity regions); link to moe-microscope. Done in moe-router (one program, one page): x0 + eps d along a path and x0 + a d1 + b d2 over a plane, by outer products; the strip of gates along eps, the boundaries, a slice map by pair (straight-edged regions); boundaries tested against a direct computation on a 1000x finer grid |
 | 7 | cnn-weights | a tiny MNIST CNN trained offline (script in `demos/cnn-digits/train/`), weights exported as X_eTaL-readable data. Done: MNIST fetched by `scripts/mnist.sh` (MD5-checked, gitignored work/mnist/, the user agreed to the download); conv 3x3x8 -> ReLU -> pool -> dense 10 trained by std-only Rust in 12 s, 97.82% on the 10,000 test digits; weights and ten sample digits as literals in cnn-digits.xtl, whose X_eTaL forward pass reads all ten right (`just cnn-train`) |
-| 8 | cnn-digits | draw a 28 x 28 digit; conv -> ReLU -> pool -> dense -> softmax in X_eTaL; click any conv output to see input patch x kernel = value |
-| 9 | gallery-2-release | catalog, docs, retrospective |
+| 8 | asks-sweep | Inserted (research3: downstream asks lag upstream): refresh the vendored X_eTaL, re-run every ask's repro, mark landed asks, remove their workarounds in the non-ML demos |
+| 9 | gallery-2-release | catalog, docs, retrospective for the visual and scientific gallery (the ML demos stay listed until X_eTaL-ML has them) |
+| 10 | cnn-digits | MOVED to X_eTaL-ML (blocked here): draw a digit, every CNN stage shown; see `docs/xetal-ml-asks.md` |
 
-## Saga 4 -- deferred (blocked on asks)
+## Saga 4 -- deferred (blocked on asks): MOVED to X_eTaL-ML
+
+All four demos below are machine learning: X_eTaL-ML plans them
+(`docs/xetal-ml-asks.md`); this repo will not start them. The table is
+kept as the record of what they wait on.
 
 Not started until the asks each demo needs have landed in a vendored
 X_eTaL release; the saga opens with a vendor refresh and a

@@ -1,0 +1,1 @@
+BLOCKED: Moved to X_eTaL-ML (user decision 2026-10-03, research3): the ML repo plans the cnn-digits web app; handoff in docs/xetal-ml-asks.md

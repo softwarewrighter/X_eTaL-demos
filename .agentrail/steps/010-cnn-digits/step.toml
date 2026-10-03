@@ -1,6 +1,6 @@
-number = 8
+number = 10
 slug = "cnn-digits"
-status = "pending"
+status = "blocked"
 description = "physics-ml step 7: demos/cnn-digits. Draw a 28x28 digit; X_eTaL runs conv (by..."
 role = "production"
 context_files = []

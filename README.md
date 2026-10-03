@@ -33,6 +33,11 @@ catalog.
 
 ## Demos
 
+The machine-learning demos (the 1.58-bit network, the MoE routing
+microscope and the tiny CNN, and future ones such as attention) are
+moving to their own repository, X_eTaL-ML; until it has them they stay
+here. See [`docs/xetal-ml-asks.md`](docs/xetal-ml-asks.md).
+
 | Demo | What you see | Array ideas | Status |
 | ---- | ------------ | ----------- | ------ |
 | [Life microscope](demos/life-microscope/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/life-microscope/)) | Conway's Life, with the nine shifted boards and their sum | rotate, reduce, masks | live |
@@ -46,10 +51,10 @@ catalog.
 | [Image pipeline](demos/image-pipeline/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/image-pipeline/)) | blur, Sobel edges, threshold, pooling; edit the kernels, click a pixel for its window | windows by rotation, reduce, reshape | live |
 | [1.58-bit network](demos/ternary-net/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/ternary-net/)) | one classifier with FP32, FP16, INT8 and ternary weights compared; a ternary layer as additions | inner product, quantization, masks | live |
 | [MoE routing microscope](demos/moe-router/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/moe-router/)) | a sentence's tokens routed to their top-2 of 16 experts; nudge a token and see where the experts switch | matrix product, softmax, top-k by masks | live |
-| Tiny CNN | draw a digit, see each layer | windows, convolution | planned |
-| Attention microscope | the attention heatmap, rows meeting columns | matrix algebra, softmax | waiting on X_eTaL |
-| Embedding explorer | PCA from 64 dimensions to a 3-D cloud | covariance, projection | waiting on X_eTaL |
-| Tiny world model | predicting the next frame of a ball's world | recurrence, prediction | waiting on X_eTaL |
+| [Tiny CNN](demos/cnn-digits/README.md) | a CNN trained on MNIST reads a digit (97.82% on the test set); the drawing page moves to X_eTaL-ML | windows, convolution | draft, moving to X_eTaL-ML |
+| Attention microscope | the attention heatmap, rows meeting columns | matrix algebra, softmax | planned in X_eTaL-ML |
+| Embedding explorer | PCA from 64 dimensions to a 3-D cloud | covariance, projection | planned in X_eTaL-ML |
+| Tiny world model | predicting the next frame of a ball's world | recurrence, prediction | planned in X_eTaL-ML |
 | Diffusion from noise | an image denoised step by step | tensor transforms | waiting on X_eTaL |
 
 A demo's name links to its own page (`demos/<name>/README.md`, with a
@@ -177,6 +182,8 @@ and a push.
 
 - [X_eTaL](https://github.com/softwarewrighter/X_eTaL) -- the language
   ([try it live](https://softwarewrighter.github.io/X_eTaL/))
+- [X_eTaL-ML](https://github.com/softwarewrighter/X_eTaL-ML) -- the
+  machine-learning demos, moving there from this repository
 - [sw-mlpl](https://github.com/sw-ml-study/sw-mlpl) -- Software
   Wrighter's Machine Learning Programming Language, a Rust array
   language inspired by APL, APL2, J, and BQN.
