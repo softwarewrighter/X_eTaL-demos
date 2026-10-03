@@ -1,0 +1,9 @@
+# One demo's description: read by scripts/demos.py for the tests, the
+# README's demo list and the live catalog (pages/index.html).
+slug = "moe-router"
+title = "MoE routing microscope"
+summary = "A mixture-of-experts router: a sentence's tokens scored against 16 experts by one matrix product, softmax, top-2 by masks, gates and the experts' load. Words route by meaning; type your own sentence."
+concepts = ["inner product", "softmax by row", "top-k by masks", "reduce"]
+status = "live"
+order = 65
+needs = ["per-row grade"]

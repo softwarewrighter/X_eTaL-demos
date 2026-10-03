@@ -76,9 +76,14 @@ for slug in ${slugs[@]+"${slugs[@]}"}; do
     name="browser-$slug"
     breg() { (cd "$root" && REG_RS_DATA_DIR="$d/reg" reg-rs "$@"); }
     if [ "${XETAL_BLESS:-}" = 1 ]; then
-      bless "$root" "$d/reg" "$name" "scripts/browser-check.sh $slug" \
-        "$slug: the built page run in headless Chrome shows X_eTaL's results"
-      echo "blessed: $slug/$name"
+      # A browser baseline records a passing check only.
+      if ! (cd "$root" && scripts/browser-check.sh "$slug" >/dev/null); then
+        echo "FAIL: $slug/$name: the browser check fails, not blessed:"; (cd "$root" && scripts/browser-check.sh "$slug") || true; fail=1
+      else
+        bless "$root" "$d/reg" "$name" "scripts/browser-check.sh $slug" \
+          "$slug: the built page run in headless Chrome shows X_eTaL's results"
+        echo "blessed: $slug/$name"
+      fi
     elif [ ! -f "$d/reg/$name.rgt" ]; then
       echo "FAIL: $slug/$name: no reg/$name.rgt (XETAL_BLESS=1 to create)"; fail=1
     elif breg run -q -p "$name"; then
