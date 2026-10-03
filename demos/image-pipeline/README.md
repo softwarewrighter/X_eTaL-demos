@@ -79,8 +79,8 @@ just test-demo image-pipeline    # its CLI and browser baselines and the web app
 The masks are bound as Floats (`disk := f_loat (...) < 300`): a
 condition bound to a name cannot be used in arithmetic, though the
 same comparison written inline can (an ask in
-[`docs/xetal-asks.md`](../../docs/xetal-asks.md)). `ky` is written by
-the page as `kx` turned, because X_eTaL has no transpose yet.
+[`docs/xetal-asks.md`](../../docs/xetal-asks.md)). `ky` is `kx`
+transposed (`ky := o_\ kx`).
 Rotation wraps, so the filters see the picture as a torus: the
 shapes picture keeps a plain background at its edges so the wrap does
 not show; in the others it shows as edges along the border. The page writes the picture's program and kernels into each run,

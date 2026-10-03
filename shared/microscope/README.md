@@ -6,7 +6,7 @@ source. This crate (`microscope`) is what the pages share.
 
 | Module | What it gives a page |
 | ------ | -------------------- |
-| `run` | `output(src, lines)` runs a program (the vendored `xetal-play`) and returns its printed lines, or the X_eTaL error; `numbers(line, n)` reads one printed array (`r_avel`); `lit(x)` writes a Float as an X_eTaL literal (plain decimal: X_eTaL literals have no exponent); `matrix(name, rows, cols, items)` binds a matrix; `section(src, start, end)` cuts the core out of a demo's `.xtl`; `now()` times a run |
+| `run` | `output(src, lines)` runs a program (the vendored `xetal-play`) and returns its printed lines, or the X_eTaL error; `numbers(line, n)` reads one printed array (`r_avel`); `lit(x)` writes a Float as an X_eTaL literal (the shortest form that reads back exactly, with an exponent when small); `matrix(name, rows, cols, items)` binds a matrix; `section(src, start, end)` cuts the core out of a demo's `.xtl`; `now()` times a run |
 | `source` | `code(src)` draws any snippet decorated and coloured, as X_eTaL renders it; `line(src, range)` and `block(src, range)` draw a line or a program with `range` highlighted as one block; `between` and `find` compute ranges; `shape(dims, meaning)` labels a shape as `s_hape = ...` with a tooltip |
 | `canvas`, `colour` | `Canvas` draws an RGBA array scaled to its box and reports clicks as (row, column); `colour` turns arrays into pixels (`field`, `scaled`, `signed`, `mask`, `ramp`) |
 | `cells` | small boards as clickable HTML cells (0 / 1 boards, shaded counts with numbers) |

@@ -76,11 +76,11 @@ fn the_orbit_agrees_with_the_grid() {
 }
 
 #[test]
-fn literals_have_no_exponent_and_round_trip() {
+fn literals_round_trip() {
+    // The shortest form, with an exponent when small (X_eTaL reads it).
     for x in [0.0, 1.0, -0.6, 3.0 / 65536.0, -1.234e-11, 2.5e-300, 123456.789, 1e-12] {
         let s = lit(x);
-        assert!(!s.contains('e') && s.contains('.'), "{x} as {s}");
-        assert!((s.parse::<f64>().unwrap() - x).abs() <= x.abs() * 1e-15, "{x} as {s}");
+        assert_eq!(s.parse::<f64>().unwrap(), x, "{x} as {s}");
     }
 }
 

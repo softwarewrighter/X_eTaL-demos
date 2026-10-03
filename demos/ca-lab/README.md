@@ -75,8 +75,6 @@ just test-demo ca-lab    # its CLI and browser baselines and the web app's tests
 
 ## Workarounds
 
-The page passes the 2-D board into each run as Float literals floored
-to Int: X_eTaL reads a long strand of Int literals in quadratic time
-(a 48 by 64 board took 283 ms for 4 steps that way, 16 ms as Floats;
-listed in [`docs/xetal-asks.md`](../../docs/xetal-asks.md)). Booleans
-are turned into Ints with `1 *` where they meet the Int state.
+The page passes the 2-D board into each run as a literal matrix,
+because each run is a fresh X_eTaL program. Booleans are turned into
+Ints with `1 *` where they meet the Int state.

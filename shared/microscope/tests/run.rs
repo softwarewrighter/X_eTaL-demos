@@ -1,12 +1,13 @@
 use microscope::run::{lit, lit_or_zero, matrix, numbers, output, section};
 
 #[test]
-fn literals_have_no_exponent_and_read_back() {
+fn literals_are_short_and_read_back() {
     for x in [1.0, -0.6, 3.0 / 65536.0, -1.234e-11, 2.5e-300, 123456.789, 0.1 + 0.2] {
         let s = lit(x);
-        assert!(!s.contains('e') && s.contains('.'), "{x} as {s}");
+        assert!(s.contains('.') || s.contains('e'), "{x} as {s}");
         assert_eq!(s.parse::<f64>().unwrap(), x, "{x} as {s}");
     }
+    assert_eq!(lit(1.5e-7), "1.5e-7");
     assert_eq!(lit(0.0), "0.0");
     assert_eq!(lit(-0.8), "-0.8");
     assert_eq!(lit(3.0), "3.0");
@@ -15,9 +16,10 @@ fn literals_have_no_exponent_and_read_back() {
 
 #[test]
 fn literals_run_in_x_etal() {
-    let x = 4.57763671875e-5;
-    let out = output(&format!("{} * 2.0", lit(x)), 1).unwrap();
-    assert_eq!(numbers::<f64>(&out[0], 1).unwrap(), vec![x * 2.0]);
+    for x in [4.57763671875e-5, -1.234e-11, 0.1 + 0.2, 6.02e23] {
+        let out = output(&format!("{} * 2.0", lit(x)), 1).unwrap();
+        assert_eq!(numbers::<f64>(&out[0], 1).unwrap(), vec![x * 2.0], "{}", lit(x));
+    }
 }
 
 #[test]

@@ -126,7 +126,7 @@ fn kernels(model: &UseReducerHandle<Model>) -> Html {
     html! {
         <section class="panel">
             <h2>{"The kernels"}</h2>
-            <p class="note">{"Edit any number, or pick a preset; X_eTaL reruns the whole pipeline. ky is kx turned a quarter, written by the page (X_eTaL has no transpose yet)."}</p>
+            <p class="note">{"Edit any number, or pick a preset; X_eTaL reruns the whole pipeline. ky is kx turned a quarter: ky := o_\\ kx, the transpose."}</p>
             <div class="kernels">
                 <div><div class="kname">{code("blur")}{" "}{ select("Blur kernel", BLURS.iter().map(|b| b.0).collect(), m.blur, on_blur) }</div>{ editor(&m.setup.blur, Some(blur_cell)) }</div>
                 <div><div class="kname">{code("kx")}{" "}{ select("Edge kernel", EDGES.iter().map(|b| b.0).collect(), m.edge, on_edge) }</div>{ editor(&m.setup.kx, Some(edge_cell)) }</div>

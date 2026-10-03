@@ -8,9 +8,9 @@ fn the_page_runs_the_command_line_programs_core() {
 }
 
 #[test]
-fn literals_have_no_exponent() {
-    for x in [1.0, 0.25, -0.0123, 3.3e-9, 1e-20] {
-        assert!(!lit(x).contains('e'), "{x}: {}", lit(x));
+fn literals_read_back_and_tiny_ones_are_zero() {
+    for x in [1.0, 0.25, -0.0123, 3.3e-9] {
+        assert_eq!(lit(x).parse::<f64>().unwrap(), x, "{x}: {}", lit(x));
     }
     assert_eq!(lit(1e-20), "0.0");
 }

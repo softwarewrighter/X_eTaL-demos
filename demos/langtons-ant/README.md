@@ -66,8 +66,7 @@ just test-demo langtons-ant    # its CLI and browser baselines and the web app's
 
 ## Workarounds
 
-The board goes into each run as Float literals floored to Int (Int
-strands are slow to read). The direction is kept as a plane of the
+The board goes into each run as a literal matrix. The direction is kept as a plane of the
 state, the same in every cell, because the state must be one array.
 There is no functional update (amend) in X_eTaL yet; here the mask
 makes one unnecessary, which is the point of the demo.

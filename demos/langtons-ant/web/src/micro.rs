@@ -45,13 +45,13 @@ pub struct Last {
 pub fn program(ant: &Ant, steps: usize) -> String {
     format!(
         "rows := {N}\ncols := {N}\n{}row := (o_ffsets rows) 'l_eft t_able o_ffsets cols\n\
-         col := (o_ffsets rows) 'r_ight t_able o_ffsets cols\n{}b0 := f_loor b0f\n\
+         col := (o_ffsets rows) 'r_ight t_able o_ffsets cols\n{}\
          a0 := 1 * (row = {}) & col = {}\nd0 := {} + 0 * row\n\
          prev := {} 'u:s_tep p_ower (u:p_lane b0) c_at (u:p_lane a0) c_at u:p_lane d0\ns := u:s_tep prev\n\
          r_avel 1 s_elect s\nw_here r_avel 2 s_elect s\nf_irst r_avel 3 s_elect s\n\
          w_here r_avel 2 s_elect prev\nf_irst r_avel 3 s_elect prev\n'+ r_/ r_avel (2 s_elect prev) * 1 s_elect prev\n",
         core(),
-        matrix("b0f", N, N, ant.board.iter().map(|v| format!("{v}.0"))),
+        matrix("b0", N, N, ant.board.iter().map(|v| v.to_string())),
         ant.y,
         ant.x,
         ant.dir,

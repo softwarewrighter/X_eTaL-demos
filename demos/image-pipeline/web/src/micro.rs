@@ -49,7 +49,8 @@ pub const EDGES: &[(&str, Kernel)] = &[
     ("Central difference", [0.0, 0.0, 0.0, -1.0, 0.0, 1.0, 0.0, 0.0, 0.0]),
 ];
 
-/// `k` turned a quarter (its transpose): the y kernel from the x one.
+/// `k` turned a quarter (its transpose), as `o_\ kx` gives `ky`: for
+/// showing ky and for the tests.
 pub fn turn(k: &Kernel) -> Kernel {
     let mut t = [0.0; 9];
     for a in 0..3 {
@@ -100,7 +101,7 @@ fn kernel(name: &str, k: &Kernel) -> String {
 
 /// The page's settings: the kernels and the threshold, as X_eTaL.
 pub fn settings(s: &Setup) -> String {
-    format!("{}{}{}thresh := {}\n", kernel("blur", &s.blur), kernel("kx", &s.kx), kernel("ky", &turn(&s.kx)), lit(s.thresh))
+    format!("{}{}ky := o_\\ kx\nthresh := {}\n", kernel("blur", &s.blur), kernel("kx", &s.kx), lit(s.thresh))
 }
 
 /// The program: the size, coordinates, picture, settings and core,

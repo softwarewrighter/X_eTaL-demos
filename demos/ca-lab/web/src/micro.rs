@@ -110,15 +110,14 @@ pub struct Step2 {
     pub next: Vec<i64>,
 }
 
-/// The board goes in as Float literals floored to Int: a strand of Int
-/// literals takes X_eTaL quadratic time to read (docs/xetal-asks.md).
+/// The board goes in as a matrix of Int literals.
 pub fn program_2d(table: &[i64], board: &[i64], steps: usize) -> String {
     format!(
-        "{}tbl := {}\n{}b0 := f_loor b0f\nb := {} '{{ b -> tbl u:l_ook b }} p_ower b0\n\
+        "{}tbl := {}\n{}b := {} '{{ b -> tbl u:l_ook b }} p_ower b0\n\
          r_avel b\nr_avel u:c_ount b\nr_avel (9 * b) + u:c_ount b\nr_avel tbl u:l_ook b\n",
         core(),
         ints(table),
-        matrix("b0f", ROWS, COLS, board.iter().map(|v| format!("{v}.0"))),
+        matrix("b0", ROWS, COLS, board.iter().map(|v| v.to_string())),
         steps.max(1) - 1
     )
 }
