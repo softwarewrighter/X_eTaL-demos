@@ -1,6 +1,6 @@
 number = 9
 slug = "gallery-2-release"
-status = "pending"
+status = "in-progress"
 description = "physics-ml step 8: release: screenshots (just screenshots), catalog order and..."
 role = "production"
 context_files = []

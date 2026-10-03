@@ -29,7 +29,7 @@ for slug in "${slugs[@]}"; do
     ( sleep 60; kill "$shot" 2>/dev/null ) &
     dog=$!
     wait "$shot" 2>/dev/null || true
-    kill "$dog" 2>/dev/null || true
+    kill "$dog" 2>/dev/null || true; wait "$dog" 2>/dev/null || true
     [ -s "$tmp/$slug.png" ] && break
     echo "screenshots: $slug timed out (try $try)" >&2
   done

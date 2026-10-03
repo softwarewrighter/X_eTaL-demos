@@ -34,9 +34,10 @@ catalog.
 ## Demos
 
 The machine-learning demos (the 1.58-bit network, the MoE routing
-microscope and the tiny CNN, and future ones such as attention) are
-moving to their own repository, X_eTaL-ML; until it has them they stay
-here. See [`docs/xetal-ml-asks.md`](docs/xetal-ml-asks.md).
+microscope, the tiny CNN, and future ones such as attention) are in
+their own repository, [X_eTaL-ML](https://github.com/softwarewrighter/X_eTaL-ML)
+([live](https://softwarewrighter.github.io/X_eTaL-ML/)); they were made
+here and moved there (`docs/xetal-ml-asks.md`).
 
 | Demo | What you see | Array ideas | Status |
 | ---- | ------------ | ----------- | ------ |
@@ -49,13 +50,6 @@ here. See [`docs/xetal-ml-asks.md`](docs/xetal-ml-asks.md).
 | [Langton's ant](demos/langtons-ant/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/langtons-ant/)) | a highway emerging from chaos | one-hot masks, rotation | live |
 | [N-body gravity](demos/nbody/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/nbody/)) | a figure-eight three-body orbit, a binary with planets, a collapsing cluster; the pairwise force cube | pairwise broadcasting, reduce | live |
 | [Image pipeline](demos/image-pipeline/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/image-pipeline/)) | blur, Sobel edges, threshold, pooling; edit the kernels, click a pixel for its window | windows by rotation, reduce, reshape | live |
-| [1.58-bit network](demos/ternary-net/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/ternary-net/)) | one classifier with FP32, FP16, INT8 and ternary weights compared; a ternary layer as additions | inner product, quantization, masks | live |
-| [MoE routing microscope](demos/moe-router/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/moe-router/)) | a sentence's tokens routed to their top-2 of 16 experts; nudge a token and see where the experts switch | matrix product, softmax, top-k by masks | live |
-| [Tiny CNN](demos/cnn-digits/README.md) | a CNN trained on MNIST reads a digit (97.82% on the test set); the drawing page moves to X_eTaL-ML | windows, convolution | draft, moving to X_eTaL-ML |
-| Attention microscope | the attention heatmap, rows meeting columns | matrix algebra, softmax | planned in X_eTaL-ML |
-| Embedding explorer | PCA from 64 dimensions to a 3-D cloud | covariance, projection | planned in X_eTaL-ML |
-| Tiny world model | predicting the next frame of a ball's world | recurrence, prediction | planned in X_eTaL-ML |
-| Diffusion from noise | an image denoised step by step | tensor transforms | waiting on X_eTaL |
 
 A demo's name links to its own page (`demos/<name>/README.md`, with a
 screenshot) once it exists. What the "waiting" demos need from X_eTaL is listed in
@@ -71,7 +65,8 @@ Prerequisites:
 - for the browser demos: `rustup target add wasm32-unknown-unknown`
   and [trunk](https://trunkrs.dev) (`brew install trunk` or
   `cargo install trunk`)
-- for the gate (maintainers): `sw-markdown-checker`
+- for the gate (maintainers): `sw-markdown-checker`, `reg-rs` and
+  Google Chrome (the browser tests)
 
 ```bash
 just                                 # list the tasks
@@ -150,15 +145,16 @@ to `main` runs a GitHub Actions workflow
 
 ## Status
 
-Early. The project process, plan and build scaffolding are in place,
-and the bundled X_eTaL builds and is checked by the gate (its
-command-line interpreter, and its library natively and for
-WebAssembly). The demo layout, its test runner and the live catalog
-are in place, and the Life microscope, Mandelbrot and
-reaction-diffusion, Julia set, wave tank, cellular automata lab and
-Langton's ant demos are live, on a shared page shell. Next: N-body
-gravity, an image pipeline, a 1.58-bit network, an MoE routing
-microscope and a tiny CNN. See
+Nine demos are live on a shared page shell, each runnable at the
+command line and in the browser on the bundled X_eTaL (abb8274): the
+Life microscope, Mandelbrot and Julia sets, reaction-diffusion, the
+wave tank, the cellular automata lab, Langton's ant, N-body gravity
+and the image pipeline. Every demo's programs are tested at the
+command line and its page in headless Chrome, both as reg-rs
+baselines, with the page's model tested natively. The machine-learning
+demos moved to X_eTaL-ML (above). X_eTaL's latest release made `t_able`
+and `i_nner` slower, so some pages are slower than they were (filed in
+[`docs/xetal-asks.md`](docs/xetal-asks.md)). See
 [`docs/plan.md`](docs/plan.md) for the roadmap.
 
 ## Documentation
@@ -183,7 +179,7 @@ and a push.
 - [X_eTaL](https://github.com/softwarewrighter/X_eTaL) -- the language
   ([try it live](https://softwarewrighter.github.io/X_eTaL/))
 - [X_eTaL-ML](https://github.com/softwarewrighter/X_eTaL-ML) -- the
-  machine-learning demos, moving there from this repository
+  machine-learning demos ([live](https://softwarewrighter.github.io/X_eTaL-ML/))
 - [sw-mlpl](https://github.com/sw-ml-study/sw-mlpl) -- Software
   Wrighter's Machine Learning Programming Language, a Rust array
   language inspired by APL, APL2, J, and BQN.

@@ -67,8 +67,9 @@ X_eTaL has no complex numbers yet, so z and c are each two Float
 arrays (their real and imaginary parts) and the state stacks them as
 planes; with complex numbers the step would be `z * z + c`. Listed in
 [`docs/xetal-asks.md`](../../docs/xetal-asks.md). The orbit table is
-computed as two `e_ach` passes (real parts, then imaginary parts),
-because `e_ach` cannot yet return a vector per item (nested arrays).
+computed as two `e_ach` passes (real parts, then imaginary parts):
+`m_ap` can now give each item a vector, but boxed, and X_eTaL has no
+mix yet to turn the boxes back into a table (an ask in the same file).
 The page writes the view's numbers into the program in their shortest
 form, with an exponent when small (`1.5e-7`). Zooming stops at
 a width of about 1e-12, where 64-bit floats can no longer tell

@@ -155,7 +155,8 @@ The machine-learning demos move to `../X_eTaL-ML`
 moe-router (with the nudge) and cnn-digits are copied there, and
 X_eTaL-ML plans its own sagas for the rest of the ML work. This repo
 starts no new ML demo and deletes none until X_eTaL-ML has them; the
-handoff is `docs/xetal-ml-asks.md`.
+handoff is `docs/xetal-ml-asks.md`. Done the same day: X_eTaL-ML's
+live pages run the three demos, and their copies here were removed.
 
 
 | # | Step slug | Delivers |
@@ -168,8 +169,34 @@ handoff is `docs/xetal-ml-asks.md`.
 | 6 | moe-epsilon | perturb an embedding x + epsilon with a slider and show where the selected experts jump (the routing-discontinuity regions); link to moe-microscope. Done in moe-router (one program, one page): x0 + eps d along a path and x0 + a d1 + b d2 over a plane, by outer products; the strip of gates along eps, the boundaries, a slice map by pair (straight-edged regions); boundaries tested against a direct computation on a 1000x finer grid |
 | 7 | cnn-weights | a tiny MNIST CNN trained offline (script in `demos/cnn-digits/train/`), weights exported as X_eTaL-readable data. Done: MNIST fetched by `scripts/mnist.sh` (MD5-checked, gitignored work/mnist/, the user agreed to the download); conv 3x3x8 -> ReLU -> pool -> dense 10 trained by std-only Rust in 12 s, 97.82% on the 10,000 test digits; weights and ten sample digits as literals in cnn-digits.xtl, whose X_eTaL forward pass reads all ten right (`just cnn-train`) |
 | 8 | asks-sweep | Inserted (research3: downstream asks lag upstream). Done: vendored X_eTaL abb8274 (its own commit; every CLI baseline and web test unchanged); every ask re-run: landed Int strands, exponent literals, transpose (workarounds removed in ca-lab, langtons-ant, `microscope::run::lit`, image-pipeline's `ky := o_\ kx`), partly landed elementwise speed (about 8x) and nested results (`m_ap`, no mix yet); filed a regression: `t_able` 2.7x and `i_nner` 1.5x slower, pages 1.7 to 2.2x slower (kept, the user's choice; not blocking) |
-| 9 | gallery-2-release | catalog, docs, retrospective for the visual and scientific gallery (the ML demos stay listed until X_eTaL-ML has them) |
+| 9 | gallery-2-release | Done: every screenshot retaken (the corrected logo); the ML demos removed once X_eTaL-ML's live pages ran them (recipes, mnist script, ML CSS too), the catalog and README linking X_eTaL-ML; README status; per-demo READMEs checked (timings with the regression, nbody's transpose note, mandelbrot's mix); asks reviewed against every workaround (one language property added: only a single value extends); retrospective |
 | 10 | cnn-digits | MOVED to X_eTaL-ML (blocked here): draw a digit, every CNN stage shown; see `docs/xetal-ml-asks.md` |
+
+### Saga 3 retrospective
+
+- Delivered: N-body gravity and the image pipeline (here), the 1.58-bit
+  network, the MoE routing microscope with its nudge, and the CNN's
+  weights (moved to X_eTaL-ML the same day, at the user's decision
+  after research3), plus two inserted steps.
+- The user's audit question ("are these real?") was the turning point:
+  the pages did run the vendored engine on the demos' own .xtl (one
+  page held a copied rule, fixed), but tests were golden files and
+  native model tests only. Now each demo has reg-rs baselines for its
+  CLI programs and for its built page in headless Chrome; a bless
+  guard stops a failing browser check from becoming a baseline (it
+  happened once, caught before commit).
+- Array idioms that worked: windows as two list rotations (Life,
+  the image pipeline, the CNN), outer products for pairs and paths
+  (N-body's cube, the router's nudge), one model array to stay within
+  two arguments (ternary-net), masks for top-k.
+- X_eTaL asks filed: bound conditions in arithmetic, `i_nner` speed,
+  per-row grade; then the vendor refresh landed transpose, exponent
+  literals and fast Int strands (workarounds removed) and brought a
+  `t_able` / `i_nner` speed regression (filed; pages slower, not
+  blocking).
+- Process: parallel sessions share the machine (ports, Chrome, CPU):
+  free ports for servers, private Chrome profiles, and timings checked
+  twice before they are believed.
 
 ## Saga 4 -- deferred (blocked on asks): MOVED to X_eTaL-ML
 
