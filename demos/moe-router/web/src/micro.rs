@@ -122,3 +122,80 @@ pub fn run(sentence: &str) -> Result<Anatomy, String> {
         load: numbers(&out[4], EXPERTS)?,
     })
 }
+
+/// The nudge: its settings (word w0 pushed towards wa; the slice also
+/// towards wb; words numbered from 1) and the epsilon section.
+pub fn nudge_core() -> &'static str {
+    section(SOURCE, "# -- epsilon", "# -- end of the nudge")
+}
+
+/// Samples along epsilon (0 to 1.2) and the slice's side.
+pub const STEPS: usize = 121;
+pub const SIDE: usize = 40;
+
+/// What the page nudges: words numbered from 1.
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct Nudge {
+    pub w0: usize,
+    pub wa: usize,
+    pub wb: usize,
+}
+
+impl Default for Nudge {
+    fn default() -> Self {
+        Nudge { w0: 19, wa: 9, wb: 32 }
+    }
+}
+
+/// The nudge as X_eTaL computed it.
+#[derive(Clone, Debug, PartialEq)]
+pub struct Nudged {
+    pub eps: Vec<f64>,
+    /// Along epsilon: first and second expert (1 to 16), and the gates.
+    pub first: Vec<f64>,
+    pub second: Vec<f64>,
+    pub gates: Vec<f64>,
+    /// Over the slice: each point's first and second expert.
+    pub slice_first: Vec<f64>,
+    pub slice_second: Vec<f64>,
+}
+
+impl Nudged {
+    /// The sample indices i where the pair changes between i and i + 1.
+    pub fn changes(&self) -> Vec<usize> {
+        (0..self.eps.len() - 1).filter(|&i| (self.first[i], self.second[i]) != (self.first[i + 1], self.second[i + 1])).collect()
+    }
+}
+
+pub fn nudge_program(n: &Nudge) -> String {
+    format!(
+        "{}{}w0 := {}\nwa := {}\nwb := {}\nk := {STEPS}\nside := {SIDE}\n{}\
+         r_avel eps\nr_avel u:f_irst gs\nr_avel u:s_econd gs\nr_avel gs\nr_avel u:f_irst gg\nr_avel u:s_econd gg\n",
+        tables(),
+        core(),
+        n.w0,
+        n.wa,
+        n.wb,
+        nudge_core()
+    )
+}
+
+/// Run the nudge through X_eTaL.
+pub fn run_nudge(n: &Nudge) -> Result<Nudged, String> {
+    let out = output(&nudge_program(n), 6)?;
+    Ok(Nudged {
+        eps: numbers(&out[0], STEPS)?,
+        first: numbers(&out[1], STEPS)?,
+        second: numbers(&out[2], STEPS)?,
+        gates: numbers(&out[3], STEPS * EXPERTS)?,
+        slice_first: numbers(&out[4], SIDE * SIDE)?,
+        slice_second: numbers(&out[5], SIDE * SIDE)?,
+    })
+}
+
+/// The embedding table (37 x 8) and router weights (8 x 16), as X_eTaL
+/// holds them (for the tests' direct computations).
+pub fn tables_values() -> Result<(Vec<f64>, Vec<f64>), String> {
+    let out = output(&format!("{}r_avel E\nr_avel W\n", tables()), 2)?;
+    Ok((numbers(&out[0], 37 * 8)?, numbers(&out[1], 8 * EXPERTS)?))
+}

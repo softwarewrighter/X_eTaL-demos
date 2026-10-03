@@ -5,7 +5,7 @@ use std::rc::Rc;
 use microscope::run::now;
 use yew::Reducible;
 
-use crate::micro::{run, tokens, Anatomy, SENTENCES};
+use crate::micro::{run, run_nudge, tokens, Anatomy, Nudge, Nudged, SENTENCES};
 use crate::view::Stage;
 
 #[derive(Clone, Debug, PartialEq)]
@@ -18,6 +18,11 @@ pub struct Model {
     pub focus: Stage,
     pub ms: f64,
     pub notice: Option<String>,
+    /// The nudge: what is pushed where, the result, the sample shown.
+    pub nudge: Nudge,
+    pub nudged: Option<Rc<Nudged>>,
+    pub cursor: usize,
+    pub nudge_ms: f64,
 }
 
 pub enum Action {
@@ -26,12 +31,26 @@ pub enum Action {
     Tick,
     TogglePlay,
     Focus(Stage),
+    Nudge(Nudge),
+    Cursor(usize),
 }
 
 impl Model {
     pub fn new() -> Self {
-        Model { sentence: String::new(), last: None, token: 0, playing: true, focus: Stage::Top2, ms: 0.0, notice: None }
-            .route(SENTENCES[0].to_string())
+        let m = Model {
+            sentence: String::new(),
+            last: None,
+            token: 0,
+            playing: true,
+            focus: Stage::Top2,
+            ms: 0.0,
+            notice: None,
+            nudge: Nudge::default(),
+            nudged: None,
+            cursor: 60,
+            nudge_ms: 0.0,
+        };
+        m.route(SENTENCES[0].to_string()).push(Nudge::default())
     }
 
     /// Route `sentence`; on an error keep the last good routing.
@@ -43,6 +62,15 @@ impl Model {
         match run(&sentence) {
             Ok(a) => Model { sentence, last: Some(Rc::new(a)), token: 0, ms: now() - t, notice: None, ..self },
             Err(e) => Model { notice: Some(format!("X_eTaL stopped: {e} (showing the last sentence)")), ..self },
+        }
+    }
+
+    /// Run the nudge; on an error keep the last good one.
+    fn push(self, nudge: Nudge) -> Self {
+        let t = now();
+        match run_nudge(&nudge) {
+            Ok(n) => Model { nudge, nudged: Some(Rc::new(n)), nudge_ms: now() - t, ..self },
+            Err(e) => Model { notice: Some(format!("X_eTaL stopped: {e} (showing the last nudge)")), ..self },
         }
     }
 
@@ -68,6 +96,8 @@ impl Reducible for Model {
             Action::Tick => Model { token: (m.token + 1) % m.tokens(), ..m },
             Action::TogglePlay => Model { playing: !m.playing, ..m },
             Action::Focus(f) => Model { focus: f, ..m },
+            Action::Nudge(n) => m.push(n),
+            Action::Cursor(i) => Model { cursor: i.min(crate::micro::STEPS - 1), ..m },
         })
     }
 }

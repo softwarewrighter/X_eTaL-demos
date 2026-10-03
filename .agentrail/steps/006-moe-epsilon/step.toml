@@ -1,6 +1,6 @@
 number = 6
 slug = "moe-epsilon"
-status = "pending"
+status = "in-progress"
 description = "physics-ml step 5: extend moe-router: perturb a token embedding x + epsilon*d..."
 role = "production"
 context_files = []

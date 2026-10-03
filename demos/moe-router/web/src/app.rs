@@ -12,9 +12,9 @@ use microscope::chrome::{chip, footer, header, notice, panel};
 use microscope::colour;
 use microscope::source::code;
 
-use crate::micro::{expert_name, tokens, Anatomy, EXPERTS, FEATURES, SENTENCES};
+use crate::micro::{expert_name, tokens, words, Anatomy, Nudge, Nudged, EXPERTS, FEATURES, SENTENCES, SIDE, STEPS};
 use crate::model::{Action, Model};
-use crate::view::{expert_box, source, token_y, Stage, CELL_H, CELL_W, GAP, GRID_X, STAGES, TOK_X, TOP};
+use crate::view::{expert_box, slice, slice_cell, source, strip, token_y, Stage, CELL_H, CELL_W, GAP, GRID_X, STAGES, TOK_X, TOP};
 
 fn act(m: &UseReducerHandle<Model>, a: impl Fn() -> Action + 'static) -> Callback<MouseEvent> {
     let d = m.dispatcher();
@@ -37,6 +37,7 @@ fn stage_chip(m: &UseReducerHandle<Model>, s: Stage) -> Html {
         Stage::Softmax => ("softmax", "u:s_oftmax", vec![n, EXPERTS], "each token's probabilities over the experts"),
         Stage::Top2 => ("top-2", "u:t_op2 p", vec![n, EXPERTS], "the gates: two per token, 0 elsewhere"),
         Stage::Load => ("load", "u:l_oad gates", vec![EXPERTS], "how many tokens each expert got"),
+        Stage::Nudge => ("nudge", "gs ; gg", vec![STEPS, EXPERTS], "the gates of one token pushed along a direction, step by step"),
     };
     chip(name, src, &dims, meaning, m.focus == s, act(m, move || Action::Focus(s)))
 }
@@ -104,6 +105,71 @@ fn picture(model: &UseReducerHandle<Model>, a: &Anatomy) -> Html {
     };
     panel("Routing:", "gates := u:t_op2 u:s_oftmax u:s_cores x",
         "Each token goes to its two most likely experts; a curve is as wide as its gate. Experts are shaded by load. Click a token to inspect it.", false, body)
+}
+
+fn word_select(label: &str, chosen: usize, on: impl Fn(usize) -> Nudge + 'static, model: &UseReducerHandle<Model>) -> Html {
+    let d = model.dispatcher();
+    let onchange = Callback::from(move |e: Event| {
+        let i = e.target_unchecked_into::<HtmlSelectElement>().selected_index();
+        d.dispatch(Action::Nudge(on(i.max(0) as usize + 1)));
+    });
+    html! { <select {onchange} aria-label={label.to_string()}>
+        { for words().iter().enumerate().map(|(i, w)| html! { <option selected={i + 1 == chosen}>{*w}</option> }) }
+    </select> }
+}
+
+/// Nudge a token: one word's embedding pushed towards another, the
+/// experts chosen along the way, and a slice of the space around it.
+fn nudge(model: &UseReducerHandle<Model>, n: &Nudged) -> Html {
+    let w = words();
+    let nd = model.nudge;
+    let i = model.cursor.min(STEPS - 1);
+    let d = model.dispatcher();
+    let on_eps = Callback::from(move |e: InputEvent| {
+        let v = e.target_unchecked_into::<HtmlInputElement>().value();
+        d.dispatch(Action::Cursor(v.parse().unwrap_or(0)));
+    });
+    let d = model.dispatcher();
+    let on_strip = Some(Callback::from(move |(_, x): (usize, usize)| d.dispatch(Action::Cursor(x))));
+    let (f, s) = (n.first[i] as usize, n.second[i] as usize);
+    let (g1, g2) = (n.gates[i * EXPERTS + f - 1], n.gates[i * EXPERTS + s - 1]);
+    let changes = n.changes();
+    let list = changes.iter().map(|&c| html! { <li>{format!(
+        "between \u{03b5} = {:.2} and {:.2}: experts {} and {} \u{2192} {} and {}",
+        n.eps[c], n.eps[c + 1], n.first[c], n.second[c], n.first[c + 1], n.second[c + 1]
+    )}</li> });
+    let (cr, cc) = slice_cell(n.eps[i], 0.0);
+    let controls = html! { <div class="controls">
+        {"push "}{ word_select("Word", nd.w0, move |k| Nudge { w0: k, ..nd }, model) }
+        {" towards "}{ word_select("Towards", nd.wa, move |k| Nudge { wa: k, ..nd }, model) }
+        {" (the slice also towards "}{ word_select("Also towards", nd.wb, move |k| Nudge { wb: k, ..nd }, model) }{")"}
+        <label class="slider">{"\u{03b5}"}
+            <input type="range" min="0" max={(STEPS - 1).to_string()} value={i.to_string()} oninput={on_eps} />
+            <b>{format!("{:.2}", n.eps[i])}</b>
+        </label>
+        <span class="gen">{format!("X_eTaL routed {} points in {:.0} ms", STEPS + SIDE * SIDE, model.nudge_ms)}</span>
+    </div> };
+    let body = html! { <>
+        { controls }
+        <p class="calc">{format!("At \u{03b5} = {:.2}, \u{201c}{}\u{201d} + \u{03b5} (\u{201c}{}\u{201d} \u{2212} \u{201c}{}\u{201d}) goes to expert {} ({}), gate {:.3}, and expert {} ({}), gate {:.3}.",
+            n.eps[i], w[nd.w0 - 1], w[nd.wa - 1], w[nd.w0 - 1], f, expert_name(f - 1), g1, s, expert_name(s - 1), g2)}</p>
+        <div class="pair">
+            <figure class="wide">
+                <Canvas rows={16} cols={STEPS} rgba={Rc::new(strip(&n.gates, i))} mark={None} onclick={on_strip} class="strip" />
+                <figcaption>{code("gs")}{" : experts 1 to 16 down, \u{03b5} from 0 to 1.2 across; bright where an expert has a gate (the cursor column in orange)"}</figcaption>
+            </figure>
+            <figure>
+                <Canvas rows={SIDE} cols={SIDE} rgba={Rc::new(slice(&n.slice_first, &n.slice_second))} mark={Some((cr, cc))} class="mid" />
+                <figcaption>{code("gg")}{format!(" : x0 + a d1 + b d2, a across, b up; one colour per pair; dark dots: \u{201c}{}\u{201d}, \u{201c}{}\u{201d}, \u{201c}{}\u{201d}", w[nd.w0 - 1], w[nd.wa - 1], w[nd.wb - 1])}</figcaption>
+            </figure>
+        </div>
+        <p class="note">{ if changes.is_empty() { "No change of experts along this path.".to_string() } else { format!("The pair of experts changes {} time{} along the path:", changes.len(), if changes.len() == 1 { "" } else { "s" }) } }</p>
+        <ul class="changes">{ for list }</ul>
+        <p class="note">{"The research point: inputs that are almost the same can go to different experts. The scores are linear in the input, so the regions where a pair of experts wins are cut by straight lines (where two experts' scores tie): a small step across a line switches experts abruptly, while a large step inside a region changes nothing. "}
+            <a href="https://github.com/sw-ml-study/moe-microscope" target="_blank">{"moe-microscope"}</a>{" (live: "}<a href="https://sw-ml-study.github.io/moe-microscope/" target="_blank">{"lessons"}</a>{") builds and inspects whole mixture-of-experts models at this scale."}</p>
+    </> };
+    panel("Nudge a token:", "xs := (eps '* t_able d1) + (o_ffsets k) 'r_ight t_able x0",
+        "One word's embedding pushed towards another's: the same router decides each step. Move \u{03b5}, or pick the words.", model.focus == Stage::Nudge, body)
 }
 
 fn pic(model: &UseReducerHandle<Model>, rows: usize, cols: usize, rgba: Vec<u8>, caption: &str) -> Html {
@@ -185,13 +251,14 @@ pub fn app() -> Html {
     let body = match &model.last {
         Some(a) => html! { <>
             { picture(&model, a) }
+            { for model.nudged.as_ref().map(|n| nudge(&model, n)) }
             <div class="layout even">
                 <div class="col">{ inspector(&model, a) }{ arrays(&model, a) }</div>
                 <div class="col">
                     <section class="panel code">
                         <h2>{"The program"}</h2>
                         <p class="note">{"The router weights and the core of moe-router.xtl, then the lines that route your sentence, run by X_eTaL in your browser; the stage you pick is highlighted."}</p>
-                        { source(&ids, model.focus) }
+                        { source(&ids, &model.nudge, model.focus) }
                     </section>
                 </div>
             </div>
