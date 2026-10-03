@@ -143,7 +143,25 @@ canvas.pic.mid { width: min(100%, 260px); }
 .product .op { font-size: 1.3rem; color: var(--muted); }
 .product .val code { font-size: 1.1rem; }
 canvas.pic.tiny { width: 100%; }
+.formats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 16px; }
+.format h2 { margin-bottom: 8px; }
+canvas.pic.mapc { width: 100%; }
+.stats { width: 100%; margin: 8px 0 4px; }
+.stats td:first-child { text-align: left; color: var(--muted); }
+.glyphrow { display: flex; gap: 14px; flex-wrap: wrap; align-items: flex-start; }
+.glyphfig { margin: 0; }
+.glyphfig figcaption { font-size: .8rem; color: var(--muted); margin-top: 4px; }
+.glyphs { border-collapse: collapse; font-family: "JuliaMono", "DejaVu Sans Mono", Menlo, ui-monospace, monospace; }
+.glyphs td { width: 15px; height: 15px; text-align: center; font-size: .8rem; line-height: 1; padding: 0; border: 1px solid var(--line); }
+.glyphs td.plus { color: #2f9e44; font-weight: 700; } .glyphs td.minus { color: #e03131; font-weight: 700; } .glyphs td.zero { color: var(--muted); }
+.glyphs.pick td { cursor: pointer; }
+.glyphs td.sel { background: #e5dbff; }
+.terms { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0; }
+.term { padding: 2px 6px; border-radius: 6px; border: 1px solid var(--line); font-weight: 700; }
+.term.plus { color: #2f9e44; } .term.minus { color: #e03131; }
+.outs td.best code { font-weight: 700; text-decoration: underline; }
 @media (max-width: 760px) {
+  .formats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .layout { grid-template-columns: 1fr; }
   .line { font-size: 1rem; }
   .gen { margin-left: 0; width: 100%; }

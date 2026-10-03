@@ -44,7 +44,7 @@ catalog.
 | [Langton's ant](demos/langtons-ant/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/langtons-ant/)) | a highway emerging from chaos | one-hot masks, rotation | live |
 | [N-body gravity](demos/nbody/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/nbody/)) | a figure-eight three-body orbit, a binary with planets, a collapsing cluster; the pairwise force cube | pairwise broadcasting, reduce | live |
 | [Image pipeline](demos/image-pipeline/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/image-pipeline/)) | blur, Sobel edges, threshold, pooling; edit the kernels, click a pixel for its window | windows by rotation, reduce, reshape | live |
-| 1.58-bit network | ternary weights versus FP32/FP16/INT8 | ternary arrays, dot products | planned |
+| [1.58-bit network](demos/ternary-net/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/ternary-net/)) | one classifier with FP32, FP16, INT8 and ternary weights compared; a ternary layer as additions | inner product, quantization, masks | live |
 | MoE routing microscope | tokens routed to 16 experts; where routing jumps | top-k, masks | planned |
 | Tiny CNN | draw a digit, see each layer | windows, convolution | planned |
 | Attention microscope | the attention heatmap, rows meeting columns | matrix algebra, softmax | waiting on X_eTaL |

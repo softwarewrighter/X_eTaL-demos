@@ -15,6 +15,7 @@ demos work with that are not asks.
 | ------ | ---- | --- | ----- | ---------- |
 | open | bug | Reading a long strand of Int literals takes quadratic time (8000 Ints: 2.1 s; as Floats: 7 ms) | ca-lab, langtons-ant (boards passed in each frame) | write Int arrays as Float literals and `f_loor` them |
 | open | speed | Whole-array arithmetic is about 50 ns per element per operation (vector kernels, planned upstream) | langtons-ant (the highway needs ~10,000 steps: 20 to 30 s natively), reaction-diffusion, mandelbrot, wave-tank | small grids, a few steps per frame, the page shows each run's time |
+| open | speed | `i_nner` (matrix product) costs about 370 ns per multiply-add, slower than the same product written as broadcast-and-reduce (about 250 ns) and 7x the elementwise rate | ternary-net (a 576-point map through a 16-wide network: 0.64 s for three formats natively) | a 24 x 24 map; the page reruns only the program whose inputs changed |
 | open | feature | `xetal-play`: pass arrays into a program and read them back without text, or keep a session between runs | every page that keeps state (reaction-diffusion, wave-tank, ca-lab, langtons-ant, nbody) | each frame writes the state as literal matrices and parses the printed `r_avel` lines |
 | open | feature | Number literals with an exponent (`1.5e-7`) | mandelbrot (deep zoom), any page writing small or large Floats into a program | the page writes the shortest plain decimal that reads back exactly (`microscope::run::lit`) |
 | open | feature | Complex numbers (planned upstream) | mandelbrot, julia | two Float planes (or two numbers) for the real and imaginary parts |
@@ -138,6 +139,24 @@ with its value, type, shape and source span, exposed through
 Attention is `S <- Q x transpose(K)`; PCA needs the covariance
 `X^T X`. Both read naturally only with a transpose; the two demos are
 deferred until it exists (`docs/plan.md`, saga 4).
+
+### Inner product speed
+
+The 1.58-bit network runs a 2 -> 16 -> 16 -> 3 network (padded to
+16 wide) over a map of points. Measured natively (release):
+
+| Program | Time |
+| ------- | ---- |
+| 4 x (1024 x 16) `'+ '* i_nner` (16 x 16) | 0.39 s (about 370 ns per multiply-add) |
+| the same as `'+ r_/_2` of two spread arrays multiplied | 0.27 s |
+| one forward pass of 1024 points (three layers) | 0.31 s |
+
+Repro: `x := (1024 c_at 16) r_eshape 0.1 0.2 -0.3 0.5 0.7`,
+`w := (16 c_at 16) r_eshape 0.3 -0.1 0.2 0.0 0.4`, then time
+`x '+ '* i_nner w` four times. A specialised kernel for `'+ '* i_nner`
+on Floats (and Ints) would make the demo's map finer and its page
+quicker. Workaround: a 24 x 24 map; the page keeps the FP32, FP16 and
+INT8 maps and reruns only the ternary pass when the threshold moves.
 
 ### A bound condition in arithmetic
 
