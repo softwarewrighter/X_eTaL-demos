@@ -1,0 +1,1 @@
+gallery-2-release: ML demos verified live in X_eTaL-ML then removed here (dirs, pages, recipes, mnist script, ML CSS); catalog/README link X_eTaL-ML; all screenshots retaken (new logo); READMEs checked (regression timings, transpose/mix notes); asks reviewed; saga 3 retrospective. 010-cnn-digits stays blocked: moved to X_eTaL-ML.
