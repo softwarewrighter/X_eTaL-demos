@@ -50,6 +50,34 @@ u:t_op2 := { p ->
 u:l_oad := { g -> '+ r_/ f_loat g > 0.0 }
 # -- end of the core ------------------------------
 
+# -- the nudge: a token pushed towards other words --
+# Word w0 (green) moves towards word wa (fox) by eps
+# from 0 to 1.2 in k steps; the slice spans the
+# directions to wa and to wb (fish), side by side.
+w0 := 19
+wa := 9
+wb := 32
+k := 61
+side := 24
+# -- epsilon: where the experts change --------------
+# Each token's first and second expert, 1 to 16.
+u:f_irst := { g -> '+ r_/_2 (f_loat g = ('m_ax r_/_2 g) 'l_eft t_able o_ffsets 16) * (o_ffsets t_ally g) 'r_ight t_able f_loat r_ange 16 }
+u:s_econd := { g -> ('+ r_/_2 (f_loat g > 0.0) * (o_ffsets t_ally g) 'r_ight t_able f_loat r_ange 16) - u:f_irst g }
+x0 := w0 s_elect E
+d1 := (wa s_elect E) - x0
+d2 := (wb s_elect E) - x0
+# x0 + eps d1 for every eps: one row each.
+eps := 1.2 * (f_loat o_ffsets k) / f_loat k - 1
+xs := (eps '* t_able d1) + (o_ffsets k) 'r_ight t_able x0
+gs := u:t_op2 u:s_oftmax u:s_cores xs
+# The slice: x0 + a d1 + b d2 over a grid of a and b.
+c := -0.25 + 1.5 * (f_loat o_ffsets side) / f_loat side - 1
+sa := r_avel (o_ffsets side) 'r_ight t_able c
+sb := r_avel (r_ev c) 'l_eft t_able o_ffsets side
+xg := (sa '* t_able d1) + (sb '* t_able d2) + (o_ffsets side * side) 'r_ight t_able x0
+gg := u:t_op2 u:s_oftmax u:s_cores xg
+# -- end of the nudge -------------------------------
+
 # "the red fox eats fish in the park": word numbers (from 1).
 ids := 1 17 9 23 32 5 1 26
 x := ids s_elect E
@@ -66,3 +94,13 @@ u:r_ound := { v -> (f_loat f_loor 0.5 + v * 1000.0) / 1000.0 }
 (2 c_at 8) r_eshape (u:r_ound g1) c_at u:r_ound 1.0 - g1
 # The load on the 4 x 4 grid of experts.
 (4 c_at 4) r_eshape u:l_oad gates
+
+# Nudging "green" towards "fox": the first and second experts at each
+# eps, then the eps values where the pair changes.
+(2 c_at k) r_eshape (u:f_irst gs) c_at u:s_econd gs
+pair := (16.0 * u:f_irst gs) + u:s_econd gs
+u:r_ound (1 + w_here (1 d_rop pair) != -1 d_rop pair) s_elect eps
+# The slice, each point's pair as a letter: regions with straight
+# edges, where two experts' scores tie.
+pg := (16.0 * u:f_irst gg) + u:s_econd gg
+(side c_at side) r_eshape ((u_nique pg) i_ndexOf pg) s_elect "abcdefghijklmnopqrstuvwxyz"

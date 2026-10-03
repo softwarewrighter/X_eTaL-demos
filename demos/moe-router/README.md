@@ -65,10 +65,45 @@ the scores (p_e / p_f = exp(s_e - s_f)), that the top-2 is the two
 largest by a direct sort, that the gates sum to 1, that the load counts
 each expert's tokens, and that experts specialise by feature.
 
+## Nudge a token
+
+The second part of the program and of the page asks what happens
+between words. One word's embedding `x0` is pushed towards another's,
+`x0 + eps d1` for eps from 0 to 1.2, and a plane around it is sampled,
+`x0 + a d1 + b d2`. Both are outer products (`eps '* t_able d1`), so a
+whole path or plane of inputs is one matrix through the same router.
+
+```
+x0 := w0 s_elect E
+d1 := (wa s_elect E) - x0
+d2 := (wb s_elect E) - x0
+eps := 1.2 * (f_loat o_ffsets k) / f_loat k - 1
+xs := (eps '* t_able d1) + (o_ffsets k) 'r_ight t_able x0
+gs := u:t_op2 u:s_oftmax u:s_cores xs
+xg := (sa '* t_able d1) + (sb '* t_able d2) + (o_ffsets side * side) 'r_ight t_able x0
+gg := u:t_op2 u:s_oftmax u:s_cores xg
+```
+
+The page shows the gates along the path as a strip (experts down, eps
+across), lists the eps values where the chosen pair changes (pushing
+"green" towards "fox", eight times), and colours the plane by the
+chosen pair. The point it makes: inputs that are almost the same can
+go to different experts. The scores are linear in the input, so the
+regions where a pair of experts wins are cut by straight lines, where
+two experts' scores tie; a small step across a line switches experts,
+a large step inside a region changes nothing.
+[moe-microscope](https://github.com/sw-ml-study/moe-microscope)
+builds and inspects whole mixture-of-experts models at this scale.
+
+The page's tests check every sample's pair against scores computed
+directly, that the boundaries fall exactly in the intervals a 1000
+times finer direct computation finds (for three paths), and every
+point of the plane against direct scores.
+
 ## Run it
 
 ```bash
-just run moe-router          # "the red fox eats fish in the park": experts, gates, load
+just run moe-router          # the red fox sentence: experts, gates, load; then the nudge
 just show moe-router         # the same as a notebook
 just serve moe-router        # the web app at http://127.0.0.1:8095/
 just test-demo moe-router    # its CLI and browser baselines and the web app's tests
