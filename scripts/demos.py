@@ -33,6 +33,14 @@ def problems(d, meta):
         out.append(f"{d.name}: slug {meta.get('slug')!r} is not the directory name")
     if meta.get("status") not in STATUSES:
         out.append(f"{d.name}: status must be one of {sorted(STATUSES)}")
+    for k in ("idea", "line"):
+        if k in meta and not isinstance(meta[k], str):
+            out.append(f"{d.name}: {k} must be text")
+    line = meta.get("line", "")
+    if isinstance(line, str) and line.strip():
+        sources = "".join(f.read_text() for f in d.glob("*.xtl"))
+        if line.strip() not in sources:
+            out.append(f"{d.name}: line is not in the demo's .xtl: {line.strip()[:40]}")
     if not (d / "README.md").is_file():
         out.append(f"{d.name}: no README.md")
     return out

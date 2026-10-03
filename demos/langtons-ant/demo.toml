@@ -3,6 +3,8 @@
 slug = "langtons-ant"
 title = "Langton's ant"
 summary = "Two rules, chaos, then a highway after about 10,000 steps. The ant is a one-hot mask and a direction: looking, flipping and moving are whole-array operations, and the same code would move a thousand ants."
+idea = "The ant is a mask with a single 1: looking, flipping and moving are whole-board operations, so a thousand ants would take the same code."
+line = "step := dy o_-_1 dx o_-_2 a"
 concepts = ["one-hot masks", "rotation", "reduce", "function power"]
 status = "live"
 order = 45

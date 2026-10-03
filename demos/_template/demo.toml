@@ -3,6 +3,8 @@
 slug = "__SLUG__"            # the directory name, demos/<slug>/
 title = "__TITLE__"
 summary = "One sentence: what you see and what it reveals."
+idea = "Why it is easier as an array expression, in a sentence."
+line = ""                    # the key line of the demo's .xtl (verbatim), shown on its card
 concepts = ["arrays"]        # the X_eTaL ideas it shows
 status = "draft"             # draft | live | deferred
 order = 100                  # position in the catalog (lower first)

@@ -66,6 +66,21 @@ footer .sep {{ margin: 0 8px; }}
 .brand h1 {{ margin: 0; }}
 .logo {{ height: 56px; width: auto; border-radius: 8px; }}
 code {{ font-family: ui-monospace, "JuliaMono", Menlo, monospace; }}
+.about {{ background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 18px; margin: 0 0 16px; }}
+.about p {{ margin: 0 0 8px; max-width: 52rem; }}
+.about a {{ color: var(--accent); }}
+.eco {{ display:flex; flex-wrap:wrap; gap:6px 18px; font-weight:600; font-size:.95rem; }}
+.eco a {{ text-decoration:none; }} .eco a:hover {{ text-decoration:underline; }}
+.eco .here {{ color: var(--muted); }}
+.card p.idea {{ color: var(--fg); font-size: .95rem; }}
+.xline {{ margin: 0; padding: 8px 10px; background: var(--chip); border-radius: 8px; overflow-x: auto;
+  font-size: .9rem; line-height: 1.6; white-space: pre-wrap; }}
+.xline code {{ font-family: "JuliaMono", "DejaVu Sans Mono", Menlo, ui-monospace, monospace; }}
+.c-builtin {{ color: #1c5fd4; }} .c-userfunc {{ color: #2b8a3e; }} .c-lambdaarg {{ color: #a61e8f; }}
+.c-number {{ color: #9c6500; }} .c-symbol {{ color: #0b7285; }} .c-comment {{ color: var(--muted); }}
+@media (prefers-color-scheme: dark) {{ :root:not([data-theme="light"]) .c-builtin {{ color: #8fb0ff; }}
+  :root:not([data-theme="light"]) .c-userfunc {{ color: #8ce99a; }} :root:not([data-theme="light"]) .c-lambdaarg {{ color: #f783ac; }}
+  :root:not([data-theme="light"]) .c-number {{ color: #ffd43b; }} :root:not([data-theme="light"]) .c-symbol {{ color: #66d9e8; }} }}
 </style>
 </head>
 <body>
@@ -78,6 +93,24 @@ can see a whole loop nest happen as one array expression. The machine-learning d
 (a 1.58-bit network, an MoE routing microscope, a tiny CNN, attention) are in
 <a href="https://softwarewrighter.github.io/X_eTaL-ML/">X_eTaL-ML</a>.</p>
 </header>
+<section class="about" aria-label="About X_eTaL">
+<p><b>X_eTaL</b> is an APL-family array language designed today: whole-array programming
+and terse composition, with inferred static types and typed functional composition from
+Haskell, explicit, checked interfaces in the spirit of Rust, and plain ASCII source drawn
+as readable typography.</p>
+<p><b>Extensible</b> three ways: libraries extend the vocabulary (ready), macros extend
+what the language can say (coming), native extensions extend the machine (through a
+bridge today).</p>
+<nav class="eco" aria-label="The X_eTaL repositories">
+<a href="https://softwarewrighter.github.io/X_eTaL/">The language (playground)</a>
+<span class="here">Demos (here)</span>
+<a href="https://softwarewrighter.github.io/X_eTaL-ML/">ML</a>
+<a href="https://softwarewrighter.github.io/X_eTaL-games/">Games</a>
+<a href="https://softwarewrighter.github.io/X_eTaL-libraries/">Libraries</a>
+<a href="https://softwarewrighter.github.io/X_eTaL-extensions/">Extensions</a>
+<a href="https://github.com/softwarewrighter/X_eTaL-demos#start-here">Start here</a>
+</nav>
+</section>
 {body}
 </main>
 <footer>
@@ -90,6 +123,16 @@ can see a whole loop nest happen as one array expression. The machine-learning d
 </body>
 </html>
 """
+
+
+def rendered(line):
+    """The line decorated as X_eTaL draws it (HTML spans), by the bundled CLI."""
+    try:
+        xetal = subprocess.run([str(ROOT / "scripts" / "build-xetal.sh")], capture_output=True, text=True, check=True).stdout.strip()
+        out = subprocess.run([xetal, "render", "--html", "-e", line], capture_output=True, text=True, check=True).stdout
+        return out.strip()
+    except (subprocess.CalledProcessError, OSError):
+        return html.escape(line)
 
 
 def card(m):
@@ -108,7 +151,9 @@ def card(m):
             f'<span class="status {st}">{STATUS[st]}</span>\n'
             f'<h2>{html.escape(m["title"])}</h2>\n'
             f'<p>{html.escape(m["summary"])}</p>\n'
-            f'<div class="chips">{chips}</div>\n'
+            + (f'<p class="idea"><b>Why arrays:</b> {html.escape(m["idea"])}</p>\n' if m.get("idea") else "")
+            + (f'<pre class="xline"><code>{rendered(m["line"])}</code></pre>\n' if m.get("line") else "")
+            + f'<div class="chips">{chips}</div>\n'
             f'<div class="links">{" ".join(links)}</div>\n</article>')
 
 

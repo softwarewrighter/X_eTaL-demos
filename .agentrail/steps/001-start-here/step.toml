@@ -1,6 +1,6 @@
 number = 1
 slug = "start-here"
-status = "pending"
+status = "in-progress"
 description = "start-here step 1: a start-here section at the top of README.md and the live ..."
 role = "production"
 context_files = []
