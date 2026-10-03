@@ -31,6 +31,108 @@ demos work with that are not asks.
 | open | bug | A condition bound to a name cannot be used in arithmetic (`a := 1 2 > 0` then `1 * a`, `f_loat a` or `'+ r_/ a` is a type error), though inline `f_loat 1 2 > 0` works and lang-choices T1 says a Bool converts to Int in arithmetic | image-pipeline (masks) | bind masks as Floats: `m := f_loat (...) < r` |
 | open | bug | A vendored build reports the outer repo's commit as its own | `xetal --version` from `just xetal` | `just xetal-version` prints `vendor/xetal/VENDORED` beside it (the pages' footers read `VENDORED` directly) |
 
+## For the X_eTaL agent: four asks not in X_eTaL's plan yet
+
+Checked against `../X_eTaL/docs/plan.md` at 2bd6e7d (2026-10-03): the
+speed regression (Saga 30), records (Saga 29), host arrays, the trace
+and complex numbers are planned; these four are not. Each says what,
+why, a repro at abb8274, and a suggested shape (the design is
+X_eTaL's to decide). The user has relayed them as well.
+
+### 1. A bound condition in arithmetic (bug, or a doc fix)
+
+What: a comparison bound to a name cannot be used where a number is
+expected, though the same comparison written inline can.
+
+```
+$ xetal eval -e "a := 1 2 > 0
+1 * a"
+error[type-mismatch]: expected a number, found Bool at 13..18
+$ xetal eval -e "a := 1 2 > 0
+f_loat a"
+error[type-mismatch]: expected a number, found Bool at 13..21
+$ xetal eval -e "f_loat 1 2 > 0"
+1.0 1.0
+```
+
+Why: lang-choices T1 says a Bool converts to Int in arithmetic, and
+T5 says a top-level condition defaults to Bool when bound; together a
+reader expects `1 * a` to work. Masks are the array idiom (the image
+pipeline builds its picture from named masks: a disk, a square, a
+triangle), and naming them is natural.
+
+Suggested: let a bound Bool convert in arithmetic (and `f_loat`) as
+T1 describes; or, if the default is meant to stop it, say so in T5
+and in the error ("a Bool bound by name: write `f_loat (...)` when
+binding"). Workaround here: `disk := f_loat (...) < 300`.
+
+### 2. Grade (and sort) of each row along an axis (feature)
+
+What: `g_rade_2 M` grades the columns as whole items and returns one
+vector; there is no grade of each row.
+
+```
+$ xetal eval -e "M := 2 4 r_eshape 0.1 0.5 0.3 0.9 0.7 0.2 0.8 0.1
+g_rade_2 M"
+1 3 2 4
+```
+
+Why: top-k along a row is everyday in array ML (a router's top-2
+experts per token, nearest neighbours, beam search). Today it takes
+masks: the largest of each row (`'m_ax r_/_2`), taken out, then the
+largest again; k passes for top-k.
+
+Suggested: a rank-preserving grade under an axis subscript (each
+vector along that axis graded on its own: `g_rade_2 M` is 2 x 4, so
+`2 t_ake_2 g_rade_2 n_eg M` is each row's top 2), or a rank operator
+that applies `g_rade` to each row. Needed by X_eTaL-ML's moe-router.
+
+### 3. Mix: boxes back into one array (feature)
+
+What: `'f m_ap v` (new at abb8274) gives each result boxed, but
+nothing turns a list of boxes into one array; `d_isclose` opens one
+box only.
+
+```
+$ xetal eval -e "d_isclose 'r_ange m_ap 1 2 3"
+error[rank]: d_isclose opens one box, got shape 3
+```
+
+Why: the Mandelbrot demo's orbit table is z0 .. zn for one point, each
+z a pair (real, imaginary). With mix it is one pass:
+`mix '{ n -> n 'u:o_rbit p_ower 0.0 0.0 } m_ap o_ffsets 11` (an 11 x 2
+table). Without it the demo runs the orbit twice, selecting the real
+parts and then the imaginary parts with `e_ach`.
+
+Suggested: APL2's mix (disclose of a list of boxes into an array one
+rank higher, padding shorter items), perhaps as `d_isclose` on a list
+or a new name, and its inverse split (each row boxed). Workaround
+here: two `e_ach` passes.
+
+### 4. A vendored build reports the outer repository's commit (bug)
+
+What: `xetal-cli`'s `build.rs` takes the commit from
+`git rev-parse --short HEAD` in the directory it builds in. Built from
+`vendor/xetal/` inside this repository, `xetal --version` reports this
+repository's commit, not X_eTaL's.
+
+```
+$ just xetal && target/xetal/release/xetal --version
+X_eTaL 0.1.0
+...
+  Commit: d93828a        <- X_eTaL-demos' commit, not abb8274
+```
+
+Why: every consumer vendors X_eTaL (demos, games, libraries,
+extensions, ML); a bug report from any of them quotes the wrong
+commit.
+
+Suggested: let an environment variable (for example
+`XETAL_BUILD_SHA`) override the git lookup, and/or read a `VENDORED`
+file next to the sources when present (the vendor scripts write one).
+Workaround here: `just xetal-version` prints `vendor/xetal/VENDORED`
+beside the binary's version; the pages' footers read `VENDORED`.
+
 ## Details
 
 ### Speed regression in `t_able` and `i_nner` (06d39fa to abb8274)
