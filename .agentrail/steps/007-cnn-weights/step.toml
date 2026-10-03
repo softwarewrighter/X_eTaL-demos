@@ -1,6 +1,6 @@
 number = 7
 slug = "cnn-weights"
-status = "pending"
+status = "in-progress"
 description = "physics-ml step 6: a tiny MNIST CNN (e.g. conv 3x3x8 -> ReLU -> 2x2 maxpool -..."
 role = "production"
 context_files = []
