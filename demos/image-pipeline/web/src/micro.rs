@@ -26,10 +26,10 @@ pub const HALF: usize = SIZE / 2;
 /// The pictures: a name and the X_eTaL that defines `img` (brightness
 /// 0 to 1) from `row`, `col`, `rows` and `cols`.
 pub const SCENES: &[(&str, &str)] = &[
-    ("Shapes", "disk := f_loat (((row - 30) * row - 30) + (col - 26) * col - 26) < 300\nsq := f_loat ((row >= 14) & row < 44) & (col >= 52) & col < 84\ntri := f_loat ((row >= 56) & row < 88) & (a_bs col - 48) <= row - 56\nimg := 0.15 + (0.65 * disk) + (0.45 * sq) + (0.3 * tri) + 0.002 * f_loat r_oll! (s_hape row) r_eshape 50\n"),
+    ("Shapes", "disk := (((row - 30) * row - 30) + (col - 26) * col - 26) < 300\nsq := ((row >= 14) & row < 44) & (col >= 52) & col < 84\ntri := ((row >= 56) & row < 88) & (a_bs col - 48) <= row - 56\nimg := 0.15 + (0.65 * f_loat disk) + (0.45 * f_loat sq) + (0.3 * f_loat tri) + 0.002 * f_loat r_oll! (s_hape row) r_eshape 50\n"),
     ("Quadrants and a diagonal", "dr := row - rows d_iv 2\ndc := col - cols d_iv 2\nimg := 0.15 + (0.35 * f_loat (dr * dc) > 0) + 0.4 * f_loat dr > dc\n"),
     ("Rings", "dr := row - rows d_iv 2\ndc := col - cols d_iv 2\nr := (f_loat (dr * dr) + dc * dc) ^ 0.5\nimg := 0.5 + 0.35 * s_in r / 2.5\n"),
-    ("Noisy checkerboard", "check := f_loat 1 = ((row d_iv 16) + col d_iv 16) m_od 2\nimg := 0.2 + (0.5 * check) + 0.003 * f_loat r_oll! (s_hape row) r_eshape 100\n"),
+    ("Noisy checkerboard", "check := 1 = ((row d_iv 16) + col d_iv 16) m_od 2\nimg := 0.2 + (0.5 * f_loat check) + 0.003 * f_loat r_oll! (s_hape row) r_eshape 100\n"),
     ("Half and half", "img := 0.2 + 0.6 * f_loat col >= cols d_iv 2\n"),
 ];
 

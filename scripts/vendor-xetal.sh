@@ -22,6 +22,11 @@ git -C "$repo" archive --format=tar "$sha" -- "${paths[@]}" | tar -x -C "$tmp"
 # Each component's Cargo.lock is kept: builds use the versions X_eTaL tested.
 mkdir -p "$dest"
 rsync -a --delete --exclude=VENDORED "$tmp/" "$dest/"
+# git archive stamps every file with the commit's time and rsync keeps
+# it, so a changed file can look older than the build that used the
+# previous version and cargo would reuse that stale build: stamp them
+# now instead (everything rebuilds once after a refresh).
+find "$dest" -type f -exec touch {} +
 {
   echo "repository = \"https://github.com/softwarewrighter/X_eTaL\""
   echo "commit = \"$sha\""

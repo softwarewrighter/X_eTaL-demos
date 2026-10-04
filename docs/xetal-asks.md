@@ -6,8 +6,9 @@ demos, which moved there; they stay here as the record until X_eTaL-ML
 carries them. This repo does not change X_eTaL: each ask is filed
 here (and taken to `../X_eTaL`), the demo uses the workaround noted
 below or waits, and the workaround is removed when the ask lands in a
-vendored release (`vendor/xetal/VENDORED`, now X_eTaL abb8274; every
-ask was re-checked against it on 2026-10-03).
+vendored release (`vendor/xetal/VENDORED`, now X_eTaL 081fb3f; every
+ask was re-checked against it on 2026-10-03). X_eTaL keeps its own
+ledger of these asks (its `docs/asks.md`, D1 to D9).
 
 Each entry: status (open, filed, landed, dropped), kind (feature, bug
 or speed), which demo(s) need it, why, a minimal repro or example, and
@@ -29,7 +30,7 @@ demos work with that are not asks.
 | open | feature | A state of several arrays for `p_ower` (a tuple or record; "named records" is on the upstream wish list) | wave-tank (time), langtons-ant (direction), mandelbrot and julia (counts) | extra planes of one rank-3 array, a scalar stored in every cell |
 | open | feature | A per-operation evaluation trace (the planned stepping debugger) exposed through `xetal-play` | the microscope shell (all pages) | pages print chosen intermediate arrays with `r_avel` |
 | landed (abb8274) | feature | Transpose (`o_\`, and `t_ranspose` with a permutation) | image-pipeline (ky from kx), attention and embedding-explorer (X_eTaL-ML) | removed in image-pipeline: `ky := o_\ kx` |
-| open | bug | A condition bound to a name cannot be used in arithmetic (`a := 1 2 > 0` then `1 * a`, `f_loat a` or `'+ r_/ a` is a type error), though inline `f_loat 1 2 > 0` works and lang-choices T1 says a Bool converts to Int in arithmetic | image-pipeline (masks) | bind masks as Floats: `m := f_loat (...) < r` |
+| landed (ffd5526) | bug | A condition bound to a name could not be used in arithmetic (`a := 1 2 > 0` then `1 * a`, `f_loat a` or `'+ r_/ a`); a bound condition now stays Bool and converts as T1 says | image-pipeline (masks) | removed: masks are bound as conditions and made Floats where used (`0.7 * f_loat disk`) |
 | open | bug | A vendored build reports the outer repo's commit as its own | `xetal --version` from `just xetal` | `just xetal-version` prints `vendor/xetal/VENDORED` beside it (the pages' footers read `VENDORED` directly) |
 
 ## For the X_eTaL agent: four asks not in X_eTaL's plan yet
@@ -41,6 +42,10 @@ why, a repro at abb8274, and a suggested shape (the design is
 X_eTaL's to decide). The user has relayed them as well.
 
 ### 1. A bound condition in arithmetic (bug, or a doc fix)
+
+Landed in ffd5526 (vendored here at 081fb3f): a bound condition stays
+Bool and converts in arithmetic; image-pipeline binds its masks as
+conditions again. The ask as filed:
 
 What: a comparison bound to a name cannot be used where a number is
 expected, though the same comparison written inline can.
@@ -189,6 +194,13 @@ and at abb8274 971 ms on the first run, then 136, 570 and 616 ms for
 three threshold changes; ternary-net's formats went from about 550 ms
 to 2224 ms. Something beyond the native regression (memory growth,
 or a path the WebAssembly build takes) seems to be involved.
+
+At 081fb3f (vendored here 2026-10-03, after the higher-order cost
+guard, e3e9c3d) `i_nner` is about 20% slower again: four
+(32 x 256) by (256 x 32) products took 0.71 s at abb8274 and 0.85 s at
+081fb3f (`xetal run`, best of three); `just bench-check` flags `inner`
+(+16%) and `transpose` (+23%, on a 5 ms case, so less certain), the
+pages within 10%. Saga 30 is expected to remove both.
 
 Repro: save the lines above as a program, run it with `xetal run`
 built at each commit. Ask: bring `t_able` and `i_nner` back to (or
@@ -359,6 +371,8 @@ quicker. Workaround: a 24 x 24 map; the page keeps the FP32, FP16 and
 INT8 maps and reruns only the ternary pass when the threshold moves.
 
 ### A bound condition in arithmetic
+
+Landed in ffd5526 (vendored at 081fb3f). The ask as filed:
 
 lang-choices T1 says a Bool converts to Int implicitly in arithmetic,
 and T5 says a top-level condition binding defaults to Bool. Together

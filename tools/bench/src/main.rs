@@ -39,13 +39,16 @@ fn best(f: &dyn Fn()) -> f64 {
         .fold(f64::MAX, f64::min)
 }
 
-/// A program for one built-in on `x`, a 512 x 512 Float matrix.
-fn builtin(line: &str) -> String {
-    format!("x := (512 c_at 512) r_eshape 0.5 0.25 0.125 0.75\ny := {line}\ny := {line}\ns_hape y\n")
+/// A program for one built-in on `x`, a 512 x 512 Float matrix, run
+/// `reps` times (so even a fast built-in takes tens of milliseconds,
+/// enough to time within the tolerance).
+fn builtin(line: &str, reps: usize) -> String {
+    let body: String = (0..reps).map(|_| format!("y := {line}\n")).collect();
+    format!("x := (512 c_at 512) r_eshape 0.5 0.25 0.125 0.75\n{body}s_hape y\n")
 }
 
-fn run_builtin(line: &str) {
-    microscope::run::output(&builtin(line), 1).expect("the built-in program runs");
+fn run_builtin(line: &str, reps: usize) {
+    microscope::run::output(&builtin(line, reps), 1).expect("the built-in program runs");
 }
 
 type Case = (&'static str, &'static str, Box<dyn Fn()>);
@@ -90,18 +93,18 @@ fn cases() -> Vec<Case> {
         use langtons_ant_web::micro::{run, Ant};
         run(&Ant::start(), 50).unwrap();
     })));
-    // The showcase built-ins, each twice on a 512 x 512 matrix.
-    for (name, what, line) in [
-        ("elementwise", "x + x * x", "x + x * x"),
-        ("reduce", "'+ r_/_2 x", "'+ r_/_2 x"),
-        ("scan", "'+ s_\\_2 on 4096 rows of 64", "'+ s_\\_2 (4096 c_at 64) r_eshape x"),
-        ("each", "a lambda on 16384 items", "'{ v -> v * 2.0 } e_ach r_avel 32 t_ake x"),
-        ("table", "a 512 x 512 '* t_able", "(r_avel 1 t_ake x) '* t_able r_avel 1 t_ake x"),
-        ("inner", "(32 x 256) '+ '* i_nner (256 x 32)", "((32 c_at 256) r_eshape x) '+ '* i_nner (256 c_at 32) r_eshape x"),
-        ("rotate", "1 o_-_2 x", "1 o_-_2 x"),
-        ("transpose", "o_\\ x", "o_\\ x"),
+    // The showcase built-ins on a 512 x 512 matrix, each repeated.
+    for (name, what, line, reps) in [
+        ("elementwise", "x + x * x, 8 times", "x + x * x", 8),
+        ("reduce", "'+ r_/_2 x, 8 times", "'+ r_/_2 x", 8),
+        ("scan", "'+ s_\\_2 on 4096 rows of 64, once", "'+ s_\\_2 (4096 c_at 64) r_eshape x", 1),
+        ("each", "a lambda on 16384 items, 8 times", "'{ v -> v * 2.0 } e_ach r_avel 32 t_ake x", 8),
+        ("table", "a 512 x 512 '* t_able, twice", "(r_avel 1 t_ake x) '* t_able r_avel 1 t_ake x", 2),
+        ("inner", "(32 x 256) '+ '* i_nner (256 x 32), once", "((32 c_at 256) r_eshape x) '+ '* i_nner (256 c_at 32) r_eshape x", 1),
+        ("rotate", "1 o_-_2 x, 16 times", "1 o_-_2 x", 16),
+        ("transpose", "o_\\ x, 32 times", "o_\\ x", 32),
     ] {
-        c.push((name, what, Box::new(move || run_builtin(line))));
+        c.push((name, what, Box::new(move || run_builtin(line, reps))));
     }
     c
 }

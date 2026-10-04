@@ -1,6 +1,6 @@
 number = 3
 slug = "promotion-audit"
-status = "pending"
+status = "in-progress"
 description = "start-here step (research4: promotion gate): when X_eTaL's Saga 30 speed fix ..."
 role = "production"
 context_files = []

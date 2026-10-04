@@ -215,10 +215,29 @@ overview until then). New demos wait until after the launch.
 | - | --------- | -------- |
 | 1 | start-here | README and catalog: what X_eTaL is and why, the three meanings of extensible, the six repositories with links, a 5-minute path; each catalog card answers what, why, and the X_eTaL line (rendered by `xetal render`) |
 | 2 | perf-gate | Done: `tools/bench` times each page's own `run` and eight built-ins natively through `xetal-play` (best of 7, as a ratio to a pure-Rust reference loop timed just before each case, a failing case re-measured once); `just bench` writes `docs/bench.md` and the baseline `docs/bench.json`, `just bench-check` fails on a case more than 15% slower (verified with a doctored baseline; three runs on an unchanged build within 5%); required on every vendor refresh (CLAUDE.md rule 2), not in the default gate (40 s, noisy on a shared machine), which builds the tool; found a quadratic scan (ask filed) |
-| 3 | promotion-audit | re-vendor when X_eTaL's speed fix (its Saga 30) lands; every ask re-run; a promotion-blocker list; a tagged known-compatible snapshot |
+| 3 | promotion-audit | Done without the speed fix (X_eTaL's Saga 30 has not landed): vendored 081fb3f (it lands the bound-condition fix: image-pipeline binds its masks as conditions again); every ask re-run; bench-check: pages within 10%, `inner` about 20% slower again (filed); a fresh clone runs `just run nbody` in about 17 s; the promotion blockers below. The tag moved to its own step, after Saga 30 |
 | 4 | gallery-3-release | screenshots, catalog, docs, retrospective |
+| 4a | release-tag | when Saga 30 lands: re-vendor, `just bench-check` (and a new baseline), every ask re-run, then tag the known-compatible snapshot (name agreed with the user) |
 | 5 | fourier-epicycles | post-launch: a curve's Fourier transform as one outer product; circles on circles |
 | 6 | sandpile | post-launch: the abelian sandpile by rotations and masks |
+
+### Promotion blockers for this repository (2026-10-03)
+
+What a newcomer would hit, in order:
+
+1. The pages are slower than they were at X_eTaL 06d39fa (the
+   `t_able` / `i_nner` regression, filed; X_eTaL's Saga 30). Fix:
+   re-vendor when it lands, `just bench-check`, new baseline.
+2. `xetal --version` from the bundled build reports this repository's
+   commit, not X_eTaL's (filed; `just xetal-version` is right).
+3. Not blocking, noted: a scan is quadratic in its axis (no demo
+   depends on a long scan); per-row grade and mix are open (no demo
+   here needs them now).
+
+Checked: the README's start-here path against the live catalog and
+pages (stage chips, inspectors, the line on each card), a fresh clone
+running `just run nbody`, every page in headless Chrome (the gate's
+browser baselines).
 
 ## Saga 4 -- deferred (blocked on asks): MOVED to X_eTaL-ML
 

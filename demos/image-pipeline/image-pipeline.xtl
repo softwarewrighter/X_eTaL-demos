@@ -12,10 +12,10 @@ cols := 40
 row := (o_ffsets rows) 'l_eft t_able o_ffsets cols
 col := (o_ffsets rows) 'r_ight t_able o_ffsets cols
 # -- the picture: masks of coordinates, and noise ----
-# Masks are bound as Floats (1.0 inside, 0.0 outside).
-disk := f_loat (((row - 9) * row - 9) + ((col - 10) * col - 10) d_iv 2) < 36
-box := f_loat ((row >= 5) & row < 15) & (col >= 22) & col < 33
-img := 0.15 + (0.7 * disk) + (0.45 * box) + 0.001 * f_loat r_oll! (s_hape row) r_eshape 60
+# Masks are conditions (true inside), made Floats where used.
+disk := (((row - 9) * row - 9) + ((col - 10) * col - 10) d_iv 2) < 36
+box := ((row >= 5) & row < 15) & (col >= 22) & col < 33
+img := 0.15 + (0.7 * f_loat disk) + (0.45 * f_loat box) + 0.001 * f_loat r_oll! (s_hape row) r_eshape 60
 # -- the kernels ------------------------------------
 blur := (3 c_at 3) r_eshape 0.0625 0.125 0.0625 0.125 0.25 0.125 0.0625 0.125 0.0625
 kx := (3 c_at 3) r_eshape -1.0 0.0 1.0 -2.0 0.0 2.0 -1.0 0.0 1.0

@@ -1503,12 +1503,15 @@ dependencies = [
 name = "xetal-play"
 version = "0.1.0"
 dependencies = [
+ "xetal-arith",
  "xetal-base",
  "xetal-core",
  "xetal-eval",
  "xetal-grid",
+ "xetal-lint",
  "xetal-macro",
  "xetal-program",
+ "xetal-step",
  "xetal-store",
  "xetal-types",
  "xetal-view",
@@ -1519,6 +1522,7 @@ name = "xetal-prim"
 version = "0.1.0"
 dependencies = [
  "xetal-arith",
+ "xetal-array",
  "xetal-base",
  "xetal-catalog",
  "xetal-radix",
@@ -1644,6 +1648,7 @@ dependencies = [
  "xetal-base",
  "xetal-draw",
  "xetal-store",
+ "xetal-tty",
  "xetal-value",
 ]
 
@@ -1662,6 +1667,10 @@ dependencies = [
  "xetal-base",
  "xetal-value",
 ]
+
+[[package]]
+name = "xetal-tty"
+version = "0.1.0"
 
 [[package]]
 name = "xetal-ty"

@@ -8,4 +8,4 @@ line = "u:f_ilter := { k x -> '+ r_/_12 (u:w_indows x) * k 'l_eft t_able x }"
 concepts = ["rotation by a list of amounts", "rank-4 arrays", "reduce over two axes", "reshape for pooling"]
 status = "live"
 order = 55
-needs = ["bound conditions in arithmetic"]
+needs = []
