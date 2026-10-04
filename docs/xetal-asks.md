@@ -19,6 +19,7 @@ demos work with that are not asks.
 | open | speed (regression) | Since X_eTaL 06d39fa (vendored here until 2026-10-03), `t_able` is about 2.7x and `i_nner` about 1.5x slower at abb8274, while elementwise arithmetic got about 8x faster; pages that spread with `t_able` or multiply with `i_nner` got 1.7 to 2.2x slower | nbody, image-pipeline, ternary-net (X_eTaL-ML), moe-router (X_eTaL-ML), cnn-digits (X_eTaL-ML) | none: kept abb8274 (the user's choice); waiting for the fix |
 | landed (abb8274) | bug | Reading a long strand of Int literals took quadratic time (8000 Ints: 2.1 s; now 0.00 s) | ca-lab, langtons-ant (boards passed in each frame), moe-router (X_eTaL-ML) | removed in ca-lab and langtons-ant: boards go in as Int literals (moe-router (X_eTaL-ML)'s word numbers are X_eTaL-ML's) |
 | partly landed (abb8274) | speed | Whole-array arithmetic was about 50 ns per element per operation; elementwise arithmetic is now about 8x faster (see the regression above for `t_able` and `i_nner`) | langtons-ant (the highway needs ~10,000 steps), reaction-diffusion, mandelbrot, wave-tank | small grids, a few steps per frame, the page shows each run's time |
+| open | speed | A scan is quadratic in the length of the axis (each running reduce is computed afresh), also for an associative function like `+`: 64 x 512 `'+ s_\_2` takes 0.22 s, doubling the length quadruples it | (none yet; `tools/bench`) | short axes |
 | open | speed | `i_nner` (matrix product) costs about 370 ns per multiply-add, slower than the same product written as broadcast-and-reduce (about 250 ns) and 7x the elementwise rate | ternary-net (X_eTaL-ML) (a 576-point map through a 16-wide network: 0.64 s for three formats natively) | a 24 x 24 map; the page reruns only the program whose inputs changed |
 | open | feature | Grade along an axis per row (`g_rade_2 M` grades the columns as items, one vector, not each row), for top-k per row | moe-router (X_eTaL-ML) (top-2 experts per token) | the largest by `'m_ax r_/_2`, masked out, then the largest again |
 | open | feature | `xetal-play`: pass arrays into a program and read them back without text, or keep a session between runs | every page that keeps state (reaction-diffusion, wave-tank, ca-lab, langtons-ant, nbody) | each frame writes the state as literal matrices and parses the printed `r_avel` lines |
@@ -134,6 +135,27 @@ Workaround here: `just xetal-version` prints `vendor/xetal/VENDORED`
 beside the binary's version; the pages' footers read `VENDORED`.
 
 ## Details
+
+### Scan is quadratic
+
+`'f s_\ v` is every running reduce, and each is computed from the
+start (right to left, as APL defines a scan for any function), so a
+scan along an axis of length n costs about n * n / 2 applications.
+For `+`, `*`, `m_ax`, `m_in`, `&` and `|` (associative), a running
+fold gives the same results in n steps. At abb8274 (06d39fa is the
+same):
+
+| `'+ s_\_2` on | Time |
+| -------------- | ---- |
+| 64 x 128 | 0.04 s |
+| 64 x 256 | 0.06 s |
+| 64 x 512 | 0.22 s |
+| 512 x 512, twice | 2.5 s |
+
+Repro: `x := (64 c_at 512) r_eshape 0.5 0.25` then `'+ s_\_2 x`.
+Ask: a linear scan for the associative built-ins (the result is
+identical). Found by `tools/bench`, whose scan case now uses short
+rows.
 
 ### Speed regression in `t_able` and `i_nner` (06d39fa to abb8274)
 

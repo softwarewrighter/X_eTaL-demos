@@ -214,7 +214,7 @@ overview until then). New demos wait until after the launch.
 | # | Step slug | Delivers |
 | - | --------- | -------- |
 | 1 | start-here | README and catalog: what X_eTaL is and why, the three meanings of extensible, the six repositories with links, a 5-minute path; each catalog card answers what, why, and the X_eTaL line (rendered by `xetal render`) |
-| 2 | perf-gate | `just bench`: the pages' programs and the showcase built-ins timed against a committed baseline; slower than 15% is flagged; run on every vendor refresh |
+| 2 | perf-gate | Done: `tools/bench` times each page's own `run` and eight built-ins natively through `xetal-play` (best of 7, as a ratio to a pure-Rust reference loop timed just before each case, a failing case re-measured once); `just bench` writes `docs/bench.md` and the baseline `docs/bench.json`, `just bench-check` fails on a case more than 15% slower (verified with a doctored baseline; three runs on an unchanged build within 5%); required on every vendor refresh (CLAUDE.md rule 2), not in the default gate (40 s, noisy on a shared machine), which builds the tool; found a quadratic scan (ask filed) |
 | 3 | promotion-audit | re-vendor when X_eTaL's speed fix (its Saga 30) lands; every ask re-run; a promotion-blocker list; a tagged known-compatible snapshot |
 | 4 | gallery-3-release | screenshots, catalog, docs, retrospective |
 | 5 | fourier-epicycles | post-launch: a curve's Fourier transform as one outer product; circles on circles |

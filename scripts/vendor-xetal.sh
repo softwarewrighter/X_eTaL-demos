@@ -31,3 +31,4 @@ rsync -a --delete --exclude=VENDORED "$tmp/" "$dest/"
 } > "$dest/VENDORED"
 echo "vendored X_eTaL ${sha:0:7} into vendor/xetal/"
 cat "$dest/VENDORED"
+echo "vendor: now run the goldens (just test) and the timings (just bench-check)" >&2

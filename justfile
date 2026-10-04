@@ -60,6 +60,14 @@ bless slug:
 browser-check slug:
     scripts/browser-check.sh "$1"
 
+# Time the pages' X_eTaL programs and the showcase built-ins; write docs/bench.md and docs/bench.json (the new baseline)
+bench:
+    cargo run --release -q --manifest-path tools/bench/Cargo.toml
+
+# Compare the timings with docs/bench.json; fails if a case is more than 15% slower (run on every vendor refresh)
+bench-check:
+    cargo run --release -q --manifest-path tools/bench/Cargo.toml -- check
+
 # Build the live site into pages/ (committed; the Pages workflow publishes it)
 pages:
     scripts/build-pages.sh

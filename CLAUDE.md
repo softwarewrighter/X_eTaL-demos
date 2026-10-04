@@ -315,7 +315,10 @@ Read before working:
    `tools/vendor-probe/` check it in the gate): `just vendor [REF]`
    refreshes it from a COMMITTED ref of `../X_eTaL`, at a saga start or
    when an ask has landed, never mid-step, always in its own commit
-   with the goldens re-run. Never edit files under `vendor/`.
+   with the goldens re-run and `just bench-check` run (a case more than
+   15% slower is reported as an ask before the refresh is kept; `just
+   bench` then writes the new baseline). Never edit files under
+   `vendor/`.
 3. Missing X_eTaL features and X_eTaL bugs a demo uncovers go in
    `docs/xetal-asks.md` (status, kind, demos, why, minimal repro,
    workaround). Do not fix X_eTaL from this repo and do not hide a
