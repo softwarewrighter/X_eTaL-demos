@@ -7,7 +7,7 @@ use web_sys::HtmlInputElement;
 use yew::prelude::*;
 
 use microscope::canvas::Canvas;
-use microscope::chrome::{chip, footer, header, notice, panel as frame};
+use microscope::chrome::{about, chip, footer, header, notice, panel as frame};
 use microscope::source::code;
 
 use crate::colour;
@@ -165,7 +165,7 @@ pub fn app() -> Html {
     html! {
         <>
         <header>
-            { header("Mandelbrot", "Every point c of the picture iterated at once: z becomes z \u{00d7} z + c, over the whole grid, as one array expression. Step k up and watch the set appear.") }
+            { header("Mandelbrot", "Every point c of the picture iterated at once: z becomes z \u{00d7} z + c, over the whole grid, as one array expression. Step k up and watch the set appear.", about(include_str!("../../demo.toml"))) }
             <nav class="timeline">{ for STAGES.iter().map(|&s| stage_chip(&model, s)) }</nav>
             { controls(&model) }
             { notice(&model.notice) }

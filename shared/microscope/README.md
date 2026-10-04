@@ -10,7 +10,7 @@ source. This crate (`microscope`) is what the pages share.
 | `source` | `code(src)` draws any snippet decorated and coloured, as X_eTaL renders it; `line(src, range)` and `block(src, range)` draw a line or a program with `range` highlighted as one block; `listing(src, range)` draws a whole program as run, folding its long data lines (what the page wrote in) behind a summary of how many numbers they hold; `between` and `find` compute ranges; `shape(dims, meaning)` labels a shape as `s_hape = ...` with a tooltip |
 | `canvas`, `colour` | `Canvas` draws an RGBA array scaled to its box and reports clicks as (row, column); `colour` turns arrays into pixels (`field`, `scaled`, `signed`, `mask`, `ramp`) |
 | `cells` | small boards as clickable HTML cells (0 / 1 boards, shaded counts with numbers) |
-| `chrome` | `header` (logo, title, lede), `chip` (a stage: name, code, shape), `panel`, `notice`, `footer` (copyright, license, repository, all demos, the vendored X_eTaL commit, build host, sha and time) |
+| `chrome` | `header` (logo, title, lede; the title leads where `about(include_str!("../../demo.toml"))` says: the Wikipedia article on the subject, opened in a new tab with a pages mark, or a dialog with the subject's story, closed by Escape, a click outside or its X), `chip` (a stage: name, code, shape), `panel`, `notice`, `footer` (copyright, license, repository, all demos, the vendored X_eTaL commit, build host, sha and time) |
 
 `microscope.css` is the shared stylesheet (light and dark themes, the
 highlight, panels, chips, canvases); a page links it with

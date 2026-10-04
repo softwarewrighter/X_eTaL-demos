@@ -149,7 +149,7 @@ Each demo is a sub-project, `demos/<slug>/`:
 
 | File | What it is |
 | ---- | ---------- |
-| `demo.toml` | title, one-line summary, concepts, status (draft, live, deferred), catalog order, the X_eTaL asks it needs |
+| `demo.toml` | title, one-line summary, why it is an array expression (`idea`) and its key line (`line`, shown on its catalog card), where its title leads (`wiki`: the Wikipedia article on its subject, or `story`: a short history for a dialog), concepts, status (draft, live, deferred), catalog order, the X_eTaL asks it needs |
 | `README.md` | the demo's own page: what you see, the program, how it works |
 | `*.xtl` | its X_eTaL programs; each is run by the tests (seed 1) |
 | `reg/` | its reg-rs baselines: `cli-NAME` runs `NAME.xtl` with the bundled `xetal` CLI, `browser-SLUG` loads the built page in headless Chrome (`.rgt` command and exit code, `.out` / `.err`; the `.tdb` cache is not committed) |

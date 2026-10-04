@@ -3,6 +3,7 @@
 slug = "image-pipeline"
 title = "Image pipeline"
 summary = "Blur, Sobel edges, a threshold and max-pooling on a picture, each an array program. Every 3 x 3 filter is the stack of the picture's nine shifted copies times a kernel, summed; edit the kernels and click a pixel to see its window times each one."
+wiki = "https://en.wikipedia.org/wiki/Sobel_operator"
 idea = "Every 3 x 3 filter is the picture's nine shifted copies times a kernel, summed: blur and edges are the same function."
 line = "u:f_ilter := { k x -> '+ r_/_12 (u:w_indows x) * k 'l_eft t_able x }"
 concepts = ["rotation by a list of amounts", "rank-4 arrays", "reduce over two axes", "reshape for pooling"]

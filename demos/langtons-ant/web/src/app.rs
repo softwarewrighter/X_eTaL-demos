@@ -7,7 +7,7 @@ use web_sys::HtmlInputElement;
 use yew::prelude::*;
 
 use microscope::canvas::Canvas;
-use microscope::chrome::{chip, footer, header, notice, panel};
+use microscope::chrome::{about, chip, footer, header, notice, panel};
 use microscope::source::code;
 
 use crate::micro::{Last, N};
@@ -85,7 +85,7 @@ pub fn app() -> Html {
     html! {
         <>
         <header>
-            { header("Langton's ant", "On a white cell, turn right; on a black cell, turn left; flip the cell and step forward. From two rules comes chaos, and then, after about 10,000 steps, order: a highway. Here the ant is arrays: a one-hot mask and a direction.") }
+            { header("Langton's ant", "On a white cell, turn right; on a black cell, turn left; flip the cell and step forward. From two rules comes chaos, and then, after about 10,000 steps, order: a highway. Here the ant is arrays: a one-hot mask and a direction.", about(include_str!("../../demo.toml"))) }
             <nav class="timeline">{ for STAGES.iter().map(|&s| stage_chip(&model, s)) }</nav>
             { controls(&model) }
             { notice(&m.notice) }

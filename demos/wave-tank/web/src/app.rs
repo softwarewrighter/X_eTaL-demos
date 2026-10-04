@@ -7,7 +7,7 @@ use web_sys::{HtmlInputElement, HtmlSelectElement};
 use yew::prelude::*;
 
 use microscope::canvas::Canvas;
-use microscope::chrome::{chip, footer, header, notice, panel};
+use microscope::chrome::{about, chip, footer, header, notice, panel};
 use microscope::colour;
 use microscope::source::code;
 
@@ -137,7 +137,7 @@ pub fn app() -> Html {
     html! {
         <>
         <header>
-            { header("Wave tank", "The wave equation on a grid: each step, every cell carries on moving and is pulled towards its neighbours, all at once. Waves spread, pass through slits, interfere and bend in slow water. Click to drop a ripple.") }
+            { header("Wave tank", "The wave equation on a grid: each step, every cell carries on moving and is pulled towards its neighbours, all at once. Waves spread, pass through slits, interfere and bend in slow water. Click to drop a ripple.", about(include_str!("../../demo.toml"))) }
             <nav class="timeline">{ for STAGES.iter().map(|&s| stage_chip(&model, s)) }</nav>
             { controls(&model) }
             { notice(&model.notice) }

@@ -5,7 +5,7 @@ use web_sys::HtmlSelectElement;
 use yew::prelude::*;
 
 use microscope::cells::{grid, Grid, Paint};
-use microscope::chrome::{chip, footer, header, panel as frame};
+use microscope::chrome::{about, chip, footer, header, panel as frame};
 use microscope::source::code;
 
 use crate::micro::{Anatomy, OFFSETS, PATTERNS};
@@ -148,7 +148,7 @@ pub fn app() -> Html {
     html! {
         <>
         <header>
-            { header("Life microscope", "Conway's Life is one line of X_eTaL. Step it and watch every array that line builds; read it right to left.") }
+            { header("Life microscope", "Conway's Life is one line of X_eTaL. Step it and watch every array that line builds; read it right to left.", about(include_str!("../../demo.toml"))) }
             { line(model.focus) }
             { timeline(&model) }
             { controls(&model) }

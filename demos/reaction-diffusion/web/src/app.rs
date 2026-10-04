@@ -7,7 +7,7 @@ use web_sys::{HtmlInputElement, HtmlSelectElement};
 use yew::prelude::*;
 
 use microscope::canvas::Canvas;
-use microscope::chrome::{chip, footer, header, notice, panel as frame};
+use microscope::chrome::{about, chip, footer, header, notice, panel as frame};
 use microscope::colour;
 use microscope::source::code;
 
@@ -141,7 +141,7 @@ pub fn app() -> Html {
     html! {
         <>
         <header>
-            { header("Reaction-diffusion", "Two chemicals on a grid: U is fed in, V turns U into more V, both spread to their neighbours. Each step is a few array expressions over the whole grid, and patterns grow by themselves.") }
+            { header("Reaction-diffusion", "Two chemicals on a grid: U is fed in, V turns U into more V, both spread to their neighbours. Each step is a few array expressions over the whole grid, and patterns grow by themselves.", about(include_str!("../../demo.toml"))) }
             <nav class="timeline">{ for STAGES.iter().map(|&s| stage_chip(&model, s)) }</nav>
             { controls(&model) }
             { notice(&model.notice) }

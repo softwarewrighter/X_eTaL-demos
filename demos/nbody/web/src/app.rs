@@ -8,7 +8,7 @@ use web_sys::{HtmlInputElement, HtmlSelectElement};
 use yew::prelude::*;
 
 use microscope::canvas::Canvas;
-use microscope::chrome::{chip, footer, header, notice, panel};
+use microscope::chrome::{about, chip, footer, header, notice, panel};
 use microscope::colour;
 use microscope::source::code;
 
@@ -254,7 +254,7 @@ pub fn app() -> Html {
     html! {
         <>
         <header>
-            { header("N-body gravity", "Every pair of bodies at once, with no loops: the displacements of all pairs form a cube, the cube gives every pair's pull, and one reduce sums the pulls into each body's acceleration. Pick a preset; click a body to see its row of forces.") }
+            { header("N-body gravity", "Every pair of bodies at once, with no loops: the displacements of all pairs form a cube, the cube gives every pair's pull, and one reduce sums the pulls into each body's acceleration. Pick a preset; click a body to see its row of forces.", about(include_str!("../../demo.toml"))) }
             <nav class="timeline">{ for STAGES.iter().map(|&s| stage_chip(&model, s)) }</nav>
             { controls(&model) }
             { notice(&model.notice) }

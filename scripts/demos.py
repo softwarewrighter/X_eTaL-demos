@@ -33,7 +33,12 @@ def problems(d, meta):
         out.append(f"{d.name}: slug {meta.get('slug')!r} is not the directory name")
     if meta.get("status") not in STATUSES:
         out.append(f"{d.name}: status must be one of {sorted(STATUSES)}")
-    for k in ("idea", "line"):
+    if meta.get("status") == "live" and not (meta.get("wiki") or meta.get("story")):
+        out.append(f"{d.name}: a live demo needs wiki (a Wikipedia article) or story (for its title's dialog)")
+    wiki = meta.get("wiki", "")
+    if wiki and not str(wiki).startswith("https://en.wikipedia.org/wiki/"):
+        out.append(f"{d.name}: wiki must be an https://en.wikipedia.org/wiki/ link")
+    for k in ("idea", "line", "wiki", "story"):
         if k in meta and not isinstance(meta[k], str):
             out.append(f"{d.name}: {k} must be text")
     line = meta.get("line", "")

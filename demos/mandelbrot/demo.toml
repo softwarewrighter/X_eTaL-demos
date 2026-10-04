@@ -3,6 +3,7 @@
 slug = "mandelbrot"
 title = "Mandelbrot"
 summary = "Every point of the picture iterated at once: z becomes z * z + c over the whole grid. Step k up and watch the set appear; click a point for its orbit, or zoom in."
+wiki = "https://en.wikipedia.org/wiki/Mandelbrot_set"
 idea = "z becomes z * z + c for every pixel at once: the whole grid is the argument, and a mask freezes the points that have escaped."
 line = "a := (inside * cr + (zr * zr) - zi * zi) + (1 - inside) * zr"
 concepts = ["broadcasting with table", "function power", "masks", "rank-3 state"]

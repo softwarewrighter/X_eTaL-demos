@@ -3,6 +3,7 @@
 slug = "ca-lab"
 title = "Cellular automata lab"
 summary = "Every rule is a lookup table: rotations turn each cell's neighbourhood into a number and the number picks its next state. Wolfram's Rule 30, 90 and 110 with an editable 8-entry table; Life, Brian's Brain and Wireworld as editable state-by-neighbours tables."
+wiki = "https://en.wikipedia.org/wiki/Elementary_cellular_automaton"
 idea = "Any rule is a lookup table, indexed for every cell at once by its state and its neighbour count."
 line = "u:l_ook := { tbl b -> (1 + (9 * b) + u:c_ount b) s_elect tbl }"
 concepts = ["rotation", "lookup by s_elect", "reduce over axes", "function power"]

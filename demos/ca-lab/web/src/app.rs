@@ -9,7 +9,7 @@ use web_sys::{HtmlInputElement, HtmlSelectElement};
 use yew::prelude::*;
 
 use microscope::canvas::Canvas;
-use microscope::chrome::{chip, footer, header, notice, panel};
+use microscope::chrome::{about, chip, footer, header, notice, panel};
 use microscope::colour;
 use microscope::source::code;
 
@@ -234,7 +234,7 @@ pub fn app() -> Html {
     html! {
         <>
         <header>
-            { header("Cellular automata lab", "Every rule here is a lookup table. Rotations turn each cell's neighbourhood into a number, for the whole array at once, and the number picks the cell's next state from the table. Change the table and you change the universe.") }
+            { header("Cellular automata lab", "Every rule here is a lookup table. Rotations turn each cell's neighbourhood into a number, for the whole array at once, and the number picks the cell's next state from the table. Change the table and you change the universe.", about(include_str!("../../demo.toml"))) }
             { mode_tabs(&model) }
             <nav class="timeline">{ for STAGES.iter().map(|&s| stage_chip(&model, s)) }</nav>
             { controls }

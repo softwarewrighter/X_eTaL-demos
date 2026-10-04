@@ -7,7 +7,7 @@ use web_sys::{HtmlInputElement, HtmlSelectElement};
 use yew::prelude::*;
 
 use microscope::canvas::Canvas;
-use microscope::chrome::{chip, footer, header, notice, panel};
+use microscope::chrome::{about, chip, footer, header, notice, panel};
 use microscope::colour;
 use microscope::source::code;
 
@@ -277,7 +277,7 @@ pub fn app() -> Html {
     html! {
         <>
         <header>
-            { header("Image pipeline", "Blur, edges, a threshold and pooling, each an array program over the whole picture. Every 3 x 3 filter is the same two steps: the stack of the picture's nine shifted copies, then the kernel times the stack, summed. Edit the kernels; click a pixel to see its window times each one.") }
+            { header("Image pipeline", "Blur, edges, a threshold and pooling, each an array program over the whole picture. Every 3 x 3 filter is the same two steps: the stack of the picture's nine shifted copies, then the kernel times the stack, summed. Edit the kernels; click a pixel to see its window times each one.", about(include_str!("../../demo.toml"))) }
             <nav class="timeline">{ for STAGES.iter().map(|&s| stage_chip(&model, s)) }</nav>
             { controls(&model) }
             { notice(&model.notice) }

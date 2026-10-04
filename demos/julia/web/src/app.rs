@@ -8,7 +8,7 @@ use web_sys::HtmlInputElement;
 use yew::prelude::*;
 
 use microscope::canvas::Canvas;
-use microscope::chrome::{chip, footer, header, notice, panel};
+use microscope::chrome::{about, chip, footer, header, notice, panel};
 use microscope::source::{code, line, NONE};
 
 use crate::colour;
@@ -99,7 +99,7 @@ pub fn app() -> Html {
     html! {
         <>
         <header>
-            { header("Julia sets", "The Mandelbrot set's companions. One X_eTaL function iterates z \u{00d7} z + c: give it the grid as c and you get the Mandelbrot set; give it one number as c and the grid as the starting z, and you get that c's Julia set.") }
+            { header("Julia sets", "The Mandelbrot set's companions. One X_eTaL function iterates z \u{00d7} z + c: give it the grid as c and you get the Mandelbrot set; give it one number as c and the grid as the starting z, and you get that c's Julia set.", about(include_str!("../../demo.toml"))) }
             <nav class="timeline">{ for STAGES.iter().map(|&s| stage_chip(&model, s)) }</nav>
             { controls(&model) }
             { notice(&model.notice) }
