@@ -1,9 +1,10 @@
 number = 2
 slug = "perf-gate"
-status = "in-progress"
+status = "completed"
 description = "start-here step (research4: performance regression gates): per-demo benchmark..."
 role = "production"
 context_files = []
 created_at = "2026-10-03T13:55:22"
+completed_at = "2026-10-03T17:18:21"
 task_type = "tooling"
-commits = []
+commits = ["dcc12c70c12f6ea8e840a27f268df1f58540a1ba"]
