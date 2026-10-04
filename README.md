@@ -29,8 +29,7 @@ machine.
   (`"mx:" u_se< "Matrix"`). Ready today.
 - `.xtlm` macro libraries: new notation that expands into ordinary,
   visible X_eTaL (`xetal expand` prints it), which is then
-  type-checked. Just landed in X_eTaL; this repository's bundled copy
-  gets them at its next refresh.
+  type-checked. New in X_eTaL (and in this repository's bundled copy).
 - Native extensions: Rust libraries behind typed X_eTaL facades, for
   what the language should not reinvent (a database, a clock). Working
   through a bridge today (hello, clock, sqlite); core support coming.
@@ -202,9 +201,9 @@ wave tank, the cellular automata lab, Langton's ant, N-body gravity
 and the image pipeline. Every demo's programs are tested at the
 command line and its page in headless Chrome, both as reg-rs
 baselines, with the page's model tested natively. The machine-learning
-demos moved to X_eTaL-ML (above). X_eTaL's latest release made `t_able`
-and `i_nner` slower, so some pages are slower than they were (filed in
-[`docs/xetal-asks.md`](docs/xetal-asks.md)). See
+demos moved to X_eTaL-ML (above). Timings of every page's program are
+kept in [`docs/bench.md`](docs/bench.md) and checked on every refresh
+of the bundled X_eTaL. See
 [`docs/plan.md`](docs/plan.md) for the roadmap.
 
 ## Documentation

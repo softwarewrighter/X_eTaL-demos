@@ -65,9 +65,8 @@ pictures (a vertical edge has gx > 0 and gy = 0, a horizontal one the
 reverse, a diagonal one gx = -gy), and the pooling.
 
 A run on 96 x 96 pixels (three filters, each over a 3 x 3 x 96 x 96
-stack) takes about 120 ms natively with X_eTaL abb8274 (70 ms with
-06d39fa: `t_able` got slower, an ask in
-[`docs/xetal-asks.md`](../../docs/xetal-asks.md)).
+stack) takes about 60 ms natively with X_eTaL 1c1617e (`docs/bench.md`
+has the measurements; `just bench` repeats them).
 
 ## Run it
 

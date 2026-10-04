@@ -76,9 +76,8 @@ that X_eTaL agrees with a direct Rust double loop (accelerations and
 comes round after its period with its energy kept.
 
 A 50-body step (two accelerations, about 40,000 element operations)
-takes about 7 ms natively with X_eTaL abb8274 (4 ms with 06d39fa:
-`t_able` got slower, an ask in
-[`docs/xetal-asks.md`](../../docs/xetal-asks.md)).
+takes about 3 ms natively with X_eTaL 1c1617e (`docs/bench.md` has
+the measurements; `just bench` repeats them).
 
 ## Run it
 

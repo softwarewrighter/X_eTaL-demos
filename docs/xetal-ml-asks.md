@@ -104,7 +104,7 @@ have landed; `t_able` and `i_nner` got slower (a regression, filed).
 | Number literals with an exponent | any page writing small Floats | landed in abb8274; `microscope::run::lit` uses them |
 | Transpose | attention, embedding-explorer | landed in abb8274 (`o_\`, `t_ranspose`) |
 | Long Int strands read slowly | moe-router (word numbers) | landed in abb8274: moe-router can pass Ints |
-| `t_able` and `i_nner` regression (2.7x, 1.5x slower than 06d39fa) | ternary-net (formats 0.64 -> 1.40 s), moe-router, cnn-digits | none; filed upstream |
+| `t_able` and `i_nner` regression (2.7x, 1.5x slower than 06d39fa) | ternary-net (formats 0.64 -> 1.40 s), moe-router, cnn-digits | fixed in X_eTaL's Saga 30 (1c1617e: `i_nner` 7x faster than at abb8274) |
 
 ## What X_eTaL-demos does once X_eTaL-ML has them
 

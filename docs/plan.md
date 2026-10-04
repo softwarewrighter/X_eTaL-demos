@@ -246,13 +246,12 @@ overview until then). New demos wait until after the launch.
 
 What a newcomer would hit, in order:
 
-1. The pages are slower than they were at X_eTaL 06d39fa (the
-   `t_able` / `i_nner` regression, filed; X_eTaL's Saga 30). Fix:
-   re-vendor when it lands, `just bench-check`, new baseline.
+1. Resolved 2026-10-04: the `t_able` / `i_nner` regression (X_eTaL's
+   Saga 30, vendored at 1c1617e; the pages are faster than ever).
 2. `xetal --version` from the bundled build reports this repository's
    commit, not X_eTaL's (filed; `just xetal-version` is right).
-3. Not blocking, noted: a scan is quadratic in its axis (no demo
-   depends on a long scan); per-row grade and mix are open (no demo
+3. Not blocking, noted: a scan with a built-in operand is quadratic in
+   its axis (no demo depends on a long scan); per-row grade and mix are open (no demo
    here needs them now).
 
 Checked: the README's start-here path against the live catalog and

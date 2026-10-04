@@ -6,8 +6,8 @@ demos, which moved there; they stay here as the record until X_eTaL-ML
 carries them. This repo does not change X_eTaL: each ask is filed
 here (and taken to `../X_eTaL`), the demo uses the workaround noted
 below or waits, and the workaround is removed when the ask lands in a
-vendored release (`vendor/xetal/VENDORED`, now X_eTaL 081fb3f; every
-ask was re-checked against it on 2026-10-03). X_eTaL keeps its own
+vendored release (`vendor/xetal/VENDORED`, now X_eTaL 1c1617e; every
+ask was re-checked against it on 2026-10-04). X_eTaL keeps its own
 ledger of these asks (its `docs/asks.md`, D1 to D9).
 
 Each entry: status (open, filed, landed, dropped), kind (feature, bug
@@ -17,11 +17,11 @@ demos work with that are not asks.
 
 | Status | Kind | Ask | Demos | Workaround |
 | ------ | ---- | --- | ----- | ---------- |
-| open | speed (regression) | Since X_eTaL 06d39fa (vendored here until 2026-10-03), `t_able` is about 2.7x and `i_nner` about 1.5x slower at abb8274, while elementwise arithmetic got about 8x faster; pages that spread with `t_able` or multiply with `i_nner` got 1.7 to 2.2x slower | nbody, image-pipeline, ternary-net (X_eTaL-ML), moe-router (X_eTaL-ML), cnn-digits (X_eTaL-ML) | none: kept abb8274 (the user's choice); waiting for the fix |
+| landed (Saga 30: 16b710d, 8456e45) | speed (regression) | `t_able` and `i_nner` were 2.7x and 1.5x slower at abb8274 than at 06d39fa (and `i_nner` 20% slower again at 081fb3f); at 1c1617e they are faster than ever: against the 081fb3f baseline `t_able` -82%, `i_nner` -86%, nbody -52%, image-pipeline -55% | nbody, image-pipeline, langtons-ant (and X_eTaL-ML's) | none needed now |
 | landed (abb8274) | bug | Reading a long strand of Int literals took quadratic time (8000 Ints: 2.1 s; now 0.00 s) | ca-lab, langtons-ant (boards passed in each frame), moe-router (X_eTaL-ML) | removed in ca-lab and langtons-ant: boards go in as Int literals (moe-router (X_eTaL-ML)'s word numbers are X_eTaL-ML's) |
 | partly landed (abb8274) | speed | Whole-array arithmetic was about 50 ns per element per operation; elementwise arithmetic is now about 8x faster (see the regression above for `t_able` and `i_nner`) | langtons-ant (the highway needs ~10,000 steps), reaction-diffusion, mandelbrot, wave-tank | small grids, a few steps per frame, the page shows each run's time |
-| open | speed | A scan is quadratic in the length of the axis (each running reduce is computed afresh), also for an associative function like `+`: 64 x 512 `'+ s_\_2` takes 0.22 s, doubling the length quadruples it | (none yet; `tools/bench`) | short axes |
-| open | speed | `i_nner` (matrix product) costs about 370 ns per multiply-add, slower than the same product written as broadcast-and-reduce (about 250 ns) and 7x the elementwise rate | ternary-net (X_eTaL-ML) (a 576-point map through a 16-wide network: 0.64 s for three formats natively) | a 24 x 24 map; the page reruns only the program whose inputs changed |
+| open | speed | A scan with a built-in operand is still quadratic in the axis length (each running reduce afresh): 64 x 512 `'+ s_\\_2` 0.20 s, 64 x 4096 13 s at 1c1617e; Saga 30 made the scan of a user function linear when it is associative, not `'+` | (none yet; `tools/bench`) | short axes |
+| landed (Saga 30) | speed | `i_nner` (matrix product) cost about 370 ns per multiply-add; at 1c1617e the bench's (32 x 256) by (256 x 32) product takes 29 ms, 7x faster | X_eTaL-ML's | none needed now |
 | open | feature | Grade along an axis per row (`g_rade_2 M` grades the columns as items, one vector, not each row), for top-k per row | moe-router (X_eTaL-ML) (top-2 experts per token) | the largest by `'m_ax r_/_2`, masked out, then the largest again |
 | open | feature | `xetal-play`: pass arrays into a program and read them back without text, or keep a session between runs | every page that keeps state (reaction-diffusion, wave-tank, ca-lab, langtons-ant, nbody) | each frame writes the state as literal matrices and parses the printed `r_avel` lines |
 | landed (abb8274) | feature | Number literals with an exponent (`1.5e-7`) | mandelbrot (deep zoom), any page writing small or large Floats into a program | removed: `microscope::run::lit` writes the shortest form, with an exponent when small |
@@ -143,6 +143,10 @@ beside the binary's version; the pages' footers read `VENDORED`.
 
 ### Scan is quadratic
 
+Still open at 1c1617e for a built-in operand: Saga 30 gave user
+functions a running scan when they are associative, but `'+ s_\_2` on
+64 x 4096 takes 13 s. The ask as filed:
+
 `'f s_\ v` is every running reduce, and each is computed from the
 start (right to left, as APL defines a scan for any function), so a
 scan along an axis of length n costs about n * n / 2 applications.
@@ -163,6 +167,13 @@ identical). Found by `tools/bench`, whose scan case now uses short
 rows.
 
 ### Speed regression in `t_able` and `i_nner` (06d39fa to abb8274)
+
+Landed in X_eTaL's Saga 30 (16b710d: a built-in operand is computed
+directly; 8456e45: lean kernels for function operands), vendored here
+at 1c1617e: `just bench-check` against the 081fb3f baseline gave
+`t_able` -82%, `i_nner` -86%, nbody -52%, image-pipeline -55%,
+langtons-ant -41%, nothing slower; nbody's 10 steps take 27 ms (38 ms
+at 06d39fa). The ask as filed:
 
 Refreshing the vendored X_eTaL from 06d39fa to abb8274 (2026-10-03)
 made the higher-order built-ins `t_able` and `i_nner` slower, while
