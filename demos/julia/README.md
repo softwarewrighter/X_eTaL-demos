@@ -70,7 +70,7 @@ disk; the same function gives the Mandelbrot set's known points.
 ```bash
 just run julia          # a Julia set and the Mandelbrot set, as characters
 just show julia         # the same as a notebook
-just serve julia        # the web app at http://127.0.0.1:8095/
+just serve julia        # the web app at http://127.0.0.1:8413/
 just test-demo julia    # its CLI and browser baselines and the web app's tests
 ```
 

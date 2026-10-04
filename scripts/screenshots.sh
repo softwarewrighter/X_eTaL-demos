@@ -8,7 +8,7 @@ set -euo pipefail
 root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 chrome="${CHROME:-/Applications/Google Chrome.app/Contents/MacOS/Google Chrome}"
 [ -x "$chrome" ] || { echo "screenshots: no Chrome at $chrome (set CHROME)" >&2; exit 1; }
-port=8097
+port="$(python3 -c 'import socket; s=socket.socket(); s.bind(("127.0.0.1", 0)); print(s.getsockname()[1])')"
 "$root/scripts/serve-pages.sh" "$port" >/dev/null 2>&1 &
 server=$!
 trap 'kill $server 2>/dev/null || true' EXIT

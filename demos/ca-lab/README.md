@@ -72,7 +72,7 @@ table against Conway's rule cell by cell.
 ```bash
 just run ca-lab          # Rule 30, Rule 90, Life, Brian's Brain, Wireworld
 just show ca-lab         # the same as a notebook
-just serve ca-lab        # the web app at http://127.0.0.1:8095/
+just serve ca-lab        # the web app at http://127.0.0.1:8413/
 just test-demo ca-lab    # its CLI and browser baselines and the web app's tests
 ```
 

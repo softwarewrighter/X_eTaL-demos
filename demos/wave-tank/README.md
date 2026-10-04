@@ -70,7 +70,7 @@ time advances.
 ```bash
 just run wave-tank          # a double slit after 150 steps, as characters
 just show wave-tank         # the same as a notebook
-just serve wave-tank        # the web app at http://127.0.0.1:8095/
+just serve wave-tank        # the web app at http://127.0.0.1:8413/
 just test-demo wave-tank    # its CLI and browser baselines and the web app's tests
 ```
 

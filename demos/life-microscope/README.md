@@ -48,7 +48,7 @@ print lines.
 ```bash
 just run life-microscope          # the arrays of one step of a glider, then four steps on
 just show life-microscope         # the same as a notebook: each statement, then its output
-just serve life-microscope        # the web app at http://127.0.0.1:8095/
+just serve life-microscope        # the web app at http://127.0.0.1:8413/
 just test-demo life-microscope    # its CLI and browser baselines and the web app's tests
 ```
 

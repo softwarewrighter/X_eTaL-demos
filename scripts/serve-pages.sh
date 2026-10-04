@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 # Serve the built pages/ locally as GitHub Pages will, under
-# /X_eTaL-demos/: http://127.0.0.1:PORT/X_eTaL-demos/ (default 8096).
+# /X_eTaL-demos/: http://127.0.0.1:PORT/X_eTaL-demos/ (default 8413, this repository's
+# port: each X_eTaL repository has its own, so one page from each can
+# be served at once).
 #   scripts/serve-pages.sh [PORT]
 set -euo pipefail
 root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-port="${1:-8096}"
+port="${1:-8413}"
 site="$root/target/serve-pages"
 mkdir -p "$site"
 ln -sfn "$root/pages" "$site/X_eTaL-demos"

@@ -351,6 +351,10 @@ Read before working:
 
 ## Useful Commands
 
+This repository's local port is 8413 (each X_eTaL repository has its
+own, so one demo from each can be served at once); tools that serve
+for themselves (screenshots, browser checks) pick a free port.
+
 ```bash
 just                      # list recipes
 just gate                 # pre-commit gate
@@ -360,7 +364,8 @@ just new-demo SLUG "T"    # start a demo from demos/_template
 just run SLUG / show SLUG # run a demo / as a notebook
 just test-demo SLUG       # its goldens; just bless SLUG rewrites them
 just pages                # build pages/ (commit it; push publishes)
-just serve-pages          # preview pages/ under /X_eTaL-demos/
+just serve SLUG           # one demo's web app at http://127.0.0.1:8413/
+just serve-pages          # preview pages/ at http://127.0.0.1:8413/X_eTaL-demos/
 just vendor [REF]         # refresh vendor/xetal/ (own commit)
 agentrail status          # current saga state
 agentrail next            # current step + context

@@ -59,7 +59,7 @@ shows the time of each run.
 ```bash
 just run mandelbrot          # the set as characters, and one point's orbit
 just show mandelbrot         # the same as a notebook
-just serve mandelbrot        # the web app at http://127.0.0.1:8095/
+just serve mandelbrot        # the web app at http://127.0.0.1:8413/
 just test-demo mandelbrot    # its CLI and browser baselines and the web app's tests
 ```
 

@@ -58,7 +58,7 @@ the time of each run.
 ```bash
 just run reaction-diffusion          # a maze grown from a square, drawn as characters
 just show reaction-diffusion         # the same as a notebook
-just serve reaction-diffusion        # the web app at http://127.0.0.1:8095/
+just serve reaction-diffusion        # the web app at http://127.0.0.1:8413/
 just test-demo reaction-diffusion    # its CLI and browser baselines and the web app's tests
 ```
 

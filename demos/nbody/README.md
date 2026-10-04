@@ -84,7 +84,7 @@ the measurements; `just bench` repeats them).
 ```bash
 just run nbody          # the figure-eight: the cube, accelerations, 50 steps, momentum
 just show nbody         # the same as a notebook
-just serve nbody        # the web app at http://127.0.0.1:8095/
+just serve nbody        # the web app at http://127.0.0.1:8413/
 just test-demo nbody    # its CLI and browser baselines and the web app's tests
 ```
 

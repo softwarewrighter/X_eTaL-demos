@@ -179,9 +179,9 @@ web app.
 ## The live site
 
 ```bash
-just serve SLUG       # one demo's web app at http://127.0.0.1:8095/, rebuilt on change
+just serve SLUG       # one demo's web app at http://127.0.0.1:8413/, rebuilt on change
 just pages            # build the whole site into pages/
-just serve-pages      # preview pages/ at http://127.0.0.1:8096/X_eTaL-demos/
+just serve-pages      # preview pages/ at http://127.0.0.1:8413/X_eTaL-demos/
 just screenshots      # capture each demo (headless Chrome) into demos/<slug>/screenshot.png
 ```
 

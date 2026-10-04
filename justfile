@@ -72,12 +72,12 @@ bench-check:
 pages:
     scripts/build-pages.sh
 
-# Serve the built pages/ as GitHub Pages will: http://127.0.0.1:8096/X_eTaL-demos/
-serve-pages port="8096":
+# Serve the built pages/ as GitHub Pages will: http://127.0.0.1:8413/X_eTaL-demos/ (8413 is this repo's port)
+serve-pages port="8413":
     scripts/serve-pages.sh "$1"
 
 # Serve one demo's web app locally, rebuilt on change: just serve life-microscope
-serve slug port="8095":
+serve slug port="8413":
     cd demos/{{slug}}/web && trunk serve --release --port {{port}} --address 127.0.0.1
 
 # Screenshot every demo (from the built pages/) into demos/<slug>/screenshot.png
