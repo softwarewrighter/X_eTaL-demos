@@ -1,0 +1,1 @@
+gallery-3-release: all screenshots retaken; READMEs describe the full-program panel; start-here/catalog updated (macros landed upstream, not yet vendored); asks reviewed; Saga 30 not landed so the tag waits; retrospective + macro-demo candidate in plan.
