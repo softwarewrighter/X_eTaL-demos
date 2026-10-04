@@ -1,0 +1,1 @@
+release-tag: vendored X_eTaL 1c1617e (Saga 30 fixes + .xtlm macros); bench-check nothing slower (table -82%, inner -86%, nbody -52%); new baseline; asks re-run (regression + inner landed, scan narrowed); docs/timings updated; ports moved to 8413 per user; gate passed; annotated tag v0.1.0 pushed (vendored commit in message).
