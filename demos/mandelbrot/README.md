@@ -11,8 +11,10 @@ Live: [Mandelbrot](https://softwarewrighter.github.io/X_eTaL-demos/mandelbrot/)
 
 ## The program
 
-The core of `mandelbrot.xtl` (the live page runs exactly this, with its
-own view):
+The core of `mandelbrot.xtl`, which the live page runs with its own
+view. The page's program panel shows the whole program it runs: this
+core, its settings, the data it writes in (folded) and the lines that
+print the arrays it draws.
 
 ```
 re := cx + w * (u:c_entred cols) / f_loat cols

@@ -39,7 +39,9 @@ neighbourhood, and their sum is S.
 
 The page runs X_eTaL itself, compiled to WebAssembly: each generation
 it runs the line on the board and prints each intermediate array
-(`r_avel`), and draws what X_eTaL printed.
+(`r_avel`), and draws what X_eTaL printed. Its program panel shows
+that whole program: the line, the board it writes in (folded) and the
+print lines.
 
 ## Run it
 

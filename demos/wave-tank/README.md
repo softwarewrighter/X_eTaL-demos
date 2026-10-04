@@ -15,8 +15,10 @@ Live: [Wave tank](https://softwarewrighter.github.io/X_eTaL-demos/wave-tank/)
 
 ## The program
 
-From `wave-tank.xtl` (the live page runs these sections, with the
-scene you pick):
+From `wave-tank.xtl`: the sections the live page runs, with the scene
+you pick. The page's program panel shows the whole program it runs:
+this core, its settings, the data it writes in (folded) and the lines
+that print the arrays it draws.
 
 ```
 col := (o_ffsets rows) 'r_ight t_able o_ffsets cols

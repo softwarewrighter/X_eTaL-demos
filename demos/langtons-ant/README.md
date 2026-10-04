@@ -15,7 +15,10 @@ Live: [Langton's ant](https://softwarewrighter.github.io/X_eTaL-demos/langtons-a
 
 ## The program
 
-The core of `langtons-ant.xtl` (the live page runs exactly this):
+The core of `langtons-ant.xtl`, which the live page runs. The page's
+program panel shows the whole program it runs: this core, its
+settings, the data it writes in (folded) and the lines that print the
+arrays it draws.
 
 ```
 u:s_tep := { s ->

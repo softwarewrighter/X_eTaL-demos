@@ -12,7 +12,10 @@ Live: [Cellular automata lab](https://softwarewrighter.github.io/X_eTaL-demos/ca
 
 ## The program
 
-The core of `ca-lab.xtl` (the live page runs exactly this):
+The core of `ca-lab.xtl`, which the live page runs. The page's program
+panel shows the whole program it runs: this core, its settings, the
+data it writes in (folded) and the lines that print the arrays it
+draws.
 
 ```
 u:b_its := { rule -> (rule d_iv 2 ^ o_ffsets 8) m_od 2 }

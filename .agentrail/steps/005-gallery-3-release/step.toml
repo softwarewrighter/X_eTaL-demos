@@ -1,6 +1,6 @@
 number = 5
 slug = "gallery-3-release"
-status = "pending"
+status = "in-progress"
 description = "start-here step 4: release: screenshots, catalog order and summaries, README ..."
 role = "production"
 context_files = []

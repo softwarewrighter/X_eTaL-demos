@@ -14,8 +14,10 @@ Live: [Julia sets](https://softwarewrighter.github.io/X_eTaL-demos/julia/)
 
 ## The program
 
-The function at the heart of `julia.xtl` (the live page runs exactly
-its core):
+The function at the heart of `julia.xtl`, the core the live page runs.
+The page's program panel shows the whole program it runs: this core,
+its settings, the data it writes in (folded) and the lines that print
+the arrays it draws.
 
 ```
 u:i_terate := { c z0 ->

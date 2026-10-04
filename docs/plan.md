@@ -217,10 +217,30 @@ overview until then). New demos wait until after the launch.
 | 2 | perf-gate | Done: `tools/bench` times each page's own `run` and eight built-ins natively through `xetal-play` (best of 7, as a ratio to a pure-Rust reference loop timed just before each case, a failing case re-measured once); `just bench` writes `docs/bench.md` and the baseline `docs/bench.json`, `just bench-check` fails on a case more than 15% slower (verified with a doctored baseline; three runs on an unchanged build within 5%); required on every vendor refresh (CLAUDE.md rule 2), not in the default gate (40 s, noisy on a shared machine), which builds the tool; found a quadratic scan (ask filed) |
 | 3 | promotion-audit | Done without the speed fix (X_eTaL's Saga 30 has not landed): vendored 081fb3f (it lands the bound-condition fix: image-pipeline binds its masks as conditions again); every ask re-run; bench-check: pages within 10%, `inner` about 20% slower again (filed); a fresh clone runs `just run nbody` in about 17 s; the promotion blockers below. The tag moved to its own step, after Saga 30 |
 | 3a | listing-is-program | Done (the user's question: the nbody listing had no `m`): every page's program panel shows exactly the program X_eTaL ran for what is on screen (constants, core, the data written in, the run and print lines), long data lines folded by `microscope::source::listing` (decorated, with a count, open and close); the models keep the text of their last run; mandelbrot and julia show their second program too; life-microscope gained a program panel; a test per demo that the program holds the demo's code and folds only data |
-| 4 | gallery-3-release | screenshots, catalog, docs, retrospective |
+| 4 | gallery-3-release | Done: screenshots retaken (listings, Langton's colours, the title glyph); READMEs say the program panel shows the whole program run; the start-here text updated for `.xtlm` macros, which landed in X_eTaL (not yet vendored); asks reviewed; retrospective below |
 | 4a | release-tag | when Saga 30 lands: re-vendor, `just bench-check` (and a new baseline), every ask re-run, then tag the known-compatible snapshot (name agreed with the user) |
 | 5 | fourier-epicycles | post-launch: a curve's Fourier transform as one outer product; circles on circles |
 | 6 | sandpile | post-launch: the abelian sandpile by rotations and masks |
+| - | (candidate) macro demo | post-launch, once the vendor carries `.xtlm`: a demo that uses a user macro library and shows its expansion (research3's missing "extensible" proof) |
+
+### Saga 5 retrospective (to the gallery-3 release)
+
+- The entry point exists: README start-here and catalog cards that
+  answer what, why and show the X_eTaL line (verified against the
+  .xtl by the gate); every title leads to the Wikipedia article on its
+  subject (or a story dialog when there is none).
+- Honesty fixes from the user's eye: the nbody listing hid `m` and the
+  run (now every page shows exactly the program it ran, data folded);
+  Langton's board was drawn inverted (now black on white).
+- Tooling found its own bugs: the vendor script kept git-archive
+  timestamps, so cargo could reuse stale builds after a refresh (now
+  touched); 5 ms bench cases were too noisy for a 15% gate (now
+  repeated); a listing that decorated every number stalled a page
+  (now only what is shown is decorated), caught by the browser test.
+- `just bench` / `just bench-check` measure every refresh; they found
+  a quadratic scan and a further `i_nner` slow-down, filed upstream.
+- Still waiting: X_eTaL's speed fix (Saga 30) for the release tag;
+  the macros that just landed open a macro demo after the launch.
 
 ### Promotion blockers for this repository (2026-10-03)
 

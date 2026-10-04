@@ -99,7 +99,7 @@ and terse composition, with inferred static types and typed functional compositi
 Haskell, explicit, checked interfaces in the spirit of Rust, and plain ASCII source drawn
 as readable typography.</p>
 <p><b>Extensible</b> three ways: libraries extend the vocabulary (ready), macros extend
-what the language can say (coming), native extensions extend the machine (through a
+what the language can say (just landed), native extensions extend the machine (through a
 bridge today).</p>
 <nav class="eco" aria-label="The X_eTaL repositories">
 <a href="https://softwarewrighter.github.io/X_eTaL/">The language (playground)</a>

@@ -13,7 +13,10 @@ Live: [Reaction-diffusion](https://softwarewrighter.github.io/X_eTaL-demos/react
 
 ## The program
 
-The core of `reaction-diffusion.xtl` (the live page runs exactly this):
+The core of `reaction-diffusion.xtl`, which the live page runs. The
+page's program panel shows the whole program it runs: this core, its
+settings, the data it writes in (folded) and the lines that print the
+arrays it draws.
 
 ```
 u:l_ap := { x -> ((1 o_-_1 x) + (-1 o_-_1 x) + (1 o_-_2 x) + -1 o_-_2 x) - 4.0 * x }

@@ -14,8 +14,10 @@ Live: [N-body gravity](https://softwarewrighter.github.io/X_eTaL-demos/nbody/)
 
 ## The program
 
-From `nbody.xtl` (the live page runs this core, with the constants and
-bodies of the preset you pick):
+From `nbody.xtl`: the core the live page runs, with the constants and
+bodies of the preset you pick. The page's program panel shows the
+whole program it runs: this core, its settings, the data it writes in
+(folded) and the lines that print the arrays it draws.
 
 ```
 n := t_ally m

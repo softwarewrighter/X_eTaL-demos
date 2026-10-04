@@ -14,8 +14,10 @@ Live: [Image pipeline](https://softwarewrighter.github.io/X_eTaL-demos/image-pip
 
 ## The program
 
-From `image-pipeline.xtl` (the live page runs this core, with the
-picture, kernels and threshold you pick):
+From `image-pipeline.xtl`: the core the live page runs, with the
+picture, kernels and threshold you pick. The page's program panel
+shows the whole program it runs: this core, its settings, the data it
+writes in (folded) and the lines that print the arrays it draws.
 
 ```
 u:w_indows := { x -> -1 0 1 o_-_2 -1 0 1 o_-_2 x }

@@ -28,8 +28,9 @@ machine.
 - `.xtl` libraries: reusable, typed X_eTaL functions
   (`"mx:" u_se< "Matrix"`). Ready today.
 - `.xtlm` macro libraries: new notation that expands into ordinary,
-  visible X_eTaL, which is then type-checked. Coming (X_eTaL's macros
-  saga).
+  visible X_eTaL (`xetal expand` prints it), which is then
+  type-checked. Just landed in X_eTaL; this repository's bundled copy
+  gets them at its next refresh.
 - Native extensions: Rust libraries behind typed X_eTaL facades, for
   what the language should not reinvent (a database, a clock). Working
   through a bridge today (hello, clock, sqlite); core support coming.
@@ -42,7 +43,7 @@ machine.
 | [X_eTaL-demos](https://github.com/softwarewrighter/X_eTaL-demos) (here) | visual array and scientific programs | [catalog](https://softwarewrighter.github.io/X_eTaL-demos/) |
 | [X_eTaL-ML](https://github.com/softwarewrighter/X_eTaL-ML) | machine learning: ternary networks, MoE routing, a CNN, attention | [catalog](https://softwarewrighter.github.io/X_eTaL-ML/) |
 | [X_eTaL-games](https://github.com/softwarewrighter/X_eTaL-games) | interactive games and puzzles: state, input, ordinary programs | [games](https://softwarewrighter.github.io/X_eTaL-games/) |
-| [X_eTaL-libraries](https://github.com/softwarewrighter/X_eTaL-libraries) | reusable `.xtl` (and soon `.xtlm`) libraries | [libraries](https://softwarewrighter.github.io/X_eTaL-libraries/) |
+| [X_eTaL-libraries](https://github.com/softwarewrighter/X_eTaL-libraries) | reusable `.xtl` libraries and `.xtlm` macro libraries | [libraries](https://softwarewrighter.github.io/X_eTaL-libraries/) |
 | [X_eTaL-extensions](https://github.com/softwarewrighter/X_eTaL-extensions) | native Rust extensions and their ABI | [extensions](https://softwarewrighter.github.io/X_eTaL-extensions/) |
 
 **Five minutes here:**
