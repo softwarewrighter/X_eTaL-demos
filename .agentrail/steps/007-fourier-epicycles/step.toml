@@ -1,6 +1,6 @@
 number = 7
 slug = "fourier-epicycles"
-status = "pending"
+status = "in-progress"
 description = "start-here step 2: demos/fourier-epicycles. A closed curve (presets: a heart,..."
 role = "production"
 context_files = []

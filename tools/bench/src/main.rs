@@ -93,6 +93,10 @@ fn cases() -> Vec<Case> {
         use langtons_ant_web::micro::{run, Ant};
         run(&Ant::start(), 50).unwrap();
     })));
+    c.push(("fourier-epicycles", "128 points: transform, chain, errors", Box::new(|| {
+        use fourier_epicycles_web::micro::{preset, run};
+        run(&preset(2)).unwrap();
+    })));
     // The showcase built-ins on a 512 x 512 matrix, each repeated.
     for (name, what, line, reps) in [
         ("elementwise", "x + x * x, 8 times", "x + x * x", 8),

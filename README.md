@@ -96,6 +96,7 @@ here and moved there (`docs/xetal-ml-asks.md`).
 | [Cellular automata lab](demos/ca-lab/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/ca-lab/)) | Rule 30, 90, 110 with an editable table; Life, Brian's Brain, Wireworld as tables | lookup tables, rotations | live |
 | [Langton's ant](demos/langtons-ant/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/langtons-ant/)) | a highway emerging from chaos | one-hot masks, rotation | live |
 | [N-body gravity](demos/nbody/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/nbody/)) | a figure-eight three-body orbit, a binary with planets, a collapsing cluster; the pairwise force cube | pairwise broadcasting, reduce | live |
+| [Fourier epicycles](demos/fourier-epicycles/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/fourier-epicycles/)) | circles on circles tracing a star, a heart or your drawing; a slider for how many | outer product, matrix product, scan | live |
 | [Image pipeline](demos/image-pipeline/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/image-pipeline/)) | blur, Sobel edges, threshold, pooling; edit the kernels, click a pixel for its window | windows by rotation, reduce, reshape | live |
 
 A demo's name links to its own page (`demos/<name>/README.md`, with a
@@ -194,16 +195,16 @@ to `main` runs a GitHub Actions workflow
 
 ## Status
 
-Nine demos are live on a shared page shell, each runnable at the
+Ten demos are live on a shared page shell, each runnable at the
 command line and in the browser on the bundled X_eTaL (abb8274): the
 Life microscope, Mandelbrot and Julia sets, reaction-diffusion, the
-wave tank, the cellular automata lab, Langton's ant, N-body gravity
-and the image pipeline. Every demo's programs are tested at the
-command line and its page in headless Chrome, both as reg-rs
-baselines, with the page's model tested natively. The machine-learning
-demos moved to X_eTaL-ML (above). Timings of every page's program are
-kept in [`docs/bench.md`](docs/bench.md) and checked on every refresh
-of the bundled X_eTaL. See
+wave tank, the cellular automata lab, Langton's ant, N-body gravity,
+Fourier epicycles and the image pipeline. Every demo's programs are
+tested at the command line and its page in headless Chrome, both as
+reg-rs baselines, with the page's model tested natively. The machine-
+learning demos moved to X_eTaL-ML (above). Timings of every page's
+program are kept in [`docs/bench.md`](docs/bench.md) and checked on
+every refresh of the bundled X_eTaL. See
 [`docs/plan.md`](docs/plan.md) for the roadmap.
 
 ## Documentation

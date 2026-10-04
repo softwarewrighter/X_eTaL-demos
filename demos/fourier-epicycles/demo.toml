@@ -1,0 +1,12 @@
+# One demo's description: read by scripts/demos.py for the tests, the
+# README's demo list and the live catalog (pages/index.html).
+slug = "fourier-epicycles"
+title = "Fourier epicycles"
+summary = "Any closed curve is a sum of circles turning at whole-number speeds: a heart, a star, or one you draw, traced by circles on circles. The discrete Fourier transform is two matrix products; one running sum rebuilds the curve from any number of circles."
+wiki = "https://en.wikipedia.org/wiki/Fourier_series"
+idea = "The transform is an outer product of angles and two matrix products; a running sum along the circles gives every reconstruction at once, so the circles slider needs no recomputation."
+line = "re := ((C '+ '* i_nner x) + S '+ '* i_nner y) / f_loat n"
+concepts = ["outer product (table)", "inner product", "grade", "scan along an axis"]
+status = "live"
+order = 52
+needs = []

@@ -17,5 +17,6 @@ julia-web = { path = "../../demos/julia/web" }
 life-microscope-web = { path = "../../demos/life-microscope/web" }
 ca-lab-web = { path = "../../demos/ca-lab/web" }
 langtons-ant-web = { path = "../../demos/langtons-ant/web" }
+fourier-epicycles-web = { path = "../../demos/fourier-epicycles/web" }
 
 [workspace]

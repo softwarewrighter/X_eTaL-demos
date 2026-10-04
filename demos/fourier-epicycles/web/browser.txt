@@ -1,0 +1,4 @@
+# Text the page shows only after X_eTaL has run (scripts/browser-check.sh).
+Mean error with 12: 0.002640
+the three strongest: speeds
+Circles on circles:
