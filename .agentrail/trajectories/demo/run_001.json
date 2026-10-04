@@ -1,0 +1,11 @@
+{
+  "task_type": "demo",
+  "state": {
+    "number": 7,
+    "step": "fourier-epicycles"
+  },
+  "action": "xtl core + golden; micro/view/model/app with SVG drawing; Chrome checks incl. synthetic drawing; bless; bench; screenshots; gate",
+  "result": "success",
+  "reward": 1,
+  "timestamp": "2026-10-04T16:35:06"
+}

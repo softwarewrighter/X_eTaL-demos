@@ -1,0 +1,1 @@
+demos/fourier-epicycles live: DFT as outer product + two matrix products, circles by grade, one scan gives every reconstruction (slider without rerun); presets + drawing; 7 model tests + listing test; reg-rs CLI/browser; bench case; README, catalog, plan.
