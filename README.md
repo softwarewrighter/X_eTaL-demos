@@ -141,6 +141,8 @@ just show SLUG                       # the same as a notebook: each statement, t
 just test-demo SLUG                  # its reg-rs baselines (CLI and browser) and web tests
 just new-demo wave-tank "Wave tank"  # start a new demo from demos/_template
 just bless SLUG                      # accept its current output as the baselines (review the diff)
+just bench                           # time the pages' programs and the built-ins (docs/bench.md)
+just bench-check                     # compare with the committed timings (on every vendor refresh)
 ```
 
 Each demo is a sub-project, `demos/<slug>/`:

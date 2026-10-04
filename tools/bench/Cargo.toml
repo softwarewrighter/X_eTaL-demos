@@ -1,0 +1,21 @@
+[package]
+name = "bench"
+description = "Times the demo pages' own X_eTaL programs and the showcase built-ins through the vendored xetal-play, against a committed baseline (just bench, just bench-check)"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+publish = false
+
+[dependencies]
+microscope = { path = "../../shared/microscope" }
+nbody-web = { path = "../../demos/nbody/web" }
+image-pipeline-web = { path = "../../demos/image-pipeline/web" }
+reaction-diffusion-web = { path = "../../demos/reaction-diffusion/web" }
+wave-tank-web = { path = "../../demos/wave-tank/web" }
+mandelbrot-web = { path = "../../demos/mandelbrot/web" }
+julia-web = { path = "../../demos/julia/web" }
+life-microscope-web = { path = "../../demos/life-microscope/web" }
+ca-lab-web = { path = "../../demos/ca-lab/web" }
+langtons-ant-web = { path = "../../demos/langtons-ant/web" }
+
+[workspace]

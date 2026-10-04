@@ -1,0 +1,23 @@
+{
+  "xetal": "abb8274",
+  "reference_ms": 29.669,
+  "cases": {
+    "nbody": {"ms": 55.577, "ratio": 1.84280},
+    "image-pipeline": {"ms": 118.208, "ratio": 3.95440},
+    "reaction-diffusion": {"ms": 65.428, "ratio": 2.16429},
+    "wave-tank": {"ms": 28.045, "ratio": 0.91713},
+    "mandelbrot": {"ms": 232.340, "ratio": 7.64296},
+    "julia": {"ms": 241.394, "ratio": 7.77576},
+    "life-microscope": {"ms": 10.542, "ratio": 0.34756},
+    "ca-lab": {"ms": 15.941, "ratio": 0.52530},
+    "langtons-ant": {"ms": 137.165, "ratio": 4.46100},
+    "elementwise": {"ms": 24.822, "ratio": 0.80450},
+    "reduce": {"ms": 20.460, "ratio": 0.65750},
+    "scan": {"ms": 331.392, "ratio": 10.93721},
+    "each": {"ms": 19.972, "ratio": 0.65745},
+    "table": {"ms": 151.265, "ratio": 4.95289},
+    "inner": {"ms": 358.012, "ratio": 11.89531},
+    "rotate": {"ms": 12.227, "ratio": 0.40846},
+    "transpose": {"ms": 4.340, "ratio": 0.14239}
+  }
+}

@@ -1,6 +1,6 @@
 number = 2
 slug = "perf-gate"
-status = "pending"
+status = "in-progress"
 description = "start-here step (research4: performance regression gates): per-demo benchmark..."
 role = "production"
 context_files = []
