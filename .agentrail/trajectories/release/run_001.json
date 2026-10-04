@@ -1,0 +1,11 @@
+{
+  "task_type": "release",
+  "state": {
+    "number": 3,
+    "step": "promotion-audit"
+  },
+  "action": "just vendor origin/main; bench-check; CLI A/B; workaround removal; fresh clone test; vendor/bench fixes; gate; pages",
+  "result": "success",
+  "reward": 1,
+  "timestamp": "2026-10-03T20:45:21"
+}
