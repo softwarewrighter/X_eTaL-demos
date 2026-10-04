@@ -29,10 +29,11 @@ pub fn source(program: &str, focus: Stage) -> Html {
     listing(program, range(program, focus))
 }
 
-/// The board: white cells dark, black cells cream, the ant violet.
+/// The board as Langton drew it: white cells white, black cells black,
+/// the ant violet.
 pub fn board(cells: &[i64], ant: usize) -> Vec<u8> {
     let v: Vec<f64> = cells.iter().map(|&c| c as f64).collect();
-    let mut px = pixels(&v, |c| if c == 1.0 { [255, 244, 214] } else { [20, 18, 40] });
+    let mut px = pixels(&v, |c| if c == 1.0 { [20, 18, 40] } else { [250, 248, 242] });
     px[4 * ant..4 * ant + 3].copy_from_slice(&[151, 117, 250]);
     px
 }
