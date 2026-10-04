@@ -1404,6 +1404,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "xetal-expand"
+version = "0.1.0"
+dependencies = [
+ "xetal-base",
+ "xetal-lex",
+ "xetal-mapped",
+]
+
+[[package]]
 name = "xetal-explain"
 version = "0.1.0"
 dependencies = [
@@ -1469,15 +1478,27 @@ dependencies = [
 ]
 
 [[package]]
+name = "xetal-lookup"
+version = "0.1.0"
+dependencies = [
+ "xetal-base",
+ "xetal-libs",
+ "xetal-sources",
+ "xetal-store",
+]
+
+[[package]]
 name = "xetal-macro"
 version = "0.1.0"
 dependencies = [
  "xetal-base",
+ "xetal-expand",
  "xetal-lex",
  "xetal-libs",
+ "xetal-lookup",
+ "xetal-mapped",
  "xetal-names",
  "xetal-sources",
- "xetal-store",
 ]
 
 [[package]]
@@ -1489,6 +1510,13 @@ dependencies = [
  "xetal-core",
  "xetal-kernel",
  "xetal-value",
+]
+
+[[package]]
+name = "xetal-mapped"
+version = "0.1.0"
+dependencies = [
+ "xetal-base",
 ]
 
 [[package]]
@@ -1525,6 +1553,8 @@ dependencies = [
  "xetal-array",
  "xetal-base",
  "xetal-catalog",
+ "xetal-hof",
+ "xetal-kernel",
  "xetal-radix",
  "xetal-rotate",
  "xetal-search",
@@ -1549,9 +1579,12 @@ version = "0.1.0"
 dependencies = [
  "xetal-base",
  "xetal-core",
+ "xetal-eval",
  "xetal-lex",
  "xetal-macro",
  "xetal-sources",
+ "xetal-system",
+ "xetal-types",
 ]
 
 [[package]]
@@ -1597,6 +1630,7 @@ name = "xetal-sources"
 version = "0.1.0"
 dependencies = [
  "xetal-base",
+ "xetal-mapped",
 ]
 
 [[package]]
