@@ -5,7 +5,7 @@ use std::rc::Rc;
 use microscope::run::now;
 use yew::Reducible;
 
-use crate::micro::{run, Anatomy, Surface, COLS, ROWS};
+use crate::micro::{program, run, Anatomy, Surface, COLS, ROWS};
 use crate::view::Stage;
 
 #[derive(Clone, Debug, PartialEq)]
@@ -13,6 +13,8 @@ pub struct Model {
     pub surface: Surface,
     pub scene: usize,
     pub last: Option<Rc<Anatomy>>,
+    /// The program X_eTaL ran for `last`, exactly as run (the page shows it).
+    pub program: Rc<String>,
     pub steps: usize,
     pub per_frame: usize,
     pub playing: bool,
@@ -38,6 +40,7 @@ impl Model {
             surface: Surface::flat(),
             scene,
             last: None,
+            program: Rc::new(String::new()),
             steps: 0,
             per_frame: 4,
             playing: true,
@@ -51,10 +54,12 @@ impl Model {
 
     fn advance(self, steps: usize) -> Self {
         let t = now();
+        let text = program(&self.surface, self.scene, steps);
         match run(&self.surface, self.scene, steps) {
             Ok(a) => Model {
                 surface: a.next.clone(),
                 last: Some(Rc::new(a)),
+                program: Rc::new(text),
                 steps: self.steps + steps,
                 ms: now() - t,
                 notice: None,

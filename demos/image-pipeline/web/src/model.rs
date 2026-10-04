@@ -5,7 +5,7 @@ use std::rc::Rc;
 use microscope::run::now;
 use yew::Reducible;
 
-use crate::micro::{run, Anatomy, Setup, BLURS, EDGES, SCENES};
+use crate::micro::{program, run, Anatomy, Setup, BLURS, EDGES, SCENES};
 use crate::view::Stage;
 
 #[derive(Clone, Debug, PartialEq)]
@@ -16,6 +16,8 @@ pub struct Model {
     pub blur: Option<usize>,
     pub edge: Option<usize>,
     pub last: Option<Rc<Anatomy>>,
+    /// The program X_eTaL ran for `last`, exactly as run (the page shows it).
+    pub program: Rc<String>,
     pub focus: Stage,
     pub ms: f64,
     pub notice: Option<String>,
@@ -34,7 +36,7 @@ pub enum Action {
 
 impl Model {
     pub fn new() -> Self {
-        let m = Model { setup: Setup::new(0), scene: 0, blur: Some(0), edge: Some(0), last: None, focus: Stage::Smooth, ms: 0.0, notice: None };
+        let m = Model { setup: Setup::new(0), scene: 0, blur: Some(0), edge: Some(0), last: None, program: Rc::new(String::new()), focus: Stage::Smooth, ms: 0.0, notice: None };
         m.rerun(Setup::new(0))
     }
 
@@ -42,7 +44,7 @@ impl Model {
     fn rerun(self, setup: Setup) -> Self {
         let t = now();
         match run(&setup) {
-            Ok(a) => Model { setup, last: Some(Rc::new(a)), ms: now() - t, notice: None, ..self },
+            Ok(a) => Model { program: Rc::new(program(&setup)), setup, last: Some(Rc::new(a)), ms: now() - t, notice: None, ..self },
             Err(e) => Model { notice: Some(format!("X_eTaL stopped: {e} (showing the last good run)")), ..self },
         }
     }

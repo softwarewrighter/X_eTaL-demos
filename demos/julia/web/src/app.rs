@@ -14,7 +14,7 @@ use microscope::source::{code, line, NONE};
 use crate::colour;
 use crate::micro::{call, Set, View, PRESETS};
 use crate::model::{Action, Model, K};
-use crate::view::{source, Stage, STAGES};
+use crate::view::{picker_source, source, Stage, STAGES};
 
 fn act(m: &UseReducerHandle<Model>, a: impl Fn() -> Action + 'static) -> Callback<MouseEvent> {
     let d = m.dispatcher();
@@ -111,8 +111,10 @@ pub fn app() -> Html {
                     { compare(&model) }
                     <section class="panel code">
                         <h2>{"The program"}</h2>
-                        <p class="note">{"The core of julia.xtl, run by X_eTaL in your browser; the stage you pick is highlighted."}</p>
-                        { source(model.focus) }
+                        <p class="note">{"Exactly the program X_eTaL ran in your browser for the Julia set: the view and c (written in by the page), the core of julia.xtl, the call and the line that prints the counts. The stage you pick is highlighted."}</p>
+                        { source(&model.program, model.focus) }
+                        <p class="note">{"And the program for the picker, the same function with c the grid:"}</p>
+                        { picker_source(&model.picker_text) }
                     </section>
                 </div>
             </div>

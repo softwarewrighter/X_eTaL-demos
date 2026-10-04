@@ -1,10 +1,8 @@
-//! The stages, the part of the core computing each, and colours.
+//! The stages, the part of the program computing each, and colours.
 
 use microscope::colour::{pixels, Rgb};
-use microscope::source::{between, block, Range};
+use microscope::source::{between, listing, Range};
 use yew::Html;
-
-use crate::micro::core;
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Stage {
@@ -21,8 +19,7 @@ pub enum Mode {
     Two,
 }
 
-pub fn range(mode: Mode, stage: Stage) -> Range {
-    let src = core();
+pub fn range(src: &str, mode: Mode, stage: Stage) -> Range {
     let (a, b) = match mode {
         Mode::One => ("u:r_ow := ", "u:r_ow := "),
         Mode::Two => ("u:c_ount := ", "u:c_ount := "),
@@ -34,8 +31,10 @@ pub fn range(mode: Mode, stage: Stage) -> Range {
     }
 }
 
-pub fn source(mode: Mode, focus: Stage) -> Html {
-    block(core(), range(mode, focus))
+/// The program X_eTaL ran for the mode shown, exactly, decorated,
+/// `focus` highlighted, the board's data folded.
+pub fn source(program: &str, mode: Mode, focus: Stage) -> Html {
+    listing(program, range(program, mode, focus))
 }
 
 /// The colours of the states 0, 1, 2, 3.

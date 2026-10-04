@@ -1,9 +1,7 @@
-//! The stages of a run and the part of the core computing each.
+//! The stages of a run and the part of the program computing each.
 
-use microscope::source::{between, block, Range};
+use microscope::source::{between, listing, Range, NONE};
 use yew::Html;
-
-use crate::micro::core;
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Stage {
@@ -15,9 +13,8 @@ pub enum Stage {
 
 pub const STAGES: [Stage; 4] = [Stage::Grid, Stage::Step, Stage::Iterate, Stage::Measure];
 
-/// The byte range of the core that computes `stage`.
-pub fn range(stage: Stage) -> Range {
-    let src = core();
+/// The byte range of the program that computes `stage`.
+pub fn range(src: &str, stage: Stage) -> Range {
     match stage {
         Stage::Grid => between(src, "re := ", "ci := "),
         Stage::Step => between(src, "u:s_tep := ", "\n}"),
@@ -26,7 +23,12 @@ pub fn range(stage: Stage) -> Range {
     }
 }
 
-/// The core, decorated, `focus` highlighted.
-pub fn source(focus: Stage) -> Html {
-    block(core(), range(focus))
+/// The program X_eTaL ran, exactly, decorated, `focus` highlighted.
+pub fn source(program: &str, focus: Stage) -> Html {
+    listing(program, range(program, focus))
+}
+
+/// The orbit's program, exactly as run.
+pub fn orbit_source(program: &str) -> Html {
+    listing(program, NONE)
 }

@@ -5,7 +5,7 @@ use std::rc::Rc;
 use microscope::run::now;
 use yew::Reducible;
 
-use crate::micro::{first_row, grow, rules, start, step, History, Rule2, Step2, COLS, GENS, ROWS, WIDTH};
+use crate::micro::{program_1d, program_2d, first_row, grow, rules, start, step, History, Rule2, Step2, COLS, GENS, ROWS, WIDTH};
 use crate::view::{Mode, Stage};
 
 #[derive(Clone, Debug, PartialEq)]
@@ -18,6 +18,10 @@ pub struct Model {
     pub rule: u8,
     pub random: bool,
     pub history: Option<Rc<History>>,
+    /// The programs X_eTaL ran for each mode, exactly as run (the page
+    /// shows the one in use).
+    pub program_1d: Rc<String>,
+    pub program_2d: Rc<String>,
     pub gen: usize,
     pub cell: usize,
     // two dimensions
@@ -68,6 +72,8 @@ impl Model {
             rule: 30,
             random: false,
             history: None,
+            program_1d: Rc::new(String::new()),
+            program_2d: Rc::new(String::new()),
             gen: 20,
             cell: WIDTH / 2,
             which: 0,
@@ -84,8 +90,9 @@ impl Model {
 
     fn regrow(self) -> Self {
         let t = now();
+        let text = program_1d(self.rule, &first_row(self.random), self.gen);
         match grow(self.rule, &first_row(self.random), self.gen) {
-            Ok(h) => Model { history: Some(Rc::new(h)), ms: now() - t, notice: None, ..self },
+            Ok(h) => Model { history: Some(Rc::new(h)), program_1d: Rc::new(text), ms: now() - t, notice: None, ..self },
             Err(e) => Model { notice: Some(format!("X_eTaL stopped: {e}")), ..self },
         }
     }
@@ -94,8 +101,9 @@ impl Model {
     /// computes them (the board is not changed).
     fn preview(self) -> Self {
         let t = now();
+        let text = program_2d(&self.rule2.table, &self.board, 1);
         match step(&self.rule2.table, &self.board, 1) {
-            Ok(s) => Model { last: Some(Rc::new(s)), ms: now() - t, notice: None, ..self },
+            Ok(s) => Model { last: Some(Rc::new(s)), program_2d: Rc::new(text), ms: now() - t, notice: None, ..self },
             Err(e) => Model { playing: false, notice: Some(format!("X_eTaL stopped: {e}")), ..self },
         }
     }

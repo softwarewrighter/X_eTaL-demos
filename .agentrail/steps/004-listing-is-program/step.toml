@@ -1,0 +1,8 @@
+number = 4
+slug = "listing-is-program"
+status = "in-progress"
+description = "start-here step (the user's question: the nbody listing omits m and the run):..."
+role = "production"
+context_files = []
+created_at = "2026-10-03T22:08:02"
+commits = []

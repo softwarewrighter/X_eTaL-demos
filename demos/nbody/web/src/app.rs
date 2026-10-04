@@ -235,7 +235,6 @@ pub fn app() -> Html {
             move || drop(timer)
         });
     }
-    let n = model.bodies.len();
     let body = match &model.last {
         Some(a) => html! {
             <div class="layout even">
@@ -243,8 +242,8 @@ pub fn app() -> Html {
                 <div class="col">
                     <section class="panel code">
                         <h2>{"The program"}</h2>
-                        <p class="note">{"The preset's constants, then the core of nbody.xtl, run by X_eTaL in your browser; the stage you pick is highlighted."}</p>
-                        { source(&PRESETS[model.preset].physics, n, model.focus) }
+                        <p class="note">{"Exactly the program X_eTaL ran in your browser for what you see: the preset's constants and masses, the core of nbody.xtl, the bodies written in by the page (folded: click to show the numbers), and the lines that run the steps and print the arrays. The stage you pick is highlighted."}</p>
+                        { source(&model.program, model.focus) }
                     </section>
                     { arrays(&model, a) }
                 </div>

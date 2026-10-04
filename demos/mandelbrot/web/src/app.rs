@@ -13,7 +13,7 @@ use microscope::source::code;
 use crate::colour;
 use crate::micro::{escape, Frame};
 use crate::model::{Action, Model, K_MAX};
-use crate::view::{source, Stage, STAGES};
+use crate::view::{orbit_source, source, Stage, STAGES};
 
 fn act(m: &UseReducerHandle<Model>, a: impl Fn() -> Action + 'static) -> Callback<MouseEvent> {
     let d = m.dispatcher();
@@ -151,8 +151,10 @@ pub fn app() -> Html {
                 <div class="col">
                     <section class={classes!("panel", "code")}>
                         <h2>{"The program"}</h2>
-                        <p class="note">{"The core of mandelbrot.xtl, run by X_eTaL in your browser; the stage you pick is highlighted."}</p>
-                        { source(model.focus) }
+                        <p class="note">{"Exactly the program X_eTaL ran in your browser for the picture: the view (written in by the page), the core of mandelbrot.xtl, and the lines that print the arrays drawn. The stage you pick is highlighted."}</p>
+                        { source(&model.program, model.focus) }
+                        <p class="note">{"And the second program, for the marked point's orbit:"}</p>
+                        { orbit_source(&model.orbit_text) }
                     </section>
                     { arrays(&model, f) }
                 </div>

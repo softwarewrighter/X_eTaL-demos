@@ -7,7 +7,7 @@ source. This crate (`microscope`) is what the pages share.
 | Module | What it gives a page |
 | ------ | -------------------- |
 | `run` | `output(src, lines)` runs a program (the vendored `xetal-play`) and returns its printed lines, or the X_eTaL error; `numbers(line, n)` reads one printed array (`r_avel`); `lit(x)` writes a Float as an X_eTaL literal (the shortest form that reads back exactly, with an exponent when small); `matrix(name, rows, cols, items)` binds a matrix; `section(src, start, end)` cuts the core out of a demo's `.xtl`; `now()` times a run |
-| `source` | `code(src)` draws any snippet decorated and coloured, as X_eTaL renders it; `line(src, range)` and `block(src, range)` draw a line or a program with `range` highlighted as one block; `between` and `find` compute ranges; `shape(dims, meaning)` labels a shape as `s_hape = ...` with a tooltip |
+| `source` | `code(src)` draws any snippet decorated and coloured, as X_eTaL renders it; `line(src, range)` and `block(src, range)` draw a line or a program with `range` highlighted as one block; `listing(src, range)` draws a whole program as run, folding its long data lines (what the page wrote in) behind a summary of how many numbers they hold; `between` and `find` compute ranges; `shape(dims, meaning)` labels a shape as `s_hape = ...` with a tooltip |
 | `canvas`, `colour` | `Canvas` draws an RGBA array scaled to its box and reports clicks as (row, column); `colour` turns arrays into pixels (`field`, `scaled`, `signed`, `mask`, `ramp`) |
 | `cells` | small boards as clickable HTML cells (0 / 1 boards, shaded counts with numbers) |
 | `chrome` | `header` (logo, title, lede), `chip` (a stage: name, code, shape), `panel`, `notice`, `footer` (copyright, license, repository, all demos, the vendored X_eTaL commit, build host, sha and time) |
@@ -44,7 +44,9 @@ highlight, panels, chips, canvases); a page links it with
    them, then `just test-demo SLUG`; set `status = "live"` in
    `demo.toml`.
 
-Conventions: every code snippet on a page is drawn decorated, never as
-typed ASCII; shapes are shown as `s_hape`; an X_eTaL error keeps the
+Conventions: the program panel shows exactly the program X_eTaL ran
+for what is on screen (the model keeps the text it passed to `run`;
+`listing` folds the data), never a cut-down version; every code
+snippet on a page is drawn decorated, never as typed ASCII; shapes are shown as `s_hape`; an X_eTaL error keeps the
 last good state and shows a notice; anything X_eTaL lacks goes in
 `docs/xetal-asks.md` and the demo's README.

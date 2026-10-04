@@ -6,7 +6,7 @@ use yew::Reducible;
 
 use microscope::run::now;
 
-use crate::micro::{preset, run, Anatomy, Grid, Rates};
+use crate::micro::{program, preset, run, Anatomy, Grid, Rates};
 use crate::view::Stage;
 
 pub const N: usize = 64;
@@ -19,6 +19,8 @@ pub struct Model {
     pub preset: usize,
     /// The arrays of the last step X_eTaL ran.
     pub last: Rc<Anatomy>,
+    /// The program X_eTaL ran for `last`, exactly as run (the page shows it).
+    pub program: Rc<String>,
     pub steps: usize,
     pub per_frame: usize,
     pub playing: bool,
@@ -45,11 +47,13 @@ impl Model {
         let grid = Grid::seeded(N);
         let rates = preset(preset_index);
         let last = Rc::new(run(&grid, &rates, 1).unwrap_or_else(|_| empty(&grid)));
+        let text = Rc::new(program(&grid, &rates, 1));
         Model {
             grid: last.next.clone(),
             rates,
             preset: preset_index,
             last,
+            program: text,
             steps: 1,
             per_frame: 20,
             playing: true,
@@ -64,10 +68,12 @@ impl Model {
     /// Run `steps` steps from the grid; on an error keep everything and say why.
     fn advance(self, steps: usize) -> Self {
         let t = now();
+        let text = program(&self.grid, &self.rates, steps);
         match run(&self.grid, &self.rates, steps) {
             Ok(a) => Model {
                 grid: a.next.clone(),
                 last: Rc::new(a),
+                program: Rc::new(text),
                 steps: self.steps + steps,
                 ms: now() - t,
                 notice: None,

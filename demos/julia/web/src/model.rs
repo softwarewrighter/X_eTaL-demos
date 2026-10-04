@@ -5,7 +5,7 @@ use std::rc::Rc;
 use microscope::run::now;
 use yew::Reducible;
 
-use crate::micro::{counts, Set, View, PRESETS};
+use crate::micro::{program, counts, Set, View, PRESETS};
 use crate::view::Stage;
 
 pub const K: usize = 48;
@@ -15,6 +15,10 @@ pub struct Model {
     pub c: (f64, f64),
     pub preset: usize,
     pub view: View,
+    /// The programs X_eTaL ran for the Julia set and for the picker,
+    /// exactly as run (the page shows them).
+    pub program: Rc<String>,
+    pub picker_text: Rc<String>,
     pub julia: Result<Rc<Vec<f64>>, String>,
     /// The Mandelbrot map c is picked on (computed once).
     pub map: Result<Rc<Vec<f64>>, String>,
@@ -53,6 +57,8 @@ impl Model {
             c: (a, b),
             preset: 0,
             view: View::JULIA,
+            program: Rc::new(String::new()),
+            picker_text: Rc::new(program(&View::PICKER, 32, Set::Mandelbrot)),
             julia: Err(String::new()),
             map: counts(&View::PICKER, 32, Set::Mandelbrot).map(Rc::new),
             playing: false,
@@ -67,7 +73,7 @@ impl Model {
     fn rerun(self) -> Self {
         let t = now();
         match counts(&self.view, K, Set::Julia(self.c.0, self.c.1)) {
-            Ok(j) => Model { julia: Ok(Rc::new(j)), ms: now() - t, notice: None, ..self },
+            Ok(j) => Model { julia: Ok(Rc::new(j)), program: Rc::new(program(&self.view, K, Set::Julia(self.c.0, self.c.1))), ms: now() - t, notice: None, ..self },
             Err(e) if self.julia.is_err() => Model { julia: Err(e), ..self },
             Err(e) => Model { playing: false, notice: Some(format!("X_eTaL could not run that: {e}")), ..self },
         }

@@ -211,8 +211,8 @@ fn program(m: &Model) -> Html {
     html! {
         <section class="panel code">
             <h2>{"The program"}</h2>
-            <p class="note">{"The core of ca-lab.xtl, run by X_eTaL in your browser; the stage you pick is highlighted."}</p>
-            { source(m.mode, m.focus) }
+            <p class="note">{"Exactly the program X_eTaL ran in your browser for what you see: the core of ca-lab.xtl, the rule's table and the starting row or board written in by the page (folded: click to show the numbers), and the lines that grow or step and print. The stage you pick is highlighted."}</p>
+            { source(if m.mode == Mode::One { &m.program_1d } else { &m.program_2d }, m.mode, m.focus) }
         </section>
     }
 }

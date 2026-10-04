@@ -6,7 +6,7 @@ use yew::Reducible;
 
 use microscope::run::now;
 
-use crate::micro::{orbit, run, Frame, View, MIN_WIDTH};
+use crate::micro::{orbit, orbit_program, program, run, Frame, View, MIN_WIDTH};
 use crate::view::Stage;
 
 pub const K_MAX: usize = 64;
@@ -17,6 +17,10 @@ pub struct Model {
     pub view: View,
     pub k: usize,
     pub frame: Result<Rc<Frame>, String>,
+    /// The programs X_eTaL ran for the picture and for the orbit,
+    /// exactly as run (the page shows them).
+    pub program: Rc<String>,
+    pub orbit_text: Rc<String>,
     pub selected: (usize, usize),
     pub orbit: Result<Vec<(f64, f64)>, String>,
     pub playing: bool,
@@ -46,6 +50,8 @@ impl Model {
             view: v,
             k: K_START,
             frame: Err(String::new()),
+            program: Rc::new(String::new()),
+            orbit_text: Rc::new(String::new()),
             selected: (v.rows / 2, v.cols / 3),
             orbit: Ok(Vec::new()),
             playing: false,
@@ -60,6 +66,7 @@ impl Model {
     fn rerun(mut self) -> Self {
         let t = now();
         self.frame = run(&self.view, self.k).map(Rc::new);
+        self.program = Rc::new(program(&self.view, self.k));
         self.ms = now() - t;
         self.playing &= self.frame.is_ok();
         self.reorbit()
@@ -68,6 +75,7 @@ impl Model {
     fn reorbit(mut self) -> Self {
         let (y, x) = self.selected;
         self.orbit = orbit(self.view.point(y, x), self.k.max(1));
+        self.orbit_text = Rc::new(orbit_program(self.view.point(y, x), self.k.max(1)));
         self
     }
 

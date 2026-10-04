@@ -1,7 +1,7 @@
 //! The part of the Life line that computes each stage, and the line
 //! drawn decorated with it highlighted.
 
-use microscope::source::{find, line as decorated, Range, NONE};
+use microscope::source::{find, line as decorated, listing, Range, NONE};
 use yew::Html;
 
 use crate::micro::rule;
@@ -21,4 +21,10 @@ pub fn range(stage: Stage) -> Range {
 /// The line drawn decorated, the part computing `focus` highlighted.
 pub fn line(focus: Stage) -> Html {
     decorated(rule(), range(focus))
+}
+
+/// The whole program X_eTaL ran for this board, exactly (it starts with
+/// the rule's line, so the stage ranges hold), the board's data folded.
+pub fn source(program: &str, focus: Stage) -> Html {
+    listing(program, range(focus))
 }

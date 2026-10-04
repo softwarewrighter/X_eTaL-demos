@@ -1,10 +1,8 @@
-//! The stages of a step, the part of the core computing each, colours.
+//! The stages of a step, the part of the program computing each, colours.
 
 use microscope::colour::pixels;
-use microscope::source::{between, block, Range};
+use microscope::source::{between, listing, Range};
 use yew::Html;
-
-use crate::micro::core;
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Stage {
@@ -16,8 +14,7 @@ pub enum Stage {
 
 pub const STAGES: [Stage; 4] = [Stage::Look, Stage::Turn, Stage::Flip, Stage::Move];
 
-pub fn range(stage: Stage) -> Range {
-    let src = core();
+pub fn range(src: &str, stage: Stage) -> Range {
     match stage {
         Stage::Look => between(src, "cell := ", "cell := "),
         Stage::Turn => between(src, "turn := ", "turn := "),
@@ -26,8 +23,10 @@ pub fn range(stage: Stage) -> Range {
     }
 }
 
-pub fn source(focus: Stage) -> Html {
-    block(core(), range(focus))
+/// The program X_eTaL ran, exactly, decorated, `focus` highlighted,
+/// the board's data folded.
+pub fn source(program: &str, focus: Stage) -> Html {
+    listing(program, range(program, focus))
 }
 
 /// The board: white cells dark, black cells cream, the ant violet.

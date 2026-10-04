@@ -1,0 +1,9 @@
+number = 8
+slug = "sandpile"
+status = "pending"
+description = "start-here step 3: demos/sandpile. The abelian sandpile on a grid: drop grain..."
+role = "production"
+context_files = []
+created_at = "2026-10-03T13:33:04"
+task_type = "demo"
+commits = []

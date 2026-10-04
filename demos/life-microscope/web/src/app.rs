@@ -10,7 +10,7 @@ use microscope::source::code;
 
 use crate::micro::{Anatomy, OFFSETS, PATTERNS};
 use crate::model::{Action, Model, Stage, COLS, ROWS, STAGES};
-use crate::view::line;
+use crate::view::{line, source};
 
 fn act(m: &UseReducerHandle<Model>, a: impl Fn() -> Action + 'static) -> Callback<MouseEvent> {
     let d = m.dispatcher();
@@ -115,6 +115,11 @@ fn arrays(model: &UseReducerHandle<Model>, a: &Anatomy) -> Html {
             <div class="col">
                 { panel(m, Stage::Board, "The board", "b", "Click a cell to inspect it (or tick \"Click draws cells\"). The edges wrap around.", board) }
                 { inspector(m, a) }
+                <section class="panel code">
+                    <h2>{"The program"}</h2>
+                    <p class="note">{"Exactly the program X_eTaL ran in your browser for this board: the rule's one line, the board written in by the page (folded: click to show the cells), and the lines that print every array shown. The stage you pick is highlighted."}</p>
+                    { source(&m.program, m.focus) }
+                </section>
             </div>
             <div class="col">
                 { panel(m, Stage::Rotate, "1. Rotate by every offset:", "-1 0 1 o_-_12 b", "Nine copies of the board, shifted by -1, 0 or +1 rows and columns: a 3 by 3 by 16 by 16 array. In each copy the selected cell holds one of its neighbours.", shifted(m, a)) }

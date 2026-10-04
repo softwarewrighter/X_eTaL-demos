@@ -125,8 +125,8 @@ pub fn app() -> Html {
                 <div class="col">
                     <section class="panel code">
                         <h2>{"The program"}</h2>
-                        <p class="note">{"The scene, written as masks, then the core of wave-tank.xtl, run by X_eTaL in your browser; the stage you pick is highlighted."}</p>
-                        { source(model.scene, model.focus) }
+                        <p class="note">{"Exactly the program X_eTaL ran in your browser for the last frame: the tank's size, the coordinates and sponge, the scene written as masks, the core of wave-tank.xtl, the surface written in by the page (folded: click to show the numbers), and the lines that step and print. The stage you pick is highlighted."}</p>
+                        { source(&model.program, model.scene, model.focus) }
                     </section>
                     { arrays(&model, a) }
                 </div>

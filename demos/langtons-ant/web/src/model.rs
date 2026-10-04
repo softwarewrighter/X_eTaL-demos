@@ -5,13 +5,15 @@ use std::rc::Rc;
 use microscope::run::now;
 use yew::Reducible;
 
-use crate::micro::{run, Ant, Last};
+use crate::micro::{program, run, Ant, Last};
 use crate::view::Stage;
 
 #[derive(Clone, Debug, PartialEq)]
 pub struct Model {
     pub ant: Ant,
     pub last: Option<Last>,
+    /// The program X_eTaL ran for `last`, exactly as run (the page shows it).
+    pub program: Rc<String>,
     pub per_frame: usize,
     pub playing: bool,
     pub focus: Stage,
@@ -34,13 +36,14 @@ pub enum Action {
 
 impl Model {
     pub fn new() -> Self {
-        Model { ant: Ant::start(), last: None, per_frame: 100, playing: true, focus: Stage::Turn, ms: 0.0, notice: None }
+        Model { ant: Ant::start(), last: None, program: Rc::new(String::new()), per_frame: 100, playing: true, focus: Stage::Turn, ms: 0.0, notice: None }
     }
 
     fn advance(self, n: usize) -> Self {
         let t = now();
+        let text = program(&self.ant, n);
         match run(&self.ant, n) {
-            Ok((ant, last)) => Model { ant, last: Some(last), ms: now() - t, notice: None, ..self },
+            Ok((ant, last)) => Model { ant, last: Some(last), program: Rc::new(text), ms: now() - t, notice: None, ..self },
             Err(e) => Model { playing: false, notice: Some(format!("X_eTaL stopped: {e}")), ..self },
         }
     }

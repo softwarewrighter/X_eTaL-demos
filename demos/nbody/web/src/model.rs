@@ -5,7 +5,7 @@ use std::rc::Rc;
 use microscope::run::now;
 use yew::Reducible;
 
-use crate::micro::{run, Anatomy, Bodies, PRESETS};
+use crate::micro::{program, run, Anatomy, Bodies, PRESETS};
 use crate::view::Stage;
 
 /// How many past positions a trail keeps.
@@ -16,6 +16,8 @@ pub struct Model {
     pub preset: usize,
     pub bodies: Bodies,
     pub last: Option<Rc<Anatomy>>,
+    /// The program X_eTaL ran for `last`, exactly as run (the page shows it).
+    pub program: Rc<String>,
     /// Each body's past positions, oldest first.
     pub trails: Rc<Vec<Vec<(f64, f64)>>>,
     pub steps: usize,
@@ -49,6 +51,7 @@ impl Model {
             trails: Rc::new(vec![Vec::new(); bodies.len()]),
             bodies,
             last: None,
+            program: Rc::new(String::new()),
             steps: 0,
             per_frame: p.per_frame,
             playing: true,
@@ -63,6 +66,7 @@ impl Model {
     fn advance(self, steps: usize) -> Self {
         let ph = PRESETS[self.preset].physics;
         let t = now();
+        let text = program(&self.bodies, &ph, steps);
         match run(&self.bodies, &ph, steps) {
             Ok(a) => {
                 let mut trails = (*self.trails).clone();
@@ -75,6 +79,7 @@ impl Model {
                 Model {
                     bodies: a.next.clone(),
                     last: Some(Rc::new(a)),
+                    program: Rc::new(text),
                     trails: Rc::new(trails),
                     steps: self.steps + steps,
                     ms: now() - t,

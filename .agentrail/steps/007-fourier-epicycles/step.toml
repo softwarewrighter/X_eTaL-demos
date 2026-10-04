@@ -1,7 +1,7 @@
 number = 7
-slug = "sandpile"
+slug = "fourier-epicycles"
 status = "pending"
-description = "start-here step 3: demos/sandpile. The abelian sandpile on a grid: drop grain..."
+description = "start-here step 2: demos/fourier-epicycles. A closed curve (presets: a heart,..."
 role = "production"
 context_files = []
 created_at = "2026-10-03T13:33:04"

@@ -1,9 +1,7 @@
-//! The stages of a step and the part of the core computing each.
+//! The stages of a step and the part of the program computing each.
 
-use microscope::source::{between, block, Range};
+use microscope::source::{between, listing, Range};
 use yew::Html;
-
-use crate::micro::core;
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Stage {
@@ -14,9 +12,8 @@ pub enum Stage {
 
 pub const STAGES: [Stage; 3] = [Stage::Spread, Stage::React, Stage::Update];
 
-/// The byte range of the core that computes `stage`.
-pub fn range(stage: Stage) -> Range {
-    let src = core();
+/// The byte range of the program that computes `stage`.
+pub fn range(src: &str, stage: Stage) -> Range {
     match stage {
         Stage::Spread => between(src, "u:l_ap := ", "u:l_ap := "),
         Stage::React => between(src, "uvv := ", "uvv := "),
@@ -24,7 +21,8 @@ pub fn range(stage: Stage) -> Range {
     }
 }
 
-/// The core, decorated, `focus` highlighted.
-pub fn source(focus: Stage) -> Html {
-    block(core(), range(focus))
+/// The program X_eTaL ran, exactly, decorated, `focus` highlighted,
+/// the grids' data folded.
+pub fn source(program: &str, focus: Stage) -> Html {
+    listing(program, range(program, focus))
 }

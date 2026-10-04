@@ -2,10 +2,10 @@
 //! stages and the part computing each, and the surface's colours.
 
 use microscope::colour::{pixels, ramp, DIVERGE};
-use microscope::source::{between, block, Range};
+use microscope::source::{between, find, listing, Range};
 use yew::Html;
 
-use crate::micro::{core, SCENES};
+use crate::micro::SCENES;
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Stage {
@@ -16,23 +16,18 @@ pub enum Stage {
 
 pub const STAGES: [Stage; 3] = [Stage::Scene, Stage::Spread, Stage::Step];
 
-/// The scene's X_eTaL followed by the core.
-pub fn program(scene: usize) -> String {
-    format!("# -- the scene: {}\n{}{}", SCENES[scene].0, SCENES[scene].1, core())
-}
-
-pub fn range(src: &str, stage: Stage) -> Range {
+pub fn range(src: &str, stage: Stage, scene: usize) -> Range {
     match stage {
-        Stage::Scene => (src.find('\n').map_or(0, |i| i + 1), src.find("# -- the Laplacian").unwrap_or(0)),
+        Stage::Scene => find(src, SCENES[scene % SCENES.len()].1),
         Stage::Spread => between(src, "u:l_ap := ", "u:l_ap := "),
         Stage::Step => between(src, "drive := ", "nxt := "),
     }
 }
 
-/// The scene and the core, decorated, `focus` highlighted.
-pub fn source(scene: usize, focus: Stage) -> Html {
-    let src = program(scene);
-    block(&src, range(&src, focus))
+/// The program X_eTaL ran, exactly, decorated, `focus` highlighted,
+/// the surface's data folded.
+pub fn source(program: &str, scene: usize, focus: Stage) -> Html {
+    listing(program, range(program, focus, scene))
 }
 
 /// The surface: troughs blue, crests red, walls dark, the source violet.

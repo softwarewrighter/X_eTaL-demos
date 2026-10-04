@@ -3,10 +3,9 @@
 //! colours.
 
 use microscope::colour::{pixels, ramp, Rgb};
-use microscope::source::{between, block, Range};
+use microscope::source::{between, listing, Range};
 use yew::Html;
 
-use crate::micro::{core, settings, Setup};
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Stage {
@@ -22,14 +21,9 @@ pub enum Stage {
 pub const STAGES: [Stage; 7] =
     [Stage::Picture, Stage::Windows, Stage::Smooth, Stage::Gradients, Stage::Magnitude, Stage::Edges, Stage::Pool];
 
-/// The picture's X_eTaL, the page's settings, then the core.
-pub fn program(s: &Setup) -> String {
-    format!("# -- the picture\n{}# -- the settings\n{}{}", s.scene, settings(s), core())
-}
-
 pub fn range(src: &str, stage: Stage) -> Range {
     match stage {
-        Stage::Picture => (src.find('\n').map_or(0, |i| i + 1), src.find("# -- the settings").unwrap_or(0)),
+        Stage::Picture => between(src, "img := ", "img := "),
         Stage::Windows => between(src, "u:w_indows := ", "u:w_indows := "),
         Stage::Smooth => between(src, "smooth := ", "smooth := "),
         Stage::Gradients => between(src, "gx := ", "gy := "),
@@ -39,10 +33,9 @@ pub fn range(src: &str, stage: Stage) -> Range {
     }
 }
 
-/// The program, decorated, `focus` highlighted.
-pub fn source(s: &Setup, focus: Stage) -> Html {
-    let src = program(s);
-    block(&src, range(&src, focus))
+/// The program X_eTaL ran, exactly, decorated, `focus` highlighted.
+pub fn source(program: &str, focus: Stage) -> Html {
+    listing(program, range(program, focus))
 }
 
 const GREY: [Rgb; 2] = [[0, 0, 0], [255, 255, 255]];

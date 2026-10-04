@@ -4,7 +4,7 @@ use std::rc::Rc;
 
 use yew::Reducible;
 
-use crate::micro::{examine, pattern, Anatomy, Board};
+use crate::micro::{program, examine, pattern, Anatomy, Board};
 
 pub const ROWS: usize = 16;
 pub const COLS: usize = 16;
@@ -25,6 +25,8 @@ pub const STAGES: [Stage; 5] = [Stage::Board, Stage::Rotate, Stage::Sum, Stage::
 pub struct Model {
     pub board: Board,
     pub anatomy: Result<Anatomy, String>,
+    /// The program X_eTaL ran for `anatomy`, exactly as run (the page shows it).
+    pub program: std::rc::Rc<String>,
     pub generation: usize,
     pub pattern: usize,
     pub selected: (usize, usize),
@@ -49,6 +51,7 @@ impl Model {
         let board = pattern(pattern_index, ROWS, COLS);
         Model {
             anatomy: examine(&board),
+            program: std::rc::Rc::new(program(&board)),
             board,
             generation: 0,
             pattern: pattern_index,
@@ -61,6 +64,7 @@ impl Model {
 
     fn with_board(mut self, board: Board) -> Self {
         self.anatomy = examine(&board);
+        self.program = std::rc::Rc::new(program(&board));
         self.playing &= self.anatomy.is_ok();
         self.board = board;
         self

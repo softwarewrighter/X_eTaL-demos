@@ -265,8 +265,8 @@ pub fn app() -> Html {
                 <div class="col">
                     <section class="panel code">
                         <h2>{"The program"}</h2>
-                        <p class="note">{"The picture, the page's settings, then the core of image-pipeline.xtl, run by X_eTaL in your browser; the stage you pick is highlighted."}</p>
-                        { source(&model.setup, model.focus) }
+                        <p class="note">{"Exactly the program X_eTaL ran in your browser for what you see: the size and coordinates, the picture, your kernels and threshold, the core of image-pipeline.xtl, and the lines that print each stage. The stage you pick is highlighted."}</p>
+                        { source(&model.program, model.focus) }
                     </section>
                     { arrays(&model, a) }
                 </div>

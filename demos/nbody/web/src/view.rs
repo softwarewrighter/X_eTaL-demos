@@ -1,11 +1,9 @@
-//! The program the page shows (the preset's constants, then the core),
+//! The program the page shows (exactly the one X_eTaL ran),
 //! the stages and the part computing each, and the matrices' colours.
 
 use microscope::colour::{pixels, ramp, Rgb, DIVERGE, GLOW};
-use microscope::source::{between, block, Range};
+use microscope::source::{between, listing, Range};
 use yew::Html;
-
-use crate::micro::{core, Physics};
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Stage {
@@ -18,17 +16,6 @@ pub enum Stage {
 
 pub const STAGES: [Stage; 5] = [Stage::Masses, Stage::Cube, Stage::Pull, Stage::Reduce, Stage::Step];
 
-/// The preset's constants followed by the core.
-pub fn program(ph: &Physics, n: usize) -> String {
-    format!(
-        "g := {}\neps2 := {}\ndt := {}\n# m: the {n} masses, written in by the page with the state\n{}",
-        microscope::run::lit(ph.g),
-        microscope::run::lit(ph.eps2),
-        microscope::run::lit(ph.dt),
-        core()
-    )
-}
-
 pub fn range(src: &str, stage: Stage) -> Range {
     match stage {
         Stage::Masses => between(src, "n := t_ally m", "mj := "),
@@ -39,10 +26,10 @@ pub fn range(src: &str, stage: Stage) -> Range {
     }
 }
 
-/// The constants and the core, decorated, `focus` highlighted.
-pub fn source(ph: &Physics, n: usize, focus: Stage) -> Html {
-    let src = program(ph, n);
-    block(&src, range(&src, focus))
+/// The program X_eTaL ran, exactly, decorated, `focus` highlighted,
+/// the bodies' data folded.
+pub fn source(program: &str, focus: Stage) -> Html {
+    listing(program, range(program, focus))
 }
 
 /// Each body's colour.

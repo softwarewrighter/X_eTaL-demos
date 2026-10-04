@@ -99,8 +99,8 @@ pub fn app() -> Html {
                     { for m.last.iter().map(|l| last_step(m, l)) }
                     <section class="panel code">
                         <h2>{"The program"}</h2>
-                        <p class="note">{"The core of langtons-ant.xtl, run by X_eTaL in your browser; the stage you pick is highlighted."}</p>
-                        { source(m.focus) }
+                        <p class="note">{"Exactly the program X_eTaL ran in your browser for the last frame: the board's size, the core of langtons-ant.xtl, the board written in by the page (folded: click to show the numbers), the ant as a mask, and the lines that step and print. The stage you pick is highlighted."}</p>
+                        { source(&m.program, m.focus) }
                     </section>
                 </div>
             </div>
