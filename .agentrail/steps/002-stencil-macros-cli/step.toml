@@ -1,0 +1,8 @@
+number = 2
+slug = "stencil-macros-cli"
+status = "pending"
+description = "New demo stencil-macros: a user macro library Stencil.xtlm that turns a kerne..."
+role = "production"
+context_files = []
+created_at = "2026-10-05T00:18:13"
+commits = []

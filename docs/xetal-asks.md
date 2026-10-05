@@ -6,8 +6,8 @@ demos, which moved there; they stay here as the record until X_eTaL-ML
 carries them. This repo does not change X_eTaL: each ask is filed
 here (and taken to `../X_eTaL`), the demo uses the workaround noted
 below or waits, and the workaround is removed when the ask lands in the
-pinned release (`XETAL_COMMIT`, now X_eTaL 1c1617e; every
-ask was re-checked against it on 2026-10-04). X_eTaL keeps its own
+pinned release (`XETAL_COMMIT`, now X_eTaL 882aa76; every
+ask was re-checked against it on 2026-10-05). X_eTaL keeps its own
 ledger of these asks (its `docs/asks.md`, D1 to D9).
 
 Each entry: status (open, filed, landed, dropped), kind (feature, bug
@@ -20,7 +20,7 @@ demos work with that are not asks.
 | landed (Saga 30: 16b710d, 8456e45) | speed (regression) | `t_able` and `i_nner` were 2.7x and 1.5x slower at abb8274 than at 06d39fa (and `i_nner` 20% slower again at 081fb3f); at 1c1617e they are faster than ever: against the 081fb3f baseline `t_able` -82%, `i_nner` -86%, nbody -52%, image-pipeline -55% | nbody, image-pipeline, langtons-ant (and X_eTaL-ML's) | none needed now |
 | landed (abb8274) | bug | Reading a long strand of Int literals took quadratic time (8000 Ints: 2.1 s; now 0.00 s) | ca-lab, langtons-ant (boards passed in each frame), moe-router (X_eTaL-ML) | removed in ca-lab and langtons-ant: boards go in as Int literals (moe-router (X_eTaL-ML)'s word numbers are X_eTaL-ML's) |
 | partly landed (abb8274) | speed | Whole-array arithmetic was about 50 ns per element per operation; elementwise arithmetic is now about 8x faster (see the regression above for `t_able` and `i_nner`) | langtons-ant (the highway needs ~10,000 steps), reaction-diffusion, mandelbrot, wave-tank | small grids, a few steps per frame, the page shows each run's time |
-| open | speed | A scan with a built-in operand is still quadratic in the axis length (each running reduce afresh): 64 x 512 `'+ s_\\_2` 0.20 s, 64 x 4096 13 s at 1c1617e; Saga 30 made the scan of a user function linear when it is associative, not `'+` | (none yet; `tools/bench`) | short axes |
+| partly landed (between 1c1617e and 882aa76) | speed | A scan with a built-in operand was quadratic in the axis length (each running reduce afresh). At 882aa76 an Int scan is linear (64 x 4096 `'+ s_\\_2`: 0.05 s), but a Float scan is still quadratic (64 x 512 0.22 s, 64 x 4096 14.5 s) | (none yet; `tools/bench`) | short axes |
 | landed (Saga 30) | speed | `i_nner` (matrix product) cost about 370 ns per multiply-add; at 1c1617e the bench's (32 x 256) by (256 x 32) product takes 29 ms, 7x faster | X_eTaL-ML's | none needed now |
 | open | feature | Grade along an axis per row (`g_rade_2 M` grades the columns as items, one vector, not each row), for top-k per row | moe-router (X_eTaL-ML) (top-2 experts per token) | the largest by `'m_ax r_/_2`, masked out, then the largest again |
 | open | feature | `xetal-play`: pass arrays into a program and read them back without text, or keep a session between runs | every page that keeps state (reaction-diffusion, wave-tank, ca-lab, langtons-ant, nbody) | each frame writes the state as literal matrices and parses the printed `r_avel` lines |
@@ -32,6 +32,26 @@ demos work with that are not asks.
 | landed (abb8274) | feature | Transpose (`o_\`, and `t_ranspose` with a permutation) | image-pipeline (ky from kx), attention and embedding-explorer (X_eTaL-ML) | removed in image-pipeline: `ky := o_\ kx` |
 | landed (ffd5526) | bug | A condition bound to a name could not be used in arithmetic (`a := 1 2 > 0` then `1 * a`, `f_loat a` or `'+ r_/ a`); a bound condition now stays Bool and converts as T1 says | image-pipeline (masks) | removed: masks are bound as conditions and made Floats where used (`0.7 * f_loat disk`) |
 | landed (4a31ba9; moot since 2026-10-05) | bug | A vendored build reported the outer repo's commit as its own | `xetal --version` from `just xetal` | removed: X_eTaL is now built from a real clone (`work/xetal/` at `XETAL_COMMIT`), which reports its own commit; `scripts/check-xetal.sh` checks it |
+
+## For the X_eTaL agent: ledger corrections
+
+Checked on 2026-10-05 against X_eTaL 882aa76, whose `docs/asks.md`
+(generated from `docs/asks.toml`) lists this repo's asks as D1 to
+D14. Its D rows disagree with this file as follows:
+
+| Ask | Ledger says | Should say |
+| --- | ----------- | ---------- |
+| D11 (`t_able` / `i_nner` regression) | planned (Saga 30, started) | landed: 16b710d, 8456e45; at 1c1617e `t_able` -82%, `i_nner` -86% against the 081fb3f baseline |
+| D12 (`i_nner` 370 ns per multiply-add) | planned (Saga 30, then Saga 22) | landed for this repo: the (32 x 256) by (256 x 32) product takes 29 ms, 7x faster; Saga 22's vector kernels are welcome but no longer asked |
+| D10 (provenance) | landed (4a31ba9) | landed; also moot here: since 2026-10-05 this repo pins a commit and builds a clone (`docs/vendoring.md`), which reports its own commit |
+| (missing) D15 | - | new or partly landed: a scan with a built-in operand is quadratic. Ints are linear at 882aa76, Floats are not (64 x 4096 `'+ s_\_2`: 14.5 s). Repro: `x := (64 c_at 4096) r_eshape 0.5 0.25` then `'+ s_\_2 x`. See "Scan is quadratic" below |
+| M3 (X_eTaL-ML, same as D11) | planned | landed, as D11 |
+
+With those, the summary row for X_eTaL-demos becomes 7 landed,
+3 partly landed (D2, D6, D15), 5 planned (D3, D5, D7, D8, D13),
+0 declined, 0 new. D13 (grade per row) and the mix half of D6 are
+still "to decide with the user": those need the user's call in
+X_eTaL, not more work here.
 
 ## For the X_eTaL agent: four asks not in X_eTaL's plan yet
 
@@ -148,9 +168,12 @@ beside the binary's version; the pages' footers read `VENDORED`.
 
 ### Scan is quadratic
 
-Still open at 1c1617e for a built-in operand: Saga 30 gave user
-functions a running scan when they are associative, but `'+ s_\_2` on
-64 x 4096 takes 13 s. The ask as filed:
+Partly landed at 882aa76: an Int scan with a built-in operand is now
+linear (64 x 4096 `'+ s_\_2` in 0.05 s), but a Float scan is still
+quadratic (64 x 4096 in 14.5 s, 64 x 512 in 0.22 s). Float `+` is
+not exactly associative, so a running fold can differ from APL's
+right-to-left definition in the last bits; this repo would accept
+that (or a documented choice either way). The ask as filed:
 
 `'f s_\ v` is every running reduce, and each is computed from the
 start (right to left, as APL defines a scan for any function), so a

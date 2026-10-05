@@ -1,0 +1,8 @@
+number = 3
+slug = "stencil-macros-web"
+status = "pending"
+description = "The stencil-macros page: edit the kernel (presets and a grid of numbers), see..."
+role = "production"
+context_files = []
+created_at = "2026-10-05T00:18:13"
+commits = []

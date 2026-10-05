@@ -1,0 +1,1 @@
+The stencil-macros page: edit the kernel (presets and a grid of numbers), see the macro call, its expansion (expanded by X_eTaL in the browser) and the result image; browser baseline, web tests, screenshot, catalog card, pages; README and plan updated.

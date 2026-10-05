@@ -1,0 +1,1 @@
+Pin X_eTaL main (882aa76) in XETAL_COMMIT with just xetal-pin; run the goldens, web tests and just bench-check (a case >15% slower becomes an ask before the pin is kept; then just bench for the new baseline); re-check every ask in docs/xetal-asks.md against it; write down what X_eTaL's asks ledger (docs/asks.md, asks.toml) needs to change for this repo. Own commit.

@@ -221,7 +221,7 @@ overview until then). New demos wait until after the launch.
 | 4a | release-tag | Done 2026-10-04: X_eTaL's Saga 30 fixes vendored (1c1617e, with `.xtlm` macros); `just bench-check` nothing slower (table -82%, inner -86%), new baseline; asks re-run (the regression and inner-product asks landed; scan narrowed to built-in operands); docs and timings updated; tagged v0.1.0 (the known-compatible snapshot) |
 | 5 | fourier-epicycles | Done (post-launch): the transform as an outer product of angles and two matrix products; circles strongest first by grade; one scan gives every reconstruction (the slider needs no rerun); presets and drawing; tests (inverse, one circle, Parseval, a direct DFT, ordering, resampling) |
 | 6 | sandpile | Done (post-launch): every cell topples at once (h d_iv 4, four rotations, an edge mask), a second plane counts topples; the page animates rounds; tests (a direct round, stability, conservation at the edge, the abelian property, symmetry) caught a mask bug in the first .xtl (one side of the edge kept its grains) |
-| - | (candidate) macro demo | post-launch, once the vendor carries `.xtlm`: a demo that uses a user macro library and shows its expansion (research3's missing "extensible" proof) |
+| - | macro demo | now Saga 6 below |
 
 ### Saga 5 retrospective (to the gallery-3 release)
 
@@ -248,8 +248,8 @@ What a newcomer would hit, in order:
 
 1. Resolved 2026-10-04: the `t_able` / `i_nner` regression (X_eTaL's
    Saga 30, vendored at 1c1617e; the pages are faster than ever).
-2. `xetal --version` from the bundled build reports this repository's
-   commit, not X_eTaL's (filed; `just xetal-version` is right).
+2. Resolved 2026-10-05: `xetal --version` reports X_eTaL's commit
+   (the repo now pins a commit and builds a clone of X_eTaL).
 3. Not blocking, noted: a scan with a built-in operand is quadratic in
    its axis (no demo depends on a long scan); per-row grade and mix are open (no demo
    here needs them now).
@@ -258,6 +258,18 @@ Checked: the README's start-here path against the live catalog and
 pages (stage chips, inspectors, the line on each card), a fresh clone
 running `just run nbody`, every page in headless Chrome (the gate's
 browser baselines).
+
+## Saga 6 -- macros
+
+Goal: move to X_eTaL's current main and prove "extensible" (research3:
+the claim no demo showed) with a demo built on a user macro library,
+showing what its macros expand to.
+
+| # | Step slug | Delivers |
+| - | --------- | -------- |
+| 1 | repin | Done 2026-10-05: X_eTaL pinned by commit, not copied (vendor/xetal removed, `XETAL_COMMIT`, `just xetal-pin`); pinned 882aa76 (88 commits: hygienic macros, `Repeat.xtlm`, system values, the clock, docs); every golden and web test unchanged; `just bench-check` all within +7% (at load 12 to 17, so the baseline was kept); asks re-run: the built-in scan is linear for Ints, still quadratic for Floats; the corrections X_eTaL's ledger needs are in `docs/xetal-asks.md` |
+| 2 | stencil-macros-cli | a user macro library `Stencil.xtlm`: a kernel written as a picture of numbers becomes rotation arithmetic when the program is expanded (zero entries vanish, ones lose their multiply); the `.xtl` applies blur, edges and a Laplacian; CLI goldens for the run and for `xetal expand` |
+| 3 | stencil-macros-web | the page: edit the kernel, see the call, its expansion (by X_eTaL in the browser) and the result |
 
 ## Saga 4 -- deferred (blocked on asks): MOVED to X_eTaL-ML
 

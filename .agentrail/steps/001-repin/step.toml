@@ -1,0 +1,8 @@
+number = 1
+slug = "repin"
+status = "in-progress"
+description = "Pin X_eTaL main (882aa76) in XETAL_COMMIT with just xetal-pin; run the golden..."
+role = "production"
+context_files = []
+created_at = "2026-10-05T00:18:13"
+commits = []
