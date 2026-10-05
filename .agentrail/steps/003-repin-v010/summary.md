@@ -1,0 +1,1 @@
+Pinned X_eTaL v0.1.0 (512b3ee): all goldens, web and browser tests unchanged; bench-check within +9% at load 15 (baseline kept); asks re-run, none changed; docs updated; site republished on the new engine.
