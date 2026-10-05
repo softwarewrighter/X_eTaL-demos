@@ -97,6 +97,12 @@ fn cases() -> Vec<Case> {
         use fourier_epicycles_web::micro::{preset, run};
         run(&preset(2)).unwrap();
     })));
+    c.push(("sandpile", "81 x 81, 10000 grains, 20 rounds", Box::new(|| {
+        use sandpile_web::micro::{run, Pile, MID};
+        let mut p = Pile::empty();
+        p.drop(MID, MID, 10000);
+        run(&p, 20).unwrap();
+    })));
     // The showcase built-ins on a 512 x 512 matrix, each repeated.
     for (name, what, line, reps) in [
         ("elementwise", "x + x * x, 8 times", "x + x * x", 8),

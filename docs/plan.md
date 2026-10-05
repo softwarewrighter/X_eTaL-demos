@@ -220,7 +220,7 @@ overview until then). New demos wait until after the launch.
 | 4 | gallery-3-release | Done: screenshots retaken (listings, Langton's colours, the title glyph); READMEs say the program panel shows the whole program run; the start-here text updated for `.xtlm` macros, which landed in X_eTaL (not yet vendored); asks reviewed; retrospective below |
 | 4a | release-tag | Done 2026-10-04: X_eTaL's Saga 30 fixes vendored (1c1617e, with `.xtlm` macros); `just bench-check` nothing slower (table -82%, inner -86%), new baseline; asks re-run (the regression and inner-product asks landed; scan narrowed to built-in operands); docs and timings updated; tagged v0.1.0 (the known-compatible snapshot) |
 | 5 | fourier-epicycles | Done (post-launch): the transform as an outer product of angles and two matrix products; circles strongest first by grade; one scan gives every reconstruction (the slider needs no rerun); presets and drawing; tests (inverse, one circle, Parseval, a direct DFT, ordering, resampling) |
-| 6 | sandpile | post-launch: the abelian sandpile by rotations and masks |
+| 6 | sandpile | Done (post-launch): every cell topples at once (h d_iv 4, four rotations, an edge mask), a second plane counts topples; the page animates rounds; tests (a direct round, stability, conservation at the edge, the abelian property, symmetry) caught a mask bug in the first .xtl (one side of the edge kept its grains) |
 | - | (candidate) macro demo | post-launch, once the vendor carries `.xtlm`: a demo that uses a user macro library and shows its expansion (research3's missing "extensible" proof) |
 
 ### Saga 5 retrospective (to the gallery-3 release)

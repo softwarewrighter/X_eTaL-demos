@@ -1,6 +1,6 @@
 number = 8
 slug = "sandpile"
-status = "pending"
+status = "in-progress"
 description = "start-here step 3: demos/sandpile. The abelian sandpile on a grid: drop grain..."
 role = "production"
 context_files = []

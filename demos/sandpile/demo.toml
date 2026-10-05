@@ -1,0 +1,12 @@
+# One demo's description: read by scripts/demos.py for the tests, the
+# README's demo list and the live catalog (pages/index.html).
+slug = "sandpile"
+title = "Abelian sandpile"
+summary = "Drop grains on a grid and watch avalanches: every cell with 4 or more grains topples at once, round after round, until the pile settles into a fractal. Drop more at the centre, anywhere you click, or one everywhere."
+wiki = "https://en.wikipedia.org/wiki/Abelian_sandpile_model"
+idea = "Toppling order does not matter, so every cell topples at once, as often as it can: h d_iv 4, four rotations to share it, a mask for the edge. One expression a round."
+line = "inside * (h - 4 * q) + g"
+concepts = ["rotations", "masks", "integer division", "power"]
+status = "live"
+order = 47
+needs = []

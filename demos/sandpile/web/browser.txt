@@ -1,0 +1,4 @@
+# Text the page shows only after X_eTaL has run (scripts/browser-check.sh).
+grains on the grid
+fell off the edge
+Cell row 41, column 41, in the coming round

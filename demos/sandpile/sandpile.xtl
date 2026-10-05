@@ -1,0 +1,50 @@
+#!/usr/bin/env xetal
+# The abelian sandpile: drop grains on a grid; a cell with 4 or more
+# grains topples, giving one to each of its four neighbours, and grains
+# that fall off the edge are lost. Repeat until every cell has fewer
+# than 4. The order of the topples does not matter (that is what
+# abelian means), so every cell topples at once, as often as it can:
+# one array expression a round. The stable pile is a fractal.
+
+# The grid: side cells across (the outer ring is the edge, where
+# grains fall off), grains dropped at the centre, rounds to run.
+side := 21
+grains := 300
+rounds := 150
+
+# -- the edge: a ring of cells that loses what it gets ---
+# edge is each cell's distance to the border; the ring has 0.
+row := (o_ffsets side) 'l_eft t_able o_ffsets side
+col := (o_ffsets side) 'r_ight t_able o_ffsets side
+edge := row m_in col m_in ((side - 1) - row) m_in (side - 1) - col
+inside := 1 * edge > 0
+# -- one round: every cell topples as often as it can ----
+# q is how many times each cell topples: its grains over 4. It keeps
+# h - 4 q and gets q from each of its four neighbours (four rotations).
+u:t_opple := { h ->
+  q := h d_iv 4
+  g := (1 o_-_1 q) + (-1 o_-_1 q) + (1 o_-_2 q) + -1 o_-_2 q
+  inside * (h - 4 * q) + g
+}
+# -- stable: no cell has 4 or more -----------------------
+u:s_table := { h -> 1 * 4 > 'm_ax r_/_12 h }
+# -- a round that also counts the topples -----------------
+# The state is two planes: the grains, and how many times each cell
+# has toppled so far (the avalanche's shape).
+u:p_lane := { m -> (1 c_at s_hape m) r_eshape m }
+u:s_tep := { s ->
+  h := 1 s_elect s
+  (u:p_lane u:t_opple h) c_at u:p_lane (2 s_elect s) + h d_iv 4
+}
+# -- end of the core -------------------------------------
+
+mid := side d_iv 2
+h0 := grains * 1 * ((o_ffsets side) 'l_eft t_able o_ffsets side) = mid
+h0 := h0 * 1 * ((o_ffsets side) 'r_ight t_able o_ffsets side) = mid
+s := rounds 'u:s_tep p_ower (u:p_lane h0) c_at u:p_lane 0 * h0
+h := 1 s_elect s
+# Stable after the rounds (1), the grains left on the grid, and the
+# topples there were.
+(u:s_table h) c_at ('+ r_/_12 h) c_at '+ r_/_12 2 s_elect s
+# The pile: blank for 0 grains, then . : # for 1, 2, 3.
+(1 + h) s_elect " .:#"
