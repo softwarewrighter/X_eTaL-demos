@@ -32,6 +32,9 @@ demos work with that are not asks.
 | landed (abb8274) | feature | Transpose (`o_\`, and `t_ranspose` with a permutation) | image-pipeline (ky from kx), attention and embedding-explorer (X_eTaL-ML) | removed in image-pipeline: `ky := o_\ kx` |
 | landed (ffd5526) | bug | A condition bound to a name could not be used in arithmetic (`a := 1 2 > 0` then `1 * a`, `f_loat a` or `'+ r_/ a`); a bound condition now stays Bool and converts as T1 says | image-pipeline (masks) | removed: masks are bound as conditions and made Floats where used (`0.7 * f_loat disk`) |
 | landed (4a31ba9; moot since 2026-10-05) | bug | A vendored build reported the outer repo's commit as its own | `xetal --version` from `just xetal` | removed: X_eTaL is now built from a real clone (`work/xetal/` at `XETAL_COMMIT`), which reports its own commit; `scripts/check-xetal.sh` checks it |
+| open | feature | End of input: `[]R_EAD @` at the end of standard input fails (`error[io]: []R_EAD: no more input`) and nothing can test for it or recover, so a program cannot read a stream of unknown length | xetal-pipes (planned: every stage reads standard input) | the stage's wrapper appends an end-marker line after the input; the stage stops at it |
+| open | feature | Program arguments: `xetal run FILE` takes nothing after the file, and a program cannot read its arguments | xetal-pipes (`head -n 3`, `grep NEEDLE`, `cat FILE`) | the wrapper writes `args := "..."` to a file and runs `xetal run --context ARGS stage.xtl` |
+| open | feature | `s_ort` (and `g_rade`) of a list of boxed strings: `expected a number or Char, found Box Char`; `u_nique` and `m_atch` take boxes, sorting does not | xetal-pipes (`sort`) | lines padded into a Char matrix (built by `t_able` indexing, as mix, D6, is missing) and its rows sorted |
 
 ## For the X_eTaL agent: ledger corrections
 
@@ -52,6 +55,78 @@ With those, the summary row for X_eTaL-demos becomes 7 landed,
 0 declined, 0 new. D13 (grade per row) and the mix half of D6 are
 still "to decide with the user": those need the user's call in
 X_eTaL, not more work here.
+
+## For the X_eTaL agent: three asks for programs in a Unix pipe
+
+Found 2026-10-05 against 882aa76, planning `xetal-pipes`: X_eTaL
+programs as Unix pipeline stages (`xetalcat FILE | xetaluniq |
+xetalwc -l`, `xetalcat FILE | xetalgrep NEEDLE | xetalsort |
+xetalhead -n 3`), each stage an `.xtl` program reading standard input
+and printing lines. X_eTaL's plan has none of the three (D50, the
+steppable evaluator, is about waiting for typed lines, not the end of
+a stream).
+
+### 1. End of input (feature)
+
+What: `[]R_EAD @` gives the next line of standard input; after the
+last one it fails, and the failure cannot be caught or tested first.
+
+```
+$ printf 'abc\nde\n' | xetal run read3.xtl    # three []R_EAD @ in a row
+abc
+de
+error[io]: []R_EAD: no more input at 72..81
+```
+
+Why: a filter (cat, grep, sort, uniq, wc) reads until its input ends,
+and does not know how many lines are coming. Every Unix-style use of
+X_eTaL needs this.
+
+Suggested (X_eTaL's to decide): a value at the end of input that a
+program can test (an empty box, or a `[]E_OF` niladic), or a reader of
+all of standard input as one text (`[]R_EAD_ALL @`, then `p_artition`
+on newlines), which also suits arrays better than a line at a time.
+Workaround planned: each stage's wrapper (`bin/xetal<cmd>`) appends an
+end-marker line after the real input, and the stage reads until it.
+
+### 2. Program arguments (feature)
+
+What: `xetal run FILE` accepts no arguments after the file, and no
+system name gives a program its arguments.
+
+```
+$ xetal run head.xtl -n 3
+error: unexpected argument '-n' found
+```
+
+Why: `head -n 3`, `grep NEEDLE` and `cat FILE` are parameterized by
+their arguments; so is every script with a shebang (`#!/usr/bin/env
+xetal`), which the CLI already supports.
+
+Suggested: `xetal run FILE ARGS...` (and `xetal FILE ARGS...`), the
+arguments read as a list of boxed texts (`[]A_RGS`, say). Workaround
+planned: the wrapper writes `args := "-n 3"` to a small file and runs
+`xetal run --context ARGS stage.xtl` (the context runs first,
+silently, and its names are the stage's).
+
+### 3. Sorting text (feature)
+
+What: `s_ort` and `g_rade` refuse a list of boxed strings, the natural
+form of a list of lines (`p_artition` gives it, and `u_nique` and
+`m_atch` accept it).
+
+```
+$ xetal eval -e 's_ort ("b a" != f_irst " ") p_artition "b a"'
+error[type-mismatch]: expected a number or Char, found Box Char
+```
+
+Why: sorting lines (`sort`, then `uniq -c`, top-k words) is the core
+of text processing.
+
+Suggested: order boxes by their contents (lexicographically, as APL2
+and Dyalog order nested arrays). Workaround planned: pad the lines
+into a Char matrix (by `t_able` indexing into the text, since mix is
+missing, D6) and sort its rows, which `s_ort` does.
 
 ## For the X_eTaL agent: four asks not in X_eTaL's plan yet
 
