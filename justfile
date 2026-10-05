@@ -76,6 +76,10 @@ pages:
 publish:
     scripts/publish-pages.sh
 
+# Check the published site in headless Chrome: every page runs X_eTaL (after just publish)
+check-live *slugs:
+    scripts/check-live.sh "$@"
+
 # Serve the built pages/ as GitHub Pages will: http://127.0.0.1:8413/X_eTaL-demos/ (8413 is this repo's port)
 serve-pages port="8413":
     scripts/serve-pages.sh "$1"

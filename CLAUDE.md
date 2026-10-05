@@ -356,7 +356,8 @@ Read before working:
    unexpected).
 4. A detailed commit to `main`, including `.agentrail/`.
 5. `agentrail complete`, commit the `.agentrail/` change it makes,
-   push, and `just publish` when the step changed what the site shows.
+   push, and `just publish` when the step changed what the site shows
+   (then `just check-live`: every published page runs X_eTaL).
 6. Report: what was pushed, the next step(s), blockers and questions.
 
 ## Useful Commands
@@ -376,6 +377,7 @@ just run SLUG / show SLUG # run a demo / as a notebook
 just test-demo SLUG       # its goldens; just bless SLUG rewrites them
 just pages                # build pages/ (not tracked)
 just publish              # publish the site as the gh-pages branch
+just check-live           # the published pages, in headless Chrome
 just serve SLUG           # one demo's web app at http://127.0.0.1:8413/
 just serve-pages          # preview pages/ at http://127.0.0.1:8413/X_eTaL-demos/
 just xetal-pin [REF]      # pin a newer X_eTaL (own commit)

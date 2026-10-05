@@ -187,6 +187,7 @@ web app.
 just serve SLUG       # one demo's web app at http://127.0.0.1:8413/, rebuilt on change
 just pages            # build the whole site into pages/
 just publish          # publish it (the gh-pages branch)
+just check-live       # check every published page runs X_eTaL
 just serve-pages      # preview pages/ at http://127.0.0.1:8413/X_eTaL-demos/
 just screenshots      # capture each demo (headless Chrome) into demos/<slug>/screenshot.png
 ```
