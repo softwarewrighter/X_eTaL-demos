@@ -1,4 +1,4 @@
-number = 3
+number = 4
 slug = "stencil-macros-web"
 status = "pending"
 description = "The stencil-macros page: edit the kernel (presets and a grid of numbers), see..."

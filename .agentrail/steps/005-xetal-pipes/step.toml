@@ -1,0 +1,8 @@
+number = 5
+slug = "xetal-pipes"
+status = "pending"
+description = "New CLI-only demo xetal-pipes: X_eTaL programs as Unix pipeline stages (cat, ..."
+role = "production"
+context_files = []
+created_at = "2026-10-05T09:59:49"
+commits = []

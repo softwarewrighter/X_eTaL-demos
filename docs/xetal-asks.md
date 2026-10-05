@@ -6,8 +6,9 @@ demos, which moved there; they stay here as the record until X_eTaL-ML
 carries them. This repo does not change X_eTaL: each ask is filed
 here (and taken to `../X_eTaL`), the demo uses the workaround noted
 below or waits, and the workaround is removed when the ask lands in the
-pinned release (`XETAL_COMMIT`, now X_eTaL 882aa76; every
-ask was re-checked against it on 2026-10-05). X_eTaL keeps its own
+pinned release (`XETAL_COMMIT`, now X_eTaL v0.1.0, 512b3ee; every
+ask was re-checked against it on 2026-10-05: none changed since
+882aa76). X_eTaL keeps its own
 ledger of these asks (its `docs/asks.md`, D1 to D9).
 
 Each entry: status (open, filed, landed, dropped), kind (feature, bug

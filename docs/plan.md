@@ -269,7 +269,9 @@ showing what its macros expand to.
 | - | --------- | -------- |
 | 1 | repin | Done 2026-10-05: X_eTaL pinned by commit, not copied (vendor/xetal removed, `XETAL_COMMIT`, `just xetal-pin`); pinned 882aa76 (88 commits: hygienic macros, `Repeat.xtlm`, system values, the clock, docs); every golden and web test unchanged; `just bench-check` all within +7% (at load 12 to 17, so the baseline was kept); asks re-run: the built-in scan is linear for Ints, still quadratic for Floats; the corrections X_eTaL's ledger needs are in `docs/xetal-asks.md` |
 | 2 | stencil-macros-cli | Done 2026-10-05: `Stencil.xtlm` (`m:t_encil<`, X_eTaL code on text: `n_umbers`, offsets by `d_iv`/`m_od`, one parenthesized rotation term per nonzero weight, `[]R_EJECT` for a non-square kernel; doc examples pass `xetal doc --test`); `stencil-macros.xtl` (blur, edges, sharpen, emboss, 60 heat steps by `p_ower`; totals kept: blur and heat 325 and 1000, edges 0); `check.xtl` (the expansion equals the kernel applied as data for five kernels, exactly); goldens: both runs and the `xetal expand` output (`test.sh`). Learned: X_eTaL's right-to-left reading forces parentheses in generated arithmetic, and `cond ? a; b` only as a whole body (helpers per branch) |
-| 3 | stencil-macros-web | the page: edit the kernel, see the call, its expansion (by X_eTaL in the browser) and the result |
+| 3 | repin-v010 | Done 2026-10-05: X_eTaL v0.1.0 pinned (512b3ee, the commit its tag names; 23 commits after 882aa76); every CLI golden, web test and browser baseline unchanged (the gate rebuilt the site on it); `just bench-check` within +9% at load 15 (baseline kept); every open ask re-run, none changed |
+| 4 | stencil-macros-web | the page: edit the kernel, see the call, its expansion (by X_eTaL in the browser) and the result |
+| 5 | xetal-pipes | CLI only: X_eTaL programs as Unix pipe stages (cat, wc, grep, uniq, sort, head, tail), tested against the real tools; a vhs tape; the three pipe asks' workarounds named |
 
 ## Saga 4 -- deferred (blocked on asks): MOVED to X_eTaL-ML
 

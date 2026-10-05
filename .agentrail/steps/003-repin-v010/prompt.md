@@ -1,0 +1,1 @@
+Pin X_eTaL v0.1.0 (512b3ee, the commit its tag names) in XETAL_COMMIT; goldens, web, browser tests and just bench-check; re-check the asks; record it in plan and asks; own commit.
