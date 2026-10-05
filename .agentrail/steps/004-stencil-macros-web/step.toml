@@ -1,8 +1,9 @@
 number = 4
 slug = "stencil-macros-web"
-status = "in-progress"
+status = "completed"
 description = "The stencil-macros page: edit the kernel (presets and a grid of numbers), see..."
 role = "production"
 context_files = []
 created_at = "2026-10-05T00:18:13"
-commits = []
+completed_at = "2026-10-05T14:35:59"
+commits = ["3f46562efd61a5ad5e089bdbd9afea4d27fa7e97"]

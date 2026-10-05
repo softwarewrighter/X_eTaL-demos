@@ -1,0 +1,1 @@
+stencil-macros page live: kernel editor (10 presets, 3x3/5x5, divisor, steps), X_eTaL expands the macro call in the browser from an in-memory store and runs it; call/expansion/counts, macro, program, cell terms; 9 native tests, browser baseline, screenshot. New ask: xetal-play has no page-library/expansion API (workaround: three crates by path).
