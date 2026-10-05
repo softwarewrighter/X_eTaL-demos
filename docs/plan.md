@@ -198,7 +198,7 @@ live pages run the three demos, and their copies here were removed.
   free ports for servers, private Chrome profiles, and timings checked
   twice before they are believed.
 
-## Saga 5 -- start-here (an entry page, a release gate)  [ACTIVE]
+## Saga 5 -- start-here (an entry page, a release gate)  [DONE]
 
 Asked for by the user (2026-10-03) after research3: first a
 start-here section and an ecosystem overview for this repository,
