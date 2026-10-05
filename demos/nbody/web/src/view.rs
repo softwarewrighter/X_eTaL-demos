@@ -1,7 +1,7 @@
 //! The program the page shows (exactly the one X_eTaL ran),
-//! the stages and the part computing each, and the matrices' colours.
+//! the stages and the part computing each, and the matrices' colors.
 
-use microscope::colour::{pixels, ramp, Rgb, DIVERGE, GLOW};
+use microscope::color::{pixels, ramp, Rgb, DIVERGE, GLOW};
 use microscope::source::{between, listing, Range};
 use yew::Html;
 
@@ -32,8 +32,8 @@ pub fn source(program: &str, focus: Stage) -> Html {
     listing(program, range(program, focus))
 }
 
-/// Each body's colour.
-pub fn body_colour(i: usize) -> &'static str {
+/// Each body's color.
+pub fn body_color(i: usize) -> &'static str {
     const C: [&str; 8] = ["#7048e8", "#e8590c", "#1c7ed6", "#2f9e44", "#d6336c", "#f59f00", "#0c8599", "#5f3dc4"];
     C[i % C.len()]
 }
@@ -52,15 +52,15 @@ fn spotlight(mut px: Vec<u8>, cols: usize, sel: Option<usize>) -> Vec<u8> {
     px
 }
 
-/// Signed values (blue below 0, red above), row `sel` in full colour.
+/// Signed values (blue below 0, red above), row `sel` in full color.
 pub fn signed(values: &[f64], cols: usize, sel: Option<usize>) -> Vec<u8> {
-    spotlight(microscope::colour::signed(values), cols, sel)
+    spotlight(microscope::color::signed(values), cols, sel)
 }
 
 const DIAGONAL: Rgb = [120, 120, 130];
 
 /// Positive values on a log scale over the off-diagonal entries (the
-/// diagonal, a body and itself, grey), row `sel` in full colour.
+/// diagonal, a body and itself, gray), row `sel` in full color.
 pub fn log_scaled(values: &[f64], n: usize, sel: Option<usize>) -> Vec<u8> {
     let off = |k: usize| k / n != k % n;
     let logs: Vec<f64> = values.iter().map(|&v| v.max(1e-300).log10()).collect();

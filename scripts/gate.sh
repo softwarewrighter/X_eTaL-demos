@@ -18,6 +18,9 @@ echo "ok: shared/microscope"
 # 40 s and is noisy on a shared machine: it is run on vendor refreshes).
 (cd "$root/tools/bench" && cargo check -q --release) || { echo "FAIL: tools/bench"; exit 1; }
 echo "ok: tools/bench (builds)"
+# American spellings only (and the checker checks itself first).
+"$root/scripts/check-spelling.py" --self-test
+"$root/scripts/check-spelling.py"
 md=(README.md docs/plan.md docs/xetal-asks.md docs/xetal-ml-asks.md docs/bench.md shared/microscope/README.md)
 for f in demos/*/README.md; do [ -e "$f" ] && md+=("$f"); done
 for f in "${md[@]}"; do sw-markdown-checker -f "$f" >/dev/null || { sw-markdown-checker -f "$f"; exit 1; }; done

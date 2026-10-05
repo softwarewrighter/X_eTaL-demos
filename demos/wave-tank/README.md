@@ -1,8 +1,8 @@
 # Wave tank
 
 The wave equation on a grid. Each step, every cell keeps moving the
-way it was moving and is pulled towards the level of its neighbours:
-next = 2 u - previous + c2 * (neighbours - 4 u). Walls are a mask, a
+way it was moving and is pulled towards the level of its neighbors:
+next = 2 u - previous + c2 * (neighbors - 4 u). Walls are a mask, a
 source shakes a line or a point up and down, and the edges are a
 sponge that lets waves leave. Waves spread, pass through a double slit
 and interfere (Young's experiment), bend through a lens of slow water,

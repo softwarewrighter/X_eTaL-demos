@@ -9,17 +9,17 @@ b := 6 6 r_eshape 0 1 0 0 0 0  0 0 1 0 0 0  1 1 1 0 0 0  0 0 0 0 0 0  0 0 0 0 0 
 b
 
 # Rotate the board by every offset -1 0 1 along both axes: a 3 by 3
-# arrangement of shifted boards, one for each neighbour (and the cell).
+# arrangement of shifted boards, one for each neighbor (and the cell).
 r := -1 0 1 o_-_12 b
 s_hape r
 
-# Sum over those two axes: S, each cell plus its eight neighbours.
+# Sum over those two axes: S, each cell plus its eight neighbors.
 s := '+ r_/_12 r
 s
 
-# A cell is alive next if S is 3 (born, or alive with 2 neighbours) ...
+# A cell is alive next if S is 3 (born, or alive with 2 neighbors) ...
 s = 3
-# ... or if it is alive and S is 4 (alive with 3 neighbours).
+# ... or if it is alive and S is 4 (alive with 3 neighbors).
 b * s = 4
 
 # Together, the next board: what the one line computes.

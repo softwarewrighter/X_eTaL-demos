@@ -12,7 +12,7 @@ fn the_page_runs_the_command_line_programs_core() {
 }
 
 #[test]
-fn a_julia_set_is_symmetric_through_the_centre() {
+fn a_julia_set_is_symmetric_through_the_center() {
     // z -> -z maps a Julia set onto itself: the counts read the same backwards.
     let c = counts(&SMALL, 30, Set::Julia(-0.8, 0.156)).unwrap();
     let rev: Vec<f64> = c.iter().rev().cloned().collect();

@@ -1,13 +1,13 @@
 #!/usr/bin/env xetal
 # The abelian sandpile: drop grains on a grid; a cell with 4 or more
-# grains topples, giving one to each of its four neighbours, and grains
+# grains topples, giving one to each of its four neighbors, and grains
 # that fall off the edge are lost. Repeat until every cell has fewer
 # than 4. The order of the topples does not matter (that is what
 # abelian means), so every cell topples at once, as often as it can:
 # one array expression a round. The stable pile is a fractal.
 
 # The grid: side cells across (the outer ring is the edge, where
-# grains fall off), grains dropped at the centre, rounds to run.
+# grains fall off), grains dropped at the center, rounds to run.
 side := 21
 grains := 300
 rounds := 150
@@ -20,7 +20,7 @@ edge := row m_in col m_in ((side - 1) - row) m_in (side - 1) - col
 inside := 1 * edge > 0
 # -- one round: every cell topples as often as it can ----
 # q is how many times each cell topples: its grains over 4. It keeps
-# h - 4 q and gets q from each of its four neighbours (four rotations).
+# h - 4 q and gets q from each of its four neighbors (four rotations).
 u:t_opple := { h ->
   q := h d_iv 4
   g := (1 o_-_1 q) + (-1 o_-_1 q) + (1 o_-_2 q) + -1 o_-_2 q

@@ -5,7 +5,7 @@
 /// The command-line program; the page runs its core with its own view.
 pub const SOURCE: &str = include_str!("../../mandelbrot.xtl");
 
-const CORE_START: &str = "# Numbers centred on 0";
+const CORE_START: &str = "# Numbers centered on 0";
 const CORE_END: &str = "# -- end of the core";
 const ORBIT_START: &str = "u:o_rbit :=";
 
@@ -20,7 +20,7 @@ pub fn orbit_def() -> &'static str {
     section(SOURCE, ORBIT_START, "\n")
 }
 
-/// Where the picture looks: its size in pixels, its centre and width.
+/// Where the picture looks: its size in pixels, its center and width.
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct View {
     pub rows: usize,
@@ -35,9 +35,9 @@ impl View {
 
     /// The point c at pixel (y, x), as the program places it.
     pub fn point(&self, y: usize, x: usize) -> (f64, f64) {
-        let centred = |i: usize, n: usize| i as f64 - (n as f64 - 1.0) / 2.0;
+        let centered = |i: usize, n: usize| i as f64 - (n as f64 - 1.0) / 2.0;
         let d = self.w / self.cols as f64;
-        (self.cx + d * centred(x, self.cols), self.cy - d * centred(y, self.rows))
+        (self.cx + d * centered(x, self.cols), self.cy - d * centered(y, self.rows))
     }
 
     /// The view zoomed by `f` (2.0 halves the width) around pixel (y, x).
@@ -66,7 +66,7 @@ pub struct Frame {
 }
 
 /// The smallest width the page zooms to: below about 1e-13 (relative to
-/// a centre near 1), 64-bit floats can no longer tell pixels apart.
+/// a center near 1), 64-bit floats can no longer tell pixels apart.
 pub const MIN_WIDTH: f64 = 1e-12;
 
 pub use microscope::run::lit;

@@ -56,9 +56,9 @@ cy := '+ s_\_2 vy
 | error | `err` | n | the mean distance from the curve, for each number of circles |
 
 On the page, the picture draws the circles at the current time, the
-curve so far (orange) and the curve itself (grey); the angle table is
+curve so far (orange) and the curve itself (gray); the angle table is
 drawn as its cosines, the transform as a spectrum of strengths by
-speed (the circles in use coloured), and the error as a curve against
+speed (the circles in use colored), and the error as a curve against
 the number of circles (log scale). Drawing a curve resamples your path
 to 128 points evenly spaced along it.
 

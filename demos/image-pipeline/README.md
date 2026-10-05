@@ -52,7 +52,7 @@ The page has five pictures (shapes, quadrants and a diagonal, rings, a
 noisy checkerboard, half and half), blur presets (Gaussian, box, none,
 sharpen) and edge kernels (Sobel, Prewitt, central difference), every
 kernel item editable; `ky` is `kx` turned a quarter. Picking a stage
-shows it large (the gradients as a colour for their direction).
+shows it large (the gradients as a color for their direction).
 Clicking a pixel shows its window (the nine numbers of the windows
 stack there, printed by X_eTaL) times each kernel and the sum, then
 the magnitude and the threshold.
@@ -60,7 +60,7 @@ the magnitude and the threshold.
 The page's tests check every picture with every kernel, the filters
 against a direct convolution, that an edited kernel is used (a kernel
 of one 1.0 shifts the picture), that the windows are the pixel's
-neighbours (wrapping at the edges), the edge orientation on known
+neighbors (wrapping at the edges), the edge orientation on known
 pictures (a vertical edge has gx > 0 and gy = 0, a horizontal one the
 reverse, a diagonal one gx = -gy), and the pooling.
 

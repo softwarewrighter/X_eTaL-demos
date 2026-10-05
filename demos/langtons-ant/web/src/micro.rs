@@ -31,7 +31,7 @@ impl Ant {
 }
 
 /// The last step, as X_eTaL computed it: where the ant stood, facing
-/// which way, on which colour.
+/// which way, on which color.
 #[derive(Clone, Debug, PartialEq)]
 pub struct Last {
     pub y: usize,

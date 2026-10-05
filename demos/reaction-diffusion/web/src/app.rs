@@ -8,7 +8,7 @@ use yew::prelude::*;
 
 use microscope::canvas::Canvas;
 use microscope::chrome::{about, chip, footer, header, notice, panel as frame};
-use microscope::colour;
+use microscope::color;
 use microscope::source::code;
 
 use crate::micro::{Anatomy, PRESETS};
@@ -76,12 +76,12 @@ fn small(m: &Model, rgba: Vec<u8>, caption: &str, cap_note: &str) -> Html {
 
 fn arrays(m: &Model, a: &Anatomy) -> Html {
     html! { <>
-        { panel(m, Some(Stage::Spread), "1. Spread:", "u:l_ap u", "Four shifted copies of the grid minus four times the grid: how much each cell differs from its neighbours. Blue below 0, red above.",
-            html! { <div class="pair">{small(m, colour::signed(&a.lap_u), "u:l_ap u", "")}{small(m, colour::signed(&a.lap_v), "u:l_ap v", "")}</div> }) }
+        { panel(m, Some(Stage::Spread), "1. Spread:", "u:l_ap u", "Four shifted copies of the grid minus four times the grid: how much each cell differs from its neighbors. Blue below 0, red above.",
+            html! { <div class="pair">{small(m, color::signed(&a.lap_u), "u:l_ap u", "")}{small(m, color::signed(&a.lap_v), "u:l_ap v", "")}</div> }) }
         { panel(m, Some(Stage::React), "2. React:", "uvv := u * v * v", "Where V meets U, U turns into more V: the product, for every cell at once.",
-            html! { <div class="pair">{small(m, colour::scaled(&a.uvv), "u * v * v", "")}</div> }) }
+            html! { <div class="pair">{small(m, color::scaled(&a.uvv), "u * v * v", "")}</div> }) }
         { panel(m, Some(Stage::Update), "3. Update:", "u:s_tep s", "U spreads, is used up and is fed (f); V spreads, grows and is removed (f + k).",
-            html! { <div class="pair">{small(m, colour::field(&a.next.u, 0.2, 1.0), "u", " after the step")}{small(m, colour::field(&a.next.v, 0.0, 0.4), "v", " after the step")}</div> }) }
+            html! { <div class="pair">{small(m, color::field(&a.next.u, 0.2, 1.0), "u", " after the step")}{small(m, color::field(&a.next.v, 0.0, 0.4), "v", " after the step")}</div> }) }
     </> }
 }
 
@@ -90,7 +90,7 @@ fn picture(model: &UseReducerHandle<Model>, a: &Anatomy) -> Html {
     let d = model.dispatcher();
     let onclick = Some(Callback::from(move |(y, x)| d.dispatch(Action::Click(y, x))));
     let hint = if m.seeding { "Click to drop V there (and inspect that cell)." } else { "Click a cell to inspect it." };
-    let body = html! { <Canvas rows={N} cols={N} rgba={Rc::new(colour::field(&a.next.v, 0.0, 0.4))} mark={Some(m.selected)} {onclick} class="big" /> };
+    let body = html! { <Canvas rows={N} cols={N} rgba={Rc::new(color::field(&a.next.v, 0.0, 0.4))} mark={Some(m.selected)} {onclick} class="big" /> };
     panel(m, None, "The pattern: the chemical", "v", &format!("{N} by {N} cells; the edges wrap around. {hint}"), body)
 }
 
@@ -141,7 +141,7 @@ pub fn app() -> Html {
     html! {
         <>
         <header>
-            { header("Reaction-diffusion", "Two chemicals on a grid: U is fed in, V turns U into more V, both spread to their neighbours. Each step is a few array expressions over the whole grid, and patterns grow by themselves.", about(include_str!("../../demo.toml"))) }
+            { header("Reaction-diffusion", "Two chemicals on a grid: U is fed in, V turns U into more V, both spread to their neighbors. Each step is a few array expressions over the whole grid, and patterns grow by themselves.", about(include_str!("../../demo.toml"))) }
             <nav class="timeline">{ for STAGES.iter().map(|&s| stage_chip(&model, s)) }</nav>
             { controls(&model) }
             { notice(&model.notice) }

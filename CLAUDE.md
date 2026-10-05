@@ -329,7 +329,11 @@ Read before working:
    get a recipe.
 6. The live site is built locally into `pages/` (`just pages`) and
    committed; `.github/workflows/pages.yml` only uploads it.
-7. Docs are ASCII-only markdown (`sw-markdown-checker`). User-facing
+7. American spellings only, everywhere (docs, comments, code
+   identifiers, page text, commit messages): color, center, neighbor,
+   gray, modeled, -ize. The user is American; `scripts/check-spelling.py`
+   (in the gate) fails on British forms. Docs are ASCII-only markdown
+   (`sw-markdown-checker`). User-facing
    docs (README, per-demo READMEs) say what and how; saga/step talk
    lives only in `docs/plan.md`.
 8. NEVER run `sw-install` unless the user explicitly asks.

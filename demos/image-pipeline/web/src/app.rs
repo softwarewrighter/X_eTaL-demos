@@ -8,12 +8,12 @@ use yew::prelude::*;
 
 use microscope::canvas::Canvas;
 use microscope::chrome::{about, chip, footer, header, notice, panel};
-use microscope::colour;
+use microscope::color;
 use microscope::source::code;
 
 use crate::micro::{turn, Anatomy, Kernel, BLURS, EDGES, HALF, SCENES, SIZE};
 use crate::model::{Action, Model};
-use crate::view::{direction, edges, grey, source, Stage, STAGES};
+use crate::view::{direction, edges, gray, source, Stage, STAGES};
 
 fn act(m: &UseReducerHandle<Model>, a: impl Fn() -> Action + 'static) -> Callback<MouseEvent> {
     let d = m.dispatcher();
@@ -172,12 +172,12 @@ fn inspector(m: &Model, a: &Anatomy) -> Html {
 /// The picture of a stage, its size and its pixels.
 fn picture(stage: Stage, a: &Anatomy) -> (usize, Vec<u8>) {
     match stage {
-        Stage::Picture | Stage::Windows => (SIZE, grey(&a.img)),
-        Stage::Smooth => (SIZE, grey(&a.smooth)),
+        Stage::Picture | Stage::Windows => (SIZE, gray(&a.img)),
+        Stage::Smooth => (SIZE, gray(&a.smooth)),
         Stage::Gradients => (SIZE, direction(&a.gx, &a.gy, &a.mag)),
-        Stage::Magnitude => (SIZE, colour::scaled(&a.mag)),
+        Stage::Magnitude => (SIZE, color::scaled(&a.mag)),
         Stage::Edges => (SIZE, edges(&a.edges)),
-        Stage::Pool => (HALF, colour::scaled(&a.pool)),
+        Stage::Pool => (HALF, color::scaled(&a.pool)),
     }
 }
 
@@ -196,7 +196,7 @@ fn pic(model: &UseReducerHandle<Model>, size: usize, rgba: Vec<u8>, class: &'sta
 fn big(model: &UseReducerHandle<Model>, a: &Anatomy) -> Html {
     let (size, rgba) = picture(model.focus, a);
     let note = match model.focus {
-        Stage::Gradients => "The gradients' direction as a colour (the angle of gx, gy), as bright as the edge is strong.",
+        Stage::Gradients => "The gradients' direction as a color (the angle of gx, gy), as bright as the edge is strong.",
         Stage::Pool => "Half the size: each pixel is the strongest edge of a 2 x 2 block.",
         _ => "The stage you picked, as X_eTaL computed it. Click a pixel to see its window times the kernels.",
     };
@@ -234,24 +234,24 @@ fn arrays(model: &UseReducerHandle<Model>, a: &Anatomy) -> Html {
     let small = |rgba: Vec<u8>, cap: &str| pic(model, SIZE, rgba, "mid", code(cap));
     let windows = (0..9).map(|k| {
         let (da, db) = (k as i64 / 3 - 1, k as i64 % 3 - 1);
-        pic(model, SIZE, grey(&shifted(&a.img, da, db)), "tiny", code(&format!("{} s_elect {} s_elect w", db + 2, da + 2)))
+        pic(model, SIZE, gray(&shifted(&a.img, da, db)), "tiny", code(&format!("{} s_elect {} s_elect w", db + 2, da + 2)))
     });
     let pool = format!("'m_ax r_/_2 'm_ax r_/_4 ({HALF} c_at 2 c_at {HALF} c_at 2) r_eshape mag");
     html! { <>
         { panel("1. The picture:", "img", "Built from masks of the pixels' coordinates (a disk, a square, a triangle...) and a little noise from r_oll!.",
-            f == Stage::Picture, html! { <div class="pair">{small(grey(&a.img), "img")}</div> }) }
-        { panel("2. The windows:", "u:w_indows img", "Rotating by a list of amounts gives one shifted copy per amount on a new first axis; doing it twice gives the 3 x 3 stack of copies. Plane (a, b) holds each pixel's neighbour at row offset a, column offset b.",
+            f == Stage::Picture, html! { <div class="pair">{small(gray(&a.img), "img")}</div> }) }
+        { panel("2. The windows:", "u:w_indows img", "Rotating by a list of amounts gives one shifted copy per amount on a new first axis; doing it twice gives the 3 x 3 stack of copies. Plane (a, b) holds each pixel's neighbor at row offset a, column offset b.",
             f == Stage::Windows, html! { <div class="nine">{ for windows }</div> }) }
-        { panel("3. Smooth:", "blur u:f_ilter img", "The kernel spread over the picture, times the windows, summed over the kernel's two axes: every pixel's weighted average of its neighbours.",
-            f == Stage::Smooth, html! { <div class="pair">{small(grey(&a.smooth), "smooth")}</div> }) }
-        { panel("4. The gradients:", "gx := kx u:f_ilter smooth", "The same filter with the edge kernels: gx is the change across (blue darker to the right, red brighter), gy the change down. The colour picture shows their direction.",
-            f == Stage::Gradients, html! { <div class="pair">{small(colour::signed(&a.gx), "gx")}{small(colour::signed(&a.gy), "gy")}{small(direction(&a.gx, &a.gy, &a.mag), "gx ; gy")}</div> }) }
+        { panel("3. Smooth:", "blur u:f_ilter img", "The kernel spread over the picture, times the windows, summed over the kernel's two axes: every pixel's weighted average of its neighbors.",
+            f == Stage::Smooth, html! { <div class="pair">{small(gray(&a.smooth), "smooth")}</div> }) }
+        { panel("4. The gradients:", "gx := kx u:f_ilter smooth", "The same filter with the edge kernels: gx is the change across (blue darker to the right, red brighter), gy the change down. The color picture shows their direction.",
+            f == Stage::Gradients, html! { <div class="pair">{small(color::signed(&a.gx), "gx")}{small(color::signed(&a.gy), "gy")}{small(direction(&a.gx, &a.gy, &a.mag), "gx ; gy")}</div> }) }
         { panel("5. The magnitude:", "mag := ((gx * gx) + gy * gy) ^ 0.5", "How strong the edge is at each pixel, whichever way it runs.",
-            f == Stage::Magnitude, html! { <div class="pair">{small(colour::scaled(&a.mag), "mag")}</div> }) }
+            f == Stage::Magnitude, html! { <div class="pair">{small(color::scaled(&a.mag), "mag")}</div> }) }
         { panel("6. The edges:", "edges := f_loat mag > thresh", "A mask: 1.0 where the strength passes the threshold.",
             f == Stage::Edges, html! { <div class="pair">{small(edges(&a.edges), "edges")}</div> }) }
         { panel("7. Pooling:", &pool, "Reshaped so each 2 x 2 block has its own two axes (rows, row in block, columns, column in block), then the largest over those two axes: half the size, the strongest edge kept.",
-            f == Stage::Pool, html! { <div class="pair">{pic(model, HALF, colour::scaled(&a.pool), "mid", code("pool"))}</div> }) }
+            f == Stage::Pool, html! { <div class="pair">{pic(model, HALF, color::scaled(&a.pool), "mid", code("pool"))}</div> }) }
     </> }
 }
 

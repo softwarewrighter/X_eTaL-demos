@@ -9,7 +9,7 @@ use yew::prelude::*;
 
 use microscope::canvas::Canvas;
 use microscope::chrome::{about, chip, footer, header, notice, panel};
-use microscope::colour;
+use microscope::color;
 use microscope::source::code;
 
 use crate::micro::{Anatomy, N, PRESETS};
@@ -94,13 +94,13 @@ fn picture(model: &UseReducerHandle<Model>, a: &Anatomy) -> Html {
     let traced = points((0..=j).map(|i| a.joint(i, k - 1)));
     let mut prev = (0.0, 0.0);
     let circles = (0..k).map(|c| {
-        let centre = prev;
+        let center = prev;
         let end = a.joint(j, c);
         prev = end;
         let r = a.radius(c);
         html! { <g>
-            { for (r > 0.004).then(|| html! { <circle class="ring" cx={centre.0.to_string()} cy={centre.1.to_string()} r={r.to_string()} vector-effect="non-scaling-stroke" /> }) }
-            <line class="arm" x1={centre.0.to_string()} y1={centre.1.to_string()} x2={end.0.to_string()} y2={end.1.to_string()} vector-effect="non-scaling-stroke" />
+            { for (r > 0.004).then(|| html! { <circle class="ring" cx={center.0.to_string()} cy={center.1.to_string()} r={r.to_string()} vector-effect="non-scaling-stroke" /> }) }
+            <line class="arm" x1={center.0.to_string()} y1={center.1.to_string()} x2={end.0.to_string()} y2={end.1.to_string()} vector-effect="non-scaling-stroke" />
         </g> }
     });
     let tip = a.joint(j, k - 1);
@@ -136,14 +136,14 @@ fn picture(model: &UseReducerHandle<Model>, a: &Anatomy) -> Html {
         </svg>
     };
     let note = format!(
-        "The {k} strongest circles, each turning at its own whole-number speed, chained end to end: the last one's end traces the curve (orange; grey, the curve itself). Mean error with {k}: {}. Press and drag in the picture to draw your own closed curve.",
+        "The {k} strongest circles, each turning at its own whole-number speed, chained end to end: the last one's end traces the curve (orange; gray, the curve itself). Mean error with {k}: {}. Press and drag in the picture to draw your own closed curve.",
         num(a.err[k - 1])
     );
     panel("Circles on circles:", "cx ; cy", &note, m.focus == Stage::Chain, body)
 }
 
 fn spectrum(m: &Model, a: &Anatomy) -> Html {
-    // Bars by speed, -N/2 .. N/2 - 1; the circles in use coloured.
+    // Bars by speed, -N/2 .. N/2 - 1; the circles in use colored.
     let used: Vec<usize> = a.order[..m.circles].iter().map(|o| o - 1).collect();
     let top = a.amp.iter().cloned().fold(1e-12, f64::max);
     let w = 2.0;
@@ -177,8 +177,8 @@ fn arrays(model: &UseReducerHandle<Model>, a: &Anatomy) -> Html {
     let f = m.focus;
     html! { <>
         { panel("1. The angles:", "A := (2.0 * (p_i @) / f_loat n) * k '* t_able k", "One outer product: row k, column j holds 2 pi k j / n, the angle of frequency k at sample j. Drawn: its cosines.",
-            f == Stage::Angles, html! { <div class="pair"><figure><Canvas rows={N} cols={N} rgba={Rc::new(colour::signed(&a.cos))} class="mid" /><figcaption>{code("C := c_os A")}</figcaption></figure></div> }) }
-        { panel("2. The transform:", "re := ((C '+ '* i_nner x) + S '+ '* i_nner y) / f_loat n", "Two matrix products give each frequency's part of the curve: the strength of each speed, coloured where its circle is drawn.",
+            f == Stage::Angles, html! { <div class="pair"><figure><Canvas rows={N} cols={N} rgba={Rc::new(color::signed(&a.cos))} class="mid" /><figcaption>{code("C := c_os A")}</figcaption></figure></div> }) }
+        { panel("2. The transform:", "re := ((C '+ '* i_nner x) + S '+ '* i_nner y) / f_loat n", "Two matrix products give each frequency's part of the curve: the strength of each speed, colored where its circle is drawn.",
             f == Stage::Transform, spectrum(m, a)) }
         { panel("3. The circles, strongest first:", "order := g_rade n_eg amp", "Sorted by strength; at time j, circle c is its frequency's part turned by its speed times the angle of time j.",
             f == Stage::Circles, html! { <p class="calc">{format!("the three strongest: speeds {}, {}, {}; radii {}, {}, {}", a.f[a.order[0] - 1], a.f[a.order[1] - 1], a.f[a.order[2] - 1], num(a.radius(0)), num(a.radius(1)), num(a.radius(2)))}</p> }) }

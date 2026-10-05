@@ -59,11 +59,11 @@ pub struct Anatomy {
     /// `-1 0 1 o_-_12 b`: nine boards, the one for offsets (dy, dx) at
     /// index 3 * (dy + 1) + (dx + 1); its cell (y, x) holds b[y+dy][x+dx].
     pub shifted: Vec<Vec<u8>>,
-    /// `'+ r_/_12 r`: S, each cell plus its eight neighbours.
+    /// `'+ r_/_12 r`: S, each cell plus its eight neighbors.
     pub sum: Vec<u8>,
     /// `s = 3`: alive next whatever the cell is now.
     pub three: Vec<u8>,
-    /// `b * s = 4`: alive now with three neighbours.
+    /// `b * s = 4`: alive now with three neighbors.
     pub four: Vec<u8>,
     /// `u:l_ife b`: the next board, as the one line computes it.
     pub next: Vec<u8>,

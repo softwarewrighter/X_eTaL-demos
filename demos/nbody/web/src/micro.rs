@@ -65,8 +65,8 @@ impl Bodies {
         e
     }
 
-    /// Move to the centre-of-mass frame: the centre at 0, still.
-    fn centred(mut self) -> Self {
+    /// Move to the center-of-mass frame: the center at 0, still.
+    fn centered(mut self) -> Self {
         let mt: f64 = self.m.iter().sum();
         let c = |v: &[f64]| (0..v.len()).map(|i| self.m[i] * v[i]).sum::<f64>() / mt;
         let (cx, cy, cvx, cvy) = (c(&self.x), c(&self.y), c(&self.vx), c(&self.vy));
@@ -120,7 +120,7 @@ pub fn binary_planets() -> Bodies {
         b.vx.push(-s * a.sin());
         b.vy.push(s * a.cos());
     }
-    b.centred()
+    b.centered()
 }
 
 /// A small random number generator, so a preset is the same each time.
@@ -153,7 +153,7 @@ pub fn cluster() -> Bodies {
         b.vx.push(-s * a.sin());
         b.vy.push(s * a.cos());
     }
-    b.centred()
+    b.centered()
 }
 
 /// The two-body problem: masses 1 and 0.2 on ellipses with
@@ -210,7 +210,7 @@ pub const PRESETS: &[Preset] = &[
         view: 1.1,
         per_frame: 10,
         bodies: kepler,
-        about: "Masses 1 and 0.2 on ellipses round their centre of mass; Kepler's third law gives the period, 2 pi sqrt(a^3 / G M).",
+        about: "Masses 1 and 0.2 on ellipses round their center of mass; Kepler's third law gives the period, 2 pi sqrt(a^3 / G M).",
     },
 ];
 

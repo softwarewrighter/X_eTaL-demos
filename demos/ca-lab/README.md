@@ -1,7 +1,7 @@
 # Cellular automata lab
 
 Every rule in this lab is a lookup table. Rotations turn each cell's
-neighbourhood into a number, for the whole array at once, and the
+neighborhood into a number, for the whole array at once, and the
 number picks the cell's next state from the table (`s_elect`). Change
 the table and you change the universe.
 
@@ -36,9 +36,9 @@ One dimension (Wolfram's elementary rules):
 
 | Step | Code | Shape | What it is |
 | ---- | ---- | ----- | ---------- |
-| the table | `u:b_its 30` | 8 | a rule number's 8 bits: the next state for neighbourhood numbers 0 to 7 |
-| neighbours | `-1 o_- r`, `1 o_- r` | width | the row rotated each way: every cell's left and right neighbour at once |
-| number | `(4 * left) + (2 * r) + right` | width | each cell's neighbourhood as a number 0 to 7 |
+| the table | `u:b_its 30` | 8 | a rule number's 8 bits: the next state for neighborhood numbers 0 to 7 |
+| neighbors | `-1 o_- r`, `1 o_- r` | width | the row rotated each way: every cell's left and right neighbor at once |
+| number | `(4 * left) + (2 * r) + right` | width | each cell's neighborhood as a number 0 to 7 |
 | look up | `tbl u:r_ow r` | width | `s_elect` picks each cell's next state from the table |
 | history | `tbl u:g_row h` | gens width | rows rotated up, the next row put at the bottom; run with function power |
 
@@ -46,7 +46,7 @@ Two dimensions (Life, Brian's Brain, Wireworld):
 
 | Step | Code | Shape | What it is |
 | ---- | ---- | ----- | ---------- |
-| count | `u:c_ount b` | rows cols | neighbours in state 1: nine rotated copies of `b = 1` summed, minus the cell |
+| count | `u:c_ount b` | rows cols | neighbors in state 1: nine rotated copies of `b = 1` summed, minus the cell |
 | number | `(9 * b) + u:c_ount b` | rows cols | state * 9 + count |
 | look up | `tbl u:l_ook b` | rows cols | the next state from a table with a row per state and a column per count |
 

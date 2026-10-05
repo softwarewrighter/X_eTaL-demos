@@ -1,8 +1,8 @@
 //! The program the page shows (the picture, the settings, then the
 //! core), the stages and the part computing each, and the pictures'
-//! colours.
+//! colors.
 
-use microscope::colour::{pixels, ramp, Rgb};
+use microscope::color::{pixels, ramp, Rgb};
 use microscope::source::{between, listing, Range};
 use yew::Html;
 
@@ -38,11 +38,11 @@ pub fn source(program: &str, focus: Stage) -> Html {
     listing(program, range(program, focus))
 }
 
-const GREY: [Rgb; 2] = [[0, 0, 0], [255, 255, 255]];
+const GRAY: [Rgb; 2] = [[0, 0, 0], [255, 255, 255]];
 
 /// Brightness 0 (black) to 1 (white).
-pub fn grey(values: &[f64]) -> Vec<u8> {
-    pixels(values, |v| ramp(&GREY, v))
+pub fn gray(values: &[f64]) -> Vec<u8> {
+    pixels(values, |v| ramp(&GRAY, v))
 }
 
 /// The edges: 1 white, 0 dark violet.
@@ -51,7 +51,7 @@ pub fn edges(values: &[f64]) -> Vec<u8> {
 }
 
 fn hue(h: f64) -> Rgb {
-    // h in 0..1 round the colour wheel, full saturation.
+    // h in 0..1 round the color wheel, full saturation.
     let f = |n: f64| {
         let k = (n + h * 6.0) % 6.0;
         let v = 1.0 - (k.min(4.0 - k).clamp(0.0, 1.0));

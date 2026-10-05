@@ -25,7 +25,7 @@ fn a_still_grid_stays_still() {
 }
 
 #[test]
-fn the_laplacian_is_four_neighbours_minus_four_times_the_cell() {
+fn the_laplacian_is_four_neighbors_minus_four_times_the_cell() {
     let mut g = Grid::empty(8);
     g.drop(3, 4, 1);
     let a = run(&g, &preset(0), 1).unwrap();

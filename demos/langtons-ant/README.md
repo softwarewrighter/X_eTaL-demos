@@ -39,7 +39,7 @@ u:s_tep := { s ->
 
 | Part | Code | Shape | What it is |
 | ---- | ---- | ----- | ---------- |
-| look | `'+ r_/ r_avel a * b` | (one number) | the board times the ant's mask, summed: the colour under the ant |
+| look | `'+ r_/ r_avel a * b` | (one number) | the board times the ant's mask, summed: the color under the ant |
 | turn | `(d + 1 + 2 * cell) m_od 4` | (one number) | right (+1) on white, left (+3, that is -1) on black |
 | flip | `b + a * 1 - 2 * b` | 64 64 | 0 becomes 1 and 1 becomes 0 where the mask is 1, nothing elsewhere |
 | move | `dy o_-_1 dx o_-_2 a` | 64 64 | the mask rotated one row or column: up, right, down or left |

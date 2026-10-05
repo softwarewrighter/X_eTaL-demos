@@ -23,7 +23,7 @@ fn act(m: &UseReducerHandle<Model>, a: impl Fn() -> Action + 'static) -> Callbac
 
 fn stage_chip(m: &UseReducerHandle<Model>, s: Stage) -> Html {
     let (name, src, dims, meaning): (&str, &str, Vec<usize>, &str) = match s {
-        Stage::Look => ("look", "'+ r_/ r_avel a * b", vec![], "one number: the colour under the ant"),
+        Stage::Look => ("look", "'+ r_/ r_avel a * b", vec![], "one number: the color under the ant"),
         Stage::Turn => ("turn", "(d + 1 + 2 * cell) m_od 4", vec![], "one number: the new direction"),
         Stage::Flip => ("flip", "b + a * 1 - 2 * b", vec![N, N], "the board"),
         Stage::Move => ("move", "dy o_-_1 dx o_-_2 a", vec![N, N], "the ant's mask, rotated one cell"),
@@ -54,12 +54,12 @@ fn controls(m: &UseReducerHandle<Model>) -> Html {
 
 fn last_step(m: &Model, l: &Last) -> Html {
     let turn = (l.dir + 1 + 2 * l.cell) % 4;
-    let colour = if l.cell == 0 { "white" } else { "black" };
+    let color = if l.cell == 0 { "white" } else { "black" };
     let side = if l.cell == 0 { "right" } else { "left" };
     let (dy, dx) = ((turn == 0) as i64 - (turn == 2) as i64, (turn == 3) as i64 - (turn == 1) as i64);
     let body = html! { <>
-        <p class="calc">{format!("The ant stood at row {}, column {}, facing {}, on a {colour} cell.", l.y + 1, l.x + 1, DIRS[l.dir as usize])}</p>
-        <p class="calc">{code("cell")}{" = "}{code(&l.cell.to_string())}{format!(" ({colour}), so it turns {side}: ")}{code(&format!("({} + 1 + 2 * {}) m_od 4", l.dir, l.cell))}{" = "}{code(&turn.to_string())}{format!(" ({})", DIRS[turn as usize])}</p>
+        <p class="calc">{format!("The ant stood at row {}, column {}, facing {}, on a {color} cell.", l.y + 1, l.x + 1, DIRS[l.dir as usize])}</p>
+        <p class="calc">{code("cell")}{" = "}{code(&l.cell.to_string())}{format!(" ({color}), so it turns {side}: ")}{code(&format!("({} + 1 + 2 * {}) m_od 4", l.dir, l.cell))}{" = "}{code(&turn.to_string())}{format!(" ({})", DIRS[turn as usize])}</p>
         <p class="calc">{"It flips the cell: "}{code(&format!("{} + 1 * 1 - 2 * {}", l.cell, l.cell))}{" = "}{code(&(1 - l.cell).to_string())}</p>
         <p class="calc">{"It moves by rotating its mask: "}{code(&format!("{dy} o_-_1 {dx} o_-_2 a"))}</p>
         <p class="note">{"The ant is a mask with a single 1, so looking, flipping and moving are whole-array operations: the same code would move a thousand ants."}</p>

@@ -9,12 +9,12 @@ use yew::prelude::*;
 
 use microscope::canvas::Canvas;
 use microscope::chrome::{about, chip, footer, header, notice, panel};
-use microscope::colour;
+use microscope::color;
 use microscope::source::code;
 
 use crate::micro::{kepler_period, Anatomy, PRESETS};
 use crate::model::{Action, Model};
-use crate::view::{acc_strip, body_colour, log_scaled, signed, source, Stage, STAGES};
+use crate::view::{acc_strip, body_color, log_scaled, signed, source, Stage, STAGES};
 
 fn act(m: &UseReducerHandle<Model>, a: impl Fn() -> Action + 'static) -> Callback<MouseEvent> {
     let d = m.dispatcher();
@@ -91,14 +91,14 @@ fn sky(model: &UseReducerHandle<Model>, a: &Anatomy) -> Html {
     let i = m.selected;
     let trails = m.trails.iter().enumerate().map(|(k, tr)| {
         let pts: Vec<String> = tr.iter().map(|(x, y)| format!("{x:.4},{y:.4}")).collect();
-        html! { <polyline class="trail" points={pts.join(" ")} stroke={body_colour(k)} vector-effect="non-scaling-stroke" /> }
+        html! { <polyline class="trail" points={pts.join(" ")} stroke={body_color(k)} vector-effect="non-scaling-stroke" /> }
     });
     let bodies = (0..n).map(|k| {
         let r = v * (0.008 + 0.024 * (b.m[k] / mmax).cbrt()) / (n as f64 / 3.0).max(1.0).powf(0.25);
         let d = model.dispatcher();
         let onclick = Callback::from(move |_: MouseEvent| d.dispatch(Action::Select(k)));
         html! { <g class="body" {onclick}>
-            <circle cx={b.x[k].to_string()} cy={b.y[k].to_string()} r={r.to_string()} fill={body_colour(k)}
+            <circle cx={b.x[k].to_string()} cy={b.y[k].to_string()} r={r.to_string()} fill={body_color(k)}
                 class={classes!((k == i).then_some("sel"))} vector-effect="non-scaling-stroke" />
             <circle class="hit" cx={b.x[k].to_string()} cy={b.y[k].to_string()} r={r.max(v * 0.045).to_string()} />
         </g> }
@@ -157,7 +157,7 @@ fn inspector(model: &UseReducerHandle<Model>, a: &Anatomy) -> Html {
         let d = model.dispatcher();
         let onclick = Callback::from(move |_: MouseEvent| d.dispatch(Action::Select(j)));
         html! { <tr class="pick" {onclick}>
-            <td><span class="dot" style={format!("background:{}", body_colour(j))}></span>{j + 1}</td>
+            <td><span class="dot" style={format!("background:{}", body_color(j))}></span>{j + 1}</td>
             <td>{code(&num(a.cube[i * n + j]))}</td><td>{code(&num(a.cube[n * n + i * n + j]))}</td>
             <td>{code(&num(a.pull[i * n + j]))}</td><td>{code(&num(ax))}</td><td>{code(&num(ay))}</td>
         </tr> }
@@ -210,10 +210,10 @@ fn arrays(model: &UseReducerHandle<Model>, a: &Anatomy) -> Html {
     let py: Vec<f64> = (0..nn).map(|k| a.part(k / n, k % n).1).collect();
     html! { <>
         { panel("1. The masses, over every pair:", "mj := (o_ffsets n) 'r_ight t_able m", "Row i, column j holds m_j, the mass pulling on body i: every row is the masses.",
-            m.focus == Stage::Masses, html! { <div class="pair">{pic(model, n, n, colour::scaled(&mj), "mj", true)}</div> }) }
+            m.focus == Stage::Masses, html! { <div class="pair">{pic(model, n, n, color::scaled(&mj), "mj", true)}</div> }) }
         { panel("2. The cube:", "u:c_ube p", "For each axis, a table of differences holds x_i - x_j: every pair's displacement at once (blue below 0, red above). The two tables are the planes of a 2 x N x N cube; each is minus its own mirror image.",
             m.focus == Stage::Cube, html! { <div class="pair">{pic(model, n, n, signed(&a.cube[..nn], n, i), "1 s_elect d", true)}{pic(model, n, n, signed(&a.cube[nn..], n, i), "2 s_elect d", true)}</div> }) }
-        { panel("3. The pull:", "u:p_ull d", "g m_j / (r^2 + eps2)^1.5 for every pair, on a log scale: bright pairs are close. eps2 softens close passes; the grey diagonal (a body and itself) is large but multiplies a displacement of 0.",
+        { panel("3. The pull:", "u:p_ull d", "g m_j / (r^2 + eps2)^1.5 for every pair, on a log scale: bright pairs are close. eps2 softens close passes; the gray diagonal (a body and itself) is large but multiplies a displacement of 0.",
             m.focus == Stage::Pull, html! { <div class="pair">{pic(model, n, n, log_scaled(&a.pull, n, i), "u:p_ull d", true)}</div> }) }
         { panel("4. The reduction:", "n_eg '+ r_/_3 d * (2 c_at s_hape w) r_eshape w", "Each plane of the cube times the pull is every pair's part of the acceleration; summing along j (axis 3) leaves one x and one y per body.",
             m.focus == Stage::Reduce, html! { <div class="pair">

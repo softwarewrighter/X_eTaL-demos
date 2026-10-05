@@ -235,7 +235,7 @@ and a push.
   Wrighter's Machine Learning Programming Language, a Rust array
   language inspired by APL, APL2, J, and BQN.
 - [sw-apl](https://github.com/sw-vibe-coding/sw-apl) -- a clean-room
-  APL interpreter in Rust modelled on APL\360 and IBM 5100 APL.
+  APL interpreter in Rust modeled on APL\360 and IBM 5100 APL.
 
 ## Links
 

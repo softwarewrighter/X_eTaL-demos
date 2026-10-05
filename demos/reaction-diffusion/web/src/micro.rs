@@ -58,7 +58,7 @@ impl Grid {
         Grid { n, u: vec![1.0; n * n], v: vec![0.0; n * n] }
     }
 
-    /// Add a square of V (and take U down) centred on (y, x).
+    /// Add a square of V (and take U down) centered on (y, x).
     pub fn drop(&mut self, y: usize, x: usize, r: usize) {
         let n = self.n;
         for dy in 0..2 * r {
@@ -70,7 +70,7 @@ impl Grid {
         }
     }
 
-    /// The starting grid: a few squares of V, placed off-centre so the
+    /// The starting grid: a few squares of V, placed off-center so the
     /// pattern is not symmetric.
     pub fn seeded(n: usize) -> Self {
         let mut g = Grid::empty(n);
@@ -87,7 +87,7 @@ pub struct Anatomy {
     /// U and V before the last step.
     pub u: Vec<f64>,
     pub v: Vec<f64>,
-    /// `u:l_ap u`, `u:l_ap v`: four shifts minus four times the centre.
+    /// `u:l_ap u`, `u:l_ap v`: four shifts minus four times the center.
     pub lap_u: Vec<f64>,
     pub lap_v: Vec<f64>,
     /// `u * v * v`: the reaction.

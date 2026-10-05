@@ -31,7 +31,7 @@ impl Curve {
     }
 
     /// Any closed path resampled to N points evenly spaced along it,
-    /// centred and scaled to fit -1 .. 1.
+    /// centered and scaled to fit -1 .. 1.
     pub fn resampled(points: &[(f64, f64)]) -> Option<Self> {
         if points.len() < 3 {
             return None;

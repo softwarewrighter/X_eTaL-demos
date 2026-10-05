@@ -4,7 +4,7 @@ slug = "wave-tank"
 title = "Wave tank"
 summary = "The wave equation on a grid: waves pass through a double slit and interfere, bend through a lens of slow water, and ripple where you click. Walls, sources and lenses are masks; each step is a stencil over the whole grid."
 wiki = "https://en.wikipedia.org/wiki/Ripple_tank"
-idea = "Every cell keeps its momentum and is pulled towards its neighbours in one expression; walls, slits and sources are just masks."
+idea = "Every cell keeps its momentum and is pulled towards its neighbors in one expression; walls, slits and sources are just masks."
 line = "nxt := damp * wall * ((2.0 * u) - p) + (c2 * u:l_ap u) + drive"
 concepts = ["stencils by rotation", "masks", "scalar extension", "broadcasting with table"]
 status = "live"

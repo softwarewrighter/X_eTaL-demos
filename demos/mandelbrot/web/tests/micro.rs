@@ -4,7 +4,7 @@ const SMALL: View = View { rows: 12, cols: 18, cx: -0.6, cy: 0.0, w: 3.0 };
 
 #[test]
 fn the_page_runs_the_command_line_programs_core() {
-    assert!(core().starts_with("# Numbers centred on 0"));
+    assert!(core().starts_with("# Numbers centered on 0"));
     assert!(core().contains("u:s_tep := { s ->"));
     assert!(core().contains("counts := 3 s_elect z"));
     assert!(orbit_def().starts_with("u:o_rbit := { s ->"));

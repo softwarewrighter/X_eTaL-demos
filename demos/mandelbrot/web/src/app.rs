@@ -10,7 +10,7 @@ use microscope::canvas::Canvas;
 use microscope::chrome::{about, chip, footer, header, notice, panel as frame};
 use microscope::source::code;
 
-use crate::colour;
+use crate::color;
 use crate::micro::{escape, Frame};
 use crate::model::{Action, Model, K_MAX};
 use crate::view::{orbit_source, source, Stage, STAGES};
@@ -51,7 +51,7 @@ fn controls(m: &UseReducerHandle<Model>) -> Html {
                 <input type="checkbox" checked={zooming} onclick={act(m, move || Action::Zooming(!zooming))} />
                 {"Click zooms in"}
             </label>
-            <span class="gen">{format!("centre {:.6} {:+.6}i, width {:.3e}, zoom {:.0}x; X_eTaL ran in {:.0} ms", m.view.cx, m.view.cy, m.view.w, 3.0 / m.view.w, m.ms)}</span>
+            <span class="gen">{format!("center {:.6} {:+.6}i, width {:.3e}, zoom {:.0}x; X_eTaL ran in {:.0} ms", m.view.cx, m.view.cy, m.view.w, 3.0 / m.view.w, m.ms)}</span>
         </div>
     }
 }
@@ -64,7 +64,7 @@ fn picture(model: &UseReducerHandle<Model>, f: &Frame) -> Html {
     let m: &Model = model;
     let d = model.dispatcher();
     let onclick = Some(Callback::from(move |(y, x)| d.dispatch(Action::Click(y, x))));
-    let rgba = Rc::new(colour::escape(&f.counts, f.k));
+    let rgba = Rc::new(color::escape(&f.counts, f.k));
     let hint = if m.zooming { "Click to zoom in there (2x)." } else { "Click a point to see its orbit; tick \"Click zooms in\" to zoom." };
     let body = html! { <Canvas rows={m.view.rows} cols={m.view.cols} {rgba} mark={Some(m.selected)} {onclick} class="big" /> };
     panel(m, Some(Stage::Measure), "The picture: steps each point stayed inside,", "counts", &format!("Black: still within 2 of the origin after k = {} steps (the set, so far). {hint}", f.k), body)
@@ -76,12 +76,12 @@ fn small(m: &Model, rgba: Vec<u8>) -> Html {
 
 fn arrays(m: &Model, f: &Frame) -> Html {
     let grid = html! { <div class="pair">
-        <figure>{small(m, colour::signed(&f.cr))}<figcaption>{code("cr")}{" real parts"}</figcaption></figure>
-        <figure>{small(m, colour::signed(&f.ci))}<figcaption>{code("ci")}{" imaginary parts"}</figcaption></figure>
+        <figure>{small(m, color::signed(&f.cr))}<figcaption>{code("cr")}{" real parts"}</figcaption></figure>
+        <figure>{small(m, color::signed(&f.ci))}<figcaption>{code("ci")}{" imaginary parts"}</figcaption></figure>
     </div> };
     let after = html! { <div class="pair">
-        <figure>{small(m, colour::magnitude(&f.m2))}<figcaption>{code("m2")}{" = |z|"}<sup>{"2"}</sup></figcaption></figure>
-        <figure>{small(m, colour::mask(&f.inside))}<figcaption>{code("4 >= m2")}{" inside"}</figcaption></figure>
+        <figure>{small(m, color::magnitude(&f.m2))}<figcaption>{code("m2")}{" = |z|"}<sup>{"2"}</sup></figcaption></figure>
+        <figure>{small(m, color::mask(&f.inside))}<figcaption>{code("4 >= m2")}{" inside"}</figcaption></figure>
     </div> };
     html! { <>
         { panel(m, Some(Stage::Grid), "1. c for every point, by broadcasting:", "(o_ffsets rows) 'r_ight t_able re", "One row of real parts and one column of imaginary parts, spread over the grid by t_able. No loop over points.", grid) }

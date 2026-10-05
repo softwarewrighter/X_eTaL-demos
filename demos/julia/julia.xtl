@@ -6,7 +6,7 @@
 # which scalar extension spreads over the whole grid. X_eTaL has no
 # complex numbers yet, so z and c are each a real and an imaginary part.
 
-# The view: rows and columns, the centre (cx, cy), the width w, k steps,
+# The view: rows and columns, the center (cx, cy), the width w, k steps,
 # and how tall a cell is for its width (2.0 for terminal characters).
 rows := 22
 cols := 64
@@ -16,7 +16,7 @@ w := 3.2
 k := 40
 aspect := 2.0
 
-# Numbers centred on 0: 0 1 2 3 becomes -1.5 -0.5 0.5 1.5.
+# Numbers centered on 0: 0 1 2 3 becomes -1.5 -0.5 0.5 1.5.
 u:c_entred := { n -> (f_loat o_ffsets n) - (f_loat n - 1) / 2 }
 # A matrix as one plane of a rank-3 array, for stacking with c_at.
 u:p_lane := { m -> (1 c_at s_hape m) r_eshape m }

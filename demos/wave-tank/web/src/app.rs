@@ -8,7 +8,7 @@ use yew::prelude::*;
 
 use microscope::canvas::Canvas;
 use microscope::chrome::{about, chip, footer, header, notice, panel};
-use microscope::colour;
+use microscope::color;
 use microscope::source::code;
 
 use crate::micro::{Anatomy, COLS, ROWS, SCENES};
@@ -67,11 +67,11 @@ fn small(m: &Model, rgba: Vec<u8>, caption: &str) -> Html {
 fn arrays(m: &Model, a: &Anatomy) -> Html {
     html! { <>
         { panel("1. The scene, as arrays:", "wall ; src ; c2", "Walls (0) hold the surface at 0; the source cells are shaken up and down; c2 is the wave speed squared (slower water bends waves).",
-            m.focus == Stage::Scene, html! { <div class="pair">{small(m, colour::mask(&a.wall.iter().map(|w| 1.0 - w).collect::<Vec<_>>()), "wall")}{small(m, colour::mask(&a.src), "src")}{small(m, colour::field(&a.c2, 0.0, 0.5), "c2")}</div> }) }
-        { panel("2. Spread:", "u:l_ap u", "Four shifted copies of the surface minus four times it: how far each cell is from its neighbours' level.",
-            m.focus == Stage::Spread, html! { <div class="pair">{small(m, colour::signed(&a.lap), "u:l_ap u")}</div> }) }
-        { panel("3. Step:", "nxt := damp * wall * ((2.0 * u) - p) + (c2 * u:l_ap u) + drive", "Each cell keeps its momentum (2u minus where it was a step ago) and is pulled towards its neighbours; walls stay at 0, the sponge damps the edges.",
-            m.focus == Stage::Step, html! { <div class="pair">{small(m, colour::signed(&a.p), "p")}{small(m, colour::signed(&a.u), "u")}{small(m, colour::signed(&a.next.u), "nxt")}</div> }) }
+            m.focus == Stage::Scene, html! { <div class="pair">{small(m, color::mask(&a.wall.iter().map(|w| 1.0 - w).collect::<Vec<_>>()), "wall")}{small(m, color::mask(&a.src), "src")}{small(m, color::field(&a.c2, 0.0, 0.5), "c2")}</div> }) }
+        { panel("2. Spread:", "u:l_ap u", "Four shifted copies of the surface minus four times it: how far each cell is from its neighbors' level.",
+            m.focus == Stage::Spread, html! { <div class="pair">{small(m, color::signed(&a.lap), "u:l_ap u")}</div> }) }
+        { panel("3. Step:", "nxt := damp * wall * ((2.0 * u) - p) + (c2 * u:l_ap u) + drive", "Each cell keeps its momentum (2u minus where it was a step ago) and is pulled towards its neighbors; walls stay at 0, the sponge damps the edges.",
+            m.focus == Stage::Step, html! { <div class="pair">{small(m, color::signed(&a.p), "p")}{small(m, color::signed(&a.u), "u")}{small(m, color::signed(&a.next.u), "nxt")}</div> }) }
     </> }
 }
 
@@ -137,7 +137,7 @@ pub fn app() -> Html {
     html! {
         <>
         <header>
-            { header("Wave tank", "The wave equation on a grid: each step, every cell carries on moving and is pulled towards its neighbours, all at once. Waves spread, pass through slits, interfere and bend in slow water. Click to drop a ripple.", about(include_str!("../../demo.toml"))) }
+            { header("Wave tank", "The wave equation on a grid: each step, every cell carries on moving and is pulled towards its neighbors, all at once. Waves spread, pass through slits, interfere and bend in slow water. Click to drop a ripple.", about(include_str!("../../demo.toml"))) }
             <nav class="timeline">{ for STAGES.iter().map(|&s| stage_chip(&model, s)) }</nav>
             { controls(&model) }
             { notice(&model.notice) }

@@ -1,6 +1,6 @@
 //! The model: the demo's own X_eTaL program (ca-lab.xtl): elementary
 //! rules grown as a history, and 2-D rules as a table on (state, live
-//! neighbours). Nothing here knows about the browser.
+//! neighbors). Nothing here knows about the browser.
 
 use microscope::run::{matrix, numbers, output, section};
 
@@ -21,7 +21,7 @@ fn ints(xs: &[i64]) -> String {
 pub const WIDTH: usize = 129;
 pub const GENS: usize = 96;
 
-/// The 8 bits of a rule: the next state for neighbourhood numbers 0..7.
+/// The 8 bits of a rule: the next state for neighborhood numbers 0..7.
 pub fn bits(rule: u8) -> [i64; 8] {
     std::array::from_fn(|i| ((rule >> i) & 1) as i64)
 }
@@ -47,8 +47,8 @@ pub fn first_row(random: bool) -> Vec<i64> {
 pub struct History {
     /// GENS rows of WIDTH cells, the first row at the top.
     pub rows: Vec<i64>,
-    /// For generation `g`: its left neighbours, the row, its right
-    /// neighbours, the neighbourhood numbers, and the next row.
+    /// For generation `g`: its left neighbors, the row, its right
+    /// neighbors, the neighborhood numbers, and the next row.
     pub left: Vec<i64>,
     pub row: Vec<i64>,
     pub right: Vec<i64>,
@@ -82,7 +82,7 @@ pub const ROWS: usize = 48;
 pub const COLS: usize = 64;
 
 /// A 2-D rule: its states' names and the table, state * 9 + live
-/// neighbours -> next state.
+/// neighbors -> next state.
 #[derive(Clone, Debug, PartialEq)]
 pub struct Rule2 {
     pub name: &'static str,
@@ -102,7 +102,7 @@ pub fn rules() -> Vec<Rule2> {
 /// One step's arrays, as X_eTaL computed them.
 #[derive(Clone, Debug, PartialEq)]
 pub struct Step2 {
-    /// The board before the last step, its live-neighbour counts, the
+    /// The board before the last step, its live-neighbor counts, the
     /// table numbers (state * 9 + count), and the board after it.
     pub board: Vec<i64>,
     pub count: Vec<i64>,

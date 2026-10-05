@@ -84,7 +84,7 @@ g_rade_2 M"
 ```
 
 Why: top-k along a row is everyday in array ML (a router's top-2
-experts per token, nearest neighbours, beam search). Today it takes
+experts per token, nearest neighbors, beam search). Today it takes
 masks: the largest of each row (`'m_ax r_/_2`), taken out, then the
 largest again; k passes for top-k.
 
@@ -278,7 +278,7 @@ and the literal-format workarounds below.
 Landed in abb8274 (`1.5e-7`, `2.5E3` read); `microscope::run::lit`
 now writes Rust's shortest form. The history:
 
-A page that writes values into an X_eTaL program (a view's centre and
+A page that writes values into an X_eTaL program (a view's center and
 width) must spell every Float as an X_eTaL literal. Rust's `{:?}`
 formatting uses exponent form for small values, and X_eTaL's lexer
 rejects it:
@@ -376,7 +376,7 @@ The 1.58-bit network runs a 2 -> 16 -> 16 -> 3 network (padded to
 
 Repro: `x := (1024 c_at 16) r_eshape 0.1 0.2 -0.3 0.5 0.7`,
 `w := (16 c_at 16) r_eshape 0.3 -0.1 0.2 0.0 0.4`, then time
-`x '+ '* i_nner w` four times. A specialised kernel for `'+ '* i_nner`
+`x '+ '* i_nner w` four times. A specialized kernel for `'+ '* i_nner`
 on Floats (and Ints) would make the demo's map finer and its page
 quicker. Workaround: a 24 x 24 map; the page keeps the FP32, FP16 and
 INT8 maps and reruns only the ternary pass when the threshold moves.

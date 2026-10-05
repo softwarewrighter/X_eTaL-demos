@@ -36,7 +36,7 @@ app with its native tests and `web/browser.txt`. The pages use
   `scripts/build-xetal.sh`, `scripts/check-vendor.sh`,
   `tools/vendor-probe/`.
 - `shared/microscope/`: the page shell (`run`, `source`, `canvas`,
-  `colour`, `chrome`) and `microscope.css`. The ML pages use these CSS
+  `color`, `chrome`) and `microscope.css`. The ML pages use these CSS
   blocks: `.formats`, `.stats`, `.glyphs`, `.glyphrow`, `.terms`,
   `.outs` (ternary-net); `.routes`, `input.sentence`, `.bars`,
   `.egrid`, `canvas.pic.strip`, `.changes`, `figure.wide` (moe-router).
@@ -76,7 +76,7 @@ app with its native tests and `web/browser.txt`. The pages use
    cross the street because it was tired". It waited here for a
    transpose, which has landed (`o_\` and `t_ranspose`, vendored here
    at abb8274).
-3. **embedding-explorer**: 1000 x 64 -> centre -> covariance ->
+3. **embedding-explorer**: 1000 x 64 -> center -> covariance ->
    eigenvectors -> projection -> a rotatable 3-D point cloud (waited
    for transpose; eigenvectors by power iteration in X_eTaL).
 4. **world-model**: a ball under gravity as an array world; a tiny

@@ -75,4 +75,4 @@ mix yet to turn the boxes back into a table (an ask in the same file).
 The page writes the view's numbers into the program in their shortest
 form, with an exponent when small (`1.5e-7`). Zooming stops at
 a width of about 1e-12, where 64-bit floats can no longer tell
-neighbouring pixels apart (a limit of the arithmetic, not of X_eTaL).
+neighboring pixels apart (a limit of the arithmetic, not of X_eTaL).

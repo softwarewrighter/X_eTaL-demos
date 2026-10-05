@@ -47,7 +47,7 @@ fn grains_are_conserved_except_at_the_edge() {
     let before = p.grains();
     let a = run(&p, 400).unwrap();
     // What the inner cells gave the edge is lost: each topple of a cell
-    // next to the edge gives one grain per edge neighbour.
+    // next to the edge gives one grain per edge neighbor.
     let s = SIDE;
     let mut lost = 0;
     for r in 1..s - 1 {
@@ -77,7 +77,7 @@ fn the_order_of_dropping_does_not_matter() {
 }
 
 #[test]
-fn a_centre_drop_has_four_fold_symmetry() {
+fn a_center_drop_has_four_fold_symmetry() {
     let mut p = Pile::empty();
     p.drop(MID, MID, 1500);
     let (s, _) = settled(p);

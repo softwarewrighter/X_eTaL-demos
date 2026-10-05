@@ -1,7 +1,7 @@
 # Reaction-diffusion
 
 Two chemicals, U and V, on a grid. U is fed in, V turns U into more V
-(U + 2V -> 3V), V is removed, and both spread to their neighbours: the
+(U + 2V -> 3V), V is removed, and both spread to their neighbors: the
 Gray-Scott model. Mazes, coral and spots grow by themselves. Every
 step is a few array expressions over the whole grid: four shifted
 copies for the spreading, products for the reaction. No loop over
@@ -32,7 +32,7 @@ u:s_tep := { s ->
 
 | Step | Code | Shape | What it is |
 | ---- | ---- | ----- | ---------- |
-| spread | `u:l_ap u` | 64 64 | the grid rotated one cell up, down, left and right (`o_-_1`, `o_-_2`), the four copies added, minus four times the grid: the five-point Laplacian, how much each cell differs from its neighbours |
+| spread | `u:l_ap u` | 64 64 | the grid rotated one cell up, down, left and right (`o_-_1`, `o_-_2`), the four copies added, minus four times the grid: the five-point Laplacian, how much each cell differs from its neighbors |
 | react | `u * v * v` | 64 64 | where V meets U, U turns into V |
 | update | `u:s_tep s` | 2 64 64 | new U = U + du * lap U - UVV + f (1 - U); new V = V + dv * lap V + UVV - (f + k) V; the state is two planes, stacked with `c_at` |
 | run | `steps 'u:s_tep p_ower s0` | 2 64 64 | the step applied many times |
@@ -45,7 +45,7 @@ for this stencil); the feed f and kill k pick the pattern: maze
 On the page, each frame runs X_eTaL for a number of steps (20 by
 default) on the grid the page keeps, and X_eTaL prints the arrays of
 the last step: U, V, both Laplacians, the reaction and the new U and
-V. The panels draw them; clicking a cell shows its neighbours, and the
+V. The panels draw them; clicking a cell shows its neighbors, and the
 arithmetic of its update with the numbers X_eTaL computed. With "Click
 adds V" ticked, a click also drops a square of V there.
 

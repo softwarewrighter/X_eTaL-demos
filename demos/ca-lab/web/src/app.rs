@@ -1,6 +1,6 @@
 //! The page: two modes. One dimension: an elementary rule's history,
 //! its 8-entry table, and one generation's arrays. Two dimensions: a
-//! table on (state, live neighbours), a board, and the coming step.
+//! table on (state, live neighbors), a board, and the coming step.
 
 use std::rc::Rc;
 
@@ -10,7 +10,7 @@ use yew::prelude::*;
 
 use microscope::canvas::Canvas;
 use microscope::chrome::{about, chip, footer, header, notice, panel};
-use microscope::colour;
+use microscope::color;
 use microscope::source::code;
 
 use crate::micro::{bits, rules, History, Step2, COLS, GENS, ROWS, WIDTH};
@@ -26,10 +26,10 @@ fn act(m: &UseReducerHandle<Model>, a: impl Fn() -> Action + 'static) -> Callbac
 
 fn stage_chip(m: &UseReducerHandle<Model>, s: Stage) -> Html {
     let (name, src, dims, meaning): (&str, &str, Vec<usize>, &str) = match (m.mode, s) {
-        (Mode::One, Stage::Neighbours) => ("neighbours", "-1 o_- r ; 1 o_- r", vec![WIDTH], "one number per cell of the row"),
+        (Mode::One, Stage::Neighbors) => ("neighbors", "-1 o_- r ; 1 o_- r", vec![WIDTH], "one number per cell of the row"),
         (Mode::One, Stage::Number) => ("number", "(4 * l) + (2 * r) + rt", vec![WIDTH], "0 to 7 per cell"),
         (Mode::One, Stage::Lookup) => ("look up", "tbl u:r_ow r", vec![GENS, WIDTH], "the history: one row per generation"),
-        (Mode::Two, Stage::Neighbours) => ("count", "u:c_ount b", vec![ROWS, COLS], "live neighbours, 0 to 8, per cell"),
+        (Mode::Two, Stage::Neighbors) => ("count", "u:c_ount b", vec![ROWS, COLS], "live neighbors, 0 to 8, per cell"),
         (Mode::Two, Stage::Number) => ("number", "(9 * b) + u:c_ount b", vec![ROWS, COLS], "state * 9 + count per cell"),
         (Mode::Two, Stage::Lookup) => ("look up", "tbl u:l_ook b", vec![ROWS, COLS], "the next board"),
     };
@@ -70,7 +70,7 @@ fn controls_1d(m: &UseReducerHandle<Model>) -> Html {
     }
 }
 
-/// The 8-entry table: each neighbourhood (left, centre, right), its
+/// The 8-entry table: each neighborhood (left, center, right), its
 /// number, and the next state, which a click flips.
 fn table_1d(m: &UseReducerHandle<Model>) -> Html {
     let b = bits(m.rule);
@@ -85,7 +85,7 @@ fn table_1d(m: &UseReducerHandle<Model>) -> Html {
         }
     });
     let body = html! { <div class="table1">{ for entries }</div> };
-    panel("The rule as a table:", &format!("tbl := u:b_its {}", m.rule), "Each neighbourhood (left, centre, right) is numbered 4 * left + 2 * centre + right; the rule's bits say what each number becomes. Click an entry to flip it.", m.focus == Stage::Lookup, body)
+    panel("The rule as a table:", &format!("tbl := u:b_its {}", m.rule), "Each neighborhood (left, center, right) is numbered 4 * left + 2 * center + right; the rule's bits say what each number becomes. Click an entry to flip it.", m.focus == Stage::Lookup, body)
 }
 
 fn strip(cells: &[i64], at: usize, label: &str) -> Html {
@@ -109,7 +109,7 @@ fn generation(m: &Model, h: &History) -> Html {
         </table>
         <p class="calc">{"Cell "}{x + 1}{": number = "}{code(&format!("(4 * {}) + (2 * {}) + {} = {k}", h.left[x], h.row[x], h.right[x]))}{"; entry "}{k}{" of the table is "}{code(&h.next[x].to_string())}</p>
     </> };
-    panel(&format!("Generation {}, around cell {}:", m.gen + 1, x + 1), "r := g s_elect h", "The row, rotated each way (every cell's left and right neighbours, all at once), the neighbourhood numbers, and the next row looked up in the table.", m.focus != Stage::Lookup, body)
+    panel(&format!("Generation {}, around cell {}:", m.gen + 1, x + 1), "r := g s_elect h", "The row, rotated each way (every cell's left and right neighbors, all at once), the neighborhood numbers, and the next row looked up in the table.", m.focus != Stage::Lookup, body)
 }
 
 fn body_1d(model: &UseReducerHandle<Model>) -> Html {
@@ -164,8 +164,8 @@ fn table_2d(m: &UseReducerHandle<Model>) -> Html {
         });
         html! { <tr><th class="state">{format!("{s} {name}")}</th>{ for cells }</tr> }
     });
-    let body = html! { <table class="table2"><tr><th>{"state \\ live neighbours"}</th>{ for head }</tr>{ for rows }</table> };
-    panel(&format!("{} as a table:", r.name), "tbl", "The next state for each state and count of neighbours in state 1. Click an entry to change it: the preview below changes at once.", m.focus == Stage::Lookup, body)
+    let body = html! { <table class="table2"><tr><th>{"state \\ live neighbors"}</th>{ for head }</tr>{ for rows }</table> };
+    panel(&format!("{} as a table:", r.name), "tbl", "The next state for each state and count of neighbors in state 1. Click an entry to change it: the preview below changes at once.", m.focus == Stage::Lookup, body)
 }
 
 fn arrays_2d(m: &Model, s: &Step2) -> Html {
@@ -179,13 +179,13 @@ fn arrays_2d(m: &Model, s: &Step2) -> Html {
     let i = y * COLS + x;
     let body = html! { <>
         <div class="pair">
-            { small(colour::field(&f(&s.count), 0.0, 8.0), "u:c_ount b") }
-            { small(colour::scaled(&f(&s.number)), "(9 * b) + u:c_ount b") }
+            { small(color::field(&f(&s.count), 0.0, 8.0), "u:c_ount b") }
+            { small(color::scaled(&f(&s.number)), "(9 * b) + u:c_ount b") }
             { small(states(&s.next, wire), "tbl u:l_ook b") }
         </div>
-        <p class="calc">{format!("Cell row {}, column {}: state ", y + 1, x + 1)}{code(&s.board[i].to_string())}{", live neighbours "}{code(&s.count[i].to_string())}{", number "}{code(&format!("(9 * {}) + {} = {}", s.board[i], s.count[i], s.number[i]))}{", next "}{code(&s.next[i].to_string())}</p>
+        <p class="calc">{format!("Cell row {}, column {}: state ", y + 1, x + 1)}{code(&s.board[i].to_string())}{", live neighbors "}{code(&s.count[i].to_string())}{", number "}{code(&format!("(9 * {}) + {} = {}", s.board[i], s.count[i], s.number[i]))}{", next "}{code(&s.next[i].to_string())}</p>
     </> };
-    panel("The coming step, for every cell at once:", "tbl u:l_ook b", "Live neighbours (nine rotated boards summed, minus the cell), each cell's table number, and the next board.", m.focus != Stage::Lookup, body)
+    panel("The coming step, for every cell at once:", "tbl u:l_ook b", "Live neighbors (nine rotated boards summed, minus the cell), each cell's table number, and the next board.", m.focus != Stage::Lookup, body)
 }
 
 fn body_2d(model: &UseReducerHandle<Model>) -> Html {
@@ -234,7 +234,7 @@ pub fn app() -> Html {
     html! {
         <>
         <header>
-            { header("Cellular automata lab", "Every rule here is a lookup table. Rotations turn each cell's neighbourhood into a number, for the whole array at once, and the number picks the cell's next state from the table. Change the table and you change the universe.", about(include_str!("../../demo.toml"))) }
+            { header("Cellular automata lab", "Every rule here is a lookup table. Rotations turn each cell's neighborhood into a number, for the whole array at once, and the number picks the cell's next state from the table. Change the table and you change the universe.", about(include_str!("../../demo.toml"))) }
             { mode_tabs(&model) }
             <nav class="timeline">{ for STAGES.iter().map(|&s| stage_chip(&model, s)) }</nav>
             { controls }

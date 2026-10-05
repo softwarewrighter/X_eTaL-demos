@@ -1,11 +1,11 @@
 # Abelian sandpile
 
 Drop grains on a grid. A cell with 4 or more grains topples: it gives
-one grain to each of its four neighbours, and grains that reach the
-edge fall off. Toppling can set off its neighbours, an avalanche, until
+one grain to each of its four neighbors, and grains that reach the
+edge fall off. Toppling can set off its neighbors, an avalanche, until
 every cell has fewer than 4. Drop ten thousand grains on one cell and
 the pile settles into a fractal with four-fold symmetry. Add more at
-the centre, anywhere you click, or one on every cell, and watch the
+the center, anywhere you click, or one on every cell, and watch the
 avalanches.
 
 The order the cells topple in does not matter (that is what abelian
@@ -52,7 +52,7 @@ u:s_tep := { s ->
 | count | `u:s_tep s` | 2 side side | the grains, and each cell's topples so far |
 
 On the page, each frame runs a number of rounds (20 by default) on the
-pile the page keeps, until the pile is stable; the pile is coloured by
+pile the page keeps, until the pile is stable; the pile is colored by
 grains (0 dark, 1 blue, 2 gold, 3 red, 4 or more white), and beside it
 are who topples next and the topple counts (the avalanche's shape). The
 inspector shows a cell's arithmetic for the coming round.
@@ -61,7 +61,7 @@ The page's tests check that a round is the same as a direct Rust
 round, that a settled pile is stable and keeps its grains inside, that
 grains are conserved except those given to the edge, that the order
 of dropping does not matter (the abelian property), and that a drop at
-the centre settles with four-fold symmetry. The conservation test
+the center settles with four-fold symmetry. The conservation test
 found a bug in the first version of the edge mask (one side of the
 ring kept its grains).
 
@@ -71,7 +71,7 @@ browser.
 ## Run it
 
 ```bash
-just run sandpile          # 300 grains at the centre of a 21 x 21 grid, settled, as characters
+just run sandpile          # 300 grains at the center of a 21 x 21 grid, settled, as characters
 just show sandpile         # the same as a notebook
 just serve sandpile        # the web app at http://127.0.0.1:8413/
 just test-demo sandpile    # its CLI and browser baselines and the web app's tests

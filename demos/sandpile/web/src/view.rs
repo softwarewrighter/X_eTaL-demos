@@ -1,6 +1,6 @@
-//! The stages, the part of the program computing each, and colours.
+//! The stages, the part of the program computing each, and colors.
 
-use microscope::colour::{pixels, ramp, Rgb, GLOW};
+use microscope::color::{pixels, ramp, Rgb, GLOW};
 use microscope::source::{between, find, listing, Range};
 use yew::Html;
 

@@ -42,7 +42,7 @@ fn an_edited_kernel_is_used() {
     let mut s = Setup::new(0);
     s.blur = [0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0];
     let a = run(&s).unwrap();
-    // The right-hand neighbour: smooth[r][c] = img[r][c + 1].
+    // The right-hand neighbor: smooth[r][c] = img[r][c + 1].
     for r in 0..N {
         for c in 0..N {
             assert_eq!(a.smooth[r * N + c], a.img[r * N + (c + 1) % N]);
@@ -51,7 +51,7 @@ fn an_edited_kernel_is_used() {
 }
 
 #[test]
-fn the_windows_are_the_pixels_neighbours() {
+fn the_windows_are_the_pixels_neighbors() {
     let mut s = Setup::new(0);
     s.pixel = (0, 5);
     let a = run(&s).unwrap();

@@ -1,6 +1,6 @@
 //! This demo's palettes, on the shared ramps.
 
-use microscope::colour::{pixels, ramp, GLOW};
+use microscope::color::{pixels, ramp, GLOW};
 
 const MAGNITUDE: [[u8; 3]; 4] = [[20, 20, 40], [88, 44, 160], [255, 179, 102], [255, 250, 230]];
 
@@ -15,4 +15,4 @@ pub fn magnitude(values: &[f64]) -> Vec<u8> {
     pixels(values, |v| if v > 4.0 { [255, 255, 255] } else { ramp(&MAGNITUDE, v / 4.0) })
 }
 
-pub use microscope::colour::{mask, signed};
+pub use microscope::color::{mask, signed};

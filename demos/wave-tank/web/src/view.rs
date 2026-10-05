@@ -1,7 +1,7 @@
 //! The program the page shows (the chosen scene, then the step), the
-//! stages and the part computing each, and the surface's colours.
+//! stages and the part computing each, and the surface's colors.
 
-use microscope::colour::{pixels, ramp, DIVERGE};
+use microscope::color::{pixels, ramp, DIVERGE};
 use microscope::source::{between, find, listing, Range};
 use yew::Html;
 

@@ -62,7 +62,7 @@ picture zooms in; Play walks c just outside the main cardioid of the
 Mandelbrot set, where Julia sets change quickly.
 
 Checked by the page's tests: a Julia set is symmetric through its
-centre (z and -z behave alike); for c = 0 the set is exactly the unit
+center (z and -z behave alike); for c = 0 the set is exactly the unit
 disk; the same function gives the Mandelbrot set's known points.
 
 ## Run it

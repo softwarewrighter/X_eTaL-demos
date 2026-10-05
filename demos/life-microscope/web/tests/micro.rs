@@ -30,7 +30,7 @@ fn the_parts_add_up_to_the_rule() {
 }
 
 #[test]
-fn a_shifted_board_holds_the_neighbour() {
+fn a_shifted_board_holds_the_neighbor() {
     let b = blinker();
     let a = examine(&b).unwrap();
     // Offsets (dy, dx) = (-1, 0): cell (y, x) holds b[y-1][x].

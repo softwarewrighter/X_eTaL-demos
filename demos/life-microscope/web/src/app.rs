@@ -89,15 +89,15 @@ fn inspector(m: &Model, a: &Anatomy) -> Html {
     let rows = nb.chunks(3).map(|r| html! { <tr>{ for r.iter().cloned() }</tr> });
     let (s, alive) = (a.sum[i], m.board.get(y, x));
     let why = match (a.three[i], a.four[i]) {
-        (1, _) => "S = 3: alive next (born, or alive with 2 neighbours)",
-        (_, 1) => "alive and S = 4: stays alive (3 neighbours)",
+        (1, _) => "S = 3: alive next (born, or alive with 2 neighbors)",
+        (_, 1) => "alive and S = 4: stays alive (3 neighbors)",
         _ if alive == 1 => "alive, but S is not 3 or 4: dies",
         _ => "dead, and S is not 3: stays dead",
     };
     html! {
         <section class="panel inspector">
             <h2>{format!("Cell row {}, column {}", y + 1, x + 1)}</h2>
-            <p class="note">{"Its value in each of the nine shifted boards: its 3 by 3 neighbourhood."}</p>
+            <p class="note">{"Its value in each of the nine shifted boards: its 3 by 3 neighborhood."}</p>
             <table class="nbhd">{ for rows }</table>
             <p class="calc">{"S is "}{code(&s.to_string())}{", and "}{code(&format!("({s} = 3) + {alive} * {s} = 4"))}{" is "}{code(&a.next[i].to_string())}</p>
             <p class="note">{why}</p>
@@ -122,9 +122,9 @@ fn arrays(model: &UseReducerHandle<Model>, a: &Anatomy) -> Html {
                 </section>
             </div>
             <div class="col">
-                { panel(m, Stage::Rotate, "1. Rotate by every offset:", "-1 0 1 o_-_12 b", "Nine copies of the board, shifted by -1, 0 or +1 rows and columns: a 3 by 3 by 16 by 16 array. In each copy the selected cell holds one of its neighbours.", shifted(m, a)) }
-                { panel(m, Stage::Sum, "2. Sum over the two offset axes:", "s := '+ r_/_12 r", "S: each cell plus its eight neighbours, the nine copies added together at once. No loop over cells, no loop over neighbours.", small(m, &a.sum, Paint::Sum)) }
-                { panel(m, Stage::Masks, "3. Compare:", "s = 3 ; b * s = 4", "Two boolean boards: alive next whatever it is now (S = 3), and alive now with three neighbours (S = 4).", html!{ <div class="pair">{small(m, &a.three, Paint::Cells)}{small(m, &a.four, Paint::Cells)}</div> }) }
+                { panel(m, Stage::Rotate, "1. Rotate by every offset:", "-1 0 1 o_-_12 b", "Nine copies of the board, shifted by -1, 0 or +1 rows and columns: a 3 by 3 by 16 by 16 array. In each copy the selected cell holds one of its neighbors.", shifted(m, a)) }
+                { panel(m, Stage::Sum, "2. Sum over the two offset axes:", "s := '+ r_/_12 r", "S: each cell plus its eight neighbors, the nine copies added together at once. No loop over cells, no loop over neighbors.", small(m, &a.sum, Paint::Sum)) }
+                { panel(m, Stage::Masks, "3. Compare:", "s = 3 ; b * s = 4", "Two boolean boards: alive next whatever it is now (S = 3), and alive now with three neighbors (S = 4).", html!{ <div class="pair">{small(m, &a.three, Paint::Cells)}{small(m, &a.four, Paint::Cells)}</div> }) }
                 { panel(m, Stage::Next, "4. Add, the next board:", "(s = 3) + b * s = 4", "The whole rule, for every cell at once.", small(m, &a.next, Paint::Cells)) }
             </div>
         </div>

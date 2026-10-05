@@ -1,7 +1,7 @@
 #!/usr/bin/env xetal
 # A wave tank: the wave equation on a grid. Each step, every cell moves
-# towards the average of its neighbours, carrying momentum from the step
-# before: next = 2 u - previous + c^2 * (neighbours - 4 u). Walls are a
+# towards the average of its neighbors, carrying momentum from the step
+# before: next = 2 u - previous + c^2 * (neighbors - 4 u). Walls are a
 # mask, a source shakes up and down, and waves spread, bend through
 # slits and interfere, all as array expressions over the whole grid.
 
@@ -29,7 +29,7 @@ damp := 1.0 - 0.03 * f_loat 0 m_ax 8 - edge
 slits := ((row >= 13) & row < 16) | (row >= 20) & row < 23
 wall := f_loat n_ot (col = 30) & n_ot slits
 src := f_loat col = 10
-# -- the Laplacian: four shifted copies minus four times the centre ---
+# -- the Laplacian: four shifted copies minus four times the center ---
 u:l_ap := { x -> ((1 o_-_1 x) + (-1 o_-_1 x) + (1 o_-_2 x) + -1 o_-_2 x) - 4.0 * x }
 # -- one step for every cell at once -----------------------------------
 # The state is three planes: the surface now, the surface a step ago,

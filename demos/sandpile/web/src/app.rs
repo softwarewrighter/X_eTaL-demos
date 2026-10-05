@@ -24,7 +24,7 @@ fn stage_chip(m: &UseReducerHandle<Model>, s: Stage) -> Html {
     let (name, src, dims, meaning): (&str, &str, Vec<usize>, &str) = match s {
         Stage::Edge => ("edge", "inside", vec![SIDE, SIDE], "1 inside, 0 on the ring where grains fall off"),
         Stage::Topple => ("topple", "h d_iv 4", vec![SIDE, SIDE], "how many times each cell topples this round"),
-        Stage::Give => ("give", "g", vec![SIDE, SIDE], "what each cell gets from its four neighbours"),
+        Stage::Give => ("give", "g", vec![SIDE, SIDE], "what each cell gets from its four neighbors"),
         Stage::Keep => ("keep", "u:t_opple h", vec![SIDE, SIDE], "the grains after the round"),
         Stage::Count => ("count", "u:s_tep s", vec![2, SIDE, SIDE], "the grains, and each cell's topples so far"),
     };
@@ -44,8 +44,8 @@ fn controls(m: &UseReducerHandle<Model>) -> Html {
     html! {
         <div class="controls">
             <button onclick={act(m, || Action::TogglePlay)}>{ if m.playing { "Pause" } else { "Play" } }</button>
-            <button onclick={act(m, || Action::DropCentre(1000))}>{"+1,000 at the centre"}</button>
-            <button onclick={act(m, || Action::DropCentre(10000))}>{"+10,000 at the centre"}</button>
+            <button onclick={act(m, || Action::DropCenter(1000))}>{"+1,000 at the center"}</button>
+            <button onclick={act(m, || Action::DropCenter(10000))}>{"+10,000 at the center"}</button>
             <button onclick={act(m, || Action::Everywhere(1))}>{"+1 everywhere"}</button>
             <button onclick={act(m, || Action::Clear)}>{"Clear"}</button>
             <label class="toggle"><input type="checkbox" checked={m.click_drops} onchange={on_drops} />{"click drops 200 grains"}</label>
@@ -90,7 +90,7 @@ fn inspector(m: &Model, r: &Rounds) -> Html {
         <section class="panel inspector">
             <h2>{format!("Cell row {}, column {}, in the coming round", y + 1, x + 1)}</h2>
             <p class="calc">{"grains "}{code("h")}{" = "}{code(&h[i].to_string())}{"; it topples "}{code("h d_iv 4")}{" = "}{code(&q(i).to_string())}{" times"}</p>
-            <p class="calc">{"its neighbours give "}{code("g")}{" = "}{code(&format!("{n} + {s} + {w} + {e}"))}{" = "}{code(&g.to_string())}</p>
+            <p class="calc">{"its neighbors give "}{code("g")}{" = "}{code(&format!("{n} + {s} + {w} + {e}"))}{" = "}{code(&g.to_string())}</p>
             <p class="calc">{"it keeps "}{code("inside * (h - 4 * q) + g")}{" = "}{code(&format!("1 * ({} - 4 * {}) + {g}", h[i], q(i)))}{" = "}{code(&next.to_string())}</p>
             <p class="note">{format!("It has toppled {} times so far. Click a cell to inspect it (tick \"click drops\" to drop grains there instead).", r.next.topples[i])}</p>
         </section>
@@ -111,7 +111,7 @@ fn arrays(model: &UseReducerHandle<Model>, r: &Rounds) -> Html {
     html! { <>
         { panel("1. Topple:", "q := h d_iv 4", "Every cell with 4 or more grains topples, as many times as it can, all at once: the order does not matter (the pile is abelian).",
             f == Stage::Topple, html! { <div class="pair">{small(model, counts(&r.q), "h d_iv 4")}</div> }) }
-        { panel("2. Give and keep:", "inside * (h - 4 * q) + g", "Each topple gives one grain to each neighbour (four rotations of q); a cell keeps what it did not give, plus what it got. On the edge, inside is 0: the grains fall off.",
+        { panel("2. Give and keep:", "inside * (h - 4 * q) + g", "Each topple gives one grain to each neighbor (four rotations of q); a cell keeps what it did not give, plus what it got. On the edge, inside is 0: the grains fall off.",
             f == Stage::Give, html! { <p class="note">{"See the cell's arithmetic in the inspector."}</p> }) }
         { panel("3. The avalanche:", "u:s_tep s", "The second plane counts each cell's topples so far (log scale): the shape of the avalanches.",
             f == Stage::Count, html! { <div class="pair">{small(model, counts(&r.next.topples), "2 s_elect s")}</div> }) }
@@ -147,7 +147,7 @@ pub fn app() -> Html {
     html! {
         <>
         <header>
-            { header("Abelian sandpile", "Drop grains on a grid; a cell with 4 or more topples, giving one to each neighbour, and grains that reach the edge fall off. Every cell topples at once, round after round, until the pile is stable: a fractal grows from a single heap.", about(include_str!("../../demo.toml"))) }
+            { header("Abelian sandpile", "Drop grains on a grid; a cell with 4 or more topples, giving one to each neighbor, and grains that reach the edge fall off. Every cell topples at once, round after round, until the pile is stable: a fractal grows from a single heap.", about(include_str!("../../demo.toml"))) }
             <nav class="timeline">{ for STAGES.iter().map(|&s| stage_chip(&model, s)) }</nav>
             { controls(&model) }
             { notice(&model.notice) }

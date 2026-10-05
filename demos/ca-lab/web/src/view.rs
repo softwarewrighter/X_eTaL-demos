@@ -1,17 +1,17 @@
-//! The stages, the part of the program computing each, and colours.
+//! The stages, the part of the program computing each, and colors.
 
-use microscope::colour::{pixels, Rgb};
+use microscope::color::{pixels, Rgb};
 use microscope::source::{between, listing, Range};
 use yew::Html;
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Stage {
-    Neighbours,
+    Neighbors,
     Number,
     Lookup,
 }
 
-pub const STAGES: [Stage; 3] = [Stage::Neighbours, Stage::Number, Stage::Lookup];
+pub const STAGES: [Stage; 3] = [Stage::Neighbors, Stage::Number, Stage::Lookup];
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Mode {
@@ -37,7 +37,7 @@ pub fn source(program: &str, mode: Mode, focus: Stage) -> Html {
     listing(program, range(program, mode, focus))
 }
 
-/// The colours of the states 0, 1, 2, 3.
+/// The colors of the states 0, 1, 2, 3.
 pub const STATES: [Rgb; 4] = [[20, 18, 40], [255, 244, 214], [177, 151, 252], [255, 179, 102]];
 /// Wireworld's: empty, head, tail, wire.
 pub const WIRE: [Rgb; 4] = [[20, 18, 40], [120, 200, 255], [255, 110, 90], [255, 190, 90]];

@@ -11,7 +11,7 @@ use microscope::canvas::Canvas;
 use microscope::chrome::{about, chip, footer, header, notice, panel};
 use microscope::source::{code, line, NONE};
 
-use crate::colour;
+use crate::color;
 use crate::micro::{call, Set, View, PRESETS};
 use crate::model::{Action, Model, K};
 use crate::view::{picker_source, source, Stage, STAGES};
@@ -56,7 +56,7 @@ fn picture(model: &UseReducerHandle<Model>) -> Html {
     let d = model.dispatcher();
     let onclick = Some(Callback::from(move |(y, x)| d.dispatch(Action::ZoomIn(y, x))));
     let body = match &m.julia {
-        Ok(j) => html! { <Canvas rows={m.view.rows} cols={m.view.cols} rgba={Rc::new(colour::escape(j, K))} {onclick} class="big" /> },
+        Ok(j) => html! { <Canvas rows={m.view.rows} cols={m.view.cols} rgba={Rc::new(color::escape(j, K))} {onclick} class="big" /> },
         Err(e) => html! { <pre class="error">{e}</pre> },
     };
     let title = "The Julia set for this c:";
@@ -69,7 +69,7 @@ fn picker(model: &UseReducerHandle<Model>) -> Html {
     let onclick = Some(Callback::from(move |(y, x)| d.dispatch(Action::Pick(y, x))));
     let v = View::PICKER;
     let body = match &m.map {
-        Ok(map) => html! { <Canvas rows={v.rows} cols={v.cols} rgba={Rc::new(colour::escape(map, 32))} mark={v.pixel(m.c)} {onclick} class="big" /> },
+        Ok(map) => html! { <Canvas rows={v.rows} cols={v.cols} rgba={Rc::new(color::escape(map, 32))} mark={v.pixel(m.c)} {onclick} class="big" /> },
         Err(e) => html! { <pre class="error">{e}</pre> },
     };
     panel("Pick c on the Mandelbrot set:", "grid u:i_terate 0.0 * grid", "The same function with c the grid and z0 = 0. Click a point to use it as c: inside the black set the Julia set is connected; outside it falls apart into dust.", false, body)

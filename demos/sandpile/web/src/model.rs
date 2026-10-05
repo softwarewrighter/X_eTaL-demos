@@ -30,7 +30,7 @@ pub struct Model {
 pub enum Action {
     Tick,
     TogglePlay,
-    DropCentre(i64),
+    DropCenter(i64),
     Everywhere(i64),
     Clear,
     Click(usize, usize),
@@ -104,7 +104,7 @@ impl Reducible for Model {
                 m.advance(n)
             }
             Action::TogglePlay => Model { playing: !m.playing, ..m },
-            Action::DropCentre(n) => m.change(|p| {
+            Action::DropCenter(n) => m.change(|p| {
                 p.drop(MID, MID, n);
                 n
             }),
