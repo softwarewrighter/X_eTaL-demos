@@ -299,7 +299,7 @@ Read before working:
 - `docs/xetal-asks.md` -- what the demos need from X_eTaL
 - `docs/research.txt` -- the archival idea list, NOT normative
 - `../X_eTaL/docs/lang-choices.md`, `../X_eTaL/docs/reference.md` --
-  the language (read the vendored copy's era, not newer)
+  the language (read the pinned commit's era, not newer)
 
 ## Rules
 
@@ -309,21 +309,24 @@ Read before working:
    Cargo workspace). A demo never reaches into another demo; what pages
    share lives in `shared/microscope` (see its README: how to add a
    demo's web app, and the page conventions).
-2. X_eTaL is used only through the vendored snapshot in
-   `vendor/xetal/` (`just xetal` builds its CLI into
-   `target/xetal/`; `scripts/check-vendor.sh` and the probe in
-   `tools/vendor-probe/` check it in the gate): `just vendor [REF]`
-   refreshes it from a COMMITTED ref of `../X_eTaL`, at a saga start or
-   when an ask has landed, never mid-step, always in its own commit
-   with the goldens re-run and `just bench-check` run (a case more than
-   15% slower is reported as an ask before the refresh is kept; `just
-   bench` then writes the new baseline). Never edit files under
-   `vendor/`.
+2. X_eTaL is used only at the commit pinned in `XETAL_COMMIT` (the
+   layout of `../X_eTaL/docs/vendoring.md`): `just xetal`
+   (`scripts/xetal.sh`) clones it into `work/xetal/` (gitignored),
+   checks the commit out, builds the CLI into `target/xetal/` and links
+   `bin/xetal`; the web apps use the crates in that clone by path.
+   `scripts/check-xetal.sh` and the probe in `tools/xetal-probe/` check
+   it in the gate. `just xetal-pin [REF]` pins a COMMITTED ref of
+   `../X_eTaL`, at a saga start or when an ask has landed, never
+   mid-step, always in its own commit with the goldens re-run and
+   `just bench-check` run (a case more than 15% slower is reported as
+   an ask before the pin is kept; `just bench` then writes the new
+   baseline). Never edit files under `work/xetal/`, and never track a
+   copy of X_eTaL here.
 3. Missing X_eTaL features and X_eTaL bugs a demo uncovers go in
    `docs/xetal-asks.md` (status, kind, demos, why, minimal repro,
    workaround). Do not fix X_eTaL from this repo and do not hide a
    workaround: name it in the ask and in the demo's README.
-4. Demos that cannot be built with the vendored X_eTaL are deferred
+4. Demos that cannot be built with the pinned X_eTaL are deferred
    (plan saga 4) until their asks land; implementable demos first.
 5. `just` is the entry point (recipes call `scripts/*.sh`). New tasks
    get a recipe.
@@ -362,15 +365,16 @@ for themselves (screenshots, browser checks) pick a free port.
 ```bash
 just                      # list recipes
 just gate                 # pre-commit gate
-just xetal-version        # which X_eTaL commit is vendored
-just eval "EXPR"          # evaluate with the vendored xetal
+just xetal                # clone/build X_eTaL at XETAL_COMMIT (bin/xetal)
+just xetal-version        # which X_eTaL commit is pinned
+just eval "EXPR"          # evaluate with the pinned xetal
 just new-demo SLUG "T"    # start a demo from demos/_template
 just run SLUG / show SLUG # run a demo / as a notebook
 just test-demo SLUG       # its goldens; just bless SLUG rewrites them
 just pages                # build pages/ (commit it; push publishes)
 just serve SLUG           # one demo's web app at http://127.0.0.1:8413/
 just serve-pages          # preview pages/ at http://127.0.0.1:8413/X_eTaL-demos/
-just vendor [REF]         # refresh vendor/xetal/ (own commit)
+just xetal-pin [REF]      # pin a newer X_eTaL (own commit)
 agentrail status          # current saga state
 agentrail next            # current step + context
 agentrail plan            # the saga plan

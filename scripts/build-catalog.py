@@ -7,7 +7,7 @@ One card per demo (scripts/demos.py json, catalog order): title,
 summary, concepts, status, a link to its live page (pages/<slug>/, when
 it has a web app) and to its README. The footer is the X_eTaL live
 demo's: copyright, license, the repository, and the build's provenance
-build (host, this repo's sha, yyyymmddThhmmss), plus the vendored X_eTaL commit.
+build (host, this repo's sha, yyyymmddThhmmss), plus the pinned X_eTaL commit (XETAL_COMMIT).
 """
 import datetime
 import html
@@ -15,7 +15,6 @@ import json
 import socket
 import subprocess
 import sys
-import tomllib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -166,7 +165,7 @@ def main():
     out = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "pages" / "index.html"
     demos = json.loads(subprocess.run([str(ROOT / "scripts" / "demos.py"), "json"],
                                       capture_output=True, text=True, check=True).stdout)
-    vend = tomllib.loads((ROOT / "vendor" / "xetal" / "VENDORED").read_text())
+    xsha = (ROOT / "XETAL_COMMIT").read_text().strip()
     if demos:
         body = '<section class="grid">\n' + "\n".join(card(m) for m in demos) + "\n</section>"
     else:
@@ -174,7 +173,7 @@ def main():
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(PAGE.format(
         body=body, repo=REPO, xetal=XETAL, commit=git("rev-parse", "--short", "HEAD"),
-        xsha=vend["commit"], xshort=vend["commit"][:7], host=socket.gethostname().split(".")[0],
+        xsha=xsha, xshort=xsha[:7], host=socket.gethostname().split(".")[0],
         stamp=datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%S")))
     print(f"catalog: {out} ({len(demos)} demo(s))")
 

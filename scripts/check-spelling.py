@@ -5,8 +5,7 @@ British spellings and fail if any are found (the gate runs it).
   scripts/check-spelling.py              # check every tracked text file we own
   scripts/check-spelling.py --self-test  # check the checker on known samples
 
-Scanned: every file git tracks, except vendor/ (X_eTaL's own code),
-pages/ (generated), the agentrail saga records (append-only), this
+Scanned: every file git tracks, except pages/ (generated), the agentrail saga records (append-only), this
 script (its samples are British on purpose) and binary or lock files. Each hit prints file:line, the word and the American form.
 """
 import re
@@ -15,7 +14,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SKIP_DIRS = ("vendor/", "pages/", ".agentrail/", ".agentrail-archive/")
+SKIP_DIRS = ("pages/", ".agentrail/", ".agentrail-archive/")
 SKIP_FILES = ("scripts/check-spelling.py",)  # its patterns and samples are British on purpose
 SKIP_SUFFIXES = (".png", ".ico", ".jpg", ".jpeg", ".gif", ".wasm", ".lock", ".tdb")
 

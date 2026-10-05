@@ -27,9 +27,9 @@ the language.
 
 | # | Decision | Why |
 | - | -------- | --- |
-| A1 | X_eTaL is **vendored** into `vendor/xetal/` as a source snapshot of a committed ref of `../X_eTaL` (`just vendor [REF]`, default `HEAD`), recorded in `vendor/xetal/VENDORED` (SHA, date, subject). Uncommitted work in `../X_eTaL` is never vendored. | X_eTaL is developed in parallel; demos need a recent but stable interpreter, refreshed deliberately, never moving under a step. |
-| A2 | The vendored CLI is built into `target/xetal/` (`just xetal`), and every recipe runs that binary, not one on the PATH. | Reproducible: a demo's goldens are tied to `VENDORED`. |
-| A3 | Each demo is its own sub-project, `demos/<slug>/`: `demo.toml` (title, one-line summary, concepts, status), `README.md` (the per-demo doc), `<slug>.xtl` programs, `reg/` reg-rs baselines (each `.xtl` at the CLI, the built page in headless Chrome), and `web/` (its own Cargo workspace: a Yew app depending on the vendored `xetal-play` by path). | Demos evolve independently; one broken demo never blocks another. |
+| A1 | X_eTaL is **pinned**: `XETAL_COMMIT` holds the full SHA of a committed X_eTaL ref (`just xetal-pin [REF]`, default `HEAD` of `../X_eTaL`). `scripts/xetal.sh` clones X_eTaL into `work/xetal/` (gitignored) and checks that commit out (X_eTaL's `docs/vendoring.md`). Until 2026-10-05 it was a tracked source snapshot in `vendor/xetal/` (602 files, binaries included). | X_eTaL is developed in parallel; demos need a recent but stable interpreter, moved deliberately, never under a step. One tracked line instead of a copy; the clone is a real repository, so the binary reports X_eTaL's commit. |
+| A2 | The pinned CLI is built into `target/xetal/` and linked as `bin/xetal` (`just xetal`); every recipe runs that binary, not one on the PATH. | Reproducible: a demo's goldens are tied to `XETAL_COMMIT`. |
+| A3 | Each demo is its own sub-project, `demos/<slug>/`: `demo.toml` (title, one-line summary, concepts, status), `README.md` (the per-demo doc), `<slug>.xtl` programs, `reg/` reg-rs baselines (each `.xtl` at the CLI, the built page in headless Chrome), and `web/` (its own Cargo workspace: a Yew app depending on the pinned `xetal-play` in `work/xetal/` by path). | Demos evolve independently; one broken demo never blocks another. |
 | A4 | The shared browser shell (built in saga 2 step 3 from the first three pages; see `shared/microscope/README.md`) (the "array-language microscope": source, array/shape panel, visual world, execution timeline) lives in `shared/microscope/`, a Cargo workspace the demos depend on by path. | The four synchronized views are the same for every demo (research: "one visual execution architecture"). |
 | A5 | The live site is built **locally** into `pages/` (`just pages`): a catalog page `pages/index.html` generated from every `demos/*/demo.toml`, plus `pages/<slug>/` from trunk. `pages/` is committed; `.github/workflows/pages.yml` only uploads it (nothing is built on GitHub). | Same model as `../X_eTaL`: simple, fast, deterministic deploys. |
 | A6 | A feature X_eTaL lacks, or a bug a demo uncovers, is **not** worked around silently and not fixed here: it is recorded in `docs/xetal-asks.md` (what, why, which demo, a minimal repro), and the demo uses a documented workaround or waits. | X_eTaL owns its language decisions; this repo is a consumer. |
@@ -280,11 +280,11 @@ if the per-operation trace has landed.
 
 ## Cross-cutting
 
-- When X_eTaL lands the terminal request (`../X_eTaL-games/docs/xetal-terminal-request.md`: `xetal-cli` buildable for `wasm32-wasip1`, a browser terminal), refresh the vendor and consider running the pages on the real `xetal` binary instead of linking `xetal-play`; the reg-rs CLI and browser baselines stay as they are.
+- When X_eTaL lands the terminal request (`../X_eTaL-games/docs/xetal-terminal-request.md`: `xetal-cli` buildable for `wasm32-wasip1`, a browser terminal), pin it and consider running the pages on the real `xetal` binary instead of linking `xetal-play`; the reg-rs CLI and browser baselines stay as they are.
 
-- Refresh the vendored X_eTaL (`just vendor`) at the start of a saga, or
+- Pin a newer X_eTaL (`just xetal-pin`) at the start of a saga, or
   when an ask in `docs/xetal-asks.md` has landed upstream; never in the
-  middle of a step. The refresh is its own commit, with the goldens
-  re-run.
+  middle of a step. The new `XETAL_COMMIT` is its own commit, with the
+  goldens and timings re-run.
 - When an ask lands, remove the workaround in the same step that
-  refreshes the vendor, and mark the ask done.
+  pins it, and mark the ask done.

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Run a demo's program with the vendored xetal, in the demo's directory,
+# Run a demo's program with the pinned xetal, in the demo's directory,
 # pictures ([]S_HOW) to work/draw/SLUG/. FILE defaults to SLUG.xtl.
 #   scripts/run-demo.sh SLUG [FILE] [-- XETAL_RUN_FLAGS...]
 #   scripts/run-demo.sh --echo SLUG [FILE]     # as a notebook
@@ -13,6 +13,6 @@ d="$root/demos/$slug"
 file="${2:-$slug.xtl}"
 [ -f "$d/$file" ] || { echo "run-demo: no $slug/$file" >&2; exit 1; }
 if head -1 "$d/$file" | grep -q -- '--untyped'; then flags+=(--untyped); fi
-xetal="$("$root/scripts/build-xetal.sh")"
+xetal="$("$root/scripts/xetal.sh")"
 mkdir -p "$root/work/draw/$slug"
 cd "$d" && exec "$xetal" run ${flags[@]+"${flags[@]}"} --draw "$root/work/draw/$slug" "$file"

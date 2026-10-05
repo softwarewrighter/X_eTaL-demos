@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Test the demos (every demos/<slug>/ but the template), or the named ones:
 #   - each top-level <slug>/*.xtl is a reg-rs baseline in <slug>/reg/
-#     (cli-<name>.rgt, .out, .err): run with the vendored xetal (--seed
+#     (cli-<name>.rgt, .out, .err): run with the pinned xetal (--seed
 #     1, pictures to work/draw/<slug>/), its stdout, stderr and exit
 #     code must match;
 #   - web/ (a Cargo workspace), when present: cargo test, and cargo
@@ -16,13 +16,13 @@
 set -euo pipefail
 root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 "$root/scripts/demos.py" check
-xetal="$("$root/scripts/build-xetal.sh")"
+xetal="$("$root/scripts/xetal.sh")"
 if [ $# -gt 0 ]; then slugs=("$@"); else
   slugs=(); while IFS= read -r s; do [ -n "$s" ] && slugs+=("$s"); done < <("$root/scripts/demos.py" list)
 fi
 command -v reg-rs >/dev/null || { echo "test: reg-rs not found on PATH" >&2; exit 127; }
 # Each demo's reg-rs baselines live in its own reg/: cli-NAME runs
-# NAME.xtl with the vendored xetal (from the demo's directory, so the
+# NAME.xtl with the pinned xetal (from the demo's directory, so the
 # command reads the same anywhere); the .rgt (command, exit code) and
 # the .out / .err are committed, the .tdb cache is not.
 export XETAL="$xetal"
@@ -52,7 +52,7 @@ for slug in ${slugs[@]+"${slugs[@]}"}; do
     reg() { (cd "$d" && REG_RS_DATA_DIR="$d/reg" reg-rs "$@"); }
     if [ "${XETAL_BLESS:-}" = 1 ]; then
       bless "$d" "$d/reg" "$name" "\"\$XETAL\" run --seed 1 --draw \"\$XETAL_DRAW\" $(basename "$prog")" \
-        "$slug: $(basename "$prog") run by the vendored xetal CLI"
+        "$slug: $(basename "$prog") run by the pinned xetal CLI"
       echo "blessed: $slug/$name"; continue
     fi
     if [ ! -f "$d/reg/$name.rgt" ]; then

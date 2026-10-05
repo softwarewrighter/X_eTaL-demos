@@ -53,7 +53,7 @@ just test-demo life-microscope    # its CLI and browser baselines and the web ap
 ```
 
 `life-microscope.xtl` is the command-line program; `web/` is the
-browser app (Rust, Yew, the vendored X_eTaL `xetal-play` engine).
+browser app (Rust, Yew, the pinned X_eTaL `xetal-play` engine).
 
 ## Workarounds
 

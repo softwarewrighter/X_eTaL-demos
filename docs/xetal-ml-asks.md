@@ -31,10 +31,11 @@ app with its native tests and `web/browser.txt`. The pages use
 
 ## What they depend on (copy, or share)
 
-- `vendor/xetal/` and `vendor/xetal/VENDORED`: the X_eTaL snapshot
-  (06d39fa) the goldens were made with; `scripts/vendor-xetal.sh`,
-  `scripts/build-xetal.sh`, `scripts/check-vendor.sh`,
-  `tools/vendor-probe/`.
+- The pinned X_eTaL: `XETAL_COMMIT` (the goldens were made with
+  06d39fa), `scripts/xetal.sh` (clone into `work/xetal/`, build,
+  `bin/xetal`), `scripts/xetal-pin.sh`, `scripts/check-xetal.sh`,
+  `tools/xetal-probe/` (until 2026-10-05 a tracked copy in
+  `vendor/xetal/`).
 - `shared/microscope/`: the page shell (`run`, `source`, `canvas`,
   `color`, `chrome`) and `microscope.css`. The ML pages use these CSS
   blocks: `.formats`, `.stats`, `.glyphs`, `.glyphrow`, `.terms`,

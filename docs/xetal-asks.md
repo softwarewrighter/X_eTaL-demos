@@ -5,8 +5,8 @@ demos uncovered. Asks marked X_eTaL-ML came from the machine-learning
 demos, which moved there; they stay here as the record until X_eTaL-ML
 carries them. This repo does not change X_eTaL: each ask is filed
 here (and taken to `../X_eTaL`), the demo uses the workaround noted
-below or waits, and the workaround is removed when the ask lands in a
-vendored release (`vendor/xetal/VENDORED`, now X_eTaL 1c1617e; every
+below or waits, and the workaround is removed when the ask lands in the
+pinned release (`XETAL_COMMIT`, now X_eTaL 1c1617e; every
 ask was re-checked against it on 2026-10-04). X_eTaL keeps its own
 ledger of these asks (its `docs/asks.md`, D1 to D9).
 
@@ -31,7 +31,7 @@ demos work with that are not asks.
 | open | feature | A per-operation evaluation trace (the planned stepping debugger) exposed through `xetal-play` | the microscope shell (all pages) | pages print chosen intermediate arrays with `r_avel` |
 | landed (abb8274) | feature | Transpose (`o_\`, and `t_ranspose` with a permutation) | image-pipeline (ky from kx), attention and embedding-explorer (X_eTaL-ML) | removed in image-pipeline: `ky := o_\ kx` |
 | landed (ffd5526) | bug | A condition bound to a name could not be used in arithmetic (`a := 1 2 > 0` then `1 * a`, `f_loat a` or `'+ r_/ a`); a bound condition now stays Bool and converts as T1 says | image-pipeline (masks) | removed: masks are bound as conditions and made Floats where used (`0.7 * f_loat disk`) |
-| open | bug | A vendored build reports the outer repo's commit as its own | `xetal --version` from `just xetal` | `just xetal-version` prints `vendor/xetal/VENDORED` beside it (the pages' footers read `VENDORED` directly) |
+| landed (4a31ba9; moot since 2026-10-05) | bug | A vendored build reported the outer repo's commit as its own | `xetal --version` from `just xetal` | removed: X_eTaL is now built from a real clone (`work/xetal/` at `XETAL_COMMIT`), which reports its own commit; `scripts/check-xetal.sh` checks it |
 
 ## For the X_eTaL agent: four asks not in X_eTaL's plan yet
 
@@ -116,6 +116,11 @@ or a new name, and its inverse split (each row boxed). Workaround
 here: two `e_ach` passes.
 
 ### 4. A vendored build reports the outer repository's commit (bug)
+
+Landed in 4a31ba9 (`XETAL_BUILD_SHA`), and moot here since 2026-10-05:
+this repo no longer tracks a copy of X_eTaL but builds a clone of it at
+`XETAL_COMMIT` (X_eTaL's `docs/vendoring.md`), and a clone reports its
+own commit. The ask as filed:
 
 What: `xetal-cli`'s `build.rs` takes the commit from
 `git rev-parse --short HEAD` in the directory it builds in. Built from
@@ -407,7 +412,8 @@ arithmetic as T1 describes (or say in T5 that it does not).
 
 ### Build provenance in a vendored build
 
-Still open at abb8274: the vendored CLI reports this repo's commit.
+Landed (4a31ba9), and moot since this repo builds a clone of X_eTaL
+(see ask 4 above). As it stood at abb8274:
 
 `xetal-cli`'s `build.rs` takes the commit from
 `git rev-parse --short HEAD` in the directory being built. Built from

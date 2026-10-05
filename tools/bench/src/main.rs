@@ -1,6 +1,6 @@
 //! Times the demo pages' own X_eTaL programs (each demo's `run`, the
 //! code its page runs) and the showcase built-ins, natively through the
-//! vendored `xetal-play`, and compares them with a committed baseline.
+//! pinned `xetal-play`, and compares them with a committed baseline.
 //!
 //!   bench            run, write docs/bench.md and docs/bench.json (the new baseline)
 //!   bench check      run, compare with docs/bench.json, write nothing;
@@ -123,9 +123,12 @@ fn root() -> std::path::PathBuf {
     std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../..")
 }
 
-fn vendored() -> String {
-    let v = std::fs::read_to_string(root().join("vendor/xetal/VENDORED")).unwrap_or_default();
-    v.lines().find_map(|l| l.strip_prefix("commit = \"")).map_or("unknown".into(), |c| c.trim_end_matches('"').chars().take(7).collect())
+fn pinned() -> String {
+    let v = std::fs::read_to_string(root().join("XETAL_COMMIT")).unwrap_or_default();
+    match v.trim() {
+        "" => "unknown".into(),
+        c => c.chars().take(7).collect(),
+    }
 }
 
 /// The baseline's ratios: `name ratio` pairs from docs/bench.json.
@@ -145,7 +148,7 @@ fn baseline() -> Vec<(String, f64)> {
 fn main() {
     let check = std::env::args().nth(1).as_deref() == Some("check");
     let reference_ms = best(&reference);
-    let commit = vendored();
+    let commit = pinned();
     eprintln!("reference loop: {reference_ms:.1} ms; X_eTaL {commit}; best of {RUNS}");
     let base = baseline();
     let mut rows = vec![];
@@ -191,7 +194,7 @@ fn main() {
     json += "  }\n}\n";
     std::fs::write(root().join("docs/bench.json"), json).expect("write docs/bench.json");
     let mut md = format!(
-        "# Benchmarks\n\nWritten by `just bench` (tools/bench) with X_eTaL {commit}; the\nbaseline `just bench-check` compares against. Natively, release,\nthrough the vendored `xetal-play`, best of {RUNS} runs. The ratio is the\ntime over a fixed pure-Rust reference loop ({reference_ms:.1} ms in this\nrun), so a busier or slower machine changes it less than the time.\n`just bench-check` fails when a case's ratio is more than {:.0}% above\nthis table's.\n\n| Case | What | ms | Ratio | Change |\n| ---- | ---- | -- | ----- | ------ |\n",
+        "# Benchmarks\n\nWritten by `just bench` (tools/bench) with X_eTaL {commit}; the\nbaseline `just bench-check` compares against. Natively, release,\nthrough the pinned `xetal-play`, best of {RUNS} runs. The ratio is the\ntime over a fixed pure-Rust reference loop ({reference_ms:.1} ms in this\nrun), so a busier or slower machine changes it less than the time.\n`just bench-check` fails when a case's ratio is more than {:.0}% above\nthis table's.\n\n| Case | What | ms | Ratio | Change |\n| ---- | ---- | -- | ----- | ------ |\n",
         100.0 * TOLERANCE
     );
     for (name, what, ms, ratio, shown) in &rows {

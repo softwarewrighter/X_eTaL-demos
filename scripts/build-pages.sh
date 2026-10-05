@@ -9,6 +9,7 @@
 set -euo pipefail
 root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 base="/X_eTaL-demos"
+"$root/scripts/xetal.sh" >/dev/null  # the demos build on work/xetal
 "$root/scripts/demos.py" check
 mkdir -p "$root/pages"
 touch "$root/pages/.nojekyll"

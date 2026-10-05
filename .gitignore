@@ -24,6 +24,8 @@ demos/*/web/dist/
 *~
 .DS_Store
 
-# local scratch and demo output
+# the X_eTaL clone (scripts/xetal.sh; XETAL_COMMIT is tracked), its
+# binary's symlink, local scratch and demo output
 /tmp/
 work/
+bin/xetal

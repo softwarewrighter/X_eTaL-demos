@@ -1,6 +1,6 @@
 [package]
 name = "bench"
-description = "Times the demo pages' own X_eTaL programs and the showcase built-ins through the vendored xetal-play, against a committed baseline (just bench, just bench-check)"
+description = "Times the demo pages' own X_eTaL programs and the showcase built-ins through the pinned xetal-play, against a committed baseline (just bench, just bench-check)"
 version = "0.1.0"
 edition = "2021"
 license = "MIT"

@@ -125,14 +125,17 @@ just test                            # every demo's tests
 just gate                            # the pre-commit gate
 ```
 
-The demos run a copy of X_eTaL kept in this repository under
-`vendor/xetal/` (a snapshot of a known-good commit, recorded in
-`vendor/xetal/VENDORED`), so they do not change under you as X_eTaL
-develops. `just xetal-version` shows which commit it is. Maintainers
-refresh it from a sibling checkout with `just vendor` (the latest
-commit of `../X_eTaL`) or `just vendor REF`; only committed X_eTaL
-work is ever copied, and the refresh is committed on its own after
-`just gate` passes.
+The demos run a known-good X_eTaL commit, pinned in `XETAL_COMMIT`
+(one line, the full SHA), so they do not change under you as X_eTaL
+develops. `just xetal` clones X_eTaL into `work/xetal/` (gitignored),
+checks that commit out, builds the CLI and links it as `bin/xetal`;
+the web apps build on the crates in the same clone. The first build
+takes a few minutes; `XETAL_SOURCE=../X_eTaL just xetal` clones from a
+sibling checkout instead of GitHub. `just xetal-version` shows the
+commit (the binary reports it too). Maintainers move to a newer X_eTaL
+with `just xetal-pin` (the latest commit of `../X_eTaL`) or
+`just xetal-pin REF`, then commit `XETAL_COMMIT` on its own after
+`just gate` and `just bench-check` pass.
 
 ## Running and adding demos
 
@@ -144,7 +147,7 @@ just test-demo SLUG                  # its reg-rs baselines (CLI and browser) an
 just new-demo wave-tank "Wave tank"  # start a new demo from demos/_template
 just bless SLUG                      # accept its current output as the baselines (review the diff)
 just bench                           # time the pages' programs and the built-ins (docs/bench.md)
-just bench-check                     # compare with the committed timings (on every vendor refresh)
+just bench-check                     # compare with the committed timings (on every X_eTaL pin)
 ```
 
 Each demo is a sub-project, `demos/<slug>/`:
@@ -161,7 +164,7 @@ Each demo is a sub-project, `demos/<slug>/`:
 Pictures a program shows (`[]S_HOW`) are written to `work/draw/<slug>/`.
 
 Every page runs the real thing: the bundled X_eTaL engine (the
-vendored `xetal-play` crate: the same parser, type checker and
+pinned `xetal-play` crate: the same parser, type checker and
 evaluator the `xetal` CLI is built from) compiled to WebAssembly,
 running the demo's own `.xtl` file (included in the app at build
 time). The tests check it three ways: each `.xtl` at the command line

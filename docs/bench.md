@@ -2,7 +2,7 @@
 
 Written by `just bench` (tools/bench) with X_eTaL 1c1617e; the
 baseline `just bench-check` compares against. Natively, release,
-through the vendored `xetal-play`, best of 7 runs. The ratio is the
+through the pinned `xetal-play`, best of 7 runs. The ratio is the
 time over a fixed pure-Rust reference loop (29.1 ms in this
 run), so a busier or slower machine changes it less than the time.
 `just bench-check` fails when a case's ratio is more than 15% above

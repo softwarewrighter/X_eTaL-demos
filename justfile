@@ -7,26 +7,26 @@ set positional-arguments
 default:
     @just --list
 
-# Snapshot a committed ref of ../X_eTaL into vendor/xetal/ (default HEAD); commit it on its own
-vendor ref="HEAD":
-    scripts/vendor-xetal.sh "$1"
-
-# Build the vendored xetal CLI into target/xetal/
+# Get and build xetal at the known-good commit in XETAL_COMMIT (clone in work/xetal, binary bin/xetal)
 xetal:
-    @scripts/build-xetal.sh
+    @scripts/xetal.sh
 
-# The vendored X_eTaL: what was vendored (VENDORED) and the binary's version
+# Pin a committed ref of ../X_eTaL (default HEAD) in XETAL_COMMIT and build it; commit it on its own
+xetal-pin ref="HEAD":
+    scripts/xetal-pin.sh "$1"
+
+# The pinned X_eTaL: XETAL_COMMIT and the binary's version
 xetal-version:
-    @cat vendor/xetal/VENDORED
-    @"$(scripts/build-xetal.sh)" --version | head -1
+    @cat XETAL_COMMIT
+    @"$(scripts/xetal.sh)" --version
 
-# Evaluate an expression with the vendored xetal: just eval "'+ r_/ 1 2 3"
+# Evaluate an expression with the pinned xetal: just eval "'+ r_/ 1 2 3"
 eval expr:
-    @"$(scripts/build-xetal.sh)" eval -e "$1"
+    @"$(scripts/xetal.sh)" eval -e "$1"
 
-# Check the vendored X_eTaL: CLI builds and answers; xetal-play usable natively and for wasm32
-check-vendor:
-    scripts/check-vendor.sh
+# Check the pinned X_eTaL: CLI builds, answers, reports its commit; xetal-play usable natively and for wasm32
+check-xetal:
+    scripts/check-xetal.sh
 
 # The demos, in catalog order
 demos:
@@ -36,7 +36,7 @@ demos:
 new-demo slug title:
     scripts/new-demo.sh "$1" "$2"
 
-# Run a demo's program (default SLUG.xtl) with the vendored xetal: just run life-microscope
+# Run a demo's program (default SLUG.xtl) with the pinned xetal: just run life-microscope
 run slug file="":
     @scripts/run-demo.sh "$1" ${2:+"$2"}
 
@@ -61,11 +61,11 @@ browser-check slug:
     scripts/browser-check.sh "$1"
 
 # Time the pages' X_eTaL programs and the showcase built-ins; write docs/bench.md and docs/bench.json (the new baseline)
-bench:
+bench: xetal
     cargo run --release -q --manifest-path tools/bench/Cargo.toml
 
-# Compare the timings with docs/bench.json; fails if a case is more than 15% slower (run on every vendor refresh)
-bench-check:
+# Compare the timings with docs/bench.json; fails if a case is more than 15% slower (run on every X_eTaL pin)
+bench-check: xetal
     cargo run --release -q --manifest-path tools/bench/Cargo.toml -- check
 
 # Build the live site into pages/ (committed; the Pages workflow publishes it)
@@ -77,14 +77,14 @@ serve-pages port="8413":
     scripts/serve-pages.sh "$1"
 
 # Serve one demo's web app locally, rebuilt on change: just serve life-microscope
-serve slug port="8413":
+serve slug port="8413": xetal
     cd demos/{{slug}}/web && trunk serve --release --port {{port}} --address 127.0.0.1
 
 # Screenshot every demo (from the built pages/) into demos/<slug>/screenshot.png
 screenshots *slugs:
     scripts/screenshots.sh "$@"
 
-# The full pre-commit gate: vendored X_eTaL, demo tooling, demo tests, ASCII-only markdown
+# The full pre-commit gate: pinned X_eTaL, demo tooling, demo tests, ASCII-only markdown
 gate:
     scripts/gate.sh
 
