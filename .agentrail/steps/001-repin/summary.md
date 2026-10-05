@@ -1,0 +1,1 @@
+Pinned X_eTaL 882aa76 (from 1c1617e): goldens, web, browser unchanged; bench-check within +7% at high load (baseline kept); asks re-run (Int scan linear, Float scan still quadratic: partly landed); ledger corrections for X_eTaL written in docs/xetal-asks.md (D11, D12 landed; D15 scan missing; M3; counts).
