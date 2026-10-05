@@ -1,5 +1,5 @@
 name = "start-here"
-status = "active"
+status = "completed"
 current_step = 8
 created_at = "2026-10-03T13:32:47"
 plan_file = ".agentrail/plan.md"

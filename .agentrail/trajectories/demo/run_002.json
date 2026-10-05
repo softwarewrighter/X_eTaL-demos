@@ -1,0 +1,11 @@
+{
+  "task_type": "demo",
+  "state": {
+    "number": 8,
+    "step": "sandpile"
+  },
+  "action": "xtl core + golden; Rust sim for rounds; micro/view/model/app; Chrome checks; bless; bench at low load; screenshots; gate",
+  "result": "success",
+  "reward": 1,
+  "timestamp": "2026-10-04T21:20:41"
+}

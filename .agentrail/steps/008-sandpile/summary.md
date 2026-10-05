@@ -1,0 +1,1 @@
+demos/sandpile live: every cell topples at once (h d_iv 4, rotations, edge mask), topple-count plane; animated page with drops/clicks/+1 everywhere, inspector, listing; 6 model tests + listing test (caught an edge-mask bug); reg-rs CLI/browser; bench case. Saga start-here done (macro demo left as a candidate).
