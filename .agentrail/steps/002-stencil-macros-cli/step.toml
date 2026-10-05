@@ -1,6 +1,6 @@
 number = 2
 slug = "stencil-macros-cli"
-status = "pending"
+status = "in-progress"
 description = "New demo stencil-macros: a user macro library Stencil.xtlm that turns a kerne..."
 role = "production"
 context_files = []

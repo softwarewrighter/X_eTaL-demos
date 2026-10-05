@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # The pre-commit gate: the pinned X_eTaL (scripts/check-xetal.sh),
 # the demo tooling (scripts/selftest-demos.sh), the shared page shell,
-# every demo's tests, the benchmark tool's build, then ASCII-only
+# the site built into pages/ (the browser checks load it), every
+# demo's tests, the benchmark tool's build, then ASCII-only
 # markdown for the docs we own.
 #   scripts/gate.sh
 set -euo pipefail
@@ -13,6 +14,10 @@ cd "$root"
 (cd "$root/shared/microscope" && cargo test -q >/dev/null 2>&1 && cargo check -q --target wasm32-unknown-unknown) \
   || { (cd "$root/shared/microscope" && cargo test -q); echo "FAIL: shared/microscope"; exit 1; }
 echo "ok: shared/microscope"
+# The site, built fresh into pages/ (not tracked; just publish
+# publishes it): the browser checks in the demo tests load these pages.
+"$root/scripts/build-pages.sh" >/dev/null 2>&1 || { "$root/scripts/build-pages.sh"; exit 1; }
+echo "ok: pages (built)"
 "$root/scripts/test-demos.sh"
 # The benchmark tool builds (running it, just bench-check, takes about
 # 40 s and is noisy on a shared machine: it is run on every X_eTaL pin).

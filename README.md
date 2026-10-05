@@ -186,15 +186,16 @@ web app.
 ```bash
 just serve SLUG       # one demo's web app at http://127.0.0.1:8413/, rebuilt on change
 just pages            # build the whole site into pages/
+just publish          # publish it (the gh-pages branch)
 just serve-pages      # preview pages/ at http://127.0.0.1:8413/X_eTaL-demos/
 just screenshots      # capture each demo (headless Chrome) into demos/<slug>/screenshot.png
 ```
 
 The site is built locally: `just pages` builds every demo that has a
 web app into `pages/<slug>/` and writes the catalog, `pages/index.html`,
-from the demos' `demo.toml` files. `pages/` is committed, and pushing it
-to `main` runs a GitHub Actions workflow
-(`.github/workflows/pages.yml`) that only publishes the folder, at
+from the demos' `demo.toml` files. `pages/` is not tracked on `main`:
+`just publish` builds it from the current commit and pushes it as the
+only commit of the `gh-pages` branch, which GitHub Pages serves at
 <https://softwarewrighter.github.io/X_eTaL-demos/>.
 
 ## Status

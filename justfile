@@ -68,9 +68,13 @@ bench: xetal
 bench-check: xetal
     cargo run --release -q --manifest-path tools/bench/Cargo.toml -- check
 
-# Build the live site into pages/ (committed; the Pages workflow publishes it)
+# Build the live site into pages/ (not tracked; the gate builds it too)
 pages:
     scripts/build-pages.sh
+
+# Publish the site: build pages/ from this commit and make it the gh-pages branch's only commit (needs a clean work tree)
+publish:
+    scripts/publish-pages.sh
 
 # Serve the built pages/ as GitHub Pages will: http://127.0.0.1:8413/X_eTaL-demos/ (8413 is this repo's port)
 serve-pages port="8413":

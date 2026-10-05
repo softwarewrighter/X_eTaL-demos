@@ -330,8 +330,11 @@ Read before working:
    (plan saga 4) until their asks land; implementable demos first.
 5. `just` is the entry point (recipes call `scripts/*.sh`). New tasks
    get a recipe.
-6. The live site is built locally into `pages/` (`just pages`) and
-   committed; `.github/workflows/pages.yml` only uploads it.
+6. The live site is built locally into `pages/` (`just pages`; the
+   gate builds it too) and never tracked on `main`: `just publish`
+   makes it the only commit of the `gh-pages` branch, which GitHub
+   Pages serves (force-replaced each time, no history). Publish after
+   a step that changes what the site shows.
 7. American spellings only, everywhere (docs, comments, code
    identifiers, page text, commit messages): color, center, neighbor,
    gray, modeled, -ize. The user is American; `scripts/check-spelling.py`
@@ -353,7 +356,7 @@ Read before working:
    unexpected).
 4. A detailed commit to `main`, including `.agentrail/`.
 5. `agentrail complete`, commit the `.agentrail/` change it makes,
-   push.
+   push, and `just publish` when the step changed what the site shows.
 6. Report: what was pushed, the next step(s), blockers and questions.
 
 ## Useful Commands
@@ -371,7 +374,8 @@ just eval "EXPR"          # evaluate with the pinned xetal
 just new-demo SLUG "T"    # start a demo from demos/_template
 just run SLUG / show SLUG # run a demo / as a notebook
 just test-demo SLUG       # its goldens; just bless SLUG rewrites them
-just pages                # build pages/ (commit it; push publishes)
+just pages                # build pages/ (not tracked)
+just publish              # publish the site as the gh-pages branch
 just serve SLUG           # one demo's web app at http://127.0.0.1:8413/
 just serve-pages          # preview pages/ at http://127.0.0.1:8413/X_eTaL-demos/
 just xetal-pin [REF]      # pin a newer X_eTaL (own commit)
