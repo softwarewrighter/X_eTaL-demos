@@ -1,0 +1,69 @@
+## Stencils written as pictures: a macro library. A kernel is written
+## as its numbers, row by row (3 x 3, 5 x 5, ...); when the program is
+## expanded, the macro writes the arithmetic the kernel stands for, one
+## term per number that is not 0: the array moved by that number's
+## offset from the center (a rotation, so the edges wrap) times the
+## number. A 0 writes nothing and a 1 writes no multiply, so the code
+## does exactly the work the kernel asks for.
+
+### Stencils
+
+## The kernel on the left applied to the array named on the right:
+## each cell becomes the sum of its neighbors times the kernel's
+## numbers (the kernel's center on the cell). The kernel is text, its
+## rows apart by two spaces for the reader; the macro needs only that
+## there are 1, 9, 25, ... numbers.
+## >> "s:" u_se< "Stencil"
+## >> h := 3 3 r_eshape 0 0 0 0 1 0 0 0 0
+## >> "0 1 0  1 -4 1  0 1 0" s:t_encil< "h"
+## 0  1 0
+## 1 -4 1
+## 0  1 0
+m:t_encil< := { kernel name ->
+  w := n_umbers kernel
+  n := t_ally w
+  k := n s_ide 1
+  n_ot n = k * k ? "bad-macro-argument left" []R_EJECT "s:t_encil< takes a square kernel: 1, 9, 25, ... numbers"
+  c := (k - 1) d_iv 2
+  i := (r_ange n) - 1
+  cells := r_avel o_\ (3 c_at n) r_eshape w c_at (f_loat (i d_iv k) - c) c_at f_loat (i m_od k) - c
+  t := cells t_erms name
+  0 = t_ally t ? "(0 * " c_at name c_at ")"
+  "(" c_at t c_at ")"
+}
+
+# The side of a square of n cells: the first odd k with k * k >= n.
+s_ide := { n k -> n <= k * k ? k; n s_ide k + 2 }
+
+# The terms of the cells (weight, row offset, column offset, then the
+# next cell's), joined by +; a weight of 0 writes nothing.
+t_erms := { cells name ->
+  0 = t_ally cells ? ""
+  rest := (3 d_rop cells) t_erms name
+  w := f_irst cells
+  w = 0.0 ? rest
+  t := (3 t_ake cells) t_erm name
+  0 = t_ally rest ? t
+  t c_at " + " c_at rest
+}
+
+# One cell's term: the array moved by the cell's offsets, times its
+# weight (no multiply for 1, a negation for -1). Every term is in
+# parentheses: X_eTaL reads right to left, so a + b - c * d would not
+# mean what the kernel does.
+t_erm := { cell name ->
+  w := f_irst cell
+  b := (f_loor 2 s_elect cell) r_ows (f_loor 3 s_elect cell) c_ols name
+  w = 1.0 ? b
+  w = -1.0 ? "(n_eg " c_at b c_at ")"
+  "(" c_at (n_um w) c_at " * " c_at b c_at ")"
+}
+
+# The array moved d columns: the cell d to the right lands here.
+c_ols := { d name -> d = 0 ? name; "(" c_at (f_ormat d) c_at " o_-_2 " c_at name c_at ")" }
+
+# The text moved d rows: the cell d below lands here.
+r_ows := { d text -> d = 0 ? text; "(" c_at (f_ormat d) c_at " o_-_1 " c_at text c_at ")" }
+
+# A weight as written: 2 for 2.0, 0.25 as it is.
+n_um := { w -> w = f_loat f_loor w ? f_ormat f_loor w; f_ormat w }

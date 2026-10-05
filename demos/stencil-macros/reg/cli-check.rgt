@@ -1,0 +1,3 @@
+command = '"$XETAL" run --seed 1 --draw "$XETAL_DRAW" check.xtl'
+exit_code = 0
+desc = "stencil-macros: check.xtl run by the pinned xetal CLI"

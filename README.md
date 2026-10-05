@@ -99,6 +99,7 @@ here and moved there (`docs/xetal-ml-asks.md`).
 | [N-body gravity](demos/nbody/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/nbody/)) | a figure-eight three-body orbit, a binary with planets, a collapsing cluster; the pairwise force cube | pairwise broadcasting, reduce | live |
 | [Fourier epicycles](demos/fourier-epicycles/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/fourier-epicycles/)) | circles on circles tracing a star, a heart or your drawing; a slider for how many | outer product, matrix product, scan | live |
 | [Image pipeline](demos/image-pipeline/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/image-pipeline/)) | blur, Sobel edges, threshold, pooling; edit the kernels, click a pixel for its window | windows by rotation, reduce, reshape | live |
+| [Stencils by macro](demos/stencil-macros/README.md) | kernels written as pictures of numbers, turned into code by a macro library of our own; what the program expands to | macro libraries, expansion, rotations | draft (command line; page next) |
 
 A demo's name links to its own page (`demos/<name>/README.md`, with a
 screenshot) once it exists. What the "waiting" demos need from X_eTaL is listed in
@@ -202,16 +203,17 @@ only commit of the `gh-pages` branch, which GitHub Pages serves at
 ## Status
 
 Eleven demos are live on a shared page shell, each runnable at the
-command line and in the browser on the bundled X_eTaL (abb8274): the
+command line and in the browser on the pinned X_eTaL (882aa76): the
 Life microscope, Mandelbrot and Julia sets, reaction-diffusion, the
 wave tank, the cellular automata lab, Langton's ant, the abelian
 sandpile, N-body gravity, Fourier epicycles and the image pipeline.
-Every demo's programs are tested at the command line and its page in
+Stencils by macro, the first demo built on a macro library of its own,
+runs at the command line; its page is next. Every demo's programs are tested at the command line and its page in
 headless Chrome, both as reg-rs baselines, with the page's model
 tested natively. The machine- learning demos moved to X_eTaL-ML
 (above). Timings of every page's program are kept in
-[`docs/bench.md`](docs/bench.md) and checked on every refresh of the
-bundled X_eTaL. See [`docs/plan.md`](docs/plan.md) for the roadmap.
+[`docs/bench.md`](docs/bench.md) and checked on every new pin of
+X_eTaL. See [`docs/plan.md`](docs/plan.md) for the roadmap.
 
 ## Documentation
 

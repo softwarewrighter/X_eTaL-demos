@@ -1,0 +1,56 @@
+#!/usr/bin/env xetal
+# Stencils by macro: image kernels written as pictures of numbers, and
+# a macro library of our own (Stencil.xtlm, beside this file) that
+# turns each into rotation arithmetic when the program is expanded.
+# A 0 in a kernel writes no code at all and a 1 no multiply, so blur,
+# edges, sharpen, emboss and heat each cost exactly their nonzero
+# numbers. See what the program becomes: xetal expand stencil-macros.xtl
+
+"s:" u_se< "Stencil"
+
+rows := 24
+cols := 48
+
+# -- the picture: masks of coordinates, and noise ----
+row := (o_ffsets rows) 'l_eft t_able o_ffsets cols
+col := (o_ffsets rows) 'r_ight t_able o_ffsets cols
+disk := (((row - 11) * row - 11) + ((col - 12) * col - 12) d_iv 2) < 49
+box := ((row >= 5) & row < 19) & (col >= 28) & col < 41
+img := 0.1 + (0.6 * f_loat disk) + (0.3 * f_loat box) + 0.001 * f_loat r_oll! (s_hape row) r_eshape 50
+# -- the stencils: kernels written as pictures ------
+# Each kernel is three rows of three numbers; the
+# macro writes the sum of the shifted copies they
+# weigh, and skips every 0.
+u:b_lur := { p -> ((((-1 o_-_1 (-1 o_-_2 p)) + (2 * (-1 o_-_1 p)) + (-1 o_-_1 (1 o_-_2 p)) + (2 * (-1 o_-_2 p)) + (4 * p) + (2 * (1 o_-_2 p)) + (1 o_-_1 (-1 o_-_2 p)) + (2 * (1 o_-_1 p)) + (1 o_-_1 (1 o_-_2 p))))) / 16 }
+u:e_dges := { p -> ((n_eg (-1 o_-_1 (-1 o_-_2 p))) + (n_eg (-1 o_-_1 p)) + (n_eg (-1 o_-_1 (1 o_-_2 p))) + (n_eg (-1 o_-_2 p)) + (8 * p) + (n_eg (1 o_-_2 p)) + (n_eg (1 o_-_1 (-1 o_-_2 p))) + (n_eg (1 o_-_1 p)) + (n_eg (1 o_-_1 (1 o_-_2 p)))) }
+u:s_harpen := { p -> ((n_eg (-1 o_-_1 p)) + (n_eg (-1 o_-_2 p)) + (5 * p) + (n_eg (1 o_-_2 p)) + (n_eg (1 o_-_1 p))) }
+u:e_mboss := { p -> ((-2 * (-1 o_-_1 (-1 o_-_2 p))) + (n_eg (-1 o_-_1 p)) + (n_eg (-1 o_-_2 p)) + p + (1 o_-_2 p) + (1 o_-_1 p) + (2 * (1 o_-_1 (1 o_-_2 p)))) }
+# Heat flows to the cooler neighbors: one step adds a
+# fifth of the Laplacian (its four neighbors less four
+# times itself).
+u:h_eat := { p -> p + 0.2 * (((-1 o_-_1 p) + (-1 o_-_2 p) + (-4 * p) + (1 o_-_2 p) + (1 o_-_1 p))) }
+# -- the results ------------------------------------
+smooth := u:b_lur img
+edges := u:e_dges smooth
+sharp := u:s_harpen img
+relief := u:e_mboss img
+spot := 1000.0 * f_loat (row = 12) & col = 24
+warm := 60 'u:h_eat p_ower spot
+# -- end of the core --------------------------------
+
+# What a kernel keeps: blur and heat move the picture's total without
+# changing it (their numbers sum to 1, the edges wrap), edges sum to 0.
+f_loor 0.5 + '+ r_/ r_avel img
+f_loor 0.5 + '+ r_/ r_avel smooth
+f_loor 0.5 + '+ r_/ r_avel warm
+f_loor 0.5 + 1000000.0 * '+ r_/ r_avel edges
+# The picture, smoothed, its edges, sharpened, embossed, and the heat
+# of one hot cell after 60 steps, drawn with characters (darkest first).
+u:d_raw := { a -> (1 + f_loor 0 m_ax 7 m_in 8.0 * a) s_elect " .:-=+*#" }
+u:d_raw img
+u:d_raw smooth
+u:d_raw 4.0 * a_bs edges
+u:d_raw sharp
+u:d_raw relief
+u:d_raw warm / 8.0
+
