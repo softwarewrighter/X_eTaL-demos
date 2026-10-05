@@ -1,0 +1,5 @@
+# Text the page shows only after X_eTaL has run (scripts/browser-check.sh).
+terms written for 9 numbers
+(4 × p)
+Cell row 12, column 25
+X_eTaL's result here:

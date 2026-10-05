@@ -33,6 +33,7 @@ demos work with that are not asks.
 | landed (abb8274) | feature | Transpose (`o_\`, and `t_ranspose` with a permutation) | image-pipeline (ky from kx), attention and embedding-explorer (X_eTaL-ML) | removed in image-pipeline: `ky := o_\ kx` |
 | landed (ffd5526) | bug | A condition bound to a name could not be used in arithmetic (`a := 1 2 > 0` then `1 * a`, `f_loat a` or `'+ r_/ a`); a bound condition now stays Bool and converts as T1 says | image-pipeline (masks) | removed: masks are bound as conditions and made Floats where used (`0.7 * f_loat disk`) |
 | landed (4a31ba9; moot since 2026-10-05) | bug | A vendored build reported the outer repo's commit as its own | `xetal --version` from `just xetal` | removed: X_eTaL is now built from a real clone (`work/xetal/` at `XETAL_COMMIT`), which reports its own commit; `scripts/check-xetal.sh` checks it |
+| open | feature | `xetal-play`: a page's own macro library and the expansion: no way to give a run a library of the page's own (`.xtl` or `.xtlm`), nor to get the program after expansion (`xetal expand`) | stencil-macros (its page expands the kernel's call with `Stencil.xtlm`) | the page depends on `xetal-store` (installs memory, writes the library), `xetal-macro` (`StoreLibraries`) and `xetal-program` (`expanded_with`) directly |
 | open | feature | End of input: `[]R_EAD @` at the end of standard input fails (`error[io]: []R_EAD: no more input`) and nothing can test for it or recover, so a program cannot read a stream of unknown length | xetal-pipes (planned: every stage reads standard input) | the stage's wrapper appends an end-marker line after the input; the stage stops at it |
 | open | feature | Program arguments: `xetal run FILE` takes nothing after the file, and a program cannot read its arguments | xetal-pipes (`head -n 3`, `grep NEEDLE`, `cat FILE`) | the wrapper writes `args := "..."` to a file and runs `xetal run --context ARGS stage.xtl` |
 | open | feature | `s_ort` (and `g_rade`) of a list of boxed strings: `expected a number or Char, found Box Char`; `u_nique` and `m_atch` take boxes, sorting does not | xetal-pipes (`sort`) | lines padded into a Char matrix (built by `t_able` indexing, as mix, D6, is missing) and its rows sorted |
@@ -56,6 +57,30 @@ With those, the summary row for X_eTaL-demos becomes 7 landed,
 0 declined, 0 new. D13 (grade per row) and the mix half of D6 are
 still "to decide with the user": those need the user's call in
 X_eTaL, not more work here.
+
+## For the X_eTaL agent: a page's own macro library
+
+Found 2026-10-05 against 512b3ee (v0.1.0), building the stencil-macros
+page.
+
+What: `xetal-play`, the engine for pages, runs a program whose
+libraries come from the store the host installed, but it neither
+installs one nor offers a way to add a library to it, and it has no
+counterpart of `xetal expand`. A page with a macro library of its own
+(here `Stencil.xtlm`, beside the demo's `.xtl`) cannot run or show
+its expansion through `xetal-play` alone.
+
+Why: a macro is only half visible when it runs: what makes the demo
+is seeing what the call became. Every downstream page that ships a
+library (the demos, X_eTaL-libraries' site, the games) needs the same
+two calls.
+
+Suggested: `xetal_play::add_library(name, text)` (into the installed
+store, or a store of its own if none) and `xetal_play::expanded(src)
+-> Result<String, String>`. Workaround here: the page depends on
+`xetal-store`, `xetal-macro` and `xetal-program` by path, installs a
+`Memory` store once, writes `Stencil.xtlm` into it, and calls
+`xetal_program::expanded_with(name, src, &StoreLibraries)`.
 
 ## For the X_eTaL agent: three asks for programs in a Unix pipe
 

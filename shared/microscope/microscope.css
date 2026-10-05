@@ -139,6 +139,11 @@ canvas.pic.mid { width: min(100%, 260px); }
 .kgrid input { width: 84px; font: inherit; font-size: .85rem; font-variant-numeric: tabular-nums; padding: 3px 4px;
   border: 1px solid var(--line); border-radius: 6px; background: var(--card); color: var(--t-num); text-align: right; }
 .kgrid input:disabled { background: var(--off); }
+.kgrid.k5 { grid-template-columns: repeat(5, 64px); }
+.slider input[type=number] { width: 84px; font: inherit; font-size: .85rem; font-variant-numeric: tabular-nums; padding: 3px 4px;
+  border: 1px solid var(--line); border-radius: 6px; background: var(--card); color: var(--t-num); text-align: right; }
+.kgrid.k5 input { width: 64px; }
+.controls button.active { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
 .product .crosses { align-items: center; gap: 10px; }
 .product .op { font-size: 1.3rem; color: var(--muted); }
 .product .val code { font-size: 1.1rem; }

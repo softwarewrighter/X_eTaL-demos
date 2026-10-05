@@ -1,6 +1,6 @@
 number = 4
 slug = "stencil-macros-web"
-status = "pending"
+status = "in-progress"
 description = "The stencil-macros page: edit the kernel (presets and a grid of numbers), see..."
 role = "production"
 context_files = []

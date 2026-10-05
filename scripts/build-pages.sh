@@ -35,4 +35,4 @@ for d in "$root"/pages/*/; do
 done
 cp "$root/images/modern-xetal-logo.jpg" "$root/images/favicon.ico" "$root/pages/"
 "$root/scripts/build-catalog.py"
-echo "pages/ built; commit it (git add pages/) and push to publish."
+echo "pages/ built (not tracked); just publish publishes it."

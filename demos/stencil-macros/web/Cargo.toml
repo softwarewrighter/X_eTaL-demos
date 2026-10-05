@@ -1,0 +1,22 @@
+[package]
+name = "stencil-macros-web"
+description = "Stencils by macro in the browser: a kernel you edit, expanded by the demo's own macro library and run, by X_eTaL"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+publish = false
+
+[dependencies]
+microscope = { path = "../../../shared/microscope" }
+# Not reachable through xetal-play (docs/xetal-asks.md, "a page's own
+# macro library"): the store a run's libraries are read from, and the
+# expansion of a program, as xetal expand prints it.
+xetal-store = { path = "../../../work/xetal/components/base/crates/xetal-store" }
+xetal-macro = { path = "../../../work/xetal/components/macro/crates/xetal-macro" }
+xetal-program = { path = "../../../work/xetal/components/macro/crates/xetal-program" }
+yew = { version = "0.21", features = ["csr"] }
+web-sys = { version = "0.3", features = ["HtmlInputElement", "HtmlSelectElement", "Element", "DomRect"] }
+wasm-bindgen = "0.2"
+console_error_panic_hook = "0.1"
+
+[workspace]

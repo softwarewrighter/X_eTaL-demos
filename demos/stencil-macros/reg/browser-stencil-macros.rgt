@@ -1,0 +1,3 @@
+command = "scripts/browser-check.sh stencil-macros"
+exit_code = 0
+desc = "stencil-macros: the built page run in headless Chrome shows X_eTaL's results"

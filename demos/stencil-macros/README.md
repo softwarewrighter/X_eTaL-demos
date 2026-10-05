@@ -16,8 +16,9 @@ from the source text on each side of its call to new source text, run
 before the program is type-checked. `xetal expand` shows what the
 program becomes.
 
-Live: a page is on its way (edit a kernel, see its expansion and the
-result).
+Live: [Stencils by macro](https://softwarewrighter.github.io/X_eTaL-demos/stencil-macros/)
+
+[![Stencils by macro: the live page](screenshot.png)](https://softwarewrighter.github.io/X_eTaL-demos/stencil-macros/)
 
 ## The program
 
@@ -72,6 +73,27 @@ negatives, a single offset, all zeros and a 1 x 1) the two agree
 exactly. The library's own doc examples run with
 `xetal doc --test Stencil.xtlm`.
 
+## The page
+
+Pick a preset (blur, edges, sharpen, emboss, Sobel, heat, a move, the
+identity, a 5 x 5 blur, a 5 x 5 motion blur) or edit any number of
+the kernel, its side (3 x 3 or 5 x 5), what the sum is divided by,
+and how many steps it is applied. The page writes the kernel into one
+line of the program, `u:s_tep := { p -> "..." s:t_encil< "p" }`, and
+X_eTaL, compiled to WebAssembly, expands that call with the demo's
+own `Stencil.xtlm` and runs the program on the picture. Beside the
+result are the call, the line it expanded to (with how many terms,
+skipped zeros, plain ones, negations and multiplies), the macro, and
+exactly the program that ran. Click a cell to see its terms: each
+nonzero number times the neighbor it weighs, summed, against X_eTaL's
+value there.
+
+The page's tests check every preset, an edited kernel and its resizing
+against a direct loop; that the expansion writes one term per nonzero
+number and a multiply only for numbers other than 1 and -1; the heat
+step's exact expansion; that a cell's terms sum to its result; and
+that a kernel that is not square is refused by the macro.
+
 ## Run it
 
 ```bash
@@ -83,4 +105,9 @@ bin/xetal expand demos/stencil-macros/stencil-macros.xtl   # the program after t
 
 ## Workarounds
 
-None.
+- The page reaches past `xetal-play`, X_eTaL's engine for pages, to
+  three of its crates: `xetal-store` (to put `Stencil.xtlm` where a run
+  finds its libraries), `xetal-macro` (the library lookup) and
+  `xetal-program` (the expansion, as `xetal expand` prints it).
+  `xetal-play` offers neither; see "a page's own macro library" in
+  [`docs/xetal-asks.md`](../../docs/xetal-asks.md).
