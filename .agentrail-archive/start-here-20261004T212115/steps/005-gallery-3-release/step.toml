@@ -7,4 +7,4 @@ context_files = []
 created_at = "2026-10-03T13:33:04"
 completed_at = "2026-10-04T14:30:25"
 task_type = "release"
-commits = ["e3c24b12eb127ded6a32ca01b61728b1aba82803"]
+commits = ["e64cfe8193e7aa3f69a9ea0973d68ae1bd6c66e4"]
