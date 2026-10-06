@@ -1,0 +1,39 @@
+#!/usr/bin/env xetal
+# Unix pipes in X_eTaL: the arrays inside the stages (stages/*.xtl),
+# shown on sample.txt. A stage reads standard input as one text; here
+# the same text comes from the file. Every character is numbered by
+# its line, so choosing lines is a mask and reordering them a grade:
+# no loop over lines anywhere.
+
+"p:" u_se< "stages/Pipes.xtl"
+
+t := []N_GET "sample.txt"
+# -- every character's line: a running sum of newlines
+ln := p:l_ines t
+# -- grep: the text's k rotations against the needle
+needle := "lazy"
+k := t_ally needle
+tt := t c_at k r_eshape "\n"
+starts := (t_ally t) t_ake '& r_/_1 ((o_ffsets k) o_- tt) = needle 'l_eft t_able tt
+hits := u_nique starts r_eplicate ln
+# -- uniq: a line stays when its padded row differs from the row above
+m := p:m_atrix t
+differs := 1 c_at 1 d_rop '| r_/_2 m != -1 o_-_1 m
+# -- sort: each line's rank, given to its characters, graded stably
+rank := g_rade g_rade m
+sorted := (g_rade ln s_elect rank) s_elect t
+# -- end of the core --------------------------------
+
+# The first line's characters and their line numbers.
+20 t_ake ln
+# Lines, words, characters (as xetalwc counts them).
+(p:c_ount t) c_at t_ally t
+# Where "lazy" starts (1 at those characters), and the lines it is on.
+w_here starts
+hits
+# The padded lines' shape, and which lines uniq keeps.
+s_hape m
+differs
+# Each line's rank in byte order, and the sorted text.
+rank
+-1 d_rop sorted

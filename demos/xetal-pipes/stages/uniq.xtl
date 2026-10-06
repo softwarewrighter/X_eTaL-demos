@@ -1,0 +1,7 @@
+# xetaluniq: standard input without repeated adjacent lines. A line
+# stays when its row of the padded matrix differs from the row above.
+"p:" u_se< "Pipes"
+t := p:r_ead @
+m := p:m_atrix t
+differs := '| r_/_2 m != -1 o_-_1 m
+n := p:o_ut (1 c_at 1 d_rop differs) p:k_eep t

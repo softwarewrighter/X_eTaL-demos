@@ -34,9 +34,10 @@ demos work with that are not asks.
 | landed (ffd5526) | bug | A condition bound to a name could not be used in arithmetic (`a := 1 2 > 0` then `1 * a`, `f_loat a` or `'+ r_/ a`); a bound condition now stays Bool and converts as T1 says | image-pipeline (masks) | removed: masks are bound as conditions and made Floats where used (`0.7 * f_loat disk`) |
 | landed (4a31ba9; moot since 2026-10-05) | bug | A vendored build reported the outer repo's commit as its own | `xetal --version` from `just xetal` | removed: X_eTaL is now built from a real clone (`work/xetal/` at `XETAL_COMMIT`), which reports its own commit; `scripts/check-xetal.sh` checks it |
 | open | feature | `xetal-play`: a page's own macro library and the expansion: no way to give a run a library of the page's own (`.xtl` or `.xtlm`), nor to get the program after expansion (`xetal expand`) | stencil-macros (its page expands the kernel's call with `Stencil.xtlm`) | the page depends on `xetal-store` (installs memory, writes the library), `xetal-macro` (`StoreLibraries`) and `xetal-program` (`expanded_with`) directly |
-| open | feature | End of input: `[]R_EAD @` at the end of standard input fails (`error[io]: []R_EAD: no more input`) and nothing can test for it or recover, so a program cannot read a stream of unknown length | xetal-pipes (planned: every stage reads standard input) | the stage's wrapper appends an end-marker line after the input; the stage stops at it |
-| open | feature | Program arguments: `xetal run FILE` takes nothing after the file, and a program cannot read its arguments | xetal-pipes (`head -n 3`, `grep NEEDLE`, `cat FILE`) | the wrapper writes `args := "..."` to a file and runs `xetal run --context ARGS stage.xtl` |
-| open | feature | `s_ort` (and `g_rade`) of a list of boxed strings: `expected a number or Char, found Box Char`; `u_nique` and `m_atch` take boxes, sorting does not | xetal-pipes (`sort`) | lines padded into a Char matrix (built by `t_able` indexing, as mix, D6, is missing) and its rows sorted |
+| open | bug | `xetal run --context CTX FILE` reads standard input twice: FILE's `[]R_EAD` runs once silently and again for the shown run (with input `hello`, `world` the program `l := []R_EAD @` then `l` prints `world`; with one line it fails: no more input) | xetal-pipes (it would carry the stage's arguments) | a copy of the stage with the arguments' line put in front |
+| open | feature | End of input: `[]R_EAD @` at the end of standard input fails (`error[io]: []R_EAD: no more input`) and nothing can test for it or recover, so a program cannot read a stream of unknown length | xetal-pipes (every stage reads standard input) | the stage's wrapper appends an end line after the input; the stage reads until it |
+| open | feature | Program arguments: `xetal run FILE` takes nothing after the file, and a program cannot read its arguments | xetal-pipes (`head -n 3`, `grep NEEDLE`, `cat FILE`) | the wrapper runs a copy of the stage with `args := "..."` put in front, its library found through `XETAL_PATH` (`--context` reads standard input twice, below) |
+| open | feature | `s_ort` (and `g_rade`) of a list of boxed strings: `expected a number or Char, found Box Char`; `u_nique` and `m_atch` take boxes, sorting does not | xetal-pipes (`sort`, `uniq`) | lines padded into a Char matrix (built by `t_able` indexing, as mix, D6, is missing); its rows graded |
 
 ## For the X_eTaL agent: ledger corrections
 
@@ -82,9 +83,11 @@ store, or a store of its own if none) and `xetal_play::expanded(src)
 `Memory` store once, writes `Stencil.xtlm` into it, and calls
 `xetal_program::expanded_with(name, src, &StoreLibraries)`.
 
-## For the X_eTaL agent: three asks for programs in a Unix pipe
+## For the X_eTaL agent: four asks for programs in a Unix pipe
 
-Found 2026-10-05 against 882aa76, planning `xetal-pipes`: X_eTaL
+Found 2026-10-05 against 882aa76 (and still so at 512b3ee), building
+`xetal-pipes` (now live at the command line; each workaround is in its
+README): X_eTaL
 programs as Unix pipeline stages (`xetalcat FILE | xetaluniq |
 xetalwc -l`, `xetalcat FILE | xetalgrep NEEDLE | xetalsort |
 xetalhead -n 3`), each stage an `.xtl` program reading standard input
@@ -112,8 +115,8 @@ Suggested (X_eTaL's to decide): a value at the end of input that a
 program can test (an empty box, or a `[]E_OF` niladic), or a reader of
 all of standard input as one text (`[]R_EAD_ALL @`, then `p_artition`
 on newlines), which also suits arrays better than a line at a time.
-Workaround planned: each stage's wrapper (`bin/xetal<cmd>`) appends an
-end-marker line after the real input, and the stage reads until it.
+Workaround: each stage's wrapper (`bin/xetal-stage`) writes an end
+line after the real input, and the stage reads until it.
 
 ### 2. Program arguments (feature)
 
@@ -130,10 +133,11 @@ their arguments; so is every script with a shebang (`#!/usr/bin/env
 xetal`), which the CLI already supports.
 
 Suggested: `xetal run FILE ARGS...` (and `xetal FILE ARGS...`), the
-arguments read as a list of boxed texts (`[]A_RGS`, say). Workaround
-planned: the wrapper writes `args := "-n 3"` to a small file and runs
-`xetal run --context ARGS stage.xtl` (the context runs first,
-silently, and its names are the stage's).
+arguments read as a list of boxed texts (`[]A_RGS`, say). Workaround:
+the wrapper runs a copy of the stage with `args := "-n 3"` put in
+front of it, and sets `XETAL_PATH` to the stages' directory so the
+copy finds their library. (`xetal run --context` was the plan, but it
+reads standard input twice: ask 4.)
 
 ### 3. Sorting text (feature)
 
@@ -150,9 +154,34 @@ Why: sorting lines (`sort`, then `uniq -c`, top-k words) is the core
 of text processing.
 
 Suggested: order boxes by their contents (lexicographically, as APL2
-and Dyalog order nested arrays). Workaround planned: pad the lines
-into a Char matrix (by `t_able` indexing into the text, since mix is
-missing, D6) and sort its rows, which `s_ort` does.
+and Dyalog order nested arrays). Workaround: pad the lines into a Char
+matrix (by `t_able` indexing into the text, since mix is missing, D6)
+and grade its rows, which `g_rade` does.
+
+### 4. `--context` reads standard input twice (bug)
+
+What: `xetal run --context CTX FILE` runs CTX silently, then FILE as
+its continuation, but FILE's reads of standard input happen twice.
+
+```
+$ echo 'args := ""' > ctx.xtl
+$ printf 'l := []R_EAD @\nl\n' > read.xtl
+$ printf 'hello\n' | xetal run read.xtl
+hello
+$ printf 'hello\n' | xetal run --context ctx.xtl read.xtl
+error[io]: []R_EAD: no more input at 16..25
+$ printf 'hello\nworld\n' | xetal run --context ctx.xtl read.xtl
+world
+```
+
+Why: the continuation seems to be run once silently along with the
+context, then again for its output, so every effect in it (input,
+and likely files written with `[]N_PUT`) happens twice. Org-babel
+sessions, its purpose, rarely read input, which may be why it was not
+seen.
+
+Suggested: run the context alone silently, then the file once.
+Workaround: not using `--context` (see ask 2).
 
 ## For the X_eTaL agent: four asks not in X_eTaL's plan yet
 

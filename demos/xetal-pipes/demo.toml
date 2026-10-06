@@ -1,0 +1,12 @@
+# One demo's description: read by scripts/demos.py for the tests, the
+# README's demo list and the live catalog (pages/index.html).
+slug = "xetal-pipes"
+title = "Unix pipes in X_eTaL"
+summary = "cat, wc, grep, uniq, sort, head and tail as X_eTaL programs, chained with Unix pipes: xetalcat sample.txt | xetalgrep the | xetalsort | xetalhead -n 3. Each matches the real tool, byte for byte. Command line only."
+wiki = "https://en.wikipedia.org/wiki/Pipeline_(Unix)"
+idea = "Every character is numbered by its line (a running sum of newlines), so choosing lines is a mask and reordering them is a stable grade: no loop over lines in any stage."
+line = "sorted := (g_rade ln s_elect rank) s_elect t"
+concepts = ["text as arrays", "scan", "grade", "compress", "rotations"]
+status = "live"
+order = 58
+needs = ["end of input", "program arguments", "sorting text", "--context reads standard input twice"]

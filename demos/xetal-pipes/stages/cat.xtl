@@ -1,0 +1,4 @@
+# xetalcat [FILE]: the file's text (X_eTaL reads it), or standard input.
+"p:" u_se< "Pipes"
+t := "0 = t_ally args" i_f< "p:r_ead @; []N_GET args"
+n := p:o_ut t

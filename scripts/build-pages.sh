@@ -17,6 +17,10 @@ keep=()
 while IFS= read -r slug; do
   [ -n "$slug" ] || continue
   web="$root/demos/$slug/web"
+  # A command-line demo: only its terminal recording, for its card.
+  if [ ! -f "$web/Cargo.toml" ] && [ -f "$root/demos/$slug/demo.gif" ]; then
+    keep+=("$slug"); mkdir -p "$root/pages/$slug"; cp "$root/demos/$slug/demo.gif" "$root/pages/$slug/"
+  fi
   [ -f "$web/Cargo.toml" ] || continue
   keep+=("$slug")
   dist="$root/target/pages-dist/$slug"

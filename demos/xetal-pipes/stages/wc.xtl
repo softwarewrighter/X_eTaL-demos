@@ -1,0 +1,16 @@
+# xetalwc [-l] [-w] [-c]: lines, words and characters of standard input
+# (all three without a flag), each right-aligned in 8 columns as BSD
+# wc prints them.
+"p:" u_se< "Pipes"
+t := p:r_ead @
+# A word starts where a character that is not blank follows a blank
+# (or starts the text).
+word := (t != f_irst " ") & (t != f_irst "\t") & t != f_irst "\n"
+words := '+ r_/ 1 * word & n_ot (t_ally word) t_ake 0 c_at word
+counts := (p:c_ount t) c_at words c_at t_ally t
+flags := "lwc" m_ember? args
+want := "0 = '+ r_/ 1 * flags" i_f< "1 1 1; flags"
+# Each count right-aligned in 8 columns, the fields one after another
+# (text per item: e_ach takes a single value from each call).
+u:c_ols := { v -> 0 = t_ally v ? ""; (-8 t_ake f_ormat f_irst v) c_at u:c_ols 1 d_rop v }
+n := p:o_ut (u:c_ols want r_eplicate counts) c_at "\n"

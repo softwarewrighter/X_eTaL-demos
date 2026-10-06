@@ -100,6 +100,7 @@ here and moved there (`docs/xetal-ml-asks.md`).
 | [Fourier epicycles](demos/fourier-epicycles/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/fourier-epicycles/)) | circles on circles tracing a star, a heart or your drawing; a slider for how many | outer product, matrix product, scan | live |
 | [Image pipeline](demos/image-pipeline/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/image-pipeline/)) | blur, Sobel edges, threshold, pooling; edit the kernels, click a pixel for its window | windows by rotation, reduce, reshape | live |
 | [Stencils by macro](demos/stencil-macros/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/stencil-macros/)) | kernels written as pictures of numbers, turned into code by a macro library of our own; edit one and see what the program expands to | macro libraries, expansion, rotations | live |
+| [Unix pipes in X_eTaL](demos/xetal-pipes/README.md) (command line) | `xetalcat sample.txt \| xetalgrep the \| xetalsort \| xetalhead -n 3`: cat, wc, grep, uniq, sort, head, tail as X_eTaL programs, byte for byte the real tools | text as arrays, scan, grade, compress | live |
 
 A demo's name links to its own page (`demos/<name>/README.md`, with a
 screenshot) once it exists. What the "waiting" demos need from X_eTaL is listed in
@@ -208,7 +209,8 @@ Life microscope, Mandelbrot and Julia sets, reaction-diffusion, the
 wave tank, the cellular automata lab, Langton's ant, the abelian
 sandpile, N-body gravity, Fourier epicycles, the image pipeline and
 stencils by macro (the first built on a macro library of its own,
-expanded in the browser). Every demo's programs are tested at the command line and its page in
+expanded in the browser). A thirteenth runs at the command line only:
+Unix pipes, seven X_eTaL programs as pipeline stages. Every demo's programs are tested at the command line and its page in
 headless Chrome, both as reg-rs baselines, with the page's model
 tested natively. The machine- learning demos moved to X_eTaL-ML
 (above). Timings of every page's program are kept in

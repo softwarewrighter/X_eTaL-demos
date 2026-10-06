@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# The xetal<cmd> commands (xetalcat, xetalwc, xetalgrep, xetaluniq,
+# xetalsort, xetalhead, xetaltail are links to this script): run
+# stages/<cmd>.xtl with X_eTaL as a Unix filter. Two workarounds, both
+# asks in docs/xetal-asks.md: X_eTaL cannot read program arguments, so
+# the stage runs as a copy with one line put in front of it,
+# args := "..." (one argument per line), found its library through
+# XETAL_PATH (xetal run --context would carry the line, but it reads
+# standard input twice); and it cannot tell that standard input has
+# ended, so the input is followed by an end line (awk 1 ends a last
+# line that has no newline). XETAL names the xetal binary (default:
+# this repository's bin/xetal).
+set -euo pipefail
+here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+demo="$(dirname "$here")"
+cmd="$(basename "$0")"; cmd="${cmd#xetal}"
+stage="$demo/stages/$cmd.xtl"
+[ -f "$stage" ] || { echo "xetal-stage: no stage $cmd ($stage)" >&2; exit 2; }
+xetal="${XETAL:-$demo/../../bin/xetal}"
+prog="$(mktemp -t "xetal$cmd")"; trap 'rm -f "$prog"' EXIT
+args=""
+for a in "$@"; do args+="${args:+$'\n'}$a"; done
+esc="${args//\\/\\\\}"; esc="${esc//\"/\\\"}"; esc="${esc//$'\n'/\\n}"
+{ printf 'args := "%s"\n' "$esc"; cat "$stage"; } > "$prog"
+export XETAL_PATH="$demo/stages${XETAL_PATH:+:$XETAL_PATH}"
+if [ "$cmd" = cat ] && [ $# -gt 0 ]; then
+  "$xetal" run "$prog" < /dev/null
+else
+  { awk 1; printf '%s\n' '<<xetal-end-of-input>>'; } | "$xetal" run "$prog"
+fi

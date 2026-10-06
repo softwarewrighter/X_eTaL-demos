@@ -1,0 +1,8 @@
+# xetalsort: the lines of standard input in order (byte order, as
+# LC_ALL=C sort). The padded lines' grade gives each line its rank;
+# every character takes its line's rank, and a stable grade of those
+# ranks moves whole lines.
+"p:" u_se< "Pipes"
+t := p:r_ead @
+rank := g_rade g_rade p:m_atrix t
+n := p:o_ut (g_rade (p:l_ines t) s_elect rank) s_elect t

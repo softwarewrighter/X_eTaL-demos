@@ -1,6 +1,6 @@
 number = 5
 slug = "xetal-pipes"
-status = "pending"
+status = "in-progress"
 description = "New CLI-only demo xetal-pipes: X_eTaL programs as Unix pipeline stages (cat, ..."
 role = "production"
 context_files = []

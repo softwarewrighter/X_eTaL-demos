@@ -88,6 +88,10 @@ serve-pages port="8413":
 serve slug port="8413": xetal
     cd demos/{{slug}}/web && trunk serve --release --port {{port}} --address 127.0.0.1
 
+# Record a command-line demo's terminal session (vhs): demos/SLUG/demo.tape -> demos/SLUG/demo.gif
+tape slug:
+    cd demos/{{slug}} && vhs demo.tape
+
 # Screenshot every demo (from the built pages/) into demos/<slug>/screenshot.png
 screenshots *slugs:
     scripts/screenshots.sh "$@"

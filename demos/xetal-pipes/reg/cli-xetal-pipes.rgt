@@ -1,0 +1,3 @@
+command = '"$XETAL" run --seed 1 --draw "$XETAL_DRAW" xetal-pipes.xtl'
+exit_code = 0
+desc = "xetal-pipes: xetal-pipes.xtl run by the pinned xetal CLI"

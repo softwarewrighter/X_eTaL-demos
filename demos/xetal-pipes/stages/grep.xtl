@@ -1,0 +1,10 @@
+# xetalgrep NEEDLE: the lines of standard input that hold NEEDLE (a
+# fixed string). Every position is checked at once: the text's k
+# rotations (k the needle's length) against the needle's characters.
+"p:" u_se< "Pipes"
+t := p:r_ead @
+k := t_ally args
+tt := t c_at k r_eshape "\n"
+starts := (t_ally t) t_ake '& r_/_1 ((o_ffsets k) o_- tt) = args 'l_eft t_able tt
+hits := u_nique starts r_eplicate p:l_ines t
+n := p:o_ut ((r_ange p:c_ount t) m_ember? hits) p:k_eep t

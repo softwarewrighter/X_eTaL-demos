@@ -127,7 +127,7 @@ bridge today).</p>
 def rendered(line):
     """The line decorated as X_eTaL draws it (HTML spans), by the bundled CLI."""
     try:
-        xetal = subprocess.run([str(ROOT / "scripts" / "build-xetal.sh")], capture_output=True, text=True, check=True).stdout.strip()
+        xetal = subprocess.run([str(ROOT / "scripts" / "xetal.sh")], capture_output=True, text=True, check=True).stdout.strip()
         out = subprocess.run([xetal, "render", "--html", "-e", line], capture_output=True, text=True, check=True).stdout
         return out.strip()
     except (subprocess.CalledProcessError, OSError):
@@ -146,6 +146,10 @@ def card(m):
     if m.get("web") and m.get("picture"):
         alt = html.escape(m["title"])
         pic = f'<a class="shot" href="{slug}/"><img src="{slug}/screenshot.png" alt="{alt}" loading="lazy"></a>\n'
+    elif m.get("tape"):
+        # A command-line demo: its terminal recording (just tape SLUG).
+        alt = html.escape(m["title"] + ": a terminal recording")
+        pic = f'<a class="shot" href="{REPO}/tree/main/demos/{slug}#readme"><img src="{slug}/demo.gif" alt="{alt}" loading="lazy"></a>\n'
     return (f'<article class="card" id="{slug}">\n{pic}'
             f'<span class="status {st}">{STATUS[st]}</span>\n'
             f'<h2>{html.escape(m["title"])}</h2>\n'
