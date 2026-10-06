@@ -1,0 +1,1 @@
+xetal-pipes: 7 X_eTaL pipe stages + shared Pipes.xtl, wrapper with links, tests vs Unix tools on 6 inputs (byte-identical), vhs tape/gif (just tape, catalog picture for CLI demos), found --context double-read bug (filed). Fixed catalog line decoration regression. Saga macros done.
