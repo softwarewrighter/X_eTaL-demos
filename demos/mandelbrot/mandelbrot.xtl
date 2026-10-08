@@ -1,12 +1,21 @@
 #!/usr/bin/env xetal
-# The Mandelbrot set as arrays: every point c of a view iterated at once,
-# z becoming z * z + c, counting the steps each point stays within 2 of
-# the origin. X_eTaL has no complex numbers yet, so z and c are each two
-# Float arrays, their real and imaginary parts.
+## The Mandelbrot set as arrays: every point c of a view iterated at
+## once, z becoming z * z + c, counting the steps each point stays
+## within 2 of the origin. X_eTaL has no complex numbers yet (an ask:
+## see the demo's README Workarounds), so z and c are each two Float
+## arrays, their real and imaginary parts. Run it with "xetal run
+## demos/mandelbrot/mandelbrot.xtl"; it prints the shapes
+## of c and of the stepped state, the set drawn with characters, and
+## one point's orbit (its real parts, then its imaginary parts). The
+## live page steps k and lets you click a point for its orbit:
+## https://softwarewrighter.github.io/X_eTaL-demos/mandelbrot/
 
-# The view: rows and columns, the center (cx, cy), the width w, k steps,
-# and how tall a cell is for its width (2.0: a character is about twice
-# as tall as it is wide; on a page of square pixels it is 1.0).
+### The view
+
+## rows, cols: the picture's size. cx, cy, w: the view's center and
+## width (in the plane, not pixels). k: how many steps. aspect: how
+## tall a cell is for its width (2.0, since a character is about
+## twice as tall as it is wide; a page of square pixels uses 1.0).
 rows := 24
 cols := 64
 cx := -0.6
@@ -15,21 +24,32 @@ w := 3.0
 k := 30
 aspect := 2.0
 
-# Numbers centered on 0: 0 1 2 3 becomes -1.5 -0.5 0.5 1.5.
+## Numbers centered on 0 (u:c_entred n): 0 1 2 3 becomes
+## -1.5 -0.5 0.5 1.5.
 u:c_entred := { n -> (f_loat o_ffsets n) - (f_loat n - 1) / 2 }
-# A matrix as one plane of a rank-3 array, for stacking with c_at.
+## u:p_lane m: a matrix as one plane of a rank-3 array (a leading axis
+## of 1), for stacking planes with c_at.
 u:p_lane := { m -> (1 c_at s_hape m) r_eshape m }
 
-# -- c for every point, by broadcasting --------------------------------
-# One row of real parts and one column of imaginary parts, spread over
-# the whole grid with t_able: no loop over points.
+### c for every point, by broadcasting
+
+## re, im: one row of real parts and one column of imaginary parts,
+## centered on (cx, cy) and w wide.
+## cr, ci: c's real and imaginary parts spread over the whole grid:
+## t_able spreads the row down and the column across, no loop over
+## points.
 re := cx + w * (u:c_entred cols) / f_loat cols
 im := cy - aspect * w * (u:c_entred rows) / f_loat cols
 cr := (o_ffsets rows) 'r_ight t_able re
 ci := im 'l_eft t_able o_ffsets cols
-# -- one step for every point at once ----------------------------------
-# The state is three planes: z's real part, its imaginary part, and the
-# count of steps spent inside. A point outside (|z|^2 > 4) keeps its z.
+
+### One step for every point at once
+
+## u:s_tep s: the state s is three planes (z's real part, its
+## imaginary part, and the count of steps spent inside); one step
+## computes z * z + c everywhere, keeps z where the point has already
+## left the disk |z|^2 > 4 (the mask inside), and adds inside to the
+## count.
 u:s_tep := { s ->
   zr := 1 s_elect s
   zi := 2 s_elect s
@@ -38,7 +58,13 @@ u:s_tep := { s ->
   b := (inside * ci + 2 * zr * zi) + (1 - inside) * zi
   (u:p_lane a) c_at (u:p_lane b) c_at u:p_lane inside + 3 s_elect s
 }
-# -- k steps, from z = 0 -----------------------------------------------
+
+### k steps, from z = 0
+
+## z: the state after k steps (function power, from a zero state).
+## zr, zi, m2: z's parts and |z|^2, read back out of z.
+## counts: how many steps each point stayed inside; the points still
+## inside after k steps are the set, so far.
 z := k 'u:s_tep p_ower (3 c_at rows c_at cols) r_eshape 0.0
 zr := 1 s_elect z
 zi := 2 s_elect z
@@ -49,14 +75,21 @@ counts := 3 s_elect z
 s_hape cr
 s_hape z
 
-# The picture: a character per point by how long it stayed inside, @
-# for the points still inside after k steps (the set).
+## The picture: a character per point by how long it stayed inside, @
+## for the points still inside after k steps (the set).
 (1 + f_loor (9.0 * counts) / f_loat k) s_elect " .:-=+*#%@"
 
-# The orbit of one point, c = -0.75 + 0.1i: z0, z1, ... (real parts,
-# then imaginary parts). It circles slowly near the set's edge.
+### One point's orbit
+
+## cr0, ci0: a point near the set's edge, c = -0.75 + 0.1i, which
+## circles slowly rather than running away or settling.
+## u:o_rbit s: the next z (z * z + c) for this one point, s its
+## previous z (real part, imaginary part), no mask needed (a single
+## point, always run the full k steps).
 cr0 := -0.75
 ci0 := 0.1
 u:o_rbit := { s -> (cr0 + ((1 s_elect s) * 1 s_elect s) - (2 s_elect s) * 2 s_elect s) c_at ci0 + 2 * (1 s_elect s) * 2 s_elect s }
+## z0, z1, ..., z5 (real parts, then imaginary parts): the orbit, six
+## points each run from z = 0 by function power, n steps for the nth.
 '{ n -> 1 s_elect n 'u:o_rbit p_ower 0.0 0.0 } e_ach o_ffsets 6
 '{ n -> 2 s_elect n 'u:o_rbit p_ower 0.0 0.0 } e_ach o_ffsets 6

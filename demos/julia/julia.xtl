@@ -1,13 +1,23 @@
 #!/usr/bin/env xetal
-# Julia sets and the Mandelbrot set from one function. Both iterate
-# z becoming z * z + c and count the steps z stays within 2 of the
-# origin. For the Mandelbrot set, c is the grid of points and z starts
-# at 0; for a Julia set, z starts at the grid and c is one number,
-# which scalar extension spreads over the whole grid. X_eTaL has no
-# complex numbers yet, so z and c are each a real and an imaginary part.
+## Julia sets and the Mandelbrot set from one function, u:i_terate.
+## Both iterate z becoming z * z + c and count the steps z stays
+## within 2 of the origin. For the Mandelbrot set, c is the grid of
+## points and z starts at 0; for a Julia set, z starts at the grid and
+## c is one number, which scalar extension spreads over the whole
+## grid: the step is written once and works both ways. X_eTaL has no
+## complex numbers yet, so z and c are each a real and an imaginary
+## part (see the demo's README Workarounds). Run it with "xetal run
+## demos/julia/julia.xtl"; it prints the grid's shape, a
+## Julia set (c = -0.8 + 0.156i) drawn with characters, and the
+## Mandelbrot set from the same function. The live page lets you pick
+## c on the Mandelbrot map and watch the Julia set change:
+## https://softwarewrighter.github.io/X_eTaL-demos/julia/
 
-# The view: rows and columns, the center (cx, cy), the width w, k steps,
-# and how tall a cell is for its width (2.0 for terminal characters).
+### The view
+
+## rows, cols: the picture's size. cx, cy, w: the view's center and
+## width. k: how many steps. aspect: how tall a cell is for its width
+## (2.0 for terminal characters).
 rows := 22
 cols := 64
 cx := 0.0
@@ -16,21 +26,34 @@ w := 3.2
 k := 40
 aspect := 2.0
 
-# Numbers centered on 0: 0 1 2 3 becomes -1.5 -0.5 0.5 1.5.
+## Numbers centered on 0 (u:c_entred n): 0 1 2 3 becomes
+## -1.5 -0.5 0.5 1.5.
 u:c_entred := { n -> (f_loat o_ffsets n) - (f_loat n - 1) / 2 }
-# A matrix as one plane of a rank-3 array, for stacking with c_at.
+## u:p_lane m: a matrix as one plane of a rank-3 array (a leading axis
+## of 1), for stacking planes with c_at.
 u:p_lane := { m -> (1 c_at s_hape m) r_eshape m }
-# -- the grid of points, by broadcasting -------------------------------
+
+### The grid of points, by broadcasting
+
+## re, im: one row of real parts and one column of imaginary parts.
+## grid: both parts spread over the whole grid with t_able, stacked as
+## two planes: every point's c, for the Mandelbrot set, or every
+## starting z0, for a Julia set.
 re := cx + w * (u:c_entred cols) / f_loat cols
 im := cy - aspect * w * (u:c_entred rows) / f_loat cols
 grid := (u:p_lane (o_ffsets rows) 'r_ight t_able re) c_at u:p_lane im 'l_eft t_able o_ffsets cols
-# -- c u:i_terate z0: k steps of z * z + c from z0 ----------------------
-# c and z0 each give a real and an imaginary part (1 s_elect, 2 s_elect):
-# planes of the grid, or single numbers. The state adds a third plane,
-# the count of steps spent inside; a point outside keeps its z.
+
+### c u:i_terate z0: k steps of z * z + c from z0
+
+## c and z0 each give a real and an imaginary part (1 s_elect,
+## 2 s_elect): planes of the grid, or single numbers (scalar
+## extension). The state adds a third plane, the count of steps spent
+## inside; a point outside keeps its z.
 u:i_terate := { c z0 ->
   cr := 1 s_elect c
   ci := 2 s_elect c
+  # One step, as a local function (s_tep, bare and scoped to this
+  # lambda, PN6): the same arithmetic as mandelbrot.xtl's u:s_tep.
   s_tep := { s ->
     zr := 1 s_elect s
     zi := 2 s_elect s
@@ -45,11 +68,13 @@ u:i_terate := { c z0 ->
 
 s_hape grid
 
-# A Julia set: c = -0.8 + 0.156i, the same for every point; z0 the grid.
+## julia: a Julia set, c = -0.8 + 0.156i the same for every point, z0
+## the grid.
 julia := (-0.8 c_at 0.156) u:i_terate grid
 s_hape julia
 (1 + f_loor (9.0 * 3 s_elect julia) / f_loat k) s_elect " .:-=+*#%@"
 
-# The Mandelbrot set from the same function: c the grid, z0 = 0.
+## mandel: the Mandelbrot set from the same function: c the grid,
+## z0 = 0.
 mandel := grid u:i_terate 0.0 * grid
 (1 + f_loor (9.0 * 3 s_elect mandel) / f_loat k) s_elect " .:-=+*#%@"

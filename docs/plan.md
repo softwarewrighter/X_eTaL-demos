@@ -311,15 +311,49 @@ and wanted.
 
 Scope: `##` prose (what the program shows, why as arrays) and `###`
 section headings on each of the 13 demos' `<slug>.xtl` (matching each
-demo's README, not duplicating it line for line); a `## >>` runnable
-example only where one is short, self-contained and low-risk (most of
-these programs print large arrays, which do not make good doctests).
-Re-run `xetal doc --test` on each after, and `just gate` (comments do
-not change a program's output, so no golden should move).
+demo's README, not duplicating it line for line). Checked against
+X_eTaL's own `demos/*.xtl`: none of them use `## >>` doctests either
+(that is a library convention, seen on `.xtl`/`.xtlm` files meant to
+be imported); an app's doc comment says in prose what running it
+prints, as X_eTaL's own `demos/square.xtl` does ("it prints 49"). Re-run
+`xetal doc --test` on each after anyway (0 examples is correct for an
+app), and `just gate` (comments do not change a program's output, so
+no golden should move); rebuild `pages/doc` (`just doc`) and spot
+check a page or two in a browser.
+
+Two gotchas found in step 1, the first serious, both worth knowing
+before step 2 (also now CLAUDE.md rule 1 for the first):
+
+- **The live page can silently break.** `web/src/micro.rs` usually
+  cuts "the core" out of the `.xtl` by finding exact `#`-comment
+  substrings (`str::find`, no error if the text moves); almost every
+  demo shares the marker `# -- end of the core`
+  (`grep -n "section(SOURCE" demos/*/web/src/micro.rs` lists every
+  demo's own markers). Step 1 broke `mandelbrot.xtl` and `julia.xtl`
+  this way (their `# Numbers centered on 0` start marker reworded,
+  their `# -- end of the core` end marker deleted outright): the CLI
+  `diff` against the golden still matched (the marker text is outside
+  what the CLI prints), so only the browser check caught it, failing
+  `just gate` with the live page showing an X_eTaL error (a name
+  defined twice, since the wrong half of the file became "the core").
+  Fixed by keeping both markers verbatim somewhere in the file; a `##`
+  line can still contain one as a substring (`## Numbers centered on
+  0 (...)` contains "# Numbers centered on 0", since the search is
+  substring, not whole-line), and a deleted end marker just needs its
+  plain `#` line put back. Rebuild `pages/doc` AND `just pages`
+  (the demo's own web app) and run `just gate`, not only `xetal doc
+  --test`, before calling a file done.
+- **Quoting in prose.** The doc renderer decorates a `##` comment's
+  prose the same way it decorates code, so a bare mention of a path or
+  a command with a `/` in it comes out with the `/` drawn as a
+  division sign. X_eTaL's own comments avoid this by double-quoting
+  such text ("xetal run demos/life.xtl"), which renders as plain text;
+  a short genuine code mention (a name, `_r`, `-1 0 1`) is written
+  bare or in backticks and is meant to be decorated.
 
 | # | Step slug | Delivers |
 | - | --------- | -------- |
-| 1 | doc-grids-1 | `##`/`###` on `life-microscope.xtl`, `mandelbrot.xtl`, `julia.xtl` |
+| 1 | doc-grids-1 | Done 2026-10-08: `##`/`###` on `life-microscope.xtl`, `mandelbrot.xtl`, `julia.xtl` (file intro, section headings matching the existing `# -- stage --` blocks, a `##` above each top-level name); `s_tep` in `julia.xtl`'s `u:i_terate` stays a plain `#` note (a local, bare, scoped to the lambda, PN6 -- not a top-level item `xetal doc` would list on its own). Every output byte-identical (`diff` against the CLI goldens); broke and then fixed the two live pages (the gotchas above); `pages/doc` rebuilt and spot-checked in Chrome (section nav, cross-references, decoration all correct) |
 | 2 | doc-grids-2 | `##`/`###` on `reaction-diffusion.xtl`, `wave-tank.xtl`, `ca-lab.xtl`, `langtons-ant.xtl` |
 | 3 | doc-start-here | `##`/`###` on `sandpile.xtl`, `nbody.xtl`, `fourier-epicycles.xtl` |
 | 4 | doc-macros | `##`/`###` on `image-pipeline.xtl`, `stencil-macros.xtl`, `xetal-pipes.xtl` (its stage files stay out, as Saga 8 left them out of the site) |

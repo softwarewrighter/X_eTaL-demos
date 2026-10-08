@@ -308,7 +308,19 @@ Read before working:
    browser-SLUG for its page), test.sh, and web/ its own
    Cargo workspace). A demo never reaches into another demo; what pages
    share lives in `shared/microscope` (see its README: how to add a
-   demo's web app, and the page conventions).
+   demo's web app, and the page conventions). A demo with a web app
+   usually has `web/src/micro.rs` cut "the core" (what the page shows
+   and runs) out of the `.xtl` by finding exact `#`-comment substrings
+   (`microscope::source::section`, `str::find`, silently wrong, never
+   an error, if the text moves): almost every demo shares the literal
+   marker `# -- end of the core`, each with its own start marker
+   (`grep -n "section(SOURCE" demos/*/web/src/micro.rs` lists them).
+   Editing a `.xtl`'s comments (adding `##` doc comments, Saga 9
+   included) must keep these markers' exact text somewhere verbatim
+   (a `##` line can still contain one as a substring, since the search
+   is substring, not whole-line); a CLI `diff` against the golden
+   will not catch a broken marker, only the page's browser check will
+   (`just gate`, or `scripts/browser-check.sh SLUG` alone).
 2. X_eTaL is used only at the commit pinned in `XETAL_COMMIT` (the
    layout of `../X_eTaL/docs/vendoring.md`): `just xetal`
    (`scripts/xetal.sh`) clones it into `work/xetal/` (gitignored),
