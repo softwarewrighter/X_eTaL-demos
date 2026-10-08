@@ -15,15 +15,15 @@
 ## there are 1, 9, 25, ... numbers.
 ## >> "s:" u_se< "Stencil"
 ## >> h := 3 3 r_eshape 0 0 0 0 1 0 0 0 0
-## >> "0 1 0  1 -4 1  0 1 0" s:t_encil< "h"
+## >> "0 1 0  1 -4 1  0 1 0" s:s_tencil< "h"
 ## 0  1 0
 ## 1 -4 1
 ## 0  1 0
-m:t_encil< := { kernel name ->
+m:s_tencil< := { kernel name ->
   w := n_umbers kernel
   n := t_ally w
   k := n h:s_ide 1
-  n_ot n = k * k ? "bad-macro-argument left" []R_EJECT "s:t_encil< takes a square kernel: 1, 9, 25, ... numbers"
+  n_ot n = k * k ? "bad-macro-argument left" []R_EJECT "s:s_tencil< takes a square kernel: 1, 9, 25, ... numbers"
   c := (k - 1) d_iv 2
   i := (r_ange n) - 1
   cells := r_avel o_\ (3 c_at n) r_eshape w c_at (f_loat (i d_iv k) - c) c_at f_loat (i m_od k) - c

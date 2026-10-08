@@ -11,13 +11,13 @@ u:w_indows := { x -> -1 0 1 o_-_2 -1 0 1 o_-_2 x }
 u:f_ilter := { k x -> '+ r_/_12 (u:w_indows x) * k 'l_eft t_able x }
 u:k_ernel := { t -> 3 3 r_eshape n_umbers t }
 # The largest difference between the two, for each kernel (all 0).
-'m_ax r_/ r_avel a_bs ("1 2 1  2 4 2  1 2 1" s:t_encil< "p") - (u:k_ernel "1 2 1  2 4 2  1 2 1") u:f_ilter p
-'m_ax r_/ r_avel a_bs ("-2 -1 0  -1 1 1  0 1 2" s:t_encil< "p") - (u:k_ernel "-2 -1 0  -1 1 1  0 1 2") u:f_ilter p
-'m_ax r_/ r_avel a_bs ("0 0 0  0 0 1  0 0 0" s:t_encil< "p") - (u:k_ernel "0 0 0  0 0 1  0 0 0") u:f_ilter p
-'m_ax r_/ r_avel a_bs ("0.5 0 -0.25  0 0 0  3 0 0" s:t_encil< "p") - (u:k_ernel "0.5 0 -0.25  0 0 0  3 0 0") u:f_ilter p
+'m_ax r_/ r_avel a_bs ("1 2 1  2 4 2  1 2 1" s:s_tencil< "p") - (u:k_ernel "1 2 1  2 4 2  1 2 1") u:f_ilter p
+'m_ax r_/ r_avel a_bs ("-2 -1 0  -1 1 1  0 1 2" s:s_tencil< "p") - (u:k_ernel "-2 -1 0  -1 1 1  0 1 2") u:f_ilter p
+'m_ax r_/ r_avel a_bs ("0 0 0  0 0 1  0 0 0" s:s_tencil< "p") - (u:k_ernel "0 0 0  0 0 1  0 0 0") u:f_ilter p
+'m_ax r_/ r_avel a_bs ("0.5 0 -0.25  0 0 0  3 0 0" s:s_tencil< "p") - (u:k_ernel "0.5 0 -0.25  0 0 0  3 0 0") u:f_ilter p
 # One cell moved: the kernel's single 1 to the right of the center
 # brings each cell's right neighbor to it.
-("0 0 0  0 0 1  0 0 0" s:t_encil< "p") = 1 o_-_2 p
+("0 0 0  0 0 1  0 0 0" s:s_tencil< "p") = 1 o_-_2 p
 # An all-zero kernel writes 0 times the array; a 1 x 1 kernel scales.
-'+ r_/ r_avel "0 0 0  0 0 0  0 0 0" s:t_encil< "p"
-('+ r_/ r_avel "2" s:t_encil< "p") = 2 * '+ r_/ r_avel p
+'+ r_/ r_avel "0 0 0  0 0 0  0 0 0" s:s_tencil< "p"
+('+ r_/ r_avel "2" s:s_tencil< "p") = 2 * '+ r_/ r_avel p

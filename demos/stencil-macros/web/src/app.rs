@@ -24,8 +24,8 @@ fn stage_chip(m: &UseReducerHandle<Model>, s: Stage) -> Html {
     let kernel = m.ran.text();
     let (name, src, dims, meaning): (&str, &str, Vec<usize>, &str) = match s {
         Stage::Picture => ("picture", "img", vec![ROWS, COLS], "one brightness per cell"),
-        Stage::Macro => ("macro", "\"s:\" u_se< \"Stencil\"", vec![m.expansion.len()], "m:t_encil<, our own: text in, the program text it writes out (Char)"),
-        Stage::Call => ("call", "s:t_encil<", vec![kernel.len()], "the kernel, as text (Char); expanded before the program is type-checked"),
+        Stage::Macro => ("macro", "\"s:\" u_se< \"Stencil\"", vec![m.expansion.len()], "m:s_tencil<, our own: text in, the program text it writes out (Char)"),
+        Stage::Call => ("call", "s:s_tencil<", vec![kernel.len()], "the kernel, as text (Char); expanded before the program is type-checked"),
         Stage::Result => ("result", "out", vec![ROWS, COLS], "the expanded step, applied steps times"),
     };
     chip(name, src, &dims, meaning, m.focus == s, act(m, move || Action::Focus(s)))
@@ -159,7 +159,7 @@ fn expansion(m: &Model) -> Html {
         </section>
         <section class={classes!("panel", "code", (m.focus == Stage::Macro).then_some("focus"))}>
             <h2>{"The macro: Stencil.xtlm"}</h2>
-            <p class="note">{"A macro library of our own, beside the program: m:t_encil< is an ordinary X_eTaL function from the text on each side of its call to new program text. It runs before the program is type-checked."}</p>
+            <p class="note">{"A macro library of our own, beside the program: m:s_tencil< is an ordinary X_eTaL function from the text on each side of its call to new program text. It runs before the program is type-checked."}</p>
             { library() }
         </section>
     </> }

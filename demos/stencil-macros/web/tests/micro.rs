@@ -43,7 +43,7 @@ fn the_expansion_writes_one_term_per_nonzero_number() {
     for (i, p) in PRESETS.iter().enumerate() {
         let k = Kernel::preset(i);
         let line = expanded_step(&k).unwrap();
-        assert!(!line.contains("s:t_encil<"), "{}: {line}", p.name);
+        assert!(!line.contains("s:s_tencil<"), "{}: {line}", p.name);
         let (terms, ones, _, _) = k.counts();
         assert_eq!(line.matches(" + ").count(), terms - 1, "{}: {line}", p.name);
         // A 1 writes no multiply: the only multiplies are the other weights.
@@ -84,6 +84,6 @@ fn numbers_are_written_as_written() {
     assert_eq!(num(2.0), "2");
     assert_eq!(num(-1.0), "-1");
     assert_eq!(num(0.2), "0.2");
-    assert_eq!(call(&Kernel::preset(0)), "u:s_tep := { p -> (\"1 2 1  2 4 2  1 2 1\" s:t_encil< \"p\") / 16 }");
-    assert!(program(&Kernel::preset(1)).contains("u:s_tep := { p -> \"-1 -1 -1  -1 8 -1  -1 -1 -1\" s:t_encil< \"p\" }"));
+    assert_eq!(call(&Kernel::preset(0)), "u:s_tep := { p -> (\"1 2 1  2 4 2  1 2 1\" s:s_tencil< \"p\") / 16 }");
+    assert!(program(&Kernel::preset(1)).contains("u:s_tep := { p -> \"-1 -1 -1  -1 8 -1  -1 -1 -1\" s:s_tencil< \"p\" }"));
 }

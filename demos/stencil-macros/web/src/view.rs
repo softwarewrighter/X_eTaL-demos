@@ -33,7 +33,7 @@ pub fn source(program: &str, focus: Stage) -> Html {
 
 /// The macro library, its macro highlighted.
 pub fn library() -> Html {
-    listing(LIBRARY, between(LIBRARY, "m:t_encil< := {", "\n}"))
+    listing(LIBRARY, between(LIBRARY, "m:s_tencil< := {", "\n}"))
 }
 
 /// The picture and an unsigned result: dark to bright over 0 .. 1.1.

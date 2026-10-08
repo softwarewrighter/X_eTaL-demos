@@ -27,11 +27,11 @@ From `stencil-macros.xtl`:
 ```
 "s:" u_se< "Stencil"
 
-u:b_lur := { p -> ("1 2 1  2 4 2  1 2 1" s:t_encil< "p") / 16 }
-u:e_dges := { p -> "-1 -1 -1  -1 8 -1  -1 -1 -1" s:t_encil< "p" }
-u:s_harpen := { p -> "0 -1 0  -1 5 -1  0 -1 0" s:t_encil< "p" }
-u:e_mboss := { p -> "-2 -1 0  -1 1 1  0 1 2" s:t_encil< "p" }
-u:h_eat := { p -> p + 0.2 * "0 1 0  1 -4 1  0 1 0" s:t_encil< "p" }
+u:b_lur := { p -> ("1 2 1  2 4 2  1 2 1" s:s_tencil< "p") / 16 }
+u:e_dges := { p -> "-1 -1 -1  -1 8 -1  -1 -1 -1" s:s_tencil< "p" }
+u:s_harpen := { p -> "0 -1 0  -1 5 -1  0 -1 0" s:s_tencil< "p" }
+u:e_mboss := { p -> "-2 -1 0  -1 1 1  0 1 2" s:s_tencil< "p" }
+u:h_eat := { p -> p + 0.2 * "0 1 0  1 -4 1  0 1 0" s:s_tencil< "p" }
 
 warm := 60 'u:h_eat p_ower spot
 ```
@@ -49,7 +49,7 @@ rotations, and only the center is multiplied.
 
 ## How it works
 
-The macro, `m:t_encil<` in `Stencil.xtlm`, is X_eTaL code working on
+The macro, `m:s_tencil<` in `Stencil.xtlm`, is X_eTaL code working on
 text:
 
 | Step | Code | What it is |
@@ -79,7 +79,7 @@ Pick a preset (blur, edges, sharpen, emboss, Sobel, heat, a move, the
 identity, a 5 x 5 blur, a 5 x 5 motion blur) or edit any number of
 the kernel, its side (3 x 3 or 5 x 5), what the sum is divided by,
 and how many steps it is applied. The page writes the kernel into one
-line of the program, `u:s_tep := { p -> "..." s:t_encil< "p" }`, and
+line of the program, `u:s_tep := { p -> "..." s:s_tencil< "p" }`, and
 X_eTaL, compiled to WebAssembly, expands that call with the demo's
 own `Stencil.xtlm` and runs the program on the picture. Beside the
 result are the call, the line it expanded to (with how many terms,

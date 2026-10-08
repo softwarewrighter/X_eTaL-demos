@@ -5,7 +5,7 @@ title = "Stencils by macro"
 summary = "Image kernels written as pictures of numbers, turned into code by a macro library of our own when the program is expanded: blur, edges, sharpen, emboss and heat each cost exactly their nonzero numbers. See the call, what it expands to, and the result."
 wiki = "https://en.wikipedia.org/wiki/Stencil_code"
 idea = "A kernel is data, but its zeros need not cost anything: a macro reads the numbers once, when the program is expanded, and writes one rotation per nonzero number, so the program is the unrolled stencil."
-line = "u:h_eat := { p -> p + 0.2 * \"0 1 0  1 -4 1  0 1 0\" s:t_encil< \"p\" }"
+line = "u:h_eat := { p -> p + 0.2 * \"0 1 0  1 -4 1  0 1 0\" s:s_tencil< \"p\" }"
 concepts = ["macro libraries (.xtlm)", "expansion (xetal expand)", "rotations", "power"]
 status = "live"
 order = 57

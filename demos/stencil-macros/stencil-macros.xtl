@@ -21,14 +21,14 @@ img := 0.1 + (0.6 * f_loat disk) + (0.3 * f_loat box) + 0.001 * f_loat r_oll! (s
 # Each kernel is three rows of three numbers; the
 # macro writes the sum of the shifted copies they
 # weigh, and skips every 0.
-u:b_lur := { p -> ("1 2 1  2 4 2  1 2 1" s:t_encil< "p") / 16 }
-u:e_dges := { p -> "-1 -1 -1  -1 8 -1  -1 -1 -1" s:t_encil< "p" }
-u:s_harpen := { p -> "0 -1 0  -1 5 -1  0 -1 0" s:t_encil< "p" }
-u:e_mboss := { p -> "-2 -1 0  -1 1 1  0 1 2" s:t_encil< "p" }
+u:b_lur := { p -> ("1 2 1  2 4 2  1 2 1" s:s_tencil< "p") / 16 }
+u:e_dges := { p -> "-1 -1 -1  -1 8 -1  -1 -1 -1" s:s_tencil< "p" }
+u:s_harpen := { p -> "0 -1 0  -1 5 -1  0 -1 0" s:s_tencil< "p" }
+u:e_mboss := { p -> "-2 -1 0  -1 1 1  0 1 2" s:s_tencil< "p" }
 # Heat flows to the cooler neighbors: one step adds a
 # fifth of the Laplacian (its four neighbors less four
 # times itself).
-u:h_eat := { p -> p + 0.2 * "0 1 0  1 -4 1  0 1 0" s:t_encil< "p" }
+u:h_eat := { p -> p + 0.2 * "0 1 0  1 -4 1  0 1 0" s:s_tencil< "p" }
 # -- the results ------------------------------------
 smooth := u:b_lur img
 edges := u:e_dges smooth

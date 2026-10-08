@@ -1,6 +1,6 @@
 //! The model: the demo's own X_eTaL program (stencil-macros.xtl) and
 //! macro library (Stencil.xtlm). The page writes the kernel it keeps
-//! into a call of `s:t_encil<`; X_eTaL expands the call (the library
+//! into a call of `s:s_tencil<`; X_eTaL expands the call (the library
 //! is read from the store the page installs) and runs the program on
 //! the demo's picture. Nothing here knows about the browser.
 
@@ -137,7 +137,7 @@ pub fn num(x: f64) -> String {
 
 /// The macro call the page writes (the line the expansion replaces).
 pub fn call(k: &Kernel) -> String {
-    let c = format!("\"{}\" s:t_encil< \"p\"", k.text());
+    let c = format!("\"{}\" s:s_tencil< \"p\"", k.text());
     match k.divide == 1.0 {
         true => format!("u:s_tep := {{ p -> {c} }}"),
         false => format!("u:s_tep := {{ p -> ({c}) / {} }}", num(k.divide)),
