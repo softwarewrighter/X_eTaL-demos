@@ -1,8 +1,9 @@
 number = 2
 slug = "doc-grids-2"
-status = "pending"
+status = "completed"
 description = "Write real ##/### documentation into demos/reaction-diffusion/reaction-diffus..."
 role = "production"
 context_files = []
 created_at = "2026-10-08T08:07:37"
-commits = []
+completed_at = "2026-10-08T14:14:08"
+commits = ["401237f723611f1d9e1ca4b18eb370976e8f2291"]
