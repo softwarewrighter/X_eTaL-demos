@@ -6,9 +6,10 @@ demos, which moved there; they stay here as the record until X_eTaL-ML
 carries them. This repo does not change X_eTaL: each ask is filed
 here (and taken to `../X_eTaL`), the demo uses the workaround noted
 below or waits, and the workaround is removed when the ask lands in the
-pinned release (`XETAL_COMMIT`, now X_eTaL 9c667a3, 175 commits
-after v0.1.0; every ask was re-checked against it on 2026-10-07:
-none changed since v0.1.0). X_eTaL keeps its own
+pinned release (`XETAL_COMMIT`, now X_eTaL 1998414, 206 commits
+after v0.1.0, pinned 2026-10-08 for tuple patterns; every ask was
+re-checked against 9c667a3 on 2026-10-07, and only the tuple ask
+against 1998414). X_eTaL keeps its own
 ledger of these asks (its `docs/asks.md`, D1 to D9).
 
 Each entry: status (open, filed, landed, dropped), kind (feature, bug
@@ -28,7 +29,7 @@ demos work with that are not asks.
 | landed (abb8274) | feature | Number literals with an exponent (`1.5e-7`) | mandelbrot (deep zoom), any page writing small or large Floats into a program | removed: `microscope::run::lit` writes the shortest form, with an exponent when small |
 | open | feature | Complex numbers (planned upstream) | mandelbrot, julia | two Float planes (or two numbers) for the real and imaginary parts |
 | partly landed (abb8274) | feature | Nested arrays: a vector per item. `m_ap` now gives each result boxed, but nothing turns a list of boxes back into a matrix (APL's mix) | mandelbrot (the orbit table) | still two `e_ach` passes, one per part |
-| open | feature | A state of several arrays for `p_ower` (a tuple or record; "named records" is on the upstream wish list) | wave-tank (time), langtons-ant (direction), mandelbrot and julia (counts) | extra planes of one rank-3 array, a scalar stored in every cell |
+| landed (175acf5, X_eTaL PR #111; pinned at 1998414) | feature | A state of several arrays for `p_ower`: tuples `(board, time)`, taken apart by patterns in bindings and lambda parameters | wave-tank (time), langtons-ant (direction), mandelbrot and julia (counts) | still in place in these four (extra planes of one rank-3 array, a scalar stored in every cell), to be removed demo by demo |
 | open | feature | A per-operation evaluation trace (the planned stepping debugger) exposed through `xetal-play` | the microscope shell (all pages) | pages print chosen intermediate arrays with `r_avel` |
 | landed (abb8274) | feature | Transpose (`o_\`, and `t_ranspose` with a permutation) | image-pipeline (ky from kx), attention and embedding-explorer (X_eTaL-ML) | removed in image-pipeline: `ky := o_\ kx` |
 | landed (ffd5526) | bug | A condition bound to a name could not be used in arithmetic (`a := 1 2 > 0` then `1 * a`, `f_loat a` or `'+ r_/ a`); a bound condition now stays Bool and converts as T1 says | image-pipeline (masks) | removed: masks are bound as conditions and made Floats where used (`0.7 * f_loat disk`) |
@@ -519,6 +520,11 @@ number in every cell, read back with `f_irst r_avel`), Langton's ant
 keeps its direction the same way, and the Mandelbrot and Julia states
 carry a count plane. A tuple or record type (the wish list's "named
 records") would let a state be `(board; time)`.
+
+Landed in 175acf5 (X_eTaL PR #111), pinned here at 1998414: a tuple
+`(board, time)` is one value, `p_ower` iterates it, and a pattern
+takes it apart, in a binding (`(b, t) := s`) or a lambda's parameter
+(`{ (b, t) -> ... }`). The four demos above still carry their planes.
 
 ### Per-operation trace
 
