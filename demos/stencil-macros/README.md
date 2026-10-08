@@ -55,10 +55,10 @@ text:
 | Step | Code | What it is |
 | ---- | ---- | ---------- |
 | read | `n_umbers kernel` | the kernel's numbers, as Floats |
-| size | `n s_ide 1` | the side k of the square (1, 3, 5, ...); any other count is refused with `[]R_EJECT` |
+| size | `n h:s_ide 1` | the side k of the square (1, 3, 5, ...); any other count is refused with `[]R_EJECT` |
 | offsets | `(i d_iv k) - c`, `(i m_od k) - c` | each number's row and column offset from the center |
 | cells | `r_avel o_\ (3 c_at n) r_eshape ...` | weight, row offset, column offset, for each number |
-| terms | `t_erms`, `t_erm` | for each weight that is not 0: the array rotated by the offsets (`o_-_1` rows, `o_-_2` columns), times the weight, as text |
+| terms | `h:t_erms`, `h:t_erm` | for each weight that is not 0: the array rotated by the offsets (`o_-_1` rows, `o_-_2` columns), times the weight, as text |
 | join | `" + "` | the terms, each in parentheses, summed |
 
 Each term is parenthesized because X_eTaL reads right to left: written

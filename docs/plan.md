@@ -282,6 +282,7 @@ formerly bare, are now file-private and spelled `h:name`.
 | # | Step slug | Delivers |
 | - | --------- | -------- |
 | 1 | repin | Done 2026-10-07: X_eTaL pinned at 9c667a3 (175 commits after v0.1.0: tuples, the Rosetta stone, errors, quads, and the macros lane's `h:` namespace, PN1-PN7 all implemented, including `xetal migrate FILE`); every golden, web test and browser baseline unchanged; `just bench-check` within +11% at load 18 (baseline kept); every open ask re-run, none changed (confirmed: `xetal run --context` still double-reads standard input) |
+| 2 | migrate-h | Done 2026-10-07: `Stencil.xtlm`'s and `stages/Pipes.xtl`'s bare helper functions (`s_ide`, `t_erms`, `t_erm`, `c_ols`, `r_ows`, `n_um`; `e_nded`, `r_ead1`, `r_eadn`, `r_eadall`) rewritten to `h:name` by `xetal migrate` (uses included); both ran bare with a new `deprecated-private` warning at the repin, now clean. CLAUDE.md rule 10 records the convention (apps keep `u:` for their shown stages; `h:` there is legal but unused so far). Found: the pinned build's `deprecated-private` lint does not yet fire for a bare helper in a macro library (`.xtlm`), only an ordinary library (`.xtl`) -- filed as a minor ask. Side effect, fixed: a bare private helper decorated as `Builtin` (misleadingly, as if it were a real built-in); `h:` decorates it `LibFunc` (the same green as `u:`/`l:`/`m:`), so stencil-macros' library panel and screenshot changed |
 
 ## Saga 4 -- deferred (blocked on asks): MOVED to X_eTaL-ML
 

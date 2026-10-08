@@ -346,6 +346,18 @@ Read before working:
 9. Work is committed directly to `main` and pushed (the user's
    choice); the feat/ -> pr/ branch handoff in the briefing above
    applies only to a parallel lane on its own branch.
+10. Private names (X_eTaL's `h:` namespace, PN1-PN7, decided
+    2026-10-07): in a library `.xtl` or a macro library `.xtlm`, a
+    helper not meant to be imported is `h:name`, never bare (bare is
+    deprecated: `deprecated-private`, which the pinned build's lint
+    raises for `.xtl` libraries, not yet for `.xtlm`); `l:` (or `m:`
+    for a macro) still marks what the file exports. In a demo's own
+    app `.xtl`, a top-level function is still `u:name` (the program's
+    stages, the ones a chip highlights and `xetal type` would list);
+    `h:name` is now legal there too for a true implementation detail
+    with nothing to show, but no demo has needed one yet. `xetal
+    migrate FILE` rewrites a library's bare functions to `h:` (uses
+    included, comments and layout kept); run it after writing one.
 
 ## Every step ends with
 

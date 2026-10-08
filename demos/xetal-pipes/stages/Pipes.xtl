@@ -1,7 +1,7 @@
-# Pipes: what every stage shares. A stage's input is one text, its
-# lines each ending in a newline; l_ines numbers every character by
-# the line it is on, so a stage chooses or reorders whole lines with a
-# mask or a grade over those numbers, never a loop over lines.
+## Pipes: what every stage shares. A stage's input is one text, its
+## lines each ending in a newline; l_ines numbers every character by
+## the line it is on, so a stage chooses or reorders whole lines with
+## a mask or a grade over those numbers, never a loop over lines.
 
 # The end of the input: X_eTaL cannot yet tell when standard input has
 # ended ([]R_EAD fails, docs/xetal-asks.md), so the stage's wrapper
@@ -13,30 +13,30 @@ nl := f_irst "\n"
 z := 1 t_ake []U_CHAR 0
 
 # Whether a text ends with the mark.
-e_nded := { t -> (-1 t_ake t) m_atch z }
+h:e_nded := { t -> (-1 t_ake t) m_atch z }
 
 # One line of standard input with its newline; the mark at the end.
-r_ead1 := { @ -> l := []R_EAD @; l m_atch end ? z; l c_at nl }
+h:r_ead1 := { @ -> l := []R_EAD @; l m_atch end ? z; l c_at nl }
 
 # Up to n lines (the mark at the end once the input has ended): halves
 # read one after the other, so the text is copied about log n times,
 # not once per line.
-r_eadn := { n ->
-  n <= 1 ? r_ead1 @
-  a := r_eadn n d_iv 2
-  e_nded a ? a
-  a c_at r_eadn n - n d_iv 2
+h:r_eadn := { n ->
+  n <= 1 ? h:r_ead1 @
+  a := h:r_eadn n d_iv 2
+  h:e_nded a ? a
+  a c_at h:r_eadn n - n d_iv 2
 }
 
 # Everything up to the end, n lines first, then 2n, 4n, ...
-r_eadall := { n ->
-  a := r_eadn n
-  e_nded a ? -1 d_rop a
-  a c_at r_eadall 2 * n
+h:r_eadall := { n ->
+  a := h:r_eadn n
+  h:e_nded a ? -1 d_rop a
+  a c_at h:r_eadall 2 * n
 }
 
 ## Standard input, every line ending in a newline.
-l:r_ead := { @ -> r_eadall 64 }
+l:r_ead := { @ -> h:r_eadall 64 }
 
 ## Write a text to standard output as it is (no newline added); how
 ## many characters.
