@@ -1,21 +1,34 @@
 #!/usr/bin/env xetal
-# Langton's ant: on a white cell it turns right, on a black cell left;
-# it flips the cell and steps forward. From two rules comes chaos, and
-# then, after about 10000 steps, a "highway" the ant builds forever.
-# Here the ant is arrays: its position is a mask with a single 1, its
-# direction a number; no indexing, no loops, just whole-array steps.
+## Langton's ant: on a white cell it turns right, on a black cell
+## left; it flips the cell and steps forward. From two rules comes
+## chaos, and then, after about 10000 steps, a "highway" the ant
+## builds forever. Here the ant is arrays: its position is a mask
+## with a single 1, its direction a number; no indexing, no loops,
+## just whole-array steps. Run it with "xetal run
+## demos/langtons-ant/langtons-ant.xtl"; it prints the state's shape,
+## the board drawn with characters (black, white, the ant), and how
+## many cells are black. The live page runs it frame by frame and
+## pauses when the highway forms:
+## https://softwarewrighter.github.io/X_eTaL-demos/langtons-ant/
 
-# The board's size and the number of steps.
+## The board's size and the number of steps.
 rows := 21
 cols := 21
 steps := 400
 
-# A matrix as one plane of a rank-3 array, for stacking with c_at.
+## A matrix as one plane of a rank-3 array (u:p_lane), for stacking
+## the state's three planes with c_at.
 u:p_lane := { m -> (1 c_at s_hape m) r_eshape m }
-# -- one step of the ant -----------------------------------------------
-# The state is three planes: the board (0 white, 1 black), the ant's
-# mask (1 where it stands), and its direction (0 up, 1 right, 2 down,
-# 3 left) in every cell.
+
+### One step of the ant
+
+## u:s_tep s: the state s is three planes: the board (0 white, 1
+## black), the ant's mask (1 where it stands), and its direction (0
+## up, 1 right, 2 down, 3 left) in every cell. cell looks up the color
+## under the ant (the board times its mask, summed); turn is right
+## (+1) on white, left (+3, that is -1) on black; flip turns the
+## cell's color over where the mask is 1; dy, dx move the mask one
+## row or column, by its new direction.
 u:s_tep := { s ->
   b := 1 s_elect s
   a := 2 s_elect s

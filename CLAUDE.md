@@ -318,8 +318,15 @@ Read before working:
    Editing a `.xtl`'s comments (adding `##` doc comments, Saga 9
    included) must keep these markers' exact text somewhere verbatim
    (a `##` line can still contain one as a substring, since the search
-   is substring, not whole-line); a CLI `diff` against the golden
-   will not catch a broken marker, only the page's browser check will
+   is substring, not whole-line) -- EXCEPT a marker that ends a slice
+   the page then concatenates with something else (a demo with more
+   than one `section(SOURCE, ...)` call, e.g. `wave-tank`'s `prelude`
+   and `core`, `image-pipeline`'s two): there, writing it as `##`
+   leaves the slice's own first `#` dangling with no newline after it
+   (the match starts at the SECOND `#`), landing glued to whatever is
+   concatenated right after, silently commenting out its first line;
+   keep that one marker a plain `#`. A CLI `diff` against the golden
+   will not catch any of this, only the page's browser check will
    (`just gate`, or `scripts/browser-check.sh SLUG` alone).
 2. X_eTaL is used only at the commit pinned in `XETAL_COMMIT` (the
    layout of `../X_eTaL/docs/vendoring.md`): `just xetal`

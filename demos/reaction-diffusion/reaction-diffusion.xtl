@@ -1,13 +1,22 @@
 #!/usr/bin/env xetal
-# Reaction-diffusion (Gray-Scott): two chemicals U and V on a grid.
-# U is fed in, V eats U to make more V (U + 2V -> 3V), V is removed,
-# and both spread to their neighbors. Every step is a few array
-# expressions over the whole grid: shifts for the spreading, products
-# for the reaction. The patterns (spots, mazes, coral) appear by
-# themselves.
+## Reaction-diffusion (Gray-Scott): two chemicals U and V on a grid.
+## U is fed in, V eats U to make more V (U + 2V -> 3V), V is removed,
+## and both spread to their neighbors. Every step is a few array
+## expressions over the whole grid: four shifted copies for the
+## spreading, products for the reaction. The patterns (spots, mazes,
+## coral) appear by themselves. Run it with "xetal run
+## demos/reaction-diffusion/reaction-diffusion.xtl"; it prints the
+## seeded grid's shape, a maze drawn with characters, and V's total
+## (grown from the seed's 9.0). The live page runs it frame by frame
+## and lets you click a cell for its neighbors and its update's
+## arithmetic: https://softwarewrighter.github.io/X_eTaL-demos/reaction-diffusion/
 
-# The grid size, how fast U and V spread, the feed rate f and the kill
-# rate k (these give a maze), and the steps to run.
+### The settings
+
+## n: the grid's side. du, dv: how fast U and V spread. f, k: the feed
+## and kill rates (0.029, 0.057 gives a maze; coral is 0.0545, 0.062,
+## ripples 0.022, 0.051, spots 0.035, 0.065, worms 0.046, 0.063).
+## steps: how many to run.
 n := 32
 du := 0.2
 dv := 0.1
@@ -15,14 +24,23 @@ f := 0.029
 k := 0.057
 steps := 1200
 
-# A matrix as one plane of a rank-3 array, for stacking with c_at.
+## A matrix as one plane of a rank-3 array (u:p_lane), for stacking
+## U and V with c_at.
 u:p_lane := { m -> (1 c_at s_hape m) r_eshape m }
-# -- the Laplacian: four shifted copies minus four times the center ----
-# How much a cell differs from its four neighbors (the edges wrap).
+
+### The Laplacian: four shifted copies minus four times the center
+
+## u:l_ap x: how much a cell differs from its four neighbors, up down
+## left right (o_-_1, o_-_2), added and the center subtracted four
+## times over (the edges wrap).
 u:l_ap := { x -> ((1 o_-_1 x) + (-1 o_-_1 x) + (1 o_-_2 x) + -1 o_-_2 x) - 4.0 * x }
-# -- one step for every cell at once -----------------------------------
-# The state is two planes, U and V. Spread (du, dv times the Laplacian),
-# react (u * v * v turns U into V), feed U (f), remove V (f + k).
+
+### One step for every cell at once
+
+## u:s_tep s: the state s is two planes, U and V. Each spreads by its
+## own rate times its Laplacian; u * v * v is where V meets U and
+## turns U into V (the reaction); U is fed at rate f, V removed at
+## rate f + k.
 u:s_tep := { s ->
   u := 1 s_elect s
   v := 2 s_elect s
@@ -31,16 +49,17 @@ u:s_tep := { s ->
 }
 # -- end of the core ---------------------------------------------------
 
-# Start: U everywhere, a square of V off the center.
+## sq, seed, s0: the start, U everywhere, a square of V off the center.
 sq := ((o_ffsets n) >= 10) & (o_ffsets n) < 16
 seed := f_loat sq '& t_able sq
 s0 := (u:p_lane 1.0 - 0.5 * seed) c_at u:p_lane 0.25 * seed
 s_hape s0
 
-# Run the steps, and draw V: a character per cell by how much V it has.
+## s, v: the state after all the steps (function power), and V's
+## plane; drawn with a character per cell by how much V it has.
 s := steps 'u:s_tep p_ower s0
 v := 2 s_elect s
 (1 + f_loor 4.99 * (v m_in 0.399) / 0.4) s_elect " .:o@"
 
-# The total of V, rounded: the pattern has grown from the seed's 9.0.
+## The total of V, rounded: the pattern has grown from the seed's 9.0.
 (f_loor 0.5 + 100 * '+ r_/ r_avel v) / 100

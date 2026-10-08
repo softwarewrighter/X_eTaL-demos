@@ -1,12 +1,21 @@
 #!/usr/bin/env xetal
-# A wave tank: the wave equation on a grid. Each step, every cell moves
-# towards the average of its neighbors, carrying momentum from the step
-# before: next = 2 u - previous + c^2 * (neighbors - 4 u). Walls are a
-# mask, a source shakes up and down, and waves spread, bend through
-# slits and interfere, all as array expressions over the whole grid.
+## A wave tank: the wave equation on a grid. Each step, every cell
+## moves towards the average of its neighbors, carrying momentum from
+## the step before: next = 2 u - previous + c^2 * (neighbors - 4 u).
+## Walls are a mask, a source shakes up and down, and waves spread,
+## bend through slits and interfere, all as array expressions over
+## the whole grid. Run it with "xetal run
+## demos/wave-tank/wave-tank.xtl"; it prints the state's shape and the
+## surface drawn with characters (crests, troughs, the wall). The live
+## page picks the scene (a double slit, a lens, two sources, an open
+## tank) and lets you click for ripples:
+## https://softwarewrighter.github.io/X_eTaL-demos/wave-tank/
 
-# The tank: rows and columns, the wave speed squared c2 (at most 0.5
-# for a stable step), and the source's strength and frequency.
+### The tank
+
+## rows, cols: the grid's size. c2: the wave speed squared (at most
+## 0.5 for a stable step). amp, omega: the source's strength and
+## frequency. steps: how many to run.
 rows := 36
 cols := 72
 c2 := 0.3
@@ -14,26 +23,45 @@ amp := 0.5
 omega := 0.5
 steps := 150
 
-# A matrix as one plane of a rank-3 array, for stacking with c_at.
+## A matrix as one plane of a rank-3 array (u:p_lane), for stacking
+## the state's three planes with c_at.
 u:p_lane := { m -> (1 c_at s_hape m) r_eshape m }
-# -- coordinates and the sponge ----------------------------------------
-# Each cell's row and column, by broadcasting. Near the edges the
-# surface is damped (a sponge), so waves leave instead of wrapping around.
+
+### Coordinates and the sponge
+
+## col, row: each cell's position, by broadcasting.
+## edge, damp: a cell's distance to the border; near the edges the
+## surface is damped (a sponge), so waves leave instead of wrapping
+## around.
 col := (o_ffsets rows) 'r_ight t_able o_ffsets cols
 row := (o_ffsets rows) 'l_eft t_able o_ffsets cols
 edge := (row m_in (rows - 1) - row) m_in col m_in (cols - 1) - col
 damp := 1.0 - 0.03 * f_loat 0 m_ax 8 - edge
-# -- the scene: a double slit, as masks --------------------------------
-# A wall down column 30 with two gaps (the slits); the source is the
-# whole of column 10, a plane wave.
+
+# -- the scene: a double slit, as masks (plain #: the page's web
+# app finds this exact text to cut the program it runs, right up to
+# it, so a ## here would leave a stray # in what it cuts). slits,
+# wall: a wall down column 30 with two gaps. src: the source, the
+# whole of column 10, a plane wave. The live page replaces this
+# scene with the one you pick (a double slit, a single slit, two
+# sources, a lens, an open tank), each its own wall and src built
+# the same way, from row and col.
 slits := ((row >= 13) & row < 16) | (row >= 20) & row < 23
 wall := f_loat n_ot (col = 30) & n_ot slits
 src := f_loat col = 10
-# -- the Laplacian: four shifted copies minus four times the center ---
+
+## -- the Laplacian: four shifted copies minus four times the center.
+## u:l_ap x: how much a cell differs from its four neighbors, up down
+## left right (o_-_1, o_-_2), added and the center subtracted four
+## times over (the edges wrap).
 u:l_ap := { x -> ((1 o_-_1 x) + (-1 o_-_1 x) + (1 o_-_2 x) + -1 o_-_2 x) - 4.0 * x }
-# -- one step for every cell at once -----------------------------------
-# The state is three planes: the surface now, the surface a step ago,
-# and the time (the same everywhere). Walls hold the surface at 0.
+
+### One step for every cell at once
+
+## u:s_tep s: the state s is three planes, the surface now, the
+## surface a step ago, and the time (the same everywhere, carried so
+## the source's drive, a sine, can read it). Walls hold the surface
+## at 0 (damp * wall both zero there).
 u:s_tep := { s ->
   u := 1 s_elect s
   p := 2 s_elect s
@@ -44,11 +72,13 @@ u:s_tep := { s ->
 }
 # -- end of the core ---------------------------------------------------
 
+## s0, s: the still surface, then the state after all the steps
+## (function power).
 s0 := (3 c_at rows c_at cols) r_eshape 0.0
 s := steps 'u:s_tep p_ower s0
 s_hape s
 
-# The surface: = and - troughs, + and * crests, # the wall.
+## The surface: = and - troughs, + and * crests, # the wall.
 u := 1 s_elect s
 h := f_loat 1 + f_loor 2.5 + 2.0 * (u m_ax -1.2) m_in 1.2
 (f_loor (wall * h) + (1.0 - wall) * 6.0) s_elect "=- +*#"

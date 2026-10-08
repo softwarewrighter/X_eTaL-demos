@@ -340,9 +340,21 @@ before step 2 (also now CLAUDE.md rule 1 for the first):
   line can still contain one as a substring (`## Numbers centered on
   0 (...)` contains "# Numbers centered on 0", since the search is
   substring, not whole-line), and a deleted end marker just needs its
-  plain `#` line put back. Rebuild `pages/doc` AND `just pages`
-  (the demo's own web app) and run `just gate`, not only `xetal doc
-  --test`, before calling a file done.
+  plain `#` line put back. A second, subtler case bit `wave-tank.xtl`
+  (two `section()` calls, `prelude` and `core`): writing its `prelude`
+  END marker as `##` left that slice's own first `#` dangling with no
+  newline after it (the match starts at the SECOND `#`), and the page
+  concatenates `prelude` directly with the scene code it injects, so
+  the stray `#` commented out the scene's first line (`c2 := 0.3`),
+  one further step removed from the marker text itself -- caught the
+  same way, a browser-check error ("c2 is not defined"), traced by
+  reconstructing the exact concatenation by hand and feeding it to
+  `bin/xetal run`. That one marker stayed a plain `#` (CLAUDE.md rule
+  1 has the general form: a marker ending a slice the page then
+  concatenates with something else must stay plain). Rebuild
+  `pages/doc` AND `just pages` (the demo's own web app) and run
+  `just gate`, not only `xetal doc --test`, before calling a file
+  done; `image-pipeline.xtl` (step 4) has two `section()` calls too.
 - **Quoting in prose.** The doc renderer decorates a `##` comment's
   prose the same way it decorates code, so a bare mention of a path or
   a command with a `/` in it comes out with the `/` drawn as a

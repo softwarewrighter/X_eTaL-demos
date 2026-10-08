@@ -1,30 +1,42 @@
 #!/usr/bin/env xetal
-# A cellular automata lab. Every rule here is a lookup table: each
-# cell's neighborhood becomes a number, by rotations and arithmetic
-# over the whole array, and the number picks the cell's next state
-# from the table. Changing the rule is changing the table.
+## A cellular automata lab. Every rule here is a lookup table: each
+## cell's neighborhood becomes a number, by rotations and arithmetic
+## over the whole array, and the number picks the cell's next state
+## from the table (s_elect). Changing the rule is changing the table.
+## Run it with "xetal run demos/ca-lab/ca-lab.xtl"; it prints Rule 30
+## and Rule 90 as sixteen-generation boards, Life, Brian's Brain and
+## Wireworld, each drawn with characters. The live page lets you edit
+## the table and the board, one and two dimensions each their own
+## view: https://softwarewrighter.github.io/X_eTaL-demos/ca-lab/
 
-# -- one dimension: Wolfram's elementary rules -------------------------
-# A rule number's 8 bits are the table: the next state for each of the
-# 8 neighborhoods (left, center, right), numbered 4 * left + 2 *
-# center + right.
+## -- one dimension: Wolfram's elementary rules.
+## u:b_its rule: a rule number's 8 bits are the table: the next state
+## for each of the 8 neighborhoods (left, center, right), numbered
+## 4 * left + 2 * center + right.
 u:b_its := { rule -> (rule d_iv 2 ^ o_ffsets 8) m_od 2 }
-# The next row: each cell's neighborhood number, by rotation, looks up
-# its next state in the table (1 + because s_elect counts from 1).
+## u:r_ow tbl r: the next row. Each cell's neighborhood number, by
+## rotation, looks up its next state in the table (1 + because
+## s_elect counts from 1).
 u:r_ow := { tbl r -> (1 + (4 * -1 o_- r) + (2 * r) + 1 o_- r) s_elect tbl }
-# The history grows downward: rotate the rows up one, and put the next
-# row (of the last one) at the bottom. Start with every row the first.
+## u:g_row tbl h: the history grows downward: rotate the rows up one,
+## and put the next row (of the last one) at the bottom. Start with
+## every row the first.
 u:g_row := { tbl h ->
   g := f_irst s_hape h
   n := 2 s_elect s_hape h
   keep := 1 * ((o_ffsets g) < g - 1) 'l_eft t_able o_ffsets n
   (keep * 1 o_-_1 h) + (1 - keep) * (g c_at n) r_eshape tbl u:r_ow g s_elect h
 }
-# -- two dimensions: a table on (state, neighbors in state 1) ---------
-# Each cell's number is its state * 9 + how many of its 8 neighbors
-# are in state 1 (alive, firing, an electron's head); the table holds
-# the next state for each number.
+
+### Two dimensions: a table on (state, neighbors in state 1)
+
+## u:c_ount b: each cell's number of neighbors in state 1 (alive,
+## firing, an electron's head): nine rotated copies of b = 1 summed,
+## minus the cell itself.
 u:c_ount := { b -> ('+ r_/_12 -1 0 1 o_-_12 1 * b = 1) - 1 * b = 1 }
+## u:l_ook tbl b: the next state from a table with a row per state and
+## a column per count: each cell's number is its state * 9 plus its
+## count of live neighbors.
 u:l_ook := { tbl b -> (1 + (9 * b) + u:c_ount b) s_elect tbl }
 # -- end of the core ---------------------------------------------------
 
