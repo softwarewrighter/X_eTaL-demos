@@ -1,18 +1,13 @@
-# Saga: macros
+# Saga: private-names
 
-Goal: move to X_eTaL's current main and prove "extensible" with a demo
-built on a user macro library, showing what the macros expand to.
+Goal: follow X_eTaL's new h: namespace (private file-local names,
+PN1-PN7): library .xtl and .xtlm files no longer leave helper
+functions bare; app .xtl files may use h: too, though their u:
+functions (the program's "stages") stay u:.
 
-1. repin: pin X_eTaL main (882aa76) in XETAL_COMMIT; goldens, web
-   tests and `just bench-check`; re-check every ask against it; write
-   down what X_eTaL's asks ledger (its docs/asks.md, asks.toml) needs
-   to change for this repo.
-2. stencil-macros-cli: a demo whose user macro library
-   (Stencil.xtlm) turns a kernel written as a picture of numbers into
-   rotation arithmetic at expansion time (zero entries vanish); its
-   .xtl applies several kernels (blur, edges, Laplacian diffusion);
-   CLI goldens, including the `xetal expand` output; README; asks for
-   anything missing.
-3. stencil-macros-web: the page: edit the kernel, see the macro call,
-   its expansion and the result image update; browser baseline,
-   screenshot, catalog, pages; release notes in README and plan.
+1. repin: pin X_eTaL main (the commit with PN1/PN4/PN5/PN7
+   implemented) in XETAL_COMMIT; goldens, web, browser, bench-check.
+2. migrate-h: Stencil.xtlm's and Pipes.xtl's bare private helper
+   functions (and Pipes.xtl's bare private variables) become h:;
+   every call site updated; a CLAUDE.md rule records the convention;
+   docs updated where they show these names.

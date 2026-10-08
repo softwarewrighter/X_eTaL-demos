@@ -1,0 +1,1 @@
+macros saga done (stencil-macros, xetal-pipes); next saga starts fresh
