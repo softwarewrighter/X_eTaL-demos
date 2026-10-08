@@ -1610,6 +1610,7 @@ dependencies = [
 name = "xetal-frame"
 version = "0.1.0"
 dependencies = [
+ "xetal-array",
  "xetal-base",
  "xetal-core",
  "xetal-kernel",
@@ -1755,8 +1756,10 @@ dependencies = [
  "xetal-radix",
  "xetal-rotate",
  "xetal-search",
+ "xetal-source",
  "xetal-struct",
  "xetal-system",
+ "xetal-table",
  "xetal-transpose",
  "xetal-value",
 ]
@@ -1791,6 +1794,7 @@ dependencies = [
  "xetal-array",
  "xetal-base",
  "xetal-clock",
+ "xetal-store",
  "xetal-value",
 ]
 
@@ -1840,6 +1844,16 @@ dependencies = [
  "xetal-libs",
  "xetal-prim-types",
  "xetal-ty",
+]
+
+[[package]]
+name = "xetal-source"
+version = "0.1.0"
+dependencies = [
+ "xetal-array",
+ "xetal-base",
+ "xetal-value",
+ "xetal-view",
 ]
 
 [[package]]
@@ -1901,6 +1915,17 @@ dependencies = [
  "xetal-draw",
  "xetal-store",
  "xetal-tty",
+ "xetal-value",
+]
+
+[[package]]
+name = "xetal-table"
+version = "0.1.0"
+dependencies = [
+ "toml",
+ "xetal-array",
+ "xetal-base",
+ "xetal-store",
  "xetal-value",
 ]
 

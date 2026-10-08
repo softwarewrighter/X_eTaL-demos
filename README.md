@@ -204,7 +204,7 @@ only commit of the `gh-pages` branch, which GitHub Pages serves at
 ## Status
 
 Twelve demos are live on a shared page shell, each runnable at the
-command line and in the browser on the pinned X_eTaL (v0.1.0, 512b3ee): the
+command line and in the browser on the pinned X_eTaL (9c667a3): the
 Life microscope, Mandelbrot and Julia sets, reaction-diffusion, the
 wave tank, the cellular automata lab, Langton's ant, the abelian
 sandpile, N-body gravity, Fourier epicycles, the image pipeline and

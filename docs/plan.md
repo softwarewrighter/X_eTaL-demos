@@ -259,7 +259,7 @@ pages (stage chips, inspectors, the line on each card), a fresh clone
 running `just run nbody`, every page in headless Chrome (the gate's
 browser baselines).
 
-## Saga 6 -- macros
+## Saga 6 -- macros  [DONE]
 
 Goal: move to X_eTaL's current main and prove "extensible" (research3:
 the claim no demo showed) with a demo built on a user macro library,
@@ -272,6 +272,16 @@ showing what its macros expand to.
 | 3 | repin-v010 | Done 2026-10-05: X_eTaL v0.1.0 pinned (512b3ee, the commit its tag names; 23 commits after 882aa76); every CLI golden, web test and browser baseline unchanged (the gate rebuilt the site on it); `just bench-check` within +9% at load 15 (baseline kept); every open ask re-run, none changed |
 | 4 | stencil-macros-web | Done 2026-10-05: the page writes the kernel into `u:s_tep`'s macro call; X_eTaL (wasm) expands it with `Stencil.xtlm` from an in-memory store and runs it; panels: result (signed when the kernel sums to 0), picture, kernel editor (10 presets, 3 x 3 / 5 x 5, divisor, steps), a cell's terms, the call and its expansion with counts, the macro, the program; tests (every preset and edits against a direct loop, term and multiply counts, the heat expansion exactly, a cell's terms, a non-square kernel refused); browser baseline (its marker is a term of the expansion as the page draws it: `*` is drawn as a times sign); screenshot; live. New ask: `xetal-play` has no way to add a page's own library or expand (workaround: three crates by path) |
 | 5 | xetal-pipes | Done 2026-10-05: seven stages (`stages/*.xtl`) and their shared `Pipes.xtl` (a halving reader: 20,000 lines in 0.3 s, not 9 s; exact output by `[]N_PUT "/dev/stdout"`; per-character line numbers by a scan; a padded line matrix); `bin/xetal-stage` and its seven links; `test.sh` compares every stage and both pipelines with the Unix tools on six inputs (empty, blank lines, no final newline, 300 lines), stderr empty; `xetal-pipes.xtl` shows the arrays; `demo.tape` (vhs, `just tape`) -> `demo.gif`, also the catalog card's picture for a command-line demo. Found an X_eTaL bug: `--context` reads standard input twice (filed; the arguments go in a copy of the stage instead). Fixed on the way: the catalog's key lines were undecorated since the pin change (`build-catalog.py` still called the removed `build-xetal.sh`) |
+
+## Saga 7 -- private names (X_eTaL's h: namespace)
+
+Goal: follow X_eTaL's new `h:` namespace (PN1-PN7, decided 2026-10-07
+in `../X_eTaL/docs/private-names.md`): a library's helper functions,
+formerly bare, are now file-private and spelled `h:name`.
+
+| # | Step slug | Delivers |
+| - | --------- | -------- |
+| 1 | repin | Done 2026-10-07: X_eTaL pinned at 9c667a3 (175 commits after v0.1.0: tuples, the Rosetta stone, errors, quads, and the macros lane's `h:` namespace, PN1-PN7 all implemented, including `xetal migrate FILE`); every golden, web test and browser baseline unchanged; `just bench-check` within +11% at load 18 (baseline kept); every open ask re-run, none changed (confirmed: `xetal run --context` still double-reads standard input) |
 
 ## Saga 4 -- deferred (blocked on asks): MOVED to X_eTaL-ML
 

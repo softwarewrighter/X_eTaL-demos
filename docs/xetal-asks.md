@@ -6,9 +6,9 @@ demos, which moved there; they stay here as the record until X_eTaL-ML
 carries them. This repo does not change X_eTaL: each ask is filed
 here (and taken to `../X_eTaL`), the demo uses the workaround noted
 below or waits, and the workaround is removed when the ask lands in the
-pinned release (`XETAL_COMMIT`, now X_eTaL v0.1.0, 512b3ee; every
-ask was re-checked against it on 2026-10-05: none changed since
-882aa76). X_eTaL keeps its own
+pinned release (`XETAL_COMMIT`, now X_eTaL 9c667a3, 175 commits
+after v0.1.0; every ask was re-checked against it on 2026-10-07:
+none changed since v0.1.0). X_eTaL keeps its own
 ledger of these asks (its `docs/asks.md`, D1 to D9).
 
 Each entry: status (open, filed, landed, dropped), kind (feature, bug
@@ -85,7 +85,8 @@ store, or a store of its own if none) and `xetal_play::expanded(src)
 
 ## For the X_eTaL agent: four asks for programs in a Unix pipe
 
-Found 2026-10-05 against 882aa76 (and still so at 512b3ee), building
+Found 2026-10-05 against 882aa76 (still so at 512b3ee and at 9c667a3),
+building
 `xetal-pipes` (now live at the command line; each workaround is in its
 README): X_eTaL
 programs as Unix pipeline stages (`xetalcat FILE | xetaluniq |
