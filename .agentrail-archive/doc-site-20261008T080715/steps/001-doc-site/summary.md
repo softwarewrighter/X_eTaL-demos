@@ -1,0 +1,1 @@
+pages/doc/: a cross-reference site (xetal doc --out), as X_eTaL's own publishes. scripts/doc-site.sh documents the 2 library files and 13 demo programs (32 pages); wired into build-pages.sh (just pages, just doc); README links the live page. Checked locally in Chrome. Saga done (mechanical part only; content, Saga 9, is separate and queued).

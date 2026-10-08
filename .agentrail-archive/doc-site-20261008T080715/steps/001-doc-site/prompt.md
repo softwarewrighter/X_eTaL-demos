@@ -1,0 +1,1 @@
+Build a cross-reference site for this repo (xetal doc --out), as X_eTaL's own scripts/doc-site.sh does: scripts/doc-site.sh documenting Stencil.xtlm, stages/Pipes.xtl, and each demo's own <slug>.xtl; wired into build-pages.sh (just pages rebuilds it; just doc builds it alone); README links the live page, as X_eTaL's README links its own; publish and check-live.
