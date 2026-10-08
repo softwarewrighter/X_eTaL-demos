@@ -188,6 +188,7 @@ web app.
 ```bash
 just serve SLUG       # one demo's web app at http://127.0.0.1:8413/, rebuilt on change
 just pages            # build the whole site into pages/
+just doc              # build only the cross-reference into pages/doc/
 just publish          # publish it (the gh-pages branch)
 just check-live       # check every published page runs X_eTaL
 just serve-pages      # preview pages/ at http://127.0.0.1:8413/X_eTaL-demos/
@@ -199,7 +200,10 @@ web app into `pages/<slug>/` and writes the catalog, `pages/index.html`,
 from the demos' `demo.toml` files. `pages/` is not tracked on `main`:
 `just publish` builds it from the current commit and pushes it as the
 only commit of the `gh-pages` branch, which GitHub Pages serves at
-<https://softwarewrighter.github.io/X_eTaL-demos/>.
+<https://softwarewrighter.github.io/X_eTaL-demos/>. `pages/doc/` is
+the cross-reference (`xetal doc`, as X_eTaL's own site builds):
+every demo's program and the two library files, typed and linked,
+at <https://softwarewrighter.github.io/X_eTaL-demos/doc/>.
 
 ## Status
 
@@ -219,6 +223,11 @@ X_eTaL. See [`docs/plan.md`](docs/plan.md) for the roadmap.
 
 ## Documentation
 
+- [The cross-reference](https://softwarewrighter.github.io/X_eTaL-demos/doc/)
+  -- every demo's program and the two library files
+  (`Stencil.xtlm`, `Pipes.xtl`), each name typed, documented from its
+  `##` comments where it has them, linked to its definition and its
+  uses (`xetal doc`, built by `just pages`)
 - [`docs/plan.md`](docs/plan.md) -- architecture decisions, the
   gallery, the roadmap
 - [`docs/xetal-asks.md`](docs/xetal-asks.md) -- features and fixes the

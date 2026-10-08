@@ -284,6 +284,46 @@ formerly bare, are now file-private and spelled `h:name`.
 | 1 | repin | Done 2026-10-07: X_eTaL pinned at 9c667a3 (175 commits after v0.1.0: tuples, the Rosetta stone, errors, quads, and the macros lane's `h:` namespace, PN1-PN7 all implemented, including `xetal migrate FILE`); every golden, web test and browser baseline unchanged; `just bench-check` within +11% at load 18 (baseline kept); every open ask re-run, none changed (confirmed: `xetal run --context` still double-reads standard input) |
 | 2 | migrate-h | Done 2026-10-07: `Stencil.xtlm`'s and `stages/Pipes.xtl`'s bare helper functions (`s_ide`, `t_erms`, `t_erm`, `c_ols`, `r_ows`, `n_um`; `e_nded`, `r_ead1`, `r_eadn`, `r_eadall`) rewritten to `h:name` by `xetal migrate` (uses included); both ran bare with a new `deprecated-private` warning at the repin, now clean. CLAUDE.md rule 10 records the convention (apps keep `u:` for their shown stages; `h:` there is legal but unused so far). Found: the pinned build's `deprecated-private` lint does not yet fire for a bare helper in a macro library (`.xtlm`), only an ordinary library (`.xtl`) -- filed as a minor ask. Side effect, fixed: a bare private helper decorated as `Builtin` (misleadingly, as if it were a real built-in); `h:` decorates it `LibFunc` (the same green as `u:`/`l:`/`m:`), so stencil-macros' library panel and screenshot changed |
 
+## Saga 8 -- doc-site (a cross-reference, the mechanical part)  [DONE]
+
+Goal: a cross-reference site for this repo, as X_eTaL's own
+`scripts/doc-site.sh` builds for itself (`xetal doc --out`), checked
+against `https://softwarewrighter.github.io/X_eTaL/doc/`: every
+demo's program and the two library files, typed, linked to their
+definitions and uses. The user, 2026-10-08. Mechanical only: no
+`##`/`###` doc comments added to the demos' own `.xtl` (Saga 9).
+
+| # | Step slug | Delivers |
+| - | --------- | -------- |
+| 1 | doc-site | Done 2026-10-08: `scripts/doc-site.sh` (modeled on X_eTaL's own) documents `Stencil.xtlm`, `stages/Pipes.xtl` and each demo's `<slug>.xtl` (13); left out: `xetal-pipes/stages/{cat,wc,...}.xtl` (an undefined `args`, the wrapper's job) and `stencil-macros/check.xtl` (a correctness check, not a demo). Wired into `build-pages.sh` (`just pages` rebuilds it, `just doc` alone; the demo-cleanup loop now skips `pages/doc/`, which is not a slug). README links the live page (`## Documentation`, `## The live site`), as X_eTaL's README links its own. 32 pages; published and checked live |
+
+## Saga 9 -- doc content (`##`/`###` comments on the demos' own `.xtl`)
+
+Goal: the demos' own programs are undocumented by `xetal doc` (plain
+`#` throughout; Saga 8 built the site, but a demo's page there is
+structure only, no prose), unlike X_eTaL's own `demos/*.xtl`, every
+one of which carries real `##`/`###` documentation (3 to 49 lines
+each) specifically so its cross-reference is worth reading. The user,
+2026-10-08, high priority: this repository's purpose is demos, which
+includes demonstrating X_eTaL's tools, their output, and its
+commenting conventions -- content, not structure, is what is missing
+and wanted.
+
+Scope: `##` prose (what the program shows, why as arrays) and `###`
+section headings on each of the 13 demos' `<slug>.xtl` (matching each
+demo's README, not duplicating it line for line); a `## >>` runnable
+example only where one is short, self-contained and low-risk (most of
+these programs print large arrays, which do not make good doctests).
+Re-run `xetal doc --test` on each after, and `just gate` (comments do
+not change a program's output, so no golden should move).
+
+| # | Step slug | Delivers |
+| - | --------- | -------- |
+| 1 | doc-grids-1 | `##`/`###` on `life-microscope.xtl`, `mandelbrot.xtl`, `julia.xtl` |
+| 2 | doc-grids-2 | `##`/`###` on `reaction-diffusion.xtl`, `wave-tank.xtl`, `ca-lab.xtl`, `langtons-ant.xtl` |
+| 3 | doc-start-here | `##`/`###` on `sandpile.xtl`, `nbody.xtl`, `fourier-epicycles.xtl` |
+| 4 | doc-macros | `##`/`###` on `image-pipeline.xtl`, `stencil-macros.xtl`, `xetal-pipes.xtl` (its stage files stay out, as Saga 8 left them out of the site) |
+
 ## Saga 4 -- deferred (blocked on asks): MOVED to X_eTaL-ML
 
 All four demos below are machine learning: X_eTaL-ML plans them

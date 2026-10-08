@@ -72,6 +72,10 @@ bench-check: xetal
 pages:
     scripts/build-pages.sh
 
+# Build only the cross-reference site into pages/doc (just pages builds it too)
+doc:
+    scripts/doc-site.sh
+
 # Publish the site: build pages/ from this commit and make it the gh-pages branch's only commit (needs a clean work tree)
 publish:
     scripts/publish-pages.sh

@@ -3,7 +3,8 @@
 # workflow publishes that folder as it is (nothing is built on GitHub).
 #   - every demo with a web app (demos/<slug>/web/) is built with trunk
 #     into pages/<slug>/, served under /X_eTaL-demos/<slug>/;
-#   - pages/index.html, the catalog, from every demo.toml.
+#   - pages/index.html, the catalog, from every demo.toml;
+#   - pages/doc/, the cross-reference (scripts/doc-site.sh).
 # A demo removed from demos/ loses its pages/<slug>/.
 #   scripts/build-pages.sh
 set -euo pipefail
@@ -31,12 +32,15 @@ while IFS= read -r slug; do
   # The catalog card's picture, when the demo has one (just screenshots).
   if [ -f "$root/demos/$slug/screenshot.png" ]; then cp "$root/demos/$slug/screenshot.png" "$root/pages/$slug/"; fi
 done < <("$root/scripts/demos.py" list)
-# Drop pages/<slug>/ of demos that no longer have a web app.
+# Drop pages/<slug>/ of demos that no longer have a web app (doc/ is
+# not a demo slug; scripts/doc-site.sh below owns it).
 for d in "$root"/pages/*/; do
   [ -d "$d" ] || continue
   s="$(basename "$d")"
+  [ "$s" = doc ] && continue
   printf '%s\n' ${keep[@]+"${keep[@]}"} | grep -qx "$s" || { echo "removing pages/$s/"; rm -rf "$d"; }
 done
 cp "$root/images/modern-xetal-logo.jpg" "$root/images/favicon.ico" "$root/pages/"
 "$root/scripts/build-catalog.py"
+"$root/scripts/doc-site.sh"
 echo "pages/ built (not tracked); just publish publishes it."
