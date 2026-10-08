@@ -1,0 +1,1 @@
+Write real ##/### documentation into demos/reaction-diffusion/reaction-diffusion.xtl, demos/wave-tank/wave-tank.xtl, demos/ca-lab/ca-lab.xtl and demos/langtons-ant/langtons-ant.xtl, same approach and checks as doc-grids-1.

@@ -1,0 +1,8 @@
+number = 1
+slug = "doc-grids-1"
+status = "pending"
+description = "Write real ##/### documentation into demos/life-microscope/life-microscope.xt..."
+role = "production"
+context_files = []
+created_at = "2026-10-08T08:07:37"
+commits = []

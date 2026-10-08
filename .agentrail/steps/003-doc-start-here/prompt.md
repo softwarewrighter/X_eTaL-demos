@@ -1,0 +1,1 @@
+Write real ##/### documentation into demos/sandpile/sandpile.xtl, demos/nbody/nbody.xtl and demos/fourier-epicycles/fourier-epicycles.xtl, same approach and checks as doc-grids-1.
