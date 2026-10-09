@@ -3,7 +3,7 @@ use wave_tank_web::micro::{core, prelude, run, Surface, COLS, ROWS, SCENES, SOUR
 #[test]
 fn the_page_runs_the_command_line_programs_sections() {
     assert!(prelude().contains("damp := "));
-    assert!(core().contains("u:s_tep := { s ->"));
+    assert!(core().contains("u:s_tep := { (u, p, t) ->"));
     assert!(SOURCE.contains(prelude()) && SOURCE.contains(core()));
 }
 

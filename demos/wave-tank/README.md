@@ -29,13 +29,10 @@ slits := ((row >= 13) & row < 16) | (row >= 20) & row < 23
 wall := f_loat n_ot (col = 30) & n_ot slits
 src := f_loat col = 10
 u:l_ap := { x -> ((1 o_-_1 x) + (-1 o_-_1 x) + (1 o_-_2 x) + -1 o_-_2 x) - 4.0 * x }
-u:s_tep := { s ->
-  u := 1 s_elect s
-  p := 2 s_elect s
-  t := 3 s_elect s
-  drive := amp * src * s_in omega * f_irst r_avel t
+u:s_tep := { (u, p, t) ->
+  drive := amp * src * s_in omega * t
   nxt := damp * wall * ((2.0 * u) - p) + (c2 * u:l_ap u) + drive
-  (u:p_lane nxt) c_at (u:p_lane u) c_at u:p_lane t + 1.0
+  (nxt, u, t + 1.0)
 }
 ```
 
@@ -47,7 +44,7 @@ u:s_tep := { s ->
 | the sponge | `damp` | rows cols | 1 inside, less within 8 cells of an edge: waves fade out there instead of wrapping around (rotation wraps) |
 | the scene | `wall`, `src`, `c2` | rows cols | masks built from `row` and `col` with comparisons, `&`, `|` and `n_ot`; `c2` is a number, or a map for a lens |
 | spread | `u:l_ap u` | rows cols | four shifted copies minus four times the surface |
-| step | `u:s_tep s` | 3 rows cols | the surface now, a step ago, and the time |
+| step | `u:s_tep (u, p, t)` | rows cols, a 3-tuple | the surface now, a step ago, and the time, taken apart by the pattern and given back as a new tuple |
 
 The same step serves every scene: `c2 * u:l_ap u` works whether `c2`
 is one number or a map of slow water (scalar extension). The page's
@@ -76,7 +73,10 @@ just test-demo wave-tank    # its CLI and browser baselines and the web app's te
 
 ## Workarounds
 
-The time is carried as a third plane of the state (the same number in
-every cell) because the state must be one array; the step reads it
-with `f_irst r_avel t`. The page passes the surface into each run as
-literal matrices, because each run is a fresh X_eTaL program.
+The page passes the surface into each run as literal matrices,
+because each run is a fresh X_eTaL program. (The time used to be
+carried as a third plane of the state, the same number in every cell,
+read back with `f_irst r_avel t`, because the state had to be one
+array; removed now that X_eTaL has tuples, landed D7: the state is
+`(u, p, t)`, t a plain scalar.) Listed in
+[`docs/xetal-asks.md`](../../docs/xetal-asks.md).

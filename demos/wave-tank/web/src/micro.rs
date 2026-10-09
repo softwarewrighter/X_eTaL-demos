@@ -8,9 +8,9 @@ use microscope::run::{lit_or_zero, matrix, numbers, output, section};
 /// The command-line program; the page runs its sections.
 pub const SOURCE: &str = include_str!("../../wave-tank.xtl");
 
-/// `u:p_lane`, coordinates and the sponge (`row`, `col`, `edge`, `damp`).
+/// Coordinates and the sponge (`row`, `col`, `edge`, `damp`).
 pub fn prelude() -> &'static str {
-    section(SOURCE, "# A matrix as one plane", "# -- the scene")
+    section(SOURCE, "# Coordinates and the sponge", "# -- the scene")
 }
 
 /// The Laplacian and the step.
@@ -89,10 +89,10 @@ pub fn program(s: &Surface, scene: usize, steps: usize) -> String {
     let params = format!("rows := {ROWS}\ncols := {COLS}\namp := 0.5\nomega := 0.6\n");
     let m = |name: &str, xs: &[f64]| matrix(name, ROWS, COLS, xs.iter().map(|&x| lit(x)));
     let run = format!(
-        "s0 := (u:p_lane u0) c_at (u:p_lane p0) c_at u:p_lane {} + 0.0 * u0\n\
-         s := {} 'u:s_tep p_ower s0\ns1 := u:s_tep s\nu := 1 s_elect s\n\
-         r_avel u\nr_avel 2 s_elect s\nr_avel u:l_ap u\nr_avel c2 + 0.0 * wall\nr_avel wall\n\
-         r_avel src\nr_avel damp\nr_avel 1 s_elect s1\nr_avel 2 s_elect s1\nf_irst r_avel 3 s_elect s1\n",
+        "s0 := (u0, p0, {})\n\
+         (su, sp, st) := {} 'u:s_tep p_ower s0\n(nu, np, nt) := u:s_tep (su, sp, st)\n\
+         r_avel su\nr_avel sp\nr_avel u:l_ap su\nr_avel c2 + 0.0 * wall\nr_avel wall\n\
+         r_avel src\nr_avel damp\nr_avel nu\nr_avel np\nnt\n",
         lit(s.t),
         steps.max(1) - 1
     );

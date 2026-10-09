@@ -24,7 +24,7 @@ fn stage_chip(m: &UseReducerHandle<Model>, s: Stage) -> Html {
     let (name, src, dims, meaning): (&str, &str, Vec<usize>, &str) = match s {
         Stage::Scene => ("scene", "wall ; src ; c2", vec![ROWS, COLS], "a mask or map per cell"),
         Stage::Spread => ("spread", "u:l_ap u", vec![ROWS, COLS], "one number per cell"),
-        Stage::Step => ("step", "u:s_tep s", vec![3, ROWS, COLS], "3 planes: the surface now, a step ago, and the time"),
+        Stage::Step => ("step", "u:s_tep (u, p, t)", vec![ROWS, COLS], "a 3-tuple: the surface now, a step ago, and the time"),
     };
     chip(name, src, &dims, meaning, m.focus == s, act(m, move || Action::Focus(s)))
 }
