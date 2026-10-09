@@ -1,0 +1,3 @@
+command = "scripts/browser-check.sh eigencube"
+exit_code = 0
+desc = "eigencube: the built page run in headless Chrome shows X_eTaL's results"

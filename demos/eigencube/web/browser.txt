@@ -1,0 +1,4 @@
+# Text the page shows only after X_eTaL has run (scripts/browser-check.sh).
+X_eTaL turned the cube in
+0 moves:
+The program

@@ -1,0 +1,3 @@
+command = '"$XETAL" run --seed 1 --draw "$XETAL_DRAW" eigencube.xtl'
+exit_code = 0
+desc = "eigencube: eigencube.xtl run by the pinned xetal CLI"
