@@ -1,6 +1,7 @@
 //! The page: the cube as a net of 54 stickers, the turn buttons, the
 //! moves made, and the program X_eTaL ran.
 
+use gloo_timers::callback::{Interval, Timeout};
 use yew::prelude::*;
 
 use microscope::chrome::{about, footer, header, notice};
@@ -41,22 +42,64 @@ fn turns(m: &UseReducerHandle<Model>) -> Html {
             <button onclick={act(m, || Action::Undo)} disabled={m.moves.is_empty()}>{"Undo"}</button>
             <button onclick={act(m, || Action::Scramble)}>{"Scramble"}</button>
             <button onclick={act(m, || Action::Reset)}>{"Reset"}</button>
+            <button class="solve" onclick={act(m, || Action::StartSolve)} disabled={m.solving}>{ if m.solving { "Solving..." } else { "Solve" } }</button>
         </div>
+    }
+}
+
+fn solution(m: &UseReducerHandle<Model>) -> Html {
+    if m.solution.is_empty() {
+        return html! {};
+    }
+    let moves = m.solution.iter().enumerate().map(|(i, &t)| {
+        let class = if i + 1 == m.step { "mv now" } else if i < m.step { "mv done" } else { "mv" };
+        html! { <span class={class}>{name(t)}</span> }
+    });
+    html! {
+        <section class="panel">
+            <h2>{format!("The solution: {} moves", m.solution.len())}</h2>
+            <p class="note">{format!("X_eTaL solved the cube in {:.1} s: eigencube's search for the top layer, a cubelet at a time; the same search over known sequences (macros) for the middle and bottom layers; then eigencube's corner twists. Step through it, or play it.", m.solve_ms / 1000.0)}</p>
+            <div class="controls">
+                <button onclick={act(m, || Action::Step(-(isize::MAX / 2)))} disabled={m.step == 0}>{"|<"}</button>
+                <button onclick={act(m, || Action::Step(-1))} disabled={m.step == 0}>{"<"}</button>
+                <button onclick={act(m, || Action::TogglePlay)}>{ if m.playing { "Pause" } else { "Play" } }</button>
+                <button onclick={act(m, || Action::Step(1))} disabled={m.step == m.solution.len()}>{">"}</button>
+                <button onclick={act(m, || Action::Step(isize::MAX / 2))} disabled={m.step == m.solution.len()}>{">|"}</button>
+                <span class="gen">{format!("move {} of {}", m.step, m.solution.len())}</span>
+            </div>
+            <p class="moves">{ for moves }</p>
+        </section>
     }
 }
 
 #[function_component(App)]
 pub fn app() -> Html {
     let model = use_reducer(Model::new);
+    {
+        let d = model.dispatcher();
+        use_effect_with(model.solving, move |&solving| {
+            let t = solving.then(|| Timeout::new(30, move || d.dispatch(Action::Solve)));
+            move || drop(t)
+        });
+    }
+    {
+        let d = model.dispatcher();
+        use_effect_with(model.playing, move |&playing| {
+            let t = playing.then(|| Interval::new(350, move || d.dispatch(Action::Tick)));
+            move || drop(t)
+        });
+    }
     let moves = if model.moves.is_empty() {
         "none: the solved cube".to_string()
     } else {
         model.moves.iter().map(|&m| name(m)).collect::<Vec<_>>().join(" ")
     };
+    let focus = if model.program.contains("u:s_olve ms") { between(&model.program, "u:s_olve := { hybrid S ->", "### Notation") } else { between(&model.program, "u:c_hildren := ", "## u:t_urn m S") };
+    let what = if model.program.contains("u:s_olve ms") { "Highlighted: the solver, 29 search stages and the endgame." } else { "Highlighted: every turn of a batch of cubes, as two matrix products." };
     html! {
         <>
         <header>
-            { header("Eigencube", "A Rubik's cube as linear algebra: each of the 26 cubelets is a point of {-1, 0, 1}^3 carrying a rotation matrix, and a turn moves the cubelets on the turning side (a dot product) by one matrix product. X_eTaL turns every cubelet at once, then reads the stickers back from the matrices. Turn the faces, or scramble.", about(include_str!("../../demo.toml"))) }
+            { header("Eigencube", "A Rubik's cube as linear algebra: each of the 26 cubelets is a point of {-1, 0, 1}^3 carrying a rotation matrix, and a turn moves the cubelets on the turning side (a dot product) by one matrix product. X_eTaL turns every cubelet at once, then reads the stickers back from the matrices. Turn the faces, scramble, and solve.", about(include_str!("../../demo.toml"))) }
             { turns(&model) }
             { notice(&model.notice) }
         </header>
@@ -67,15 +110,16 @@ pub fn app() -> Html {
                         <h2>{"The cube"}</h2>
                         <p class="note">{"Unfolded: up on top, then left, front, right and back, then down. A face turns clockwise as seen facing it; a prime (') turns it back."}</p>
                         { net(&model.stickers) }
-                        <p class="moves"><b>{format!("{} moves: ", model.moves.len())}</b>{moves}</p>
+                        <p class="moves"><b>{format!("{} moves made: ", model.moves.len())}</b>{moves}</p>
                         <p class="note">{format!("X_eTaL turned the cube in {:.0} ms.", model.ms)}</p>
                     </section>
+                    { solution(&model) }
                 </div>
                 <div class="col">
                     <section class="panel code">
                         <h2>{"The program"}</h2>
-                        <p class="note">{"Exactly the program X_eTaL ran in your browser for this cube: the core of eigencube.xtl, then the moves made and the stickers it prints. Highlighted: every turn of a batch of cubes, as two matrix products."}</p>
-                        { listing(&model.program, between(&model.program, "u:c_hildren := ", "## u:t_urn m S")) }
+                        <p class="note">{format!("Exactly the program X_eTaL ran last in your browser: eigencube.xtl (its cube, turns and stickers to draw; all of it to solve), then the moves and what it prints. {what}")}</p>
+                        { listing(&model.program, focus) }
                     </section>
                 </div>
             </div>

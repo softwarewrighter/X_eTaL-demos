@@ -100,7 +100,7 @@ here and moved there (`docs/xetal-ml-asks.md`).
 | [Fourier epicycles](demos/fourier-epicycles/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/fourier-epicycles/)) | circles on circles tracing a star, a heart or your drawing; a slider for how many | outer product, matrix product, scan | live |
 | [Image pipeline](demos/image-pipeline/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/image-pipeline/)) | blur, Sobel edges, threshold, pooling; edit the kernels, click a pixel for its window | windows by rotation, reduce, reshape | live |
 | [Stencils by macro](demos/stencil-macros/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/stencil-macros/)) | kernels written as pictures of numbers, turned into code by a macro library of our own; edit one and see what the program expands to | macro libraries, expansion, rotations | live |
-| [Eigencube](demos/eigencube/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/eigencube/)) | a Rubik's cube as 26 rotation matrices: turn the faces, scramble, undo; the top layer solved on the command line | matrix product, dyadic transpose, masks by dot products | live |
+| [Eigencube](demos/eigencube/README.md) ([live](https://softwarewrighter.github.io/X_eTaL-demos/eigencube/)) | a Rubik's cube as 26 rotation matrices: turn the faces, scramble, solve (eigencube's search, with known sequences for the lower layers), step through the solution | matrix product, dyadic transpose, masks by dot products | live |
 | [Unix pipes in X_eTaL](demos/xetal-pipes/README.md) (command line) | `xetalcat sample.txt \| xetalgrep the \| xetalsort \| xetalhead -n 3`: cat, wc, grep, uniq, sort, head, tail as X_eTaL programs, byte for byte the real tools | text as arrays, scan, grade, compress | live |
 
 A demo's name links to its own page (`demos/<name>/README.md`, with a
@@ -215,7 +215,7 @@ wave tank, the cellular automata lab, Langton's ant, the abelian
 sandpile, N-body gravity, Fourier epicycles, the image pipeline,
 stencils by macro (the first built on a macro library of its own,
 expanded in the browser) and Eigencube (a Rubik's cube turned by
-matrix products; its solver runs at the command line). A fourteenth runs at the command line only:
+matrix products and solved by search). A fourteenth runs at the command line only:
 Unix pipes, seven X_eTaL programs as pipeline stages. Every demo's programs are tested at the command line and its page in
 headless Chrome, both as reg-rs baselines, with the page's model
 tested natively. The machine- learning demos moved to X_eTaL-ML

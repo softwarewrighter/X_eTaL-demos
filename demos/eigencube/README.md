@@ -12,9 +12,9 @@ one n x 26 x 3 x 3 array, so every turn of every cube in a search is
 two matrix products, one for the masks and one for the rotations.
 
 Live: [the Eigencube page](https://softwarewrighter.github.io/X_eTaL-demos/eigencube/):
-turn the faces, scramble, undo. Each click runs the program below in
-your browser and draws the stickers it prints. The page does not solve
-yet (see Status).
+turn the faces, scramble, undo, and solve, then step through the
+solution or play it. Each click runs the program below in your
+browser and draws the stickers it prints; a solve takes a few seconds.
 
 [![Eigencube: the live page](screenshot.png)](https://softwarewrighter.github.io/X_eTaL-demos/eigencube/)
 
@@ -73,30 +73,46 @@ Read right to left.
 
 The solver follows eigencube.py's stages: the top and middle layers a
 cubelet at a time (17 searches), the bottom edges (8) and the bottom
-corners' places (4), each an A* search, then a fixed corner twist,
-(L' U' L U) twice, for the endgame. Its goals and heuristics are
+corners' places (4), each an A* search, then eigencube.py's corner
+twist, (L' U' L U) twice, for the endgame. Its goals and heuristics are
 matrix products too: a stage counts solved cubelets in chosen sets
 (`u:s_core`), and its heuristic sums square roots of each cubelet's
-distance from home (eigencube.py's p-norm with p = 1/2). The
-distances come from the cube's 24 rotations (`G`, what the turns reach
-from the identity) and their Cayley table (`Tm`), both made from the
-matrices once, so the search moves 26 orientation numbers per cube
-(`u:n_ext`, checked equal to the matrix turns).
+distance from home (eigencube.py's p-norm with p = 1/2). The distances
+come from the cube's 24 rotations (`G`, what the turns reach from the
+identity) and their Cayley table (`Tm`), both made from the matrices
+once, so the search moves 26 orientation numbers per cube (`u:n_ext`,
+checked equal to the matrix turns), and a stage searches only the
+cubelets it looks at (`u:p_roject`: each cubelet moves by its own
+position alone).
+
+eigencube.py knows no move sequences: it finds every maneuver by
+search. That is quick for the top layer, but a middle or bottom
+cubelet needs a maneuver that breaks the solved layers and mends them,
+about ten moves during which the heuristic only gets worse, and the
+search wanders through hundreds of thousands of cubes (minutes in
+X_eTaL). So `u:s_olve 1` (the page and the command line) searches the
+middle and bottom stages over macros instead of single turns: D turns
+and the sequences a person solving by hand knows (an edge inserted into
+the middle layer, a bottom edge flip, Sune, a corner cycle), each
+checked to keep the top layer whole. The goals, the heuristic and the
+search are eigencube.py's; a stage now needs one to four macros.
+`u:s_olve 0` is eigencube.py's search alone.
 
 ## Status
 
-- The model, the turns and the stickers are complete; the page uses
-  them.
-- The solver solves the top layer in about a second (the command
-  line shows it), but the later stages are too slow in X_eTaL to run
-  in a page: on a 30-move scramble one bottom-edge stage takes
-  minutes, as the A* search grows to hundreds of thousands of cubes.
-  A Solve button follows when the search is fast enough.
+- The model, the turns, the stickers and the solver are complete. A
+  20- to 30-move scramble solves in 2 to 3 seconds at the command line
+  (24 seeds, 112 to 176 moves) and in about 3 seconds in the page.
+- The solutions are long: eigencube.py's are too (a layer method with a
+  cubelet at a time), and the macros are joined as they are, so a D
+  next to a D' is not canceled.
+- `u:s_olve 0`, eigencube.py's search on every stage, is correct but
+  takes minutes on the bottom layer.
 
 ## Run it
 
 ```bash
-just run eigencube          # scramble, its stickers, the top layer solved
+just run eigencube          # a new scramble, its stickers, the solution, the solved cube
 just show eigencube         # as a notebook: each statement, then its output
 just test-demo eigencube    # its CLI and browser baselines and the web app's tests
 just serve eigencube        # the web app at http://127.0.0.1:8413/

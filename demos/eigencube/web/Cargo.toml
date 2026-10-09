@@ -9,6 +9,7 @@ publish = false
 [dependencies]
 microscope = { path = "../../../shared/microscope" }
 yew = { version = "0.21", features = ["csr"] }
+gloo-timers = "0.3"
 console_error_panic_hook = "0.1"
 
 [workspace]

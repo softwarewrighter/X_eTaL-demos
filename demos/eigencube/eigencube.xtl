@@ -174,6 +174,12 @@ colDev := '+ r_/_2 a_bs (24 3 3 r_eshape G) - 24 3 3 r_eshape I
 ## cubelet is solved when its rotation fixes each axis it has stickers
 ## on, the nonzero coordinates of its name.
 Dsolved := u:d_istances 0 = (a_bs C) '+ '* i_nner o_\ colDev
+## u:s_olved? S: whether every cubelet of the cube S (a batch of one) is
+## solved (eigencube.py's is_cube_solved): a center may still be turned
+## about its own axis, which no sticker shows.
+## >> (u:s_olved? solved) c_at u:s_olved? 1 u:t_urn solved
+## 1 0
+u:s_olved? := { S -> 0 = '+ r_/ ((r_avel u:o_rient S) + 24 * o_ffsets 26) s_elect r_avel Dsolved }
 ## How far each rotation moves each home point, 24 26.
 posDev := '+ r_/_2 a_bs (24 3 26 r_eshape (72 3 r_eshape G) '+ '* i_nner o_\ C) - 24 3 26 r_eshape o_\ C
 ## Place distances, 26 24 (eigencube.py's min_moves_to_position): a
@@ -211,6 +217,15 @@ u:s_pec := { s ->
 ## the columns of a 26 by 3 matrix of 1s and 0s.
 u:o_f := { r spec -> o_\ (r s_elect spec) s_elect sets }
 
+## u:r_elevant spec: the cubelets a stage looks at, 1s and 0s over the
+## 26: those of every set its goal and heuristic name (rows 1 to 5).
+u:r_elevant := { spec -> 0 < '+ r_/ (r_avel 5 t_ake spec) s_elect sets }
+## u:p_roject rel O: the orientations O with every cubelet the stage
+## does not look at (rel 0) set to 1, the identity. A turn moves each
+## cubelet by its own position and rotation alone, never by the others,
+## so cubes that differ only there are one state to the stage's search.
+u:p_roject := { rel O -> 1 + (O - 1) * (s_hape O) r_eshape rel }
+
 ## u:s_core spec O: each cube's search score, from its cubelets'
 ## orientations O (n 26, u:o_rient): -1 for a cube that meets the
 ## stage's goal, else its heuristic, a Float per cube.
@@ -231,9 +246,9 @@ u:s_core := { spec O ->
 ### Search: A*, a batch of cubes at a time
 
 ## How many of the best open cubes each step of the search expands.
-batch := 32
+batch := 256
 ## How much more the heuristic weighs than the moves made (weighted A*).
-greed := 2.0
+greed := 1.0
 
 ## u:i_nverse m: the move that undoes move m (0, no move, has none).
 u:i_nverse := { m -> m + (2 * m m_od 2) - 1 }
@@ -247,6 +262,61 @@ u:c_ubes := { O -> ((t_ally O) c_at 26 3 3) r_eshape (r_avel O) s_elect G }
 ## 13-digit numbers in base 24, so one i_ndexOf finds a cube.
 u:k_ey := { O -> o_\ (2 c_at t_ally O) r_eshape (24 d_ecode o_\ 13 t_ake_2 O - 1) c_at 24 d_ecode o_\ -13 t_ake_2 O - 1 }
 
+## The macros: the solver's moves for the middle and bottom layers,
+## each a fixed sequence of turns. 1 to 3: D, D' and D2. 4 to 8: the
+## classic sequences for the last layer, mirrored from the top to the
+## bottom (U and D swap, R and L swap): F L D L' D' F' flips two bottom
+## edges, Sune (L D L' D L D2 L') and its mirror cycle edges and twist
+## corners, D L D' R' D L' D' R and its inverse cycle three bottom
+## corners. 9 to 16: a middle edge brought up from the bottom into each
+## of the four slots, from either side (U R U' R' U' F' U F and its
+## mirror, mirrored the same way and turned about the vertical axis).
+## Each keeps the top layer whole, and each of 1 to 8 the top two
+## layers, so a search over them builds on what is solved (as the
+## endgame's twist does in eigencube.py).
+## >> '{ ms -> '+ r_/ (z = 1) * 1 = r_avel u:o_rient (d_isclose ms) u:d_o solved } e_ach macros
+## 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9
+macros := (e_nclose 1 r_eshape 3) c_at (e_nclose 1 r_eshape 4) c_at (e_nclose 3 3) c_at (e_nclose 5 11 3 12 4 6) c_at (e_nclose 11 3 12 3 11 3 3 12) c_at (e_nclose 11 3 3 12 4 11 4 12) c_at (e_nclose 3 11 4 10 3 12 4 9) c_at (e_nclose 10 3 11 4 9 3 12 4) c_at (e_nclose 3 11 4 12 4 6 3 5) c_at (e_nclose 3 5 4 6 4 10 3 9) c_at (e_nclose 3 9 4 10 4 8 3 7) c_at (e_nclose 3 7 4 8 4 12 3 11) c_at (e_nclose 4 10 3 9 3 5 4 6) c_at (e_nclose 4 8 3 7 3 9 4 10) c_at (e_nclose 4 12 3 11 3 7 4 8) c_at e_nclose 4 6 3 5 3 11 4 12
+## The macros the middle layer's stages search over: D turns and the
+## insertions.
+middle := 1 2 3 9 10 11 12 13 14 15 16
+## The macros the bottom layer's stages search over: D turns and the
+## last-layer sequences.
+bottom := 1 2 3 4 5 6 7 8
+
+## u:a_ctions hybrid s: what stage s searches over: none for the twelve
+## turns (all stages when hybrid is 0, eigencube.py's search alone; the
+## top layer always), else the middle or the bottom layer's macros.
+u:a_ctions := { hybrid s ->
+  (hybrid = 0) | s <= 9 ? o_ffsets 0
+  s <= 17 ? middle
+  bottom
+}
+
+## u:a_long ms O: the moves ms applied in order to the cubes O (n 26),
+## as orientations.
+u:a_long := { ms O ->
+  0 = t_ally ms ? O
+  (1 d_rop ms) u:a_long ((((f_irst ms) - 1) * t_ally O) + r_ange t_ally O) s_elect u:n_ext O
+}
+## u:m_acros set O: every macro of the set (indices into `macros`)
+## applied to every cube of O, macro-major as u:n_ext orders the turns.
+u:m_acros := { set O ->
+  0 = t_ally set ? 0 26 r_eshape 0
+  ((d_isclose (f_irst set) s_elect macros) u:a_long O) c_at (1 d_rop set) u:m_acros O
+}
+## u:e_xpand set O: the cubes one action from O: the twelve turns for an
+## empty set, else the set's macros.
+u:e_xpand := { set O ->
+  0 = t_ally set ? u:n_ext O
+  set u:m_acros O
+}
+## u:f_latten acts: macros (indices into `macros`) as the moves they make.
+u:f_latten := { acts ->
+  0 = t_ally acts ? o_ffsets 0
+  (d_isclose (f_irst acts) s_elect macros) c_at u:f_latten 1 d_rop acts
+}
+
 ## u:s_tep spec table: one step of the search. The table holds every cube
 ## found, a row each: its key, its orientations, the cube it was reached
 ## from, the move, its moves from the start g and its priority
@@ -256,16 +326,16 @@ u:k_ey := { O -> o_\ (2 c_at t_ally O) r_eshape (24 d_ecode o_\ 13 t_ake_2 O - 1
 ## commute; eigencube.py prunes the same two), and adds the cubes not
 ## found before. It stops on a cube that meets the goal, giving the
 ## moves to it.
-u:s_tep := { spec (keys, O, par, mv, g, f, open) ->
+u:s_tep := { (spec, set) (keys, O, par, mv, g, f, open) ->
   0 = t_ally open ? "stuck" []S_IGNAL "the search ran out of cubes"
   pick := (batch m_in t_ally open) t_ake open
   n := t_ally pick
-  r := o_ffsets 12 * n
+  r := o_ffsets n * (t_ally set) + 12 * 0 = t_ally set
   cm := 1 + r d_iv n
   cp := (1 + r m_od n) s_elect pick
   last := cp s_elect mv
-  ok := w_here n_ot (cm = u:i_nverse last) | (u:f_ace last) = 1 + (u:f_ace cm) * 1 = 2 m_od u:f_ace cm
-  KO := ok s_elect u:n_ext pick s_elect O
+  ok := w_here (0 < t_ally set) | n_ot (cm = u:i_nverse last) | (u:f_ace last) = 1 + (u:f_ace cm) * 1 = 2 m_od u:f_ace cm
+  KO := (u:r_elevant spec) u:p_roject ok s_elect set u:e_xpand pick s_elect O
   cp := ok s_elect cp
   cm := ok s_elect cm
   sc := spec u:s_core KO
@@ -276,7 +346,7 @@ u:s_tep := { spec (keys, O, par, mv, g, f, open) ->
   ng := 1 + new s_elect cp s_elect g
   f2 := f c_at (f_loat ng) + greed * new s_elect sc
   rest := (batch d_rop open) c_at (t_ally keys) + r_ange t_ally new
-  spec u:s_tep (keys c_at new s_elect KK, O c_at new s_elect KO, par c_at new s_elect cp, mv c_at new s_elect cm, g c_at ng, f2, (g_rade rest s_elect f2) s_elect rest)
+  (spec, set) u:s_tep (keys c_at new s_elect KK, O c_at new s_elect KO, par c_at new s_elect cp, mv c_at new s_elect cm, g c_at ng, f2, (g_rade rest s_elect f2) s_elect rest)
 }
 
 ## u:t_race (par, mv) i: the moves from the start (cube 1) to cube i, by
@@ -286,20 +356,25 @@ u:t_race := { (par, mv) i ->
   ((par, mv) u:t_race i s_elect par) c_at i s_elect mv
 }
 
-## u:s_earch spec S: the moves taking the cube S (a batch of one) to the
-## stage's goal, found by u:s_tep from a table holding S alone.
-u:s_earch := { spec S ->
-  O := u:o_rient S
+## u:s_earch (spec, set) S: the moves taking the cube S (a batch of one)
+## to the stage's goal, found by u:s_tep from a table holding S alone,
+## over the twelve turns or the set's macros.
+u:s_earch := { (spec, set) S ->
+  O := (u:r_elevant spec) u:p_roject u:o_rient S
   0 > f_irst spec u:s_core O ? o_ffsets 0
-  spec u:s_tep (u:k_ey O, O, 1 r_eshape 0, 1 r_eshape 0, 1 r_eshape 0, 1 r_eshape 0.0, 1 r_eshape 1)
+  acts := (spec, set) u:s_tep (u:k_ey O, O, 1 r_eshape 0, 1 r_eshape 0, 1 r_eshape 0, 1 r_eshape 0.0, 1 r_eshape 1)
+  0 = t_ally set ? acts
+  u:f_latten acts s_elect set
 }
 
 ### Solving
 
-## u:s_tage (S, ms, lens): the next search stage run on the cube S, its
-## moves added to the moves so far ms, its length to the stage lengths.
-u:s_tage := { (S, ms, lens) ->
-  next := (u:s_pec 1 + t_ally lens) u:s_earch S
+## u:s_tage hybrid (S, ms, lens): the next search stage run on the cube
+## S, its moves added to the moves so far ms and its length to the
+## stage lengths (u:a_ctions says what it searches over).
+u:s_tage := { hybrid (S, ms, lens) ->
+  s := 1 + t_ally lens
+  next := ((u:s_pec s), hybrid u:a_ctions s) u:s_earch S
   (next u:d_o S, ms c_at next, lens c_at t_ally next)
 }
 
@@ -325,17 +400,20 @@ u:c_orner := { (S, ms) ->
 
 ## u:f_inish (S, ms): turn the bottom until the cube is solved.
 u:f_inish := { (S, ms) ->
-  solved m_atch S ? (S, ms)
+  u:s_olved? S ? (S, ms)
   u:f_inish (down u:d_o S, ms c_at down)
 }
 
-## u:s_olve S: a solution of the cube S (a batch of one), eigencube.py's
-## solve: 29 search stages (the top and middle layers a cubelet at a
-## time, then the bottom edges and the bottom corners' places), then the
-## endgame's corner twists. The moves, each stage's length, and the
-## endgame's length.
-u:s_olve := { S ->
-  (S1, ms, lens) := 29 'u:s_tage p_ower (S, o_ffsets 0, o_ffsets 0)
+## u:s_olve hybrid S: a solution of the cube S (a batch of one), after
+## eigencube.py's solve: 29 search stages (the top and middle layers a
+## cubelet at a time, then the bottom edges and the bottom corners'
+## places), then the endgame's corner twists. With hybrid 1 the middle
+## and bottom stages search over macros, as a person solving by hand
+## uses known sequences (seconds); with 0 every stage searches the
+## twelve turns, eigencube.py's search alone (minutes in X_eTaL). The
+## moves, each stage's length, and the endgame's length.
+u:s_olve := { hybrid S ->
+  (S1, ms, lens) := 29 '{ st -> hybrid u:s_tage st } p_ower (S, o_ffsets 0, o_ffsets 0)
   (_, all) := u:f_inish 4 'u:c_orner p_ower (S1, ms)
   (all, lens, (t_ally all) - t_ally ms)
 }
@@ -353,19 +431,22 @@ u:n_ame := { ms ->
 
 ### On the command line
 
-# A scramble of 20 random moves (seeded: "xetal run --seed 1").
+# A scramble of 20 random moves ("just run eigencube" draws a new one
+# each time; the tests run "xetal run --seed 1").
 sc := r_oll! 20 r_eshape 12
-u:n_ame sc
+"scramble: " c_at u:n_ame sc
 x := sc u:d_o solved
-# Its stickers, a face per row (U D F B R L), each cell's color the
-# face it belongs on (1 to 6, in the same order).
+# Its stickers, a face per row (U D F B R L), each cell the face its
+# color belongs on: 1 to 6, white, yellow, green, blue, red, orange.
 u:s_tickers x
-# The inverse moves in reverse order give back the solved cube.
-solved m_atch (r_ev u:i_nverse sc) u:d_o x
-# The top layer solved, a cubelet at a time (stages 1 to 9): the moves
-# each stage found, all of them, and the stickers after them (the top
-# face all 1s, and the top row of each side face its own color).
-(top, ms, lens) := 9 'u:s_tage p_ower (x, o_ffsets 0, o_ffsets 0)
-lens
-u:n_ame ms
-u:s_tickers top
+(sol, lens, e) := 1 u:s_olve x
+"solution: " c_at u:n_ame sol
+"moves: " c_at f_ormat t_ally sol
+# The moves each stage took: the top layer a cubelet at a time
+# (stages 1 to 9), the middle layer (10 to 17), the bottom edges (18
+# to 25) and the bottom corners' places (26 to 29), then the
+# endgame's corner twists.
+lens c_at e
+# After the solution: every face one color.
+u:s_tickers sol u:d_o x
+"solved: " c_at f_ormat u:s_olved? sol u:d_o x

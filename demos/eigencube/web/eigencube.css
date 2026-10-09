@@ -5,3 +5,7 @@
 .sticker.blue { fill: #3498db; } .sticker.red { fill: #e74c3c; } .sticker.orange { fill: #e67e22; }
 .turn { min-width: 3.2em; font-family: "JuliaMono", "DejaVu Sans Mono", Menlo, ui-monospace, monospace; }
 .moves { margin: 8px 0 0; font-family: "JuliaMono", "DejaVu Sans Mono", Menlo, ui-monospace, monospace; word-spacing: .2em; }
+.solve { font-weight: 600; border-color: var(--accent) !important; }
+.mv { display: inline-block; margin: 0 .25em .2em 0; padding: 0 .2em; border-radius: 4px; color: var(--muted); }
+.mv.done { color: var(--fg); }
+.mv.now { background: var(--accent); color: var(--bg); }

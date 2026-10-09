@@ -63,3 +63,13 @@ fn sexy_move_has_order_six_and_a_scramble_undoes_in_reverse() {
     assert_ne!(run(&scramble).unwrap(), solved());
     assert_eq!(run(&back).unwrap(), solved());
 }
+
+#[test]
+fn the_pages_solve_ends_at_the_solved_cube() {
+    use eigencube_web::micro::solve;
+    for scramble in [vec![1u8, 9, 5, 12, 3, 8, 6, 2, 11, 4, 7, 10, 9, 1, 5, 3, 12, 6, 8, 2], vec![9u8, 1, 10, 2], vec![]] {
+        let sol = solve(&scramble).unwrap();
+        let all: Vec<u8> = scramble.iter().chain(sol.iter()).copied().collect();
+        assert_eq!(run(&all).unwrap(), solved(), "scramble {:?}", scramble.iter().map(|&m| name(m)).collect::<Vec<_>>());
+    }
+}
