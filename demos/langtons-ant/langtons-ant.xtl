@@ -16,30 +16,25 @@ rows := 21
 cols := 21
 steps := 400
 
-## A matrix as one plane of a rank-3 array (u:p_lane), for stacking
-## the state's three planes with c_at.
-u:p_lane := { m -> (1 c_at s_hape m) r_eshape m }
-
 ### One step of the ant
 
-## u:s_tep s: the state s is three planes: the board (0 white, 1
+## u:s_tep (b, a, d): the state is a tuple, the board (0 white, 1
 ## black), the ant's mask (1 where it stands), and its direction (0
-## up, 1 right, 2 down, 3 left) in every cell. cell looks up the color
+## up, 1 right, 2 down, 3 left), taken apart by the pattern and given
+## back as a new tuple (D7, landed); d is a plain scalar now, not a
+## plane carrying the same number everywhere. cell looks up the color
 ## under the ant (the board times its mask, summed); turn is right
 ## (+1) on white, left (+3, that is -1) on black; flip turns the
 ## cell's color over where the mask is 1; dy, dx move the mask one
 ## row or column, by its new direction.
-u:s_tep := { s ->
-  b := 1 s_elect s
-  a := 2 s_elect s
-  d := f_irst r_avel 3 s_elect s
+u:s_tep := { (b, a, d) ->
   cell := '+ r_/ r_avel a * b
   turn := (d + 1 + 2 * cell) m_od 4
   flip := b + a * 1 - 2 * b
   dy := (1 * turn = 0) - 1 * turn = 2
   dx := (1 * turn = 3) - 1 * turn = 1
   step := dy o_-_1 dx o_-_2 a
-  (u:p_lane flip) c_at (u:p_lane step) c_at u:p_lane turn + 0 * b
+  (flip, step, turn)
 }
 # -- end of the core ---------------------------------------------------
 
@@ -48,9 +43,9 @@ row := (o_ffsets rows) 'l_eft t_able o_ffsets cols
 col := (o_ffsets rows) 'r_ight t_able o_ffsets cols
 b0 := 0 * row
 a0 := 1 * (row = rows d_iv 2) & col = cols d_iv 2
-s := steps 'u:s_tep p_ower (u:p_lane b0) c_at (u:p_lane a0) c_at u:p_lane b0
-s_hape s
+(b, a, d) := steps 'u:s_tep p_ower (b0, a0, 0)
+s_hape b
 
 # The board after the steps: # black, . white, A the ant.
-((1 + (1 s_elect s) + 2 * 2 s_elect s) m_in 3) s_elect ".#A"
-'+ r_/ r_avel 1 s_elect s
+((1 + b + 2 * a) m_in 3) s_elect ".#A"
+'+ r_/ r_avel b

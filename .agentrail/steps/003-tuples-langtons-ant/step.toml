@@ -1,6 +1,6 @@
 number = 3
 slug = "tuples-langtons-ant"
-status = "pending"
+status = "in-progress"
 description = "Remove the direction-as-a-wasted-plane workaround from langtons-ant.xtl using..."
 role = "production"
 context_files = []

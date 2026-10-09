@@ -8,7 +8,7 @@ use microscope::run::{matrix, numbers, output, section};
 pub const SOURCE: &str = include_str!("../../langtons-ant.xtl");
 
 pub fn core() -> &'static str {
-    section(SOURCE, "# A matrix as one plane", "# -- end of the core")
+    section(SOURCE, "# One step of the ant", "# -- end of the core")
 }
 
 pub const N: usize = 64;
@@ -46,10 +46,10 @@ pub fn program(ant: &Ant, steps: usize) -> String {
     format!(
         "rows := {N}\ncols := {N}\n{}row := (o_ffsets rows) 'l_eft t_able o_ffsets cols\n\
          col := (o_ffsets rows) 'r_ight t_able o_ffsets cols\n{}\
-         a0 := 1 * (row = {}) & col = {}\nd0 := {} + 0 * row\n\
-         prev := {} 'u:s_tep p_ower (u:p_lane b0) c_at (u:p_lane a0) c_at u:p_lane d0\ns := u:s_tep prev\n\
-         r_avel 1 s_elect s\nw_here r_avel 2 s_elect s\nf_irst r_avel 3 s_elect s\n\
-         w_here r_avel 2 s_elect prev\nf_irst r_avel 3 s_elect prev\n'+ r_/ r_avel (2 s_elect prev) * 1 s_elect prev\n",
+         a0 := 1 * (row = {}) & col = {}\nd0 := {}\n\
+         (pb, pa, pd) := {} 'u:s_tep p_ower (b0, a0, d0)\n(nb, na, nd) := u:s_tep (pb, pa, pd)\n\
+         r_avel nb\nw_here r_avel na\nnd\n\
+         w_here r_avel pa\npd\n'+ r_/ r_avel pa * pb\n",
         core(),
         matrix("b0", N, N, ant.board.iter().map(|v| v.to_string())),
         ant.y,

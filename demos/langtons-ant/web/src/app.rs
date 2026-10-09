@@ -64,7 +64,7 @@ fn last_step(m: &Model, l: &Last) -> Html {
         <p class="calc">{"It moves by rotating its mask: "}{code(&format!("{dy} o_-_1 {dx} o_-_2 a"))}</p>
         <p class="note">{"The ant is a mask with a single 1, so looking, flipping and moving are whole-array operations: the same code would move a thousand ants."}</p>
     </> };
-    panel("The last step:", "u:s_tep s", "", m.focus == Stage::Turn || m.focus == Stage::Look, body)
+    panel("The last step:", "u:s_tep (b, a, d)", "", m.focus == Stage::Turn || m.focus == Stage::Look, body)
 }
 
 #[function_component(App)]

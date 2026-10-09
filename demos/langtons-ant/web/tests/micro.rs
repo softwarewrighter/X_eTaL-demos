@@ -2,7 +2,7 @@ use langtons_ant_web::micro::{core, run, Ant, N, SOURCE};
 
 #[test]
 fn the_page_runs_the_command_line_programs_core() {
-    assert!(core().contains("u:s_tep := { s ->"));
+    assert!(core().contains("u:s_tep := { (b, a, d) ->"));
     assert!(SOURCE.contains(core()));
 }
 

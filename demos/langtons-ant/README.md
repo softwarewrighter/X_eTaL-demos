@@ -21,17 +21,14 @@ settings, the data it writes in (folded) and the lines that print the
 arrays it draws.
 
 ```
-u:s_tep := { s ->
-  b := 1 s_elect s
-  a := 2 s_elect s
-  d := f_irst r_avel 3 s_elect s
+u:s_tep := { (b, a, d) ->
   cell := '+ r_/ r_avel a * b
   turn := (d + 1 + 2 * cell) m_od 4
   flip := b + a * 1 - 2 * b
   dy := (1 * turn = 0) - 1 * turn = 2
   dx := (1 * turn = 3) - 1 * turn = 1
   step := dy o_-_1 dx o_-_2 a
-  (u:p_lane flip) c_at (u:p_lane step) c_at u:p_lane turn + 0 * b
+  (flip, step, turn)
 }
 ```
 
@@ -43,7 +40,7 @@ u:s_tep := { s ->
 | turn | `(d + 1 + 2 * cell) m_od 4` | (one number) | right (+1) on white, left (+3, that is -1) on black |
 | flip | `b + a * 1 - 2 * b` | 64 64 | 0 becomes 1 and 1 becomes 0 where the mask is 1, nothing elsewhere |
 | move | `dy o_-_1 dx o_-_2 a` | 64 64 | the mask rotated one row or column: up, right, down or left |
-| state | `u:s_tep s` | 3 64 64 | the board, the mask, and the direction (in every cell) |
+| state | `u:s_tep (b, a, d)` | 64 64, a 3-tuple | the board, the mask, and the direction, taken apart by the pattern and given back as a new tuple |
 
 The page runs a number of steps per frame (100 by default) on the
 board it keeps, and pauses at step 11,500, when the highway has formed
@@ -69,7 +66,10 @@ just test-demo langtons-ant    # its CLI and browser baselines and the web app's
 
 ## Workarounds
 
-The board goes into each run as a literal matrix. The direction is kept as a plane of the
-state, the same in every cell, because the state must be one array.
-There is no functional update (amend) in X_eTaL yet; here the mask
-makes one unnecessary, which is the point of the demo.
+The board goes into each run as a literal matrix. (The direction used
+to be kept as a plane of the state, the same number in every cell,
+because the state had to be one array; removed now that X_eTaL has
+tuples, landed D7: the state is `(b, a, d)`, d a plain scalar.) Listed
+in [`docs/xetal-asks.md`](../../docs/xetal-asks.md). There is no
+functional update (amend) in X_eTaL yet; here the mask makes one
+unnecessary, which is the point of the demo.
