@@ -8,6 +8,10 @@ publish = false
 
 [dependencies]
 microscope = { path = "../../../shared/microscope" }
+# Not reachable through xetal-play (docs/xetal-asks.md, "a page's own
+# library"): the store a run's libraries are read from, where the page
+# puts the Eigencube library.
+xetal-store = { path = "../../../work/xetal/components/base/crates/xetal-store" }
 yew = { version = "0.21", features = ["csr"] }
 gloo-timers = "0.3"
 console_error_panic_hook = "0.1"

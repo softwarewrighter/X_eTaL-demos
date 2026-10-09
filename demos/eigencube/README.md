@@ -20,13 +20,18 @@ browser and draws the stickers it prints; a solve takes a few seconds.
 
 ## The program
 
-The twelve turns as one 36 by 3 matrix `M` (each move's 3-by-3
-rotation, a quarter turn about its face's normal v, is v v^T - [v]x,
-Rodrigues' formula at -90 degrees), and every turn of a batch of n
-3-by-3 matrices at once:
+The cube and its solver are the
+[Eigencube library](https://github.com/softwarewrighter/X_eTaL-libraries/tree/main/libs/Eigencube)
+of X_eTaL-libraries, pinned in `LIBRARIES_COMMIT` (`just libraries`
+fetches it into `work/libraries`); this demo's program imports it,
+scrambles a cube and solves it, and the page imports the same file.
+The library's core: the twelve turns as one 36 by 3 matrix `M` (each
+move's 3-by-3 rotation, a quarter turn about its face's normal v, is
+v v^T - [v]x, Rodrigues' formula at -90 degrees), every turn of a
+batch of n 3-by-3 matrices at once:
 
 ```
-u:t_urns := { R ->
+h:t_urns := { R ->
   n := t_ally R
   1 3 2 4 t_ranspose (12 3 c_at n c_at 3) r_eshape M '+ '* i_nner 2 1 3 t_ranspose R
 }
@@ -37,14 +42,23 @@ one matrix product of the move vectors with where each cubelet sits,
 the rotations the other:
 
 ```
-u:c_hildren := { S ->
+h:c_hildren := { S ->
   n := t_ally S
   sh := 12 c_at n c_at 26 3 3
-  sel := 0 < V '+ '* i_nner o_\ ((n * 26) c_at 3) r_eshape u:p_os S
-  T := sh r_eshape u:t_urns ((n * 26) c_at 3 3) r_eshape S
+  sel := 0 < V '+ '* i_nner o_\ ((n * 26) c_at 3) r_eshape h:p_os S
+  T := sh r_eshape h:t_urns ((n * 26) c_at 3 3) r_eshape S
   S12 := sh r_eshape S
   ((12 * n) c_at 26 3 3) r_eshape S12 + (sh r_eshape 9 r_eplicate r_avel sel) * T - S12
 }
+```
+
+The demo's own program (`eigencube.xtl`), after the import:
+
+```
+sc := r_oll! 20 r_eshape 12
+x := sc ec:d_o ec:solved
+(sol, lens, e) := 1 ec:s_olve x
+ec:s_olved? sol ec:d_o x
 ```
 
 ## How it works
@@ -57,15 +71,15 @@ Read right to left.
   3 a corner.
 - A cube is 26 rotation matrices; the solved cube is 26 identities,
   shape 1 26 3 3, a batch of one.
-- `u:p_os S` is where each cubelet sits, R c, for every cube of a
+- `h:p_os S` is where each cubelet sits, R c, for every cube of a
   batch at once: `'+ r_/_4` of the matrices times the names spread
   along the rows.
-- `u:c_hildren S` is every turn of every cube: `sel`, 12 by 26n, is the
+- `h:c_hildren S` is every turn of every cube: `sel`, 12 by 26n, is the
   move vectors times the positions (a cubelet turns when the product
-  is positive), `T` is every matrix turned every way (`u:t_urns`), and
+  is positive), `T` is every matrix turned every way (`h:t_urns`), and
   the result keeps a matrix where `sel` is 0 and takes the turned one
   where it is 1.
-- `u:s_tickers S` reads the colors back: cubelet k shows a sticker on
+- `ec:s_tickers S` reads the colors back: cubelet k shows a sticker on
   face v when v . (R c) = 1, and the sticker's color is the face it
   faced when solved, R^T v, one more matrix product (`N '+ '* i_nner`
   the transposed matrices). The 54 stickers are sorted by face and
@@ -76,13 +90,13 @@ cubelet at a time (17 searches), the bottom edges (8) and the bottom
 corners' places (4), each an A* search, then eigencube.py's corner
 twist, (L' U' L U) twice, for the endgame. Its goals and heuristics are
 matrix products too: a stage counts solved cubelets in chosen sets
-(`u:s_core`), and its heuristic sums square roots of each cubelet's
+(`h:s_core`), and its heuristic sums square roots of each cubelet's
 distance from home (eigencube.py's p-norm with p = 1/2). The distances
 come from the cube's 24 rotations (`G`, what the turns reach from the
 identity) and their Cayley table (`Tm`), both made from the matrices
-once, so the search moves 26 orientation numbers per cube (`u:n_ext`,
+once, so the search moves 26 orientation numbers per cube (`h:n_ext`,
 checked equal to the matrix turns), and a stage searches only the
-cubelets it looks at (`u:p_roject`: each cubelet moves by its own
+cubelets it looks at (`h:p_roject`: each cubelet moves by its own
 position alone).
 
 eigencube.py knows no move sequences: it finds every maneuver by
@@ -90,13 +104,13 @@ search. That is quick for the top layer, but a middle or bottom
 cubelet needs a maneuver that breaks the solved layers and mends them,
 about ten moves during which the heuristic only gets worse, and the
 search wanders through hundreds of thousands of cubes (minutes in
-X_eTaL). So `u:s_olve 1` (the page and the command line) searches the
+X_eTaL). So `1 ec:s_olve` (the page and the command line) searches the
 middle and bottom stages over macros instead of single turns: D turns
 and the sequences a person solving by hand knows (an edge inserted into
 the middle layer, a bottom edge flip, Sune, a corner cycle), each
 checked to keep the top layer whole. The goals, the heuristic and the
 search are eigencube.py's; a stage now needs one to four macros.
-`u:s_olve 0` is eigencube.py's search alone.
+`0 ec:s_olve` is eigencube.py's search alone.
 
 ## Status
 
@@ -106,7 +120,7 @@ search are eigencube.py's; a stage now needs one to four macros.
 - The solutions are long: eigencube.py's are too (a layer method with a
   cubelet at a time), and the macros are joined as they are, so a D
   next to a D' is not canceled.
-- `u:s_olve 0`, eigencube.py's search on every stage, is correct but
+- `0 ec:s_olve`, eigencube.py's search on every stage, is correct but
   takes minutes on the bottom layer.
 
 ## Run it
@@ -120,4 +134,8 @@ just serve eigencube        # the web app at http://127.0.0.1:8413/
 
 ## Workarounds
 
-None.
+- The page imports the library through `xetal-store` directly (it
+  installs a store in memory and writes `Eigencube.xtl` into it):
+  `xetal-play` has no way to give a run a library of the page's own
+  ([`docs/xetal-asks.md`](../../docs/xetal-asks.md), "a page's own
+  macro library", as stencil-macros).

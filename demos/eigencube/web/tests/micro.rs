@@ -2,7 +2,7 @@
 //! X_eTaL reads back from the rotation matrices, checked by identities
 //! that hold for every move, not by one remembered picture.
 
-use eigencube_web::micro::{core, inverse, name, run, SOURCE};
+use eigencube_web::micro::{inverse, name, run, IMPORT, LIBRARY, SOURCE};
 
 /// The solved cube: nine stickers of each face's own color.
 fn solved() -> Vec<u8> {
@@ -10,10 +10,11 @@ fn solved() -> Vec<u8> {
 }
 
 #[test]
-fn the_page_runs_the_command_line_programs_core() {
-    assert!(core().contains("u:c_hildren := { S ->"));
-    assert!(core().contains("u:s_tickers := { S ->"));
-    assert!(SOURCE.contains(core()));
+fn the_page_and_the_command_line_use_one_library() {
+    assert!(SOURCE.contains(IMPORT.trim_end()), "eigencube.xtl imports the library");
+    for f in ["h:c_hildren := { S ->", "l:s_tickers := { S ->", "l:s_olve := { hybrid S ->"] {
+        assert!(LIBRARY.contains(f), "the library defines {f}");
+    }
 }
 
 #[test]

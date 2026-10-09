@@ -7,7 +7,7 @@ use yew::prelude::*;
 use microscope::chrome::{about, footer, header, notice};
 use microscope::source::{between, listing};
 
-use crate::micro::name;
+use crate::micro::{name, LIBRARY};
 use crate::model::{Action, Model};
 
 /// Where each face sits in the net, in sticker cells: U D F B R L.
@@ -94,8 +94,10 @@ pub fn app() -> Html {
     } else {
         model.moves.iter().map(|&m| name(m)).collect::<Vec<_>>().join(" ")
     };
-    let focus = if model.program.contains("u:s_olve ms") { between(&model.program, "u:s_olve := { hybrid S ->", "### Notation") } else { between(&model.program, "u:c_hildren := ", "## u:t_urn m S") };
-    let what = if model.program.contains("u:s_olve ms") { "Highlighted: the solver, 29 search stages and the endgame." } else { "Highlighted: every turn of a batch of cubes, as two matrix products." };
+    let solving = model.program.contains("ec:s_olve");
+    let ran = if solving { between(&model.program, "(sol, lens, e)", "0 c_at sol") } else { between(&model.program, "r_avel ec:s_tickers", "ec:solved") };
+    let lib = if solving { between(LIBRARY, "l:s_olve := { hybrid S ->", "### Notation") } else { between(LIBRARY, "h:c_hildren := { S ->", "## l:t_urn m S") };
+    let what = if solving { "Highlighted: the solver, 29 search stages and the endgame." } else { "Highlighted: every turn of a batch of cubes, as two matrix products." };
     html! {
         <>
         <header>
@@ -118,8 +120,13 @@ pub fn app() -> Html {
                 <div class="col">
                     <section class="panel code">
                         <h2>{"The program"}</h2>
-                        <p class="note">{format!("Exactly the program X_eTaL ran last in your browser: eigencube.xtl (its cube, turns and stickers to draw; all of it to solve), then the moves and what it prints. {what}")}</p>
-                        { listing(&model.program, focus) }
+                        <p class="note">{"Exactly the program X_eTaL ran last in your browser: it imports the Eigencube library, writes in the moves made, and prints the stickers (or, to solve, the solution)."}</p>
+                        { listing(&model.program, ran) }
+                    </section>
+                    <section class="panel code">
+                        <h2>{"The library"}</h2>
+                        <p class="note">{format!("Eigencube.xtl, from X_eTaL-libraries at the pinned commit: the cube, its turns, its stickers and the solver. {what}")}</p>
+                        { listing(LIBRARY, lib) }
                     </section>
                 </div>
             </div>

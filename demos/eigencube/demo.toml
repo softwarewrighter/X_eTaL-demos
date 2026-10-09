@@ -5,9 +5,9 @@ title = "Eigencube"
 summary = "A Rubik's cube with no sticker tables: 26 cubelets, each a point of {-1, 0, 1}^3 carrying a 3-by-3 rotation matrix. A turn picks the cubelets on its side with a dot product and moves them with a matrix product; the stickers are read back from the matrices; a search solves it, layer by layer."
 wiki = "https://en.wikipedia.org/wiki/Rubik%27s_Cube"
 story = ""
-idea = "A batch of cubes is one n x 26 x 3 x 3 array, so all twelve turns of every cube are two matrix products, one for the masks and one for the rotations."
-line = "1 3 2 4 t_ranspose (12 3 c_at n c_at 3) r_eshape M '+ '* i_nner 2 1 3 t_ranspose R"
-concepts = ["matrix product (i_nner)", "dyadic transpose", "masks by dot products", "rank-4 arrays"]
+idea = "A batch of cubes is one n x 26 x 3 x 3 array, so all twelve turns of every cube are two matrix products, one for the masks and one for the rotations; the Eigencube library holds the model and the solver."
+line = "(sol, lens, e) := 1 ec:s_olve x"
+concepts = ["matrix product (i_nner)", "dyadic transpose", "masks by dot products", "a library (u_se<)", "tuples"]
 status = "live"
 order = 120
 needs = []
