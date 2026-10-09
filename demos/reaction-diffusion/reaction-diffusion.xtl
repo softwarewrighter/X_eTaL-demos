@@ -61,5 +61,5 @@ s := steps 'u:s_tep p_ower s0
 v := 2 s_elect s
 (1 + f_loor 4.99 * (v m_in 0.399) / 0.4) s_elect " .:o@"
 
-## The total of V, rounded: the pattern has grown from the seed's 9.0.
+# The total of V, rounded: the pattern has grown from the seed's 9.0.
 (f_loor 0.5 + 100 * '+ r_/ r_avel v) / 100

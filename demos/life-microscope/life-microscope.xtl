@@ -41,11 +41,11 @@ s = 3
 # ... or if it is alive and S is 4 (alive with 3 neighbors).
 b * s = 4
 
-## Together, the next board: what the one line of u:l_ife computes.
+# Together, the next board: what the one line of u:l_ife computes.
 (s = 3) + b * s = 4
 u:l_ife b
 
-## Four steps later the glider has moved one cell down and to the
-## right. A superscript on a function repeats it: u:l_ife^4 b is the
-## same as this p_ower call, written out for a count the page computes.
+# Four steps later the glider has moved one cell down and to the
+# right. A superscript on a function repeats it: u:l_ife^4 b is the
+# same as this p_ower call, written out for a count the page computes.
 4 'u:l_ife p_ower b

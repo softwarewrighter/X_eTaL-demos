@@ -363,6 +363,16 @@ before step 2 (also now CLAUDE.md rule 1 for the first):
   a short genuine code mention (a name, `_r`, `-1 0 1`) is written
   bare or in backticks and is meant to be decorated.
 
+A third, found after a mid-saga re-pin (1998414, step 4): the pinned
+build gained a `doc-unattached` warning (`just pages`, or `bin/xetal
+doc --out` directly) -- `##` only documents a `name := ...` right
+below it; a `##` above a bare print statement (most demos end with a
+few) documents nothing and is now flagged. Five already written that
+way (two in `life-microscope.xtl`, two in `mandelbrot.xtl`, one in
+`reaction-diffusion.xtl`) were put back to plain `#`; `just pages`
+surfaces these as warnings on stderr, not gate failures, so check for
+them explicitly after writing a file's comments.
+
 | # | Step slug | Delivers |
 | - | --------- | -------- |
 | 1 | doc-grids-1 | Done 2026-10-08: `##`/`###` on `life-microscope.xtl`, `mandelbrot.xtl`, `julia.xtl` (file intro, section headings matching the existing `# -- stage --` blocks, a `##` above each top-level name); `s_tep` in `julia.xtl`'s `u:i_terate` stays a plain `#` note (a local, bare, scoped to the lambda, PN6 -- not a top-level item `xetal doc` would list on its own). Every output byte-identical (`diff` against the CLI goldens); broke and then fixed the two live pages (the gotchas above); `pages/doc` rebuilt and spot-checked in Chrome (section nav, cross-references, decoration all correct) |

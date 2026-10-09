@@ -1,48 +1,65 @@
 #!/usr/bin/env xetal
-# Fourier epicycles: any closed curve is a sum of circles turning at
-# whole-number speeds. Its points z = x + i y go through a discrete
-# Fourier transform, written as two matrix products with the cosines
-# and sines of one outer product of angles; each frequency is a
-# circle, and the circles, strongest first, chained end to end, trace
-# the curve. A running sum along the chain gives, at once, the curve
-# rebuilt from the first 1, 2, 3, ... circles.
+## Fourier epicycles: any closed curve is a sum of circles turning at
+## whole-number speeds. Its points z = x + i y go through a discrete
+## Fourier transform, written as two matrix products with the cosines
+## and sines of one outer product of angles; each frequency is a
+## circle, and the circles, strongest first, chained end to end,
+## trace the curve. A running sum along the chain gives, at once, the
+## curve rebuilt from the first 1, 2, 3, ... circles. Run it with
+## "xetal run demos/fourier-epicycles/fourier-epicycles.xtl"; it
+## prints the strength of each frequency, the four strongest speeds,
+## and the mean error rebuilt from 1, 2, 4, 8 and all 16 circles. The
+## live page lets you pick or draw a curve and slides how many
+## circles trace it: https://softwarewrighter.github.io/X_eTaL-demos/fourier-epicycles/
 
-# The curve: a square of side 2, 16 points round its edge.
+## x, y: the curve, a square of side 2, 16 points round its edge.
 x := 1.0 1.0 1.0 1.0 1.0 0.5 0.0 -0.5 -1.0 -1.0 -1.0 -1.0 -1.0 -0.5 0.0 0.5
 y := -1.0 -0.5 0.0 0.5 1.0 1.0 1.0 1.0 1.0 0.5 0.0 -0.5 -1.0 -1.0 -1.0 -1.0
 
-# -- the angles: one outer product ----------------------
-# Row k, column j: 2 pi k j / n, the angle of frequency k at
-# sample j.
+## -- the angles: one outer product. n: how many points. k: 0 .. n - 1.
+## A, C, S: row k, column j of A is 2 pi k j / n, the angle of
+## frequency k at sample j; C and S its cosine and sine.
 n := t_ally x
 k := f_loat o_ffsets n
 A := (2.0 * (p_i @) / f_loat n) * k '* t_able k
 C := c_os A
 S := s_in A
-# -- the transform: two matrix products -----------------
-# Z_k = (1 / n) sum over j of z_j e^(-i A[k;j]), as real parts re
-# and imaginary parts im: the cosines and sines times x and y.
+
+### The transform: two matrix products
+
+## re, im, amp: Z_k = (1 / n) sum over j of z_j e^(-i A[k;j]), as real
+## and imaginary parts: the cosines and sines times x and y (two
+## matrix products, i_nner), then each frequency's strength.
 re := ((C '+ '* i_nner x) + S '+ '* i_nner y) / f_loat n
 im := ((C '+ '* i_nner y) - S '+ '* i_nner x) / f_loat n
 amp := ((re * re) + im * im) ^ 0.5
-# Each circle's speed: k, or k - n past the middle (turning the
-# other way), so the circles stay small.
+## f: each circle's speed: k, or k - n past the middle (turning the
+## other way), so the circles stay small.
 f := k - f_loat n * 1 * k >= f_loat n d_iv 2
-# -- the circles, strongest first -----------------------
+
+### The circles, strongest first
+
+## order: the frequencies' rank by strength (g_rade).
 order := g_rade n_eg amp
-# Circle c at time j (row j, column c): its vector Z e^(i f t_j).
+## T, zr, zi, vx, vy: circle c at time j (row j, column c): its
+## vector Z e^(i f t_j), turned by its own speed and time.
 T := (2.0 * (p_i @) / f_loat n) * k '* t_able order s_elect f
 zr := (k 'r_ight t_able order s_elect re)
 zi := (k 'r_ight t_able order s_elect im)
 vx := (zr * c_os T) - zi * s_in T
 vy := (zr * s_in T) + zi * c_os T
-# -- the chain: a running sum along the circles ---------
-# Column c of cx, cy: where the first c circles end at each time,
-# so column c is the curve rebuilt from the c strongest circles.
+
+### The chain: a running sum along the circles
+
+## cx, cy: column c is where the first c circles end at each time, so
+## column c is the curve rebuilt from the c strongest circles.
 cx := '+ s_\_2 vx
 cy := '+ s_\_2 vy
-# -- the error of each reconstruction -------------------
-# The mean distance from the curve, for 1, 2, ... n circles.
+
+### The error of each reconstruction
+
+## dx, dy, err: the mean distance from the curve, for 1, 2, ... n
+## circles.
 dx := cx - x 'l_eft t_able k
 dy := cy - y 'l_eft t_able k
 err := ('+ r_/ ((dx * dx) + dy * dy) ^ 0.5) / f_loat n

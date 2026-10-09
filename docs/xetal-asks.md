@@ -39,7 +39,7 @@ demos work with that are not asks.
 | open | feature | End of input: `[]R_EAD @` at the end of standard input fails (`error[io]: []R_EAD: no more input`) and nothing can test for it or recover, so a program cannot read a stream of unknown length | xetal-pipes (every stage reads standard input) | the stage's wrapper appends an end line after the input; the stage reads until it |
 | open | feature | Program arguments: `xetal run FILE` takes nothing after the file, and a program cannot read its arguments | xetal-pipes (`head -n 3`, `grep NEEDLE`, `cat FILE`) | the wrapper runs a copy of the stage with `args := "..."` put in front, its library found through `XETAL_PATH` (`--context` reads standard input twice, below) |
 | open | feature | `s_ort` (and `g_rade`) of a list of boxed strings: `expected a number or Char, found Box Char`; `u_nique` and `m_atch` take boxes, sorting does not | xetal-pipes (`sort`, `uniq`) | lines padded into a Char matrix (built by `t_able` indexing, as mix, D6, is missing); its rows graded |
-| open | bug | The `deprecated-private` lint (PN2) warns on a bare top-level function of an ordinary library (`.xtl`), not yet on one in a macro library (`.xtl` + `.xtlm`): `"s:" u_se< "Stencil"` with a bare helper in `Stencil.xtlm` warns nothing, though `xetal type Stencil.xtlm` and `xetal migrate Stencil.xtlm` both see it | stencil-macros (`Stencil.xtlm`; migrated anyway, on the convention, not the warning) | none needed: migrated proactively with `xetal migrate` |
+| landed (24ec3bae, D127; checked at 1998414) | bug | The `deprecated-private` lint (PN2) now warns on a bare top-level function of a macro library too, not only an ordinary one; X_eTaL's own `lib/Combinators.xtlm` and `lib/System.xtlm` are migrated to `h:` with it | stencil-macros (`Stencil.xtlm`; already migrated here, on the convention, before the lint asked for it) | none needed |
 
 ## For the X_eTaL agent: ledger corrections
 
@@ -186,14 +186,18 @@ seen.
 Suggested: run the context alone silently, then the file once.
 Workaround: not using `--context` (see ask 2).
 
-## For the X_eTaL agent: the deprecated-private lint misses .xtlm
+## The deprecated-private lint now covers .xtlm (landed)
 
 Found 2026-10-07 against 9c667a3 (Saga 38 step 4, PN2), migrating
-`Stencil.xtlm` to `h:` on the new convention.
+`Stencil.xtlm` to `h:` on the new convention; landed 2026-10-08
+(24ec3bae, D127, checked at 1998414): a bare top-level function in a
+macro library now warns `deprecated-private` too, the same as an
+ordinary library, and X_eTaL's own `lib/Combinators.xtlm` and
+`lib/System.xtlm` are migrated to `h:` with it. The ask as filed:
 
-What: a bare top-level function in an ordinary library (`.xtl`) now
-warns `deprecated-private`; the same in a macro library (`.xtl` text
-loaded as `.xtlm`) does not.
+What: a bare top-level function in an ordinary library (`.xtl`) warns
+`deprecated-private`; the same in a macro library (`.xtl` text loaded
+as `.xtlm`) does not.
 
 ```
 $ cat Stencil.xtlm
@@ -206,17 +210,11 @@ m:t_encil< : Char -> Char -> Char
 (no warning either, though xetal migrate Stencil.xtlm rewrites s_ide to h:s_ide correctly)
 ```
 
-Why: the two kinds of library now disagree on whether a bare helper
-is flagged; a macro library's authors get no nudge toward `h:`, and
-X_eTaL's own `lib/Combinators.xtlm` and `lib/System.xtlm` (checked at
-9c667a3) still have bare helpers (`t_rim`, `w_ords`, `j_oin`,
-`s_trip`, and more), unlike its migrated `.xtl` libraries.
+Why: the two kinds of library disagreed on whether a bare helper is
+flagged; a macro library's authors got no nudge toward `h:`.
 
-Suggested: run the same `deprecated-private` check wherever a macro
-library is loaded (`is_library`'s macro-library counterpart, or
-wherever `xetal migrate` already finds these functions to rewrite
-them). Workaround: none needed -- `Stencil.xtlm` was migrated to `h:`
-on the convention alone, not because the lint asked for it.
+Workaround while open: none needed -- `Stencil.xtlm` was migrated to
+`h:` on the convention alone, not because the lint asked for it.
 
 ## For the X_eTaL agent: four asks not in X_eTaL's plan yet
 

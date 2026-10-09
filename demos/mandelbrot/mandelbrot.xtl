@@ -75,8 +75,8 @@ counts := 3 s_elect z
 s_hape cr
 s_hape z
 
-## The picture: a character per point by how long it stayed inside, @
-## for the points still inside after k steps (the set).
+# The picture: a character per point by how long it stayed inside, @
+# for the points still inside after k steps (the set).
 (1 + f_loor (9.0 * counts) / f_loat k) s_elect " .:-=+*#%@"
 
 ### One point's orbit
@@ -89,7 +89,7 @@ s_hape z
 cr0 := -0.75
 ci0 := 0.1
 u:o_rbit := { s -> (cr0 + ((1 s_elect s) * 1 s_elect s) - (2 s_elect s) * 2 s_elect s) c_at ci0 + 2 * (1 s_elect s) * 2 s_elect s }
-## z0, z1, ..., z5 (real parts, then imaginary parts): the orbit, six
-## points each run from z = 0 by function power, n steps for the nth.
+# z0, z1, ..., z5 (real parts, then imaginary parts): the orbit, six
+# points each run from z = 0 by function power, n steps for the nth.
 '{ n -> 1 s_elect n 'u:o_rbit p_ower 0.0 0.0 } e_ach o_ffsets 6
 '{ n -> 2 s_elect n 'u:o_rbit p_ower 0.0 0.0 } e_ach o_ffsets 6

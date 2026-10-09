@@ -327,7 +327,11 @@ Read before working:
    concatenated right after, silently commenting out its first line;
    keep that one marker a plain `#`. A CLI `diff` against the golden
    will not catch any of this, only the page's browser check will
-   (`just gate`, or `scripts/browser-check.sh SLUG` alone).
+   (`just gate`, or `scripts/browser-check.sh SLUG` alone). Separately
+   (pinned build 1998414 on, a `doc-unattached` warning, `just pages`
+   or `bin/xetal doc --out`): `##` only documents a `name := ...`
+   definition directly below it; a `##` above a bare print statement
+   (most demos end with a few) is flagged and should stay plain `#`.
 2. X_eTaL is used only at the commit pinned in `XETAL_COMMIT` (the
    layout of `../X_eTaL/docs/vendoring.md`): `just xetal`
    (`scripts/xetal.sh`) clones it into `work/xetal/` (gitignored),

@@ -1,36 +1,49 @@
 #!/usr/bin/env xetal
-# The abelian sandpile: drop grains on a grid; a cell with 4 or more
-# grains topples, giving one to each of its four neighbors, and grains
-# that fall off the edge are lost. Repeat until every cell has fewer
-# than 4. The order of the topples does not matter (that is what
-# abelian means), so every cell topples at once, as often as it can:
-# one array expression a round. The stable pile is a fractal.
+## The abelian sandpile: drop grains on a grid; a cell with 4 or more
+## grains topples, giving one to each of its four neighbors, and
+## grains that fall off the edge are lost. Repeat until every cell
+## has fewer than 4. The order of the topples does not matter (that
+## is what abelian means), so every cell topples at once, as often as
+## it can: one array expression a round. The stable pile is a
+## fractal. Run it with "xetal run demos/sandpile/sandpile.xtl"; it
+## prints whether the pile is stable, the grains left, the total
+## topples, and the pile drawn with characters. The live page runs it
+## round by round, colored by grains, and lets you drop more:
+## https://softwarewrighter.github.io/X_eTaL-demos/sandpile/
 
-# The grid: side cells across (the outer ring is the edge, where
-# grains fall off), grains dropped at the center, rounds to run.
+## side, grains, rounds: the grid's side (the outer ring is the edge,
+## where grains fall off), grains dropped at the center, rounds to run.
 side := 21
 grains := 300
 rounds := 150
 
-# -- the edge: a ring of cells that loses what it gets ---
-# edge is each cell's distance to the border; the ring has 0.
+## -- the edge: a ring of cells that loses what it gets. row, col:
+## each cell's position, by broadcasting. edge, inside: each cell's
+## distance to the border, and whether it is inside (the ring has 0).
 row := (o_ffsets side) 'l_eft t_able o_ffsets side
 col := (o_ffsets side) 'r_ight t_able o_ffsets side
 edge := row m_in col m_in ((side - 1) - row) m_in (side - 1) - col
 inside := 1 * edge > 0
-# -- one round: every cell topples as often as it can ----
-# q is how many times each cell topples: its grains over 4. It keeps
-# h - 4 q and gets q from each of its four neighbors (four rotations).
+
+### One round: every cell topples as often as it can
+
+## u:t_opple h: q is how many times each cell topples: its grains over
+## 4. It keeps h - 4 q and gets q from each of its four neighbors
+## (four rotations, g); the edge is outside, so its grains fall off.
 u:t_opple := { h ->
   q := h d_iv 4
   g := (1 o_-_1 q) + (-1 o_-_1 q) + (1 o_-_2 q) + -1 o_-_2 q
   inside * (h - 4 * q) + g
 }
-# -- stable: no cell has 4 or more -----------------------
+## u:s_table h: whether no cell has 4 or more.
 u:s_table := { h -> 1 * 4 > 'm_ax r_/_12 h }
-# -- a round that also counts the topples -----------------
-# The state is two planes: the grains, and how many times each cell
-# has toppled so far (the avalanche's shape).
+
+### A round that also counts the topples
+
+## u:p_lane m: a matrix as one plane of a rank-3 array, for stacking
+## with c_at.
+## u:s_tep s: the state s is two planes, the grains and how many times
+## each cell has toppled so far (the avalanche's shape).
 u:p_lane := { m -> (1 c_at s_hape m) r_eshape m }
 u:s_tep := { s ->
   h := 1 s_elect s
