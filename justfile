@@ -15,6 +15,14 @@ xetal:
 xetal-pin ref="HEAD":
     scripts/xetal-pin.sh "$1"
 
+# Get X_eTaL-libraries at LIBRARIES_COMMIT into work/libraries (demos import its libraries); prints XETAL_PATH
+libraries:
+    scripts/libraries.sh
+
+# Pin a committed ref of ../X_eTaL-libraries (default HEAD) in LIBRARIES_COMMIT; commit it on its own
+libraries-pin ref="HEAD":
+    scripts/libraries-pin.sh "$1"
+
 # The pinned X_eTaL: XETAL_COMMIT and the binary's version
 xetal-version:
     @cat XETAL_COMMIT

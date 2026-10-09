@@ -14,5 +14,6 @@ file="${2:-$slug.xtl}"
 [ -f "$d/$file" ] || { echo "run-demo: no $slug/$file" >&2; exit 1; }
 if head -1 "$d/$file" | grep -q -- '--untyped'; then flags+=(--untyped); fi
 xetal="$("$root/scripts/xetal.sh")"
+export XETAL_PATH="$("$root/scripts/libraries.sh")"  # the pinned X_eTaL-libraries
 mkdir -p "$root/work/draw/$slug"
 cd "$d" && exec "$xetal" run ${flags[@]+"${flags[@]}"} --draw "$root/work/draw/$slug" "$file"

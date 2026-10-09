@@ -140,6 +140,14 @@ with `just xetal-pin` (the latest commit of `../X_eTaL`) or
 `just xetal-pin REF`, then commit `XETAL_COMMIT` on its own after
 `just gate` and `just bench-check` pass.
 
+A demo may import a library of
+[X_eTaL-libraries](https://github.com/softwarewrighter/X_eTaL-libraries)
+(Eigencube does), pinned the same way in `LIBRARIES_COMMIT`:
+`just libraries` clones it into `work/libraries/` (gitignored), checks
+that commit out and prints the `XETAL_PATH` the scripts run with;
+`just libraries-pin [REF]` moves the pin to a commit of
+`../X_eTaL-libraries`, committed on its own after `just gate`.
+
 ## Running and adding demos
 
 ```bash

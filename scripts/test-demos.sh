@@ -26,6 +26,7 @@ command -v reg-rs >/dev/null || { echo "test: reg-rs not found on PATH" >&2; exi
 # command reads the same anywhere); the .rgt (command, exit code) and
 # the .out / .err are committed, the .tdb cache is not.
 export XETAL="$xetal"
+export XETAL_PATH="$("$root/scripts/libraries.sh")"  # the pinned X_eTaL-libraries
 # bless DIR DATA NAME COMMAND DESC: make (or remake) baseline NAME in
 # DATA from the current output, running COMMAND from DIR. An existing
 # baseline keeps its command and description; remaking (rather than

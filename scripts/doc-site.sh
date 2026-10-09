@@ -17,6 +17,7 @@ set -euo pipefail
 root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$root"
 xetal="${XETAL:-$root/bin/xetal}"
+export XETAL_PATH="$("$root/scripts/libraries.sh")"  # the pinned X_eTaL-libraries
 out="${XETAL_DOC_OUT:-$root/pages/doc}"
 rm -rf "$out"
 files=(demos/stencil-macros/Stencil.xtlm demos/xetal-pipes/stages/Pipes.xtl)
