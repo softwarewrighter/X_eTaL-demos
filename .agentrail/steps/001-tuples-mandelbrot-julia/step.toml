@@ -1,8 +1,9 @@
 number = 1
 slug = "tuples-mandelbrot-julia"
-status = "in-progress"
+status = "completed"
 description = "Remove the extra-plane-for-counts workaround from mandelbrot.xtl and julia.xt..."
 role = "production"
 context_files = []
 created_at = "2026-10-09T11:33:03"
-commits = []
+completed_at = "2026-10-09T13:47:45"
+commits = ["3077498fc29ca0cf61bc1e702cc54010bc2f0f60"]
