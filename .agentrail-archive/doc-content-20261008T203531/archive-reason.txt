@@ -1,0 +1,1 @@
+doc-content saga done: real ##/### documentation on all 13 original demos (eigencube landed separately, undocumented for now)
