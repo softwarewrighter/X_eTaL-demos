@@ -21,15 +21,13 @@ re := cx + w * (u:c_entred cols) / f_loat cols
 im := cy - aspect * w * (u:c_entred rows) / f_loat cols
 cr := (o_ffsets rows) 'r_ight t_able re
 ci := im 'l_eft t_able o_ffsets cols
-u:s_tep := { s ->
-  zr := 1 s_elect s
-  zi := 2 s_elect s
+u:s_tep := { (zr, zi, counts) ->
   inside := f_loat 4 >= (zr * zr) + zi * zi
   a := (inside * cr + (zr * zr) - zi * zi) + (1 - inside) * zr
   b := (inside * ci + 2 * zr * zi) + (1 - inside) * zi
-  (u:p_lane a) c_at (u:p_lane b) c_at u:p_lane inside + 3 s_elect s
+  (a, b, inside + counts)
 }
-z := k 'u:s_tep p_ower (3 c_at rows c_at cols) r_eshape 0.0
+(zr, zi, counts) := k 'u:s_tep p_ower (0.0 * cr, 0.0 * cr, 0.0 * cr)
 ```
 
 ## How it works
@@ -39,8 +37,8 @@ z := k 'u:s_tep p_ower (3 c_at rows c_at cols) r_eshape 0.0
 | a row of real parts | `re` | cols | the real part of c for each column |
 | a column of imaginary parts | `im` | rows | the imaginary part of c for each row |
 | c everywhere | `(o_ffsets rows) 'r_ight t_able re` and `im 'l_eft t_able o_ffsets cols` | rows cols | `t_able` spreads the row down and the column across: broadcasting, no loop over points |
-| one step | `u:s_tep` | 3 rows cols | the state is three planes: z's real part, its imaginary part, and the count of steps spent inside; one step computes z * z + c everywhere, keeps z where the point has already left the disk (the mask `inside`), and adds `inside` to the count |
-| k steps | `k 'u:s_tep p_ower` | 3 rows cols | the step applied k times (function power) from z = 0 |
+| one step | `u:s_tep` | rows cols | the state is a tuple `(zr, zi, counts)`, z's real part, its imaginary part, and the count of steps spent inside, taken apart by the pattern and given back as a new tuple; one step computes z * z + c everywhere, keeps z where the point has already left the disk (the mask `inside`), and adds `inside` to the count |
+| k steps | `k 'u:s_tep p_ower` | rows cols | the step applied k times (function power) from z = 0, the tuple taken apart by the same pattern the binding reads it into |
 | the picture | `counts` | rows cols | how many steps each point stayed inside; the points still inside after k steps are the set, so far |
 
 On the page, the k slider (or "Play steps") re-runs the program with a
@@ -66,9 +64,12 @@ just test-demo mandelbrot    # its CLI and browser baselines and the web app's t
 ## Workarounds
 
 X_eTaL has no complex numbers yet, so z and c are each two Float
-arrays (their real and imaginary parts) and the state stacks them as
-planes; with complex numbers the step would be `z * z + c`. Listed in
-[`docs/xetal-asks.md`](../../docs/xetal-asks.md). The orbit table is
+arrays (their real and imaginary parts); with complex numbers the
+step would be `z * z + c`. Listed in
+[`docs/xetal-asks.md`](../../docs/xetal-asks.md). (The state used to
+stack z's parts and the count as planes of one rank-3 array for
+`p_ower`, a workaround of its own; removed now that X_eTaL has
+tuples, landed D7: the state is `(zr, zi, counts)`.) The orbit table is
 computed as two `e_ach` passes (real parts, then imaginary parts):
 `m_ap` can now give each item a vector, but boxed, and X_eTaL has no
 mix yet to turn the boxes back into a table (an ask in the same file).

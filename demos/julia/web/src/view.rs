@@ -16,7 +16,7 @@ pub fn range(src: &str, stage: Stage) -> Range {
     match stage {
         Stage::Grid => between(src, "re := ", "grid := "),
         Stage::Iterate => between(src, "u:i_terate := ", "\n}"),
-        Stage::Call => between(src, "z := ", "z := "),
+        Stage::Call => between(src, "(zr, zi, counts) := ", "(zr, zi, counts) := "),
     }
 }
 

@@ -29,52 +29,46 @@ aspect := 2.0
 ## Numbers centered on 0 (u:c_entred n): 0 1 2 3 becomes
 ## -1.5 -0.5 0.5 1.5.
 u:c_entred := { n -> (f_loat o_ffsets n) - (f_loat n - 1) / 2 }
-## u:p_lane m: a matrix as one plane of a rank-3 array (a leading axis
-## of 1), for stacking planes with c_at.
-u:p_lane := { m -> (1 c_at s_hape m) r_eshape m }
 
 ### The grid of points, by broadcasting
 
 ## re, im: one row of real parts and one column of imaginary parts.
-## grid: both parts spread over the whole grid with t_able, stacked as
-## two planes: every point's c, for the Mandelbrot set, or every
+## grid: both parts spread over the whole grid with t_able, as a pair
+## (gr, gi): every point's c, for the Mandelbrot set, or every
 ## starting z0, for a Julia set.
 re := cx + w * (u:c_entred cols) / f_loat cols
 im := cy - aspect * w * (u:c_entred rows) / f_loat cols
-grid := (u:p_lane (o_ffsets rows) 'r_ight t_able re) c_at u:p_lane im 'l_eft t_able o_ffsets cols
+grid := ((o_ffsets rows) 'r_ight t_able re, im 'l_eft t_able o_ffsets cols)
+(gr, gi) := grid
 
 ### c u:i_terate z0: k steps of z * z + c from z0
 
-## c and z0 each give a real and an imaginary part (1 s_elect,
-## 2 s_elect): planes of the grid, or single numbers (scalar
-## extension). The state adds a third plane, the count of steps spent
+## c and z0 are each a pair (real, imaginary): two numbers (scalar
+## extension) or two planes of the grid, taken apart by the patterns
+## on both sides (D7, landed). The state adds a count of steps spent
 ## inside; a point outside keeps its z.
-u:i_terate := { c z0 ->
-  cr := 1 s_elect c
-  ci := 2 s_elect c
+u:i_terate := { (cr, ci) (zr0, zi0) ->
   # One step, as a local function (s_tep, bare and scoped to this
   # lambda, PN6): the same arithmetic as mandelbrot.xtl's u:s_tep.
-  s_tep := { s ->
-    zr := 1 s_elect s
-    zi := 2 s_elect s
+  s_tep := { (zr, zi, counts) ->
     inside := f_loat 4 >= (zr * zr) + zi * zi
     a := (inside * cr + (zr * zr) - zi * zi) + (1 - inside) * zr
     b := (inside * ci + 2 * zr * zi) + (1 - inside) * zi
-    (u:p_lane a) c_at (u:p_lane b) c_at u:p_lane inside + 3 s_elect s
+    (a, b, inside + counts)
   }
-  k 's_tep p_ower z0 c_at u:p_lane 0.0 * 1 s_elect z0
+  k 's_tep p_ower (zr0, zi0, 0.0 * zr0)
 }
 # -- end of the core ---------------------------------------------------
 
-s_hape grid
+s_hape gr
 
 ## julia: a Julia set, c = -0.8 + 0.156i the same for every point, z0
 ## the grid.
-julia := (-0.8 c_at 0.156) u:i_terate grid
+(jzr, jzi, julia) := (-0.8, 0.156) u:i_terate grid
 s_hape julia
-(1 + f_loor (9.0 * 3 s_elect julia) / f_loat k) s_elect " .:-=+*#%@"
+(1 + f_loor (9.0 * julia) / f_loat k) s_elect " .:-=+*#%@"
 
 ## mandel: the Mandelbrot set from the same function: c the grid,
 ## z0 = 0.
-mandel := grid u:i_terate 0.0 * grid
-(1 + f_loor (9.0 * 3 s_elect mandel) / f_loat k) s_elect " .:-=+*#%@"
+(mzr, mzi, mandel) := grid u:i_terate (0.0 * gr, 0.0 * gi)
+(1 + f_loor (9.0 * mandel) / f_loat k) s_elect " .:-=+*#%@"

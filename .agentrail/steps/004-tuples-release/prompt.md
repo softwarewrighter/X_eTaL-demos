@@ -1,0 +1,1 @@
+Mark docs/xetal-asks.md's 'A state of several arrays' ask fully landed (all four demos retrofitted); docs/plan.md a saga entry (mark Saga done); check the main README's text for any stale mention of the four demos' plane workaround. just gate; publish; check-live.

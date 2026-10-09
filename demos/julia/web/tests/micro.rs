@@ -4,11 +4,11 @@ const SMALL: View = View { rows: 10, cols: 16, cx: 0.0, cy: 0.0, w: 3.2 };
 
 #[test]
 fn the_page_runs_the_command_line_programs_core() {
-    assert!(core().contains("u:i_terate := { c z0 ->"));
+    assert!(core().contains("u:i_terate := { (cr, ci) (zr0, zi0) ->"));
     assert!(SOURCE.contains(core()));
-    assert!(SOURCE.contains("julia := (-0.8 c_at 0.156) u:i_terate grid"));
-    assert!(SOURCE.contains("mandel := grid u:i_terate 0.0 * grid"));
-    assert!(call(Set::Mandelbrot).ends_with("grid u:i_terate 0.0 * grid"));
+    assert!(SOURCE.contains("(jzr, jzi, julia) := (-0.8, 0.156) u:i_terate grid"));
+    assert!(SOURCE.contains("(mzr, mzi, mandel) := grid u:i_terate (0.0 * gr, 0.0 * gi)"));
+    assert!(call(Set::Mandelbrot).ends_with("grid u:i_terate (0.0 * gr, 0.0 * gi)"));
 }
 
 #[test]
@@ -55,5 +55,5 @@ fn pixels_and_points_agree() {
 #[test]
 fn the_program_writes_c_as_decimals() {
     let p = program(&SMALL, 5, Set::Julia(-0.123, 0.745));
-    assert!(p.contains("z := (-0.123 c_at 0.745) u:i_terate grid"));
+    assert!(p.contains("(-0.123, 0.745) u:i_terate grid"));
 }

@@ -18,8 +18,8 @@ pub fn range(src: &str, stage: Stage) -> Range {
     match stage {
         Stage::Grid => between(src, "re := ", "ci := "),
         Stage::Step => between(src, "u:s_tep := ", "\n}"),
-        Stage::Iterate => between(src, "z := k ", "z := k "),
-        Stage::Measure => between(src, "zr := 1 s_elect z", "counts := "),
+        Stage::Iterate => between(src, "(zr, zi, counts) := k ", "(zr, zi, counts) := k "),
+        Stage::Measure => between(src, "(zr, zi, counts) := k ", "(zr, zi, counts) := k "),
     }
 }
 

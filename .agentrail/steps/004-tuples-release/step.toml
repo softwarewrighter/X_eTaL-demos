@@ -1,0 +1,8 @@
+number = 4
+slug = "tuples-release"
+status = "pending"
+description = "Mark docs/xetal-asks.md's 'A state of several arrays' ask fully landed (all f..."
+role = "production"
+context_files = []
+created_at = "2026-10-09T11:33:03"
+commits = []

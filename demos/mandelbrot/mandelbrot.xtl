@@ -27,9 +27,6 @@ aspect := 2.0
 ## Numbers centered on 0 (u:c_entred n): 0 1 2 3 becomes
 ## -1.5 -0.5 0.5 1.5.
 u:c_entred := { n -> (f_loat o_ffsets n) - (f_loat n - 1) / 2 }
-## u:p_lane m: a matrix as one plane of a rank-3 array (a leading axis
-## of 1), for stacking planes with c_at.
-u:p_lane := { m -> (1 c_at s_hape m) r_eshape m }
 
 ### c for every point, by broadcasting
 
@@ -45,35 +42,32 @@ ci := im 'l_eft t_able o_ffsets cols
 
 ### One step for every point at once
 
-## u:s_tep s: the state s is three planes (z's real part, its
-## imaginary part, and the count of steps spent inside); one step
+## u:s_tep (zr, zi, counts): the state is a tuple of three same-shaped
+## arrays (z's real part, its imaginary part, and the count of steps
+## spent inside), taken apart by the pattern and given back as a new
+## tuple; no more packing them into one array (D7, landed). One step
 ## computes z * z + c everywhere, keeps z where the point has already
 ## left the disk |z|^2 > 4 (the mask inside), and adds inside to the
 ## count.
-u:s_tep := { s ->
-  zr := 1 s_elect s
-  zi := 2 s_elect s
+u:s_tep := { (zr, zi, counts) ->
   inside := f_loat 4 >= (zr * zr) + zi * zi
   a := (inside * cr + (zr * zr) - zi * zi) + (1 - inside) * zr
   b := (inside * ci + 2 * zr * zi) + (1 - inside) * zi
-  (u:p_lane a) c_at (u:p_lane b) c_at u:p_lane inside + 3 s_elect s
+  (a, b, inside + counts)
 }
 
 ### k steps, from z = 0
 
-## z: the state after k steps (function power, from a zero state).
-## zr, zi, m2: z's parts and |z|^2, read back out of z.
-## counts: how many steps each point stayed inside; the points still
-## inside after k steps are the set, so far.
-z := k 'u:s_tep p_ower (3 c_at rows c_at cols) r_eshape 0.0
-zr := 1 s_elect z
-zi := 2 s_elect z
+## zr, zi, counts: the state after k steps (function power, from a
+## zero state), taken apart by the same pattern as the binding reads
+## it in. m2: |z|^2. counts: how many steps each point stayed inside;
+## the points still inside after k steps are the set, so far.
+(zr, zi, counts) := k 'u:s_tep p_ower (0.0 * cr, 0.0 * cr, 0.0 * cr)
 m2 := (zr * zr) + zi * zi
-counts := 3 s_elect z
 # -- end of the core ---------------------------------------------------
 
 s_hape cr
-s_hape z
+s_hape zr
 
 # The picture: a character per point by how long it stayed inside, @
 # for the points still inside after k steps (the set).

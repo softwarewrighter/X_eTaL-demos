@@ -24,9 +24,9 @@ fn stage_chip(m: &UseReducerHandle<Model>, s: Stage) -> Html {
     let (r, c) = (m.view.rows, m.view.cols);
     let (name, src, dims, meaning): (&str, &str, Vec<usize>, String) = match s {
         Stage::Grid => ("broadcast c", "(o_ffsets rows) 'r_ight t_able re", vec![r, c], format!("{r} rows by {c} columns of points")),
-        Stage::Step => ("one step", "u:s_tep", vec![3, r, c], "3 planes (z real, z imaginary, count) of the grid".into()),
-        Stage::Iterate => ("k steps", "k 'u:s_tep p_ower", vec![3, r, c], "the state after k steps".into()),
-        Stage::Measure => ("measure", "counts := 3 s_elect z", vec![r, c], "one number per point".into()),
+        Stage::Step => ("one step", "u:s_tep", vec![r, c], "a 3-tuple (z real, z imaginary, count), each r x c".into()),
+        Stage::Iterate => ("k steps", "k 'u:s_tep p_ower", vec![r, c], "the state's 3-tuple after k steps".into()),
+        Stage::Measure => ("measure", "counts", vec![r, c], "one number per point, read straight out of the tuple".into()),
     };
     chip(name, src, &dims, &meaning, m.focus == s, act(m, move || Action::Focus(s)))
 }

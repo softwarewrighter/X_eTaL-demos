@@ -1,0 +1,1 @@
+Remove the direction-as-a-wasted-plane workaround from langtons-ant.xtl using tuples: the state becomes (board, antmask, direction) with direction a plain scalar, not a plane; u:step takes and returns the tuple by pattern; u:p_lane is no longer needed. Update the .xtl, the web app's micro.rs, tests, reg-rs goldens; rebuild and browser-check the live page; update the README.

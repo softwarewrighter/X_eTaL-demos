@@ -55,15 +55,15 @@ pub enum Set {
 /// The line that runs `set`, as the page writes it.
 pub fn call(set: Set) -> String {
     match set {
-        Set::Julia(a, b) => format!("z := ({} c_at {}) u:i_terate grid", lit(a), lit(b)),
-        Set::Mandelbrot => "z := grid u:i_terate 0.0 * grid".into(),
+        Set::Julia(a, b) => format!("(zr, zi, counts) := ({}, {}) u:i_terate grid", lit(a), lit(b)),
+        Set::Mandelbrot => "(zr, zi, counts) := grid u:i_terate (0.0 * gr, 0.0 * gi)".into(),
     }
 }
 
 /// The program for `set` on view `v`, `k` steps: prints the counts.
 pub fn program(v: &View, k: usize, set: Set) -> String {
     format!(
-        "rows := {}\ncols := {}\ncx := {}\ncy := {}\nw := {}\nk := {k}\naspect := 1.0\n{}{}\nr_avel 3 s_elect z\n",
+        "rows := {}\ncols := {}\ncx := {}\ncy := {}\nw := {}\nk := {k}\naspect := 1.0\n{}{}\nr_avel counts\n",
         v.rows, v.cols, lit(v.cx), lit(v.cy), lit(v.w), core(), call(set)
     )
 }

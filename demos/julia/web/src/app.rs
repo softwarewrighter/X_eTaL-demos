@@ -24,9 +24,9 @@ fn act(m: &UseReducerHandle<Model>, a: impl Fn() -> Action + 'static) -> Callbac
 fn stage_chip(m: &UseReducerHandle<Model>, s: Stage) -> Html {
     let (r, c) = (m.view.rows, m.view.cols);
     let (name, src, dims, meaning): (&str, String, Vec<usize>, String) = match s {
-        Stage::Grid => ("z0: the grid", "grid".into(), vec![2, r, c], format!("2 planes (real, imaginary) of {r} by {c} points")),
-        Stage::Iterate => ("k steps", "c u:i_terate z0".into(), vec![3, r, c], "3 planes: z real, z imaginary, the count".into()),
-        Stage::Call => ("c: one number", format!("{:.3} c_at {:.3}", m.c.0, m.c.1), vec![2], "2 numbers: c's real and imaginary parts".into()),
+        Stage::Grid => ("z0: the grid", "grid".into(), vec![r, c], format!("a pair (real, imaginary), each {r} by {c} points")),
+        Stage::Iterate => ("k steps", "c u:i_terate z0".into(), vec![r, c], "a 3-tuple: z real, z imaginary, the count".into()),
+        Stage::Call => ("c: one number", format!("({:.3}, {:.3})", m.c.0, m.c.1), vec![2], "a pair: c's real and imaginary parts".into()),
     };
     chip(name, &src, &dims, &meaning, m.focus == s, act(m, move || Action::Focus(s)))
 }
@@ -72,15 +72,15 @@ fn picker(model: &UseReducerHandle<Model>) -> Html {
         Ok(map) => html! { <Canvas rows={v.rows} cols={v.cols} rgba={Rc::new(color::escape(map, 32))} mark={v.pixel(m.c)} {onclick} class="big" /> },
         Err(e) => html! { <pre class="error">{e}</pre> },
     };
-    panel("Pick c on the Mandelbrot set:", "grid u:i_terate 0.0 * grid", "The same function with c the grid and z0 = 0. Click a point to use it as c: inside the black set the Julia set is connected; outside it falls apart into dust.", false, body)
+    panel("Pick c on the Mandelbrot set:", "grid u:i_terate (0.0 * gr, 0.0 * gi)", "The same function with c the grid and z0 = 0. Click a point to use it as c: inside the black set the Julia set is connected; outside it falls apart into dust.", false, body)
 }
 
 fn compare(m: &Model) -> Html {
     let body = html! { <div class="calls">
         <p>{"Mandelbrot: c is the grid, z0 is 0"}</p>
-        { line("grid u:i_terate 0.0 * grid", NONE) }
+        { line("grid u:i_terate (0.0 * gr, 0.0 * gi)", NONE) }
         <p>{"Julia: c is one number, z0 is the grid"}</p>
-        { line(&call(Set::Julia(m.c.0, m.c.1))["z := ".len()..], NONE) }
+        { line(&call(Set::Julia(m.c.0, m.c.1))["(zr, zi, counts) := ".len()..], NONE) }
         <p class="note">{"Inside the step, "}{code("inside * cr + ...")}{" works whether "}{code("cr")}{" is a plane of the grid or a single number: X_eTaL extends a scalar over an array, so one step function serves both sets."}</p>
     </div> };
     panel("One function, two sets:", "c u:i_terate z0", "", m.focus == Stage::Call, body)

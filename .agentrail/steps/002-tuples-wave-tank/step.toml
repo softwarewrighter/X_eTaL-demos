@@ -1,0 +1,8 @@
+number = 2
+slug = "tuples-wave-tank"
+status = "pending"
+description = "Remove the time-as-a-wasted-plane workaround from wave-tank.xtl using tuples:..."
+role = "production"
+context_files = []
+created_at = "2026-10-09T11:33:03"
+commits = []
