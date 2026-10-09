@@ -1,25 +1,50 @@
 #!/usr/bin/env xetal
-# Unix pipes in X_eTaL: the arrays inside the stages (stages/*.xtl),
-# shown on sample.txt. A stage reads standard input as one text; here
-# the same text comes from the file. Every character is numbered by
-# its line, so choosing lines is a mask and reordering them a grade:
-# no loop over lines anywhere.
+## Unix pipes in X_eTaL: the arrays inside the stages (stages/*.xtl),
+## shown on sample.txt. A stage reads standard input as one text;
+## here the same text comes from the file. Every character is
+## numbered by its line, so choosing lines is a mask and reordering
+## them a grade: no loop over lines anywhere. Run it with "xetal run
+## demos/xetal-pipes/xetal-pipes.xtl"; it prints the first line's
+## character-to-line numbers, the counts xetalwc would give, where
+## "lazy" starts and which lines it is on (grep), the padded lines'
+## shape and which lines uniq keeps, and each line's rank and the
+## text sorted by it. No live page: command line only (see the
+## stages, xetalcat and friends, in the demo's README).
 
 "p:" u_se< "stages/Pipes.xtl"
 
 t := []N_GET "sample.txt"
-# -- every character's line: a running sum of newlines
+
+## -- every character's line: a running sum of newlines. ln: as
+## stages/Pipes.xtl's l:l_ines computes it.
 ln := p:l_ines t
-# -- grep: the text's k rotations against the needle
+
+### grep: the text's k rotations against the needle
+
+## needle, k, tt: the needle to find, its length, and the text
+## repeated k times (so a rotation of it lines up with every start).
+## starts: 1 wherever the needle starts: the k rotations' characters
+## compared with the needle's, then reduced by & (and-reduce). hits:
+## the lines those characters are on.
 needle := "lazy"
 k := t_ally needle
 tt := t c_at k r_eshape "\n"
 starts := (t_ally t) t_ake '& r_/_1 ((o_ffsets k) o_- tt) = needle 'l_eft t_able tt
 hits := u_nique starts r_eplicate ln
-# -- uniq: a line stays when its padded row differs from the row above
+
+### uniq: a line stays when its padded row differs from the row above
+
+## m: the lines as a padded character matrix (Pipes.xtl's l:m_atrix).
+## differs: 1 where a row differs from the one above it (the matrix
+## rotated down one row).
 m := p:m_atrix t
 differs := 1 c_at 1 d_rop '| r_/_2 m != -1 o_-_1 m
-# -- sort: each line's rank, given to its characters, graded stably
+
+### sort: each line's rank, given to its characters, graded stably
+
+## rank: the grade of the padded rows, each line's place in order.
+## sorted: every character takes its line's rank, and a stable grade
+## of those ranks moves whole lines.
 rank := g_rade g_rade m
 sorted := (g_rade ln s_elect rank) s_elect t
 # -- end of the core --------------------------------

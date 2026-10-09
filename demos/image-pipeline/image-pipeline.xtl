@@ -1,52 +1,72 @@
 #!/usr/bin/env xetal
-# An image pipeline as array programs: a picture built from masks,
-# blurred, its edges found with the Sobel kernels, thresholded, and
-# shrunk by max-pooling. Every 3 x 3 filter is the same two steps:
-# the stack of the nine shifted copies of the image (its windows),
-# then the kernel times the stack, summed.
+## An image pipeline as array programs: a picture built from masks,
+## blurred, its edges found with the Sobel kernels, thresholded, and
+## shrunk by max-pooling. Every 3 x 3 filter is the same two steps:
+## the stack of the nine shifted copies of the image (its windows),
+## then the kernel times the stack, summed. Run it with "xetal run
+## demos/image-pipeline/image-pipeline.xtl"; it prints the windows'
+## and the pooled map's shapes, then the picture, the edge strength,
+## the edges and the pooled edges, each drawn with characters. The
+## live page lets you edit the kernels and pick a picture, and click
+## a pixel for its window times each kernel:
+## https://softwarewrighter.github.io/X_eTaL-demos/image-pipeline/
 
 rows := 20
 cols := 40
 
-# -- coordinates: each pixel's row and column -------
+## -- coordinates: each pixel's row and column. row, col: by
+## broadcasting (t_able).
 row := (o_ffsets rows) 'l_eft t_able o_ffsets cols
 col := (o_ffsets rows) 'r_ight t_able o_ffsets cols
-# -- the picture: masks of coordinates, and noise ----
-# Masks are conditions (true inside), made Floats where used.
+# -- the picture: masks of coordinates, and noise (plain #: the page's
+# web app finds this exact text to cut the program it runs, right up
+# to it, so a ## here would leave a stray # in what it cuts). Masks
+# are conditions (true inside), made Floats where used.
 disk := (((row - 9) * row - 9) + ((col - 10) * col - 10) d_iv 2) < 36
 box := ((row >= 5) & row < 15) & (col >= 22) & col < 33
 img := 0.15 + (0.7 * f_loat disk) + (0.45 * f_loat box) + 0.001 * f_loat r_oll! (s_hape row) r_eshape 60
-# -- the kernels ------------------------------------
+
+## -- the kernels. blur: a Gaussian blur. kx, ky: Sobel edge kernels
+## (ky is kx turned a quarter, o_\, the transpose). thresh: the edge
+## strength that counts as an edge.
 blur := (3 c_at 3) r_eshape 0.0625 0.125 0.0625 0.125 0.25 0.125 0.0625 0.125 0.0625
 kx := (3 c_at 3) r_eshape -1.0 0.0 1.0 -2.0 0.0 2.0 -1.0 0.0 1.0
 ky := o_\ kx
 thresh := 0.8
-# -- the windows: nine shifted copies ---------------
-# Rotating by a list of amounts gives one copy per
-# amount, on a new first axis. Columns are shifted
-# first; then the rows, which the new axis moved to
-# axis 2. Item [a;b;r;c] is the pixel at row r + a,
-# column c + b, for a and b in -1 0 1.
+
+## -- the windows: nine shifted copies. u:w_indows x: rotating by a
+## list of amounts gives one copy per amount, on a new first axis.
+## Columns are shifted first; then the rows, which the new axis moved
+## to axis 2. Item [a;b;r;c] is the pixel at row r + a, column c + b,
+## for a and b in -1 0 1.
 u:w_indows := { x -> -1 0 1 o_-_2 -1 0 1 o_-_2 x }
-# -- a filter: kernel times windows, summed ---------
-# The kernel spread over the picture (3 x 3 x rows x
-# cols) times the windows, summed over its two axes.
+
+### A filter: kernel times windows, summed
+
+## u:f_ilter k x: the kernel spread over the picture (3 x 3 x rows x
+## cols) times the windows, summed over its two axes.
 u:f_ilter := { k x -> '+ r_/_12 (u:w_indows x) * k 'l_eft t_able x }
-# -- the pipeline -----------------------------------
+
+### The pipeline
+
+## smooth, gx, gy, mag, edges: the blur, the two Sobel gradients, the
+## edge strength (their length), and where it passes the threshold.
 smooth := blur u:f_ilter img
 gx := kx u:f_ilter smooth
 gy := ky u:f_ilter smooth
 mag := ((gx * gx) + gy * gy) ^ 0.5
 edges := f_loat mag > thresh
-# -- max-pooling: 2 x 2 blocks by reshape, reduce ---
+
+## -- max-pooling: 2 x 2 blocks by reshape, reduce. pool: reshaped so
+## each 2 x 2 block has two axes of its own, then the largest over them.
 pool := 'm_ax r_/_2 'm_ax r_/_4 ((rows d_iv 2) c_at 2 c_at (cols d_iv 2) c_at 2) r_eshape mag
 # -- end of the core --------------------------------
 
 # The shapes: the windows, each stage, the pooled map.
 s_hape u:w_indows img
 s_hape pool
-# The picture, the smoothed edge strength, the edges and the pooled
-# edges, drawn with characters (darkest first).
+## u:d_raw a: the picture, the smoothed edge strength, the edges and
+## the pooled edges, drawn with characters (darkest first).
 u:d_raw := { a -> (1 + f_loor 0 m_ax 7 m_in 8.0 * a) s_elect " .:-=+*#" }
 u:d_raw img
 u:d_raw mag / 3.0

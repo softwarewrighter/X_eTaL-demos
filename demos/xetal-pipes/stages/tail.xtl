@@ -2,6 +2,6 @@
 "p:" u_se< "Pipes"
 t := p:r_ead @
 # N: the digits among the arguments (n_umbers would refuse "-n").
-k := f_loor f_irst (n_umbers (args m_ember? "0123456789\n") r_eplicate args) c_at 10.0
+k := f_loor f_irst (n_umbers (args m_ember? []D c_at "\n") r_eplicate args) c_at 10.0
 c := p:c_ount t
 n := p:o_ut ((r_ange c) > c - k) p:k_eep t

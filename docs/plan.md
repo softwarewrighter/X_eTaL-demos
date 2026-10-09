@@ -298,7 +298,7 @@ definitions and uses. The user, 2026-10-08. Mechanical only: no
 | - | --------- | -------- |
 | 1 | doc-site | Done 2026-10-08: `scripts/doc-site.sh` (modeled on X_eTaL's own) documents `Stencil.xtlm`, `stages/Pipes.xtl` and each demo's `<slug>.xtl` (13); left out: `xetal-pipes/stages/{cat,wc,...}.xtl` (an undefined `args`, the wrapper's job) and `stencil-macros/check.xtl` (a correctness check, not a demo). Wired into `build-pages.sh` (`just pages` rebuilds it, `just doc` alone; the demo-cleanup loop now skips `pages/doc/`, which is not a slug). README links the live page (`## Documentation`, `## The live site`), as X_eTaL's README links its own. 32 pages; published and checked live |
 
-## Saga 9 -- doc content (`##`/`###` comments on the demos' own `.xtl`)
+## Saga 9 -- doc content (`##`/`###` comments on the demos' own `.xtl`)  [DONE]
 
 Goal: the demos' own programs are undocumented by `xetal doc` (plain
 `#` throughout; Saga 8 built the site, but a demo's page there is
@@ -379,7 +379,7 @@ them explicitly after writing a file's comments.
 | 1 | doc-grids-1 | Done 2026-10-08: `##`/`###` on `life-microscope.xtl`, `mandelbrot.xtl`, `julia.xtl` (file intro, section headings matching the existing `# -- stage --` blocks, a `##` above each top-level name); `s_tep` in `julia.xtl`'s `u:i_terate` stays a plain `#` note (a local, bare, scoped to the lambda, PN6 -- not a top-level item `xetal doc` would list on its own). Every output byte-identical (`diff` against the CLI goldens); broke and then fixed the two live pages (the gotchas above); `pages/doc` rebuilt and spot-checked in Chrome (section nav, cross-references, decoration all correct) |
 | 2 | doc-grids-2 | `##`/`###` on `reaction-diffusion.xtl`, `wave-tank.xtl`, `ca-lab.xtl`, `langtons-ant.xtl` |
 | 3 | doc-start-here | `##`/`###` on `sandpile.xtl`, `nbody.xtl`, `fourier-epicycles.xtl` |
-| 4 | doc-macros | `##`/`###` on `image-pipeline.xtl`, `stencil-macros.xtl`, `xetal-pipes.xtl` (its stage files stay out, as Saga 8 left them out of the site) |
+| 4 | doc-macros | Done 2026-10-08: `##`/`###` on `image-pipeline.xtl`, `stencil-macros.xtl`, `xetal-pipes.xtl` (its stage files stay out, as Saga 8 left them out of the site). Two more marker-concatenation cases found and kept plain `#` (`image-pipeline.xtl`'s `prelude`/scene boundary, `stencil-macros.xtl`'s `picture`/call boundary -- both the same shape as `wave-tank`'s). Found a `[]A`/`[]D` cleanup along the way (unrelated to this saga, from a landed X_eTaL ask): `xetal-pipes/stages/{head,tail}.xtl`'s `"0123456789\n"` replaced with `[]D c_at "\n"`. Re-blessed `stencil-macros`' `xetal expand` golden (comments changed, the expansion's arithmetic did not). All output byte-identical; `pages/doc` and every touched live page rebuilt and browser-checked, alongside `eigencube` (landed on `main` mid-saga by another session, pulled cleanly)
 
 ## Saga 4 -- deferred (blocked on asks): MOVED to X_eTaL-ML
 
