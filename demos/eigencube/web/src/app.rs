@@ -72,6 +72,21 @@ fn solution(m: &UseReducerHandle<Model>) -> Html {
     }
 }
 
+/// The voxel cube of X_eTaL-extensions, solved by the same library: its
+/// recording (a native window, recorded headless).
+const VIDEO: &str = "https://softwarewrighter.github.io/X_eTaL-extensions/scene/voxels-rubik-solve.webm";
+const VIDEO_PAGE: &str = "https://softwarewrighter.github.io/X_eTaL-extensions/#scene-voxels-rubik-solve";
+
+fn in_3d() -> Html {
+    html! {
+        <section class="panel">
+            <h2>{"The cube in 3D"}</h2>
+            <p class="note">{"The same Eigencube library solving a voxel cube in X_eTaL's native 3D window (X_eTaL-extensions' scene): scramble, solve, three steps, then play to the end, each turn shown as its layer turning. A recording; "}<a href={VIDEO_PAGE} target="_blank">{"the demo and its source"}</a>{"."}</p>
+            <video class="cube3d" src={VIDEO} controls=true loop=true muted=true playsinline=true preload="metadata" />
+        </section>
+    }
+}
+
 #[function_component(App)]
 pub fn app() -> Html {
     let model = use_reducer(Model::new);
@@ -116,6 +131,7 @@ pub fn app() -> Html {
                         <p class="note">{format!("X_eTaL turned the cube in {:.0} ms.", model.ms)}</p>
                     </section>
                     { solution(&model) }
+                    { in_3d() }
                 </div>
                 <div class="col">
                     <section class="panel code">

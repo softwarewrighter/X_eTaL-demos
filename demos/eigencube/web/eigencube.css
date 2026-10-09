@@ -9,3 +9,4 @@
 .mv { display: inline-block; margin: 0 .25em .2em 0; padding: 0 .2em; border-radius: 4px; color: var(--muted); }
 .mv.done { color: var(--fg); }
 .mv.now { background: var(--accent); color: var(--bg); }
+.cube3d { display: block; width: 100%; max-width: 640px; margin: 4px auto; border-radius: 8px; background: #0b0d14; }

@@ -16,6 +16,12 @@ turn the faces, scramble, undo, and solve, then step through the
 solution or play it. Each click runs the program below in your
 browser and draws the stickers it prints; a solve takes a few seconds.
 
+In 3D: the same library solves a voxel cube in X_eTaL's native scene
+window in
+[X_eTaL-extensions](https://softwarewrighter.github.io/X_eTaL-extensions/#scene-voxels-rubik-solve)
+([recording](https://softwarewrighter.github.io/X_eTaL-extensions/scene/voxels-rubik-solve.webm)),
+which the page plays.
+
 [![Eigencube: the live page](screenshot.png)](https://softwarewrighter.github.io/X_eTaL-demos/eigencube/)
 
 ## The program
