@@ -85,7 +85,7 @@ code {{ font-family: ui-monospace, "JuliaMono", Menlo, monospace; }}
 <body>
 <main>
 <header>
-<div class="brand"><img class="logo" src="modern-xetal-logo.jpg" alt="X_eTaL"><h1>Demos</h1></div>
+<div class="brand"><img class="logo" src="modern-xetal-logo.jpg" alt="X_eTaL"><h1>X_eTaL Demos</h1></div>
 <p class="lede">Small programs in <a href="{xetal}">X_eTaL</a>, a typed array language,
 that make something worth watching. Each one shows its program beside the result, so you
 can see a whole loop nest happen as one array expression. The machine-learning demos
