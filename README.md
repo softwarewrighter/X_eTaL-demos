@@ -1,5 +1,7 @@
 # X_eTaL demos
 
+<img src="images/modern-xetal-logo.jpg" alt="X_eTaL" width="130">
+
 <p align="center">
   <b><a href="https://softwarewrighter.github.io/X_eTaL-demos/">The live demo catalog</a></b>
   -- every demo running in your browser (WebAssembly)

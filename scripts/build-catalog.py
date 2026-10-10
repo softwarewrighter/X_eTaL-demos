@@ -62,7 +62,7 @@ h1 {{ font-size: 2rem; margin: 0 0 8px; letter-spacing: -0.01em; }}
 footer {{ border-top:1px solid var(--line); padding-top:16px; padding-bottom:32px; color:var(--muted); font-size:.85rem; }}
 footer .sep {{ margin: 0 8px; }}
 .brand {{ display:flex; align-items:center; gap:16px; margin-bottom: 8px; }}
-.brand h1 {{ margin: 0; }}
+.brand h1 {{ margin: 0; color: var(--accent); }}
 .logo {{ height: 56px; width: auto; border-radius: 8px; }}
 code {{ font-family: ui-monospace, "JuliaMono", Menlo, monospace; }}
 .about {{ background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 18px; margin: 0 0 16px; }}
