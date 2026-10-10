@@ -1,8 +1,9 @@
 number = 4
 slug = "tuples-release"
-status = "in-progress"
+status = "completed"
 description = "Mark docs/xetal-asks.md's 'A state of several arrays' ask fully landed (all f..."
 role = "production"
 context_files = []
 created_at = "2026-10-09T11:33:03"
-commits = []
+completed_at = "2026-10-09T18:08:59"
+commits = ["135d11f2cce7b5df62ad0bf607a8951f670ce098"]
