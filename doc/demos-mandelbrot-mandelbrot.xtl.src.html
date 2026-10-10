@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>demos/mandelbrot/mandelbrot.xtl - X_eTaL doc</title>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+<script defer src="search-index.js"></script>
+<script defer src="search.js"></script>
+</head>
+<body>
+<nav class="side">
+<a class="home" href="index.html">X_eTaL doc</a>
+<input id="search" type="search" autocomplete="off" placeholder="Search: a name, or a type" title="A name (mean finds m_ean), or a type: Num a =&gt; a -&gt; a -&gt; a finds +, m_ax ...">
+<h2>Files</h2>
+<h3>/Users/mike/github/softwarewrighter/X_eTaL-demos/work/libraries/libs/Eigencube/src/</h3>
+<ul>
+<li><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html">Eigencube.xtl</a></li>
+</ul>
+<h3>demos/ca-lab/</h3>
+<ul>
+<li><a href="demos-ca-lab-ca-lab.xtl.html">ca-lab.xtl</a></li>
+</ul>
+<h3>demos/eigencube/</h3>
+<ul>
+<li><a href="demos-eigencube-eigencube.xtl.html">eigencube.xtl</a></li>
+</ul>
+<h3>demos/fourier-epicycles/</h3>
+<ul>
+<li><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html">fourier-epicycles.xtl</a></li>
+</ul>
+<h3>demos/image-pipeline/</h3>
+<ul>
+<li><a href="demos-image-pipeline-image-pipeline.xtl.html">image-pipeline.xtl</a></li>
+</ul>
+<h3>demos/julia/</h3>
+<ul>
+<li><a href="demos-julia-julia.xtl.html">julia.xtl</a></li>
+</ul>
+<h3>demos/langtons-ant/</h3>
+<ul>
+<li><a href="demos-langtons-ant-langtons-ant.xtl.html">langtons-ant.xtl</a></li>
+</ul>
+<h3>demos/life-microscope/</h3>
+<ul>
+<li><a href="demos-life-microscope-life-microscope.xtl.html">life-microscope.xtl</a></li>
+</ul>
+<h3>demos/mandelbrot/</h3>
+<ul>
+<li><a href="demos-mandelbrot-mandelbrot.xtl.html">mandelbrot.xtl</a></li>
+</ul>
+<h3>demos/nbody/</h3>
+<ul>
+<li><a href="demos-nbody-nbody.xtl.html">nbody.xtl</a></li>
+</ul>
+<h3>demos/reaction-diffusion/</h3>
+<ul>
+<li><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html">reaction-diffusion.xtl</a></li>
+</ul>
+<h3>demos/sandpile/</h3>
+<ul>
+<li><a href="demos-sandpile-sandpile.xtl.html">sandpile.xtl</a></li>
+</ul>
+<h3>demos/stencil-macros/</h3>
+<ul>
+<li><a href="demos-stencil-macros-stencil-macros.xtl.html">stencil-macros.xtl</a></li>
+<li><a href="demos-stencil-macros-Stencil.xtlm.html">Stencil.xtlm</a></li>
+</ul>
+<h3>demos/wave-tank/</h3>
+<ul>
+<li><a href="demos-wave-tank-wave-tank.xtl.html">wave-tank.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-xetal-pipes.xtl.html">xetal-pipes.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/stages/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-stages-Pipes.xtl.html">Pipes.xtl</a></li>
+</ul>
+<ul>
+<li><a href="builtins.html">built-ins</a></li>
+</ul>
+<h2>On this page</h2>
+<ul>
+<li class="item"><a href="#L19">rows</a></li>
+<li class="item"><a href="#L20">cols</a></li>
+<li class="item"><a href="#L21">cx</a></li>
+<li class="item"><a href="#L22">cy</a></li>
+<li class="item"><a href="#L23">w</a></li>
+<li class="item"><a href="#L24">k</a></li>
+<li class="item"><a href="#L25">aspect</a></li>
+<li class="item"><a href="#L29"><span class="c-userfunc">ᵘc̲entred</span></a></li>
+<li class="item"><a href="#L38">re</a></li>
+<li class="item"><a href="#L39">im</a></li>
+<li class="item"><a href="#L40">cr</a></li>
+<li class="item"><a href="#L41">ci</a></li>
+<li class="item"><a href="#L52"><span class="c-userfunc">ᵘs̲tep</span></a></li>
+<li class="item"><a href="#L65"><span class="c-error">%</span><span class="c-number">2</span></a></li>
+<li class="item"><a href="#L65">zr</a></li>
+<li class="item"><a href="#L65">zi</a></li>
+<li class="item"><a href="#L65">counts</a></li>
+<li class="item"><a href="#L66">m2</a></li>
+<li class="item"><a href="#L83">cr0</a></li>
+<li class="item"><a href="#L84">ci0</a></li>
+<li class="item"><a href="#L85"><span class="c-userfunc">ᵘo̲rbit</span></a></li>
+</ul>
+</nav>
+<main>
+<button class="theme" title="Light or dark">theme</button>
+<section id="results"></section>
+<h1><span class="kind">source</span><a href="demos-mandelbrot-mandelbrot.xtl.html">demos/mandelbrot/mandelbrot.xtl</a></h1>
+<div class="source"><span class="line" id="L1"><a class="ln" href="#L1">1</a><span class="c-comment">⍝</span><span class="c-comment">!/usr/bin/env xetal</span></span>
+<span class="line" id="L2"><a class="ln" href="#L2">2</a><span class="c-comment">⍝</span><span class="c-comment"># The Mandelbrot set as arrays: every point c of a view iterated at</span></span>
+<span class="line" id="L3"><a class="ln" href="#L3">3</a><span class="c-comment">⍝</span><span class="c-comment"># once, z becoming z * z + c, counting the steps each point stays</span></span>
+<span class="line" id="L4"><a class="ln" href="#L4">4</a><span class="c-comment">⍝</span><span class="c-comment"># within 2 of the origin. X_eTaL has no complex numbers yet (an ask:</span></span>
+<span class="line" id="L5"><a class="ln" href="#L5">5</a><span class="c-comment">⍝</span><span class="c-comment"># see the demo's README Workarounds), so z and c are each two Float</span></span>
+<span class="line" id="L6"><a class="ln" href="#L6">6</a><span class="c-comment">⍝</span><span class="c-comment"># arrays, their real and imaginary parts. Run it with &quot;xetal run</span></span>
+<span class="line" id="L7"><a class="ln" href="#L7">7</a><span class="c-comment">⍝</span><span class="c-comment"># demos/mandelbrot/mandelbrot.xtl&quot;; it prints the shapes</span></span>
+<span class="line" id="L8"><a class="ln" href="#L8">8</a><span class="c-comment">⍝</span><span class="c-comment"># of c and of the stepped state, the set drawn with characters, and</span></span>
+<span class="line" id="L9"><a class="ln" href="#L9">9</a><span class="c-comment">⍝</span><span class="c-comment"># one point's orbit (its real parts, then its imaginary parts). The</span></span>
+<span class="line" id="L10"><a class="ln" href="#L10">10</a><span class="c-comment">⍝</span><span class="c-comment"># live page steps k and lets you click a point for its orbit:</span></span>
+<span class="line" id="L11"><a class="ln" href="#L11">11</a><span class="c-comment">⍝</span><span class="c-comment"># https://softwarewrighter.github.io/X_eTaL-demos/mandelbrot/</span></span>
+<span class="line" id="L12"><a class="ln" href="#L12">12</a></span>
+<span class="line" id="L13"><a class="ln" href="#L13">13</a><span class="c-comment">⍝</span><span class="c-comment">## The view</span></span>
+<span class="line" id="L14"><a class="ln" href="#L14">14</a></span>
+<span class="line" id="L15"><a class="ln" href="#L15">15</a><span class="c-comment">⍝</span><span class="c-comment"># rows, cols: the picture's size. cx, cy, w: the view's center and</span></span>
+<span class="line" id="L16"><a class="ln" href="#L16">16</a><span class="c-comment">⍝</span><span class="c-comment"># width (in the plane, not pixels). k: how many steps. aspect: how</span></span>
+<span class="line" id="L17"><a class="ln" href="#L17">17</a><span class="c-comment">⍝</span><span class="c-comment"># tall a cell is for its width (2.0, since a character is about</span></span>
+<span class="line" id="L18"><a class="ln" href="#L18">18</a><span class="c-comment">⍝</span><span class="c-comment"># twice as tall as it is wide; a page of square pixels uses 1.0).</span></span>
+<span class="line" id="L19"><a class="ln" href="#L19">19</a>rows ← <span class="c-number">24</span></span>
+<span class="line" id="L20"><a class="ln" href="#L20">20</a>cols ← <span class="c-number">64</span></span>
+<span class="line" id="L21"><a class="ln" href="#L21">21</a>cx ← <span class="c-number">-0.6</span></span>
+<span class="line" id="L22"><a class="ln" href="#L22">22</a>cy ← <span class="c-number">0.0</span></span>
+<span class="line" id="L23"><a class="ln" href="#L23">23</a>w ← <span class="c-number">3.0</span></span>
+<span class="line" id="L24"><a class="ln" href="#L24">24</a>k ← <span class="c-number">30</span></span>
+<span class="line" id="L25"><a class="ln" href="#L25">25</a>aspect ← <span class="c-number">2.0</span></span>
+<span class="line" id="L26"><a class="ln" href="#L26">26</a></span>
+<span class="line" id="L27"><a class="ln" href="#L27">27</a><span class="c-comment">⍝</span><span class="c-comment"># Numbers centered on 0 (u:c_entred n): 0 1 2 3 becomes</span></span>
+<span class="line" id="L28"><a class="ln" href="#L28">28</a><span class="c-comment">⍝</span><span class="c-comment"># -1.5 -0.5 0.5 1.5.</span></span>
+<span class="line" id="L29"><a class="ln" href="#L29">29</a><span class="c-userfunc">ᵘc̲entred</span> ← { n → (<a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> n) <a href="builtins.html#-2d" class="c-symbol">−</a> (<a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> n <a href="builtins.html#-2d" class="c-symbol">−</a> <span class="c-number">1</span>) <a href="builtins.html#-2f" class="c-symbol">÷</a> <span class="c-number">2</span> }</span>
+<span class="line" id="L30"><a class="ln" href="#L30">30</a></span>
+<span class="line" id="L31"><a class="ln" href="#L31">31</a><span class="c-comment">⍝</span><span class="c-comment">## c for every point, by broadcasting</span></span>
+<span class="line" id="L32"><a class="ln" href="#L32">32</a></span>
+<span class="line" id="L33"><a class="ln" href="#L33">33</a><span class="c-comment">⍝</span><span class="c-comment"># re, im: one row of real parts and one column of imaginary parts,</span></span>
+<span class="line" id="L34"><a class="ln" href="#L34">34</a><span class="c-comment">⍝</span><span class="c-comment"># centered on (cx, cy) and w wide.</span></span>
+<span class="line" id="L35"><a class="ln" href="#L35">35</a><span class="c-comment">⍝</span><span class="c-comment"># cr, ci: c's real and imaginary parts spread over the whole grid:</span></span>
+<span class="line" id="L36"><a class="ln" href="#L36">36</a><span class="c-comment">⍝</span><span class="c-comment"># t_able spreads the row down and the column across, no loop over</span></span>
+<span class="line" id="L37"><a class="ln" href="#L37">37</a><span class="c-comment">⍝</span><span class="c-comment"># points.</span></span>
+<span class="line" id="L38"><a class="ln" href="#L38">38</a>re ← <a href="demos-mandelbrot-mandelbrot.xtl.html#cx">cx</a> <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#w">w</a> <a href="builtins.html#-2a" class="c-symbol">×</a> (<a href="demos-mandelbrot-mandelbrot.xtl.html#u.c_entred" class="c-userfunc">ᵘc̲entred</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#cols">cols</a>) <a href="builtins.html#-2f" class="c-symbol">÷</a> <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#cols">cols</a></span>
+<span class="line" id="L39"><a class="ln" href="#L39">39</a>im ← <a href="demos-mandelbrot-mandelbrot.xtl.html#cy">cy</a> <a href="builtins.html#-2d" class="c-symbol">−</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#aspect">aspect</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#w">w</a> <a href="builtins.html#-2a" class="c-symbol">×</a> (<a href="demos-mandelbrot-mandelbrot.xtl.html#u.c_entred" class="c-userfunc">ᵘc̲entred</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#rows">rows</a>) <a href="builtins.html#-2f" class="c-symbol">÷</a> <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#cols">cols</a></span>
+<span class="line" id="L40"><a class="ln" href="#L40">40</a>cr ← (<a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#rows">rows</a>) <span class="c-builtin">'</span><a href="builtins.html#r_ight" class="c-builtin">r̲ight</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#re">re</a></span>
+<span class="line" id="L41"><a class="ln" href="#L41">41</a>ci ← <a href="demos-mandelbrot-mandelbrot.xtl.html#im">im</a> <span class="c-builtin">'</span><a href="builtins.html#l_eft" class="c-builtin">l̲eft</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#cols">cols</a></span>
+<span class="line" id="L42"><a class="ln" href="#L42">42</a></span>
+<span class="line" id="L43"><a class="ln" href="#L43">43</a><span class="c-comment">⍝</span><span class="c-comment">## One step for every point at once</span></span>
+<span class="line" id="L44"><a class="ln" href="#L44">44</a></span>
+<span class="line" id="L45"><a class="ln" href="#L45">45</a><span class="c-comment">⍝</span><span class="c-comment"># u:s_tep (zr, zi, counts): the state is a tuple of three same-shaped</span></span>
+<span class="line" id="L46"><a class="ln" href="#L46">46</a><span class="c-comment">⍝</span><span class="c-comment"># arrays (z's real part, its imaginary part, and the count of steps</span></span>
+<span class="line" id="L47"><a class="ln" href="#L47">47</a><span class="c-comment">⍝</span><span class="c-comment"># spent inside), taken apart by the pattern and given back as a new</span></span>
+<span class="line" id="L48"><a class="ln" href="#L48">48</a><span class="c-comment">⍝</span><span class="c-comment"># tuple; no more packing them into one array (D7, landed). One step</span></span>
+<span class="line" id="L49"><a class="ln" href="#L49">49</a><span class="c-comment">⍝</span><span class="c-comment"># computes z * z + c everywhere, keeps z where the point has already</span></span>
+<span class="line" id="L50"><a class="ln" href="#L50">50</a><span class="c-comment">⍝</span><span class="c-comment"># left the disk |z|^2 &gt; 4 (the mask inside), and adds inside to the</span></span>
+<span class="line" id="L51"><a class="ln" href="#L51">51</a><span class="c-comment">⍝</span><span class="c-comment"># count.</span></span>
+<span class="line" id="L52"><a class="ln" href="#L52">52</a><span class="c-userfunc">ᵘs̲tep</span> ← { (<a href="demos-mandelbrot-mandelbrot.xtl.html#zr">zr</a>, <a href="demos-mandelbrot-mandelbrot.xtl.html#zi">zi</a>, <a href="demos-mandelbrot-mandelbrot.xtl.html#counts">counts</a>) →</span>
+<span class="line" id="L53"><a class="ln" href="#L53">53</a>  inside ← <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <span class="c-number">4</span> <a href="builtins.html#-3e-3d" class="c-symbol">≥</a> (<a href="demos-mandelbrot-mandelbrot.xtl.html#zr">zr</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#zr">zr</a>) <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#zi">zi</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#zi">zi</a></span>
+<span class="line" id="L54"><a class="ln" href="#L54">54</a>  a ← (inside <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#cr">cr</a> <a href="builtins.html#-2b" class="c-symbol">+</a> (<a href="demos-mandelbrot-mandelbrot.xtl.html#zr">zr</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#zr">zr</a>) <a href="builtins.html#-2d" class="c-symbol">−</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#zi">zi</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#zi">zi</a>) <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">1</span> <a href="builtins.html#-2d" class="c-symbol">−</a> inside) <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#zr">zr</a></span>
+<span class="line" id="L55"><a class="ln" href="#L55">55</a>  b ← (inside <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#ci">ci</a> <a href="builtins.html#-2b" class="c-symbol">+</a> <span class="c-number">2</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#zr">zr</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#zi">zi</a>) <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">1</span> <a href="builtins.html#-2d" class="c-symbol">−</a> inside) <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#zi">zi</a></span>
+<span class="line" id="L56"><a class="ln" href="#L56">56</a>  (a, b, inside <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#counts">counts</a>)</span>
+<span class="line" id="L57"><a class="ln" href="#L57">57</a>}</span>
+<span class="line" id="L58"><a class="ln" href="#L58">58</a></span>
+<span class="line" id="L59"><a class="ln" href="#L59">59</a><span class="c-comment">⍝</span><span class="c-comment">## k steps, from z = 0</span></span>
+<span class="line" id="L60"><a class="ln" href="#L60">60</a></span>
+<span class="line" id="L61"><a class="ln" href="#L61">61</a><span class="c-comment">⍝</span><span class="c-comment"># zr, zi, counts: the state after k steps (function power, from a</span></span>
+<span class="line" id="L62"><a class="ln" href="#L62">62</a><span class="c-comment">⍝</span><span class="c-comment"># zero state), taken apart by the same pattern as the binding reads</span></span>
+<span class="line" id="L63"><a class="ln" href="#L63">63</a><span class="c-comment">⍝</span><span class="c-comment"># it in. m2: |z|^2. counts: how many steps each point stayed inside;</span></span>
+<span class="line" id="L64"><a class="ln" href="#L64">64</a><span class="c-comment">⍝</span><span class="c-comment"># the points still inside after k steps are the set, so far.</span></span>
+<span class="line" id="L65"><a class="ln" href="#L65">65</a>(<a href="demos-mandelbrot-mandelbrot.xtl.html#zr">zr</a>, <a href="demos-mandelbrot-mandelbrot.xtl.html#zi">zi</a>, <a href="demos-mandelbrot-mandelbrot.xtl.html#counts">counts</a>) ← <a href="demos-mandelbrot-mandelbrot.xtl.html#k">k</a> <span class="c-userfunc">'</span><a href="demos-mandelbrot-mandelbrot.xtl.html#u.s_tep" class="c-userfunc">ᵘs̲tep</a> <a href="builtins.html#p_ower" class="c-builtin">p̲ower</a> (<span class="c-number">0.0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#cr">cr</a>, <span class="c-number">0.0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#cr">cr</a>, <span class="c-number">0.0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#cr">cr</a>)</span>
+<span class="line" id="L66"><a class="ln" href="#L66">66</a>m2 ← (<a href="demos-mandelbrot-mandelbrot.xtl.html#zr">zr</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#zr">zr</a>) <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#zi">zi</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#zi">zi</a></span>
+<span class="line" id="L67"><a class="ln" href="#L67">67</a><span class="c-comment">⍝</span><span class="c-comment"> -- end of the core ---------------------------------------------------</span></span>
+<span class="line" id="L68"><a class="ln" href="#L68">68</a></span>
+<span class="line" id="L69"><a class="ln" href="#L69">69</a><a href="builtins.html#s_hape" class="c-builtin">s̲hape</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#cr">cr</a></span>
+<span class="line" id="L70"><a class="ln" href="#L70">70</a><a href="builtins.html#s_hape" class="c-builtin">s̲hape</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#zr">zr</a></span>
+<span class="line" id="L71"><a class="ln" href="#L71">71</a></span>
+<span class="line" id="L72"><a class="ln" href="#L72">72</a><span class="c-comment">⍝</span><span class="c-comment"> The picture: a character per point by how long it stayed inside, @</span></span>
+<span class="line" id="L73"><a class="ln" href="#L73">73</a><span class="c-comment">⍝</span><span class="c-comment"> for the points still inside after k steps (the set).</span></span>
+<span class="line" id="L74"><a class="ln" href="#L74">74</a>(<span class="c-number">1</span> <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="builtins.html#f_loor" class="c-builtin">f̲loor</a> (<span class="c-number">9.0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#counts">counts</a>) <a href="builtins.html#-2f" class="c-symbol">÷</a> <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#k">k</a>) <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> <span class="c-string">&quot; .:-=+*#%@&quot;</span></span>
+<span class="line" id="L75"><a class="ln" href="#L75">75</a></span>
+<span class="line" id="L76"><a class="ln" href="#L76">76</a><span class="c-comment">⍝</span><span class="c-comment">## One point's orbit</span></span>
+<span class="line" id="L77"><a class="ln" href="#L77">77</a></span>
+<span class="line" id="L78"><a class="ln" href="#L78">78</a><span class="c-comment">⍝</span><span class="c-comment"># cr0, ci0: a point near the set's edge, c = -0.75 + 0.1i, which</span></span>
+<span class="line" id="L79"><a class="ln" href="#L79">79</a><span class="c-comment">⍝</span><span class="c-comment"># circles slowly rather than running away or settling.</span></span>
+<span class="line" id="L80"><a class="ln" href="#L80">80</a><span class="c-comment">⍝</span><span class="c-comment"># u:o_rbit s: the next z (z * z + c) for this one point, s its</span></span>
+<span class="line" id="L81"><a class="ln" href="#L81">81</a><span class="c-comment">⍝</span><span class="c-comment"># previous z (real part, imaginary part), no mask needed (a single</span></span>
+<span class="line" id="L82"><a class="ln" href="#L82">82</a><span class="c-comment">⍝</span><span class="c-comment"># point, always run the full k steps).</span></span>
+<span class="line" id="L83"><a class="ln" href="#L83">83</a>cr0 ← <span class="c-number">-0.75</span></span>
+<span class="line" id="L84"><a class="ln" href="#L84">84</a>ci0 ← <span class="c-number">0.1</span></span>
+<span class="line" id="L85"><a class="ln" href="#L85">85</a><span class="c-userfunc">ᵘo̲rbit</span> ← { s → (<a href="demos-mandelbrot-mandelbrot.xtl.html#cr0">cr0</a> <a href="builtins.html#-2b" class="c-symbol">+</a> ((<span class="c-number">1</span> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> s) <a href="builtins.html#-2a" class="c-symbol">×</a> <span class="c-number">1</span> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> s) <a href="builtins.html#-2d" class="c-symbol">−</a> (<span class="c-number">2</span> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> s) <a href="builtins.html#-2a" class="c-symbol">×</a> <span class="c-number">2</span> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> s) <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#ci0">ci0</a> <a href="builtins.html#-2b" class="c-symbol">+</a> <span class="c-number">2</span> <a href="builtins.html#-2a" class="c-symbol">×</a> (<span class="c-number">1</span> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> s) <a href="builtins.html#-2a" class="c-symbol">×</a> <span class="c-number">2</span> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> s }</span>
+<span class="line" id="L86"><a class="ln" href="#L86">86</a><span class="c-comment">⍝</span><span class="c-comment"> z0, z1, ..., z5 (real parts, then imaginary parts): the orbit, six</span></span>
+<span class="line" id="L87"><a class="ln" href="#L87">87</a><span class="c-comment">⍝</span><span class="c-comment"> points each run from z = 0 by function power, n steps for the nth.</span></span>
+<span class="line" id="L88"><a class="ln" href="#L88">88</a><span class="c-quote">'</span>{ n → <span class="c-number">1</span> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> n <span class="c-userfunc">'</span><a href="demos-mandelbrot-mandelbrot.xtl.html#u.o_rbit" class="c-userfunc">ᵘo̲rbit</a> <a href="builtins.html#p_ower" class="c-builtin">p̲ower</a> <span class="c-number">0.0</span> <span class="c-number">0.0</span> } <a href="builtins.html#e_ach" class="c-builtin">e̲ach</a> <a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <span class="c-number">6</span></span>
+<span class="line" id="L89"><a class="ln" href="#L89">89</a><span class="c-quote">'</span>{ n → <span class="c-number">2</span> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> n <span class="c-userfunc">'</span><a href="demos-mandelbrot-mandelbrot.xtl.html#u.o_rbit" class="c-userfunc">ᵘo̲rbit</a> <a href="builtins.html#p_ower" class="c-builtin">p̲ower</a> <span class="c-number">0.0</span> <span class="c-number">0.0</span> } <a href="builtins.html#e_ach" class="c-builtin">e̲ach</a> <a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <span class="c-number">6</span></span>
+</div>
+</main>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>demos/life-microscope/life-microscope.xtl - X_eTaL doc</title>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+<script defer src="search-index.js"></script>
+<script defer src="search.js"></script>
+</head>
+<body>
+<nav class="side">
+<a class="home" href="index.html">X_eTaL doc</a>
+<input id="search" type="search" autocomplete="off" placeholder="Search: a name, or a type" title="A name (mean finds m_ean), or a type: Num a =&gt; a -&gt; a -&gt; a finds +, m_ax ...">
+<h2>Files</h2>
+<h3>/Users/mike/github/softwarewrighter/X_eTaL-demos/work/libraries/libs/Eigencube/src/</h3>
+<ul>
+<li><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html">Eigencube.xtl</a></li>
+</ul>
+<h3>demos/ca-lab/</h3>
+<ul>
+<li><a href="demos-ca-lab-ca-lab.xtl.html">ca-lab.xtl</a></li>
+</ul>
+<h3>demos/eigencube/</h3>
+<ul>
+<li><a href="demos-eigencube-eigencube.xtl.html">eigencube.xtl</a></li>
+</ul>
+<h3>demos/fourier-epicycles/</h3>
+<ul>
+<li><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html">fourier-epicycles.xtl</a></li>
+</ul>
+<h3>demos/image-pipeline/</h3>
+<ul>
+<li><a href="demos-image-pipeline-image-pipeline.xtl.html">image-pipeline.xtl</a></li>
+</ul>
+<h3>demos/julia/</h3>
+<ul>
+<li><a href="demos-julia-julia.xtl.html">julia.xtl</a></li>
+</ul>
+<h3>demos/langtons-ant/</h3>
+<ul>
+<li><a href="demos-langtons-ant-langtons-ant.xtl.html">langtons-ant.xtl</a></li>
+</ul>
+<h3>demos/life-microscope/</h3>
+<ul>
+<li><a href="demos-life-microscope-life-microscope.xtl.html">life-microscope.xtl</a></li>
+</ul>
+<h3>demos/mandelbrot/</h3>
+<ul>
+<li><a href="demos-mandelbrot-mandelbrot.xtl.html">mandelbrot.xtl</a></li>
+</ul>
+<h3>demos/nbody/</h3>
+<ul>
+<li><a href="demos-nbody-nbody.xtl.html">nbody.xtl</a></li>
+</ul>
+<h3>demos/reaction-diffusion/</h3>
+<ul>
+<li><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html">reaction-diffusion.xtl</a></li>
+</ul>
+<h3>demos/sandpile/</h3>
+<ul>
+<li><a href="demos-sandpile-sandpile.xtl.html">sandpile.xtl</a></li>
+</ul>
+<h3>demos/stencil-macros/</h3>
+<ul>
+<li><a href="demos-stencil-macros-stencil-macros.xtl.html">stencil-macros.xtl</a></li>
+<li><a href="demos-stencil-macros-Stencil.xtlm.html">Stencil.xtlm</a></li>
+</ul>
+<h3>demos/wave-tank/</h3>
+<ul>
+<li><a href="demos-wave-tank-wave-tank.xtl.html">wave-tank.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-xetal-pipes.xtl.html">xetal-pipes.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/stages/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-stages-Pipes.xtl.html">Pipes.xtl</a></li>
+</ul>
+<ul>
+<li><a href="builtins.html">built-ins</a></li>
+</ul>
+<h2>On this page</h2>
+<ul>
+<li class="item"><a href="#L19"><span class="c-userfunc">ᵘl̲ife</span></a></li>
+<li class="item"><a href="#L24">b</a></li>
+<li class="item"><a href="#L31">r</a></li>
+<li class="item"><a href="#L36">s</a></li>
+</ul>
+</nav>
+<main>
+<button class="theme" title="Light or dark">theme</button>
+<section id="results"></section>
+<h1><span class="kind">source</span><a href="demos-life-microscope-life-microscope.xtl.html">demos/life-microscope/life-microscope.xtl</a></h1>
+<div class="source"><span class="line" id="L1"><a class="ln" href="#L1">1</a><span class="c-comment">⍝</span><span class="c-comment">!/usr/bin/env xetal</span></span>
+<span class="line" id="L2"><a class="ln" href="#L2">2</a><span class="c-comment">⍝</span><span class="c-comment"># Conway's Life under the microscope: the whole rule is one line,</span></span>
+<span class="line" id="L3"><a class="ln" href="#L3">3</a><span class="c-comment">⍝</span><span class="c-comment"># u:l_ife, and every array it builds on the way is shown here, for a</span></span>
+<span class="line" id="L4"><a class="ln" href="#L4">4</a><span class="c-comment">⍝</span><span class="c-comment"># glider on a 6 by 6 board (the edges wrap around). Run it with</span></span>
+<span class="line" id="L5"><a class="ln" href="#L5">5</a><span class="c-comment">⍝</span><span class="c-comment"># &quot;xetal run demos/life-microscope/life-microscope.xtl&quot;; it prints</span></span>
+<span class="line" id="L6"><a class="ln" href="#L6">6</a><span class="c-comment">⍝</span><span class="c-comment"># the board, the nine shifted copies' shape, their sum, the next</span></span>
+<span class="line" id="L7"><a class="ln" href="#L7">7</a><span class="c-comment">⍝</span><span class="c-comment"># board, and the glider four generations on (moved one cell down and</span></span>
+<span class="line" id="L8"><a class="ln" href="#L8">8</a><span class="c-comment">⍝</span><span class="c-comment"># to the right). The live page draws these same arrays as it runs:</span></span>
+<span class="line" id="L9"><a class="ln" href="#L9">9</a><span class="c-comment">⍝</span><span class="c-comment"># https://softwarewrighter.github.io/X_eTaL-demos/life-microscope/</span></span>
+<span class="line" id="L10"><a class="ln" href="#L10">10</a></span>
+<span class="line" id="L11"><a class="ln" href="#L11">11</a><span class="c-comment">⍝</span><span class="c-comment">## The rule</span></span>
+<span class="line" id="L12"><a class="ln" href="#L12">12</a></span>
+<span class="line" id="L13"><a class="ln" href="#L13">13</a><span class="c-comment">⍝</span><span class="c-comment"># u:l_ife board: the next generation of a 0/1 board, read right to</span></span>
+<span class="line" id="L14"><a class="ln" href="#L14">14</a><span class="c-comment">⍝</span><span class="c-comment"># left. Rotating </span><span class="c-comment"></span><span class="c-lambdaarg">⍵</span><span class="c-comment"></span><span class="c-comment"> by every offset in </span><span class="c-comment"></span><span class="c-number">-1</span> <span class="c-number">0</span> <span class="c-number">1</span><span class="c-comment"></span><span class="c-comment"> along both axes and</span></span>
+<span class="line" id="L15"><a class="ln" href="#L15">15</a><span class="c-comment">⍝</span><span class="c-comment"># summing gives S, each cell plus its eight neighbors (it counts the</span></span>
+<span class="line" id="L16"><a class="ln" href="#L16">16</a><span class="c-comment">⍝</span><span class="c-comment"># cell itself too, so &quot;2 or 3 neighbors&quot; becomes &quot;S = 3, or alive and</span></span>
+<span class="line" id="L17"><a class="ln" href="#L17">17</a><span class="c-comment">⍝</span><span class="c-comment"># S = 4&quot;); a cell lives next when S is 3, or when it is alive and S</span></span>
+<span class="line" id="L18"><a class="ln" href="#L18">18</a><span class="c-comment">⍝</span><span class="c-comment"># is 4.</span></span>
+<span class="line" id="L19"><a class="ln" href="#L19">19</a><span class="c-userfunc">ᵘl̲ife</span> ← { (<span class="c-symbol">'</span><a href="builtins.html#-2b" class="c-symbol">+</a> <a href="builtins.html#r_-2f" class="c-builtin">r̲/₁₂</a> <span class="c-number">-1</span> <span class="c-number">0</span> <span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁₂</a> <span class="c-lambdaarg">⍵</span>) { (<span class="c-lambdaarg">⍺</span> <a href="builtins.html#-3d" class="c-symbol">=</a> <span class="c-number">3</span>) <a href="builtins.html#-2b" class="c-symbol">+</a> <span class="c-lambdaarg">⍵</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <span class="c-lambdaarg">⍺</span> <a href="builtins.html#-3d" class="c-symbol">=</a> <span class="c-number">4</span> } <span class="c-lambdaarg">⍵</span> }</span>
+<span class="line" id="L20"><a class="ln" href="#L20">20</a></span>
+<span class="line" id="L21"><a class="ln" href="#L21">21</a><span class="c-comment">⍝</span><span class="c-comment">## A glider, one step at a time</span></span>
+<span class="line" id="L22"><a class="ln" href="#L22">22</a></span>
+<span class="line" id="L23"><a class="ln" href="#L23">23</a><span class="c-comment">⍝</span><span class="c-comment"># b: a glider in a 6 by 6 board.</span></span>
+<span class="line" id="L24"><a class="ln" href="#L24">24</a>b ← <span class="c-number">6</span> <span class="c-number">6</span> <a href="builtins.html#r_eshape" class="c-builtin">r̲eshape</a> <span class="c-number">0</span> <span class="c-number">1</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span>  <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">1</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span>  <span class="c-number">1</span> <span class="c-number">1</span> <span class="c-number">1</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span>  <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span>  <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span>  <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span></span>
+<span class="line" id="L25"><a class="ln" href="#L25">25</a><a href="demos-life-microscope-life-microscope.xtl.html#b">b</a></span>
+<span class="line" id="L26"><a class="ln" href="#L26">26</a></span>
+<span class="line" id="L27"><a class="ln" href="#L27">27</a><span class="c-comment">⍝</span><span class="c-comment"># r: the board rotated by every offset -1 0 1 along both axes: a 3 by</span></span>
+<span class="line" id="L28"><a class="ln" href="#L28">28</a><span class="c-comment">⍝</span><span class="c-comment"># 3 arrangement of shifted boards, one for each neighbor (and the</span></span>
+<span class="line" id="L29"><a class="ln" href="#L29">29</a><span class="c-comment">⍝</span><span class="c-comment"># cell itself). In the copy for offsets (dy, dx), each cell holds its</span></span>
+<span class="line" id="L30"><a class="ln" href="#L30">30</a><span class="c-comment">⍝</span><span class="c-comment"># neighbor at (dy, dx).</span></span>
+<span class="line" id="L31"><a class="ln" href="#L31">31</a>r ← <span class="c-number">-1</span> <span class="c-number">0</span> <span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁₂</a> <a href="demos-life-microscope-life-microscope.xtl.html#b">b</a></span>
+<span class="line" id="L32"><a class="ln" href="#L32">32</a><a href="builtins.html#s_hape" class="c-builtin">s̲hape</a> <a href="demos-life-microscope-life-microscope.xtl.html#r">r</a></span>
+<span class="line" id="L33"><a class="ln" href="#L33">33</a></span>
+<span class="line" id="L34"><a class="ln" href="#L34">34</a><span class="c-comment">⍝</span><span class="c-comment"># s: the nine copies added over the two offset axes: S, each cell</span></span>
+<span class="line" id="L35"><a class="ln" href="#L35">35</a><span class="c-comment">⍝</span><span class="c-comment"># plus its eight neighbors.</span></span>
+<span class="line" id="L36"><a class="ln" href="#L36">36</a>s ← <span class="c-symbol">'</span><a href="builtins.html#-2b" class="c-symbol">+</a> <a href="builtins.html#r_-2f" class="c-builtin">r̲/₁₂</a> <a href="demos-life-microscope-life-microscope.xtl.html#r">r</a></span>
+<span class="line" id="L37"><a class="ln" href="#L37">37</a><a href="demos-life-microscope-life-microscope.xtl.html#s">s</a></span>
+<span class="line" id="L38"><a class="ln" href="#L38">38</a></span>
+<span class="line" id="L39"><a class="ln" href="#L39">39</a><span class="c-comment">⍝</span><span class="c-comment"> A cell is alive next if S is 3 (born, or alive with 2 neighbors) ...</span></span>
+<span class="line" id="L40"><a class="ln" href="#L40">40</a><a href="demos-life-microscope-life-microscope.xtl.html#s">s</a> <a href="builtins.html#-3d" class="c-symbol">=</a> <span class="c-number">3</span></span>
+<span class="line" id="L41"><a class="ln" href="#L41">41</a><span class="c-comment">⍝</span><span class="c-comment"> ... or if it is alive and S is 4 (alive with 3 neighbors).</span></span>
+<span class="line" id="L42"><a class="ln" href="#L42">42</a><a href="demos-life-microscope-life-microscope.xtl.html#b">b</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-life-microscope-life-microscope.xtl.html#s">s</a> <a href="builtins.html#-3d" class="c-symbol">=</a> <span class="c-number">4</span></span>
+<span class="line" id="L43"><a class="ln" href="#L43">43</a></span>
+<span class="line" id="L44"><a class="ln" href="#L44">44</a><span class="c-comment">⍝</span><span class="c-comment"> Together, the next board: what the one line of u:l_ife computes.</span></span>
+<span class="line" id="L45"><a class="ln" href="#L45">45</a>(<a href="demos-life-microscope-life-microscope.xtl.html#s">s</a> <a href="builtins.html#-3d" class="c-symbol">=</a> <span class="c-number">3</span>) <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="demos-life-microscope-life-microscope.xtl.html#b">b</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-life-microscope-life-microscope.xtl.html#s">s</a> <a href="builtins.html#-3d" class="c-symbol">=</a> <span class="c-number">4</span></span>
+<span class="line" id="L46"><a class="ln" href="#L46">46</a><a href="demos-life-microscope-life-microscope.xtl.html#u.l_ife" class="c-userfunc">ᵘl̲ife</a> <a href="demos-life-microscope-life-microscope.xtl.html#b">b</a></span>
+<span class="line" id="L47"><a class="ln" href="#L47">47</a></span>
+<span class="line" id="L48"><a class="ln" href="#L48">48</a><span class="c-comment">⍝</span><span class="c-comment"> Four steps later the glider has moved one cell down and to the</span></span>
+<span class="line" id="L49"><a class="ln" href="#L49">49</a><span class="c-comment">⍝</span><span class="c-comment"> right. A superscript on a function repeats it: u:l_ife^4 b is the</span></span>
+<span class="line" id="L50"><a class="ln" href="#L50">50</a><span class="c-comment">⍝</span><span class="c-comment"> same as this p_ower call, written out for a count the page computes.</span></span>
+<span class="line" id="L51"><a class="ln" href="#L51">51</a><span class="c-number">4</span> <span class="c-userfunc">'</span><a href="demos-life-microscope-life-microscope.xtl.html#u.l_ife" class="c-userfunc">ᵘl̲ife</a> <a href="builtins.html#p_ower" class="c-builtin">p̲ower</a> <a href="demos-life-microscope-life-microscope.xtl.html#b">b</a></span>
+</div>
+</main>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>demos/fourier-epicycles/fourier-epicycles.xtl - X_eTaL doc</title>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+<script defer src="search-index.js"></script>
+<script defer src="search.js"></script>
+</head>
+<body>
+<nav class="side">
+<a class="home" href="index.html">X_eTaL doc</a>
+<input id="search" type="search" autocomplete="off" placeholder="Search: a name, or a type" title="A name (mean finds m_ean), or a type: Num a =&gt; a -&gt; a -&gt; a finds +, m_ax ...">
+<h2>Files</h2>
+<h3>/Users/mike/github/softwarewrighter/X_eTaL-demos/work/libraries/libs/Eigencube/src/</h3>
+<ul>
+<li><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html">Eigencube.xtl</a></li>
+</ul>
+<h3>demos/ca-lab/</h3>
+<ul>
+<li><a href="demos-ca-lab-ca-lab.xtl.html">ca-lab.xtl</a></li>
+</ul>
+<h3>demos/eigencube/</h3>
+<ul>
+<li><a href="demos-eigencube-eigencube.xtl.html">eigencube.xtl</a></li>
+</ul>
+<h3>demos/fourier-epicycles/</h3>
+<ul>
+<li><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html">fourier-epicycles.xtl</a></li>
+</ul>
+<h3>demos/image-pipeline/</h3>
+<ul>
+<li><a href="demos-image-pipeline-image-pipeline.xtl.html">image-pipeline.xtl</a></li>
+</ul>
+<h3>demos/julia/</h3>
+<ul>
+<li><a href="demos-julia-julia.xtl.html">julia.xtl</a></li>
+</ul>
+<h3>demos/langtons-ant/</h3>
+<ul>
+<li><a href="demos-langtons-ant-langtons-ant.xtl.html">langtons-ant.xtl</a></li>
+</ul>
+<h3>demos/life-microscope/</h3>
+<ul>
+<li><a href="demos-life-microscope-life-microscope.xtl.html">life-microscope.xtl</a></li>
+</ul>
+<h3>demos/mandelbrot/</h3>
+<ul>
+<li><a href="demos-mandelbrot-mandelbrot.xtl.html">mandelbrot.xtl</a></li>
+</ul>
+<h3>demos/nbody/</h3>
+<ul>
+<li><a href="demos-nbody-nbody.xtl.html">nbody.xtl</a></li>
+</ul>
+<h3>demos/reaction-diffusion/</h3>
+<ul>
+<li><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html">reaction-diffusion.xtl</a></li>
+</ul>
+<h3>demos/sandpile/</h3>
+<ul>
+<li><a href="demos-sandpile-sandpile.xtl.html">sandpile.xtl</a></li>
+</ul>
+<h3>demos/stencil-macros/</h3>
+<ul>
+<li><a href="demos-stencil-macros-stencil-macros.xtl.html">stencil-macros.xtl</a></li>
+<li><a href="demos-stencil-macros-Stencil.xtlm.html">Stencil.xtlm</a></li>
+</ul>
+<h3>demos/wave-tank/</h3>
+<ul>
+<li><a href="demos-wave-tank-wave-tank.xtl.html">wave-tank.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-xetal-pipes.xtl.html">xetal-pipes.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/stages/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-stages-Pipes.xtl.html">Pipes.xtl</a></li>
+</ul>
+<ul>
+<li><a href="builtins.html">built-ins</a></li>
+</ul>
+<h2>On this page</h2>
+<ul>
+<li class="item"><a href="#x">x</a></li>
+<li class="item"><a href="#y">y</a></li>
+<li class="item"><a href="#n">n</a></li>
+<li class="item"><a href="#k">k</a></li>
+<li class="item"><a href="#A">A</a></li>
+<li class="item"><a href="#C">C</a></li>
+<li class="item"><a href="#S">S</a></li>
+<li><a href="#section-1">The transform: two matrix products</a></li>
+<li class="item"><a href="#re">re</a></li>
+<li class="item"><a href="#im">im</a></li>
+<li class="item"><a href="#amp">amp</a></li>
+<li class="item"><a href="#f">f</a></li>
+<li><a href="#section-2">The circles, strongest first</a></li>
+<li class="item"><a href="#order">order</a></li>
+<li class="item"><a href="#T">T</a></li>
+<li class="item"><a href="#zr">zr</a></li>
+<li class="item"><a href="#zi">zi</a></li>
+<li class="item"><a href="#vx">vx</a></li>
+<li class="item"><a href="#vy">vy</a></li>
+<li><a href="#section-3">The chain: a running sum along the circles</a></li>
+<li class="item"><a href="#cx">cx</a></li>
+<li class="item"><a href="#cy">cy</a></li>
+<li><a href="#section-4">The error of each reconstruction</a></li>
+<li class="item"><a href="#dx">dx</a></li>
+<li class="item"><a href="#dy">dy</a></li>
+<li class="item"><a href="#err">err</a></li>
+<li class="item"><a href="#u.r_ound"><span class="c-userfunc">ᵘr̲ound</span></a></li>
+</ul>
+</nav>
+<main>
+<button class="theme" title="Light or dark">theme</button>
+<section id="results"></section>
+<h1><span class="kind">program</span>demos/fourier-epicycles/fourier-epicycles.xtl</h1>
+<div class="doc">
+<p>Fourier epicycles: any closed curve is a sum of circles turning at
+whole-number speeds. Its points z = x + i y go through a discrete
+Fourier transform, written as two matrix products with the cosines
+and sines of one outer product of angles; each frequency is a
+circle, and the circles, strongest first, chained end to end,
+trace the curve. A running sum along the chain gives, at once, the
+curve rebuilt from the first 1, 2, 3, ... circles. Run it with
+&quot;xetal run demos/fourier-epicycles/fourier-epicycles.xtl&quot;; it
+prints the strength of each frequency, the four strongest speeds,
+and the mean error rebuilt from 1, 2, 4, 8 and all 16 circles. The
+live page lets you pick or draw a curve and slides how many
+circles trace it: https://softwarewrighter.github.io/X_eTaL-demos/fourier-epicycles/</p>
+</div>
+<p class="meta"><a href="demos-fourier-epicycles-fourier-epicycles.xtl.src.html">source</a></p>
+<div class="item" id="x">
+<h3><a href="#x">x</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-fourier-epicycles-fourier-epicycles.xtl.src.html#L16">line 16</a></div>
+<div class="doc">
+<p>x, y: the curve, a square of side 2, 16 points round its edge.</p>
+</div>
+<pre class="code">x ← <span class="c-number">1.0</span> <span class="c-number">1.0</span> <span class="c-number">1.0</span> <span class="c-number">1.0</span> <span class="c-number">1.0</span> <span class="c-number">0.5</span> <span class="c-number">0.0</span> <span class="c-number">-0.5</span> <span class="c-number">-1.0</span> <span class="c-number">-1.0</span> <span class="c-number">-1.0</span> <span class="c-number">-1.0</span> <span class="c-number">-1.0</span> <span class="c-number">-0.5</span> <span class="c-number">0.0</span> <span class="c-number">0.5</span></pre>
+<div class="uses">Used in: <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#n">n</a>, <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#re">re</a>, <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#im">im</a>, <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#dx">dx</a></div>
+</div>
+<div class="item" id="y">
+<h3><a href="#y">y</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-fourier-epicycles-fourier-epicycles.xtl.src.html#L17">line 17</a></div>
+<pre class="code">y ← <span class="c-number">-1.0</span> <span class="c-number">-0.5</span> <span class="c-number">0.0</span> <span class="c-number">0.5</span> <span class="c-number">1.0</span> <span class="c-number">1.0</span> <span class="c-number">1.0</span> <span class="c-number">1.0</span> <span class="c-number">1.0</span> <span class="c-number">0.5</span> <span class="c-number">0.0</span> <span class="c-number">-0.5</span> <span class="c-number">-1.0</span> <span class="c-number">-1.0</span> <span class="c-number">-1.0</span> <span class="c-number">-1.0</span></pre>
+<div class="uses">Used in: <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#re">re</a>, <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#im">im</a>, <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#dy">dy</a></div>
+</div>
+<div class="item" id="n">
+<h3><a href="#n">n</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-fourier-epicycles-fourier-epicycles.xtl.src.html#L22">line 22</a></div>
+<div class="doc">
+<p>-- the angles: one outer product. n: how many points. k: 0 .. n - 1.
+A, C, S: row k, column j of A is 2 pi k j / n, the angle of
+frequency k at sample j; C and S its cosine and sine.</p>
+</div>
+<pre class="code">n ← <a href="builtins.html#t_ally" class="c-builtin">t̲ally</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#x">x</a></pre>
+<div class="uses">Used in: <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#k">k</a>, <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#A">A</a>, <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#re">re</a>, <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#im">im</a>, <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#f">f</a>, <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#T">T</a>, <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#err">err</a></div>
+</div>
+<div class="item" id="k">
+<h3><a href="#k">k</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-fourier-epicycles-fourier-epicycles.xtl.src.html#L23">line 23</a></div>
+<pre class="code">k ← <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#n">n</a></pre>
+<div class="uses">Used in: <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#A">A</a>, <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#f">f</a>, <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#T">T</a>, <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#zr">zr</a>, <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#zi">zi</a>, <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#dx">dx</a>, <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#dy">dy</a></div>
+</div>
+<div class="item" id="A">
+<h3><a href="#A">A</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-fourier-epicycles-fourier-epicycles.xtl.src.html#L24">line 24</a></div>
+<pre class="code">A ← (<span class="c-number">2.0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> (<a href="builtins.html#p_i" class="c-builtin">p̲i</a> @) <a href="builtins.html#-2f" class="c-symbol">÷</a> <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#n">n</a>) <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#k">k</a> <span class="c-symbol">'</span><a href="builtins.html#-2a" class="c-symbol">×</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#k">k</a></pre>
+<div class="uses">Used in: <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#C">C</a>, <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#S">S</a></div>
+</div>
+<div class="item" id="C">
+<h3><a href="#C">C</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-fourier-epicycles-fourier-epicycles.xtl.src.html#L25">line 25</a></div>
+<pre class="code">C ← <a href="builtins.html#c_os" class="c-builtin">c̲os</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#A">A</a></pre>
+<div class="uses">Used in: <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#re">re</a>, <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#im">im</a></div>
+</div>
+<div class="item" id="S">
+<h3><a href="#S">S</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-fourier-epicycles-fourier-epicycles.xtl.src.html#L26">line 26</a></div>
+<pre class="code">S ← <a href="builtins.html#s_in" class="c-builtin">s̲in</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#A">A</a></pre>
+<div class="uses">Used in: <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#re">re</a>, <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#im">im</a></div>
+</div>
+<h2 class="section" id="section-1">The transform: two matrix products</h2>
+<div class="item" id="re">
+<h3><a href="#re">re</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-fourier-epicycles-fourier-epicycles.xtl.src.html#L33">line 33</a></div>
+<div class="doc">
+<p>re, im, amp: Z_k = (1 / n) sum over j of z_j e^(-i A[k;j]), as real
+and imaginary parts: the cosines and sines times x and y (two
+matrix products, i_nner), then each frequency's strength.</p>
+</div>
+<pre class="code">re ← ((<a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#C">C</a> <span class="c-symbol">'</span><a href="builtins.html#-2b" class="c-symbol">+</a> <span class="c-symbol">'</span><a href="builtins.html#-2a" class="c-symbol">×</a> <a href="builtins.html#i_nner" class="c-builtin">i̲nner</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#x">x</a>) <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#S">S</a> <span class="c-symbol">'</span><a href="builtins.html#-2b" class="c-symbol">+</a> <span class="c-symbol">'</span><a href="builtins.html#-2a" class="c-symbol">×</a> <a href="builtins.html#i_nner" class="c-builtin">i̲nner</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#y">y</a>) <a href="builtins.html#-2f" class="c-symbol">÷</a> <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#n">n</a></pre>
+<div class="uses">Used in: <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#amp">amp</a>, <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#zr">zr</a></div>
+</div>
+<div class="item" id="im">
+<h3><a href="#im">im</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-fourier-epicycles-fourier-epicycles.xtl.src.html#L34">line 34</a></div>
+<pre class="code">im ← ((<a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#C">C</a> <span class="c-symbol">'</span><a href="builtins.html#-2b" class="c-symbol">+</a> <span class="c-symbol">'</span><a href="builtins.html#-2a" class="c-symbol">×</a> <a href="builtins.html#i_nner" class="c-builtin">i̲nner</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#y">y</a>) <a href="builtins.html#-2d" class="c-symbol">−</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#S">S</a> <span class="c-symbol">'</span><a href="builtins.html#-2b" class="c-symbol">+</a> <span class="c-symbol">'</span><a href="builtins.html#-2a" class="c-symbol">×</a> <a href="builtins.html#i_nner" class="c-builtin">i̲nner</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#x">x</a>) <a href="builtins.html#-2f" class="c-symbol">÷</a> <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#n">n</a></pre>
+<div class="uses">Used in: <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#amp">amp</a>, <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#zi">zi</a></div>
+</div>
+<div class="item" id="amp">
+<h3><a href="#amp">amp</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-fourier-epicycles-fourier-epicycles.xtl.src.html#L35">line 35</a></div>
+<pre class="code">amp ← ((<a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#re">re</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#re">re</a>) <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#im">im</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#im">im</a>) <a href="builtins.html#-5e" class="c-symbol">^</a> <span class="c-number">0.5</span></pre>
+<div class="uses">Used in: <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#order">order</a>, <a href="demos-fourier-epicycles-fourier-epicycles.xtl.src.html#L70">demos/fourier-epicycles/fourier-epicycles.xtl:70</a></div>
+</div>
+<div class="item" id="f">
+<h3><a href="#f">f</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-fourier-epicycles-fourier-epicycles.xtl.src.html#L38">line 38</a></div>
+<div class="doc">
+<p>f: each circle's speed: k, or k - n past the middle (turning the
+other way), so the circles stay small.</p>
+</div>
+<pre class="code">f ← <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#k">k</a> <a href="builtins.html#-2d" class="c-symbol">−</a> <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#n">n</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <span class="c-number">1</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#k">k</a> <a href="builtins.html#-3e-3d" class="c-symbol">≥</a> <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#n">n</a> <a href="builtins.html#d_iv" class="c-builtin">d̲iv</a> <span class="c-number">2</span></pre>
+<div class="uses">Used in: <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#T">T</a>, <a href="demos-fourier-epicycles-fourier-epicycles.xtl.src.html#L72">demos/fourier-epicycles/fourier-epicycles.xtl:72</a></div>
+</div>
+<h2 class="section" id="section-2">The circles, strongest first</h2>
+<div class="item" id="order">
+<h3><a href="#order">order</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-fourier-epicycles-fourier-epicycles.xtl.src.html#L43">line 43</a></div>
+<div class="doc">
+<p>order: the frequencies' rank by strength (g_rade).</p>
+</div>
+<pre class="code">order ← <a href="builtins.html#g_rade" class="c-builtin">g̲rade</a> <a href="builtins.html#n_eg" class="c-builtin">n̲eg</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#amp">amp</a></pre>
+<div class="uses">Used in: <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#T">T</a>, <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#zr">zr</a>, <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#zi">zi</a>, <a href="demos-fourier-epicycles-fourier-epicycles.xtl.src.html#L72">demos/fourier-epicycles/fourier-epicycles.xtl:72</a></div>
+</div>
+<div class="item" id="T">
+<h3><a href="#T">T</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-fourier-epicycles-fourier-epicycles.xtl.src.html#L46">line 46</a></div>
+<div class="doc">
+<p>T, zr, zi, vx, vy: circle c at time j (row j, column c): its
+vector Z e^(i f t_j), turned by its own speed and time.</p>
+</div>
+<pre class="code">T ← (<span class="c-number">2.0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> (<a href="builtins.html#p_i" class="c-builtin">p̲i</a> @) <a href="builtins.html#-2f" class="c-symbol">÷</a> <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#n">n</a>) <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#k">k</a> <span class="c-symbol">'</span><a href="builtins.html#-2a" class="c-symbol">×</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#order">order</a> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#f">f</a></pre>
+<div class="uses">Used in: <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#vx">vx</a>, <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#vy">vy</a></div>
+</div>
+<div class="item" id="zr">
+<h3><a href="#zr">zr</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-fourier-epicycles-fourier-epicycles.xtl.src.html#L47">line 47</a></div>
+<pre class="code">zr ← (<a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#k">k</a> <span class="c-builtin">'</span><a href="builtins.html#r_ight" class="c-builtin">r̲ight</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#order">order</a> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#re">re</a>)</pre>
+<div class="uses">Used in: <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#vx">vx</a>, <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#vy">vy</a></div>
+</div>
+<div class="item" id="zi">
+<h3><a href="#zi">zi</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-fourier-epicycles-fourier-epicycles.xtl.src.html#L48">line 48</a></div>
+<pre class="code">zi ← (<a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#k">k</a> <span class="c-builtin">'</span><a href="builtins.html#r_ight" class="c-builtin">r̲ight</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#order">order</a> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#im">im</a>)</pre>
+<div class="uses">Used in: <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#vx">vx</a>, <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#vy">vy</a></div>
+</div>
+<div class="item" id="vx">
+<h3><a href="#vx">vx</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-fourier-epicycles-fourier-epicycles.xtl.src.html#L49">line 49</a></div>
+<pre class="code">vx ← (<a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#zr">zr</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="builtins.html#c_os" class="c-builtin">c̲os</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#T">T</a>) <a href="builtins.html#-2d" class="c-symbol">−</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#zi">zi</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="builtins.html#s_in" class="c-builtin">s̲in</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#T">T</a></pre>
+<div class="uses">Used in: <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#cx">cx</a></div>
+</div>
+<div class="item" id="vy">
+<h3><a href="#vy">vy</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-fourier-epicycles-fourier-epicycles.xtl.src.html#L50">line 50</a></div>
+<pre class="code">vy ← (<a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#zr">zr</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="builtins.html#s_in" class="c-builtin">s̲in</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#T">T</a>) <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#zi">zi</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="builtins.html#c_os" class="c-builtin">c̲os</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#T">T</a></pre>
+<div class="uses">Used in: <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#cy">cy</a></div>
+</div>
+<h2 class="section" id="section-3">The chain: a running sum along the circles</h2>
+<div class="item" id="cx">
+<h3><a href="#cx">cx</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-fourier-epicycles-fourier-epicycles.xtl.src.html#L56">line 56</a></div>
+<div class="doc">
+<p>cx, cy: column c is where the first c circles end at each time, so
+column c is the curve rebuilt from the c strongest circles.</p>
+</div>
+<pre class="code">cx ← <span class="c-symbol">'</span><a href="builtins.html#-2b" class="c-symbol">+</a> <a href="builtins.html#s_-5c" class="c-builtin">s̲\₂</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#vx">vx</a></pre>
+<div class="uses">Used in: <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#dx">dx</a></div>
+</div>
+<div class="item" id="cy">
+<h3><a href="#cy">cy</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-fourier-epicycles-fourier-epicycles.xtl.src.html#L57">line 57</a></div>
+<pre class="code">cy ← <span class="c-symbol">'</span><a href="builtins.html#-2b" class="c-symbol">+</a> <a href="builtins.html#s_-5c" class="c-builtin">s̲\₂</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#vy">vy</a></pre>
+<div class="uses">Used in: <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#dy">dy</a></div>
+</div>
+<h2 class="section" id="section-4">The error of each reconstruction</h2>
+<div class="item" id="dx">
+<h3><a href="#dx">dx</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-fourier-epicycles-fourier-epicycles.xtl.src.html#L63">line 63</a></div>
+<div class="doc">
+<p>dx, dy, err: the mean distance from the curve, for 1, 2, ... n
+circles.</p>
+</div>
+<pre class="code">dx ← <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#cx">cx</a> <a href="builtins.html#-2d" class="c-symbol">−</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#x">x</a> <span class="c-builtin">'</span><a href="builtins.html#l_eft" class="c-builtin">l̲eft</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#k">k</a></pre>
+<div class="uses">Used in: <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#err">err</a></div>
+</div>
+<div class="item" id="dy">
+<h3><a href="#dy">dy</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-fourier-epicycles-fourier-epicycles.xtl.src.html#L64">line 64</a></div>
+<pre class="code">dy ← <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#cy">cy</a> <a href="builtins.html#-2d" class="c-symbol">−</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#y">y</a> <span class="c-builtin">'</span><a href="builtins.html#l_eft" class="c-builtin">l̲eft</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#k">k</a></pre>
+<div class="uses">Used in: <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#err">err</a></div>
+</div>
+<div class="item" id="err">
+<h3><a href="#err">err</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-fourier-epicycles-fourier-epicycles.xtl.src.html#L65">line 65</a></div>
+<pre class="code">err ← (<span class="c-symbol">'</span><a href="builtins.html#-2b" class="c-symbol">+</a> <a href="builtins.html#r_-2f" class="c-builtin">r̲/</a> ((<a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#dx">dx</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#dx">dx</a>) <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#dy">dy</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#dy">dy</a>) <a href="builtins.html#-5e" class="c-symbol">^</a> <span class="c-number">0.5</span>) <a href="builtins.html#-2f" class="c-symbol">÷</a> <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#n">n</a></pre>
+<div class="uses">Used in: <a href="demos-fourier-epicycles-fourier-epicycles.xtl.src.html#L74">demos/fourier-epicycles/fourier-epicycles.xtl:74</a></div>
+</div>
+<div class="item" id="u.r_ound">
+<h3><a href="#u.r_ound"><span class="c-userfunc">ᵘr̲ound</span></a> <span class="type">: Float -&gt; Float</span></h3>
+<div class="meta">function &middot; <a href="demos-fourier-epicycles-fourier-epicycles.xtl.src.html#L68">line 68</a></div>
+<pre class="code"><span class="c-userfunc">ᵘr̲ound</span> ← { v → (<a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="builtins.html#f_loor" class="c-builtin">f̲loor</a> <span class="c-number">0.5</span> <a href="builtins.html#-2b" class="c-symbol">+</a> v <a href="builtins.html#-2a" class="c-symbol">×</a> <span class="c-number">1000.0</span>) <a href="builtins.html#-2f" class="c-symbol">÷</a> <span class="c-number">1000.0</span> }</pre>
+<div class="uses">Used in: <a href="demos-fourier-epicycles-fourier-epicycles.xtl.src.html#L70">demos/fourier-epicycles/fourier-epicycles.xtl:70</a>, <a href="demos-fourier-epicycles-fourier-epicycles.xtl.src.html#L74">demos/fourier-epicycles/fourier-epicycles.xtl:74</a></div>
+</div>
+</main>
+</body>
+</html>

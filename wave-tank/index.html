@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wave Tank</title>
+  
+<script type="module">
+import init, * as bindings from '/X_eTaL-demos/wave-tank/wave-tank-web-8aa3a3d9341694ce.js';
+const wasm = await init({ module_or_path: '/X_eTaL-demos/wave-tank/wave-tank-web-8aa3a3d9341694ce_bg.wasm' });
+
+
+window.wasmBindings = bindings;
+
+
+dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+
+</script>
+  
+  <link rel="icon" href="/X_eTaL-demos/wave-tank/favicon-a7e9c2eccfa36f8d.ico" integrity="sha384-psp9J9hB8eK8eobi4th1YJDd8JrFRVFf4iDjuwNF8q5kIno0W8ZwGC5ZzrqyfYpY"/>
+  <link rel="stylesheet" href="/X_eTaL-demos/wave-tank/microscope-b1af3913cedfcf76.css" integrity="sha384-e0tnGAQwZusBnV8b5CrYLphzusEmxUtfE+5WYEWO3Bb9HlJGUOOmdjxuRpRi9lWE"/>
+<link rel="modulepreload" href="/X_eTaL-demos/wave-tank/wave-tank-web-8aa3a3d9341694ce.js" crossorigin="anonymous" integrity="sha384-dbS8+JIiwEdhu+Mw/1YdQI7sDmquvv4d0Lni1VYfEBdSB4/QrgyTJ2kAYdYuLE+c"><link rel="preload" href="/X_eTaL-demos/wave-tank/wave-tank-web-8aa3a3d9341694ce_bg.wasm" crossorigin="anonymous" integrity="sha384-e3ErGK2AVf+iboWcKg+ALw4d89/grZ0LS9gIZcUy1n8EtBAqWfJYgawuAor35e9V" as="fetch" type="application/wasm"></head>
+<body></body>
+</html>

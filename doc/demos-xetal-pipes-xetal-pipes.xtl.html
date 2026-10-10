@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>demos/xetal-pipes/xetal-pipes.xtl - X_eTaL doc</title>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+<script defer src="search-index.js"></script>
+<script defer src="search.js"></script>
+</head>
+<body>
+<nav class="side">
+<a class="home" href="index.html">X_eTaL doc</a>
+<input id="search" type="search" autocomplete="off" placeholder="Search: a name, or a type" title="A name (mean finds m_ean), or a type: Num a =&gt; a -&gt; a -&gt; a finds +, m_ax ...">
+<h2>Files</h2>
+<h3>/Users/mike/github/softwarewrighter/X_eTaL-demos/work/libraries/libs/Eigencube/src/</h3>
+<ul>
+<li><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html">Eigencube.xtl</a></li>
+</ul>
+<h3>demos/ca-lab/</h3>
+<ul>
+<li><a href="demos-ca-lab-ca-lab.xtl.html">ca-lab.xtl</a></li>
+</ul>
+<h3>demos/eigencube/</h3>
+<ul>
+<li><a href="demos-eigencube-eigencube.xtl.html">eigencube.xtl</a></li>
+</ul>
+<h3>demos/fourier-epicycles/</h3>
+<ul>
+<li><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html">fourier-epicycles.xtl</a></li>
+</ul>
+<h3>demos/image-pipeline/</h3>
+<ul>
+<li><a href="demos-image-pipeline-image-pipeline.xtl.html">image-pipeline.xtl</a></li>
+</ul>
+<h3>demos/julia/</h3>
+<ul>
+<li><a href="demos-julia-julia.xtl.html">julia.xtl</a></li>
+</ul>
+<h3>demos/langtons-ant/</h3>
+<ul>
+<li><a href="demos-langtons-ant-langtons-ant.xtl.html">langtons-ant.xtl</a></li>
+</ul>
+<h3>demos/life-microscope/</h3>
+<ul>
+<li><a href="demos-life-microscope-life-microscope.xtl.html">life-microscope.xtl</a></li>
+</ul>
+<h3>demos/mandelbrot/</h3>
+<ul>
+<li><a href="demos-mandelbrot-mandelbrot.xtl.html">mandelbrot.xtl</a></li>
+</ul>
+<h3>demos/nbody/</h3>
+<ul>
+<li><a href="demos-nbody-nbody.xtl.html">nbody.xtl</a></li>
+</ul>
+<h3>demos/reaction-diffusion/</h3>
+<ul>
+<li><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html">reaction-diffusion.xtl</a></li>
+</ul>
+<h3>demos/sandpile/</h3>
+<ul>
+<li><a href="demos-sandpile-sandpile.xtl.html">sandpile.xtl</a></li>
+</ul>
+<h3>demos/stencil-macros/</h3>
+<ul>
+<li><a href="demos-stencil-macros-stencil-macros.xtl.html">stencil-macros.xtl</a></li>
+<li><a href="demos-stencil-macros-Stencil.xtlm.html">Stencil.xtlm</a></li>
+</ul>
+<h3>demos/wave-tank/</h3>
+<ul>
+<li><a href="demos-wave-tank-wave-tank.xtl.html">wave-tank.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-xetal-pipes.xtl.html">xetal-pipes.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/stages/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-stages-Pipes.xtl.html">Pipes.xtl</a></li>
+</ul>
+<ul>
+<li><a href="builtins.html">built-ins</a></li>
+</ul>
+<h2>On this page</h2>
+<ul>
+<li class="item"><a href="#t">t</a></li>
+<li class="item"><a href="#ln">ln</a></li>
+<li><a href="#section-1">grep: the text's k rotations against the needle</a></li>
+<li class="item"><a href="#needle">needle</a></li>
+<li class="item"><a href="#k">k</a></li>
+<li class="item"><a href="#tt">tt</a></li>
+<li class="item"><a href="#starts">starts</a></li>
+<li class="item"><a href="#hits">hits</a></li>
+<li><a href="#section-2">uniq: a line stays when its padded row differs from the row above</a></li>
+<li class="item"><a href="#m">m</a></li>
+<li class="item"><a href="#differs">differs</a></li>
+<li><a href="#section-3">sort: each line's rank, given to its characters, graded stably</a></li>
+<li class="item"><a href="#rank">rank</a></li>
+<li class="item"><a href="#sorted">sorted</a></li>
+</ul>
+</nav>
+<main>
+<button class="theme" title="Light or dark">theme</button>
+<section id="results"></section>
+<h1><span class="kind">program</span>demos/xetal-pipes/xetal-pipes.xtl</h1>
+<div class="doc">
+<p>Unix pipes in X_eTaL: the arrays inside the stages (stages/*.xtl),
+shown on sample.txt. A stage reads standard input as one text;
+here the same text comes from the file. Every character is
+numbered by its line, so choosing lines is a mask and reordering
+them a grade: no loop over lines anywhere. Run it with &quot;xetal run
+demos/xetal-pipes/xetal-pipes.xtl&quot;; it prints the first line's
+character-to-line numbers, the counts xetalwc would give, where
+&quot;lazy&quot; starts and which lines it is on (grep), the padded lines'
+shape and which lines uniq keeps, and each line's rank and the
+text sorted by it. No live page: command line only (see the
+stages, xetalcat and friends, in the demo's README).</p>
+</div>
+<p class="meta"><a href="demos-xetal-pipes-xetal-pipes.xtl.src.html">source</a> &middot; imports <code><span class="c-error">p:</span></code> <a href="demos-xetal-pipes-stages-Pipes.xtl.html">demos/xetal-pipes/stages/Pipes.xtl</a></p>
+<div class="item" id="t">
+<h3><a href="#t">t</a> <span class="type">: Char</span></h3>
+<div class="meta">value &middot; <a href="demos-xetal-pipes-xetal-pipes.xtl.src.html#L16">line 16</a></div>
+<pre class="code">t ← <a href="builtins.html#-5b-5dN_GET" class="c-builtin">⎕N̲GET</a> <span class="c-string">&quot;sample.txt&quot;</span></pre>
+<div class="uses">Used in: <a href="demos-xetal-pipes-xetal-pipes.xtl.html#ln">ln</a>, <a href="demos-xetal-pipes-xetal-pipes.xtl.html#tt">tt</a>, <a href="demos-xetal-pipes-xetal-pipes.xtl.html#starts">starts</a>, <a href="demos-xetal-pipes-xetal-pipes.xtl.html#m">m</a>, <a href="demos-xetal-pipes-xetal-pipes.xtl.html#sorted">sorted</a>, <a href="demos-xetal-pipes-xetal-pipes.xtl.src.html#L55">demos/xetal-pipes/xetal-pipes.xtl:55</a></div>
+</div>
+<div class="item" id="ln">
+<h3><a href="#ln">ln</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-xetal-pipes-xetal-pipes.xtl.src.html#L20">line 20</a></div>
+<div class="doc">
+<p>-- every character's line: a running sum of newlines. ln: as
+stages/Pipes.xtl's l:l_ines computes it.</p>
+</div>
+<pre class="code">ln ← <a href="demos-xetal-pipes-stages-Pipes.xtl.html#l.l_ines" class="c-libfunc">ᵖl̲ines</a> <a href="demos-xetal-pipes-xetal-pipes.xtl.html#t">t</a></pre>
+<div class="uses">Used in: <a href="demos-xetal-pipes-xetal-pipes.xtl.html#hits">hits</a>, <a href="demos-xetal-pipes-xetal-pipes.xtl.html#sorted">sorted</a>, <a href="demos-xetal-pipes-xetal-pipes.xtl.src.html#L53">demos/xetal-pipes/xetal-pipes.xtl:53</a></div>
+</div>
+<h2 class="section" id="section-1">grep: the text's k rotations against the needle</h2>
+<div class="item" id="needle">
+<h3><a href="#needle">needle</a> <span class="type">: Char</span></h3>
+<div class="meta">value &middot; <a href="demos-xetal-pipes-xetal-pipes.xtl.src.html#L29">line 29</a></div>
+<div class="doc">
+<p>needle, k, tt: the needle to find, its length, and the text
+repeated k times (so a rotation of it lines up with every start).
+starts: 1 wherever the needle starts: the k rotations' characters
+compared with the needle's, then reduced by &amp; (and-reduce). hits:
+the lines those characters are on.</p>
+</div>
+<pre class="code">needle ← <span class="c-string">&quot;lazy&quot;</span></pre>
+<div class="uses">Used in: <a href="demos-xetal-pipes-xetal-pipes.xtl.html#k">k</a>, <a href="demos-xetal-pipes-xetal-pipes.xtl.html#starts">starts</a></div>
+</div>
+<div class="item" id="k">
+<h3><a href="#k">k</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-xetal-pipes-xetal-pipes.xtl.src.html#L30">line 30</a></div>
+<pre class="code">k ← <a href="builtins.html#t_ally" class="c-builtin">t̲ally</a> <a href="demos-xetal-pipes-xetal-pipes.xtl.html#needle">needle</a></pre>
+<div class="uses">Used in: <a href="demos-xetal-pipes-xetal-pipes.xtl.html#tt">tt</a>, <a href="demos-xetal-pipes-xetal-pipes.xtl.html#starts">starts</a></div>
+</div>
+<div class="item" id="tt">
+<h3><a href="#tt">tt</a> <span class="type">: Char</span></h3>
+<div class="meta">value &middot; <a href="demos-xetal-pipes-xetal-pipes.xtl.src.html#L31">line 31</a></div>
+<pre class="code">tt ← <a href="demos-xetal-pipes-xetal-pipes.xtl.html#t">t</a> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <a href="demos-xetal-pipes-xetal-pipes.xtl.html#k">k</a> <a href="builtins.html#r_eshape" class="c-builtin">r̲eshape</a> <span class="c-string">&quot;\n&quot;</span></pre>
+<div class="uses">Used in: <a href="demos-xetal-pipes-xetal-pipes.xtl.html#starts">starts</a></div>
+</div>
+<div class="item" id="starts">
+<h3><a href="#starts">starts</a> <span class="type">: Bool</span></h3>
+<div class="meta">value &middot; <a href="demos-xetal-pipes-xetal-pipes.xtl.src.html#L32">line 32</a></div>
+<pre class="code">starts ← (<a href="builtins.html#t_ally" class="c-builtin">t̲ally</a> <a href="demos-xetal-pipes-xetal-pipes.xtl.html#t">t</a>) <a href="builtins.html#t_ake" class="c-builtin">t̲ake</a> <span class="c-symbol">'</span><a href="builtins.html#-26" class="c-symbol">∧</a> <a href="builtins.html#r_-2f" class="c-builtin">r̲/₁</a> ((<a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-xetal-pipes-xetal-pipes.xtl.html#k">k</a>) <a href="builtins.html#o_-2d" class="c-builtin">o̲-</a> <a href="demos-xetal-pipes-xetal-pipes.xtl.html#tt">tt</a>) <a href="builtins.html#-3d" class="c-symbol">=</a> <a href="demos-xetal-pipes-xetal-pipes.xtl.html#needle">needle</a> <span class="c-builtin">'</span><a href="builtins.html#l_eft" class="c-builtin">l̲eft</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="demos-xetal-pipes-xetal-pipes.xtl.html#tt">tt</a></pre>
+<div class="uses">Used in: <a href="demos-xetal-pipes-xetal-pipes.xtl.html#hits">hits</a>, <a href="demos-xetal-pipes-xetal-pipes.xtl.src.html#L57">demos/xetal-pipes/xetal-pipes.xtl:57</a></div>
+</div>
+<div class="item" id="hits">
+<h3><a href="#hits">hits</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-xetal-pipes-xetal-pipes.xtl.src.html#L33">line 33</a></div>
+<pre class="code">hits ← <a href="builtins.html#u_nique" class="c-builtin">u̲nique</a> <a href="demos-xetal-pipes-xetal-pipes.xtl.html#starts">starts</a> <a href="builtins.html#r_eplicate" class="c-builtin">r̲eplicate</a> <a href="demos-xetal-pipes-xetal-pipes.xtl.html#ln">ln</a></pre>
+<div class="uses">Used in: <a href="demos-xetal-pipes-xetal-pipes.xtl.src.html#L58">demos/xetal-pipes/xetal-pipes.xtl:58</a></div>
+</div>
+<h2 class="section" id="section-2">uniq: a line stays when its padded row differs from the row above</h2>
+<div class="item" id="m">
+<h3><a href="#m">m</a> <span class="type">: Char</span></h3>
+<div class="meta">value &middot; <a href="demos-xetal-pipes-xetal-pipes.xtl.src.html#L40">line 40</a></div>
+<div class="doc">
+<p>m: the lines as a padded character matrix (Pipes.xtl's l:m_atrix).
+differs: 1 where a row differs from the one above it (the matrix
+rotated down one row).</p>
+</div>
+<pre class="code">m ← <a href="demos-xetal-pipes-stages-Pipes.xtl.html#l.m_atrix" class="c-libfunc">ᵖm̲atrix</a> <a href="demos-xetal-pipes-xetal-pipes.xtl.html#t">t</a></pre>
+<div class="uses">Used in: <a href="demos-xetal-pipes-xetal-pipes.xtl.html#differs">differs</a>, <a href="demos-xetal-pipes-xetal-pipes.xtl.html#rank">rank</a>, <a href="demos-xetal-pipes-xetal-pipes.xtl.src.html#L60">demos/xetal-pipes/xetal-pipes.xtl:60</a></div>
+</div>
+<div class="item" id="differs">
+<h3><a href="#differs">differs</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-xetal-pipes-xetal-pipes.xtl.src.html#L41">line 41</a></div>
+<pre class="code">differs ← <span class="c-number">1</span> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <span class="c-number">1</span> <a href="builtins.html#d_rop" class="c-builtin">d̲rop</a> <span class="c-symbol">'</span><a href="builtins.html#-7c" class="c-symbol">∨</a> <a href="builtins.html#r_-2f" class="c-builtin">r̲/₂</a> <a href="demos-xetal-pipes-xetal-pipes.xtl.html#m">m</a> <a href="builtins.html#-21-3d" class="c-symbol">≠</a> <span class="c-number">-1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁</a> <a href="demos-xetal-pipes-xetal-pipes.xtl.html#m">m</a></pre>
+<div class="uses">Used in: <a href="demos-xetal-pipes-xetal-pipes.xtl.src.html#L61">demos/xetal-pipes/xetal-pipes.xtl:61</a></div>
+</div>
+<h2 class="section" id="section-3">sort: each line's rank, given to its characters, graded stably</h2>
+<div class="item" id="rank">
+<h3><a href="#rank">rank</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-xetal-pipes-xetal-pipes.xtl.src.html#L48">line 48</a></div>
+<div class="doc">
+<p>rank: the grade of the padded rows, each line's place in order.
+sorted: every character takes its line's rank, and a stable grade
+of those ranks moves whole lines.</p>
+</div>
+<pre class="code">rank ← <a href="builtins.html#g_rade" class="c-builtin">g̲rade</a> <a href="builtins.html#g_rade" class="c-builtin">g̲rade</a> <a href="demos-xetal-pipes-xetal-pipes.xtl.html#m">m</a></pre>
+<div class="uses">Used in: <a href="demos-xetal-pipes-xetal-pipes.xtl.html#sorted">sorted</a>, <a href="demos-xetal-pipes-xetal-pipes.xtl.src.html#L63">demos/xetal-pipes/xetal-pipes.xtl:63</a></div>
+</div>
+<div class="item" id="sorted">
+<h3><a href="#sorted">sorted</a> <span class="type">: Char</span></h3>
+<div class="meta">value &middot; <a href="demos-xetal-pipes-xetal-pipes.xtl.src.html#L49">line 49</a></div>
+<pre class="code">sorted ← (<a href="builtins.html#g_rade" class="c-builtin">g̲rade</a> <a href="demos-xetal-pipes-xetal-pipes.xtl.html#ln">ln</a> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> <a href="demos-xetal-pipes-xetal-pipes.xtl.html#rank">rank</a>) <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> <a href="demos-xetal-pipes-xetal-pipes.xtl.html#t">t</a></pre>
+<div class="uses">Used in: <a href="demos-xetal-pipes-xetal-pipes.xtl.src.html#L64">demos/xetal-pipes/xetal-pipes.xtl:64</a></div>
+</div>
+</main>
+</body>
+</html>

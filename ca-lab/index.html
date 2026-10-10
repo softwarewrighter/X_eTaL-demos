@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cellular Automata Lab</title>
+  
+<script type="module">
+import init, * as bindings from '/X_eTaL-demos/ca-lab/ca-lab-web-707ccc9dbc9c23ff.js';
+const wasm = await init({ module_or_path: '/X_eTaL-demos/ca-lab/ca-lab-web-707ccc9dbc9c23ff_bg.wasm' });
+
+
+window.wasmBindings = bindings;
+
+
+dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+
+</script>
+  
+  <link rel="icon" href="/X_eTaL-demos/ca-lab/favicon-a7e9c2eccfa36f8d.ico" integrity="sha384-psp9J9hB8eK8eobi4th1YJDd8JrFRVFf4iDjuwNF8q5kIno0W8ZwGC5ZzrqyfYpY"/>
+  <link rel="stylesheet" href="/X_eTaL-demos/ca-lab/microscope-b1af3913cedfcf76.css" integrity="sha384-e0tnGAQwZusBnV8b5CrYLphzusEmxUtfE+5WYEWO3Bb9HlJGUOOmdjxuRpRi9lWE"/>
+  <style>
+    .tabs { display: flex; gap: 6px; margin: 4px 0 10px; }
+    .tab { font: inherit; padding: 6px 14px; border-radius: 8px; border: 1px solid var(--line);
+      background: var(--card); color: var(--fg); cursor: pointer; }
+    .tab.active { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); font-weight: 600; }
+    input.num { width: 70px; font: inherit; padding: 4px 6px; border-radius: 6px; border: 1px solid var(--line);
+      background: var(--card); color: var(--fg); }
+    .table1 { display: flex; flex-wrap: wrap; gap: 8px; }
+    .entry { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 6px 8px;
+      border: 1px solid var(--line); border-radius: 8px; background: var(--card); cursor: pointer; color: var(--fg); font: inherit; }
+    .entry:hover { border-color: var(--accent); }
+    .entry .hood { display: flex; gap: 1px; }
+    .entry .c { width: 14px; height: 14px; background: var(--off); border: 1px solid var(--line); }
+    .entry .c.on { background: var(--on); }
+    .entry .k { font-size: .75rem; color: var(--muted); }
+    .strips { border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: .8rem; overflow-x: auto; display: block; }
+    .strips th { text-align: right; padding-right: 8px; font-weight: 400; white-space: nowrap; }
+    .strips td { width: 18px; height: 20px; text-align: center; border: 1px solid var(--line); }
+    .strips td.on { background: var(--on); color: var(--bg); }
+    .strips td.off { background: var(--off); }
+    .strips td.at { box-shadow: inset 0 0 0 2px var(--sel); }
+    .table2 { border-collapse: collapse; font-variant-numeric: tabular-nums; }
+    .table2 th { font-weight: 500; font-size: .8rem; color: var(--muted); padding: 2px 6px; }
+    .table2 th.state { text-align: left; color: var(--fg); }
+    .table2 td { width: 30px; height: 28px; text-align: center; border: 1px solid var(--line); cursor: pointer; font-weight: 600; }
+    .pair figure { flex-basis: 150px; }
+  </style>
+<link rel="modulepreload" href="/X_eTaL-demos/ca-lab/ca-lab-web-707ccc9dbc9c23ff.js" crossorigin="anonymous" integrity="sha384-RR0VzjWPEUSP2WNc9QNOuMbWa0ChHqpCY8Ap42tluvixCtzDMavQkvSXt+Yg3l5A"><link rel="preload" href="/X_eTaL-demos/ca-lab/ca-lab-web-707ccc9dbc9c23ff_bg.wasm" crossorigin="anonymous" integrity="sha384-9gpov+FBx/K96mcb7uLYn3IncCq32fEl82xPn+J4jsjNTkKPO+NawkgoWPSZVnCy" as="fetch" type="application/wasm"></head>
+<body></body>
+</html>

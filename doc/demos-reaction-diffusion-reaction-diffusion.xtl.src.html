@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>demos/reaction-diffusion/reaction-diffusion.xtl - X_eTaL doc</title>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+<script defer src="search-index.js"></script>
+<script defer src="search.js"></script>
+</head>
+<body>
+<nav class="side">
+<a class="home" href="index.html">X_eTaL doc</a>
+<input id="search" type="search" autocomplete="off" placeholder="Search: a name, or a type" title="A name (mean finds m_ean), or a type: Num a =&gt; a -&gt; a -&gt; a finds +, m_ax ...">
+<h2>Files</h2>
+<h3>/Users/mike/github/softwarewrighter/X_eTaL-demos/work/libraries/libs/Eigencube/src/</h3>
+<ul>
+<li><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html">Eigencube.xtl</a></li>
+</ul>
+<h3>demos/ca-lab/</h3>
+<ul>
+<li><a href="demos-ca-lab-ca-lab.xtl.html">ca-lab.xtl</a></li>
+</ul>
+<h3>demos/eigencube/</h3>
+<ul>
+<li><a href="demos-eigencube-eigencube.xtl.html">eigencube.xtl</a></li>
+</ul>
+<h3>demos/fourier-epicycles/</h3>
+<ul>
+<li><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html">fourier-epicycles.xtl</a></li>
+</ul>
+<h3>demos/image-pipeline/</h3>
+<ul>
+<li><a href="demos-image-pipeline-image-pipeline.xtl.html">image-pipeline.xtl</a></li>
+</ul>
+<h3>demos/julia/</h3>
+<ul>
+<li><a href="demos-julia-julia.xtl.html">julia.xtl</a></li>
+</ul>
+<h3>demos/langtons-ant/</h3>
+<ul>
+<li><a href="demos-langtons-ant-langtons-ant.xtl.html">langtons-ant.xtl</a></li>
+</ul>
+<h3>demos/life-microscope/</h3>
+<ul>
+<li><a href="demos-life-microscope-life-microscope.xtl.html">life-microscope.xtl</a></li>
+</ul>
+<h3>demos/mandelbrot/</h3>
+<ul>
+<li><a href="demos-mandelbrot-mandelbrot.xtl.html">mandelbrot.xtl</a></li>
+</ul>
+<h3>demos/nbody/</h3>
+<ul>
+<li><a href="demos-nbody-nbody.xtl.html">nbody.xtl</a></li>
+</ul>
+<h3>demos/reaction-diffusion/</h3>
+<ul>
+<li><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html">reaction-diffusion.xtl</a></li>
+</ul>
+<h3>demos/sandpile/</h3>
+<ul>
+<li><a href="demos-sandpile-sandpile.xtl.html">sandpile.xtl</a></li>
+</ul>
+<h3>demos/stencil-macros/</h3>
+<ul>
+<li><a href="demos-stencil-macros-stencil-macros.xtl.html">stencil-macros.xtl</a></li>
+<li><a href="demos-stencil-macros-Stencil.xtlm.html">Stencil.xtlm</a></li>
+</ul>
+<h3>demos/wave-tank/</h3>
+<ul>
+<li><a href="demos-wave-tank-wave-tank.xtl.html">wave-tank.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-xetal-pipes.xtl.html">xetal-pipes.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/stages/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-stages-Pipes.xtl.html">Pipes.xtl</a></li>
+</ul>
+<ul>
+<li><a href="builtins.html">built-ins</a></li>
+</ul>
+<h2>On this page</h2>
+<ul>
+<li class="item"><a href="#L20">n</a></li>
+<li class="item"><a href="#L21">du</a></li>
+<li class="item"><a href="#L22">dv</a></li>
+<li class="item"><a href="#L23">f</a></li>
+<li class="item"><a href="#L24">k</a></li>
+<li class="item"><a href="#L25">steps</a></li>
+<li class="item"><a href="#L29"><span class="c-userfunc">ᵘp̲lane</span></a></li>
+<li class="item"><a href="#L36"><span class="c-userfunc">ᵘl̲ap</span></a></li>
+<li class="item"><a href="#L44"><span class="c-userfunc">ᵘs̲tep</span></a></li>
+<li class="item"><a href="#L53">sq</a></li>
+<li class="item"><a href="#L54">seed</a></li>
+<li class="item"><a href="#L55">s0</a></li>
+<li class="item"><a href="#L60">s</a></li>
+<li class="item"><a href="#L61">v</a></li>
+</ul>
+</nav>
+<main>
+<button class="theme" title="Light or dark">theme</button>
+<section id="results"></section>
+<h1><span class="kind">source</span><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html">demos/reaction-diffusion/reaction-diffusion.xtl</a></h1>
+<div class="source"><span class="line" id="L1"><a class="ln" href="#L1">1</a><span class="c-comment">⍝</span><span class="c-comment">!/usr/bin/env xetal</span></span>
+<span class="line" id="L2"><a class="ln" href="#L2">2</a><span class="c-comment">⍝</span><span class="c-comment"># Reaction-diffusion (Gray-Scott): two chemicals U and V on a grid.</span></span>
+<span class="line" id="L3"><a class="ln" href="#L3">3</a><span class="c-comment">⍝</span><span class="c-comment"># U is fed in, V eats U to make more V (U + 2V -&gt; 3V), V is removed,</span></span>
+<span class="line" id="L4"><a class="ln" href="#L4">4</a><span class="c-comment">⍝</span><span class="c-comment"># and both spread to their neighbors. Every step is a few array</span></span>
+<span class="line" id="L5"><a class="ln" href="#L5">5</a><span class="c-comment">⍝</span><span class="c-comment"># expressions over the whole grid: four shifted copies for the</span></span>
+<span class="line" id="L6"><a class="ln" href="#L6">6</a><span class="c-comment">⍝</span><span class="c-comment"># spreading, products for the reaction. The patterns (spots, mazes,</span></span>
+<span class="line" id="L7"><a class="ln" href="#L7">7</a><span class="c-comment">⍝</span><span class="c-comment"># coral) appear by themselves. Run it with &quot;xetal run</span></span>
+<span class="line" id="L8"><a class="ln" href="#L8">8</a><span class="c-comment">⍝</span><span class="c-comment"># demos/reaction-diffusion/reaction-diffusion.xtl&quot;; it prints the</span></span>
+<span class="line" id="L9"><a class="ln" href="#L9">9</a><span class="c-comment">⍝</span><span class="c-comment"># seeded grid's shape, a maze drawn with characters, and V's total</span></span>
+<span class="line" id="L10"><a class="ln" href="#L10">10</a><span class="c-comment">⍝</span><span class="c-comment"># (grown from the seed's 9.0). The live page runs it frame by frame</span></span>
+<span class="line" id="L11"><a class="ln" href="#L11">11</a><span class="c-comment">⍝</span><span class="c-comment"># and lets you click a cell for its neighbors and its update's</span></span>
+<span class="line" id="L12"><a class="ln" href="#L12">12</a><span class="c-comment">⍝</span><span class="c-comment"># arithmetic: https://softwarewrighter.github.io/X_eTaL-demos/reaction-diffusion/</span></span>
+<span class="line" id="L13"><a class="ln" href="#L13">13</a></span>
+<span class="line" id="L14"><a class="ln" href="#L14">14</a><span class="c-comment">⍝</span><span class="c-comment">## The settings</span></span>
+<span class="line" id="L15"><a class="ln" href="#L15">15</a></span>
+<span class="line" id="L16"><a class="ln" href="#L16">16</a><span class="c-comment">⍝</span><span class="c-comment"># n: the grid's side. du, dv: how fast U and V spread. f, k: the feed</span></span>
+<span class="line" id="L17"><a class="ln" href="#L17">17</a><span class="c-comment">⍝</span><span class="c-comment"># and kill rates (0.029, 0.057 gives a maze; coral is 0.0545, 0.062,</span></span>
+<span class="line" id="L18"><a class="ln" href="#L18">18</a><span class="c-comment">⍝</span><span class="c-comment"># ripples 0.022, 0.051, spots 0.035, 0.065, worms 0.046, 0.063).</span></span>
+<span class="line" id="L19"><a class="ln" href="#L19">19</a><span class="c-comment">⍝</span><span class="c-comment"># steps: how many to run.</span></span>
+<span class="line" id="L20"><a class="ln" href="#L20">20</a>n ← <span class="c-number">32</span></span>
+<span class="line" id="L21"><a class="ln" href="#L21">21</a>du ← <span class="c-number">0.2</span></span>
+<span class="line" id="L22"><a class="ln" href="#L22">22</a>dv ← <span class="c-number">0.1</span></span>
+<span class="line" id="L23"><a class="ln" href="#L23">23</a>f ← <span class="c-number">0.029</span></span>
+<span class="line" id="L24"><a class="ln" href="#L24">24</a>k ← <span class="c-number">0.057</span></span>
+<span class="line" id="L25"><a class="ln" href="#L25">25</a>steps ← <span class="c-number">1200</span></span>
+<span class="line" id="L26"><a class="ln" href="#L26">26</a></span>
+<span class="line" id="L27"><a class="ln" href="#L27">27</a><span class="c-comment">⍝</span><span class="c-comment"># A matrix as one plane of a rank-3 array (u:p_lane), for stacking</span></span>
+<span class="line" id="L28"><a class="ln" href="#L28">28</a><span class="c-comment">⍝</span><span class="c-comment"># U and V with c_at.</span></span>
+<span class="line" id="L29"><a class="ln" href="#L29">29</a><span class="c-userfunc">ᵘp̲lane</span> ← { m → (<span class="c-number">1</span> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <a href="builtins.html#s_hape" class="c-builtin">s̲hape</a> m) <a href="builtins.html#r_eshape" class="c-builtin">r̲eshape</a> m }</span>
+<span class="line" id="L30"><a class="ln" href="#L30">30</a></span>
+<span class="line" id="L31"><a class="ln" href="#L31">31</a><span class="c-comment">⍝</span><span class="c-comment">## The Laplacian: four shifted copies minus four times the center</span></span>
+<span class="line" id="L32"><a class="ln" href="#L32">32</a></span>
+<span class="line" id="L33"><a class="ln" href="#L33">33</a><span class="c-comment">⍝</span><span class="c-comment"># u:l_ap x: how much a cell differs from its four neighbors, up down</span></span>
+<span class="line" id="L34"><a class="ln" href="#L34">34</a><span class="c-comment">⍝</span><span class="c-comment"># left right (o_-_1, o_-_2), added and the center subtracted four</span></span>
+<span class="line" id="L35"><a class="ln" href="#L35">35</a><span class="c-comment">⍝</span><span class="c-comment"># times over (the edges wrap).</span></span>
+<span class="line" id="L36"><a class="ln" href="#L36">36</a><span class="c-userfunc">ᵘl̲ap</span> ← { x → ((<span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁</a> x) <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">-1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁</a> x) <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₂</a> x) <a href="builtins.html#-2b" class="c-symbol">+</a> <span class="c-number">-1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₂</a> x) <a href="builtins.html#-2d" class="c-symbol">−</a> <span class="c-number">4.0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> x }</span>
+<span class="line" id="L37"><a class="ln" href="#L37">37</a></span>
+<span class="line" id="L38"><a class="ln" href="#L38">38</a><span class="c-comment">⍝</span><span class="c-comment">## One step for every cell at once</span></span>
+<span class="line" id="L39"><a class="ln" href="#L39">39</a></span>
+<span class="line" id="L40"><a class="ln" href="#L40">40</a><span class="c-comment">⍝</span><span class="c-comment"># u:s_tep s: the state s is two planes, U and V. Each spreads by its</span></span>
+<span class="line" id="L41"><a class="ln" href="#L41">41</a><span class="c-comment">⍝</span><span class="c-comment"># own rate times its Laplacian; u * v * v is where V meets U and</span></span>
+<span class="line" id="L42"><a class="ln" href="#L42">42</a><span class="c-comment">⍝</span><span class="c-comment"># turns U into V (the reaction); U is fed at rate f, V removed at</span></span>
+<span class="line" id="L43"><a class="ln" href="#L43">43</a><span class="c-comment">⍝</span><span class="c-comment"># rate f + k.</span></span>
+<span class="line" id="L44"><a class="ln" href="#L44">44</a><span class="c-userfunc">ᵘs̲tep</span> ← { s →</span>
+<span class="line" id="L45"><a class="ln" href="#L45">45</a>  u ← <span class="c-number">1</span> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> s</span>
+<span class="line" id="L46"><a class="ln" href="#L46">46</a>  v ← <span class="c-number">2</span> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> s</span>
+<span class="line" id="L47"><a class="ln" href="#L47">47</a>  uvv ← u <a href="builtins.html#-2a" class="c-symbol">×</a> v <a href="builtins.html#-2a" class="c-symbol">×</a> v</span>
+<span class="line" id="L48"><a class="ln" href="#L48">48</a>  (<a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#u.p_lane" class="c-userfunc">ᵘp̲lane</a> u <a href="builtins.html#-2b" class="c-symbol">+</a> ((<a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#du">du</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#u.l_ap" class="c-userfunc">ᵘl̲ap</a> u) <a href="builtins.html#-2d" class="c-symbol">−</a> uvv) <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#f">f</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <span class="c-number">1.0</span> <a href="builtins.html#-2d" class="c-symbol">−</a> u) <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#u.p_lane" class="c-userfunc">ᵘp̲lane</a> v <a href="builtins.html#-2b" class="c-symbol">+</a> ((<a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#dv">dv</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#u.l_ap" class="c-userfunc">ᵘl̲ap</a> v) <a href="builtins.html#-2b" class="c-symbol">+</a> uvv) <a href="builtins.html#-2d" class="c-symbol">−</a> (<a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#f">f</a> <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#k">k</a>) <a href="builtins.html#-2a" class="c-symbol">×</a> v</span>
+<span class="line" id="L49"><a class="ln" href="#L49">49</a>}</span>
+<span class="line" id="L50"><a class="ln" href="#L50">50</a><span class="c-comment">⍝</span><span class="c-comment"> -- end of the core ---------------------------------------------------</span></span>
+<span class="line" id="L51"><a class="ln" href="#L51">51</a></span>
+<span class="line" id="L52"><a class="ln" href="#L52">52</a><span class="c-comment">⍝</span><span class="c-comment"># sq, seed, s0: the start, U everywhere, a square of V off the center.</span></span>
+<span class="line" id="L53"><a class="ln" href="#L53">53</a>sq ← ((<a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#n">n</a>) <a href="builtins.html#-3e-3d" class="c-symbol">≥</a> <span class="c-number">10</span>) <a href="builtins.html#-26" class="c-symbol">∧</a> (<a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#n">n</a>) <a href="builtins.html#-3c" class="c-symbol">&lt;</a> <span class="c-number">16</span></span>
+<span class="line" id="L54"><a class="ln" href="#L54">54</a>seed ← <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#sq">sq</a> <span class="c-symbol">'</span><a href="builtins.html#-26" class="c-symbol">∧</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#sq">sq</a></span>
+<span class="line" id="L55"><a class="ln" href="#L55">55</a>s0 ← (<a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#u.p_lane" class="c-userfunc">ᵘp̲lane</a> <span class="c-number">1.0</span> <a href="builtins.html#-2d" class="c-symbol">−</a> <span class="c-number">0.5</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#seed">seed</a>) <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#u.p_lane" class="c-userfunc">ᵘp̲lane</a> <span class="c-number">0.25</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#seed">seed</a></span>
+<span class="line" id="L56"><a class="ln" href="#L56">56</a><a href="builtins.html#s_hape" class="c-builtin">s̲hape</a> <a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#s0">s0</a></span>
+<span class="line" id="L57"><a class="ln" href="#L57">57</a></span>
+<span class="line" id="L58"><a class="ln" href="#L58">58</a><span class="c-comment">⍝</span><span class="c-comment"># s, v: the state after all the steps (function power), and V's</span></span>
+<span class="line" id="L59"><a class="ln" href="#L59">59</a><span class="c-comment">⍝</span><span class="c-comment"># plane; drawn with a character per cell by how much V it has.</span></span>
+<span class="line" id="L60"><a class="ln" href="#L60">60</a>s ← <a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#steps">steps</a> <span class="c-userfunc">'</span><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#u.s_tep" class="c-userfunc">ᵘs̲tep</a> <a href="builtins.html#p_ower" class="c-builtin">p̲ower</a> <a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#s0">s0</a></span>
+<span class="line" id="L61"><a class="ln" href="#L61">61</a>v ← <span class="c-number">2</span> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> <a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#s">s</a></span>
+<span class="line" id="L62"><a class="ln" href="#L62">62</a>(<span class="c-number">1</span> <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="builtins.html#f_loor" class="c-builtin">f̲loor</a> <span class="c-number">4.99</span> <a href="builtins.html#-2a" class="c-symbol">×</a> (<a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#v">v</a> <a href="builtins.html#m_in" class="c-builtin">m̲in</a> <span class="c-number">0.399</span>) <a href="builtins.html#-2f" class="c-symbol">÷</a> <span class="c-number">0.4</span>) <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> <span class="c-string">&quot; .:o@&quot;</span></span>
+<span class="line" id="L63"><a class="ln" href="#L63">63</a></span>
+<span class="line" id="L64"><a class="ln" href="#L64">64</a><span class="c-comment">⍝</span><span class="c-comment"> The total of V, rounded: the pattern has grown from the seed's 9.0.</span></span>
+<span class="line" id="L65"><a class="ln" href="#L65">65</a>(<a href="builtins.html#f_loor" class="c-builtin">f̲loor</a> <span class="c-number">0.5</span> <a href="builtins.html#-2b" class="c-symbol">+</a> <span class="c-number">100</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <span class="c-symbol">'</span><a href="builtins.html#-2b" class="c-symbol">+</a> <a href="builtins.html#r_-2f" class="c-builtin">r̲/</a> <a href="builtins.html#r_avel" class="c-builtin">r̲avel</a> <a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#v">v</a>) <a href="builtins.html#-2f" class="c-symbol">÷</a> <span class="c-number">100</span></span>
+</div>
+</main>
+</body>
+</html>

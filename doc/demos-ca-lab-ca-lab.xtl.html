@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>demos/ca-lab/ca-lab.xtl - X_eTaL doc</title>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+<script defer src="search-index.js"></script>
+<script defer src="search.js"></script>
+</head>
+<body>
+<nav class="side">
+<a class="home" href="index.html">X_eTaL doc</a>
+<input id="search" type="search" autocomplete="off" placeholder="Search: a name, or a type" title="A name (mean finds m_ean), or a type: Num a =&gt; a -&gt; a -&gt; a finds +, m_ax ...">
+<h2>Files</h2>
+<h3>/Users/mike/github/softwarewrighter/X_eTaL-demos/work/libraries/libs/Eigencube/src/</h3>
+<ul>
+<li><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html">Eigencube.xtl</a></li>
+</ul>
+<h3>demos/ca-lab/</h3>
+<ul>
+<li><a href="demos-ca-lab-ca-lab.xtl.html">ca-lab.xtl</a></li>
+</ul>
+<h3>demos/eigencube/</h3>
+<ul>
+<li><a href="demos-eigencube-eigencube.xtl.html">eigencube.xtl</a></li>
+</ul>
+<h3>demos/fourier-epicycles/</h3>
+<ul>
+<li><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html">fourier-epicycles.xtl</a></li>
+</ul>
+<h3>demos/image-pipeline/</h3>
+<ul>
+<li><a href="demos-image-pipeline-image-pipeline.xtl.html">image-pipeline.xtl</a></li>
+</ul>
+<h3>demos/julia/</h3>
+<ul>
+<li><a href="demos-julia-julia.xtl.html">julia.xtl</a></li>
+</ul>
+<h3>demos/langtons-ant/</h3>
+<ul>
+<li><a href="demos-langtons-ant-langtons-ant.xtl.html">langtons-ant.xtl</a></li>
+</ul>
+<h3>demos/life-microscope/</h3>
+<ul>
+<li><a href="demos-life-microscope-life-microscope.xtl.html">life-microscope.xtl</a></li>
+</ul>
+<h3>demos/mandelbrot/</h3>
+<ul>
+<li><a href="demos-mandelbrot-mandelbrot.xtl.html">mandelbrot.xtl</a></li>
+</ul>
+<h3>demos/nbody/</h3>
+<ul>
+<li><a href="demos-nbody-nbody.xtl.html">nbody.xtl</a></li>
+</ul>
+<h3>demos/reaction-diffusion/</h3>
+<ul>
+<li><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html">reaction-diffusion.xtl</a></li>
+</ul>
+<h3>demos/sandpile/</h3>
+<ul>
+<li><a href="demos-sandpile-sandpile.xtl.html">sandpile.xtl</a></li>
+</ul>
+<h3>demos/stencil-macros/</h3>
+<ul>
+<li><a href="demos-stencil-macros-stencil-macros.xtl.html">stencil-macros.xtl</a></li>
+<li><a href="demos-stencil-macros-Stencil.xtlm.html">Stencil.xtlm</a></li>
+</ul>
+<h3>demos/wave-tank/</h3>
+<ul>
+<li><a href="demos-wave-tank-wave-tank.xtl.html">wave-tank.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-xetal-pipes.xtl.html">xetal-pipes.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/stages/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-stages-Pipes.xtl.html">Pipes.xtl</a></li>
+</ul>
+<ul>
+<li><a href="builtins.html">built-ins</a></li>
+</ul>
+<h2>On this page</h2>
+<ul>
+<li class="item"><a href="#u.b_its"><span class="c-userfunc">ᵘb̲its</span></a></li>
+<li class="item"><a href="#u.r_ow"><span class="c-userfunc">ᵘr̲ow</span></a></li>
+<li class="item"><a href="#u.g_row"><span class="c-userfunc">ᵘg̲row</span></a></li>
+<li><a href="#section-1">Two dimensions: a table on (state, neighbors in state 1)</a></li>
+<li class="item"><a href="#u.c_ount"><span class="c-userfunc">ᵘc̲ount</span></a></li>
+<li class="item"><a href="#u.l_ook"><span class="c-userfunc">ᵘl̲ook</span></a></li>
+<li class="item"><a href="#tbl">tbl</a></li>
+<li class="item"><a href="#r0">r0</a></li>
+<li class="item"><a href="#h">h</a></li>
+<li class="item"><a href="#tbl">tbl</a></li>
+<li class="item"><a href="#h">h</a></li>
+<li class="item"><a href="#life">life</a></li>
+<li class="item"><a href="#glider">glider</a></li>
+<li class="item"><a href="#brain">brain</a></li>
+<li class="item"><a href="#b0">b0</a></li>
+<li class="item"><a href="#wire">wire</a></li>
+<li class="item"><a href="#w0">w0</a></li>
+</ul>
+</nav>
+<main>
+<button class="theme" title="Light or dark">theme</button>
+<section id="results"></section>
+<h1><span class="kind">program</span>demos/ca-lab/ca-lab.xtl</h1>
+<div class="doc">
+<p>A cellular automata lab. Every rule here is a lookup table: each
+cell's neighborhood becomes a number, by rotations and arithmetic
+over the whole array, and the number picks the cell's next state
+from the table (s_elect). Changing the rule is changing the table.
+Run it with &quot;xetal run demos/ca-lab/ca-lab.xtl&quot;; it prints Rule 30
+and Rule 90 as sixteen-generation boards, Life, Brian's Brain and
+Wireworld, each drawn with characters. The live page lets you edit
+the table and the board, one and two dimensions each their own
+view: https://softwarewrighter.github.io/X_eTaL-demos/ca-lab/</p>
+</div>
+<p class="meta"><a href="demos-ca-lab-ca-lab.xtl.src.html">source</a></p>
+<div class="item" id="u.b_its">
+<h3><a href="#u.b_its"><span class="c-userfunc">ᵘb̲its</span></a> <span class="type">: Int -&gt; Int</span></h3>
+<div class="meta">function &middot; <a href="demos-ca-lab-ca-lab.xtl.src.html#L16">line 16</a></div>
+<div class="doc">
+<p>-- one dimension: Wolfram's elementary rules.
+u:b_its rule: a rule number's 8 bits are the table: the next state
+for each of the 8 neighborhoods (left, center, right), numbered
+4 * left + 2 * center + right.</p>
+</div>
+<pre class="code"><span class="c-userfunc">ᵘb̲its</span> ← { rule → (rule <a href="builtins.html#d_iv" class="c-builtin">d̲iv</a> <span class="c-number">2</span> <a href="builtins.html#-5e" class="c-symbol">^</a> <a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <span class="c-number">8</span>) <a href="builtins.html#m_od" class="c-builtin">m̲od</a> <span class="c-number">2</span> }</pre>
+<div class="uses">Used in: <a href="demos-ca-lab-ca-lab.xtl.html#tbl">tbl</a></div>
+</div>
+<div class="item" id="u.r_ow">
+<h3><a href="#u.r_ow"><span class="c-userfunc">ᵘr̲ow</span></a> <span class="type">: a -&gt; Int -&gt; a</span></h3>
+<div class="meta">function &middot; <a href="demos-ca-lab-ca-lab.xtl.src.html#L20">line 20</a></div>
+<div class="doc">
+<p>u:r_ow tbl r: the next row. Each cell's neighborhood number, by
+rotation, looks up its next state in the table (1 + because
+s_elect counts from 1).</p>
+</div>
+<pre class="code"><span class="c-userfunc">ᵘr̲ow</span> ← { tbl r → (<span class="c-number">1</span> <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">4</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <span class="c-number">-1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-</a> r) <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">2</span> <a href="builtins.html#-2a" class="c-symbol">×</a> r) <a href="builtins.html#-2b" class="c-symbol">+</a> <span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-</a> r) <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> tbl }</pre>
+<div class="uses">Used in: <a href="demos-ca-lab-ca-lab.xtl.html#u.g_row"><span class="c-userfunc">ᵘg̲row</span></a></div>
+</div>
+<div class="item" id="u.g_row">
+<h3><a href="#u.g_row"><span class="c-userfunc">ᵘg̲row</span></a> <span class="type">: Int -&gt; Int -&gt; Int</span></h3>
+<div class="meta">function &middot; <a href="demos-ca-lab-ca-lab.xtl.src.html#L24">line 24</a></div>
+<div class="doc">
+<p>u:g_row tbl h: the history grows downward: rotate the rows up one,
+and put the next row (of the last one) at the bottom. Start with
+every row the first.</p>
+</div>
+<pre class="code"><span class="c-userfunc">ᵘg̲row</span> ← { tbl h →
+  g ← <a href="builtins.html#f_irst" class="c-builtin">f̲irst</a> <a href="builtins.html#s_hape" class="c-builtin">s̲hape</a> h
+  n ← <span class="c-number">2</span> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> <a href="builtins.html#s_hape" class="c-builtin">s̲hape</a> h
+  keep ← <span class="c-number">1</span> <a href="builtins.html#-2a" class="c-symbol">×</a> ((<a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> g) <a href="builtins.html#-3c" class="c-symbol">&lt;</a> g <a href="builtins.html#-2d" class="c-symbol">−</a> <span class="c-number">1</span>) <span class="c-builtin">'</span><a href="builtins.html#l_eft" class="c-builtin">l̲eft</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> n
+  (keep <a href="builtins.html#-2a" class="c-symbol">×</a> <span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁</a> h) <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">1</span> <a href="builtins.html#-2d" class="c-symbol">−</a> keep) <a href="builtins.html#-2a" class="c-symbol">×</a> (g <a href="builtins.html#c_at" class="c-builtin">c̲at</a> n) <a href="builtins.html#r_eshape" class="c-builtin">r̲eshape</a> tbl <a href="demos-ca-lab-ca-lab.xtl.html#u.r_ow" class="c-userfunc">ᵘr̲ow</a> g <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> h
+}</pre>
+<div class="uses">Used in: <a href="demos-ca-lab-ca-lab.xtl.html#h">h</a></div>
+</div>
+<h2 class="section" id="section-1">Two dimensions: a table on (state, neighbors in state 1)</h2>
+<div class="item" id="u.c_ount">
+<h3><a href="#u.c_ount"><span class="c-userfunc">ᵘc̲ount</span></a> <span class="type">: (Num a, Num b, Truthy b) =&gt; a -&gt; b</span></h3>
+<div class="meta">function &middot; <a href="demos-ca-lab-ca-lab.xtl.src.html#L36">line 36</a></div>
+<div class="doc">
+<p>u:c_ount b: each cell's number of neighbors in state 1 (alive,
+firing, an electron's head): nine rotated copies of b = 1 summed,
+minus the cell itself.</p>
+</div>
+<pre class="code"><span class="c-userfunc">ᵘc̲ount</span> ← { b → (<span class="c-symbol">'</span><a href="builtins.html#-2b" class="c-symbol">+</a> <a href="builtins.html#r_-2f" class="c-builtin">r̲/₁₂</a> <span class="c-number">-1</span> <span class="c-number">0</span> <span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁₂</a> <span class="c-number">1</span> <a href="builtins.html#-2a" class="c-symbol">×</a> b <a href="builtins.html#-3d" class="c-symbol">=</a> <span class="c-number">1</span>) <a href="builtins.html#-2d" class="c-symbol">−</a> <span class="c-number">1</span> <a href="builtins.html#-2a" class="c-symbol">×</a> b <a href="builtins.html#-3d" class="c-symbol">=</a> <span class="c-number">1</span> }</pre>
+<div class="uses">Used in: <a href="demos-ca-lab-ca-lab.xtl.html#u.l_ook"><span class="c-userfunc">ᵘl̲ook</span></a></div>
+</div>
+<div class="item" id="u.l_ook">
+<h3><a href="#u.l_ook"><span class="c-userfunc">ᵘl̲ook</span></a> <span class="type">: a -&gt; Int -&gt; a</span></h3>
+<div class="meta">function &middot; <a href="demos-ca-lab-ca-lab.xtl.src.html#L40">line 40</a></div>
+<div class="doc">
+<p>u:l_ook tbl b: the next state from a table with a row per state and
+a column per count: each cell's number is its state * 9 plus its
+count of live neighbors.</p>
+</div>
+<pre class="code"><span class="c-userfunc">ᵘl̲ook</span> ← { tbl b → (<span class="c-number">1</span> <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">9</span> <a href="builtins.html#-2a" class="c-symbol">×</a> b) <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="demos-ca-lab-ca-lab.xtl.html#u.c_ount" class="c-userfunc">ᵘc̲ount</a> b) <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> tbl }</pre>
+<div class="uses">Used in: <a href="demos-ca-lab-ca-lab.xtl.src.html#L59">demos/ca-lab/ca-lab.xtl:59</a>, <a href="demos-ca-lab-ca-lab.xtl.src.html#L65">demos/ca-lab/ca-lab.xtl:65</a>, <a href="demos-ca-lab-ca-lab.xtl.src.html#L72">demos/ca-lab/ca-lab.xtl:72</a></div>
+</div>
+<div class="item" id="tbl">
+<h3><a href="#tbl">tbl</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-ca-lab-ca-lab.xtl.src.html#L44">line 44</a></div>
+<pre class="code">tbl ← <a href="demos-ca-lab-ca-lab.xtl.html#u.b_its" class="c-userfunc">ᵘb̲its</a> <span class="c-number">30</span></pre>
+<div class="uses">Used in: <a href="demos-ca-lab-ca-lab.xtl.src.html#L45">demos/ca-lab/ca-lab.xtl:45</a>, <a href="demos-ca-lab-ca-lab.xtl.html#h">h</a></div>
+</div>
+<div class="item" id="r0">
+<h3><a href="#r0">r0</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-ca-lab-ca-lab.xtl.src.html#L46">line 46</a></div>
+<pre class="code">r0 ← <span class="c-number">1</span> <a href="builtins.html#-2a" class="c-symbol">×</a> (<a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <span class="c-number">33</span>) <a href="builtins.html#-3d" class="c-symbol">=</a> <span class="c-number">16</span></pre>
+<div class="uses">Used in: <a href="demos-ca-lab-ca-lab.xtl.html#h">h</a></div>
+</div>
+<div class="item" id="h">
+<h3><a href="#h">h</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-ca-lab-ca-lab.xtl.src.html#L47">line 47</a></div>
+<pre class="code">h ← <span class="c-number">15</span> <span class="c-quote">'</span>{ h → <a href="demos-ca-lab-ca-lab.xtl.html#tbl">tbl</a> <a href="demos-ca-lab-ca-lab.xtl.html#u.g_row" class="c-userfunc">ᵘg̲row</a> h } <a href="builtins.html#p_ower" class="c-builtin">p̲ower</a> (<span class="c-number">16</span> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <span class="c-number">33</span>) <a href="builtins.html#r_eshape" class="c-builtin">r̲eshape</a> <a href="demos-ca-lab-ca-lab.xtl.html#r0">r0</a></pre>
+<div class="uses">Used in: <a href="demos-ca-lab-ca-lab.xtl.src.html#L48">demos/ca-lab/ca-lab.xtl:48</a>, <a href="demos-ca-lab-ca-lab.xtl.src.html#L53">demos/ca-lab/ca-lab.xtl:53</a></div>
+</div>
+<div class="item" id="tbl">
+<h3><a href="#tbl">tbl</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-ca-lab-ca-lab.xtl.src.html#L51">line 51</a></div>
+<pre class="code">tbl ← <a href="demos-ca-lab-ca-lab.xtl.html#u.b_its" class="c-userfunc">ᵘb̲its</a> <span class="c-number">90</span></pre>
+</div>
+<div class="item" id="h">
+<h3><a href="#h">h</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-ca-lab-ca-lab.xtl.src.html#L52">line 52</a></div>
+<pre class="code">h ← <span class="c-number">15</span> <span class="c-quote">'</span>{ h → <a href="demos-ca-lab-ca-lab.xtl.html#tbl">tbl</a> <a href="demos-ca-lab-ca-lab.xtl.html#u.g_row" class="c-userfunc">ᵘg̲row</a> h } <a href="builtins.html#p_ower" class="c-builtin">p̲ower</a> (<span class="c-number">16</span> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <span class="c-number">33</span>) <a href="builtins.html#r_eshape" class="c-builtin">r̲eshape</a> <a href="demos-ca-lab-ca-lab.xtl.html#r0">r0</a></pre>
+</div>
+<div class="item" id="life">
+<h3><a href="#life">life</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-ca-lab-ca-lab.xtl.src.html#L57">line 57</a></div>
+<pre class="code">life ← <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">1</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span>  <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">1</span> <span class="c-number">1</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span></pre>
+<div class="uses">Used in: <a href="demos-ca-lab-ca-lab.xtl.src.html#L59">demos/ca-lab/ca-lab.xtl:59</a></div>
+</div>
+<div class="item" id="glider">
+<h3><a href="#glider">glider</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-ca-lab-ca-lab.xtl.src.html#L58">line 58</a></div>
+<pre class="code">glider ← <span class="c-number">6</span> <span class="c-number">6</span> <a href="builtins.html#r_eshape" class="c-builtin">r̲eshape</a> <span class="c-number">0</span> <span class="c-number">1</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span>  <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">1</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span>  <span class="c-number">1</span> <span class="c-number">1</span> <span class="c-number">1</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span>  <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span>  <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span>  <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span></pre>
+<div class="uses">Used in: <a href="demos-ca-lab-ca-lab.xtl.src.html#L59">demos/ca-lab/ca-lab.xtl:59</a></div>
+</div>
+<div class="item" id="brain">
+<h3><a href="#brain">brain</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-ca-lab-ca-lab.xtl.src.html#L63">line 63</a></div>
+<pre class="code">brain ← <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">1</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span>  <span class="c-number">2</span> <span class="c-number">2</span> <span class="c-number">2</span> <span class="c-number">2</span> <span class="c-number">2</span> <span class="c-number">2</span> <span class="c-number">2</span> <span class="c-number">2</span> <span class="c-number">2</span>  <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span></pre>
+<div class="uses">Used in: <a href="demos-ca-lab-ca-lab.xtl.src.html#L65">demos/ca-lab/ca-lab.xtl:65</a></div>
+</div>
+<div class="item" id="b0">
+<h3><a href="#b0">b0</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-ca-lab-ca-lab.xtl.src.html#L64">line 64</a></div>
+<pre class="code">b0 ← <span class="c-number">6</span> <span class="c-number">6</span> <a href="builtins.html#r_eshape" class="c-builtin">r̲eshape</a> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span>  <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">1</span> <span class="c-number">1</span> <span class="c-number">0</span> <span class="c-number">0</span>  <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span>  <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span>  <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span>  <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span></pre>
+<div class="uses">Used in: <a href="demos-ca-lab-ca-lab.xtl.src.html#L65">demos/ca-lab/ca-lab.xtl:65</a></div>
+</div>
+<div class="item" id="wire">
+<h3><a href="#wire">wire</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-ca-lab-ca-lab.xtl.src.html#L70">line 70</a></div>
+<pre class="code">wire ← <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span>  <span class="c-number">2</span> <span class="c-number">2</span> <span class="c-number">2</span> <span class="c-number">2</span> <span class="c-number">2</span> <span class="c-number">2</span> <span class="c-number">2</span> <span class="c-number">2</span> <span class="c-number">2</span>  <span class="c-number">3</span> <span class="c-number">3</span> <span class="c-number">3</span> <span class="c-number">3</span> <span class="c-number">3</span> <span class="c-number">3</span> <span class="c-number">3</span> <span class="c-number">3</span> <span class="c-number">3</span>  <span class="c-number">3</span> <span class="c-number">1</span> <span class="c-number">1</span> <span class="c-number">3</span> <span class="c-number">3</span> <span class="c-number">3</span> <span class="c-number">3</span> <span class="c-number">3</span> <span class="c-number">3</span></pre>
+<div class="uses">Used in: <a href="demos-ca-lab-ca-lab.xtl.src.html#L72">demos/ca-lab/ca-lab.xtl:72</a></div>
+</div>
+<div class="item" id="w0">
+<h3><a href="#w0">w0</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-ca-lab-ca-lab.xtl.src.html#L71">line 71</a></div>
+<pre class="code">w0 ← <span class="c-number">3</span> <span class="c-number">8</span> <a href="builtins.html#r_eshape" class="c-builtin">r̲eshape</a> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span>  <span class="c-number">2</span> <span class="c-number">1</span> <span class="c-number">3</span> <span class="c-number">3</span> <span class="c-number">3</span> <span class="c-number">3</span> <span class="c-number">3</span> <span class="c-number">3</span>  <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span></pre>
+<div class="uses">Used in: <a href="demos-ca-lab-ca-lab.xtl.src.html#L72">demos/ca-lab/ca-lab.xtl:72</a></div>
+</div>
+</main>
+</body>
+</html>

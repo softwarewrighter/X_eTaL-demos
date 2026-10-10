@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>demos/xetal-pipes/stages/Pipes.xtl - X_eTaL doc</title>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+<script defer src="search-index.js"></script>
+<script defer src="search.js"></script>
+</head>
+<body>
+<nav class="side">
+<a class="home" href="index.html">X_eTaL doc</a>
+<input id="search" type="search" autocomplete="off" placeholder="Search: a name, or a type" title="A name (mean finds m_ean), or a type: Num a =&gt; a -&gt; a -&gt; a finds +, m_ax ...">
+<h2>Files</h2>
+<h3>/Users/mike/github/softwarewrighter/X_eTaL-demos/work/libraries/libs/Eigencube/src/</h3>
+<ul>
+<li><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html">Eigencube.xtl</a></li>
+</ul>
+<h3>demos/ca-lab/</h3>
+<ul>
+<li><a href="demos-ca-lab-ca-lab.xtl.html">ca-lab.xtl</a></li>
+</ul>
+<h3>demos/eigencube/</h3>
+<ul>
+<li><a href="demos-eigencube-eigencube.xtl.html">eigencube.xtl</a></li>
+</ul>
+<h3>demos/fourier-epicycles/</h3>
+<ul>
+<li><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html">fourier-epicycles.xtl</a></li>
+</ul>
+<h3>demos/image-pipeline/</h3>
+<ul>
+<li><a href="demos-image-pipeline-image-pipeline.xtl.html">image-pipeline.xtl</a></li>
+</ul>
+<h3>demos/julia/</h3>
+<ul>
+<li><a href="demos-julia-julia.xtl.html">julia.xtl</a></li>
+</ul>
+<h3>demos/langtons-ant/</h3>
+<ul>
+<li><a href="demos-langtons-ant-langtons-ant.xtl.html">langtons-ant.xtl</a></li>
+</ul>
+<h3>demos/life-microscope/</h3>
+<ul>
+<li><a href="demos-life-microscope-life-microscope.xtl.html">life-microscope.xtl</a></li>
+</ul>
+<h3>demos/mandelbrot/</h3>
+<ul>
+<li><a href="demos-mandelbrot-mandelbrot.xtl.html">mandelbrot.xtl</a></li>
+</ul>
+<h3>demos/nbody/</h3>
+<ul>
+<li><a href="demos-nbody-nbody.xtl.html">nbody.xtl</a></li>
+</ul>
+<h3>demos/reaction-diffusion/</h3>
+<ul>
+<li><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html">reaction-diffusion.xtl</a></li>
+</ul>
+<h3>demos/sandpile/</h3>
+<ul>
+<li><a href="demos-sandpile-sandpile.xtl.html">sandpile.xtl</a></li>
+</ul>
+<h3>demos/stencil-macros/</h3>
+<ul>
+<li><a href="demos-stencil-macros-stencil-macros.xtl.html">stencil-macros.xtl</a></li>
+<li><a href="demos-stencil-macros-Stencil.xtlm.html">Stencil.xtlm</a></li>
+</ul>
+<h3>demos/wave-tank/</h3>
+<ul>
+<li><a href="demos-wave-tank-wave-tank.xtl.html">wave-tank.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-xetal-pipes.xtl.html">xetal-pipes.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/stages/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-stages-Pipes.xtl.html">Pipes.xtl</a></li>
+</ul>
+<ul>
+<li><a href="builtins.html">built-ins</a></li>
+</ul>
+<h2>On this page</h2>
+<ul>
+<li class="item"><a href="#end">end</a></li>
+<li class="item"><a href="#nl">nl</a></li>
+<li class="item"><a href="#z">z</a></li>
+<li class="item"><a href="#h.e_nded"><span class="c-libfunc">ʰe̲nded</span></a></li>
+<li class="item"><a href="#h.r_ead1"><span class="c-libfunc">ʰr̲ead1</span></a></li>
+<li class="item"><a href="#h.r_eadn"><span class="c-libfunc">ʰr̲eadn</span></a></li>
+<li class="item"><a href="#h.r_eadall"><span class="c-libfunc">ʰr̲eadall</span></a></li>
+<li class="item"><a href="#l.r_ead"><span class="c-libfunc">ˡr̲ead</span></a></li>
+<li class="item"><a href="#l.o_ut"><span class="c-libfunc">ˡo̲ut</span></a></li>
+<li class="item"><a href="#l.l_ines"><span class="c-libfunc">ˡl̲ines</span></a></li>
+<li class="item"><a href="#l.c_ount"><span class="c-libfunc">ˡc̲ount</span></a></li>
+<li class="item"><a href="#l.k_eep"><span class="c-libfunc">ˡk̲eep</span></a></li>
+<li class="item"><a href="#l.m_atrix"><span class="c-libfunc">ˡm̲atrix</span></a></li>
+</ul>
+</nav>
+<main>
+<button class="theme" title="Light or dark">theme</button>
+<section id="results"></section>
+<h1><span class="kind">library</span>demos/xetal-pipes/stages/Pipes.xtl</h1>
+<div class="doc">
+<p>Pipes: what every stage shares. A stage's input is one text, its
+lines each ending in a newline; l_ines numbers every character by
+the line it is on, so a stage chooses or reorders whole lines with
+a mask or a grade over those numbers, never a loop over lines.</p>
+</div>
+<p class="meta"><a href="demos-xetal-pipes-stages-Pipes.xtl.src.html">source</a></p>
+<div class="item" id="end">
+<h3><a href="#end">end</a> <span class="type">: Char</span></h3>
+<div class="meta">value <span class="private">(private)</span> &middot; <a href="demos-xetal-pipes-stages-Pipes.xtl.src.html#L9">line 9</a></div>
+<pre class="code">end ← <span class="c-string">&quot;&lt;&lt;xetal-end-of-input&gt;&gt;&quot;</span></pre>
+<div class="uses">Used in: <a href="demos-xetal-pipes-stages-Pipes.xtl.html#h.r_ead1"><span class="c-libfunc">ʰr̲ead1</span></a></div>
+</div>
+<div class="item" id="nl">
+<h3><a href="#nl">nl</a> <span class="type">: Char</span></h3>
+<div class="meta">value <span class="private">(private)</span> &middot; <a href="demos-xetal-pipes-stages-Pipes.xtl.src.html#L10">line 10</a></div>
+<pre class="code">nl ← <a href="builtins.html#f_irst" class="c-builtin">f̲irst</a> <span class="c-string">&quot;\n&quot;</span></pre>
+<div class="uses">Used in: <a href="demos-xetal-pipes-stages-Pipes.xtl.html#h.r_ead1"><span class="c-libfunc">ʰr̲ead1</span></a>, <a href="demos-xetal-pipes-stages-Pipes.xtl.html#l.l_ines"><span class="c-libfunc">ˡl̲ines</span></a>, <a href="demos-xetal-pipes-stages-Pipes.xtl.html#l.c_ount"><span class="c-libfunc">ˡc̲ount</span></a>, <a href="demos-xetal-pipes-stages-Pipes.xtl.html#l.m_atrix"><span class="c-libfunc">ˡm̲atrix</span></a></div>
+</div>
+<div class="item" id="z">
+<h3><a href="#z">z</a> <span class="type">: Char</span></h3>
+<div class="meta">value <span class="private">(private)</span> &middot; <a href="demos-xetal-pipes-stages-Pipes.xtl.src.html#L13">line 13</a></div>
+<pre class="code">z ← <span class="c-number">1</span> <a href="builtins.html#t_ake" class="c-builtin">t̲ake</a> <a href="builtins.html#-5b-5dU_CHAR" class="c-builtin">⎕U̲CHAR</a> <span class="c-number">0</span></pre>
+<div class="uses">Used in: <a href="demos-xetal-pipes-stages-Pipes.xtl.html#h.e_nded"><span class="c-libfunc">ʰe̲nded</span></a>, <a href="demos-xetal-pipes-stages-Pipes.xtl.html#h.r_ead1"><span class="c-libfunc">ʰr̲ead1</span></a>, <a href="demos-xetal-pipes-stages-Pipes.xtl.html#l.m_atrix"><span class="c-libfunc">ˡm̲atrix</span></a></div>
+</div>
+<div class="item" id="h.e_nded">
+<h3><a href="#h.e_nded"><span class="c-libfunc">ʰe̲nded</span></a> <span class="type">: Truthy a =&gt; Char -&gt; a</span></h3>
+<div class="meta">function <span class="private">(private)</span> &middot; <a href="demos-xetal-pipes-stages-Pipes.xtl.src.html#L16">line 16</a></div>
+<pre class="code"><span class="c-libfunc">ʰe̲nded</span> ← { t → (<span class="c-number">-1</span> <a href="builtins.html#t_ake" class="c-builtin">t̲ake</a> t) <a href="builtins.html#m_atch" class="c-builtin">m̲atch</a> <a href="demos-xetal-pipes-stages-Pipes.xtl.html#z">z</a> }</pre>
+<div class="uses">Used in: <a href="demos-xetal-pipes-stages-Pipes.xtl.html#h.r_eadn"><span class="c-libfunc">ʰr̲eadn</span></a>, <a href="demos-xetal-pipes-stages-Pipes.xtl.html#h.r_eadall"><span class="c-libfunc">ʰr̲eadall</span></a></div>
+</div>
+<div class="item" id="h.r_ead1">
+<h3><a href="#h.r_ead1"><span class="c-libfunc">ʰr̲ead1</span></a> <span class="type">: Unit -&gt; Char</span></h3>
+<div class="meta">function <span class="private">(private)</span> &middot; <a href="demos-xetal-pipes-stages-Pipes.xtl.src.html#L19">line 19</a></div>
+<pre class="code"><span class="c-libfunc">ʰr̲ead1</span> ← { @ → l ← <a href="builtins.html#-5b-5dR_EAD" class="c-builtin">⎕R̲EAD</a> @◆ l <a href="builtins.html#m_atch" class="c-builtin">m̲atch</a> <a href="demos-xetal-pipes-stages-Pipes.xtl.html#end">end</a> ? <a href="demos-xetal-pipes-stages-Pipes.xtl.html#z">z</a>◆ l <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <a href="demos-xetal-pipes-stages-Pipes.xtl.html#nl">nl</a> }</pre>
+<div class="uses">Used in: <a href="demos-xetal-pipes-stages-Pipes.xtl.html#h.r_eadn"><span class="c-libfunc">ʰr̲eadn</span></a></div>
+</div>
+<div class="item" id="h.r_eadn">
+<h3><a href="#h.r_eadn"><span class="c-libfunc">ʰr̲eadn</span></a> <span class="type">: Int -&gt; Char</span></h3>
+<div class="meta">function <span class="private">(private)</span> &middot; <a href="demos-xetal-pipes-stages-Pipes.xtl.src.html#L24">line 24</a></div>
+<pre class="code"><span class="c-libfunc">ʰr̲eadn</span> ← { n →
+  n <a href="builtins.html#-3c-3d" class="c-symbol">≤</a> <span class="c-number">1</span> ? <a href="demos-xetal-pipes-stages-Pipes.xtl.html#h.r_ead1" class="c-libfunc">ʰr̲ead1</a> @
+  a ← <a href="demos-xetal-pipes-stages-Pipes.xtl.html#h.r_eadn" class="c-libfunc">ʰr̲eadn</a> n <a href="builtins.html#d_iv" class="c-builtin">d̲iv</a> <span class="c-number">2</span>
+  <a href="demos-xetal-pipes-stages-Pipes.xtl.html#h.e_nded" class="c-libfunc">ʰe̲nded</a> a ? a
+  a <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <a href="demos-xetal-pipes-stages-Pipes.xtl.html#h.r_eadn" class="c-libfunc">ʰr̲eadn</a> n <a href="builtins.html#-2d" class="c-symbol">−</a> n <a href="builtins.html#d_iv" class="c-builtin">d̲iv</a> <span class="c-number">2</span>
+}</pre>
+<div class="uses">Used in: <a href="demos-xetal-pipes-stages-Pipes.xtl.html#h.r_eadn"><span class="c-libfunc">ʰr̲eadn</span></a>, <a href="demos-xetal-pipes-stages-Pipes.xtl.html#h.r_eadall"><span class="c-libfunc">ʰr̲eadall</span></a></div>
+</div>
+<div class="item" id="h.r_eadall">
+<h3><a href="#h.r_eadall"><span class="c-libfunc">ʰr̲eadall</span></a> <span class="type">: Int -&gt; Char</span></h3>
+<div class="meta">function <span class="private">(private)</span> &middot; <a href="demos-xetal-pipes-stages-Pipes.xtl.src.html#L32">line 32</a></div>
+<pre class="code"><span class="c-libfunc">ʰr̲eadall</span> ← { n →
+  a ← <a href="demos-xetal-pipes-stages-Pipes.xtl.html#h.r_eadn" class="c-libfunc">ʰr̲eadn</a> n
+  <a href="demos-xetal-pipes-stages-Pipes.xtl.html#h.e_nded" class="c-libfunc">ʰe̲nded</a> a ? <span class="c-number">-1</span> <a href="builtins.html#d_rop" class="c-builtin">d̲rop</a> a
+  a <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <a href="demos-xetal-pipes-stages-Pipes.xtl.html#h.r_eadall" class="c-libfunc">ʰr̲eadall</a> <span class="c-number">2</span> <a href="builtins.html#-2a" class="c-symbol">×</a> n
+}</pre>
+<div class="uses">Used in: <a href="demos-xetal-pipes-stages-Pipes.xtl.html#h.r_eadall"><span class="c-libfunc">ʰr̲eadall</span></a>, <a href="demos-xetal-pipes-stages-Pipes.xtl.html#l.r_ead"><span class="c-libfunc">ˡr̲ead</span></a></div>
+</div>
+<div class="item" id="l.r_ead">
+<h3><a href="#l.r_ead"><span class="c-libfunc">ˡr̲ead</span></a> <span class="type">: Unit -&gt; Char</span></h3>
+<div class="meta">function &middot; <a href="demos-xetal-pipes-stages-Pipes.xtl.src.html#L39">line 39</a></div>
+<div class="doc">
+<p>Standard input, every line ending in a newline.</p>
+</div>
+<pre class="code"><span class="c-libfunc">ˡr̲ead</span> ← { @ → <a href="demos-xetal-pipes-stages-Pipes.xtl.html#h.r_eadall" class="c-libfunc">ʰr̲eadall</a> <span class="c-number">64</span> }</pre>
+</div>
+<div class="item" id="l.o_ut">
+<h3><a href="#l.o_ut"><span class="c-libfunc">ˡo̲ut</span></a> <span class="type">: Char -&gt; Int</span></h3>
+<div class="meta">function &middot; <a href="demos-xetal-pipes-stages-Pipes.xtl.src.html#L43">line 43</a></div>
+<div class="doc">
+<p>Write a text to standard output as it is (no newline added); how
+many characters.</p>
+</div>
+<pre class="code"><span class="c-libfunc">ˡo̲ut</span> ← { t → t <a href="builtins.html#-5b-5dN_PUT" class="c-builtin">⎕N̲PUT</a> <span class="c-string">&quot;/dev/stdout&quot;</span> }</pre>
+</div>
+<div class="item" id="l.l_ines">
+<h3><a href="#l.l_ines"><span class="c-libfunc">ˡl̲ines</span></a> <span class="type">: (Num a, Truthy a) =&gt; Char -&gt; a</span></h3>
+<div class="meta">function &middot; <a href="demos-xetal-pipes-stages-Pipes.xtl.src.html#L47">line 47</a></div>
+<div class="doc">
+<p>Each character's line number, from 1 (a newline is on the line it
+ends).</p>
+</div>
+<pre class="code"><span class="c-libfunc">ˡl̲ines</span> ← { t → <span class="c-number">1</span> <a href="builtins.html#-2b" class="c-symbol">+</a> <span class="c-symbol">'</span><a href="builtins.html#-2b" class="c-symbol">+</a> <a href="builtins.html#s_-5c" class="c-builtin">s̲\</a> (<a href="builtins.html#t_ally" class="c-builtin">t̲ally</a> t) <a href="builtins.html#t_ake" class="c-builtin">t̲ake</a> <span class="c-number">0</span> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <span class="c-number">1</span> <a href="builtins.html#-2a" class="c-symbol">×</a> t <a href="builtins.html#-3d" class="c-symbol">=</a> <a href="demos-xetal-pipes-stages-Pipes.xtl.html#nl">nl</a> }</pre>
+<div class="uses">Used in: <a href="demos-xetal-pipes-stages-Pipes.xtl.html#l.k_eep"><span class="c-libfunc">ˡk̲eep</span></a>, <a href="demos-xetal-pipes-xetal-pipes.xtl.html#ln">ln</a></div>
+</div>
+<div class="item" id="l.c_ount">
+<h3><a href="#l.c_ount"><span class="c-libfunc">ˡc̲ount</span></a> <span class="type">: (Num a, Truthy a) =&gt; Char -&gt; a</span></h3>
+<div class="meta">function &middot; <a href="demos-xetal-pipes-stages-Pipes.xtl.src.html#L50">line 50</a></div>
+<div class="doc">
+<p>How many lines.</p>
+</div>
+<pre class="code"><span class="c-libfunc">ˡc̲ount</span> ← { t → <span class="c-symbol">'</span><a href="builtins.html#-2b" class="c-symbol">+</a> <a href="builtins.html#r_-2f" class="c-builtin">r̲/</a> <span class="c-number">1</span> <a href="builtins.html#-2a" class="c-symbol">×</a> t <a href="builtins.html#-3d" class="c-symbol">=</a> <a href="demos-xetal-pipes-stages-Pipes.xtl.html#nl">nl</a> }</pre>
+<div class="uses">Used in: <a href="demos-xetal-pipes-xetal-pipes.xtl.src.html#L55">demos/xetal-pipes/xetal-pipes.xtl:55</a></div>
+</div>
+<div class="item" id="l.k_eep">
+<h3><a href="#l.k_eep"><span class="c-libfunc">ˡk̲eep</span></a> <span class="type">: Truthy a =&gt; a -&gt; Char -&gt; Char</span></h3>
+<div class="meta">function &middot; <a href="demos-xetal-pipes-stages-Pipes.xtl.src.html#L53">line 53</a></div>
+<div class="doc">
+<p>The lines whose mask (one per line) is 1.</p>
+</div>
+<pre class="code"><span class="c-libfunc">ˡk̲eep</span> ← { mask t → ((<a href="demos-xetal-pipes-stages-Pipes.xtl.html#l.l_ines" class="c-libfunc">ˡl̲ines</a> t) <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> mask) <a href="builtins.html#r_eplicate" class="c-builtin">r̲eplicate</a> t }</pre>
+</div>
+<div class="item" id="l.m_atrix">
+<h3><a href="#l.m_atrix"><span class="c-libfunc">ˡm̲atrix</span></a> <span class="type">: Char -&gt; Char</span></h3>
+<div class="meta">function &middot; <a href="demos-xetal-pipes-stages-Pipes.xtl.src.html#L57">line 57</a></div>
+<div class="doc">
+<p>The lines as the rows of a matrix, each padded with character 0 to
+the longest (its newline left out).</p>
+</div>
+<pre class="code"><span class="c-libfunc">ˡm̲atrix</span> ← { t →
+  ends ← <a href="builtins.html#w_here" class="c-builtin">w̲here</a> t <a href="builtins.html#-3d" class="c-symbol">=</a> <a href="demos-xetal-pipes-stages-Pipes.xtl.html#nl">nl</a>
+  starts ← (<a href="builtins.html#t_ally" class="c-builtin">t̲ally</a> ends) <a href="builtins.html#t_ake" class="c-builtin">t̲ake</a> <span class="c-number">1</span> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <span class="c-number">1</span> <a href="builtins.html#-2b" class="c-symbol">+</a> ends
+  lens ← ends <a href="builtins.html#-2d" class="c-symbol">−</a> starts
+  w ← <span class="c-number">1</span> <a href="builtins.html#m_ax" class="c-builtin">m̲ax</a> <span class="c-builtin">'</span><a href="builtins.html#m_ax" class="c-builtin">m̲ax</a> <a href="builtins.html#r_-2f" class="c-builtin">r̲/</a> <span class="c-number">0</span> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> lens
+  inside ← lens <span class="c-symbol">'</span><a href="builtins.html#-3e" class="c-symbol">&gt;</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> w
+  at ← (starts <span class="c-symbol">'</span><a href="builtins.html#-2b" class="c-symbol">+</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> w) <a href="builtins.html#-2a" class="c-symbol">×</a> inside
+  (at <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">1</span> <a href="builtins.html#-2d" class="c-symbol">−</a> inside) <a href="builtins.html#-2a" class="c-symbol">×</a> <span class="c-number">1</span> <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="builtins.html#t_ally" class="c-builtin">t̲ally</a> t) <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> t <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <a href="demos-xetal-pipes-stages-Pipes.xtl.html#z">z</a>
+}</pre>
+<div class="uses">Used in: <a href="demos-xetal-pipes-xetal-pipes.xtl.html#m">m</a></div>
+</div>
+</main>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>demos/eigencube/eigencube.xtl - X_eTaL doc</title>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+<script defer src="search-index.js"></script>
+<script defer src="search.js"></script>
+</head>
+<body>
+<nav class="side">
+<a class="home" href="index.html">X_eTaL doc</a>
+<input id="search" type="search" autocomplete="off" placeholder="Search: a name, or a type" title="A name (mean finds m_ean), or a type: Num a =&gt; a -&gt; a -&gt; a finds +, m_ax ...">
+<h2>Files</h2>
+<h3>/Users/mike/github/softwarewrighter/X_eTaL-demos/work/libraries/libs/Eigencube/src/</h3>
+<ul>
+<li><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html">Eigencube.xtl</a></li>
+</ul>
+<h3>demos/ca-lab/</h3>
+<ul>
+<li><a href="demos-ca-lab-ca-lab.xtl.html">ca-lab.xtl</a></li>
+</ul>
+<h3>demos/eigencube/</h3>
+<ul>
+<li><a href="demos-eigencube-eigencube.xtl.html">eigencube.xtl</a></li>
+</ul>
+<h3>demos/fourier-epicycles/</h3>
+<ul>
+<li><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html">fourier-epicycles.xtl</a></li>
+</ul>
+<h3>demos/image-pipeline/</h3>
+<ul>
+<li><a href="demos-image-pipeline-image-pipeline.xtl.html">image-pipeline.xtl</a></li>
+</ul>
+<h3>demos/julia/</h3>
+<ul>
+<li><a href="demos-julia-julia.xtl.html">julia.xtl</a></li>
+</ul>
+<h3>demos/langtons-ant/</h3>
+<ul>
+<li><a href="demos-langtons-ant-langtons-ant.xtl.html">langtons-ant.xtl</a></li>
+</ul>
+<h3>demos/life-microscope/</h3>
+<ul>
+<li><a href="demos-life-microscope-life-microscope.xtl.html">life-microscope.xtl</a></li>
+</ul>
+<h3>demos/mandelbrot/</h3>
+<ul>
+<li><a href="demos-mandelbrot-mandelbrot.xtl.html">mandelbrot.xtl</a></li>
+</ul>
+<h3>demos/nbody/</h3>
+<ul>
+<li><a href="demos-nbody-nbody.xtl.html">nbody.xtl</a></li>
+</ul>
+<h3>demos/reaction-diffusion/</h3>
+<ul>
+<li><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html">reaction-diffusion.xtl</a></li>
+</ul>
+<h3>demos/sandpile/</h3>
+<ul>
+<li><a href="demos-sandpile-sandpile.xtl.html">sandpile.xtl</a></li>
+</ul>
+<h3>demos/stencil-macros/</h3>
+<ul>
+<li><a href="demos-stencil-macros-stencil-macros.xtl.html">stencil-macros.xtl</a></li>
+<li><a href="demos-stencil-macros-Stencil.xtlm.html">Stencil.xtlm</a></li>
+</ul>
+<h3>demos/wave-tank/</h3>
+<ul>
+<li><a href="demos-wave-tank-wave-tank.xtl.html">wave-tank.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-xetal-pipes.xtl.html">xetal-pipes.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/stages/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-stages-Pipes.xtl.html">Pipes.xtl</a></li>
+</ul>
+<ul>
+<li><a href="builtins.html">built-ins</a></li>
+</ul>
+<h2>On this page</h2>
+<ul>
+<li class="item"><a href="#L18">sc</a></li>
+<li class="item"><a href="#L20">x</a></li>
+<li class="item"><a href="#L27"><span class="c-error">%</span><span class="c-number">10</span></a></li>
+<li class="item"><a href="#L27">sol</a></li>
+<li class="item"><a href="#L27">lens</a></li>
+<li class="item"><a href="#L27">e</a></li>
+</ul>
+</nav>
+<main>
+<button class="theme" title="Light or dark">theme</button>
+<section id="results"></section>
+<h1><span class="kind">source</span><a href="demos-eigencube-eigencube.xtl.html">demos/eigencube/eigencube.xtl</a></h1>
+<div class="source"><span class="line" id="L1"><a class="ln" href="#L1">1</a><span class="c-comment">⍝</span><span class="c-comment">!/usr/bin/env xetal</span></span>
+<span class="line" id="L2"><a class="ln" href="#L2">2</a><span class="c-comment">⍝</span><span class="c-comment"># Eigencube: a Rubik's cube solved by linear algebra, a port of Steffen</span></span>
+<span class="line" id="L3"><a class="ln" href="#L3">3</a><span class="c-comment">⍝</span><span class="c-comment"># Smolka's eigencube.py (github.com/smolkaj/eigencube, MIT). Each of</span></span>
+<span class="line" id="L4"><a class="ln" href="#L4">4</a><span class="c-comment">⍝</span><span class="c-comment"># the 26 cubelets is the integer point c of {-1, 0, 1}^3 where it sits</span></span>
+<span class="line" id="L5"><a class="ln" href="#L5">5</a><span class="c-comment">⍝</span><span class="c-comment"># in the solved cube and carries a rotation matrix R: it sits now at</span></span>
+<span class="line" id="L6"><a class="ln" href="#L6">6</a><span class="c-comment">⍝</span><span class="c-comment"># R c. A quarter turn of the face with outward normal v moves the</span></span>
+<span class="line" id="L7"><a class="ln" href="#L7">7</a><span class="c-comment">⍝</span><span class="c-comment"># cubelets with v . (R c) &gt; 0 by one matrix product. The model and the</span></span>
+<span class="line" id="L8"><a class="ln" href="#L8">8</a><span class="c-comment">⍝</span><span class="c-comment"># solver are the Eigencube library of X_eTaL-libraries (pinned in</span></span>
+<span class="line" id="L9"><a class="ln" href="#L9">9</a><span class="c-comment">⍝</span><span class="c-comment"># LIBRARIES_COMMIT, read from work/libraries by &quot;just libraries&quot;); this</span></span>
+<span class="line" id="L10"><a class="ln" href="#L10">10</a><span class="c-comment">⍝</span><span class="c-comment"># program scrambles a cube and solves it with it.</span></span>
+<span class="line" id="L11"><a class="ln" href="#L11">11</a></span>
+<span class="line" id="L12"><a class="ln" href="#L12">12</a><span class="c-libfunc">ᵉᶜ⁼</span><span class="c-macro">u̲se&lt;</span> <a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html" class="c-string">&quot;Eigencube&quot;</a></span>
+<span class="line" id="L13"><a class="ln" href="#L13">13</a></span>
+<span class="line" id="L14"><a class="ln" href="#L14">14</a><span class="c-comment">⍝</span><span class="c-comment">## A scramble</span></span>
+<span class="line" id="L15"><a class="ln" href="#L15">15</a></span>
+<span class="line" id="L16"><a class="ln" href="#L16">16</a><span class="c-comment">⍝</span><span class="c-comment"> 20 random moves (&quot;just run eigencube&quot; draws a new one each time; the</span></span>
+<span class="line" id="L17"><a class="ln" href="#L17">17</a><span class="c-comment">⍝</span><span class="c-comment"> tests run &quot;xetal run --seed 1&quot;), in the usual notation.</span></span>
+<span class="line" id="L18"><a class="ln" href="#L18">18</a>sc ← <a href="builtins.html#r_oll-21" class="c-builtin">r̲oll!</a> <span class="c-number">20</span> <a href="builtins.html#r_eshape" class="c-builtin">r̲eshape</a> <span class="c-number">12</span></span>
+<span class="line" id="L19"><a class="ln" href="#L19">19</a><span class="c-string">&quot;scramble: &quot;</span> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#l.n_ame" class="c-libfunc">ᵉᶜn̲ame</a> <a href="demos-eigencube-eigencube.xtl.html#sc">sc</a></span>
+<span class="line" id="L20"><a class="ln" href="#L20">20</a>x ← <a href="demos-eigencube-eigencube.xtl.html#sc">sc</a> <a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#l.d_o" class="c-libfunc">ᵉᶜd̲o</a> <a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#l.solved">ᵉᶜsolved</a></span>
+<span class="line" id="L21"><a class="ln" href="#L21">21</a><span class="c-comment">⍝</span><span class="c-comment"> Its stickers, a face per row (U D F B R L), each cell the face its</span></span>
+<span class="line" id="L22"><a class="ln" href="#L22">22</a><span class="c-comment">⍝</span><span class="c-comment"> color belongs on: 1 to 6, white, yellow, green, blue, red, orange.</span></span>
+<span class="line" id="L23"><a class="ln" href="#L23">23</a><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#l.s_tickers" class="c-libfunc">ᵉᶜs̲tickers</a> <a href="demos-eigencube-eigencube.xtl.html#x">x</a></span>
+<span class="line" id="L24"><a class="ln" href="#L24">24</a></span>
+<span class="line" id="L25"><a class="ln" href="#L25">25</a><span class="c-comment">⍝</span><span class="c-comment">## Solved</span></span>
+<span class="line" id="L26"><a class="ln" href="#L26">26</a></span>
+<span class="line" id="L27"><a class="ln" href="#L27">27</a>(<a href="demos-eigencube-eigencube.xtl.html#sol">sol</a>, <a href="demos-eigencube-eigencube.xtl.html#lens">lens</a>, <a href="demos-eigencube-eigencube.xtl.html#e">e</a>) ← <span class="c-number">1</span> <a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#l.s_olve" class="c-libfunc">ᵉᶜs̲olve</a> <a href="demos-eigencube-eigencube.xtl.html#x">x</a></span>
+<span class="line" id="L28"><a class="ln" href="#L28">28</a><span class="c-string">&quot;solution: &quot;</span> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#l.n_ame" class="c-libfunc">ᵉᶜn̲ame</a> <a href="demos-eigencube-eigencube.xtl.html#sol">sol</a></span>
+<span class="line" id="L29"><a class="ln" href="#L29">29</a><span class="c-string">&quot;moves: &quot;</span> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <a href="builtins.html#f_ormat" class="c-builtin">f̲ormat</a> <a href="builtins.html#t_ally" class="c-builtin">t̲ally</a> <a href="demos-eigencube-eigencube.xtl.html#sol">sol</a></span>
+<span class="line" id="L30"><a class="ln" href="#L30">30</a><span class="c-comment">⍝</span><span class="c-comment"> The moves each stage took: the top layer a cubelet at a time</span></span>
+<span class="line" id="L31"><a class="ln" href="#L31">31</a><span class="c-comment">⍝</span><span class="c-comment"> (stages 1 to 9), the middle layer (10 to 17), the bottom edges (18</span></span>
+<span class="line" id="L32"><a class="ln" href="#L32">32</a><span class="c-comment">⍝</span><span class="c-comment"> to 25) and the bottom corners' places (26 to 29), then the</span></span>
+<span class="line" id="L33"><a class="ln" href="#L33">33</a><span class="c-comment">⍝</span><span class="c-comment"> endgame's corner twists.</span></span>
+<span class="line" id="L34"><a class="ln" href="#L34">34</a><a href="demos-eigencube-eigencube.xtl.html#lens">lens</a> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <a href="demos-eigencube-eigencube.xtl.html#e">e</a></span>
+<span class="line" id="L35"><a class="ln" href="#L35">35</a><span class="c-comment">⍝</span><span class="c-comment"> After the solution: every face one color.</span></span>
+<span class="line" id="L36"><a class="ln" href="#L36">36</a><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#l.s_tickers" class="c-libfunc">ᵉᶜs̲tickers</a> <a href="demos-eigencube-eigencube.xtl.html#sol">sol</a> <a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#l.d_o" class="c-libfunc">ᵉᶜd̲o</a> <a href="demos-eigencube-eigencube.xtl.html#x">x</a></span>
+<span class="line" id="L37"><a class="ln" href="#L37">37</a><span class="c-string">&quot;solved: &quot;</span> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <a href="builtins.html#f_ormat" class="c-builtin">f̲ormat</a> <a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#l.s_olved-3f" class="c-libfunc">ᵉᶜs̲olved?</a> <a href="demos-eigencube-eigencube.xtl.html#sol">sol</a> <a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#l.d_o" class="c-libfunc">ᵉᶜd̲o</a> <a href="demos-eigencube-eigencube.xtl.html#x">x</a></span>
+</div>
+</main>
+</body>
+</html>

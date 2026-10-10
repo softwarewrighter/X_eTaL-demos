@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mandelbrot</title>
+  
+<script type="module">
+import init, * as bindings from '/X_eTaL-demos/mandelbrot/mandelbrot-web-423ce5eb0890df4c.js';
+const wasm = await init({ module_or_path: '/X_eTaL-demos/mandelbrot/mandelbrot-web-423ce5eb0890df4c_bg.wasm' });
+
+
+window.wasmBindings = bindings;
+
+
+dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+
+</script>
+  
+  <link rel="icon" href="/X_eTaL-demos/mandelbrot/favicon-a7e9c2eccfa36f8d.ico" integrity="sha384-psp9J9hB8eK8eobi4th1YJDd8JrFRVFf4iDjuwNF8q5kIno0W8ZwGC5ZzrqyfYpY"/>
+  <link rel="stylesheet" href="/X_eTaL-demos/mandelbrot/microscope-b1af3913cedfcf76.css" integrity="sha384-e0tnGAQwZusBnV8b5CrYLphzusEmxUtfE+5WYEWO3Bb9HlJGUOOmdjxuRpRi9lWE"/>
+<link rel="modulepreload" href="/X_eTaL-demos/mandelbrot/mandelbrot-web-423ce5eb0890df4c.js" crossorigin="anonymous" integrity="sha384-cIp7coPtbxlxrSFNRRZlV4it/B5AyoAdZclSglafV/gNxx/yeAf9d6uj7BTjruTY"><link rel="preload" href="/X_eTaL-demos/mandelbrot/mandelbrot-web-423ce5eb0890df4c_bg.wasm" crossorigin="anonymous" integrity="sha384-4k6kXnFVKjSHEKACw3VF99amZYp1EP8UCMuL/ZjrhtcrOHl7INmciBloW6ZsA1BA" as="fetch" type="application/wasm"></head>
+<body></body>
+</html>

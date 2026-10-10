@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>demos/fourier-epicycles/fourier-epicycles.xtl - X_eTaL doc</title>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+<script defer src="search-index.js"></script>
+<script defer src="search.js"></script>
+</head>
+<body>
+<nav class="side">
+<a class="home" href="index.html">X_eTaL doc</a>
+<input id="search" type="search" autocomplete="off" placeholder="Search: a name, or a type" title="A name (mean finds m_ean), or a type: Num a =&gt; a -&gt; a -&gt; a finds +, m_ax ...">
+<h2>Files</h2>
+<h3>/Users/mike/github/softwarewrighter/X_eTaL-demos/work/libraries/libs/Eigencube/src/</h3>
+<ul>
+<li><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html">Eigencube.xtl</a></li>
+</ul>
+<h3>demos/ca-lab/</h3>
+<ul>
+<li><a href="demos-ca-lab-ca-lab.xtl.html">ca-lab.xtl</a></li>
+</ul>
+<h3>demos/eigencube/</h3>
+<ul>
+<li><a href="demos-eigencube-eigencube.xtl.html">eigencube.xtl</a></li>
+</ul>
+<h3>demos/fourier-epicycles/</h3>
+<ul>
+<li><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html">fourier-epicycles.xtl</a></li>
+</ul>
+<h3>demos/image-pipeline/</h3>
+<ul>
+<li><a href="demos-image-pipeline-image-pipeline.xtl.html">image-pipeline.xtl</a></li>
+</ul>
+<h3>demos/julia/</h3>
+<ul>
+<li><a href="demos-julia-julia.xtl.html">julia.xtl</a></li>
+</ul>
+<h3>demos/langtons-ant/</h3>
+<ul>
+<li><a href="demos-langtons-ant-langtons-ant.xtl.html">langtons-ant.xtl</a></li>
+</ul>
+<h3>demos/life-microscope/</h3>
+<ul>
+<li><a href="demos-life-microscope-life-microscope.xtl.html">life-microscope.xtl</a></li>
+</ul>
+<h3>demos/mandelbrot/</h3>
+<ul>
+<li><a href="demos-mandelbrot-mandelbrot.xtl.html">mandelbrot.xtl</a></li>
+</ul>
+<h3>demos/nbody/</h3>
+<ul>
+<li><a href="demos-nbody-nbody.xtl.html">nbody.xtl</a></li>
+</ul>
+<h3>demos/reaction-diffusion/</h3>
+<ul>
+<li><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html">reaction-diffusion.xtl</a></li>
+</ul>
+<h3>demos/sandpile/</h3>
+<ul>
+<li><a href="demos-sandpile-sandpile.xtl.html">sandpile.xtl</a></li>
+</ul>
+<h3>demos/stencil-macros/</h3>
+<ul>
+<li><a href="demos-stencil-macros-stencil-macros.xtl.html">stencil-macros.xtl</a></li>
+<li><a href="demos-stencil-macros-Stencil.xtlm.html">Stencil.xtlm</a></li>
+</ul>
+<h3>demos/wave-tank/</h3>
+<ul>
+<li><a href="demos-wave-tank-wave-tank.xtl.html">wave-tank.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-xetal-pipes.xtl.html">xetal-pipes.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/stages/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-stages-Pipes.xtl.html">Pipes.xtl</a></li>
+</ul>
+<ul>
+<li><a href="builtins.html">built-ins</a></li>
+</ul>
+<h2>On this page</h2>
+<ul>
+<li class="item"><a href="#L16">x</a></li>
+<li class="item"><a href="#L17">y</a></li>
+<li class="item"><a href="#L22">n</a></li>
+<li class="item"><a href="#L23">k</a></li>
+<li class="item"><a href="#L24">A</a></li>
+<li class="item"><a href="#L25">C</a></li>
+<li class="item"><a href="#L26">S</a></li>
+<li class="item"><a href="#L33">re</a></li>
+<li class="item"><a href="#L34">im</a></li>
+<li class="item"><a href="#L35">amp</a></li>
+<li class="item"><a href="#L38">f</a></li>
+<li class="item"><a href="#L43">order</a></li>
+<li class="item"><a href="#L46">T</a></li>
+<li class="item"><a href="#L47">zr</a></li>
+<li class="item"><a href="#L48">zi</a></li>
+<li class="item"><a href="#L49">vx</a></li>
+<li class="item"><a href="#L50">vy</a></li>
+<li class="item"><a href="#L56">cx</a></li>
+<li class="item"><a href="#L57">cy</a></li>
+<li class="item"><a href="#L63">dx</a></li>
+<li class="item"><a href="#L64">dy</a></li>
+<li class="item"><a href="#L65">err</a></li>
+<li class="item"><a href="#L68"><span class="c-userfunc">ᵘr̲ound</span></a></li>
+</ul>
+</nav>
+<main>
+<button class="theme" title="Light or dark">theme</button>
+<section id="results"></section>
+<h1><span class="kind">source</span><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html">demos/fourier-epicycles/fourier-epicycles.xtl</a></h1>
+<div class="source"><span class="line" id="L1"><a class="ln" href="#L1">1</a><span class="c-comment">⍝</span><span class="c-comment">!/usr/bin/env xetal</span></span>
+<span class="line" id="L2"><a class="ln" href="#L2">2</a><span class="c-comment">⍝</span><span class="c-comment"># Fourier epicycles: any closed curve is a sum of circles turning at</span></span>
+<span class="line" id="L3"><a class="ln" href="#L3">3</a><span class="c-comment">⍝</span><span class="c-comment"># whole-number speeds. Its points z = x + i y go through a discrete</span></span>
+<span class="line" id="L4"><a class="ln" href="#L4">4</a><span class="c-comment">⍝</span><span class="c-comment"># Fourier transform, written as two matrix products with the cosines</span></span>
+<span class="line" id="L5"><a class="ln" href="#L5">5</a><span class="c-comment">⍝</span><span class="c-comment"># and sines of one outer product of angles; each frequency is a</span></span>
+<span class="line" id="L6"><a class="ln" href="#L6">6</a><span class="c-comment">⍝</span><span class="c-comment"># circle, and the circles, strongest first, chained end to end,</span></span>
+<span class="line" id="L7"><a class="ln" href="#L7">7</a><span class="c-comment">⍝</span><span class="c-comment"># trace the curve. A running sum along the chain gives, at once, the</span></span>
+<span class="line" id="L8"><a class="ln" href="#L8">8</a><span class="c-comment">⍝</span><span class="c-comment"># curve rebuilt from the first 1, 2, 3, ... circles. Run it with</span></span>
+<span class="line" id="L9"><a class="ln" href="#L9">9</a><span class="c-comment">⍝</span><span class="c-comment"># &quot;xetal run demos/fourier-epicycles/fourier-epicycles.xtl&quot;; it</span></span>
+<span class="line" id="L10"><a class="ln" href="#L10">10</a><span class="c-comment">⍝</span><span class="c-comment"># prints the strength of each frequency, the four strongest speeds,</span></span>
+<span class="line" id="L11"><a class="ln" href="#L11">11</a><span class="c-comment">⍝</span><span class="c-comment"># and the mean error rebuilt from 1, 2, 4, 8 and all 16 circles. The</span></span>
+<span class="line" id="L12"><a class="ln" href="#L12">12</a><span class="c-comment">⍝</span><span class="c-comment"># live page lets you pick or draw a curve and slides how many</span></span>
+<span class="line" id="L13"><a class="ln" href="#L13">13</a><span class="c-comment">⍝</span><span class="c-comment"># circles trace it: https://softwarewrighter.github.io/X_eTaL-demos/fourier-epicycles/</span></span>
+<span class="line" id="L14"><a class="ln" href="#L14">14</a></span>
+<span class="line" id="L15"><a class="ln" href="#L15">15</a><span class="c-comment">⍝</span><span class="c-comment"># x, y: the curve, a square of side 2, 16 points round its edge.</span></span>
+<span class="line" id="L16"><a class="ln" href="#L16">16</a>x ← <span class="c-number">1.0</span> <span class="c-number">1.0</span> <span class="c-number">1.0</span> <span class="c-number">1.0</span> <span class="c-number">1.0</span> <span class="c-number">0.5</span> <span class="c-number">0.0</span> <span class="c-number">-0.5</span> <span class="c-number">-1.0</span> <span class="c-number">-1.0</span> <span class="c-number">-1.0</span> <span class="c-number">-1.0</span> <span class="c-number">-1.0</span> <span class="c-number">-0.5</span> <span class="c-number">0.0</span> <span class="c-number">0.5</span></span>
+<span class="line" id="L17"><a class="ln" href="#L17">17</a>y ← <span class="c-number">-1.0</span> <span class="c-number">-0.5</span> <span class="c-number">0.0</span> <span class="c-number">0.5</span> <span class="c-number">1.0</span> <span class="c-number">1.0</span> <span class="c-number">1.0</span> <span class="c-number">1.0</span> <span class="c-number">1.0</span> <span class="c-number">0.5</span> <span class="c-number">0.0</span> <span class="c-number">-0.5</span> <span class="c-number">-1.0</span> <span class="c-number">-1.0</span> <span class="c-number">-1.0</span> <span class="c-number">-1.0</span></span>
+<span class="line" id="L18"><a class="ln" href="#L18">18</a></span>
+<span class="line" id="L19"><a class="ln" href="#L19">19</a><span class="c-comment">⍝</span><span class="c-comment"># -- the angles: one outer product. n: how many points. k: 0 .. n - 1.</span></span>
+<span class="line" id="L20"><a class="ln" href="#L20">20</a><span class="c-comment">⍝</span><span class="c-comment"># A, C, S: row k, column j of A is 2 pi k j / n, the angle of</span></span>
+<span class="line" id="L21"><a class="ln" href="#L21">21</a><span class="c-comment">⍝</span><span class="c-comment"># frequency k at sample j; C and S its cosine and sine.</span></span>
+<span class="line" id="L22"><a class="ln" href="#L22">22</a>n ← <a href="builtins.html#t_ally" class="c-builtin">t̲ally</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#x">x</a></span>
+<span class="line" id="L23"><a class="ln" href="#L23">23</a>k ← <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#n">n</a></span>
+<span class="line" id="L24"><a class="ln" href="#L24">24</a>A ← (<span class="c-number">2.0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> (<a href="builtins.html#p_i" class="c-builtin">p̲i</a> @) <a href="builtins.html#-2f" class="c-symbol">÷</a> <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#n">n</a>) <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#k">k</a> <span class="c-symbol">'</span><a href="builtins.html#-2a" class="c-symbol">×</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#k">k</a></span>
+<span class="line" id="L25"><a class="ln" href="#L25">25</a>C ← <a href="builtins.html#c_os" class="c-builtin">c̲os</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#A">A</a></span>
+<span class="line" id="L26"><a class="ln" href="#L26">26</a>S ← <a href="builtins.html#s_in" class="c-builtin">s̲in</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#A">A</a></span>
+<span class="line" id="L27"><a class="ln" href="#L27">27</a></span>
+<span class="line" id="L28"><a class="ln" href="#L28">28</a><span class="c-comment">⍝</span><span class="c-comment">## The transform: two matrix products</span></span>
+<span class="line" id="L29"><a class="ln" href="#L29">29</a></span>
+<span class="line" id="L30"><a class="ln" href="#L30">30</a><span class="c-comment">⍝</span><span class="c-comment"># re, im, amp: Z_k = (1 / n) sum over j of z_j e^(-i A[k;j]), as real</span></span>
+<span class="line" id="L31"><a class="ln" href="#L31">31</a><span class="c-comment">⍝</span><span class="c-comment"># and imaginary parts: the cosines and sines times x and y (two</span></span>
+<span class="line" id="L32"><a class="ln" href="#L32">32</a><span class="c-comment">⍝</span><span class="c-comment"># matrix products, i_nner), then each frequency's strength.</span></span>
+<span class="line" id="L33"><a class="ln" href="#L33">33</a>re ← ((<a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#C">C</a> <span class="c-symbol">'</span><a href="builtins.html#-2b" class="c-symbol">+</a> <span class="c-symbol">'</span><a href="builtins.html#-2a" class="c-symbol">×</a> <a href="builtins.html#i_nner" class="c-builtin">i̲nner</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#x">x</a>) <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#S">S</a> <span class="c-symbol">'</span><a href="builtins.html#-2b" class="c-symbol">+</a> <span class="c-symbol">'</span><a href="builtins.html#-2a" class="c-symbol">×</a> <a href="builtins.html#i_nner" class="c-builtin">i̲nner</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#y">y</a>) <a href="builtins.html#-2f" class="c-symbol">÷</a> <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#n">n</a></span>
+<span class="line" id="L34"><a class="ln" href="#L34">34</a>im ← ((<a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#C">C</a> <span class="c-symbol">'</span><a href="builtins.html#-2b" class="c-symbol">+</a> <span class="c-symbol">'</span><a href="builtins.html#-2a" class="c-symbol">×</a> <a href="builtins.html#i_nner" class="c-builtin">i̲nner</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#y">y</a>) <a href="builtins.html#-2d" class="c-symbol">−</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#S">S</a> <span class="c-symbol">'</span><a href="builtins.html#-2b" class="c-symbol">+</a> <span class="c-symbol">'</span><a href="builtins.html#-2a" class="c-symbol">×</a> <a href="builtins.html#i_nner" class="c-builtin">i̲nner</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#x">x</a>) <a href="builtins.html#-2f" class="c-symbol">÷</a> <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#n">n</a></span>
+<span class="line" id="L35"><a class="ln" href="#L35">35</a>amp ← ((<a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#re">re</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#re">re</a>) <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#im">im</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#im">im</a>) <a href="builtins.html#-5e" class="c-symbol">^</a> <span class="c-number">0.5</span></span>
+<span class="line" id="L36"><a class="ln" href="#L36">36</a><span class="c-comment">⍝</span><span class="c-comment"># f: each circle's speed: k, or k - n past the middle (turning the</span></span>
+<span class="line" id="L37"><a class="ln" href="#L37">37</a><span class="c-comment">⍝</span><span class="c-comment"># other way), so the circles stay small.</span></span>
+<span class="line" id="L38"><a class="ln" href="#L38">38</a>f ← <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#k">k</a> <a href="builtins.html#-2d" class="c-symbol">−</a> <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#n">n</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <span class="c-number">1</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#k">k</a> <a href="builtins.html#-3e-3d" class="c-symbol">≥</a> <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#n">n</a> <a href="builtins.html#d_iv" class="c-builtin">d̲iv</a> <span class="c-number">2</span></span>
+<span class="line" id="L39"><a class="ln" href="#L39">39</a></span>
+<span class="line" id="L40"><a class="ln" href="#L40">40</a><span class="c-comment">⍝</span><span class="c-comment">## The circles, strongest first</span></span>
+<span class="line" id="L41"><a class="ln" href="#L41">41</a></span>
+<span class="line" id="L42"><a class="ln" href="#L42">42</a><span class="c-comment">⍝</span><span class="c-comment"># order: the frequencies' rank by strength (g_rade).</span></span>
+<span class="line" id="L43"><a class="ln" href="#L43">43</a>order ← <a href="builtins.html#g_rade" class="c-builtin">g̲rade</a> <a href="builtins.html#n_eg" class="c-builtin">n̲eg</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#amp">amp</a></span>
+<span class="line" id="L44"><a class="ln" href="#L44">44</a><span class="c-comment">⍝</span><span class="c-comment"># T, zr, zi, vx, vy: circle c at time j (row j, column c): its</span></span>
+<span class="line" id="L45"><a class="ln" href="#L45">45</a><span class="c-comment">⍝</span><span class="c-comment"># vector Z e^(i f t_j), turned by its own speed and time.</span></span>
+<span class="line" id="L46"><a class="ln" href="#L46">46</a>T ← (<span class="c-number">2.0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> (<a href="builtins.html#p_i" class="c-builtin">p̲i</a> @) <a href="builtins.html#-2f" class="c-symbol">÷</a> <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#n">n</a>) <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#k">k</a> <span class="c-symbol">'</span><a href="builtins.html#-2a" class="c-symbol">×</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#order">order</a> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#f">f</a></span>
+<span class="line" id="L47"><a class="ln" href="#L47">47</a>zr ← (<a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#k">k</a> <span class="c-builtin">'</span><a href="builtins.html#r_ight" class="c-builtin">r̲ight</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#order">order</a> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#re">re</a>)</span>
+<span class="line" id="L48"><a class="ln" href="#L48">48</a>zi ← (<a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#k">k</a> <span class="c-builtin">'</span><a href="builtins.html#r_ight" class="c-builtin">r̲ight</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#order">order</a> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#im">im</a>)</span>
+<span class="line" id="L49"><a class="ln" href="#L49">49</a>vx ← (<a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#zr">zr</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="builtins.html#c_os" class="c-builtin">c̲os</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#T">T</a>) <a href="builtins.html#-2d" class="c-symbol">−</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#zi">zi</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="builtins.html#s_in" class="c-builtin">s̲in</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#T">T</a></span>
+<span class="line" id="L50"><a class="ln" href="#L50">50</a>vy ← (<a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#zr">zr</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="builtins.html#s_in" class="c-builtin">s̲in</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#T">T</a>) <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#zi">zi</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="builtins.html#c_os" class="c-builtin">c̲os</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#T">T</a></span>
+<span class="line" id="L51"><a class="ln" href="#L51">51</a></span>
+<span class="line" id="L52"><a class="ln" href="#L52">52</a><span class="c-comment">⍝</span><span class="c-comment">## The chain: a running sum along the circles</span></span>
+<span class="line" id="L53"><a class="ln" href="#L53">53</a></span>
+<span class="line" id="L54"><a class="ln" href="#L54">54</a><span class="c-comment">⍝</span><span class="c-comment"># cx, cy: column c is where the first c circles end at each time, so</span></span>
+<span class="line" id="L55"><a class="ln" href="#L55">55</a><span class="c-comment">⍝</span><span class="c-comment"># column c is the curve rebuilt from the c strongest circles.</span></span>
+<span class="line" id="L56"><a class="ln" href="#L56">56</a>cx ← <span class="c-symbol">'</span><a href="builtins.html#-2b" class="c-symbol">+</a> <a href="builtins.html#s_-5c" class="c-builtin">s̲\₂</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#vx">vx</a></span>
+<span class="line" id="L57"><a class="ln" href="#L57">57</a>cy ← <span class="c-symbol">'</span><a href="builtins.html#-2b" class="c-symbol">+</a> <a href="builtins.html#s_-5c" class="c-builtin">s̲\₂</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#vy">vy</a></span>
+<span class="line" id="L58"><a class="ln" href="#L58">58</a></span>
+<span class="line" id="L59"><a class="ln" href="#L59">59</a><span class="c-comment">⍝</span><span class="c-comment">## The error of each reconstruction</span></span>
+<span class="line" id="L60"><a class="ln" href="#L60">60</a></span>
+<span class="line" id="L61"><a class="ln" href="#L61">61</a><span class="c-comment">⍝</span><span class="c-comment"># dx, dy, err: the mean distance from the curve, for 1, 2, ... n</span></span>
+<span class="line" id="L62"><a class="ln" href="#L62">62</a><span class="c-comment">⍝</span><span class="c-comment"># circles.</span></span>
+<span class="line" id="L63"><a class="ln" href="#L63">63</a>dx ← <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#cx">cx</a> <a href="builtins.html#-2d" class="c-symbol">−</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#x">x</a> <span class="c-builtin">'</span><a href="builtins.html#l_eft" class="c-builtin">l̲eft</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#k">k</a></span>
+<span class="line" id="L64"><a class="ln" href="#L64">64</a>dy ← <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#cy">cy</a> <a href="builtins.html#-2d" class="c-symbol">−</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#y">y</a> <span class="c-builtin">'</span><a href="builtins.html#l_eft" class="c-builtin">l̲eft</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#k">k</a></span>
+<span class="line" id="L65"><a class="ln" href="#L65">65</a>err ← (<span class="c-symbol">'</span><a href="builtins.html#-2b" class="c-symbol">+</a> <a href="builtins.html#r_-2f" class="c-builtin">r̲/</a> ((<a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#dx">dx</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#dx">dx</a>) <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#dy">dy</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#dy">dy</a>) <a href="builtins.html#-5e" class="c-symbol">^</a> <span class="c-number">0.5</span>) <a href="builtins.html#-2f" class="c-symbol">÷</a> <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#n">n</a></span>
+<span class="line" id="L66"><a class="ln" href="#L66">66</a><span class="c-comment">⍝</span><span class="c-comment"> -- end of the core -------------------------------------</span></span>
+<span class="line" id="L67"><a class="ln" href="#L67">67</a></span>
+<span class="line" id="L68"><a class="ln" href="#L68">68</a><span class="c-userfunc">ᵘr̲ound</span> ← { v → (<a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="builtins.html#f_loor" class="c-builtin">f̲loor</a> <span class="c-number">0.5</span> <a href="builtins.html#-2b" class="c-symbol">+</a> v <a href="builtins.html#-2a" class="c-symbol">×</a> <span class="c-number">1000.0</span>) <a href="builtins.html#-2f" class="c-symbol">÷</a> <span class="c-number">1000.0</span> }</span>
+<span class="line" id="L69"><a class="ln" href="#L69">69</a><span class="c-comment">⍝</span><span class="c-comment"> The strength of each frequency 0 .. 15.</span></span>
+<span class="line" id="L70"><a class="ln" href="#L70">70</a><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#u.r_ound" class="c-userfunc">ᵘr̲ound</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#amp">amp</a></span>
+<span class="line" id="L71"><a class="ln" href="#L71">71</a><span class="c-comment">⍝</span><span class="c-comment"> The speeds of the four strongest circles.</span></span>
+<span class="line" id="L72"><a class="ln" href="#L72">72</a><span class="c-number">4</span> <a href="builtins.html#t_ake" class="c-builtin">t̲ake</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#order">order</a> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#f">f</a></span>
+<span class="line" id="L73"><a class="ln" href="#L73">73</a><span class="c-comment">⍝</span><span class="c-comment"> The mean error rebuilt from 1, 2, 4, 8 and all 16 circles.</span></span>
+<span class="line" id="L74"><a class="ln" href="#L74">74</a><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#u.r_ound" class="c-userfunc">ᵘr̲ound</a> <span class="c-number">1</span> <span class="c-number">2</span> <span class="c-number">4</span> <span class="c-number">8</span> <span class="c-number">16</span> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#err">err</a></span>
+</div>
+</main>
+</body>
+</html>

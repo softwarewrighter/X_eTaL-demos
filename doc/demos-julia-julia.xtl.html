@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>demos/julia/julia.xtl - X_eTaL doc</title>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+<script defer src="search-index.js"></script>
+<script defer src="search.js"></script>
+</head>
+<body>
+<nav class="side">
+<a class="home" href="index.html">X_eTaL doc</a>
+<input id="search" type="search" autocomplete="off" placeholder="Search: a name, or a type" title="A name (mean finds m_ean), or a type: Num a =&gt; a -&gt; a -&gt; a finds +, m_ax ...">
+<h2>Files</h2>
+<h3>/Users/mike/github/softwarewrighter/X_eTaL-demos/work/libraries/libs/Eigencube/src/</h3>
+<ul>
+<li><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html">Eigencube.xtl</a></li>
+</ul>
+<h3>demos/ca-lab/</h3>
+<ul>
+<li><a href="demos-ca-lab-ca-lab.xtl.html">ca-lab.xtl</a></li>
+</ul>
+<h3>demos/eigencube/</h3>
+<ul>
+<li><a href="demos-eigencube-eigencube.xtl.html">eigencube.xtl</a></li>
+</ul>
+<h3>demos/fourier-epicycles/</h3>
+<ul>
+<li><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html">fourier-epicycles.xtl</a></li>
+</ul>
+<h3>demos/image-pipeline/</h3>
+<ul>
+<li><a href="demos-image-pipeline-image-pipeline.xtl.html">image-pipeline.xtl</a></li>
+</ul>
+<h3>demos/julia/</h3>
+<ul>
+<li><a href="demos-julia-julia.xtl.html">julia.xtl</a></li>
+</ul>
+<h3>demos/langtons-ant/</h3>
+<ul>
+<li><a href="demos-langtons-ant-langtons-ant.xtl.html">langtons-ant.xtl</a></li>
+</ul>
+<h3>demos/life-microscope/</h3>
+<ul>
+<li><a href="demos-life-microscope-life-microscope.xtl.html">life-microscope.xtl</a></li>
+</ul>
+<h3>demos/mandelbrot/</h3>
+<ul>
+<li><a href="demos-mandelbrot-mandelbrot.xtl.html">mandelbrot.xtl</a></li>
+</ul>
+<h3>demos/nbody/</h3>
+<ul>
+<li><a href="demos-nbody-nbody.xtl.html">nbody.xtl</a></li>
+</ul>
+<h3>demos/reaction-diffusion/</h3>
+<ul>
+<li><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html">reaction-diffusion.xtl</a></li>
+</ul>
+<h3>demos/sandpile/</h3>
+<ul>
+<li><a href="demos-sandpile-sandpile.xtl.html">sandpile.xtl</a></li>
+</ul>
+<h3>demos/stencil-macros/</h3>
+<ul>
+<li><a href="demos-stencil-macros-stencil-macros.xtl.html">stencil-macros.xtl</a></li>
+<li><a href="demos-stencil-macros-Stencil.xtlm.html">Stencil.xtlm</a></li>
+</ul>
+<h3>demos/wave-tank/</h3>
+<ul>
+<li><a href="demos-wave-tank-wave-tank.xtl.html">wave-tank.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-xetal-pipes.xtl.html">xetal-pipes.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/stages/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-stages-Pipes.xtl.html">Pipes.xtl</a></li>
+</ul>
+<ul>
+<li><a href="builtins.html">built-ins</a></li>
+</ul>
+<h2>On this page</h2>
+<ul>
+<li><a href="#section-1">The view</a></li>
+<li class="item"><a href="#rows">rows</a></li>
+<li class="item"><a href="#cols">cols</a></li>
+<li class="item"><a href="#cx">cx</a></li>
+<li class="item"><a href="#cy">cy</a></li>
+<li class="item"><a href="#w">w</a></li>
+<li class="item"><a href="#k">k</a></li>
+<li class="item"><a href="#aspect">aspect</a></li>
+<li class="item"><a href="#u.c_entred"><span class="c-userfunc">ᵘc̲entred</span></a></li>
+<li><a href="#section-2">The grid of points, by broadcasting</a></li>
+<li class="item"><a href="#re">re</a></li>
+<li class="item"><a href="#im">im</a></li>
+<li class="item"><a href="#grid">grid</a></li>
+<li class="item"><a href="#-251"><span class="c-error">%</span><span class="c-number">1</span></a></li>
+<li class="item"><a href="#gr">gr</a></li>
+<li class="item"><a href="#gi">gi</a></li>
+<li><a href="#section-3">c u:i_terate z0: k steps of z * z + c from z0</a></li>
+<li class="item"><a href="#u.i_terate"><span class="c-userfunc">ᵘi̲terate</span></a></li>
+<li class="item"><a href="#-255"><span class="c-error">%</span><span class="c-number">5</span></a></li>
+<li class="item"><a href="#jzr">jzr</a></li>
+<li class="item"><a href="#jzi">jzi</a></li>
+<li class="item"><a href="#julia">julia</a></li>
+<li class="item"><a href="#-256"><span class="c-error">%</span><span class="c-number">6</span></a></li>
+<li class="item"><a href="#mzr">mzr</a></li>
+</ul>
+</nav>
+<main>
+<button class="theme" title="Light or dark">theme</button>
+<section id="results"></section>
+<h1><span class="kind">program</span>demos/julia/julia.xtl</h1>
+<div class="doc">
+<p>Julia sets and the Mandelbrot set from one function, u:i_terate.
+Both iterate z becoming z * z + c and count the steps z stays
+within 2 of the origin. For the Mandelbrot set, c is the grid of
+points and z starts at 0; for a Julia set, z starts at the grid and
+c is one number, which scalar extension spreads over the whole
+grid: the step is written once and works both ways. X_eTaL has no
+complex numbers yet, so z and c are each a real and an imaginary
+part (see the demo's README Workarounds). Run it with &quot;xetal run
+demos/julia/julia.xtl&quot;; it prints the grid's shape, a
+Julia set (c = -0.8 + 0.156i) drawn with characters, and the
+Mandelbrot set from the same function. The live page lets you pick
+c on the Mandelbrot map and watch the Julia set change:
+https://softwarewrighter.github.io/X_eTaL-demos/julia/</p>
+</div>
+<p class="meta"><a href="demos-julia-julia.xtl.src.html">source</a></p>
+<h2 class="section" id="section-1">The view</h2>
+<div class="item" id="rows">
+<h3><a href="#rows">rows</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-julia-julia.xtl.src.html#L21">line 21</a></div>
+<div class="doc">
+<p>rows, cols: the picture's size. cx, cy, w: the view's center and
+width. k: how many steps. aspect: how tall a cell is for its width
+(2.0 for terminal characters).</p>
+</div>
+<pre class="code">rows ← <span class="c-number">22</span></pre>
+<div class="uses">Used in: <a href="demos-julia-julia.xtl.html#im">im</a>, <a href="demos-julia-julia.xtl.html#grid">grid</a></div>
+</div>
+<div class="item" id="cols">
+<h3><a href="#cols">cols</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-julia-julia.xtl.src.html#L22">line 22</a></div>
+<pre class="code">cols ← <span class="c-number">64</span></pre>
+<div class="uses">Used in: <a href="demos-julia-julia.xtl.html#re">re</a>, <a href="demos-julia-julia.xtl.html#im">im</a>, <a href="demos-julia-julia.xtl.html#grid">grid</a></div>
+</div>
+<div class="item" id="cx">
+<h3><a href="#cx">cx</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-julia-julia.xtl.src.html#L23">line 23</a></div>
+<pre class="code">cx ← <span class="c-number">0.0</span></pre>
+<div class="uses">Used in: <a href="demos-julia-julia.xtl.html#re">re</a></div>
+</div>
+<div class="item" id="cy">
+<h3><a href="#cy">cy</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-julia-julia.xtl.src.html#L24">line 24</a></div>
+<pre class="code">cy ← <span class="c-number">0.0</span></pre>
+<div class="uses">Used in: <a href="demos-julia-julia.xtl.html#im">im</a></div>
+</div>
+<div class="item" id="w">
+<h3><a href="#w">w</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-julia-julia.xtl.src.html#L25">line 25</a></div>
+<pre class="code">w ← <span class="c-number">3.2</span></pre>
+<div class="uses">Used in: <a href="demos-julia-julia.xtl.html#re">re</a>, <a href="demos-julia-julia.xtl.html#im">im</a></div>
+</div>
+<div class="item" id="k">
+<h3><a href="#k">k</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-julia-julia.xtl.src.html#L26">line 26</a></div>
+<pre class="code">k ← <span class="c-number">40</span></pre>
+<div class="uses">Used in: <a href="demos-julia-julia.xtl.html#u.i_terate"><span class="c-userfunc">ᵘi̲terate</span></a>, <a href="demos-julia-julia.xtl.src.html#L69">demos/julia/julia.xtl:69</a>, <a href="demos-julia-julia.xtl.src.html#L74">demos/julia/julia.xtl:74</a></div>
+</div>
+<div class="item" id="aspect">
+<h3><a href="#aspect">aspect</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-julia-julia.xtl.src.html#L27">line 27</a></div>
+<pre class="code">aspect ← <span class="c-number">2.0</span></pre>
+<div class="uses">Used in: <a href="demos-julia-julia.xtl.html#im">im</a></div>
+</div>
+<div class="item" id="u.c_entred">
+<h3><a href="#u.c_entred"><span class="c-userfunc">ᵘc̲entred</span></a> <span class="type">: Int -&gt; Float</span></h3>
+<div class="meta">function &middot; <a href="demos-julia-julia.xtl.src.html#L31">line 31</a></div>
+<div class="doc">
+<p>Numbers centered on 0 (u:c_entred n): 0 1 2 3 becomes
+-1.5 -0.5 0.5 1.5.</p>
+</div>
+<pre class="code"><span class="c-userfunc">ᵘc̲entred</span> ← { n → (<a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> n) <a href="builtins.html#-2d" class="c-symbol">−</a> (<a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> n <a href="builtins.html#-2d" class="c-symbol">−</a> <span class="c-number">1</span>) <a href="builtins.html#-2f" class="c-symbol">÷</a> <span class="c-number">2</span> }</pre>
+<div class="uses">Used in: <a href="demos-julia-julia.xtl.html#re">re</a>, <a href="demos-julia-julia.xtl.html#im">im</a></div>
+</div>
+<h2 class="section" id="section-2">The grid of points, by broadcasting</h2>
+<div class="item" id="re">
+<h3><a href="#re">re</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-julia-julia.xtl.src.html#L39">line 39</a></div>
+<div class="doc">
+<p>re, im: one row of real parts and one column of imaginary parts.
+grid: both parts spread over the whole grid with t_able, as a pair
+(gr, gi): every point's c, for the Mandelbrot set, or every
+starting z0, for a Julia set.</p>
+</div>
+<pre class="code">re ← <a href="demos-julia-julia.xtl.html#cx">cx</a> <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="demos-julia-julia.xtl.html#w">w</a> <a href="builtins.html#-2a" class="c-symbol">×</a> (<a href="demos-julia-julia.xtl.html#u.c_entred" class="c-userfunc">ᵘc̲entred</a> <a href="demos-julia-julia.xtl.html#cols">cols</a>) <a href="builtins.html#-2f" class="c-symbol">÷</a> <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="demos-julia-julia.xtl.html#cols">cols</a></pre>
+<div class="uses">Used in: <a href="demos-julia-julia.xtl.html#grid">grid</a></div>
+</div>
+<div class="item" id="im">
+<h3><a href="#im">im</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-julia-julia.xtl.src.html#L40">line 40</a></div>
+<pre class="code">im ← <a href="demos-julia-julia.xtl.html#cy">cy</a> <a href="builtins.html#-2d" class="c-symbol">−</a> <a href="demos-julia-julia.xtl.html#aspect">aspect</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-julia-julia.xtl.html#w">w</a> <a href="builtins.html#-2a" class="c-symbol">×</a> (<a href="demos-julia-julia.xtl.html#u.c_entred" class="c-userfunc">ᵘc̲entred</a> <a href="demos-julia-julia.xtl.html#rows">rows</a>) <a href="builtins.html#-2f" class="c-symbol">÷</a> <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="demos-julia-julia.xtl.html#cols">cols</a></pre>
+<div class="uses">Used in: <a href="demos-julia-julia.xtl.html#grid">grid</a></div>
+</div>
+<div class="item" id="grid">
+<h3><a href="#grid">grid</a> <span class="type">: (Float, Float)</span></h3>
+<div class="meta">value &middot; <a href="demos-julia-julia.xtl.src.html#L41">line 41</a></div>
+<pre class="code">grid ← ((<a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-julia-julia.xtl.html#rows">rows</a>) <span class="c-builtin">'</span><a href="builtins.html#r_ight" class="c-builtin">r̲ight</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="demos-julia-julia.xtl.html#re">re</a>, <a href="demos-julia-julia.xtl.html#im">im</a> <span class="c-builtin">'</span><a href="builtins.html#l_eft" class="c-builtin">l̲eft</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-julia-julia.xtl.html#cols">cols</a>)</pre>
+<div class="uses">Used in: <a href="demos-julia-julia.xtl.html#-251"><span class="c-error">%</span><span class="c-number">1</span></a>, <a href="demos-julia-julia.xtl.html#-255"><span class="c-error">%</span><span class="c-number">5</span></a>, <a href="demos-julia-julia.xtl.html#-256"><span class="c-error">%</span><span class="c-number">6</span></a></div>
+</div>
+<div class="item" id="-251">
+<h3><a href="#-251"><span class="c-error">%</span><span class="c-number">1</span></a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-julia-julia.xtl.src.html#L42">line 42</a></div>
+<pre class="code">(<a href="demos-julia-julia.xtl.html#gr">gr</a>, <a href="demos-julia-julia.xtl.html#gi">gi</a>) ← <a href="demos-julia-julia.xtl.html#grid">grid</a></pre>
+</div>
+<div class="item" id="gr">
+<h3><a href="#gr">gr</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-julia-julia.xtl.src.html#L42">line 42</a></div>
+<pre class="code">(<a href="demos-julia-julia.xtl.html#gr">gr</a>, <a href="demos-julia-julia.xtl.html#gi">gi</a>) ← <a href="demos-julia-julia.xtl.html#grid">grid</a></pre>
+<div class="uses">Used in: <a href="demos-julia-julia.xtl.html#-251"><span class="c-error">%</span><span class="c-number">1</span></a>, <a href="demos-julia-julia.xtl.src.html#L63">demos/julia/julia.xtl:63</a>, <a href="demos-julia-julia.xtl.html#-256"><span class="c-error">%</span><span class="c-number">6</span></a></div>
+</div>
+<div class="item" id="gi">
+<h3><a href="#gi">gi</a> <span class="type">: (Float, Float) -&gt; (Float, Float) -&gt; (Float, Float, Float)</span></h3>
+<div class="meta">value &middot; <a href="demos-julia-julia.xtl.src.html#L42">line 42</a></div>
+<pre class="code">(<a href="demos-julia-julia.xtl.html#gr">gr</a>, <a href="demos-julia-julia.xtl.html#gi">gi</a>) ← <a href="demos-julia-julia.xtl.html#grid">grid</a></pre>
+<div class="uses">Used in: <a href="demos-julia-julia.xtl.html#-251"><span class="c-error">%</span><span class="c-number">1</span></a>, <a href="demos-julia-julia.xtl.html#-256"><span class="c-error">%</span><span class="c-number">6</span></a></div>
+</div>
+<h2 class="section" id="section-3">c u:i_terate z0: k steps of z * z + c from z0</h2>
+<div class="item" id="u.i_terate">
+<h3><a href="#u.i_terate"><span class="c-userfunc">ᵘi̲terate</span></a></h3>
+<div class="meta">function &middot; <a href="demos-julia-julia.xtl.src.html#L50">line 50</a></div>
+<div class="doc">
+<p>c and z0 are each a pair (real, imaginary): two numbers (scalar
+extension) or two planes of the grid, taken apart by the patterns
+on both sides (D7, landed). The state adds a count of steps spent
+inside; a point outside keeps its z.</p>
+</div>
+<pre class="code"><span class="c-userfunc">ᵘi̲terate</span> ← { (cr, ci) (zr0, zi0) →
+  <span class="c-comment">⍝</span><span class="c-comment"> One step, as a local function (s_tep, bare and scoped to this</span>
+  <span class="c-comment">⍝</span><span class="c-comment"> lambda, PN6): the same arithmetic as mandelbrot.xtl's u:s_tep.</span>
+  <span class="c-builtin">s̲tep</span> ← { (zr, zi, counts) →
+    inside ← <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <span class="c-number">4</span> <a href="builtins.html#-3e-3d" class="c-symbol">≥</a> (zr <a href="builtins.html#-2a" class="c-symbol">×</a> zr) <a href="builtins.html#-2b" class="c-symbol">+</a> zi <a href="builtins.html#-2a" class="c-symbol">×</a> zi
+    a ← (inside <a href="builtins.html#-2a" class="c-symbol">×</a> cr <a href="builtins.html#-2b" class="c-symbol">+</a> (zr <a href="builtins.html#-2a" class="c-symbol">×</a> zr) <a href="builtins.html#-2d" class="c-symbol">−</a> zi <a href="builtins.html#-2a" class="c-symbol">×</a> zi) <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">1</span> <a href="builtins.html#-2d" class="c-symbol">−</a> inside) <a href="builtins.html#-2a" class="c-symbol">×</a> zr
+    b ← (inside <a href="builtins.html#-2a" class="c-symbol">×</a> ci <a href="builtins.html#-2b" class="c-symbol">+</a> <span class="c-number">2</span> <a href="builtins.html#-2a" class="c-symbol">×</a> zr <a href="builtins.html#-2a" class="c-symbol">×</a> zi) <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">1</span> <a href="builtins.html#-2d" class="c-symbol">−</a> inside) <a href="builtins.html#-2a" class="c-symbol">×</a> zi
+    (a, b, inside <a href="builtins.html#-2b" class="c-symbol">+</a> counts)
+  }
+  <a href="demos-julia-julia.xtl.html#k">k</a> <span class="c-builtin">'</span><span class="c-builtin">s̲tep</span> <a href="builtins.html#p_ower" class="c-builtin">p̲ower</a> (zr0, zi0, <span class="c-number">0.0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> zr0)
+}</pre>
+<div class="uses">Used in: <a href="demos-julia-julia.xtl.html#-255"><span class="c-error">%</span><span class="c-number">5</span></a>, <a href="demos-julia-julia.xtl.html#-256"><span class="c-error">%</span><span class="c-number">6</span></a></div>
+</div>
+<div class="item" id="-255">
+<h3><a href="#-255"><span class="c-error">%</span><span class="c-number">5</span></a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-julia-julia.xtl.src.html#L67">line 67</a></div>
+<div class="doc">
+<p>julia: a Julia set, c = -0.8 + 0.156i the same for every point, z0
+the grid.</p>
+</div>
+<pre class="code">(<a href="demos-julia-julia.xtl.html#jzr">jzr</a>, <a href="demos-julia-julia.xtl.html#jzi">jzi</a>, <a href="demos-julia-julia.xtl.html#julia">julia</a>) ← (<span class="c-number">-0.8</span>, <span class="c-number">0.156</span>) <a href="demos-julia-julia.xtl.html#u.i_terate" class="c-userfunc">ᵘi̲terate</a> <a href="demos-julia-julia.xtl.html#grid">grid</a></pre>
+</div>
+<div class="item" id="jzr">
+<h3><a href="#jzr">jzr</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-julia-julia.xtl.src.html#L67">line 67</a></div>
+<div class="doc">
+<p>julia: a Julia set, c = -0.8 + 0.156i the same for every point, z0
+the grid.</p>
+</div>
+<pre class="code">(<a href="demos-julia-julia.xtl.html#jzr">jzr</a>, <a href="demos-julia-julia.xtl.html#jzi">jzi</a>, <a href="demos-julia-julia.xtl.html#julia">julia</a>) ← (<span class="c-number">-0.8</span>, <span class="c-number">0.156</span>) <a href="demos-julia-julia.xtl.html#u.i_terate" class="c-userfunc">ᵘi̲terate</a> <a href="demos-julia-julia.xtl.html#grid">grid</a></pre>
+<div class="uses">Used in: <a href="demos-julia-julia.xtl.html#-255"><span class="c-error">%</span><span class="c-number">5</span></a></div>
+</div>
+<div class="item" id="jzi">
+<h3><a href="#jzi">jzi</a></h3>
+<div class="meta">value &middot; <a href="demos-julia-julia.xtl.src.html#L67">line 67</a></div>
+<div class="doc">
+<p>julia: a Julia set, c = -0.8 + 0.156i the same for every point, z0
+the grid.</p>
+</div>
+<pre class="code">(<a href="demos-julia-julia.xtl.html#jzr">jzr</a>, <a href="demos-julia-julia.xtl.html#jzi">jzi</a>, <a href="demos-julia-julia.xtl.html#julia">julia</a>) ← (<span class="c-number">-0.8</span>, <span class="c-number">0.156</span>) <a href="demos-julia-julia.xtl.html#u.i_terate" class="c-userfunc">ᵘi̲terate</a> <a href="demos-julia-julia.xtl.html#grid">grid</a></pre>
+<div class="uses">Used in: <a href="demos-julia-julia.xtl.html#-255"><span class="c-error">%</span><span class="c-number">5</span></a></div>
+</div>
+<div class="item" id="julia">
+<h3><a href="#julia">julia</a></h3>
+<div class="meta">value &middot; <a href="demos-julia-julia.xtl.src.html#L67">line 67</a></div>
+<div class="doc">
+<p>julia: a Julia set, c = -0.8 + 0.156i the same for every point, z0
+the grid.</p>
+</div>
+<pre class="code">(<a href="demos-julia-julia.xtl.html#jzr">jzr</a>, <a href="demos-julia-julia.xtl.html#jzi">jzi</a>, <a href="demos-julia-julia.xtl.html#julia">julia</a>) ← (<span class="c-number">-0.8</span>, <span class="c-number">0.156</span>) <a href="demos-julia-julia.xtl.html#u.i_terate" class="c-userfunc">ᵘi̲terate</a> <a href="demos-julia-julia.xtl.html#grid">grid</a></pre>
+<div class="uses">Used in: <a href="demos-julia-julia.xtl.html#-255"><span class="c-error">%</span><span class="c-number">5</span></a>, <a href="demos-julia-julia.xtl.src.html#L68">demos/julia/julia.xtl:68</a>, <a href="demos-julia-julia.xtl.src.html#L69">demos/julia/julia.xtl:69</a></div>
+</div>
+<div class="item" id="-256">
+<h3><a href="#-256"><span class="c-error">%</span><span class="c-number">6</span></a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-julia-julia.xtl.src.html#L73">line 73</a></div>
+<div class="doc">
+<p>mandel: the Mandelbrot set from the same function: c the grid,
+z0 = 0.</p>
+</div>
+<pre class="code">(<a href="demos-julia-julia.xtl.html#mzr">mzr</a>, mzi, mandel) ← <a href="demos-julia-julia.xtl.html#grid">grid</a> <a href="demos-julia-julia.xtl.html#u.i_terate" class="c-userfunc">ᵘi̲terate</a> (<span class="c-number">0.0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-julia-julia.xtl.html#gr">gr</a>, <span class="c-number">0.0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-julia-julia.xtl.html#gi">gi</a>)</pre>
+</div>
+<div class="item" id="mzr">
+<h3><a href="#mzr">mzr</a></h3>
+<div class="meta">value &middot; <a href="demos-julia-julia.xtl.src.html#L73">line 73</a></div>
+<div class="doc">
+<p>mandel: the Mandelbrot set from the same function: c the grid,
+z0 = 0.</p>
+</div>
+<pre class="code">(<a href="demos-julia-julia.xtl.html#mzr">mzr</a>, mzi, mandel) ← <a href="demos-julia-julia.xtl.html#grid">grid</a> <a href="demos-julia-julia.xtl.html#u.i_terate" class="c-userfunc">ᵘi̲terate</a> (<span class="c-number">0.0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-julia-julia.xtl.html#gr">gr</a>, <span class="c-number">0.0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-julia-julia.xtl.html#gi">gi</a>)</pre>
+<div class="uses">Used in: <a href="demos-julia-julia.xtl.html#-256"><span class="c-error">%</span><span class="c-number">6</span></a></div>
+</div>
+</main>
+</body>
+</html>

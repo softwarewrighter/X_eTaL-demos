@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>demos/life-microscope/life-microscope.xtl - X_eTaL doc</title>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+<script defer src="search-index.js"></script>
+<script defer src="search.js"></script>
+</head>
+<body>
+<nav class="side">
+<a class="home" href="index.html">X_eTaL doc</a>
+<input id="search" type="search" autocomplete="off" placeholder="Search: a name, or a type" title="A name (mean finds m_ean), or a type: Num a =&gt; a -&gt; a -&gt; a finds +, m_ax ...">
+<h2>Files</h2>
+<h3>/Users/mike/github/softwarewrighter/X_eTaL-demos/work/libraries/libs/Eigencube/src/</h3>
+<ul>
+<li><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html">Eigencube.xtl</a></li>
+</ul>
+<h3>demos/ca-lab/</h3>
+<ul>
+<li><a href="demos-ca-lab-ca-lab.xtl.html">ca-lab.xtl</a></li>
+</ul>
+<h3>demos/eigencube/</h3>
+<ul>
+<li><a href="demos-eigencube-eigencube.xtl.html">eigencube.xtl</a></li>
+</ul>
+<h3>demos/fourier-epicycles/</h3>
+<ul>
+<li><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html">fourier-epicycles.xtl</a></li>
+</ul>
+<h3>demos/image-pipeline/</h3>
+<ul>
+<li><a href="demos-image-pipeline-image-pipeline.xtl.html">image-pipeline.xtl</a></li>
+</ul>
+<h3>demos/julia/</h3>
+<ul>
+<li><a href="demos-julia-julia.xtl.html">julia.xtl</a></li>
+</ul>
+<h3>demos/langtons-ant/</h3>
+<ul>
+<li><a href="demos-langtons-ant-langtons-ant.xtl.html">langtons-ant.xtl</a></li>
+</ul>
+<h3>demos/life-microscope/</h3>
+<ul>
+<li><a href="demos-life-microscope-life-microscope.xtl.html">life-microscope.xtl</a></li>
+</ul>
+<h3>demos/mandelbrot/</h3>
+<ul>
+<li><a href="demos-mandelbrot-mandelbrot.xtl.html">mandelbrot.xtl</a></li>
+</ul>
+<h3>demos/nbody/</h3>
+<ul>
+<li><a href="demos-nbody-nbody.xtl.html">nbody.xtl</a></li>
+</ul>
+<h3>demos/reaction-diffusion/</h3>
+<ul>
+<li><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html">reaction-diffusion.xtl</a></li>
+</ul>
+<h3>demos/sandpile/</h3>
+<ul>
+<li><a href="demos-sandpile-sandpile.xtl.html">sandpile.xtl</a></li>
+</ul>
+<h3>demos/stencil-macros/</h3>
+<ul>
+<li><a href="demos-stencil-macros-stencil-macros.xtl.html">stencil-macros.xtl</a></li>
+<li><a href="demos-stencil-macros-Stencil.xtlm.html">Stencil.xtlm</a></li>
+</ul>
+<h3>demos/wave-tank/</h3>
+<ul>
+<li><a href="demos-wave-tank-wave-tank.xtl.html">wave-tank.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-xetal-pipes.xtl.html">xetal-pipes.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/stages/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-stages-Pipes.xtl.html">Pipes.xtl</a></li>
+</ul>
+<ul>
+<li><a href="builtins.html">built-ins</a></li>
+</ul>
+<h2>On this page</h2>
+<ul>
+<li><a href="#section-1">The rule</a></li>
+<li class="item"><a href="#u.l_ife"><span class="c-userfunc">ᵘl̲ife</span></a></li>
+<li><a href="#section-2">A glider, one step at a time</a></li>
+<li class="item"><a href="#b">b</a></li>
+<li class="item"><a href="#r">r</a></li>
+<li class="item"><a href="#s">s</a></li>
+</ul>
+</nav>
+<main>
+<button class="theme" title="Light or dark">theme</button>
+<section id="results"></section>
+<h1><span class="kind">program</span>demos/life-microscope/life-microscope.xtl</h1>
+<div class="doc">
+<p>Conway's Life under the microscope: the whole rule is one line,
+u:l_ife, and every array it builds on the way is shown here, for a
+glider on a 6 by 6 board (the edges wrap around). Run it with
+&quot;xetal run demos/life-microscope/life-microscope.xtl&quot;; it prints
+the board, the nine shifted copies' shape, their sum, the next
+board, and the glider four generations on (moved one cell down and
+to the right). The live page draws these same arrays as it runs:
+https://softwarewrighter.github.io/X_eTaL-demos/life-microscope/</p>
+</div>
+<p class="meta"><a href="demos-life-microscope-life-microscope.xtl.src.html">source</a></p>
+<h2 class="section" id="section-1">The rule</h2>
+<div class="item" id="u.l_ife">
+<h3><a href="#u.l_ife"><span class="c-userfunc">ᵘl̲ife</span></a> <span class="type">: (Num a, Truthy a) =&gt; a -&gt; a</span></h3>
+<div class="meta">function &middot; <a href="demos-life-microscope-life-microscope.xtl.src.html#L19">line 19</a></div>
+<div class="doc">
+<p>u:l_ife board: the next generation of a 0/1 board, read right to
+left. Rotating <code><span class="c-lambdaarg">⍵</span></code> by every offset in <code><span class="c-number">-1</span> <span class="c-number">0</span> <span class="c-number">1</span></code> along both axes and
+summing gives S, each cell plus its eight neighbors (it counts the
+cell itself too, so &quot;2 or 3 neighbors&quot; becomes &quot;S = 3, or alive and
+S = 4&quot;); a cell lives next when S is 3, or when it is alive and S
+is 4.</p>
+</div>
+<pre class="code"><span class="c-userfunc">ᵘl̲ife</span> ← { (<span class="c-symbol">'</span><a href="builtins.html#-2b" class="c-symbol">+</a> <a href="builtins.html#r_-2f" class="c-builtin">r̲/₁₂</a> <span class="c-number">-1</span> <span class="c-number">0</span> <span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁₂</a> <span class="c-lambdaarg">⍵</span>) { (<span class="c-lambdaarg">⍺</span> <a href="builtins.html#-3d" class="c-symbol">=</a> <span class="c-number">3</span>) <a href="builtins.html#-2b" class="c-symbol">+</a> <span class="c-lambdaarg">⍵</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <span class="c-lambdaarg">⍺</span> <a href="builtins.html#-3d" class="c-symbol">=</a> <span class="c-number">4</span> } <span class="c-lambdaarg">⍵</span> }</pre>
+<div class="uses">Used in: <a href="demos-life-microscope-life-microscope.xtl.src.html#L46">demos/life-microscope/life-microscope.xtl:46</a>, <a href="demos-life-microscope-life-microscope.xtl.src.html#L51">demos/life-microscope/life-microscope.xtl:51</a></div>
+</div>
+<h2 class="section" id="section-2">A glider, one step at a time</h2>
+<div class="item" id="b">
+<h3><a href="#b">b</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-life-microscope-life-microscope.xtl.src.html#L24">line 24</a></div>
+<div class="doc">
+<p>b: a glider in a 6 by 6 board.</p>
+</div>
+<pre class="code">b ← <span class="c-number">6</span> <span class="c-number">6</span> <a href="builtins.html#r_eshape" class="c-builtin">r̲eshape</a> <span class="c-number">0</span> <span class="c-number">1</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span>  <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">1</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span>  <span class="c-number">1</span> <span class="c-number">1</span> <span class="c-number">1</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span>  <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span>  <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span>  <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span> <span class="c-number">0</span></pre>
+<div class="uses">Used in: <a href="demos-life-microscope-life-microscope.xtl.src.html#L25">demos/life-microscope/life-microscope.xtl:25</a>, <a href="demos-life-microscope-life-microscope.xtl.html#r">r</a>, <a href="demos-life-microscope-life-microscope.xtl.src.html#L42">demos/life-microscope/life-microscope.xtl:42</a>, <a href="demos-life-microscope-life-microscope.xtl.src.html#L45">demos/life-microscope/life-microscope.xtl:45</a>, <a href="demos-life-microscope-life-microscope.xtl.src.html#L46">demos/life-microscope/life-microscope.xtl:46</a>, <a href="demos-life-microscope-life-microscope.xtl.src.html#L51">demos/life-microscope/life-microscope.xtl:51</a></div>
+</div>
+<div class="item" id="r">
+<h3><a href="#r">r</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-life-microscope-life-microscope.xtl.src.html#L31">line 31</a></div>
+<div class="doc">
+<p>r: the board rotated by every offset -1 0 1 along both axes: a 3 by
+3 arrangement of shifted boards, one for each neighbor (and the
+cell itself). In the copy for offsets (dy, dx), each cell holds its
+neighbor at (dy, dx).</p>
+</div>
+<pre class="code">r ← <span class="c-number">-1</span> <span class="c-number">0</span> <span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁₂</a> <a href="demos-life-microscope-life-microscope.xtl.html#b">b</a></pre>
+<div class="uses">Used in: <a href="demos-life-microscope-life-microscope.xtl.src.html#L32">demos/life-microscope/life-microscope.xtl:32</a>, <a href="demos-life-microscope-life-microscope.xtl.html#s">s</a></div>
+</div>
+<div class="item" id="s">
+<h3><a href="#s">s</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-life-microscope-life-microscope.xtl.src.html#L36">line 36</a></div>
+<div class="doc">
+<p>s: the nine copies added over the two offset axes: S, each cell
+plus its eight neighbors.</p>
+</div>
+<pre class="code">s ← <span class="c-symbol">'</span><a href="builtins.html#-2b" class="c-symbol">+</a> <a href="builtins.html#r_-2f" class="c-builtin">r̲/₁₂</a> <a href="demos-life-microscope-life-microscope.xtl.html#r">r</a></pre>
+<div class="uses">Used in: <a href="demos-life-microscope-life-microscope.xtl.src.html#L37">demos/life-microscope/life-microscope.xtl:37</a>, <a href="demos-life-microscope-life-microscope.xtl.src.html#L40">demos/life-microscope/life-microscope.xtl:40</a>, <a href="demos-life-microscope-life-microscope.xtl.src.html#L42">demos/life-microscope/life-microscope.xtl:42</a>, <a href="demos-life-microscope-life-microscope.xtl.src.html#L45">demos/life-microscope/life-microscope.xtl:45</a></div>
+</div>
+</main>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>demos/langtons-ant/langtons-ant.xtl - X_eTaL doc</title>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+<script defer src="search-index.js"></script>
+<script defer src="search.js"></script>
+</head>
+<body>
+<nav class="side">
+<a class="home" href="index.html">X_eTaL doc</a>
+<input id="search" type="search" autocomplete="off" placeholder="Search: a name, or a type" title="A name (mean finds m_ean), or a type: Num a =&gt; a -&gt; a -&gt; a finds +, m_ax ...">
+<h2>Files</h2>
+<h3>/Users/mike/github/softwarewrighter/X_eTaL-demos/work/libraries/libs/Eigencube/src/</h3>
+<ul>
+<li><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html">Eigencube.xtl</a></li>
+</ul>
+<h3>demos/ca-lab/</h3>
+<ul>
+<li><a href="demos-ca-lab-ca-lab.xtl.html">ca-lab.xtl</a></li>
+</ul>
+<h3>demos/eigencube/</h3>
+<ul>
+<li><a href="demos-eigencube-eigencube.xtl.html">eigencube.xtl</a></li>
+</ul>
+<h3>demos/fourier-epicycles/</h3>
+<ul>
+<li><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html">fourier-epicycles.xtl</a></li>
+</ul>
+<h3>demos/image-pipeline/</h3>
+<ul>
+<li><a href="demos-image-pipeline-image-pipeline.xtl.html">image-pipeline.xtl</a></li>
+</ul>
+<h3>demos/julia/</h3>
+<ul>
+<li><a href="demos-julia-julia.xtl.html">julia.xtl</a></li>
+</ul>
+<h3>demos/langtons-ant/</h3>
+<ul>
+<li><a href="demos-langtons-ant-langtons-ant.xtl.html">langtons-ant.xtl</a></li>
+</ul>
+<h3>demos/life-microscope/</h3>
+<ul>
+<li><a href="demos-life-microscope-life-microscope.xtl.html">life-microscope.xtl</a></li>
+</ul>
+<h3>demos/mandelbrot/</h3>
+<ul>
+<li><a href="demos-mandelbrot-mandelbrot.xtl.html">mandelbrot.xtl</a></li>
+</ul>
+<h3>demos/nbody/</h3>
+<ul>
+<li><a href="demos-nbody-nbody.xtl.html">nbody.xtl</a></li>
+</ul>
+<h3>demos/reaction-diffusion/</h3>
+<ul>
+<li><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html">reaction-diffusion.xtl</a></li>
+</ul>
+<h3>demos/sandpile/</h3>
+<ul>
+<li><a href="demos-sandpile-sandpile.xtl.html">sandpile.xtl</a></li>
+</ul>
+<h3>demos/stencil-macros/</h3>
+<ul>
+<li><a href="demos-stencil-macros-stencil-macros.xtl.html">stencil-macros.xtl</a></li>
+<li><a href="demos-stencil-macros-Stencil.xtlm.html">Stencil.xtlm</a></li>
+</ul>
+<h3>demos/wave-tank/</h3>
+<ul>
+<li><a href="demos-wave-tank-wave-tank.xtl.html">wave-tank.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-xetal-pipes.xtl.html">xetal-pipes.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/stages/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-stages-Pipes.xtl.html">Pipes.xtl</a></li>
+</ul>
+<ul>
+<li><a href="builtins.html">built-ins</a></li>
+</ul>
+<h2>On this page</h2>
+<ul>
+<li class="item"><a href="#rows">rows</a></li>
+<li class="item"><a href="#cols">cols</a></li>
+<li class="item"><a href="#steps">steps</a></li>
+<li><a href="#section-1">One step of the ant</a></li>
+<li class="item"><a href="#u.s_tep"><span class="c-userfunc">ᵘs̲tep</span></a></li>
+<li class="item"><a href="#row">row</a></li>
+<li class="item"><a href="#col">col</a></li>
+<li class="item"><a href="#b0">b0</a></li>
+<li class="item"><a href="#a0">a0</a></li>
+<li class="item"><a href="#-252"><span class="c-error">%</span><span class="c-number">2</span></a></li>
+<li class="item"><a href="#b">b</a></li>
+<li class="item"><a href="#a">a</a></li>
+<li class="item"><a href="#d">d</a></li>
+</ul>
+</nav>
+<main>
+<button class="theme" title="Light or dark">theme</button>
+<section id="results"></section>
+<h1><span class="kind">program</span>demos/langtons-ant/langtons-ant.xtl</h1>
+<div class="doc">
+<p>Langton's ant: on a white cell it turns right, on a black cell
+left; it flips the cell and steps forward. From two rules comes
+chaos, and then, after about 10000 steps, a &quot;highway&quot; the ant
+builds forever. Here the ant is arrays: its position is a mask
+with a single 1, its direction a number; no indexing, no loops,
+just whole-array steps. Run it with &quot;xetal run
+demos/langtons-ant/langtons-ant.xtl&quot;; it prints the state's shape,
+the board drawn with characters (black, white, the ant), and how
+many cells are black. The live page runs it frame by frame and
+pauses when the highway forms:
+https://softwarewrighter.github.io/X_eTaL-demos/langtons-ant/</p>
+</div>
+<p class="meta"><a href="demos-langtons-ant-langtons-ant.xtl.src.html">source</a></p>
+<div class="item" id="rows">
+<h3><a href="#rows">rows</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-langtons-ant-langtons-ant.xtl.src.html#L15">line 15</a></div>
+<div class="doc">
+<p>The board's size and the number of steps.</p>
+</div>
+<pre class="code">rows ← <span class="c-number">21</span></pre>
+<div class="uses">Used in: <a href="demos-langtons-ant-langtons-ant.xtl.html#row">row</a>, <a href="demos-langtons-ant-langtons-ant.xtl.html#col">col</a>, <a href="demos-langtons-ant-langtons-ant.xtl.html#a0">a0</a></div>
+</div>
+<div class="item" id="cols">
+<h3><a href="#cols">cols</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-langtons-ant-langtons-ant.xtl.src.html#L16">line 16</a></div>
+<pre class="code">cols ← <span class="c-number">21</span></pre>
+<div class="uses">Used in: <a href="demos-langtons-ant-langtons-ant.xtl.html#row">row</a>, <a href="demos-langtons-ant-langtons-ant.xtl.html#col">col</a>, <a href="demos-langtons-ant-langtons-ant.xtl.html#a0">a0</a></div>
+</div>
+<div class="item" id="steps">
+<h3><a href="#steps">steps</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-langtons-ant-langtons-ant.xtl.src.html#L17">line 17</a></div>
+<pre class="code">steps ← <span class="c-number">400</span></pre>
+<div class="uses">Used in: <a href="demos-langtons-ant-langtons-ant.xtl.html#-252"><span class="c-error">%</span><span class="c-number">2</span></a></div>
+</div>
+<h2 class="section" id="section-1">One step of the ant</h2>
+<div class="item" id="u.s_tep">
+<h3><a href="#u.s_tep"><span class="c-userfunc">ᵘs̲tep</span></a> <span class="type">: (Int, Int, Int) -&gt; (Int, Int, Int)</span></h3>
+<div class="meta">function &middot; <a href="demos-langtons-ant-langtons-ant.xtl.src.html#L30">line 30</a></div>
+<div class="doc">
+<p>u:s_tep (b, a, d): the state is a tuple, the board (0 white, 1
+black), the ant's mask (1 where it stands), and its direction (0
+up, 1 right, 2 down, 3 left), taken apart by the pattern and given
+back as a new tuple (D7, landed); d is a plain scalar now, not a
+plane carrying the same number everywhere. cell looks up the color
+under the ant (the board times its mask, summed); turn is right
+(+1) on white, left (+3, that is -1) on black; flip turns the
+cell's color over where the mask is 1; dy, dx move the mask one
+row or column, by its new direction.</p>
+</div>
+<pre class="code"><span class="c-userfunc">ᵘs̲tep</span> ← { (<a href="demos-langtons-ant-langtons-ant.xtl.html#b">b</a>, <a href="demos-langtons-ant-langtons-ant.xtl.html#a">a</a>, <a href="demos-langtons-ant-langtons-ant.xtl.html#d">d</a>) →
+  cell ← <span class="c-symbol">'</span><a href="builtins.html#-2b" class="c-symbol">+</a> <a href="builtins.html#r_-2f" class="c-builtin">r̲/</a> <a href="builtins.html#r_avel" class="c-builtin">r̲avel</a> <a href="demos-langtons-ant-langtons-ant.xtl.html#a">a</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-langtons-ant-langtons-ant.xtl.html#b">b</a>
+  turn ← (<a href="demos-langtons-ant-langtons-ant.xtl.html#d">d</a> <a href="builtins.html#-2b" class="c-symbol">+</a> <span class="c-number">1</span> <a href="builtins.html#-2b" class="c-symbol">+</a> <span class="c-number">2</span> <a href="builtins.html#-2a" class="c-symbol">×</a> cell) <a href="builtins.html#m_od" class="c-builtin">m̲od</a> <span class="c-number">4</span>
+  flip ← <a href="demos-langtons-ant-langtons-ant.xtl.html#b">b</a> <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="demos-langtons-ant-langtons-ant.xtl.html#a">a</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <span class="c-number">1</span> <a href="builtins.html#-2d" class="c-symbol">−</a> <span class="c-number">2</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-langtons-ant-langtons-ant.xtl.html#b">b</a>
+  dy ← (<span class="c-number">1</span> <a href="builtins.html#-2a" class="c-symbol">×</a> turn <a href="builtins.html#-3d" class="c-symbol">=</a> <span class="c-number">0</span>) <a href="builtins.html#-2d" class="c-symbol">−</a> <span class="c-number">1</span> <a href="builtins.html#-2a" class="c-symbol">×</a> turn <a href="builtins.html#-3d" class="c-symbol">=</a> <span class="c-number">2</span>
+  dx ← (<span class="c-number">1</span> <a href="builtins.html#-2a" class="c-symbol">×</a> turn <a href="builtins.html#-3d" class="c-symbol">=</a> <span class="c-number">3</span>) <a href="builtins.html#-2d" class="c-symbol">−</a> <span class="c-number">1</span> <a href="builtins.html#-2a" class="c-symbol">×</a> turn <a href="builtins.html#-3d" class="c-symbol">=</a> <span class="c-number">1</span>
+  step ← dy <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁</a> dx <a href="builtins.html#o_-2d" class="c-builtin">o̲-₂</a> <a href="demos-langtons-ant-langtons-ant.xtl.html#a">a</a>
+  (flip, step, turn)
+}</pre>
+<div class="uses">Used in: <a href="demos-langtons-ant-langtons-ant.xtl.html#-252"><span class="c-error">%</span><span class="c-number">2</span></a></div>
+</div>
+<div class="item" id="row">
+<h3><a href="#row">row</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-langtons-ant-langtons-ant.xtl.src.html#L42">line 42</a></div>
+<pre class="code">row ← (<a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-langtons-ant-langtons-ant.xtl.html#rows">rows</a>) <span class="c-builtin">'</span><a href="builtins.html#l_eft" class="c-builtin">l̲eft</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-langtons-ant-langtons-ant.xtl.html#cols">cols</a></pre>
+<div class="uses">Used in: <a href="demos-langtons-ant-langtons-ant.xtl.html#b0">b0</a>, <a href="demos-langtons-ant-langtons-ant.xtl.html#a0">a0</a></div>
+</div>
+<div class="item" id="col">
+<h3><a href="#col">col</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-langtons-ant-langtons-ant.xtl.src.html#L43">line 43</a></div>
+<pre class="code">col ← (<a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-langtons-ant-langtons-ant.xtl.html#rows">rows</a>) <span class="c-builtin">'</span><a href="builtins.html#r_ight" class="c-builtin">r̲ight</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-langtons-ant-langtons-ant.xtl.html#cols">cols</a></pre>
+<div class="uses">Used in: <a href="demos-langtons-ant-langtons-ant.xtl.html#a0">a0</a></div>
+</div>
+<div class="item" id="b0">
+<h3><a href="#b0">b0</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-langtons-ant-langtons-ant.xtl.src.html#L44">line 44</a></div>
+<pre class="code">b0 ← <span class="c-number">0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-langtons-ant-langtons-ant.xtl.html#row">row</a></pre>
+<div class="uses">Used in: <a href="demos-langtons-ant-langtons-ant.xtl.html#-252"><span class="c-error">%</span><span class="c-number">2</span></a></div>
+</div>
+<div class="item" id="a0">
+<h3><a href="#a0">a0</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-langtons-ant-langtons-ant.xtl.src.html#L45">line 45</a></div>
+<pre class="code">a0 ← <span class="c-number">1</span> <a href="builtins.html#-2a" class="c-symbol">×</a> (<a href="demos-langtons-ant-langtons-ant.xtl.html#row">row</a> <a href="builtins.html#-3d" class="c-symbol">=</a> <a href="demos-langtons-ant-langtons-ant.xtl.html#rows">rows</a> <a href="builtins.html#d_iv" class="c-builtin">d̲iv</a> <span class="c-number">2</span>) <a href="builtins.html#-26" class="c-symbol">∧</a> <a href="demos-langtons-ant-langtons-ant.xtl.html#col">col</a> <a href="builtins.html#-3d" class="c-symbol">=</a> <a href="demos-langtons-ant-langtons-ant.xtl.html#cols">cols</a> <a href="builtins.html#d_iv" class="c-builtin">d̲iv</a> <span class="c-number">2</span></pre>
+<div class="uses">Used in: <a href="demos-langtons-ant-langtons-ant.xtl.html#-252"><span class="c-error">%</span><span class="c-number">2</span></a></div>
+</div>
+<div class="item" id="-252">
+<h3><a href="#-252"><span class="c-error">%</span><span class="c-number">2</span></a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-langtons-ant-langtons-ant.xtl.src.html#L46">line 46</a></div>
+<pre class="code">(<a href="demos-langtons-ant-langtons-ant.xtl.html#b">b</a>, <a href="demos-langtons-ant-langtons-ant.xtl.html#a">a</a>, <a href="demos-langtons-ant-langtons-ant.xtl.html#d">d</a>) ← <a href="demos-langtons-ant-langtons-ant.xtl.html#steps">steps</a> <span class="c-userfunc">'</span><a href="demos-langtons-ant-langtons-ant.xtl.html#u.s_tep" class="c-userfunc">ᵘs̲tep</a> <a href="builtins.html#p_ower" class="c-builtin">p̲ower</a> (<a href="demos-langtons-ant-langtons-ant.xtl.html#b0">b0</a>, <a href="demos-langtons-ant-langtons-ant.xtl.html#a0">a0</a>, <span class="c-number">0</span>)</pre>
+</div>
+<div class="item" id="b">
+<h3><a href="#b">b</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-langtons-ant-langtons-ant.xtl.src.html#L46">line 46</a></div>
+<pre class="code">(<a href="demos-langtons-ant-langtons-ant.xtl.html#b">b</a>, <a href="demos-langtons-ant-langtons-ant.xtl.html#a">a</a>, <a href="demos-langtons-ant-langtons-ant.xtl.html#d">d</a>) ← <a href="demos-langtons-ant-langtons-ant.xtl.html#steps">steps</a> <span class="c-userfunc">'</span><a href="demos-langtons-ant-langtons-ant.xtl.html#u.s_tep" class="c-userfunc">ᵘs̲tep</a> <a href="builtins.html#p_ower" class="c-builtin">p̲ower</a> (<a href="demos-langtons-ant-langtons-ant.xtl.html#b0">b0</a>, <a href="demos-langtons-ant-langtons-ant.xtl.html#a0">a0</a>, <span class="c-number">0</span>)</pre>
+<div class="uses">Used in: <a href="demos-langtons-ant-langtons-ant.xtl.html#u.s_tep"><span class="c-userfunc">ᵘs̲tep</span></a>, <a href="demos-langtons-ant-langtons-ant.xtl.html#-252"><span class="c-error">%</span><span class="c-number">2</span></a>, <a href="demos-langtons-ant-langtons-ant.xtl.src.html#L47">demos/langtons-ant/langtons-ant.xtl:47</a>, <a href="demos-langtons-ant-langtons-ant.xtl.src.html#L50">demos/langtons-ant/langtons-ant.xtl:50</a>, <a href="demos-langtons-ant-langtons-ant.xtl.src.html#L51">demos/langtons-ant/langtons-ant.xtl:51</a></div>
+</div>
+<div class="item" id="a">
+<h3><a href="#a">a</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-langtons-ant-langtons-ant.xtl.src.html#L46">line 46</a></div>
+<pre class="code">(<a href="demos-langtons-ant-langtons-ant.xtl.html#b">b</a>, <a href="demos-langtons-ant-langtons-ant.xtl.html#a">a</a>, <a href="demos-langtons-ant-langtons-ant.xtl.html#d">d</a>) ← <a href="demos-langtons-ant-langtons-ant.xtl.html#steps">steps</a> <span class="c-userfunc">'</span><a href="demos-langtons-ant-langtons-ant.xtl.html#u.s_tep" class="c-userfunc">ᵘs̲tep</a> <a href="builtins.html#p_ower" class="c-builtin">p̲ower</a> (<a href="demos-langtons-ant-langtons-ant.xtl.html#b0">b0</a>, <a href="demos-langtons-ant-langtons-ant.xtl.html#a0">a0</a>, <span class="c-number">0</span>)</pre>
+<div class="uses">Used in: <a href="demos-langtons-ant-langtons-ant.xtl.html#u.s_tep"><span class="c-userfunc">ᵘs̲tep</span></a>, <a href="demos-langtons-ant-langtons-ant.xtl.html#-252"><span class="c-error">%</span><span class="c-number">2</span></a>, <a href="demos-langtons-ant-langtons-ant.xtl.src.html#L50">demos/langtons-ant/langtons-ant.xtl:50</a></div>
+</div>
+<div class="item" id="d">
+<h3><a href="#d">d</a></h3>
+<div class="meta">value &middot; <a href="demos-langtons-ant-langtons-ant.xtl.src.html#L46">line 46</a></div>
+<pre class="code">(<a href="demos-langtons-ant-langtons-ant.xtl.html#b">b</a>, <a href="demos-langtons-ant-langtons-ant.xtl.html#a">a</a>, <a href="demos-langtons-ant-langtons-ant.xtl.html#d">d</a>) ← <a href="demos-langtons-ant-langtons-ant.xtl.html#steps">steps</a> <span class="c-userfunc">'</span><a href="demos-langtons-ant-langtons-ant.xtl.html#u.s_tep" class="c-userfunc">ᵘs̲tep</a> <a href="builtins.html#p_ower" class="c-builtin">p̲ower</a> (<a href="demos-langtons-ant-langtons-ant.xtl.html#b0">b0</a>, <a href="demos-langtons-ant-langtons-ant.xtl.html#a0">a0</a>, <span class="c-number">0</span>)</pre>
+<div class="uses">Used in: <a href="demos-langtons-ant-langtons-ant.xtl.html#u.s_tep"><span class="c-userfunc">ᵘs̲tep</span></a>, <a href="demos-langtons-ant-langtons-ant.xtl.html#-252"><span class="c-error">%</span><span class="c-number">2</span></a></div>
+</div>
+</main>
+</body>
+</html>

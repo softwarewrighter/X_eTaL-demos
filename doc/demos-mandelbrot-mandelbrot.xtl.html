@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>demos/mandelbrot/mandelbrot.xtl - X_eTaL doc</title>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+<script defer src="search-index.js"></script>
+<script defer src="search.js"></script>
+</head>
+<body>
+<nav class="side">
+<a class="home" href="index.html">X_eTaL doc</a>
+<input id="search" type="search" autocomplete="off" placeholder="Search: a name, or a type" title="A name (mean finds m_ean), or a type: Num a =&gt; a -&gt; a -&gt; a finds +, m_ax ...">
+<h2>Files</h2>
+<h3>/Users/mike/github/softwarewrighter/X_eTaL-demos/work/libraries/libs/Eigencube/src/</h3>
+<ul>
+<li><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html">Eigencube.xtl</a></li>
+</ul>
+<h3>demos/ca-lab/</h3>
+<ul>
+<li><a href="demos-ca-lab-ca-lab.xtl.html">ca-lab.xtl</a></li>
+</ul>
+<h3>demos/eigencube/</h3>
+<ul>
+<li><a href="demos-eigencube-eigencube.xtl.html">eigencube.xtl</a></li>
+</ul>
+<h3>demos/fourier-epicycles/</h3>
+<ul>
+<li><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html">fourier-epicycles.xtl</a></li>
+</ul>
+<h3>demos/image-pipeline/</h3>
+<ul>
+<li><a href="demos-image-pipeline-image-pipeline.xtl.html">image-pipeline.xtl</a></li>
+</ul>
+<h3>demos/julia/</h3>
+<ul>
+<li><a href="demos-julia-julia.xtl.html">julia.xtl</a></li>
+</ul>
+<h3>demos/langtons-ant/</h3>
+<ul>
+<li><a href="demos-langtons-ant-langtons-ant.xtl.html">langtons-ant.xtl</a></li>
+</ul>
+<h3>demos/life-microscope/</h3>
+<ul>
+<li><a href="demos-life-microscope-life-microscope.xtl.html">life-microscope.xtl</a></li>
+</ul>
+<h3>demos/mandelbrot/</h3>
+<ul>
+<li><a href="demos-mandelbrot-mandelbrot.xtl.html">mandelbrot.xtl</a></li>
+</ul>
+<h3>demos/nbody/</h3>
+<ul>
+<li><a href="demos-nbody-nbody.xtl.html">nbody.xtl</a></li>
+</ul>
+<h3>demos/reaction-diffusion/</h3>
+<ul>
+<li><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html">reaction-diffusion.xtl</a></li>
+</ul>
+<h3>demos/sandpile/</h3>
+<ul>
+<li><a href="demos-sandpile-sandpile.xtl.html">sandpile.xtl</a></li>
+</ul>
+<h3>demos/stencil-macros/</h3>
+<ul>
+<li><a href="demos-stencil-macros-stencil-macros.xtl.html">stencil-macros.xtl</a></li>
+<li><a href="demos-stencil-macros-Stencil.xtlm.html">Stencil.xtlm</a></li>
+</ul>
+<h3>demos/wave-tank/</h3>
+<ul>
+<li><a href="demos-wave-tank-wave-tank.xtl.html">wave-tank.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-xetal-pipes.xtl.html">xetal-pipes.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/stages/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-stages-Pipes.xtl.html">Pipes.xtl</a></li>
+</ul>
+<ul>
+<li><a href="builtins.html">built-ins</a></li>
+</ul>
+<h2>On this page</h2>
+<ul>
+<li><a href="#section-1">The view</a></li>
+<li class="item"><a href="#rows">rows</a></li>
+<li class="item"><a href="#cols">cols</a></li>
+<li class="item"><a href="#cx">cx</a></li>
+<li class="item"><a href="#cy">cy</a></li>
+<li class="item"><a href="#w">w</a></li>
+<li class="item"><a href="#k">k</a></li>
+<li class="item"><a href="#aspect">aspect</a></li>
+<li class="item"><a href="#u.c_entred"><span class="c-userfunc">ᵘc̲entred</span></a></li>
+<li><a href="#section-2">c for every point, by broadcasting</a></li>
+<li class="item"><a href="#re">re</a></li>
+<li class="item"><a href="#im">im</a></li>
+<li class="item"><a href="#cr">cr</a></li>
+<li class="item"><a href="#ci">ci</a></li>
+<li><a href="#section-3">One step for every point at once</a></li>
+<li class="item"><a href="#u.s_tep"><span class="c-userfunc">ᵘs̲tep</span></a></li>
+<li><a href="#section-4">k steps, from z = 0</a></li>
+<li class="item"><a href="#-252"><span class="c-error">%</span><span class="c-number">2</span></a></li>
+<li class="item"><a href="#zr">zr</a></li>
+<li class="item"><a href="#zi">zi</a></li>
+<li class="item"><a href="#counts">counts</a></li>
+<li class="item"><a href="#m2">m2</a></li>
+<li><a href="#section-5">One point's orbit</a></li>
+<li class="item"><a href="#cr0">cr0</a></li>
+<li class="item"><a href="#ci0">ci0</a></li>
+<li class="item"><a href="#u.o_rbit"><span class="c-userfunc">ᵘo̲rbit</span></a></li>
+</ul>
+</nav>
+<main>
+<button class="theme" title="Light or dark">theme</button>
+<section id="results"></section>
+<h1><span class="kind">program</span>demos/mandelbrot/mandelbrot.xtl</h1>
+<div class="doc">
+<p>The Mandelbrot set as arrays: every point c of a view iterated at
+once, z becoming z * z + c, counting the steps each point stays
+within 2 of the origin. X_eTaL has no complex numbers yet (an ask:
+see the demo's README Workarounds), so z and c are each two Float
+arrays, their real and imaginary parts. Run it with &quot;xetal run
+demos/mandelbrot/mandelbrot.xtl&quot;; it prints the shapes
+of c and of the stepped state, the set drawn with characters, and
+one point's orbit (its real parts, then its imaginary parts). The
+live page steps k and lets you click a point for its orbit:
+https://softwarewrighter.github.io/X_eTaL-demos/mandelbrot/</p>
+</div>
+<p class="meta"><a href="demos-mandelbrot-mandelbrot.xtl.src.html">source</a></p>
+<h2 class="section" id="section-1">The view</h2>
+<div class="item" id="rows">
+<h3><a href="#rows">rows</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-mandelbrot-mandelbrot.xtl.src.html#L19">line 19</a></div>
+<div class="doc">
+<p>rows, cols: the picture's size. cx, cy, w: the view's center and
+width (in the plane, not pixels). k: how many steps. aspect: how
+tall a cell is for its width (2.0, since a character is about
+twice as tall as it is wide; a page of square pixels uses 1.0).</p>
+</div>
+<pre class="code">rows ← <span class="c-number">24</span></pre>
+<div class="uses">Used in: <a href="demos-mandelbrot-mandelbrot.xtl.html#im">im</a>, <a href="demos-mandelbrot-mandelbrot.xtl.html#cr">cr</a></div>
+</div>
+<div class="item" id="cols">
+<h3><a href="#cols">cols</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-mandelbrot-mandelbrot.xtl.src.html#L20">line 20</a></div>
+<pre class="code">cols ← <span class="c-number">64</span></pre>
+<div class="uses">Used in: <a href="demos-mandelbrot-mandelbrot.xtl.html#re">re</a>, <a href="demos-mandelbrot-mandelbrot.xtl.html#im">im</a>, <a href="demos-mandelbrot-mandelbrot.xtl.html#ci">ci</a></div>
+</div>
+<div class="item" id="cx">
+<h3><a href="#cx">cx</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-mandelbrot-mandelbrot.xtl.src.html#L21">line 21</a></div>
+<pre class="code">cx ← <span class="c-number">-0.6</span></pre>
+<div class="uses">Used in: <a href="demos-mandelbrot-mandelbrot.xtl.html#re">re</a></div>
+</div>
+<div class="item" id="cy">
+<h3><a href="#cy">cy</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-mandelbrot-mandelbrot.xtl.src.html#L22">line 22</a></div>
+<pre class="code">cy ← <span class="c-number">0.0</span></pre>
+<div class="uses">Used in: <a href="demos-mandelbrot-mandelbrot.xtl.html#im">im</a></div>
+</div>
+<div class="item" id="w">
+<h3><a href="#w">w</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-mandelbrot-mandelbrot.xtl.src.html#L23">line 23</a></div>
+<pre class="code">w ← <span class="c-number">3.0</span></pre>
+<div class="uses">Used in: <a href="demos-mandelbrot-mandelbrot.xtl.html#re">re</a>, <a href="demos-mandelbrot-mandelbrot.xtl.html#im">im</a></div>
+</div>
+<div class="item" id="k">
+<h3><a href="#k">k</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-mandelbrot-mandelbrot.xtl.src.html#L24">line 24</a></div>
+<pre class="code">k ← <span class="c-number">30</span></pre>
+<div class="uses">Used in: <a href="demos-mandelbrot-mandelbrot.xtl.html#-252"><span class="c-error">%</span><span class="c-number">2</span></a>, <a href="demos-mandelbrot-mandelbrot.xtl.src.html#L74">demos/mandelbrot/mandelbrot.xtl:74</a></div>
+</div>
+<div class="item" id="aspect">
+<h3><a href="#aspect">aspect</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-mandelbrot-mandelbrot.xtl.src.html#L25">line 25</a></div>
+<pre class="code">aspect ← <span class="c-number">2.0</span></pre>
+<div class="uses">Used in: <a href="demos-mandelbrot-mandelbrot.xtl.html#im">im</a></div>
+</div>
+<div class="item" id="u.c_entred">
+<h3><a href="#u.c_entred"><span class="c-userfunc">ᵘc̲entred</span></a> <span class="type">: Int -&gt; Float</span></h3>
+<div class="meta">function &middot; <a href="demos-mandelbrot-mandelbrot.xtl.src.html#L29">line 29</a></div>
+<div class="doc">
+<p>Numbers centered on 0 (u:c_entred n): 0 1 2 3 becomes
+-1.5 -0.5 0.5 1.5.</p>
+</div>
+<pre class="code"><span class="c-userfunc">ᵘc̲entred</span> ← { n → (<a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> n) <a href="builtins.html#-2d" class="c-symbol">−</a> (<a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> n <a href="builtins.html#-2d" class="c-symbol">−</a> <span class="c-number">1</span>) <a href="builtins.html#-2f" class="c-symbol">÷</a> <span class="c-number">2</span> }</pre>
+<div class="uses">Used in: <a href="demos-mandelbrot-mandelbrot.xtl.html#re">re</a>, <a href="demos-mandelbrot-mandelbrot.xtl.html#im">im</a></div>
+</div>
+<h2 class="section" id="section-2">c for every point, by broadcasting</h2>
+<div class="item" id="re">
+<h3><a href="#re">re</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-mandelbrot-mandelbrot.xtl.src.html#L38">line 38</a></div>
+<div class="doc">
+<p>re, im: one row of real parts and one column of imaginary parts,
+centered on (cx, cy) and w wide.
+cr, ci: c's real and imaginary parts spread over the whole grid:
+t_able spreads the row down and the column across, no loop over
+points.</p>
+</div>
+<pre class="code">re ← <a href="demos-mandelbrot-mandelbrot.xtl.html#cx">cx</a> <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#w">w</a> <a href="builtins.html#-2a" class="c-symbol">×</a> (<a href="demos-mandelbrot-mandelbrot.xtl.html#u.c_entred" class="c-userfunc">ᵘc̲entred</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#cols">cols</a>) <a href="builtins.html#-2f" class="c-symbol">÷</a> <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#cols">cols</a></pre>
+<div class="uses">Used in: <a href="demos-mandelbrot-mandelbrot.xtl.html#cr">cr</a></div>
+</div>
+<div class="item" id="im">
+<h3><a href="#im">im</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-mandelbrot-mandelbrot.xtl.src.html#L39">line 39</a></div>
+<pre class="code">im ← <a href="demos-mandelbrot-mandelbrot.xtl.html#cy">cy</a> <a href="builtins.html#-2d" class="c-symbol">−</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#aspect">aspect</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#w">w</a> <a href="builtins.html#-2a" class="c-symbol">×</a> (<a href="demos-mandelbrot-mandelbrot.xtl.html#u.c_entred" class="c-userfunc">ᵘc̲entred</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#rows">rows</a>) <a href="builtins.html#-2f" class="c-symbol">÷</a> <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#cols">cols</a></pre>
+<div class="uses">Used in: <a href="demos-mandelbrot-mandelbrot.xtl.html#ci">ci</a></div>
+</div>
+<div class="item" id="cr">
+<h3><a href="#cr">cr</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-mandelbrot-mandelbrot.xtl.src.html#L40">line 40</a></div>
+<pre class="code">cr ← (<a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#rows">rows</a>) <span class="c-builtin">'</span><a href="builtins.html#r_ight" class="c-builtin">r̲ight</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#re">re</a></pre>
+<div class="uses">Used in: <a href="demos-mandelbrot-mandelbrot.xtl.html#u.s_tep"><span class="c-userfunc">ᵘs̲tep</span></a>, <a href="demos-mandelbrot-mandelbrot.xtl.html#-252"><span class="c-error">%</span><span class="c-number">2</span></a>, <a href="demos-mandelbrot-mandelbrot.xtl.src.html#L69">demos/mandelbrot/mandelbrot.xtl:69</a></div>
+</div>
+<div class="item" id="ci">
+<h3><a href="#ci">ci</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-mandelbrot-mandelbrot.xtl.src.html#L41">line 41</a></div>
+<pre class="code">ci ← <a href="demos-mandelbrot-mandelbrot.xtl.html#im">im</a> <span class="c-builtin">'</span><a href="builtins.html#l_eft" class="c-builtin">l̲eft</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#cols">cols</a></pre>
+<div class="uses">Used in: <a href="demos-mandelbrot-mandelbrot.xtl.html#u.s_tep"><span class="c-userfunc">ᵘs̲tep</span></a></div>
+</div>
+<h2 class="section" id="section-3">One step for every point at once</h2>
+<div class="item" id="u.s_tep">
+<h3><a href="#u.s_tep"><span class="c-userfunc">ᵘs̲tep</span></a> <span class="type">: (Float, Float, Float) -&gt; (Float, Float, Float)</span></h3>
+<div class="meta">function &middot; <a href="demos-mandelbrot-mandelbrot.xtl.src.html#L52">line 52</a></div>
+<div class="doc">
+<p>u:s_tep (zr, zi, counts): the state is a tuple of three same-shaped
+arrays (z's real part, its imaginary part, and the count of steps
+spent inside), taken apart by the pattern and given back as a new
+tuple; no more packing them into one array (D7, landed). One step
+computes z * z + c everywhere, keeps z where the point has already
+left the disk |z|^2 &gt; 4 (the mask inside), and adds inside to the
+count.</p>
+</div>
+<pre class="code"><span class="c-userfunc">ᵘs̲tep</span> ← { (<a href="demos-mandelbrot-mandelbrot.xtl.html#zr">zr</a>, <a href="demos-mandelbrot-mandelbrot.xtl.html#zi">zi</a>, <a href="demos-mandelbrot-mandelbrot.xtl.html#counts">counts</a>) →
+  inside ← <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <span class="c-number">4</span> <a href="builtins.html#-3e-3d" class="c-symbol">≥</a> (<a href="demos-mandelbrot-mandelbrot.xtl.html#zr">zr</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#zr">zr</a>) <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#zi">zi</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#zi">zi</a>
+  a ← (inside <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#cr">cr</a> <a href="builtins.html#-2b" class="c-symbol">+</a> (<a href="demos-mandelbrot-mandelbrot.xtl.html#zr">zr</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#zr">zr</a>) <a href="builtins.html#-2d" class="c-symbol">−</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#zi">zi</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#zi">zi</a>) <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">1</span> <a href="builtins.html#-2d" class="c-symbol">−</a> inside) <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#zr">zr</a>
+  b ← (inside <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#ci">ci</a> <a href="builtins.html#-2b" class="c-symbol">+</a> <span class="c-number">2</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#zr">zr</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#zi">zi</a>) <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">1</span> <a href="builtins.html#-2d" class="c-symbol">−</a> inside) <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#zi">zi</a>
+  (a, b, inside <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#counts">counts</a>)
+}</pre>
+<div class="uses">Used in: <a href="demos-mandelbrot-mandelbrot.xtl.html#-252"><span class="c-error">%</span><span class="c-number">2</span></a></div>
+</div>
+<h2 class="section" id="section-4">k steps, from z = 0</h2>
+<div class="item" id="-252">
+<h3><a href="#-252"><span class="c-error">%</span><span class="c-number">2</span></a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-mandelbrot-mandelbrot.xtl.src.html#L65">line 65</a></div>
+<div class="doc">
+<p>zr, zi, counts: the state after k steps (function power, from a
+zero state), taken apart by the same pattern as the binding reads
+it in. m2: |z|^2. counts: how many steps each point stayed inside;
+the points still inside after k steps are the set, so far.</p>
+</div>
+<pre class="code">(<a href="demos-mandelbrot-mandelbrot.xtl.html#zr">zr</a>, <a href="demos-mandelbrot-mandelbrot.xtl.html#zi">zi</a>, <a href="demos-mandelbrot-mandelbrot.xtl.html#counts">counts</a>) ← <a href="demos-mandelbrot-mandelbrot.xtl.html#k">k</a> <span class="c-userfunc">'</span><a href="demos-mandelbrot-mandelbrot.xtl.html#u.s_tep" class="c-userfunc">ᵘs̲tep</a> <a href="builtins.html#p_ower" class="c-builtin">p̲ower</a> (<span class="c-number">0.0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#cr">cr</a>, <span class="c-number">0.0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#cr">cr</a>, <span class="c-number">0.0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#cr">cr</a>)</pre>
+</div>
+<div class="item" id="zr">
+<h3><a href="#zr">zr</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-mandelbrot-mandelbrot.xtl.src.html#L65">line 65</a></div>
+<div class="doc">
+<p>zr, zi, counts: the state after k steps (function power, from a
+zero state), taken apart by the same pattern as the binding reads
+it in. m2: |z|^2. counts: how many steps each point stayed inside;
+the points still inside after k steps are the set, so far.</p>
+</div>
+<pre class="code">(<a href="demos-mandelbrot-mandelbrot.xtl.html#zr">zr</a>, <a href="demos-mandelbrot-mandelbrot.xtl.html#zi">zi</a>, <a href="demos-mandelbrot-mandelbrot.xtl.html#counts">counts</a>) ← <a href="demos-mandelbrot-mandelbrot.xtl.html#k">k</a> <span class="c-userfunc">'</span><a href="demos-mandelbrot-mandelbrot.xtl.html#u.s_tep" class="c-userfunc">ᵘs̲tep</a> <a href="builtins.html#p_ower" class="c-builtin">p̲ower</a> (<span class="c-number">0.0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#cr">cr</a>, <span class="c-number">0.0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#cr">cr</a>, <span class="c-number">0.0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#cr">cr</a>)</pre>
+<div class="uses">Used in: <a href="demos-mandelbrot-mandelbrot.xtl.html#u.s_tep"><span class="c-userfunc">ᵘs̲tep</span></a>, <a href="demos-mandelbrot-mandelbrot.xtl.html#-252"><span class="c-error">%</span><span class="c-number">2</span></a>, <a href="demos-mandelbrot-mandelbrot.xtl.html#m2">m2</a>, <a href="demos-mandelbrot-mandelbrot.xtl.src.html#L70">demos/mandelbrot/mandelbrot.xtl:70</a></div>
+</div>
+<div class="item" id="zi">
+<h3><a href="#zi">zi</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-mandelbrot-mandelbrot.xtl.src.html#L65">line 65</a></div>
+<div class="doc">
+<p>zr, zi, counts: the state after k steps (function power, from a
+zero state), taken apart by the same pattern as the binding reads
+it in. m2: |z|^2. counts: how many steps each point stayed inside;
+the points still inside after k steps are the set, so far.</p>
+</div>
+<pre class="code">(<a href="demos-mandelbrot-mandelbrot.xtl.html#zr">zr</a>, <a href="demos-mandelbrot-mandelbrot.xtl.html#zi">zi</a>, <a href="demos-mandelbrot-mandelbrot.xtl.html#counts">counts</a>) ← <a href="demos-mandelbrot-mandelbrot.xtl.html#k">k</a> <span class="c-userfunc">'</span><a href="demos-mandelbrot-mandelbrot.xtl.html#u.s_tep" class="c-userfunc">ᵘs̲tep</a> <a href="builtins.html#p_ower" class="c-builtin">p̲ower</a> (<span class="c-number">0.0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#cr">cr</a>, <span class="c-number">0.0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#cr">cr</a>, <span class="c-number">0.0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#cr">cr</a>)</pre>
+<div class="uses">Used in: <a href="demos-mandelbrot-mandelbrot.xtl.html#u.s_tep"><span class="c-userfunc">ᵘs̲tep</span></a>, <a href="demos-mandelbrot-mandelbrot.xtl.html#-252"><span class="c-error">%</span><span class="c-number">2</span></a>, <a href="demos-mandelbrot-mandelbrot.xtl.html#m2">m2</a></div>
+</div>
+<div class="item" id="counts">
+<h3><a href="#counts">counts</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-mandelbrot-mandelbrot.xtl.src.html#L65">line 65</a></div>
+<div class="doc">
+<p>zr, zi, counts: the state after k steps (function power, from a
+zero state), taken apart by the same pattern as the binding reads
+it in. m2: |z|^2. counts: how many steps each point stayed inside;
+the points still inside after k steps are the set, so far.</p>
+</div>
+<pre class="code">(<a href="demos-mandelbrot-mandelbrot.xtl.html#zr">zr</a>, <a href="demos-mandelbrot-mandelbrot.xtl.html#zi">zi</a>, <a href="demos-mandelbrot-mandelbrot.xtl.html#counts">counts</a>) ← <a href="demos-mandelbrot-mandelbrot.xtl.html#k">k</a> <span class="c-userfunc">'</span><a href="demos-mandelbrot-mandelbrot.xtl.html#u.s_tep" class="c-userfunc">ᵘs̲tep</a> <a href="builtins.html#p_ower" class="c-builtin">p̲ower</a> (<span class="c-number">0.0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#cr">cr</a>, <span class="c-number">0.0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#cr">cr</a>, <span class="c-number">0.0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#cr">cr</a>)</pre>
+<div class="uses">Used in: <a href="demos-mandelbrot-mandelbrot.xtl.html#u.s_tep"><span class="c-userfunc">ᵘs̲tep</span></a>, <a href="demos-mandelbrot-mandelbrot.xtl.html#-252"><span class="c-error">%</span><span class="c-number">2</span></a>, <a href="demos-mandelbrot-mandelbrot.xtl.src.html#L74">demos/mandelbrot/mandelbrot.xtl:74</a></div>
+</div>
+<div class="item" id="m2">
+<h3><a href="#m2">m2</a></h3>
+<div class="meta">value &middot; <a href="demos-mandelbrot-mandelbrot.xtl.src.html#L66">line 66</a></div>
+<pre class="code">m2 ← (<a href="demos-mandelbrot-mandelbrot.xtl.html#zr">zr</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#zr">zr</a>) <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#zi">zi</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#zi">zi</a></pre>
+</div>
+<h2 class="section" id="section-5">One point's orbit</h2>
+<div class="item" id="cr0">
+<h3><a href="#cr0">cr0</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-mandelbrot-mandelbrot.xtl.src.html#L83">line 83</a></div>
+<div class="doc">
+<p>cr0, ci0: a point near the set's edge, c = -0.75 + 0.1i, which
+circles slowly rather than running away or settling.
+u:o_rbit s: the next z (z * z + c) for this one point, s its
+previous z (real part, imaginary part), no mask needed (a single
+point, always run the full k steps).</p>
+</div>
+<pre class="code">cr0 ← <span class="c-number">-0.75</span></pre>
+<div class="uses">Used in: <a href="demos-mandelbrot-mandelbrot.xtl.html#u.o_rbit"><span class="c-userfunc">ᵘo̲rbit</span></a></div>
+</div>
+<div class="item" id="ci0">
+<h3><a href="#ci0">ci0</a> <span class="type">: Float -&gt; Float</span></h3>
+<div class="meta">value &middot; <a href="demos-mandelbrot-mandelbrot.xtl.src.html#L84">line 84</a></div>
+<pre class="code">ci0 ← <span class="c-number">0.1</span></pre>
+<div class="uses">Used in: <a href="demos-mandelbrot-mandelbrot.xtl.html#u.o_rbit"><span class="c-userfunc">ᵘo̲rbit</span></a></div>
+</div>
+<div class="item" id="u.o_rbit">
+<h3><a href="#u.o_rbit"><span class="c-userfunc">ᵘo̲rbit</span></a></h3>
+<div class="meta">function &middot; <a href="demos-mandelbrot-mandelbrot.xtl.src.html#L85">line 85</a></div>
+<pre class="code"><span class="c-userfunc">ᵘo̲rbit</span> ← { s → (<a href="demos-mandelbrot-mandelbrot.xtl.html#cr0">cr0</a> <a href="builtins.html#-2b" class="c-symbol">+</a> ((<span class="c-number">1</span> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> s) <a href="builtins.html#-2a" class="c-symbol">×</a> <span class="c-number">1</span> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> s) <a href="builtins.html#-2d" class="c-symbol">−</a> (<span class="c-number">2</span> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> s) <a href="builtins.html#-2a" class="c-symbol">×</a> <span class="c-number">2</span> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> s) <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <a href="demos-mandelbrot-mandelbrot.xtl.html#ci0">ci0</a> <a href="builtins.html#-2b" class="c-symbol">+</a> <span class="c-number">2</span> <a href="builtins.html#-2a" class="c-symbol">×</a> (<span class="c-number">1</span> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> s) <a href="builtins.html#-2a" class="c-symbol">×</a> <span class="c-number">2</span> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> s }</pre>
+<div class="uses">Used in: <a href="demos-mandelbrot-mandelbrot.xtl.src.html#L88">demos/mandelbrot/mandelbrot.xtl:88</a>, <a href="demos-mandelbrot-mandelbrot.xtl.src.html#L89">demos/mandelbrot/mandelbrot.xtl:89</a></div>
+</div>
+</main>
+</body>
+</html>

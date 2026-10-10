@@ -1,0 +1,12 @@
+/* The cube net (eigencube's page); the rest is microscope.css. */
+.net { display: block; width: 100%; max-width: 560px; margin: 4px auto; }
+.sticker { stroke: #1d1d1f; stroke-width: .5; transition: fill .35s ease; }
+.sticker.white { fill: #ecf0f1; } .sticker.yellow { fill: #f1c40f; } .sticker.green { fill: #2ecc71; }
+.sticker.blue { fill: #3498db; } .sticker.red { fill: #e74c3c; } .sticker.orange { fill: #e67e22; }
+.turn { min-width: 3.2em; font-family: "JuliaMono", "DejaVu Sans Mono", Menlo, ui-monospace, monospace; }
+.moves { margin: 8px 0 0; font-family: "JuliaMono", "DejaVu Sans Mono", Menlo, ui-monospace, monospace; word-spacing: .2em; }
+.solve { font-weight: 600; border-color: var(--accent) !important; }
+.mv { display: inline-block; margin: 0 .25em .2em 0; padding: 0 .2em; border-radius: 4px; color: var(--muted); }
+.mv.done { color: var(--fg); }
+.mv.now { background: var(--accent); color: var(--bg); }
+.cube3d { display: block; width: 100%; max-width: 640px; margin: 4px auto; border-radius: 8px; background: #0b0d14; }

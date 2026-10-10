@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>demos/eigencube/eigencube.xtl - X_eTaL doc</title>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+<script defer src="search-index.js"></script>
+<script defer src="search.js"></script>
+</head>
+<body>
+<nav class="side">
+<a class="home" href="index.html">X_eTaL doc</a>
+<input id="search" type="search" autocomplete="off" placeholder="Search: a name, or a type" title="A name (mean finds m_ean), or a type: Num a =&gt; a -&gt; a -&gt; a finds +, m_ax ...">
+<h2>Files</h2>
+<h3>/Users/mike/github/softwarewrighter/X_eTaL-demos/work/libraries/libs/Eigencube/src/</h3>
+<ul>
+<li><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html">Eigencube.xtl</a></li>
+</ul>
+<h3>demos/ca-lab/</h3>
+<ul>
+<li><a href="demos-ca-lab-ca-lab.xtl.html">ca-lab.xtl</a></li>
+</ul>
+<h3>demos/eigencube/</h3>
+<ul>
+<li><a href="demos-eigencube-eigencube.xtl.html">eigencube.xtl</a></li>
+</ul>
+<h3>demos/fourier-epicycles/</h3>
+<ul>
+<li><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html">fourier-epicycles.xtl</a></li>
+</ul>
+<h3>demos/image-pipeline/</h3>
+<ul>
+<li><a href="demos-image-pipeline-image-pipeline.xtl.html">image-pipeline.xtl</a></li>
+</ul>
+<h3>demos/julia/</h3>
+<ul>
+<li><a href="demos-julia-julia.xtl.html">julia.xtl</a></li>
+</ul>
+<h3>demos/langtons-ant/</h3>
+<ul>
+<li><a href="demos-langtons-ant-langtons-ant.xtl.html">langtons-ant.xtl</a></li>
+</ul>
+<h3>demos/life-microscope/</h3>
+<ul>
+<li><a href="demos-life-microscope-life-microscope.xtl.html">life-microscope.xtl</a></li>
+</ul>
+<h3>demos/mandelbrot/</h3>
+<ul>
+<li><a href="demos-mandelbrot-mandelbrot.xtl.html">mandelbrot.xtl</a></li>
+</ul>
+<h3>demos/nbody/</h3>
+<ul>
+<li><a href="demos-nbody-nbody.xtl.html">nbody.xtl</a></li>
+</ul>
+<h3>demos/reaction-diffusion/</h3>
+<ul>
+<li><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html">reaction-diffusion.xtl</a></li>
+</ul>
+<h3>demos/sandpile/</h3>
+<ul>
+<li><a href="demos-sandpile-sandpile.xtl.html">sandpile.xtl</a></li>
+</ul>
+<h3>demos/stencil-macros/</h3>
+<ul>
+<li><a href="demos-stencil-macros-stencil-macros.xtl.html">stencil-macros.xtl</a></li>
+<li><a href="demos-stencil-macros-Stencil.xtlm.html">Stencil.xtlm</a></li>
+</ul>
+<h3>demos/wave-tank/</h3>
+<ul>
+<li><a href="demos-wave-tank-wave-tank.xtl.html">wave-tank.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-xetal-pipes.xtl.html">xetal-pipes.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/stages/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-stages-Pipes.xtl.html">Pipes.xtl</a></li>
+</ul>
+<ul>
+<li><a href="builtins.html">built-ins</a></li>
+</ul>
+<h2>On this page</h2>
+<ul>
+<li><a href="#section-1">A scramble</a></li>
+<li class="item"><a href="#sc">sc</a></li>
+<li class="item"><a href="#x">x</a></li>
+<li><a href="#section-2">Solved</a></li>
+<li class="item"><a href="#-2510"><span class="c-error">%</span><span class="c-number">10</span></a></li>
+<li class="item"><a href="#sol">sol</a></li>
+<li class="item"><a href="#lens">lens</a></li>
+<li class="item"><a href="#e">e</a></li>
+</ul>
+</nav>
+<main>
+<button class="theme" title="Light or dark">theme</button>
+<section id="results"></section>
+<h1><span class="kind">program</span>demos/eigencube/eigencube.xtl</h1>
+<div class="doc">
+<p>Eigencube: a Rubik's cube solved by linear algebra, a port of Steffen
+Smolka's eigencube.py (github.com/smolkaj/eigencube, MIT). Each of
+the 26 cubelets is the integer point c of {-1, 0, 1}^3 where it sits
+in the solved cube and carries a rotation matrix R: it sits now at
+R c. A quarter turn of the face with outward normal v moves the
+cubelets with v . (R c) &gt; 0 by one matrix product. The model and the
+solver are the Eigencube library of X_eTaL-libraries (pinned in
+LIBRARIES_COMMIT, read from work/libraries by &quot;just libraries&quot;); this
+program scrambles a cube and solves it with it.</p>
+</div>
+<p class="meta"><a href="demos-eigencube-eigencube.xtl.src.html">source</a> &middot; imports <code><span class="c-error">ec:</span></code> <a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html">/Users/mike/github/softwarewrighter/X_eTaL-demos/work/libraries/libs/Eigencube/src/Eigencube.xtl</a></p>
+<h2 class="section" id="section-1">A scramble</h2>
+<div class="item" id="sc">
+<h3><a href="#sc">sc</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-eigencube-eigencube.xtl.src.html#L18">line 18</a></div>
+<pre class="code">sc ← <a href="builtins.html#r_oll-21" class="c-builtin">r̲oll!</a> <span class="c-number">20</span> <a href="builtins.html#r_eshape" class="c-builtin">r̲eshape</a> <span class="c-number">12</span></pre>
+<div class="uses">Used in: <a href="demos-eigencube-eigencube.xtl.src.html#L19">demos/eigencube/eigencube.xtl:19</a>, <a href="demos-eigencube-eigencube.xtl.html#x">x</a></div>
+</div>
+<div class="item" id="x">
+<h3><a href="#x">x</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-eigencube-eigencube.xtl.src.html#L20">line 20</a></div>
+<pre class="code">x ← <a href="demos-eigencube-eigencube.xtl.html#sc">sc</a> <a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#l.d_o" class="c-libfunc">ᵉᶜd̲o</a> <a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#l.solved">ᵉᶜsolved</a></pre>
+<div class="uses">Used in: <a href="demos-eigencube-eigencube.xtl.src.html#L23">demos/eigencube/eigencube.xtl:23</a>, <a href="demos-eigencube-eigencube.xtl.html#-2510"><span class="c-error">%</span><span class="c-number">10</span></a>, <a href="demos-eigencube-eigencube.xtl.src.html#L36">demos/eigencube/eigencube.xtl:36</a>, <a href="demos-eigencube-eigencube.xtl.src.html#L37">demos/eigencube/eigencube.xtl:37</a></div>
+</div>
+<h2 class="section" id="section-2">Solved</h2>
+<div class="item" id="-2510">
+<h3><a href="#-2510"><span class="c-error">%</span><span class="c-number">10</span></a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-eigencube-eigencube.xtl.src.html#L27">line 27</a></div>
+<pre class="code">(<a href="demos-eigencube-eigencube.xtl.html#sol">sol</a>, <a href="demos-eigencube-eigencube.xtl.html#lens">lens</a>, <a href="demos-eigencube-eigencube.xtl.html#e">e</a>) ← <span class="c-number">1</span> <a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#l.s_olve" class="c-libfunc">ᵉᶜs̲olve</a> <a href="demos-eigencube-eigencube.xtl.html#x">x</a></pre>
+</div>
+<div class="item" id="sol">
+<h3><a href="#sol">sol</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-eigencube-eigencube.xtl.src.html#L27">line 27</a></div>
+<pre class="code">(<a href="demos-eigencube-eigencube.xtl.html#sol">sol</a>, <a href="demos-eigencube-eigencube.xtl.html#lens">lens</a>, <a href="demos-eigencube-eigencube.xtl.html#e">e</a>) ← <span class="c-number">1</span> <a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#l.s_olve" class="c-libfunc">ᵉᶜs̲olve</a> <a href="demos-eigencube-eigencube.xtl.html#x">x</a></pre>
+<div class="uses">Used in: <a href="demos-eigencube-eigencube.xtl.html#-2510"><span class="c-error">%</span><span class="c-number">10</span></a>, <a href="demos-eigencube-eigencube.xtl.src.html#L28">demos/eigencube/eigencube.xtl:28</a>, <a href="demos-eigencube-eigencube.xtl.src.html#L29">demos/eigencube/eigencube.xtl:29</a>, <a href="demos-eigencube-eigencube.xtl.src.html#L36">demos/eigencube/eigencube.xtl:36</a>, <a href="demos-eigencube-eigencube.xtl.src.html#L37">demos/eigencube/eigencube.xtl:37</a></div>
+</div>
+<div class="item" id="lens">
+<h3><a href="#lens">lens</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-eigencube-eigencube.xtl.src.html#L27">line 27</a></div>
+<pre class="code">(<a href="demos-eigencube-eigencube.xtl.html#sol">sol</a>, <a href="demos-eigencube-eigencube.xtl.html#lens">lens</a>, <a href="demos-eigencube-eigencube.xtl.html#e">e</a>) ← <span class="c-number">1</span> <a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#l.s_olve" class="c-libfunc">ᵉᶜs̲olve</a> <a href="demos-eigencube-eigencube.xtl.html#x">x</a></pre>
+<div class="uses">Used in: <a href="demos-eigencube-eigencube.xtl.html#-2510"><span class="c-error">%</span><span class="c-number">10</span></a>, <a href="demos-eigencube-eigencube.xtl.src.html#L34">demos/eigencube/eigencube.xtl:34</a></div>
+</div>
+<div class="item" id="e">
+<h3><a href="#e">e</a></h3>
+<div class="meta">value &middot; <a href="demos-eigencube-eigencube.xtl.src.html#L27">line 27</a></div>
+<pre class="code">(<a href="demos-eigencube-eigencube.xtl.html#sol">sol</a>, <a href="demos-eigencube-eigencube.xtl.html#lens">lens</a>, <a href="demos-eigencube-eigencube.xtl.html#e">e</a>) ← <span class="c-number">1</span> <a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#l.s_olve" class="c-libfunc">ᵉᶜs̲olve</a> <a href="demos-eigencube-eigencube.xtl.html#x">x</a></pre>
+<div class="uses">Used in: <a href="demos-eigencube-eigencube.xtl.html#-2510"><span class="c-error">%</span><span class="c-number">10</span></a>, <a href="demos-eigencube-eigencube.xtl.src.html#L34">demos/eigencube/eigencube.xtl:34</a></div>
+</div>
+</main>
+</body>
+</html>

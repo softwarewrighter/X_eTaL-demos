@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>demos/nbody/nbody.xtl - X_eTaL doc</title>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+<script defer src="search-index.js"></script>
+<script defer src="search.js"></script>
+</head>
+<body>
+<nav class="side">
+<a class="home" href="index.html">X_eTaL doc</a>
+<input id="search" type="search" autocomplete="off" placeholder="Search: a name, or a type" title="A name (mean finds m_ean), or a type: Num a =&gt; a -&gt; a -&gt; a finds +, m_ax ...">
+<h2>Files</h2>
+<h3>/Users/mike/github/softwarewrighter/X_eTaL-demos/work/libraries/libs/Eigencube/src/</h3>
+<ul>
+<li><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html">Eigencube.xtl</a></li>
+</ul>
+<h3>demos/ca-lab/</h3>
+<ul>
+<li><a href="demos-ca-lab-ca-lab.xtl.html">ca-lab.xtl</a></li>
+</ul>
+<h3>demos/eigencube/</h3>
+<ul>
+<li><a href="demos-eigencube-eigencube.xtl.html">eigencube.xtl</a></li>
+</ul>
+<h3>demos/fourier-epicycles/</h3>
+<ul>
+<li><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html">fourier-epicycles.xtl</a></li>
+</ul>
+<h3>demos/image-pipeline/</h3>
+<ul>
+<li><a href="demos-image-pipeline-image-pipeline.xtl.html">image-pipeline.xtl</a></li>
+</ul>
+<h3>demos/julia/</h3>
+<ul>
+<li><a href="demos-julia-julia.xtl.html">julia.xtl</a></li>
+</ul>
+<h3>demos/langtons-ant/</h3>
+<ul>
+<li><a href="demos-langtons-ant-langtons-ant.xtl.html">langtons-ant.xtl</a></li>
+</ul>
+<h3>demos/life-microscope/</h3>
+<ul>
+<li><a href="demos-life-microscope-life-microscope.xtl.html">life-microscope.xtl</a></li>
+</ul>
+<h3>demos/mandelbrot/</h3>
+<ul>
+<li><a href="demos-mandelbrot-mandelbrot.xtl.html">mandelbrot.xtl</a></li>
+</ul>
+<h3>demos/nbody/</h3>
+<ul>
+<li><a href="demos-nbody-nbody.xtl.html">nbody.xtl</a></li>
+</ul>
+<h3>demos/reaction-diffusion/</h3>
+<ul>
+<li><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html">reaction-diffusion.xtl</a></li>
+</ul>
+<h3>demos/sandpile/</h3>
+<ul>
+<li><a href="demos-sandpile-sandpile.xtl.html">sandpile.xtl</a></li>
+</ul>
+<h3>demos/stencil-macros/</h3>
+<ul>
+<li><a href="demos-stencil-macros-stencil-macros.xtl.html">stencil-macros.xtl</a></li>
+<li><a href="demos-stencil-macros-Stencil.xtlm.html">Stencil.xtlm</a></li>
+</ul>
+<h3>demos/wave-tank/</h3>
+<ul>
+<li><a href="demos-wave-tank-wave-tank.xtl.html">wave-tank.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-xetal-pipes.xtl.html">xetal-pipes.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/stages/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-stages-Pipes.xtl.html">Pipes.xtl</a></li>
+</ul>
+<ul>
+<li><a href="builtins.html">built-ins</a></li>
+</ul>
+<h2>On this page</h2>
+<ul>
+<li class="item"><a href="#L19">g</a></li>
+<li class="item"><a href="#L20">eps2</a></li>
+<li class="item"><a href="#L21">dt</a></li>
+<li class="item"><a href="#L22">m</a></li>
+<li class="item"><a href="#L23">steps</a></li>
+<li class="item"><a href="#L27">n</a></li>
+<li class="item"><a href="#L28">mj</a></li>
+<li class="item"><a href="#L30"><span class="c-userfunc">ᵘp̲lane</span></a></li>
+<li class="item"><a href="#L37"><span class="c-userfunc">ᵘc̲ube</span></a></li>
+<li class="item"><a href="#L48"><span class="c-userfunc">ᵘp̲ull</span></a></li>
+<li class="item"><a href="#L55"><span class="c-userfunc">ᵘa̲cc</span></a></li>
+<li class="item"><a href="#L65"><span class="c-userfunc">ᵘs̲tep</span></a></li>
+<li class="item"><a href="#L73"><span class="c-userfunc">ᵘr̲ound</span></a></li>
+<li class="item"><a href="#L74">p0</a></li>
+<li class="item"><a href="#L75">v0</a></li>
+<li class="item"><a href="#L76">s0</a></li>
+<li class="item"><a href="#L84">s</a></li>
+</ul>
+</nav>
+<main>
+<button class="theme" title="Light or dark">theme</button>
+<section id="results"></section>
+<h1><span class="kind">source</span><a href="demos-nbody-nbody.xtl.html">demos/nbody/nbody.xtl</a></h1>
+<div class="source"><span class="line" id="L1"><a class="ln" href="#L1">1</a><span class="c-comment">⍝</span><span class="c-comment">!/usr/bin/env xetal</span></span>
+<span class="line" id="L2"><a class="ln" href="#L2">2</a><span class="c-comment">⍝</span><span class="c-comment"># N-body gravity with no loops. Every pair of bodies at once: the</span></span>
+<span class="line" id="L3"><a class="ln" href="#L3">3</a><span class="c-comment">⍝</span><span class="c-comment"># displacements of all pairs form a cube (2 x N x N, built by</span></span>
+<span class="line" id="L4"><a class="ln" href="#L4">4</a><span class="c-comment">⍝</span><span class="c-comment"># broadcasting with t_able), the cube gives every pair's softened</span></span>
+<span class="line" id="L5"><a class="ln" href="#L5">5</a><span class="c-comment">⍝</span><span class="c-comment"># inverse-square pull, and one reduce over the second body sums the</span></span>
+<span class="line" id="L6"><a class="ln" href="#L6">6</a><span class="c-comment">⍝</span><span class="c-comment"># pulls into each body's acceleration. A kick-drift-kick (leapfrog)</span></span>
+<span class="line" id="L7"><a class="ln" href="#L7">7</a><span class="c-comment">⍝</span><span class="c-comment"># step moves them all. Run it with &quot;xetal run demos/nbody/nbody.xtl&quot;;</span></span>
+<span class="line" id="L8"><a class="ln" href="#L8">8</a><span class="c-comment">⍝</span><span class="c-comment"># it prints the cube's shape, its x plane, the starting</span></span>
+<span class="line" id="L9"><a class="ln" href="#L9">9</a><span class="c-comment">⍝</span><span class="c-comment"># accelerations, the state after 50 steps, and the total momentum</span></span>
+<span class="line" id="L10"><a class="ln" href="#L10">10</a><span class="c-comment">⍝</span><span class="c-comment"># (which stays 0). The live page has four presets (the figure-eight,</span></span>
+<span class="line" id="L11"><a class="ln" href="#L11">11</a><span class="c-comment">⍝</span><span class="c-comment"># a binary star, a collapsing cluster, a Kepler ellipse) and lets you</span></span>
+<span class="line" id="L12"><a class="ln" href="#L12">12</a><span class="c-comment">⍝</span><span class="c-comment"># click a body for its row of the cube:</span></span>
+<span class="line" id="L13"><a class="ln" href="#L13">13</a><span class="c-comment">⍝</span><span class="c-comment"># https://softwarewrighter.github.io/X_eTaL-demos/nbody/</span></span>
+<span class="line" id="L14"><a class="ln" href="#L14">14</a></span>
+<span class="line" id="L15"><a class="ln" href="#L15">15</a><span class="c-comment">⍝</span><span class="c-comment"># g, eps2, dt, m, steps: G = 1, the softening (keeps close passes</span></span>
+<span class="line" id="L16"><a class="ln" href="#L16">16</a><span class="c-comment">⍝</span><span class="c-comment"># finite), the time step, the masses, and how many steps to run. The</span></span>
+<span class="line" id="L17"><a class="ln" href="#L17">17</a><span class="c-comment">⍝</span><span class="c-comment"># figure-eight starting masses: three equal, chasing each other</span></span>
+<span class="line" id="L18"><a class="ln" href="#L18">18</a><span class="c-comment">⍝</span><span class="c-comment"># round one curve (Chenciner and Montgomery's orbit).</span></span>
+<span class="line" id="L19"><a class="ln" href="#L19">19</a>g ← <span class="c-number">1.0</span></span>
+<span class="line" id="L20"><a class="ln" href="#L20">20</a>eps2 ← <span class="c-number">0.000001</span></span>
+<span class="line" id="L21"><a class="ln" href="#L21">21</a>dt ← <span class="c-number">0.01</span></span>
+<span class="line" id="L22"><a class="ln" href="#L22">22</a>m ← <span class="c-number">1.0</span> <span class="c-number">1.0</span> <span class="c-number">1.0</span></span>
+<span class="line" id="L23"><a class="ln" href="#L23">23</a>steps ← <span class="c-number">50</span></span>
+<span class="line" id="L24"><a class="ln" href="#L24">24</a></span>
+<span class="line" id="L25"><a class="ln" href="#L25">25</a><span class="c-comment">⍝</span><span class="c-comment"># -- the bodies' masses, spread over every pair. n, mj: mj is N x N,</span></span>
+<span class="line" id="L26"><a class="ln" href="#L26">26</a><span class="c-comment">⍝</span><span class="c-comment"># row i column j holds m_j, the mass pulling on body i.</span></span>
+<span class="line" id="L27"><a class="ln" href="#L27">27</a>n ← <a href="builtins.html#t_ally" class="c-builtin">t̲ally</a> <a href="demos-nbody-nbody.xtl.html#m">m</a></span>
+<span class="line" id="L28"><a class="ln" href="#L28">28</a>mj ← (<a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-nbody-nbody.xtl.html#n">n</a>) <span class="c-builtin">'</span><a href="builtins.html#r_ight" class="c-builtin">r̲ight</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="demos-nbody-nbody.xtl.html#m">m</a></span>
+<span class="line" id="L29"><a class="ln" href="#L29">29</a><span class="c-comment">⍝</span><span class="c-comment"># u:p_lane a: a matrix as one plane of a rank-3 array, to stack planes.</span></span>
+<span class="line" id="L30"><a class="ln" href="#L30">30</a><span class="c-userfunc">ᵘp̲lane</span> ← { a → (<span class="c-number">1</span> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <a href="builtins.html#s_hape" class="c-builtin">s̲hape</a> a) <a href="builtins.html#r_eshape" class="c-builtin">r̲eshape</a> a }</span>
+<span class="line" id="L31"><a class="ln" href="#L31">31</a></span>
+<span class="line" id="L32"><a class="ln" href="#L32">32</a><span class="c-comment">⍝</span><span class="c-comment">## The cube: every pair's displacement, by broadcasting</span></span>
+<span class="line" id="L33"><a class="ln" href="#L33">33</a></span>
+<span class="line" id="L34"><a class="ln" href="#L34">34</a><span class="c-comment">⍝</span><span class="c-comment"># u:c_ube p: p is 2 x N, the x row and the y row. A table of</span></span>
+<span class="line" id="L35"><a class="ln" href="#L35">35</a><span class="c-comment">⍝</span><span class="c-comment"># differences gives x_i - x_j for every pair, N x N; the tables for x</span></span>
+<span class="line" id="L36"><a class="ln" href="#L36">36</a><span class="c-comment">⍝</span><span class="c-comment"># and y stack into a 2 x N x N cube.</span></span>
+<span class="line" id="L37"><a class="ln" href="#L37">37</a><span class="c-userfunc">ᵘc̲ube</span> ← { p →</span>
+<span class="line" id="L38"><a class="ln" href="#L38">38</a>  x ← <span class="c-number">1</span> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> p</span>
+<span class="line" id="L39"><a class="ln" href="#L39">39</a>  y ← <span class="c-number">2</span> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> p</span>
+<span class="line" id="L40"><a class="ln" href="#L40">40</a>  (<a href="demos-nbody-nbody.xtl.html#u.p_lane" class="c-userfunc">ᵘp̲lane</a> x <span class="c-symbol">'</span><a href="builtins.html#-2d" class="c-symbol">−</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> x) <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <a href="demos-nbody-nbody.xtl.html#u.p_lane" class="c-userfunc">ᵘp̲lane</a> y <span class="c-symbol">'</span><a href="builtins.html#-2d" class="c-symbol">−</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> y</span>
+<span class="line" id="L41"><a class="ln" href="#L41">41</a>}</span>
+<span class="line" id="L42"><a class="ln" href="#L42">42</a></span>
+<span class="line" id="L43"><a class="ln" href="#L43">43</a><span class="c-comment">⍝</span><span class="c-comment">## The pull: softened inverse-square</span></span>
+<span class="line" id="L44"><a class="ln" href="#L44">44</a></span>
+<span class="line" id="L45"><a class="ln" href="#L45">45</a><span class="c-comment">⍝</span><span class="c-comment"># u:p_ull d: g m_j / (r^2 + eps2)^(3/2) for every pair: the inverse</span></span>
+<span class="line" id="L46"><a class="ln" href="#L46">46</a><span class="c-comment">⍝</span><span class="c-comment"># square, and one more 1 / r because the displacement in the cube has</span></span>
+<span class="line" id="L47"><a class="ln" href="#L47">47</a><span class="c-comment">⍝</span><span class="c-comment"># length r.</span></span>
+<span class="line" id="L48"><a class="ln" href="#L48">48</a><span class="c-userfunc">ᵘp̲ull</span> ← { d → <a href="demos-nbody-nbody.xtl.html#g">g</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-nbody-nbody.xtl.html#mj">mj</a> <a href="builtins.html#-2f" class="c-symbol">÷</a> ((<span class="c-symbol">'</span><a href="builtins.html#-2b" class="c-symbol">+</a> <a href="builtins.html#r_-2f" class="c-builtin">r̲/</a> d <a href="builtins.html#-2a" class="c-symbol">×</a> d) <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="demos-nbody-nbody.xtl.html#eps2">eps2</a>) <a href="builtins.html#-5e" class="c-symbol">^</a> <span class="c-number">1.5</span> }</span>
+<span class="line" id="L49"><a class="ln" href="#L49">49</a></span>
+<span class="line" id="L50"><a class="ln" href="#L50">50</a><span class="c-comment">⍝</span><span class="c-comment">## The reduction: sum over the second body</span></span>
+<span class="line" id="L51"><a class="ln" href="#L51">51</a></span>
+<span class="line" id="L52"><a class="ln" href="#L52">52</a><span class="c-comment">⍝</span><span class="c-comment"># u:a_cc p: each plane of the cube times the pull, summed along j</span></span>
+<span class="line" id="L53"><a class="ln" href="#L53">53</a><span class="c-comment">⍝</span><span class="c-comment"># (axis 3): the 2 x N accelerations. The diagonal, a body and itself,</span></span>
+<span class="line" id="L54"><a class="ln" href="#L54">54</a><span class="c-comment">⍝</span><span class="c-comment"># is 0 times its pull.</span></span>
+<span class="line" id="L55"><a class="ln" href="#L55">55</a><span class="c-userfunc">ᵘa̲cc</span> ← { p →</span>
+<span class="line" id="L56"><a class="ln" href="#L56">56</a>  d ← <a href="demos-nbody-nbody.xtl.html#u.c_ube" class="c-userfunc">ᵘc̲ube</a> p</span>
+<span class="line" id="L57"><a class="ln" href="#L57">57</a>  w ← <a href="demos-nbody-nbody.xtl.html#u.p_ull" class="c-userfunc">ᵘp̲ull</a> d</span>
+<span class="line" id="L58"><a class="ln" href="#L58">58</a>  <a href="builtins.html#n_eg" class="c-builtin">n̲eg</a> <span class="c-symbol">'</span><a href="builtins.html#-2b" class="c-symbol">+</a> <a href="builtins.html#r_-2f" class="c-builtin">r̲/₃</a> d <a href="builtins.html#-2a" class="c-symbol">×</a> (<span class="c-number">2</span> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <a href="builtins.html#s_hape" class="c-builtin">s̲hape</a> w) <a href="builtins.html#r_eshape" class="c-builtin">r̲eshape</a> w</span>
+<span class="line" id="L59"><a class="ln" href="#L59">59</a>}</span>
+<span class="line" id="L60"><a class="ln" href="#L60">60</a></span>
+<span class="line" id="L61"><a class="ln" href="#L61">61</a><span class="c-comment">⍝</span><span class="c-comment">## One step: kick, drift, kick</span></span>
+<span class="line" id="L62"><a class="ln" href="#L62">62</a></span>
+<span class="line" id="L63"><a class="ln" href="#L63">63</a><span class="c-comment">⍝</span><span class="c-comment"># u:s_tep s: the state s is 4 x N, the x and y rows, then the</span></span>
+<span class="line" id="L64"><a class="ln" href="#L64">64</a><span class="c-comment">⍝</span><span class="c-comment"># velocities' x and y rows.</span></span>
+<span class="line" id="L65"><a class="ln" href="#L65">65</a><span class="c-userfunc">ᵘs̲tep</span> ← { s →</span>
+<span class="line" id="L66"><a class="ln" href="#L66">66</a>  p ← <span class="c-number">2</span> <a href="builtins.html#t_ake" class="c-builtin">t̲ake</a> s</span>
+<span class="line" id="L67"><a class="ln" href="#L67">67</a>  h ← (<span class="c-number">2</span> <a href="builtins.html#d_rop" class="c-builtin">d̲rop</a> s) <a href="builtins.html#-2b" class="c-symbol">+</a> (<a href="demos-nbody-nbody.xtl.html#dt">dt</a> <a href="builtins.html#-2f" class="c-symbol">÷</a> <span class="c-number">2.0</span>) <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-nbody-nbody.xtl.html#u.a_cc" class="c-userfunc">ᵘa̲cc</a> p</span>
+<span class="line" id="L68"><a class="ln" href="#L68">68</a>  p1 ← p <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="demos-nbody-nbody.xtl.html#dt">dt</a> <a href="builtins.html#-2a" class="c-symbol">×</a> h</span>
+<span class="line" id="L69"><a class="ln" href="#L69">69</a>  p1 <a href="builtins.html#c_at" class="c-builtin">c̲at</a> h <a href="builtins.html#-2b" class="c-symbol">+</a> (<a href="demos-nbody-nbody.xtl.html#dt">dt</a> <a href="builtins.html#-2f" class="c-symbol">÷</a> <span class="c-number">2.0</span>) <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-nbody-nbody.xtl.html#u.a_cc" class="c-userfunc">ᵘa̲cc</a> p1</span>
+<span class="line" id="L70"><a class="ln" href="#L70">70</a>}</span>
+<span class="line" id="L71"><a class="ln" href="#L71">71</a><span class="c-comment">⍝</span><span class="c-comment"> -- end of the core -----------------------------------</span></span>
+<span class="line" id="L72"><a class="ln" href="#L72">72</a></span>
+<span class="line" id="L73"><a class="ln" href="#L73">73</a><span class="c-userfunc">ᵘr̲ound</span> ← { a → (<a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="builtins.html#f_loor" class="c-builtin">f̲loor</a> <span class="c-number">0.5</span> <a href="builtins.html#-2b" class="c-symbol">+</a> a <a href="builtins.html#-2a" class="c-symbol">×</a> <span class="c-number">10000.0</span>) <a href="builtins.html#-2f" class="c-symbol">÷</a> <span class="c-number">10000.0</span> }</span>
+<span class="line" id="L74"><a class="ln" href="#L74">74</a>p0 ← <span class="c-number">2</span> <span class="c-number">3</span> <a href="builtins.html#r_eshape" class="c-builtin">r̲eshape</a> <span class="c-number">0.97000436</span> <span class="c-number">-0.97000436</span> <span class="c-number">0.0</span> <span class="c-number">-0.24308753</span> <span class="c-number">0.24308753</span> <span class="c-number">0.0</span></span>
+<span class="line" id="L75"><a class="ln" href="#L75">75</a>v0 ← <span class="c-number">2</span> <span class="c-number">3</span> <a href="builtins.html#r_eshape" class="c-builtin">r̲eshape</a> <span class="c-number">0.466203685</span> <span class="c-number">0.466203685</span> <span class="c-number">-0.93240737</span> <span class="c-number">0.43236573</span> <span class="c-number">0.43236573</span> <span class="c-number">-0.86473146</span></span>
+<span class="line" id="L76"><a class="ln" href="#L76">76</a>s0 ← <a href="demos-nbody-nbody.xtl.html#p0">p0</a> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <a href="demos-nbody-nbody.xtl.html#v0">v0</a></span>
+<span class="line" id="L77"><a class="ln" href="#L77">77</a></span>
+<span class="line" id="L78"><a class="ln" href="#L78">78</a><span class="c-comment">⍝</span><span class="c-comment"> The cube for the start, its shape, and its x plane.</span></span>
+<span class="line" id="L79"><a class="ln" href="#L79">79</a><a href="builtins.html#s_hape" class="c-builtin">s̲hape</a> <a href="demos-nbody-nbody.xtl.html#u.c_ube" class="c-userfunc">ᵘc̲ube</a> <a href="demos-nbody-nbody.xtl.html#p0">p0</a></span>
+<span class="line" id="L80"><a class="ln" href="#L80">80</a><a href="demos-nbody-nbody.xtl.html#u.r_ound" class="c-userfunc">ᵘr̲ound</a> <span class="c-number">1</span> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> <a href="demos-nbody-nbody.xtl.html#u.c_ube" class="c-userfunc">ᵘc̲ube</a> <a href="demos-nbody-nbody.xtl.html#p0">p0</a></span>
+<span class="line" id="L81"><a class="ln" href="#L81">81</a><span class="c-comment">⍝</span><span class="c-comment"> The accelerations at the start: one column per body.</span></span>
+<span class="line" id="L82"><a class="ln" href="#L82">82</a><a href="demos-nbody-nbody.xtl.html#u.r_ound" class="c-userfunc">ᵘr̲ound</a> <a href="demos-nbody-nbody.xtl.html#u.a_cc" class="c-userfunc">ᵘa̲cc</a> <a href="demos-nbody-nbody.xtl.html#p0">p0</a></span>
+<span class="line" id="L83"><a class="ln" href="#L83">83</a><span class="c-comment">⍝</span><span class="c-comment"> After 50 steps (t = 0.5): positions, then velocities.</span></span>
+<span class="line" id="L84"><a class="ln" href="#L84">84</a>s ← <a href="demos-nbody-nbody.xtl.html#steps">steps</a> <span class="c-userfunc">'</span><a href="demos-nbody-nbody.xtl.html#u.s_tep" class="c-userfunc">ᵘs̲tep</a> <a href="builtins.html#p_ower" class="c-builtin">p̲ower</a> <a href="demos-nbody-nbody.xtl.html#s0">s0</a></span>
+<span class="line" id="L85"><a class="ln" href="#L85">85</a><a href="demos-nbody-nbody.xtl.html#u.r_ound" class="c-userfunc">ᵘr̲ound</a> <a href="demos-nbody-nbody.xtl.html#s">s</a></span>
+<span class="line" id="L86"><a class="ln" href="#L86">86</a><span class="c-comment">⍝</span><span class="c-comment"> The total momentum stays 0: the sum over bodies of m v.</span></span>
+<span class="line" id="L87"><a class="ln" href="#L87">87</a><a href="demos-nbody-nbody.xtl.html#u.r_ound" class="c-userfunc">ᵘr̲ound</a> <span class="c-symbol">'</span><a href="builtins.html#-2b" class="c-symbol">+</a> <a href="builtins.html#r_-2f" class="c-builtin">r̲/₂</a> (<span class="c-number">2</span> <a href="builtins.html#d_rop" class="c-builtin">d̲rop</a> <a href="demos-nbody-nbody.xtl.html#s">s</a>) <a href="builtins.html#-2a" class="c-symbol">×</a> (<span class="c-number">2</span> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <a href="demos-nbody-nbody.xtl.html#n">n</a>) <a href="builtins.html#r_eshape" class="c-builtin">r̲eshape</a> <a href="demos-nbody-nbody.xtl.html#m">m</a></span>
+</div>
+</main>
+</body>
+</html>

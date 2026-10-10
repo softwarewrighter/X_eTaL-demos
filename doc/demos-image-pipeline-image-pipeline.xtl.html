@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>demos/image-pipeline/image-pipeline.xtl - X_eTaL doc</title>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+<script defer src="search-index.js"></script>
+<script defer src="search.js"></script>
+</head>
+<body>
+<nav class="side">
+<a class="home" href="index.html">X_eTaL doc</a>
+<input id="search" type="search" autocomplete="off" placeholder="Search: a name, or a type" title="A name (mean finds m_ean), or a type: Num a =&gt; a -&gt; a -&gt; a finds +, m_ax ...">
+<h2>Files</h2>
+<h3>/Users/mike/github/softwarewrighter/X_eTaL-demos/work/libraries/libs/Eigencube/src/</h3>
+<ul>
+<li><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html">Eigencube.xtl</a></li>
+</ul>
+<h3>demos/ca-lab/</h3>
+<ul>
+<li><a href="demos-ca-lab-ca-lab.xtl.html">ca-lab.xtl</a></li>
+</ul>
+<h3>demos/eigencube/</h3>
+<ul>
+<li><a href="demos-eigencube-eigencube.xtl.html">eigencube.xtl</a></li>
+</ul>
+<h3>demos/fourier-epicycles/</h3>
+<ul>
+<li><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html">fourier-epicycles.xtl</a></li>
+</ul>
+<h3>demos/image-pipeline/</h3>
+<ul>
+<li><a href="demos-image-pipeline-image-pipeline.xtl.html">image-pipeline.xtl</a></li>
+</ul>
+<h3>demos/julia/</h3>
+<ul>
+<li><a href="demos-julia-julia.xtl.html">julia.xtl</a></li>
+</ul>
+<h3>demos/langtons-ant/</h3>
+<ul>
+<li><a href="demos-langtons-ant-langtons-ant.xtl.html">langtons-ant.xtl</a></li>
+</ul>
+<h3>demos/life-microscope/</h3>
+<ul>
+<li><a href="demos-life-microscope-life-microscope.xtl.html">life-microscope.xtl</a></li>
+</ul>
+<h3>demos/mandelbrot/</h3>
+<ul>
+<li><a href="demos-mandelbrot-mandelbrot.xtl.html">mandelbrot.xtl</a></li>
+</ul>
+<h3>demos/nbody/</h3>
+<ul>
+<li><a href="demos-nbody-nbody.xtl.html">nbody.xtl</a></li>
+</ul>
+<h3>demos/reaction-diffusion/</h3>
+<ul>
+<li><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html">reaction-diffusion.xtl</a></li>
+</ul>
+<h3>demos/sandpile/</h3>
+<ul>
+<li><a href="demos-sandpile-sandpile.xtl.html">sandpile.xtl</a></li>
+</ul>
+<h3>demos/stencil-macros/</h3>
+<ul>
+<li><a href="demos-stencil-macros-stencil-macros.xtl.html">stencil-macros.xtl</a></li>
+<li><a href="demos-stencil-macros-Stencil.xtlm.html">Stencil.xtlm</a></li>
+</ul>
+<h3>demos/wave-tank/</h3>
+<ul>
+<li><a href="demos-wave-tank-wave-tank.xtl.html">wave-tank.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-xetal-pipes.xtl.html">xetal-pipes.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/stages/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-stages-Pipes.xtl.html">Pipes.xtl</a></li>
+</ul>
+<ul>
+<li><a href="builtins.html">built-ins</a></li>
+</ul>
+<h2>On this page</h2>
+<ul>
+<li class="item"><a href="#rows">rows</a></li>
+<li class="item"><a href="#cols">cols</a></li>
+<li class="item"><a href="#row">row</a></li>
+<li class="item"><a href="#col">col</a></li>
+<li class="item"><a href="#disk">disk</a></li>
+<li class="item"><a href="#box">box</a></li>
+<li class="item"><a href="#img">img</a></li>
+<li class="item"><a href="#blur">blur</a></li>
+<li class="item"><a href="#kx">kx</a></li>
+<li class="item"><a href="#ky">ky</a></li>
+<li class="item"><a href="#thresh">thresh</a></li>
+<li class="item"><a href="#u.w_indows"><span class="c-userfunc">ᵘw̲indows</span></a></li>
+<li><a href="#section-1">A filter: kernel times windows, summed</a></li>
+<li class="item"><a href="#u.f_ilter"><span class="c-userfunc">ᵘf̲ilter</span></a></li>
+<li><a href="#section-2">The pipeline</a></li>
+<li class="item"><a href="#smooth">smooth</a></li>
+<li class="item"><a href="#gx">gx</a></li>
+<li class="item"><a href="#gy">gy</a></li>
+<li class="item"><a href="#mag">mag</a></li>
+<li class="item"><a href="#edges">edges</a></li>
+<li class="item"><a href="#pool">pool</a></li>
+<li class="item"><a href="#u.d_raw"><span class="c-userfunc">ᵘd̲raw</span></a></li>
+</ul>
+</nav>
+<main>
+<button class="theme" title="Light or dark">theme</button>
+<section id="results"></section>
+<h1><span class="kind">program</span>demos/image-pipeline/image-pipeline.xtl</h1>
+<div class="doc">
+<p>An image pipeline as array programs: a picture built from masks,
+blurred, its edges found with the Sobel kernels, thresholded, and
+shrunk by max-pooling. Every 3 x 3 filter is the same two steps:
+the stack of the nine shifted copies of the image (its windows),
+then the kernel times the stack, summed. Run it with &quot;xetal run
+demos/image-pipeline/image-pipeline.xtl&quot;; it prints the windows'
+and the pooled map's shapes, then the picture, the edge strength,
+the edges and the pooled edges, each drawn with characters. The
+live page lets you edit the kernels and pick a picture, and click
+a pixel for its window times each kernel:
+https://softwarewrighter.github.io/X_eTaL-demos/image-pipeline/</p>
+</div>
+<p class="meta"><a href="demos-image-pipeline-image-pipeline.xtl.src.html">source</a></p>
+<div class="item" id="rows">
+<h3><a href="#rows">rows</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-image-pipeline-image-pipeline.xtl.src.html#L14">line 14</a></div>
+<pre class="code">rows ← <span class="c-number">20</span></pre>
+<div class="uses">Used in: <a href="demos-image-pipeline-image-pipeline.xtl.html#row">row</a>, <a href="demos-image-pipeline-image-pipeline.xtl.html#col">col</a>, <a href="demos-image-pipeline-image-pipeline.xtl.html#pool">pool</a></div>
+</div>
+<div class="item" id="cols">
+<h3><a href="#cols">cols</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-image-pipeline-image-pipeline.xtl.src.html#L15">line 15</a></div>
+<pre class="code">cols ← <span class="c-number">40</span></pre>
+<div class="uses">Used in: <a href="demos-image-pipeline-image-pipeline.xtl.html#row">row</a>, <a href="demos-image-pipeline-image-pipeline.xtl.html#col">col</a>, <a href="demos-image-pipeline-image-pipeline.xtl.html#pool">pool</a></div>
+</div>
+<div class="item" id="row">
+<h3><a href="#row">row</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-image-pipeline-image-pipeline.xtl.src.html#L19">line 19</a></div>
+<div class="doc">
+<p>-- coordinates: each pixel's row and column. row, col: by
+broadcasting (t_able).</p>
+</div>
+<pre class="code">row ← (<a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-image-pipeline-image-pipeline.xtl.html#rows">rows</a>) <span class="c-builtin">'</span><a href="builtins.html#l_eft" class="c-builtin">l̲eft</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-image-pipeline-image-pipeline.xtl.html#cols">cols</a></pre>
+<div class="uses">Used in: <a href="demos-image-pipeline-image-pipeline.xtl.html#disk">disk</a>, <a href="demos-image-pipeline-image-pipeline.xtl.html#box">box</a>, <a href="demos-image-pipeline-image-pipeline.xtl.html#img">img</a></div>
+</div>
+<div class="item" id="col">
+<h3><a href="#col">col</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-image-pipeline-image-pipeline.xtl.src.html#L20">line 20</a></div>
+<pre class="code">col ← (<a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-image-pipeline-image-pipeline.xtl.html#rows">rows</a>) <span class="c-builtin">'</span><a href="builtins.html#r_ight" class="c-builtin">r̲ight</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-image-pipeline-image-pipeline.xtl.html#cols">cols</a></pre>
+<div class="uses">Used in: <a href="demos-image-pipeline-image-pipeline.xtl.html#disk">disk</a>, <a href="demos-image-pipeline-image-pipeline.xtl.html#box">box</a></div>
+</div>
+<div class="item" id="disk">
+<h3><a href="#disk">disk</a> <span class="type">: Bool</span></h3>
+<div class="meta">value &middot; <a href="demos-image-pipeline-image-pipeline.xtl.src.html#L25">line 25</a></div>
+<pre class="code">disk ← (((<a href="demos-image-pipeline-image-pipeline.xtl.html#row">row</a> <a href="builtins.html#-2d" class="c-symbol">−</a> <span class="c-number">9</span>) <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-image-pipeline-image-pipeline.xtl.html#row">row</a> <a href="builtins.html#-2d" class="c-symbol">−</a> <span class="c-number">9</span>) <a href="builtins.html#-2b" class="c-symbol">+</a> ((<a href="demos-image-pipeline-image-pipeline.xtl.html#col">col</a> <a href="builtins.html#-2d" class="c-symbol">−</a> <span class="c-number">10</span>) <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-image-pipeline-image-pipeline.xtl.html#col">col</a> <a href="builtins.html#-2d" class="c-symbol">−</a> <span class="c-number">10</span>) <a href="builtins.html#d_iv" class="c-builtin">d̲iv</a> <span class="c-number">2</span>) <a href="builtins.html#-3c" class="c-symbol">&lt;</a> <span class="c-number">36</span></pre>
+<div class="uses">Used in: <a href="demos-image-pipeline-image-pipeline.xtl.html#img">img</a></div>
+</div>
+<div class="item" id="box">
+<h3><a href="#box">box</a> <span class="type">: Bool</span></h3>
+<div class="meta">value &middot; <a href="demos-image-pipeline-image-pipeline.xtl.src.html#L26">line 26</a></div>
+<pre class="code">box ← ((<a href="demos-image-pipeline-image-pipeline.xtl.html#row">row</a> <a href="builtins.html#-3e-3d" class="c-symbol">≥</a> <span class="c-number">5</span>) <a href="builtins.html#-26" class="c-symbol">∧</a> <a href="demos-image-pipeline-image-pipeline.xtl.html#row">row</a> <a href="builtins.html#-3c" class="c-symbol">&lt;</a> <span class="c-number">15</span>) <a href="builtins.html#-26" class="c-symbol">∧</a> (<a href="demos-image-pipeline-image-pipeline.xtl.html#col">col</a> <a href="builtins.html#-3e-3d" class="c-symbol">≥</a> <span class="c-number">22</span>) <a href="builtins.html#-26" class="c-symbol">∧</a> <a href="demos-image-pipeline-image-pipeline.xtl.html#col">col</a> <a href="builtins.html#-3c" class="c-symbol">&lt;</a> <span class="c-number">33</span></pre>
+<div class="uses">Used in: <a href="demos-image-pipeline-image-pipeline.xtl.html#img">img</a></div>
+</div>
+<div class="item" id="img">
+<h3><a href="#img">img</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-image-pipeline-image-pipeline.xtl.src.html#L27">line 27</a></div>
+<pre class="code">img ← <span class="c-number">0.15</span> <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">0.7</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="demos-image-pipeline-image-pipeline.xtl.html#disk">disk</a>) <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">0.45</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="demos-image-pipeline-image-pipeline.xtl.html#box">box</a>) <a href="builtins.html#-2b" class="c-symbol">+</a> <span class="c-number">0.001</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="builtins.html#r_oll-21" class="c-builtin">r̲oll!</a> (<a href="builtins.html#s_hape" class="c-builtin">s̲hape</a> <a href="demos-image-pipeline-image-pipeline.xtl.html#row">row</a>) <a href="builtins.html#r_eshape" class="c-builtin">r̲eshape</a> <span class="c-number">60</span></pre>
+<div class="uses">Used in: <a href="demos-image-pipeline-image-pipeline.xtl.html#smooth">smooth</a>, <a href="demos-image-pipeline-image-pipeline.xtl.src.html#L66">demos/image-pipeline/image-pipeline.xtl:66</a>, <a href="demos-image-pipeline-image-pipeline.xtl.src.html#L71">demos/image-pipeline/image-pipeline.xtl:71</a></div>
+</div>
+<div class="item" id="blur">
+<h3><a href="#blur">blur</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-image-pipeline-image-pipeline.xtl.src.html#L32">line 32</a></div>
+<div class="doc">
+<p>-- the kernels. blur: a Gaussian blur. kx, ky: Sobel edge kernels
+(ky is kx turned a quarter, o_\, the transpose). thresh: the edge
+strength that counts as an edge.</p>
+</div>
+<pre class="code">blur ← (<span class="c-number">3</span> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <span class="c-number">3</span>) <a href="builtins.html#r_eshape" class="c-builtin">r̲eshape</a> <span class="c-number">0.0625</span> <span class="c-number">0.125</span> <span class="c-number">0.0625</span> <span class="c-number">0.125</span> <span class="c-number">0.25</span> <span class="c-number">0.125</span> <span class="c-number">0.0625</span> <span class="c-number">0.125</span> <span class="c-number">0.0625</span></pre>
+<div class="uses">Used in: <a href="demos-image-pipeline-image-pipeline.xtl.html#smooth">smooth</a></div>
+</div>
+<div class="item" id="kx">
+<h3><a href="#kx">kx</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-image-pipeline-image-pipeline.xtl.src.html#L33">line 33</a></div>
+<pre class="code">kx ← (<span class="c-number">3</span> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <span class="c-number">3</span>) <a href="builtins.html#r_eshape" class="c-builtin">r̲eshape</a> <span class="c-number">-1.0</span> <span class="c-number">0.0</span> <span class="c-number">1.0</span> <span class="c-number">-2.0</span> <span class="c-number">0.0</span> <span class="c-number">2.0</span> <span class="c-number">-1.0</span> <span class="c-number">0.0</span> <span class="c-number">1.0</span></pre>
+<div class="uses">Used in: <a href="demos-image-pipeline-image-pipeline.xtl.html#ky">ky</a>, <a href="demos-image-pipeline-image-pipeline.xtl.html#gx">gx</a></div>
+</div>
+<div class="item" id="ky">
+<h3><a href="#ky">ky</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-image-pipeline-image-pipeline.xtl.src.html#L34">line 34</a></div>
+<pre class="code">ky ← <a href="builtins.html#o_-5c" class="c-builtin">o̲\</a> <a href="demos-image-pipeline-image-pipeline.xtl.html#kx">kx</a></pre>
+<div class="uses">Used in: <a href="demos-image-pipeline-image-pipeline.xtl.html#gy">gy</a></div>
+</div>
+<div class="item" id="thresh">
+<h3><a href="#thresh">thresh</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-image-pipeline-image-pipeline.xtl.src.html#L35">line 35</a></div>
+<pre class="code">thresh ← <span class="c-number">0.8</span></pre>
+<div class="uses">Used in: <a href="demos-image-pipeline-image-pipeline.xtl.html#edges">edges</a>, <a href="demos-image-pipeline-image-pipeline.xtl.src.html#L74">demos/image-pipeline/image-pipeline.xtl:74</a></div>
+</div>
+<div class="item" id="u.w_indows">
+<h3><a href="#u.w_indows"><span class="c-userfunc">ᵘw̲indows</span></a> <span class="type">: a -&gt; a</span></h3>
+<div class="meta">function &middot; <a href="demos-image-pipeline-image-pipeline.xtl.src.html#L42">line 42</a></div>
+<div class="doc">
+<p>-- the windows: nine shifted copies. u:w_indows x: rotating by a
+list of amounts gives one copy per amount, on a new first axis.
+Columns are shifted first; then the rows, which the new axis moved
+to axis 2. Item [a;b;r;c] is the pixel at row r + a, column c + b,
+for a and b in -1 0 1.</p>
+</div>
+<pre class="code"><span class="c-userfunc">ᵘw̲indows</span> ← { x → <span class="c-number">-1</span> <span class="c-number">0</span> <span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₂</a> <span class="c-number">-1</span> <span class="c-number">0</span> <span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₂</a> x }</pre>
+<div class="uses">Used in: <a href="demos-image-pipeline-image-pipeline.xtl.html#u.f_ilter"><span class="c-userfunc">ᵘf̲ilter</span></a>, <a href="demos-image-pipeline-image-pipeline.xtl.src.html#L66">demos/image-pipeline/image-pipeline.xtl:66</a></div>
+</div>
+<h2 class="section" id="section-1">A filter: kernel times windows, summed</h2>
+<div class="item" id="u.f_ilter">
+<h3><a href="#u.f_ilter"><span class="c-userfunc">ᵘf̲ilter</span></a> <span class="type">: Num a =&gt; a -&gt; a -&gt; a</span></h3>
+<div class="meta">function &middot; <a href="demos-image-pipeline-image-pipeline.xtl.src.html#L48">line 48</a></div>
+<div class="doc">
+<p>u:f_ilter k x: the kernel spread over the picture (3 x 3 x rows x
+cols) times the windows, summed over its two axes.</p>
+</div>
+<pre class="code"><span class="c-userfunc">ᵘf̲ilter</span> ← { k x → <span class="c-symbol">'</span><a href="builtins.html#-2b" class="c-symbol">+</a> <a href="builtins.html#r_-2f" class="c-builtin">r̲/₁₂</a> (<a href="demos-image-pipeline-image-pipeline.xtl.html#u.w_indows" class="c-userfunc">ᵘw̲indows</a> x) <a href="builtins.html#-2a" class="c-symbol">×</a> k <span class="c-builtin">'</span><a href="builtins.html#l_eft" class="c-builtin">l̲eft</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> x }</pre>
+<div class="uses">Used in: <a href="demos-image-pipeline-image-pipeline.xtl.html#smooth">smooth</a>, <a href="demos-image-pipeline-image-pipeline.xtl.html#gx">gx</a>, <a href="demos-image-pipeline-image-pipeline.xtl.html#gy">gy</a></div>
+</div>
+<h2 class="section" id="section-2">The pipeline</h2>
+<div class="item" id="smooth">
+<h3><a href="#smooth">smooth</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-image-pipeline-image-pipeline.xtl.src.html#L54">line 54</a></div>
+<div class="doc">
+<p>smooth, gx, gy, mag, edges: the blur, the two Sobel gradients, the
+edge strength (their length), and where it passes the threshold.</p>
+</div>
+<pre class="code">smooth ← <a href="demos-image-pipeline-image-pipeline.xtl.html#blur">blur</a> <a href="demos-image-pipeline-image-pipeline.xtl.html#u.f_ilter" class="c-userfunc">ᵘf̲ilter</a> <a href="demos-image-pipeline-image-pipeline.xtl.html#img">img</a></pre>
+<div class="uses">Used in: <a href="demos-image-pipeline-image-pipeline.xtl.html#gx">gx</a>, <a href="demos-image-pipeline-image-pipeline.xtl.html#gy">gy</a></div>
+</div>
+<div class="item" id="gx">
+<h3><a href="#gx">gx</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-image-pipeline-image-pipeline.xtl.src.html#L55">line 55</a></div>
+<pre class="code">gx ← <a href="demos-image-pipeline-image-pipeline.xtl.html#kx">kx</a> <a href="demos-image-pipeline-image-pipeline.xtl.html#u.f_ilter" class="c-userfunc">ᵘf̲ilter</a> <a href="demos-image-pipeline-image-pipeline.xtl.html#smooth">smooth</a></pre>
+<div class="uses">Used in: <a href="demos-image-pipeline-image-pipeline.xtl.html#mag">mag</a></div>
+</div>
+<div class="item" id="gy">
+<h3><a href="#gy">gy</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-image-pipeline-image-pipeline.xtl.src.html#L56">line 56</a></div>
+<pre class="code">gy ← <a href="demos-image-pipeline-image-pipeline.xtl.html#ky">ky</a> <a href="demos-image-pipeline-image-pipeline.xtl.html#u.f_ilter" class="c-userfunc">ᵘf̲ilter</a> <a href="demos-image-pipeline-image-pipeline.xtl.html#smooth">smooth</a></pre>
+<div class="uses">Used in: <a href="demos-image-pipeline-image-pipeline.xtl.html#mag">mag</a></div>
+</div>
+<div class="item" id="mag">
+<h3><a href="#mag">mag</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-image-pipeline-image-pipeline.xtl.src.html#L57">line 57</a></div>
+<pre class="code">mag ← ((<a href="demos-image-pipeline-image-pipeline.xtl.html#gx">gx</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-image-pipeline-image-pipeline.xtl.html#gx">gx</a>) <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="demos-image-pipeline-image-pipeline.xtl.html#gy">gy</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-image-pipeline-image-pipeline.xtl.html#gy">gy</a>) <a href="builtins.html#-5e" class="c-symbol">^</a> <span class="c-number">0.5</span></pre>
+<div class="uses">Used in: <a href="demos-image-pipeline-image-pipeline.xtl.html#edges">edges</a>, <a href="demos-image-pipeline-image-pipeline.xtl.html#pool">pool</a>, <a href="demos-image-pipeline-image-pipeline.xtl.src.html#L72">demos/image-pipeline/image-pipeline.xtl:72</a></div>
+</div>
+<div class="item" id="edges">
+<h3><a href="#edges">edges</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-image-pipeline-image-pipeline.xtl.src.html#L58">line 58</a></div>
+<pre class="code">edges ← <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="demos-image-pipeline-image-pipeline.xtl.html#mag">mag</a> <a href="builtins.html#-3e" class="c-symbol">&gt;</a> <a href="demos-image-pipeline-image-pipeline.xtl.html#thresh">thresh</a></pre>
+<div class="uses">Used in: <a href="demos-image-pipeline-image-pipeline.xtl.src.html#L73">demos/image-pipeline/image-pipeline.xtl:73</a></div>
+</div>
+<div class="item" id="pool">
+<h3><a href="#pool">pool</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-image-pipeline-image-pipeline.xtl.src.html#L62">line 62</a></div>
+<div class="doc">
+<p>-- max-pooling: 2 x 2 blocks by reshape, reduce. pool: reshaped so
+each 2 x 2 block has two axes of its own, then the largest over them.</p>
+</div>
+<pre class="code">pool ← <span class="c-builtin">'</span><a href="builtins.html#m_ax" class="c-builtin">m̲ax</a> <a href="builtins.html#r_-2f" class="c-builtin">r̲/₂</a> <span class="c-builtin">'</span><a href="builtins.html#m_ax" class="c-builtin">m̲ax</a> <a href="builtins.html#r_-2f" class="c-builtin">r̲/₄</a> ((<a href="demos-image-pipeline-image-pipeline.xtl.html#rows">rows</a> <a href="builtins.html#d_iv" class="c-builtin">d̲iv</a> <span class="c-number">2</span>) <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <span class="c-number">2</span> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> (<a href="demos-image-pipeline-image-pipeline.xtl.html#cols">cols</a> <a href="builtins.html#d_iv" class="c-builtin">d̲iv</a> <span class="c-number">2</span>) <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <span class="c-number">2</span>) <a href="builtins.html#r_eshape" class="c-builtin">r̲eshape</a> <a href="demos-image-pipeline-image-pipeline.xtl.html#mag">mag</a></pre>
+<div class="uses">Used in: <a href="demos-image-pipeline-image-pipeline.xtl.src.html#L67">demos/image-pipeline/image-pipeline.xtl:67</a>, <a href="demos-image-pipeline-image-pipeline.xtl.src.html#L74">demos/image-pipeline/image-pipeline.xtl:74</a></div>
+</div>
+<div class="item" id="u.d_raw">
+<h3><a href="#u.d_raw"><span class="c-userfunc">ᵘd̲raw</span></a> <span class="type">: Float -&gt; Char</span></h3>
+<div class="meta">function &middot; <a href="demos-image-pipeline-image-pipeline.xtl.src.html#L70">line 70</a></div>
+<div class="doc">
+<p>u:d_raw a: the picture, the smoothed edge strength, the edges and
+the pooled edges, drawn with characters (darkest first).</p>
+</div>
+<pre class="code"><span class="c-userfunc">ᵘd̲raw</span> ← { a → (<span class="c-number">1</span> <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="builtins.html#f_loor" class="c-builtin">f̲loor</a> <span class="c-number">0</span> <a href="builtins.html#m_ax" class="c-builtin">m̲ax</a> <span class="c-number">7</span> <a href="builtins.html#m_in" class="c-builtin">m̲in</a> <span class="c-number">8.0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> a) <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> <span class="c-string">&quot; .:-=+*#&quot;</span> }</pre>
+<div class="uses">Used in: <a href="demos-image-pipeline-image-pipeline.xtl.src.html#L71">demos/image-pipeline/image-pipeline.xtl:71</a>, <a href="demos-image-pipeline-image-pipeline.xtl.src.html#L72">demos/image-pipeline/image-pipeline.xtl:72</a></div>
+</div>
+</main>
+</body>
+</html>

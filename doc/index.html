@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>index - X_eTaL doc</title>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+<script defer src="search-index.js"></script>
+<script defer src="search.js"></script>
+</head>
+<body>
+<nav class="side">
+<a class="home" href="index.html">X_eTaL doc</a>
+<input id="search" type="search" autocomplete="off" placeholder="Search: a name, or a type" title="A name (mean finds m_ean), or a type: Num a =&gt; a -&gt; a -&gt; a finds +, m_ax ...">
+<h2>Files</h2>
+<h3>/Users/mike/github/softwarewrighter/X_eTaL-demos/work/libraries/libs/Eigencube/src/</h3>
+<ul>
+<li><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html">Eigencube.xtl</a></li>
+</ul>
+<h3>demos/ca-lab/</h3>
+<ul>
+<li><a href="demos-ca-lab-ca-lab.xtl.html">ca-lab.xtl</a></li>
+</ul>
+<h3>demos/eigencube/</h3>
+<ul>
+<li><a href="demos-eigencube-eigencube.xtl.html">eigencube.xtl</a></li>
+</ul>
+<h3>demos/fourier-epicycles/</h3>
+<ul>
+<li><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html">fourier-epicycles.xtl</a></li>
+</ul>
+<h3>demos/image-pipeline/</h3>
+<ul>
+<li><a href="demos-image-pipeline-image-pipeline.xtl.html">image-pipeline.xtl</a></li>
+</ul>
+<h3>demos/julia/</h3>
+<ul>
+<li><a href="demos-julia-julia.xtl.html">julia.xtl</a></li>
+</ul>
+<h3>demos/langtons-ant/</h3>
+<ul>
+<li><a href="demos-langtons-ant-langtons-ant.xtl.html">langtons-ant.xtl</a></li>
+</ul>
+<h3>demos/life-microscope/</h3>
+<ul>
+<li><a href="demos-life-microscope-life-microscope.xtl.html">life-microscope.xtl</a></li>
+</ul>
+<h3>demos/mandelbrot/</h3>
+<ul>
+<li><a href="demos-mandelbrot-mandelbrot.xtl.html">mandelbrot.xtl</a></li>
+</ul>
+<h3>demos/nbody/</h3>
+<ul>
+<li><a href="demos-nbody-nbody.xtl.html">nbody.xtl</a></li>
+</ul>
+<h3>demos/reaction-diffusion/</h3>
+<ul>
+<li><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html">reaction-diffusion.xtl</a></li>
+</ul>
+<h3>demos/sandpile/</h3>
+<ul>
+<li><a href="demos-sandpile-sandpile.xtl.html">sandpile.xtl</a></li>
+</ul>
+<h3>demos/stencil-macros/</h3>
+<ul>
+<li><a href="demos-stencil-macros-stencil-macros.xtl.html">stencil-macros.xtl</a></li>
+<li><a href="demos-stencil-macros-Stencil.xtlm.html">Stencil.xtlm</a></li>
+</ul>
+<h3>demos/wave-tank/</h3>
+<ul>
+<li><a href="demos-wave-tank-wave-tank.xtl.html">wave-tank.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-xetal-pipes.xtl.html">xetal-pipes.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/stages/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-stages-Pipes.xtl.html">Pipes.xtl</a></li>
+</ul>
+<ul>
+<li><a href="builtins.html">built-ins</a></li>
+</ul>
+</nav>
+<main>
+<button class="theme" title="Light or dark">theme</button>
+<section id="results"></section>
+<h1>X_eTaL documentation</h1>
+<h2>Files</h2>
+<ul>
+<li>macro library <a href="demos-stencil-macros-Stencil.xtlm.html">demos/stencil-macros/Stencil.xtlm</a>: Stencils written as pictures: a macro library. A kernel is written
+as its numbers, row by row (3 x 3, 5 x 5, ...); when the program is
+expanded, the macro writes the arithmetic the kernel stands for, one
+term per number that is not 0: the array moved by that number's
+offset from the center (a rotation, so the edges wrap) times the
+number. A 0 writes nothing and a 1 writes no multiply, so the code
+does exactly the work the kernel asks for.</li>
+<li>library <a href="demos-xetal-pipes-stages-Pipes.xtl.html">demos/xetal-pipes/stages/Pipes.xtl</a>: Pipes: what every stage shares. A stage's input is one text, its
+lines each ending in a newline; l_ines numbers every character by
+the line it is on, so a stage chooses or reorders whole lines with
+a mask or a grade over those numbers, never a loop over lines.</li>
+<li>program <a href="demos-life-microscope-life-microscope.xtl.html">demos/life-microscope/life-microscope.xtl</a>: Conway's Life under the microscope: the whole rule is one line,
+u:l_ife, and every array it builds on the way is shown here, for a
+glider on a 6 by 6 board (the edges wrap around). Run it with
+&quot;xetal run demos/life-microscope/life-microscope.xtl&quot;; it prints
+the board, the nine shifted copies' shape, their sum, the next
+board, and the glider four generations on (moved one cell down and
+to the right). The live page draws these same arrays as it runs:
+https://softwarewrighter.github.io/X_eTaL-demos/life-microscope/</li>
+<li>program <a href="demos-mandelbrot-mandelbrot.xtl.html">demos/mandelbrot/mandelbrot.xtl</a>: The Mandelbrot set as arrays: every point c of a view iterated at
+once, z becoming z * z + c, counting the steps each point stays
+within 2 of the origin. X_eTaL has no complex numbers yet (an ask:
+see the demo's README Workarounds), so z and c are each two Float
+arrays, their real and imaginary parts. Run it with &quot;xetal run
+demos/mandelbrot/mandelbrot.xtl&quot;; it prints the shapes
+of c and of the stepped state, the set drawn with characters, and
+one point's orbit (its real parts, then its imaginary parts). The
+live page steps k and lets you click a point for its orbit:
+https://softwarewrighter.github.io/X_eTaL-demos/mandelbrot/</li>
+<li>program <a href="demos-julia-julia.xtl.html">demos/julia/julia.xtl</a>: Julia sets and the Mandelbrot set from one function, u:i_terate.
+Both iterate z becoming z * z + c and count the steps z stays
+within 2 of the origin. For the Mandelbrot set, c is the grid of
+points and z starts at 0; for a Julia set, z starts at the grid and
+c is one number, which scalar extension spreads over the whole
+grid: the step is written once and works both ways. X_eTaL has no
+complex numbers yet, so z and c are each a real and an imaginary
+part (see the demo's README Workarounds). Run it with &quot;xetal run
+demos/julia/julia.xtl&quot;; it prints the grid's shape, a
+Julia set (c = -0.8 + 0.156i) drawn with characters, and the
+Mandelbrot set from the same function. The live page lets you pick
+c on the Mandelbrot map and watch the Julia set change:
+https://softwarewrighter.github.io/X_eTaL-demos/julia/</li>
+<li>program <a href="demos-reaction-diffusion-reaction-diffusion.xtl.html">demos/reaction-diffusion/reaction-diffusion.xtl</a>: Reaction-diffusion (Gray-Scott): two chemicals U and V on a grid.
+U is fed in, V eats U to make more V (U + 2V -&gt; 3V), V is removed,
+and both spread to their neighbors. Every step is a few array
+expressions over the whole grid: four shifted copies for the
+spreading, products for the reaction. The patterns (spots, mazes,
+coral) appear by themselves. Run it with &quot;xetal run
+demos/reaction-diffusion/reaction-diffusion.xtl&quot;; it prints the
+seeded grid's shape, a maze drawn with characters, and V's total
+(grown from the seed's 9.0). The live page runs it frame by frame
+and lets you click a cell for its neighbors and its update's
+arithmetic: https://softwarewrighter.github.io/X_eTaL-demos/reaction-diffusion/</li>
+<li>program <a href="demos-wave-tank-wave-tank.xtl.html">demos/wave-tank/wave-tank.xtl</a>: A wave tank: the wave equation on a grid. Each step, every cell
+moves towards the average of its neighbors, carrying momentum from
+the step before: next = 2 u - previous + c^2 * (neighbors - 4 u).
+Walls are a mask, a source shakes up and down, and waves spread,
+bend through slits and interfere, all as array expressions over
+the whole grid. Run it with &quot;xetal run
+demos/wave-tank/wave-tank.xtl&quot;; it prints the state's shape and the
+surface drawn with characters (crests, troughs, the wall). The live
+page picks the scene (a double slit, a lens, two sources, an open
+tank) and lets you click for ripples:
+https://softwarewrighter.github.io/X_eTaL-demos/wave-tank/</li>
+<li>program <a href="demos-ca-lab-ca-lab.xtl.html">demos/ca-lab/ca-lab.xtl</a>: A cellular automata lab. Every rule here is a lookup table: each
+cell's neighborhood becomes a number, by rotations and arithmetic
+over the whole array, and the number picks the cell's next state
+from the table (s_elect). Changing the rule is changing the table.
+Run it with &quot;xetal run demos/ca-lab/ca-lab.xtl&quot;; it prints Rule 30
+and Rule 90 as sixteen-generation boards, Life, Brian's Brain and
+Wireworld, each drawn with characters. The live page lets you edit
+the table and the board, one and two dimensions each their own
+view: https://softwarewrighter.github.io/X_eTaL-demos/ca-lab/</li>
+<li>program <a href="demos-langtons-ant-langtons-ant.xtl.html">demos/langtons-ant/langtons-ant.xtl</a>: Langton's ant: on a white cell it turns right, on a black cell
+left; it flips the cell and steps forward. From two rules comes
+chaos, and then, after about 10000 steps, a &quot;highway&quot; the ant
+builds forever. Here the ant is arrays: its position is a mask
+with a single 1, its direction a number; no indexing, no loops,
+just whole-array steps. Run it with &quot;xetal run
+demos/langtons-ant/langtons-ant.xtl&quot;; it prints the state's shape,
+the board drawn with characters (black, white, the ant), and how
+many cells are black. The live page runs it frame by frame and
+pauses when the highway forms:
+https://softwarewrighter.github.io/X_eTaL-demos/langtons-ant/</li>
+<li>program <a href="demos-sandpile-sandpile.xtl.html">demos/sandpile/sandpile.xtl</a>: The abelian sandpile: drop grains on a grid; a cell with 4 or more
+grains topples, giving one to each of its four neighbors, and
+grains that fall off the edge are lost. Repeat until every cell
+has fewer than 4. The order of the topples does not matter (that
+is what abelian means), so every cell topples at once, as often as
+it can: one array expression a round. The stable pile is a
+fractal. Run it with &quot;xetal run demos/sandpile/sandpile.xtl&quot;; it
+prints whether the pile is stable, the grains left, the total
+topples, and the pile drawn with characters. The live page runs it
+round by round, colored by grains, and lets you drop more:
+https://softwarewrighter.github.io/X_eTaL-demos/sandpile/</li>
+<li>program <a href="demos-nbody-nbody.xtl.html">demos/nbody/nbody.xtl</a>: N-body gravity with no loops. Every pair of bodies at once: the
+displacements of all pairs form a cube (2 x N x N, built by
+broadcasting with t_able), the cube gives every pair's softened
+inverse-square pull, and one reduce over the second body sums the
+pulls into each body's acceleration. A kick-drift-kick (leapfrog)
+step moves them all. Run it with &quot;xetal run demos/nbody/nbody.xtl&quot;;
+it prints the cube's shape, its x plane, the starting
+accelerations, the state after 50 steps, and the total momentum
+(which stays 0). The live page has four presets (the figure-eight,
+a binary star, a collapsing cluster, a Kepler ellipse) and lets you
+click a body for its row of the cube:
+https://softwarewrighter.github.io/X_eTaL-demos/nbody/</li>
+<li>program <a href="demos-fourier-epicycles-fourier-epicycles.xtl.html">demos/fourier-epicycles/fourier-epicycles.xtl</a>: Fourier epicycles: any closed curve is a sum of circles turning at
+whole-number speeds. Its points z = x + i y go through a discrete
+Fourier transform, written as two matrix products with the cosines
+and sines of one outer product of angles; each frequency is a
+circle, and the circles, strongest first, chained end to end,
+trace the curve. A running sum along the chain gives, at once, the
+curve rebuilt from the first 1, 2, 3, ... circles. Run it with
+&quot;xetal run demos/fourier-epicycles/fourier-epicycles.xtl&quot;; it
+prints the strength of each frequency, the four strongest speeds,
+and the mean error rebuilt from 1, 2, 4, 8 and all 16 circles. The
+live page lets you pick or draw a curve and slides how many
+circles trace it: https://softwarewrighter.github.io/X_eTaL-demos/fourier-epicycles/</li>
+<li>program <a href="demos-image-pipeline-image-pipeline.xtl.html">demos/image-pipeline/image-pipeline.xtl</a>: An image pipeline as array programs: a picture built from masks,
+blurred, its edges found with the Sobel kernels, thresholded, and
+shrunk by max-pooling. Every 3 x 3 filter is the same two steps:
+the stack of the nine shifted copies of the image (its windows),
+then the kernel times the stack, summed. Run it with &quot;xetal run
+demos/image-pipeline/image-pipeline.xtl&quot;; it prints the windows'
+and the pooled map's shapes, then the picture, the edge strength,
+the edges and the pooled edges, each drawn with characters. The
+live page lets you edit the kernels and pick a picture, and click
+a pixel for its window times each kernel:
+https://softwarewrighter.github.io/X_eTaL-demos/image-pipeline/</li>
+<li>program <a href="demos-stencil-macros-stencil-macros.xtl.html">demos/stencil-macros/stencil-macros.xtl</a>: Stencils by macro: image kernels written as pictures of numbers,
+and a macro library of our own (Stencil.xtlm, beside this file)
+that turns each into rotation arithmetic when the program is
+expanded. A 0 in a kernel writes no code at all and a 1 no
+multiply, so blur, edges, sharpen, emboss and heat each cost
+exactly their nonzero numbers. Run it with &quot;xetal run
+demos/stencil-macros/stencil-macros.xtl&quot;; it prints the totals a
+kernel keeps (blur and heat move the picture's total without
+changing it, edges sum to 0), then the picture and each result
+drawn with characters. See what the program becomes: &quot;xetal expand
+demos/stencil-macros/stencil-macros.xtl&quot;. The live page lets you
+edit a kernel and see its expansion:
+https://softwarewrighter.github.io/X_eTaL-demos/stencil-macros/</li>
+<li>program <a href="demos-xetal-pipes-xetal-pipes.xtl.html">demos/xetal-pipes/xetal-pipes.xtl</a>: Unix pipes in X_eTaL: the arrays inside the stages (stages/*.xtl),
+shown on sample.txt. A stage reads standard input as one text;
+here the same text comes from the file. Every character is
+numbered by its line, so choosing lines is a mask and reordering
+them a grade: no loop over lines anywhere. Run it with &quot;xetal run
+demos/xetal-pipes/xetal-pipes.xtl&quot;; it prints the first line's
+character-to-line numbers, the counts xetalwc would give, where
+&quot;lazy&quot; starts and which lines it is on (grep), the padded lines'
+shape and which lines uniq keeps, and each line's rank and the
+text sorted by it. No live page: command line only (see the
+stages, xetalcat and friends, in the demo's README).</li>
+<li>program <a href="demos-eigencube-eigencube.xtl.html">demos/eigencube/eigencube.xtl</a>: Eigencube: a Rubik's cube solved by linear algebra, a port of Steffen
+Smolka's eigencube.py (github.com/smolkaj/eigencube, MIT). Each of
+the 26 cubelets is the integer point c of {-1, 0, 1}^3 where it sits
+in the solved cube and carries a rotation matrix R: it sits now at
+R c. A quarter turn of the face with outward normal v moves the
+cubelets with v . (R c) &gt; 0 by one matrix product. The model and the
+solver are the Eigencube library of X_eTaL-libraries (pinned in
+LIBRARIES_COMMIT, read from work/libraries by &quot;just libraries&quot;); this
+program scrambles a cube and solves it with it.</li>
+<li>library <a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html">/Users/mike/github/softwarewrighter/X_eTaL-demos/work/libraries/libs/Eigencube/src/Eigencube.xtl</a>: Eigencube: a Rubik's cube as rotation matrices, turned by matrix
+products and solved by search. A port of Steffen Smolka's
+eigencube.py (github.com/smolkaj/eigencube, MIT). Each of the 26
+cubelets is the integer point c of {-1, 0, 1}^3 where it sits in the
+solved cube and carries a rotation matrix R: it sits now at R c. A
+quarter turn of the face with outward normal v moves the cubelets
+with v . (R c) &gt; 0, multiplying R by one rotation matrix. A batch of
+cubes is one array, n by 26 by 3 by 3, so all twelve turns of every
+cube in a search are two matrix products.
+Import it with an alias of your choice: &quot;ec:&quot; u_se&lt; &quot;Eigencube&quot;.
+Put libs/Eigencube/src on XETAL_PATH (&quot;just path&quot;); the reference is libs/Eigencube/docs.
+Names with l: are exported; those under h: are private to this file.</li>
+</ul>
+<h2>Items</h2>
+<table class="items">
+<tr><th>name</th><th>kind</th><th>type</th></tr>
+<tr><td><a href="demos-stencil-macros-Stencil.xtlm.html#m.s_tencil-3c"><span class="c-macro">ᵐs̲tencil&lt;</span></a></td><td>macro</td><td><code>Char -&gt; Char -&gt; Char</code></td></tr>
+<tr><td><a href="demos-stencil-macros-Stencil.xtlm.html#h.s_ide"><span class="c-libfunc">ʰs̲ide</span></a></td><td>function</td><td><code>Int -&gt; Int -&gt; Int</code></td></tr>
+<tr><td><a href="demos-stencil-macros-Stencil.xtlm.html#h.t_erms"><span class="c-libfunc">ʰt̲erms</span></a></td><td>function</td><td><code>Float -&gt; Char -&gt; Char</code></td></tr>
+<tr><td><a href="demos-stencil-macros-Stencil.xtlm.html#h.t_erm"><span class="c-libfunc">ʰt̲erm</span></a></td><td>function</td><td><code>Float -&gt; Char -&gt; Char</code></td></tr>
+<tr><td><a href="demos-stencil-macros-Stencil.xtlm.html#h.c_ols"><span class="c-libfunc">ʰc̲ols</span></a></td><td>function</td><td><code>Int -&gt; Char -&gt; Char</code></td></tr>
+<tr><td><a href="demos-stencil-macros-Stencil.xtlm.html#h.r_ows"><span class="c-libfunc">ʰr̲ows</span></a></td><td>function</td><td><code>Int -&gt; Char -&gt; Char</code></td></tr>
+<tr><td><a href="demos-stencil-macros-Stencil.xtlm.html#h.n_um"><span class="c-libfunc">ʰn̲um</span></a></td><td>function</td><td><code>Float -&gt; Char</code></td></tr>
+<tr><td><a href="demos-xetal-pipes-stages-Pipes.xtl.html#end">end</a></td><td>value</td><td><code>Char</code></td></tr>
+<tr><td><a href="demos-xetal-pipes-stages-Pipes.xtl.html#nl">nl</a></td><td>value</td><td><code>Char</code></td></tr>
+<tr><td><a href="demos-xetal-pipes-stages-Pipes.xtl.html#z">z</a></td><td>value</td><td><code>Char</code></td></tr>
+<tr><td><a href="demos-xetal-pipes-stages-Pipes.xtl.html#h.e_nded"><span class="c-libfunc">ʰe̲nded</span></a></td><td>function</td><td><code>Truthy a =&gt; Char -&gt; a</code></td></tr>
+<tr><td><a href="demos-xetal-pipes-stages-Pipes.xtl.html#h.r_ead1"><span class="c-libfunc">ʰr̲ead1</span></a></td><td>function</td><td><code>Unit -&gt; Char</code></td></tr>
+<tr><td><a href="demos-xetal-pipes-stages-Pipes.xtl.html#h.r_eadn"><span class="c-libfunc">ʰr̲eadn</span></a></td><td>function</td><td><code>Int -&gt; Char</code></td></tr>
+<tr><td><a href="demos-xetal-pipes-stages-Pipes.xtl.html#h.r_eadall"><span class="c-libfunc">ʰr̲eadall</span></a></td><td>function</td><td><code>Int -&gt; Char</code></td></tr>
+<tr><td><a href="demos-xetal-pipes-stages-Pipes.xtl.html#l.r_ead"><span class="c-libfunc">ˡr̲ead</span></a></td><td>function</td><td><code>Unit -&gt; Char</code></td></tr>
+<tr><td><a href="demos-xetal-pipes-stages-Pipes.xtl.html#l.o_ut"><span class="c-libfunc">ˡo̲ut</span></a></td><td>function</td><td><code>Char -&gt; Int</code></td></tr>
+<tr><td><a href="demos-xetal-pipes-stages-Pipes.xtl.html#l.l_ines"><span class="c-libfunc">ˡl̲ines</span></a></td><td>function</td><td><code>(Num a, Truthy a) =&gt; Char -&gt; a</code></td></tr>
+<tr><td><a href="demos-xetal-pipes-stages-Pipes.xtl.html#l.c_ount"><span class="c-libfunc">ˡc̲ount</span></a></td><td>function</td><td><code>(Num a, Truthy a) =&gt; Char -&gt; a</code></td></tr>
+<tr><td><a href="demos-xetal-pipes-stages-Pipes.xtl.html#l.k_eep"><span class="c-libfunc">ˡk̲eep</span></a></td><td>function</td><td><code>Truthy a =&gt; a -&gt; Char -&gt; Char</code></td></tr>
+<tr><td><a href="demos-xetal-pipes-stages-Pipes.xtl.html#l.m_atrix"><span class="c-libfunc">ˡm̲atrix</span></a></td><td>function</td><td><code>Char -&gt; Char</code></td></tr>
+<tr><td><a href="demos-life-microscope-life-microscope.xtl.html#u.l_ife"><span class="c-userfunc">ᵘl̲ife</span></a></td><td>function</td><td><code>(Num a, Truthy a) =&gt; a -&gt; a</code></td></tr>
+<tr><td><a href="demos-life-microscope-life-microscope.xtl.html#b">b</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-life-microscope-life-microscope.xtl.html#r">r</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-life-microscope-life-microscope.xtl.html#s">s</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-mandelbrot-mandelbrot.xtl.html#rows">rows</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-mandelbrot-mandelbrot.xtl.html#cols">cols</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-mandelbrot-mandelbrot.xtl.html#cx">cx</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-mandelbrot-mandelbrot.xtl.html#cy">cy</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-mandelbrot-mandelbrot.xtl.html#w">w</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-mandelbrot-mandelbrot.xtl.html#k">k</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-mandelbrot-mandelbrot.xtl.html#aspect">aspect</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-mandelbrot-mandelbrot.xtl.html#u.c_entred"><span class="c-userfunc">ᵘc̲entred</span></a></td><td>function</td><td><code>Int -&gt; Float</code></td></tr>
+<tr><td><a href="demos-mandelbrot-mandelbrot.xtl.html#re">re</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-mandelbrot-mandelbrot.xtl.html#im">im</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-mandelbrot-mandelbrot.xtl.html#cr">cr</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-mandelbrot-mandelbrot.xtl.html#ci">ci</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-mandelbrot-mandelbrot.xtl.html#u.s_tep"><span class="c-userfunc">ᵘs̲tep</span></a></td><td>function</td><td><code>(Float, Float, Float) -&gt; (Float, Float, Float)</code></td></tr>
+<tr><td><a href="demos-mandelbrot-mandelbrot.xtl.html#-252"><span class="c-error">%</span><span class="c-number">2</span></a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-mandelbrot-mandelbrot.xtl.html#zr">zr</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-mandelbrot-mandelbrot.xtl.html#zi">zi</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-mandelbrot-mandelbrot.xtl.html#counts">counts</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-mandelbrot-mandelbrot.xtl.html#m2">m2</a></td><td>value</td><td><code></code></td></tr>
+<tr><td><a href="demos-mandelbrot-mandelbrot.xtl.html#cr0">cr0</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-mandelbrot-mandelbrot.xtl.html#ci0">ci0</a></td><td>value</td><td><code>Float -&gt; Float</code></td></tr>
+<tr><td><a href="demos-mandelbrot-mandelbrot.xtl.html#u.o_rbit"><span class="c-userfunc">ᵘo̲rbit</span></a></td><td>function</td><td><code></code></td></tr>
+<tr><td><a href="demos-julia-julia.xtl.html#rows">rows</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-julia-julia.xtl.html#cols">cols</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-julia-julia.xtl.html#cx">cx</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-julia-julia.xtl.html#cy">cy</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-julia-julia.xtl.html#w">w</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-julia-julia.xtl.html#k">k</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-julia-julia.xtl.html#aspect">aspect</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-julia-julia.xtl.html#u.c_entred"><span class="c-userfunc">ᵘc̲entred</span></a></td><td>function</td><td><code>Int -&gt; Float</code></td></tr>
+<tr><td><a href="demos-julia-julia.xtl.html#re">re</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-julia-julia.xtl.html#im">im</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-julia-julia.xtl.html#grid">grid</a></td><td>value</td><td><code>(Float, Float)</code></td></tr>
+<tr><td><a href="demos-julia-julia.xtl.html#-251"><span class="c-error">%</span><span class="c-number">1</span></a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-julia-julia.xtl.html#gr">gr</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-julia-julia.xtl.html#gi">gi</a></td><td>value</td><td><code>(Float, Float) -&gt; (Float, Float) -&gt; (Float, Float, Float)</code></td></tr>
+<tr><td><a href="demos-julia-julia.xtl.html#u.i_terate"><span class="c-userfunc">ᵘi̲terate</span></a></td><td>function</td><td><code></code></td></tr>
+<tr><td><a href="demos-julia-julia.xtl.html#-255"><span class="c-error">%</span><span class="c-number">5</span></a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-julia-julia.xtl.html#jzr">jzr</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-julia-julia.xtl.html#jzi">jzi</a></td><td>value</td><td><code></code></td></tr>
+<tr><td><a href="demos-julia-julia.xtl.html#julia">julia</a></td><td>value</td><td><code></code></td></tr>
+<tr><td><a href="demos-julia-julia.xtl.html#-256"><span class="c-error">%</span><span class="c-number">6</span></a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-julia-julia.xtl.html#mzr">mzr</a></td><td>value</td><td><code></code></td></tr>
+<tr><td><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#n">n</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#du">du</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#dv">dv</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#f">f</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#k">k</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#steps">steps</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#u.p_lane"><span class="c-userfunc">ᵘp̲lane</span></a></td><td>function</td><td><code>a -&gt; a</code></td></tr>
+<tr><td><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#u.l_ap"><span class="c-userfunc">ᵘl̲ap</span></a></td><td>function</td><td><code>Float -&gt; Float</code></td></tr>
+<tr><td><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#u.s_tep"><span class="c-userfunc">ᵘs̲tep</span></a></td><td>function</td><td><code>Float -&gt; Float</code></td></tr>
+<tr><td><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#sq">sq</a></td><td>value</td><td><code>Bool</code></td></tr>
+<tr><td><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#seed">seed</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#s0">s0</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#s">s</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html#v">v</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-wave-tank-wave-tank.xtl.html#rows">rows</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-wave-tank-wave-tank.xtl.html#cols">cols</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-wave-tank-wave-tank.xtl.html#c2">c2</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-wave-tank-wave-tank.xtl.html#amp">amp</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-wave-tank-wave-tank.xtl.html#omega">omega</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-wave-tank-wave-tank.xtl.html#steps">steps</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-wave-tank-wave-tank.xtl.html#col">col</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-wave-tank-wave-tank.xtl.html#row">row</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-wave-tank-wave-tank.xtl.html#edge">edge</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-wave-tank-wave-tank.xtl.html#damp">damp</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-wave-tank-wave-tank.xtl.html#slits">slits</a></td><td>value</td><td><code>Bool</code></td></tr>
+<tr><td><a href="demos-wave-tank-wave-tank.xtl.html#wall">wall</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-wave-tank-wave-tank.xtl.html#src">src</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-wave-tank-wave-tank.xtl.html#u.l_ap"><span class="c-userfunc">ᵘl̲ap</span></a></td><td>function</td><td><code>Float -&gt; Float</code></td></tr>
+<tr><td><a href="demos-wave-tank-wave-tank.xtl.html#u.s_tep"><span class="c-userfunc">ᵘs̲tep</span></a></td><td>function</td><td><code>(Float, Float, Float) -&gt; (Float, Float, Float)</code></td></tr>
+<tr><td><a href="demos-wave-tank-wave-tank.xtl.html#u0">u0</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-wave-tank-wave-tank.xtl.html#-252"><span class="c-error">%</span><span class="c-number">2</span></a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-wave-tank-wave-tank.xtl.html#u">u</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-wave-tank-wave-tank.xtl.html#p">p</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-wave-tank-wave-tank.xtl.html#t">t</a></td><td>value</td><td><code></code></td></tr>
+<tr><td><a href="demos-wave-tank-wave-tank.xtl.html#h">h</a></td><td>value</td><td><code></code></td></tr>
+<tr><td><a href="demos-ca-lab-ca-lab.xtl.html#u.b_its"><span class="c-userfunc">ᵘb̲its</span></a></td><td>function</td><td><code>Int -&gt; Int</code></td></tr>
+<tr><td><a href="demos-ca-lab-ca-lab.xtl.html#u.r_ow"><span class="c-userfunc">ᵘr̲ow</span></a></td><td>function</td><td><code>a -&gt; Int -&gt; a</code></td></tr>
+<tr><td><a href="demos-ca-lab-ca-lab.xtl.html#u.g_row"><span class="c-userfunc">ᵘg̲row</span></a></td><td>function</td><td><code>Int -&gt; Int -&gt; Int</code></td></tr>
+<tr><td><a href="demos-ca-lab-ca-lab.xtl.html#u.c_ount"><span class="c-userfunc">ᵘc̲ount</span></a></td><td>function</td><td><code>(Num a, Num b, Truthy b) =&gt; a -&gt; b</code></td></tr>
+<tr><td><a href="demos-ca-lab-ca-lab.xtl.html#u.l_ook"><span class="c-userfunc">ᵘl̲ook</span></a></td><td>function</td><td><code>a -&gt; Int -&gt; a</code></td></tr>
+<tr><td><a href="demos-ca-lab-ca-lab.xtl.html#tbl">tbl</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-ca-lab-ca-lab.xtl.html#r0">r0</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-ca-lab-ca-lab.xtl.html#h">h</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-ca-lab-ca-lab.xtl.html#tbl">tbl</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-ca-lab-ca-lab.xtl.html#h">h</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-ca-lab-ca-lab.xtl.html#life">life</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-ca-lab-ca-lab.xtl.html#glider">glider</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-ca-lab-ca-lab.xtl.html#brain">brain</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-ca-lab-ca-lab.xtl.html#b0">b0</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-ca-lab-ca-lab.xtl.html#wire">wire</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-ca-lab-ca-lab.xtl.html#w0">w0</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-langtons-ant-langtons-ant.xtl.html#rows">rows</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-langtons-ant-langtons-ant.xtl.html#cols">cols</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-langtons-ant-langtons-ant.xtl.html#steps">steps</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-langtons-ant-langtons-ant.xtl.html#u.s_tep"><span class="c-userfunc">ᵘs̲tep</span></a></td><td>function</td><td><code>(Int, Int, Int) -&gt; (Int, Int, Int)</code></td></tr>
+<tr><td><a href="demos-langtons-ant-langtons-ant.xtl.html#row">row</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-langtons-ant-langtons-ant.xtl.html#col">col</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-langtons-ant-langtons-ant.xtl.html#b0">b0</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-langtons-ant-langtons-ant.xtl.html#a0">a0</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-langtons-ant-langtons-ant.xtl.html#-252"><span class="c-error">%</span><span class="c-number">2</span></a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-langtons-ant-langtons-ant.xtl.html#b">b</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-langtons-ant-langtons-ant.xtl.html#a">a</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-langtons-ant-langtons-ant.xtl.html#d">d</a></td><td>value</td><td><code></code></td></tr>
+<tr><td><a href="demos-sandpile-sandpile.xtl.html#side">side</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-sandpile-sandpile.xtl.html#grains">grains</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-sandpile-sandpile.xtl.html#rounds">rounds</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-sandpile-sandpile.xtl.html#row">row</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-sandpile-sandpile.xtl.html#col">col</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-sandpile-sandpile.xtl.html#edge">edge</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-sandpile-sandpile.xtl.html#inside">inside</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-sandpile-sandpile.xtl.html#u.t_opple"><span class="c-userfunc">ᵘt̲opple</span></a></td><td>function</td><td><code>Int -&gt; Int</code></td></tr>
+<tr><td><a href="demos-sandpile-sandpile.xtl.html#u.s_table"><span class="c-userfunc">ᵘs̲table</span></a></td><td>function</td><td><code>(Num a, Num b, Truthy b) =&gt; a -&gt; b</code></td></tr>
+<tr><td><a href="demos-sandpile-sandpile.xtl.html#u.p_lane"><span class="c-userfunc">ᵘp̲lane</span></a></td><td>function</td><td><code>a -&gt; a</code></td></tr>
+<tr><td><a href="demos-sandpile-sandpile.xtl.html#u.s_tep"><span class="c-userfunc">ᵘs̲tep</span></a></td><td>function</td><td><code>Int -&gt; Int</code></td></tr>
+<tr><td><a href="demos-sandpile-sandpile.xtl.html#mid">mid</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-sandpile-sandpile.xtl.html#h0">h0</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-sandpile-sandpile.xtl.html#h0">h0</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-sandpile-sandpile.xtl.html#s">s</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-sandpile-sandpile.xtl.html#h">h</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-nbody-nbody.xtl.html#g">g</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-nbody-nbody.xtl.html#eps2">eps2</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-nbody-nbody.xtl.html#dt">dt</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-nbody-nbody.xtl.html#m">m</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-nbody-nbody.xtl.html#steps">steps</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-nbody-nbody.xtl.html#n">n</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-nbody-nbody.xtl.html#mj">mj</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-nbody-nbody.xtl.html#u.p_lane"><span class="c-userfunc">ᵘp̲lane</span></a></td><td>function</td><td><code>a -&gt; a</code></td></tr>
+<tr><td><a href="demos-nbody-nbody.xtl.html#u.c_ube"><span class="c-userfunc">ᵘc̲ube</span></a></td><td>function</td><td><code>Num a =&gt; a -&gt; a</code></td></tr>
+<tr><td><a href="demos-nbody-nbody.xtl.html#u.p_ull"><span class="c-userfunc">ᵘp̲ull</span></a></td><td>function</td><td><code>Float -&gt; Float</code></td></tr>
+<tr><td><a href="demos-nbody-nbody.xtl.html#u.a_cc"><span class="c-userfunc">ᵘa̲cc</span></a></td><td>function</td><td><code>Float -&gt; Float</code></td></tr>
+<tr><td><a href="demos-nbody-nbody.xtl.html#u.s_tep"><span class="c-userfunc">ᵘs̲tep</span></a></td><td>function</td><td><code>Float -&gt; Float</code></td></tr>
+<tr><td><a href="demos-nbody-nbody.xtl.html#u.r_ound"><span class="c-userfunc">ᵘr̲ound</span></a></td><td>function</td><td><code>Float -&gt; Float</code></td></tr>
+<tr><td><a href="demos-nbody-nbody.xtl.html#p0">p0</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-nbody-nbody.xtl.html#v0">v0</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-nbody-nbody.xtl.html#s0">s0</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-nbody-nbody.xtl.html#s">s</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#x">x</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#y">y</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#n">n</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#k">k</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#A">A</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#C">C</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#S">S</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#re">re</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#im">im</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#amp">amp</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#f">f</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#order">order</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#T">T</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#zr">zr</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#zi">zi</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#vx">vx</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#vy">vy</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#cx">cx</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#cy">cy</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#dx">dx</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#dy">dy</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#err">err</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html#u.r_ound"><span class="c-userfunc">ᵘr̲ound</span></a></td><td>function</td><td><code>Float -&gt; Float</code></td></tr>
+<tr><td><a href="demos-image-pipeline-image-pipeline.xtl.html#rows">rows</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-image-pipeline-image-pipeline.xtl.html#cols">cols</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-image-pipeline-image-pipeline.xtl.html#row">row</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-image-pipeline-image-pipeline.xtl.html#col">col</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-image-pipeline-image-pipeline.xtl.html#disk">disk</a></td><td>value</td><td><code>Bool</code></td></tr>
+<tr><td><a href="demos-image-pipeline-image-pipeline.xtl.html#box">box</a></td><td>value</td><td><code>Bool</code></td></tr>
+<tr><td><a href="demos-image-pipeline-image-pipeline.xtl.html#img">img</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-image-pipeline-image-pipeline.xtl.html#blur">blur</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-image-pipeline-image-pipeline.xtl.html#kx">kx</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-image-pipeline-image-pipeline.xtl.html#ky">ky</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-image-pipeline-image-pipeline.xtl.html#thresh">thresh</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-image-pipeline-image-pipeline.xtl.html#u.w_indows"><span class="c-userfunc">ᵘw̲indows</span></a></td><td>function</td><td><code>a -&gt; a</code></td></tr>
+<tr><td><a href="demos-image-pipeline-image-pipeline.xtl.html#u.f_ilter"><span class="c-userfunc">ᵘf̲ilter</span></a></td><td>function</td><td><code>Num a =&gt; a -&gt; a -&gt; a</code></td></tr>
+<tr><td><a href="demos-image-pipeline-image-pipeline.xtl.html#smooth">smooth</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-image-pipeline-image-pipeline.xtl.html#gx">gx</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-image-pipeline-image-pipeline.xtl.html#gy">gy</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-image-pipeline-image-pipeline.xtl.html#mag">mag</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-image-pipeline-image-pipeline.xtl.html#edges">edges</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-image-pipeline-image-pipeline.xtl.html#pool">pool</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-image-pipeline-image-pipeline.xtl.html#u.d_raw"><span class="c-userfunc">ᵘd̲raw</span></a></td><td>function</td><td><code>Float -&gt; Char</code></td></tr>
+<tr><td><a href="demos-stencil-macros-stencil-macros.xtl.html#rows">rows</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-stencil-macros-stencil-macros.xtl.html#cols">cols</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-stencil-macros-stencil-macros.xtl.html#row">row</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-stencil-macros-stencil-macros.xtl.html#col">col</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-stencil-macros-stencil-macros.xtl.html#disk">disk</a></td><td>value</td><td><code>Bool</code></td></tr>
+<tr><td><a href="demos-stencil-macros-stencil-macros.xtl.html#box">box</a></td><td>value</td><td><code>Bool</code></td></tr>
+<tr><td><a href="demos-stencil-macros-stencil-macros.xtl.html#img">img</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-stencil-macros-stencil-macros.xtl.html#u.b_lur"><span class="c-userfunc">ᵘb̲lur</span></a></td><td>function</td><td><code>Num a =&gt; a -&gt; Float</code></td></tr>
+<tr><td><a href="demos-stencil-macros-stencil-macros.xtl.html#u.e_dges"><span class="c-userfunc">ᵘe̲dges</span></a></td><td>function</td><td><code>Num a =&gt; a -&gt; a</code></td></tr>
+<tr><td><a href="demos-stencil-macros-stencil-macros.xtl.html#u.s_harpen"><span class="c-userfunc">ᵘs̲harpen</span></a></td><td>function</td><td><code>Num a =&gt; a -&gt; a</code></td></tr>
+<tr><td><a href="demos-stencil-macros-stencil-macros.xtl.html#u.e_mboss"><span class="c-userfunc">ᵘe̲mboss</span></a></td><td>function</td><td><code>Num a =&gt; a -&gt; a</code></td></tr>
+<tr><td><a href="demos-stencil-macros-stencil-macros.xtl.html#u.h_eat"><span class="c-userfunc">ᵘh̲eat</span></a></td><td>function</td><td><code>Float -&gt; Float</code></td></tr>
+<tr><td><a href="demos-stencil-macros-stencil-macros.xtl.html#smooth">smooth</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-stencil-macros-stencil-macros.xtl.html#edges">edges</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-stencil-macros-stencil-macros.xtl.html#sharp">sharp</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-stencil-macros-stencil-macros.xtl.html#relief">relief</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-stencil-macros-stencil-macros.xtl.html#spot">spot</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-stencil-macros-stencil-macros.xtl.html#warm">warm</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="demos-stencil-macros-stencil-macros.xtl.html#u.d_raw"><span class="c-userfunc">ᵘd̲raw</span></a></td><td>function</td><td><code>Float -&gt; Char</code></td></tr>
+<tr><td><a href="demos-xetal-pipes-xetal-pipes.xtl.html#t">t</a></td><td>value</td><td><code>Char</code></td></tr>
+<tr><td><a href="demos-xetal-pipes-xetal-pipes.xtl.html#ln">ln</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-xetal-pipes-xetal-pipes.xtl.html#needle">needle</a></td><td>value</td><td><code>Char</code></td></tr>
+<tr><td><a href="demos-xetal-pipes-xetal-pipes.xtl.html#k">k</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-xetal-pipes-xetal-pipes.xtl.html#tt">tt</a></td><td>value</td><td><code>Char</code></td></tr>
+<tr><td><a href="demos-xetal-pipes-xetal-pipes.xtl.html#starts">starts</a></td><td>value</td><td><code>Bool</code></td></tr>
+<tr><td><a href="demos-xetal-pipes-xetal-pipes.xtl.html#hits">hits</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-xetal-pipes-xetal-pipes.xtl.html#m">m</a></td><td>value</td><td><code>Char</code></td></tr>
+<tr><td><a href="demos-xetal-pipes-xetal-pipes.xtl.html#differs">differs</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-xetal-pipes-xetal-pipes.xtl.html#rank">rank</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-xetal-pipes-xetal-pipes.xtl.html#sorted">sorted</a></td><td>value</td><td><code>Char</code></td></tr>
+<tr><td><a href="demos-eigencube-eigencube.xtl.html#sc">sc</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-eigencube-eigencube.xtl.html#x">x</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-eigencube-eigencube.xtl.html#-2510"><span class="c-error">%</span><span class="c-number">10</span></a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-eigencube-eigencube.xtl.html#sol">sol</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-eigencube-eigencube.xtl.html#lens">lens</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="demos-eigencube-eigencube.xtl.html#e">e</a></td><td>value</td><td><code></code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#pts">pts</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#C">C</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#kind">kind</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#z">z</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#I">I</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#l.solved">ˡsolved</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#N">N</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#l.faces">ˡfaces</a></td><td>value</td><td><code>Char</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#V">V</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#dir">dir</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#E">E</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#Mf">Mf</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#M">M</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#h.t_urns"><span class="c-libfunc">ʰt̲urns</span></a></td><td>function</td><td><code>Int -&gt; Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#h.p_os"><span class="c-libfunc">ʰp̲os</span></a></td><td>function</td><td><code>Int -&gt; Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#h.c_hildren"><span class="c-libfunc">ʰc̲hildren</span></a></td><td>function</td><td><code>Int -&gt; Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#l.t_urn"><span class="c-libfunc">ˡt̲urn</span></a></td><td>function</td><td><code>Int -&gt; Int -&gt; Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#l.d_o"><span class="c-libfunc">ˡd̲o</span></a></td><td>function</td><td><code>Int -&gt; Int -&gt; Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#across">across</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#down">down</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#l.s_tickers"><span class="c-libfunc">ˡs̲tickers</span></a></td><td>function</td><td><code>Int -&gt; Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#h.g_row"><span class="c-libfunc">ʰg̲row</span></a></td><td>function</td><td><code>Int -&gt; Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#G">G</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#Tm">Tm</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#h.o_rient"><span class="c-libfunc">ʰo̲rient</span></a></td><td>function</td><td><code>Int -&gt; Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#at">at</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#layer">layer</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#h.n_ext"><span class="c-libfunc">ʰn̲ext</span></a></td><td>function</td><td><code>Int -&gt; Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#h.r_elax"><span class="c-libfunc">ʰr̲elax</span></a></td><td>function</td><td><code>Num a =&gt; a -&gt; a</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#h.d_istances"><span class="c-libfunc">ʰd̲istances</span></a></td><td>function</td><td><code>Num a =&gt; a -&gt; a</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#colDev">colDev</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#Dsolved">Dsolved</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#l.s_olved-3f"><span class="c-libfunc">ˡs̲olved?</span></a></td><td>function</td><td><code>Truthy a =&gt; Int -&gt; a</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#posDev">posDev</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#Dplace">Dplace</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#yellowDown">yellowDown</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#sets">sets</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#h.s_pec"><span class="c-libfunc">ʰs̲pec</span></a></td><td>function</td><td><code>Num a =&gt; a -&gt; a</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#h.o_f"><span class="c-libfunc">ʰo̲f</span></a></td><td>function</td><td><code>Int -&gt; Int -&gt; Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#h.r_elevant"><span class="c-libfunc">ʰr̲elevant</span></a></td><td>function</td><td><code>Truthy a =&gt; Int -&gt; a</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#h.p_roject"><span class="c-libfunc">ʰp̲roject</span></a></td><td>function</td><td><code>Num a =&gt; a -&gt; a -&gt; a</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#h.s_core"><span class="c-libfunc">ʰs̲core</span></a></td><td>function</td><td><code>Int -&gt; Int -&gt; Float</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#batch">batch</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#greed">greed</a></td><td>value</td><td><code>Float</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#l.i_nverse"><span class="c-libfunc">ˡi̲nverse</span></a></td><td>function</td><td><code>Int -&gt; Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#h.f_ace"><span class="c-libfunc">ʰf̲ace</span></a></td><td>function</td><td><code>Int -&gt; Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#h.c_ubes"><span class="c-libfunc">ʰc̲ubes</span></a></td><td>function</td><td><code>Int -&gt; Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#h.k_ey"><span class="c-libfunc">ʰk̲ey</span></a></td><td>function</td><td><code>Num a =&gt; a -&gt; a</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#macros">macros</a></td><td>value</td><td><code>Box Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#middle">middle</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#bottom">bottom</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#h.a_ctions"><span class="c-libfunc">ʰa̲ctions</span></a></td><td>function</td><td><code>(Num a, Num b) =&gt; a -&gt; b -&gt; Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#h.a_long"><span class="c-libfunc">ʰa̲long</span></a></td><td>function</td><td><code>Int -&gt; Int -&gt; Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#h.m_acros"><span class="c-libfunc">ʰm̲acros</span></a></td><td>function</td><td><code>Int -&gt; Int -&gt; Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#h.e_xpand"><span class="c-libfunc">ʰe̲xpand</span></a></td><td>function</td><td><code>Int -&gt; Int -&gt; Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#h.f_latten"><span class="c-libfunc">ʰf̲latten</span></a></td><td>function</td><td><code>Int -&gt; Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#h.s_tep"><span class="c-libfunc">ʰs̲tep</span></a></td><td>function</td><td><code>Num a =&gt; (Int, Int) -&gt; (Int, Int, Int, Int, a, Float, Int) -&gt; Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#h.t_race"><span class="c-libfunc">ʰt̲race</span></a></td><td>function</td><td><code>(Int, Int) -&gt; Int -&gt; Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#h.s_earch"><span class="c-libfunc">ʰs̲earch</span></a></td><td>function</td><td><code>(Int, Int) -&gt; Int -&gt; Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#h.s_tage"><span class="c-libfunc">ʰs̲tage</span></a></td><td>function</td><td><code>Num a =&gt; a -&gt; (Int, Int, Int) -&gt; (Int, Int, Int)</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#twist">twist</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#bottomTurn">bottomTurn</a></td><td>value</td><td><code>Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#h.o_riented-3f"><span class="c-libfunc">ʰo̲riented?</span></a></td><td>function</td><td><code>Int -&gt; Int</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#h.c_orner"><span class="c-libfunc">ʰc̲orner</span></a></td><td>function</td><td><code>(Int, Int) -&gt; (Int, Int)</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#h.f_inish"><span class="c-libfunc">ʰf̲inish</span></a></td><td>function</td><td><code>(Int, Int) -&gt; (Int, Int)</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#l.s_olve"><span class="c-libfunc">ˡs̲olve</span></a></td><td>function</td><td><code>Num a =&gt; a -&gt; Int -&gt; (Int, Int, Int)</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#l.n_ame"><span class="c-libfunc">ˡn̲ame</span></a></td><td>function</td><td><code>Int -&gt; Char</code></td></tr>
+<tr><td><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html#l.p_arse"><span class="c-libfunc">ˡp̲arse</span></a></td><td>function</td><td><code>Char -&gt; Int</code></td></tr>
+</table>
+</main>
+</body>
+</html>

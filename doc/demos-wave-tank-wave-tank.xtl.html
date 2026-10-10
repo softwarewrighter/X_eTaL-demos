@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>demos/wave-tank/wave-tank.xtl - X_eTaL doc</title>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+<script defer src="search-index.js"></script>
+<script defer src="search.js"></script>
+</head>
+<body>
+<nav class="side">
+<a class="home" href="index.html">X_eTaL doc</a>
+<input id="search" type="search" autocomplete="off" placeholder="Search: a name, or a type" title="A name (mean finds m_ean), or a type: Num a =&gt; a -&gt; a -&gt; a finds +, m_ax ...">
+<h2>Files</h2>
+<h3>/Users/mike/github/softwarewrighter/X_eTaL-demos/work/libraries/libs/Eigencube/src/</h3>
+<ul>
+<li><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html">Eigencube.xtl</a></li>
+</ul>
+<h3>demos/ca-lab/</h3>
+<ul>
+<li><a href="demos-ca-lab-ca-lab.xtl.html">ca-lab.xtl</a></li>
+</ul>
+<h3>demos/eigencube/</h3>
+<ul>
+<li><a href="demos-eigencube-eigencube.xtl.html">eigencube.xtl</a></li>
+</ul>
+<h3>demos/fourier-epicycles/</h3>
+<ul>
+<li><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html">fourier-epicycles.xtl</a></li>
+</ul>
+<h3>demos/image-pipeline/</h3>
+<ul>
+<li><a href="demos-image-pipeline-image-pipeline.xtl.html">image-pipeline.xtl</a></li>
+</ul>
+<h3>demos/julia/</h3>
+<ul>
+<li><a href="demos-julia-julia.xtl.html">julia.xtl</a></li>
+</ul>
+<h3>demos/langtons-ant/</h3>
+<ul>
+<li><a href="demos-langtons-ant-langtons-ant.xtl.html">langtons-ant.xtl</a></li>
+</ul>
+<h3>demos/life-microscope/</h3>
+<ul>
+<li><a href="demos-life-microscope-life-microscope.xtl.html">life-microscope.xtl</a></li>
+</ul>
+<h3>demos/mandelbrot/</h3>
+<ul>
+<li><a href="demos-mandelbrot-mandelbrot.xtl.html">mandelbrot.xtl</a></li>
+</ul>
+<h3>demos/nbody/</h3>
+<ul>
+<li><a href="demos-nbody-nbody.xtl.html">nbody.xtl</a></li>
+</ul>
+<h3>demos/reaction-diffusion/</h3>
+<ul>
+<li><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html">reaction-diffusion.xtl</a></li>
+</ul>
+<h3>demos/sandpile/</h3>
+<ul>
+<li><a href="demos-sandpile-sandpile.xtl.html">sandpile.xtl</a></li>
+</ul>
+<h3>demos/stencil-macros/</h3>
+<ul>
+<li><a href="demos-stencil-macros-stencil-macros.xtl.html">stencil-macros.xtl</a></li>
+<li><a href="demos-stencil-macros-Stencil.xtlm.html">Stencil.xtlm</a></li>
+</ul>
+<h3>demos/wave-tank/</h3>
+<ul>
+<li><a href="demos-wave-tank-wave-tank.xtl.html">wave-tank.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-xetal-pipes.xtl.html">xetal-pipes.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/stages/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-stages-Pipes.xtl.html">Pipes.xtl</a></li>
+</ul>
+<ul>
+<li><a href="builtins.html">built-ins</a></li>
+</ul>
+<h2>On this page</h2>
+<ul>
+<li><a href="#section-1">The tank</a></li>
+<li class="item"><a href="#rows">rows</a></li>
+<li class="item"><a href="#cols">cols</a></li>
+<li class="item"><a href="#c2">c2</a></li>
+<li class="item"><a href="#amp">amp</a></li>
+<li class="item"><a href="#omega">omega</a></li>
+<li class="item"><a href="#steps">steps</a></li>
+<li><a href="#section-2">Coordinates and the sponge</a></li>
+<li class="item"><a href="#col">col</a></li>
+<li class="item"><a href="#row">row</a></li>
+<li class="item"><a href="#edge">edge</a></li>
+<li class="item"><a href="#damp">damp</a></li>
+<li class="item"><a href="#slits">slits</a></li>
+<li class="item"><a href="#wall">wall</a></li>
+<li class="item"><a href="#src">src</a></li>
+<li class="item"><a href="#u.l_ap"><span class="c-userfunc">ᵘl̲ap</span></a></li>
+<li><a href="#section-3">One step for every cell at once</a></li>
+<li class="item"><a href="#u.s_tep"><span class="c-userfunc">ᵘs̲tep</span></a></li>
+<li class="item"><a href="#u0">u0</a></li>
+<li class="item"><a href="#-252"><span class="c-error">%</span><span class="c-number">2</span></a></li>
+<li class="item"><a href="#u">u</a></li>
+<li class="item"><a href="#p">p</a></li>
+<li class="item"><a href="#t">t</a></li>
+<li class="item"><a href="#h">h</a></li>
+</ul>
+</nav>
+<main>
+<button class="theme" title="Light or dark">theme</button>
+<section id="results"></section>
+<h1><span class="kind">program</span>demos/wave-tank/wave-tank.xtl</h1>
+<div class="doc">
+<p>A wave tank: the wave equation on a grid. Each step, every cell
+moves towards the average of its neighbors, carrying momentum from
+the step before: next = 2 u - previous + c^2 * (neighbors - 4 u).
+Walls are a mask, a source shakes up and down, and waves spread,
+bend through slits and interfere, all as array expressions over
+the whole grid. Run it with &quot;xetal run
+demos/wave-tank/wave-tank.xtl&quot;; it prints the state's shape and the
+surface drawn with characters (crests, troughs, the wall). The live
+page picks the scene (a double slit, a lens, two sources, an open
+tank) and lets you click for ripples:
+https://softwarewrighter.github.io/X_eTaL-demos/wave-tank/</p>
+</div>
+<p class="meta"><a href="demos-wave-tank-wave-tank.xtl.src.html">source</a></p>
+<h2 class="section" id="section-1">The tank</h2>
+<div class="item" id="rows">
+<h3><a href="#rows">rows</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-wave-tank-wave-tank.xtl.src.html#L19">line 19</a></div>
+<div class="doc">
+<p>rows, cols: the grid's size. c2: the wave speed squared (at most
+0.5 for a stable step). amp, omega: the source's strength and
+frequency. steps: how many to run.</p>
+</div>
+<pre class="code">rows ← <span class="c-number">36</span></pre>
+<div class="uses">Used in: <a href="demos-wave-tank-wave-tank.xtl.html#col">col</a>, <a href="demos-wave-tank-wave-tank.xtl.html#row">row</a>, <a href="demos-wave-tank-wave-tank.xtl.html#edge">edge</a>, <a href="demos-wave-tank-wave-tank.xtl.html#u0">u0</a></div>
+</div>
+<div class="item" id="cols">
+<h3><a href="#cols">cols</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-wave-tank-wave-tank.xtl.src.html#L20">line 20</a></div>
+<pre class="code">cols ← <span class="c-number">72</span></pre>
+<div class="uses">Used in: <a href="demos-wave-tank-wave-tank.xtl.html#col">col</a>, <a href="demos-wave-tank-wave-tank.xtl.html#row">row</a>, <a href="demos-wave-tank-wave-tank.xtl.html#edge">edge</a>, <a href="demos-wave-tank-wave-tank.xtl.html#u0">u0</a></div>
+</div>
+<div class="item" id="c2">
+<h3><a href="#c2">c2</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-wave-tank-wave-tank.xtl.src.html#L21">line 21</a></div>
+<pre class="code">c2 ← <span class="c-number">0.3</span></pre>
+<div class="uses">Used in: <a href="demos-wave-tank-wave-tank.xtl.html#u.s_tep"><span class="c-userfunc">ᵘs̲tep</span></a></div>
+</div>
+<div class="item" id="amp">
+<h3><a href="#amp">amp</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-wave-tank-wave-tank.xtl.src.html#L22">line 22</a></div>
+<pre class="code">amp ← <span class="c-number">0.5</span></pre>
+<div class="uses">Used in: <a href="demos-wave-tank-wave-tank.xtl.html#u.s_tep"><span class="c-userfunc">ᵘs̲tep</span></a></div>
+</div>
+<div class="item" id="omega">
+<h3><a href="#omega">omega</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-wave-tank-wave-tank.xtl.src.html#L23">line 23</a></div>
+<pre class="code">omega ← <span class="c-number">0.5</span></pre>
+<div class="uses">Used in: <a href="demos-wave-tank-wave-tank.xtl.html#u.s_tep"><span class="c-userfunc">ᵘs̲tep</span></a></div>
+</div>
+<div class="item" id="steps">
+<h3><a href="#steps">steps</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-wave-tank-wave-tank.xtl.src.html#L24">line 24</a></div>
+<pre class="code">steps ← <span class="c-number">150</span></pre>
+<div class="uses">Used in: <a href="demos-wave-tank-wave-tank.xtl.html#-252"><span class="c-error">%</span><span class="c-number">2</span></a></div>
+</div>
+<h2 class="section" id="section-2">Coordinates and the sponge</h2>
+<div class="item" id="col">
+<h3><a href="#col">col</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-wave-tank-wave-tank.xtl.src.html#L32">line 32</a></div>
+<div class="doc">
+<p>col, row: each cell's position, by broadcasting.
+edge, damp: a cell's distance to the border; near the edges the
+surface is damped (a sponge), so waves leave instead of wrapping
+around.</p>
+</div>
+<pre class="code">col ← (<a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-wave-tank-wave-tank.xtl.html#rows">rows</a>) <span class="c-builtin">'</span><a href="builtins.html#r_ight" class="c-builtin">r̲ight</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-wave-tank-wave-tank.xtl.html#cols">cols</a></pre>
+<div class="uses">Used in: <a href="demos-wave-tank-wave-tank.xtl.html#edge">edge</a>, <a href="demos-wave-tank-wave-tank.xtl.html#wall">wall</a>, <a href="demos-wave-tank-wave-tank.xtl.html#src">src</a></div>
+</div>
+<div class="item" id="row">
+<h3><a href="#row">row</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-wave-tank-wave-tank.xtl.src.html#L33">line 33</a></div>
+<pre class="code">row ← (<a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-wave-tank-wave-tank.xtl.html#rows">rows</a>) <span class="c-builtin">'</span><a href="builtins.html#l_eft" class="c-builtin">l̲eft</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-wave-tank-wave-tank.xtl.html#cols">cols</a></pre>
+<div class="uses">Used in: <a href="demos-wave-tank-wave-tank.xtl.html#edge">edge</a>, <a href="demos-wave-tank-wave-tank.xtl.html#slits">slits</a></div>
+</div>
+<div class="item" id="edge">
+<h3><a href="#edge">edge</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-wave-tank-wave-tank.xtl.src.html#L34">line 34</a></div>
+<pre class="code">edge ← (<a href="demos-wave-tank-wave-tank.xtl.html#row">row</a> <a href="builtins.html#m_in" class="c-builtin">m̲in</a> (<a href="demos-wave-tank-wave-tank.xtl.html#rows">rows</a> <a href="builtins.html#-2d" class="c-symbol">−</a> <span class="c-number">1</span>) <a href="builtins.html#-2d" class="c-symbol">−</a> <a href="demos-wave-tank-wave-tank.xtl.html#row">row</a>) <a href="builtins.html#m_in" class="c-builtin">m̲in</a> <a href="demos-wave-tank-wave-tank.xtl.html#col">col</a> <a href="builtins.html#m_in" class="c-builtin">m̲in</a> (<a href="demos-wave-tank-wave-tank.xtl.html#cols">cols</a> <a href="builtins.html#-2d" class="c-symbol">−</a> <span class="c-number">1</span>) <a href="builtins.html#-2d" class="c-symbol">−</a> <a href="demos-wave-tank-wave-tank.xtl.html#col">col</a></pre>
+<div class="uses">Used in: <a href="demos-wave-tank-wave-tank.xtl.html#damp">damp</a></div>
+</div>
+<div class="item" id="damp">
+<h3><a href="#damp">damp</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-wave-tank-wave-tank.xtl.src.html#L35">line 35</a></div>
+<pre class="code">damp ← <span class="c-number">1.0</span> <a href="builtins.html#-2d" class="c-symbol">−</a> <span class="c-number">0.03</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <span class="c-number">0</span> <a href="builtins.html#m_ax" class="c-builtin">m̲ax</a> <span class="c-number">8</span> <a href="builtins.html#-2d" class="c-symbol">−</a> <a href="demos-wave-tank-wave-tank.xtl.html#edge">edge</a></pre>
+<div class="uses">Used in: <a href="demos-wave-tank-wave-tank.xtl.html#u.s_tep"><span class="c-userfunc">ᵘs̲tep</span></a></div>
+</div>
+<div class="item" id="slits">
+<h3><a href="#slits">slits</a> <span class="type">: Bool</span></h3>
+<div class="meta">value &middot; <a href="demos-wave-tank-wave-tank.xtl.src.html#L45">line 45</a></div>
+<pre class="code">slits ← ((<a href="demos-wave-tank-wave-tank.xtl.html#row">row</a> <a href="builtins.html#-3e-3d" class="c-symbol">≥</a> <span class="c-number">13</span>) <a href="builtins.html#-26" class="c-symbol">∧</a> <a href="demos-wave-tank-wave-tank.xtl.html#row">row</a> <a href="builtins.html#-3c" class="c-symbol">&lt;</a> <span class="c-number">16</span>) <a href="builtins.html#-7c" class="c-symbol">∨</a> (<a href="demos-wave-tank-wave-tank.xtl.html#row">row</a> <a href="builtins.html#-3e-3d" class="c-symbol">≥</a> <span class="c-number">20</span>) <a href="builtins.html#-26" class="c-symbol">∧</a> <a href="demos-wave-tank-wave-tank.xtl.html#row">row</a> <a href="builtins.html#-3c" class="c-symbol">&lt;</a> <span class="c-number">23</span></pre>
+<div class="uses">Used in: <a href="demos-wave-tank-wave-tank.xtl.html#wall">wall</a></div>
+</div>
+<div class="item" id="wall">
+<h3><a href="#wall">wall</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-wave-tank-wave-tank.xtl.src.html#L46">line 46</a></div>
+<pre class="code">wall ← <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="builtins.html#n_ot" class="c-builtin">n̲ot</a> (<a href="demos-wave-tank-wave-tank.xtl.html#col">col</a> <a href="builtins.html#-3d" class="c-symbol">=</a> <span class="c-number">30</span>) <a href="builtins.html#-26" class="c-symbol">∧</a> <a href="builtins.html#n_ot" class="c-builtin">n̲ot</a> <a href="demos-wave-tank-wave-tank.xtl.html#slits">slits</a></pre>
+<div class="uses">Used in: <a href="demos-wave-tank-wave-tank.xtl.html#u.s_tep"><span class="c-userfunc">ᵘs̲tep</span></a>, <a href="demos-wave-tank-wave-tank.xtl.src.html#L79">demos/wave-tank/wave-tank.xtl:79</a></div>
+</div>
+<div class="item" id="src">
+<h3><a href="#src">src</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-wave-tank-wave-tank.xtl.src.html#L47">line 47</a></div>
+<pre class="code">src ← <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="demos-wave-tank-wave-tank.xtl.html#col">col</a> <a href="builtins.html#-3d" class="c-symbol">=</a> <span class="c-number">10</span></pre>
+<div class="uses">Used in: <a href="demos-wave-tank-wave-tank.xtl.html#u.s_tep"><span class="c-userfunc">ᵘs̲tep</span></a></div>
+</div>
+<div class="item" id="u.l_ap">
+<h3><a href="#u.l_ap"><span class="c-userfunc">ᵘl̲ap</span></a> <span class="type">: Float -&gt; Float</span></h3>
+<div class="meta">function &middot; <a href="demos-wave-tank-wave-tank.xtl.src.html#L53">line 53</a></div>
+<div class="doc">
+<p>-- the Laplacian: four shifted copies minus four times the center.
+u:l_ap x: how much a cell differs from its four neighbors, up down
+left right (o_-_1, o_-_2), added and the center subtracted four
+times over (the edges wrap).</p>
+</div>
+<pre class="code"><span class="c-userfunc">ᵘl̲ap</span> ← { x → ((<span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁</a> x) <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">-1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁</a> x) <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₂</a> x) <a href="builtins.html#-2b" class="c-symbol">+</a> <span class="c-number">-1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₂</a> x) <a href="builtins.html#-2d" class="c-symbol">−</a> <span class="c-number">4.0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> x }</pre>
+<div class="uses">Used in: <a href="demos-wave-tank-wave-tank.xtl.html#u.s_tep"><span class="c-userfunc">ᵘs̲tep</span></a></div>
+</div>
+<h2 class="section" id="section-3">One step for every cell at once</h2>
+<div class="item" id="u.s_tep">
+<h3><a href="#u.s_tep"><span class="c-userfunc">ᵘs̲tep</span></a> <span class="type">: (Float, Float, Float) -&gt; (Float, Float, Float)</span></h3>
+<div class="meta">function &middot; <a href="demos-wave-tank-wave-tank.xtl.src.html#L63">line 63</a></div>
+<div class="doc">
+<p>u:s_tep (u, p, t): the state is a tuple, the surface now, the
+surface a step ago, and the time, taken apart by the pattern and
+given back as a new tuple (D7, landed); t is a plain scalar now,
+not a plane carrying the same number everywhere, so the source's
+drive reads it directly. Walls hold the surface at 0 (damp * wall
+both zero there).</p>
+</div>
+<pre class="code"><span class="c-userfunc">ᵘs̲tep</span> ← { (<a href="demos-wave-tank-wave-tank.xtl.html#u">u</a>, <a href="demos-wave-tank-wave-tank.xtl.html#p">p</a>, <a href="demos-wave-tank-wave-tank.xtl.html#t">t</a>) →
+  drive ← <a href="demos-wave-tank-wave-tank.xtl.html#amp">amp</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-wave-tank-wave-tank.xtl.html#src">src</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="builtins.html#s_in" class="c-builtin">s̲in</a> <a href="demos-wave-tank-wave-tank.xtl.html#omega">omega</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-wave-tank-wave-tank.xtl.html#t">t</a>
+  nxt ← <a href="demos-wave-tank-wave-tank.xtl.html#damp">damp</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-wave-tank-wave-tank.xtl.html#wall">wall</a> <a href="builtins.html#-2a" class="c-symbol">×</a> ((<span class="c-number">2.0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-wave-tank-wave-tank.xtl.html#u">u</a>) <a href="builtins.html#-2d" class="c-symbol">−</a> <a href="demos-wave-tank-wave-tank.xtl.html#p">p</a>) <a href="builtins.html#-2b" class="c-symbol">+</a> (<a href="demos-wave-tank-wave-tank.xtl.html#c2">c2</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-wave-tank-wave-tank.xtl.html#u.l_ap" class="c-userfunc">ᵘl̲ap</a> <a href="demos-wave-tank-wave-tank.xtl.html#u">u</a>) <a href="builtins.html#-2b" class="c-symbol">+</a> drive
+  (nxt, <a href="demos-wave-tank-wave-tank.xtl.html#u">u</a>, <a href="demos-wave-tank-wave-tank.xtl.html#t">t</a> <a href="builtins.html#-2b" class="c-symbol">+</a> <span class="c-number">1.0</span>)
+}</pre>
+<div class="uses">Used in: <a href="demos-wave-tank-wave-tank.xtl.html#-252"><span class="c-error">%</span><span class="c-number">2</span></a></div>
+</div>
+<div class="item" id="u0">
+<h3><a href="#u0">u0</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-wave-tank-wave-tank.xtl.src.html#L73">line 73</a></div>
+<div class="doc">
+<p>u0: the still surface. u, p, t: the state after all the steps
+(function power), taken apart by the same pattern the binding
+reads it into.</p>
+</div>
+<pre class="code">u0 ← (<a href="demos-wave-tank-wave-tank.xtl.html#rows">rows</a> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <a href="demos-wave-tank-wave-tank.xtl.html#cols">cols</a>) <a href="builtins.html#r_eshape" class="c-builtin">r̲eshape</a> <span class="c-number">0.0</span></pre>
+<div class="uses">Used in: <a href="demos-wave-tank-wave-tank.xtl.html#-252"><span class="c-error">%</span><span class="c-number">2</span></a></div>
+</div>
+<div class="item" id="-252">
+<h3><a href="#-252"><span class="c-error">%</span><span class="c-number">2</span></a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-wave-tank-wave-tank.xtl.src.html#L74">line 74</a></div>
+<pre class="code">(<a href="demos-wave-tank-wave-tank.xtl.html#u">u</a>, <a href="demos-wave-tank-wave-tank.xtl.html#p">p</a>, <a href="demos-wave-tank-wave-tank.xtl.html#t">t</a>) ← <a href="demos-wave-tank-wave-tank.xtl.html#steps">steps</a> <span class="c-userfunc">'</span><a href="demos-wave-tank-wave-tank.xtl.html#u.s_tep" class="c-userfunc">ᵘs̲tep</a> <a href="builtins.html#p_ower" class="c-builtin">p̲ower</a> (<a href="demos-wave-tank-wave-tank.xtl.html#u0">u0</a>, <a href="demos-wave-tank-wave-tank.xtl.html#u0">u0</a>, <span class="c-number">0.0</span>)</pre>
+</div>
+<div class="item" id="u">
+<h3><a href="#u">u</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-wave-tank-wave-tank.xtl.src.html#L74">line 74</a></div>
+<pre class="code">(<a href="demos-wave-tank-wave-tank.xtl.html#u">u</a>, <a href="demos-wave-tank-wave-tank.xtl.html#p">p</a>, <a href="demos-wave-tank-wave-tank.xtl.html#t">t</a>) ← <a href="demos-wave-tank-wave-tank.xtl.html#steps">steps</a> <span class="c-userfunc">'</span><a href="demos-wave-tank-wave-tank.xtl.html#u.s_tep" class="c-userfunc">ᵘs̲tep</a> <a href="builtins.html#p_ower" class="c-builtin">p̲ower</a> (<a href="demos-wave-tank-wave-tank.xtl.html#u0">u0</a>, <a href="demos-wave-tank-wave-tank.xtl.html#u0">u0</a>, <span class="c-number">0.0</span>)</pre>
+<div class="uses">Used in: <a href="demos-wave-tank-wave-tank.xtl.html#u.s_tep"><span class="c-userfunc">ᵘs̲tep</span></a>, <a href="demos-wave-tank-wave-tank.xtl.html#-252"><span class="c-error">%</span><span class="c-number">2</span></a>, <a href="demos-wave-tank-wave-tank.xtl.src.html#L75">demos/wave-tank/wave-tank.xtl:75</a>, <a href="demos-wave-tank-wave-tank.xtl.html#h">h</a></div>
+</div>
+<div class="item" id="p">
+<h3><a href="#p">p</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-wave-tank-wave-tank.xtl.src.html#L74">line 74</a></div>
+<pre class="code">(<a href="demos-wave-tank-wave-tank.xtl.html#u">u</a>, <a href="demos-wave-tank-wave-tank.xtl.html#p">p</a>, <a href="demos-wave-tank-wave-tank.xtl.html#t">t</a>) ← <a href="demos-wave-tank-wave-tank.xtl.html#steps">steps</a> <span class="c-userfunc">'</span><a href="demos-wave-tank-wave-tank.xtl.html#u.s_tep" class="c-userfunc">ᵘs̲tep</a> <a href="builtins.html#p_ower" class="c-builtin">p̲ower</a> (<a href="demos-wave-tank-wave-tank.xtl.html#u0">u0</a>, <a href="demos-wave-tank-wave-tank.xtl.html#u0">u0</a>, <span class="c-number">0.0</span>)</pre>
+<div class="uses">Used in: <a href="demos-wave-tank-wave-tank.xtl.html#u.s_tep"><span class="c-userfunc">ᵘs̲tep</span></a>, <a href="demos-wave-tank-wave-tank.xtl.html#-252"><span class="c-error">%</span><span class="c-number">2</span></a></div>
+</div>
+<div class="item" id="t">
+<h3><a href="#t">t</a></h3>
+<div class="meta">value &middot; <a href="demos-wave-tank-wave-tank.xtl.src.html#L74">line 74</a></div>
+<pre class="code">(<a href="demos-wave-tank-wave-tank.xtl.html#u">u</a>, <a href="demos-wave-tank-wave-tank.xtl.html#p">p</a>, <a href="demos-wave-tank-wave-tank.xtl.html#t">t</a>) ← <a href="demos-wave-tank-wave-tank.xtl.html#steps">steps</a> <span class="c-userfunc">'</span><a href="demos-wave-tank-wave-tank.xtl.html#u.s_tep" class="c-userfunc">ᵘs̲tep</a> <a href="builtins.html#p_ower" class="c-builtin">p̲ower</a> (<a href="demos-wave-tank-wave-tank.xtl.html#u0">u0</a>, <a href="demos-wave-tank-wave-tank.xtl.html#u0">u0</a>, <span class="c-number">0.0</span>)</pre>
+<div class="uses">Used in: <a href="demos-wave-tank-wave-tank.xtl.html#u.s_tep"><span class="c-userfunc">ᵘs̲tep</span></a>, <a href="demos-wave-tank-wave-tank.xtl.html#-252"><span class="c-error">%</span><span class="c-number">2</span></a></div>
+</div>
+<div class="item" id="h">
+<h3><a href="#h">h</a></h3>
+<div class="meta">value &middot; <a href="demos-wave-tank-wave-tank.xtl.src.html#L78">line 78</a></div>
+<div class="doc">
+<p>The surface: = and - troughs, + and * crests, # the wall.</p>
+</div>
+<pre class="code">h ← <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <span class="c-number">1</span> <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="builtins.html#f_loor" class="c-builtin">f̲loor</a> <span class="c-number">2.5</span> <a href="builtins.html#-2b" class="c-symbol">+</a> <span class="c-number">2.0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> (<a href="demos-wave-tank-wave-tank.xtl.html#u">u</a> <a href="builtins.html#m_ax" class="c-builtin">m̲ax</a> <span class="c-number">-1.2</span>) <a href="builtins.html#m_in" class="c-builtin">m̲in</a> <span class="c-number">1.2</span></pre>
+<div class="uses">Used in: <a href="demos-wave-tank-wave-tank.xtl.src.html#L79">demos/wave-tank/wave-tank.xtl:79</a></div>
+</div>
+</main>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>demos/sandpile/sandpile.xtl - X_eTaL doc</title>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+<script defer src="search-index.js"></script>
+<script defer src="search.js"></script>
+</head>
+<body>
+<nav class="side">
+<a class="home" href="index.html">X_eTaL doc</a>
+<input id="search" type="search" autocomplete="off" placeholder="Search: a name, or a type" title="A name (mean finds m_ean), or a type: Num a =&gt; a -&gt; a -&gt; a finds +, m_ax ...">
+<h2>Files</h2>
+<h3>/Users/mike/github/softwarewrighter/X_eTaL-demos/work/libraries/libs/Eigencube/src/</h3>
+<ul>
+<li><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html">Eigencube.xtl</a></li>
+</ul>
+<h3>demos/ca-lab/</h3>
+<ul>
+<li><a href="demos-ca-lab-ca-lab.xtl.html">ca-lab.xtl</a></li>
+</ul>
+<h3>demos/eigencube/</h3>
+<ul>
+<li><a href="demos-eigencube-eigencube.xtl.html">eigencube.xtl</a></li>
+</ul>
+<h3>demos/fourier-epicycles/</h3>
+<ul>
+<li><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html">fourier-epicycles.xtl</a></li>
+</ul>
+<h3>demos/image-pipeline/</h3>
+<ul>
+<li><a href="demos-image-pipeline-image-pipeline.xtl.html">image-pipeline.xtl</a></li>
+</ul>
+<h3>demos/julia/</h3>
+<ul>
+<li><a href="demos-julia-julia.xtl.html">julia.xtl</a></li>
+</ul>
+<h3>demos/langtons-ant/</h3>
+<ul>
+<li><a href="demos-langtons-ant-langtons-ant.xtl.html">langtons-ant.xtl</a></li>
+</ul>
+<h3>demos/life-microscope/</h3>
+<ul>
+<li><a href="demos-life-microscope-life-microscope.xtl.html">life-microscope.xtl</a></li>
+</ul>
+<h3>demos/mandelbrot/</h3>
+<ul>
+<li><a href="demos-mandelbrot-mandelbrot.xtl.html">mandelbrot.xtl</a></li>
+</ul>
+<h3>demos/nbody/</h3>
+<ul>
+<li><a href="demos-nbody-nbody.xtl.html">nbody.xtl</a></li>
+</ul>
+<h3>demos/reaction-diffusion/</h3>
+<ul>
+<li><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html">reaction-diffusion.xtl</a></li>
+</ul>
+<h3>demos/sandpile/</h3>
+<ul>
+<li><a href="demos-sandpile-sandpile.xtl.html">sandpile.xtl</a></li>
+</ul>
+<h3>demos/stencil-macros/</h3>
+<ul>
+<li><a href="demos-stencil-macros-stencil-macros.xtl.html">stencil-macros.xtl</a></li>
+<li><a href="demos-stencil-macros-Stencil.xtlm.html">Stencil.xtlm</a></li>
+</ul>
+<h3>demos/wave-tank/</h3>
+<ul>
+<li><a href="demos-wave-tank-wave-tank.xtl.html">wave-tank.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-xetal-pipes.xtl.html">xetal-pipes.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/stages/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-stages-Pipes.xtl.html">Pipes.xtl</a></li>
+</ul>
+<ul>
+<li><a href="builtins.html">built-ins</a></li>
+</ul>
+<h2>On this page</h2>
+<ul>
+<li class="item"><a href="#L16">side</a></li>
+<li class="item"><a href="#L17">grains</a></li>
+<li class="item"><a href="#L18">rounds</a></li>
+<li class="item"><a href="#L23">row</a></li>
+<li class="item"><a href="#L24">col</a></li>
+<li class="item"><a href="#L25">edge</a></li>
+<li class="item"><a href="#L26">inside</a></li>
+<li class="item"><a href="#L33"><span class="c-userfunc">ᵘt̲opple</span></a></li>
+<li class="item"><a href="#L39"><span class="c-userfunc">ᵘs̲table</span></a></li>
+<li class="item"><a href="#L47"><span class="c-userfunc">ᵘp̲lane</span></a></li>
+<li class="item"><a href="#L48"><span class="c-userfunc">ᵘs̲tep</span></a></li>
+<li class="item"><a href="#L54">mid</a></li>
+<li class="item"><a href="#L55">h0</a></li>
+<li class="item"><a href="#L56">h0</a></li>
+<li class="item"><a href="#L57">s</a></li>
+<li class="item"><a href="#L58">h</a></li>
+</ul>
+</nav>
+<main>
+<button class="theme" title="Light or dark">theme</button>
+<section id="results"></section>
+<h1><span class="kind">source</span><a href="demos-sandpile-sandpile.xtl.html">demos/sandpile/sandpile.xtl</a></h1>
+<div class="source"><span class="line" id="L1"><a class="ln" href="#L1">1</a><span class="c-comment">⍝</span><span class="c-comment">!/usr/bin/env xetal</span></span>
+<span class="line" id="L2"><a class="ln" href="#L2">2</a><span class="c-comment">⍝</span><span class="c-comment"># The abelian sandpile: drop grains on a grid; a cell with 4 or more</span></span>
+<span class="line" id="L3"><a class="ln" href="#L3">3</a><span class="c-comment">⍝</span><span class="c-comment"># grains topples, giving one to each of its four neighbors, and</span></span>
+<span class="line" id="L4"><a class="ln" href="#L4">4</a><span class="c-comment">⍝</span><span class="c-comment"># grains that fall off the edge are lost. Repeat until every cell</span></span>
+<span class="line" id="L5"><a class="ln" href="#L5">5</a><span class="c-comment">⍝</span><span class="c-comment"># has fewer than 4. The order of the topples does not matter (that</span></span>
+<span class="line" id="L6"><a class="ln" href="#L6">6</a><span class="c-comment">⍝</span><span class="c-comment"># is what abelian means), so every cell topples at once, as often as</span></span>
+<span class="line" id="L7"><a class="ln" href="#L7">7</a><span class="c-comment">⍝</span><span class="c-comment"># it can: one array expression a round. The stable pile is a</span></span>
+<span class="line" id="L8"><a class="ln" href="#L8">8</a><span class="c-comment">⍝</span><span class="c-comment"># fractal. Run it with &quot;xetal run demos/sandpile/sandpile.xtl&quot;; it</span></span>
+<span class="line" id="L9"><a class="ln" href="#L9">9</a><span class="c-comment">⍝</span><span class="c-comment"># prints whether the pile is stable, the grains left, the total</span></span>
+<span class="line" id="L10"><a class="ln" href="#L10">10</a><span class="c-comment">⍝</span><span class="c-comment"># topples, and the pile drawn with characters. The live page runs it</span></span>
+<span class="line" id="L11"><a class="ln" href="#L11">11</a><span class="c-comment">⍝</span><span class="c-comment"># round by round, colored by grains, and lets you drop more:</span></span>
+<span class="line" id="L12"><a class="ln" href="#L12">12</a><span class="c-comment">⍝</span><span class="c-comment"># https://softwarewrighter.github.io/X_eTaL-demos/sandpile/</span></span>
+<span class="line" id="L13"><a class="ln" href="#L13">13</a></span>
+<span class="line" id="L14"><a class="ln" href="#L14">14</a><span class="c-comment">⍝</span><span class="c-comment"># side, grains, rounds: the grid's side (the outer ring is the edge,</span></span>
+<span class="line" id="L15"><a class="ln" href="#L15">15</a><span class="c-comment">⍝</span><span class="c-comment"># where grains fall off), grains dropped at the center, rounds to run.</span></span>
+<span class="line" id="L16"><a class="ln" href="#L16">16</a>side ← <span class="c-number">21</span></span>
+<span class="line" id="L17"><a class="ln" href="#L17">17</a>grains ← <span class="c-number">300</span></span>
+<span class="line" id="L18"><a class="ln" href="#L18">18</a>rounds ← <span class="c-number">150</span></span>
+<span class="line" id="L19"><a class="ln" href="#L19">19</a></span>
+<span class="line" id="L20"><a class="ln" href="#L20">20</a><span class="c-comment">⍝</span><span class="c-comment"># -- the edge: a ring of cells that loses what it gets. row, col:</span></span>
+<span class="line" id="L21"><a class="ln" href="#L21">21</a><span class="c-comment">⍝</span><span class="c-comment"># each cell's position, by broadcasting. edge, inside: each cell's</span></span>
+<span class="line" id="L22"><a class="ln" href="#L22">22</a><span class="c-comment">⍝</span><span class="c-comment"># distance to the border, and whether it is inside (the ring has 0).</span></span>
+<span class="line" id="L23"><a class="ln" href="#L23">23</a>row ← (<a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-sandpile-sandpile.xtl.html#side">side</a>) <span class="c-builtin">'</span><a href="builtins.html#l_eft" class="c-builtin">l̲eft</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-sandpile-sandpile.xtl.html#side">side</a></span>
+<span class="line" id="L24"><a class="ln" href="#L24">24</a>col ← (<a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-sandpile-sandpile.xtl.html#side">side</a>) <span class="c-builtin">'</span><a href="builtins.html#r_ight" class="c-builtin">r̲ight</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-sandpile-sandpile.xtl.html#side">side</a></span>
+<span class="line" id="L25"><a class="ln" href="#L25">25</a>edge ← <a href="demos-sandpile-sandpile.xtl.html#row">row</a> <a href="builtins.html#m_in" class="c-builtin">m̲in</a> <a href="demos-sandpile-sandpile.xtl.html#col">col</a> <a href="builtins.html#m_in" class="c-builtin">m̲in</a> ((<a href="demos-sandpile-sandpile.xtl.html#side">side</a> <a href="builtins.html#-2d" class="c-symbol">−</a> <span class="c-number">1</span>) <a href="builtins.html#-2d" class="c-symbol">−</a> <a href="demos-sandpile-sandpile.xtl.html#row">row</a>) <a href="builtins.html#m_in" class="c-builtin">m̲in</a> (<a href="demos-sandpile-sandpile.xtl.html#side">side</a> <a href="builtins.html#-2d" class="c-symbol">−</a> <span class="c-number">1</span>) <a href="builtins.html#-2d" class="c-symbol">−</a> <a href="demos-sandpile-sandpile.xtl.html#col">col</a></span>
+<span class="line" id="L26"><a class="ln" href="#L26">26</a>inside ← <span class="c-number">1</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-sandpile-sandpile.xtl.html#edge">edge</a> <a href="builtins.html#-3e" class="c-symbol">&gt;</a> <span class="c-number">0</span></span>
+<span class="line" id="L27"><a class="ln" href="#L27">27</a></span>
+<span class="line" id="L28"><a class="ln" href="#L28">28</a><span class="c-comment">⍝</span><span class="c-comment">## One round: every cell topples as often as it can</span></span>
+<span class="line" id="L29"><a class="ln" href="#L29">29</a></span>
+<span class="line" id="L30"><a class="ln" href="#L30">30</a><span class="c-comment">⍝</span><span class="c-comment"># u:t_opple h: q is how many times each cell topples: its grains over</span></span>
+<span class="line" id="L31"><a class="ln" href="#L31">31</a><span class="c-comment">⍝</span><span class="c-comment"># 4. It keeps h - 4 q and gets q from each of its four neighbors</span></span>
+<span class="line" id="L32"><a class="ln" href="#L32">32</a><span class="c-comment">⍝</span><span class="c-comment"># (four rotations, g); the edge is outside, so its grains fall off.</span></span>
+<span class="line" id="L33"><a class="ln" href="#L33">33</a><span class="c-userfunc">ᵘt̲opple</span> ← { h →</span>
+<span class="line" id="L34"><a class="ln" href="#L34">34</a>  q ← h <a href="builtins.html#d_iv" class="c-builtin">d̲iv</a> <span class="c-number">4</span></span>
+<span class="line" id="L35"><a class="ln" href="#L35">35</a>  g ← (<span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁</a> q) <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">-1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁</a> q) <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₂</a> q) <a href="builtins.html#-2b" class="c-symbol">+</a> <span class="c-number">-1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₂</a> q</span>
+<span class="line" id="L36"><a class="ln" href="#L36">36</a>  <a href="demos-sandpile-sandpile.xtl.html#inside">inside</a> <a href="builtins.html#-2a" class="c-symbol">×</a> (h <a href="builtins.html#-2d" class="c-symbol">−</a> <span class="c-number">4</span> <a href="builtins.html#-2a" class="c-symbol">×</a> q) <a href="builtins.html#-2b" class="c-symbol">+</a> g</span>
+<span class="line" id="L37"><a class="ln" href="#L37">37</a>}</span>
+<span class="line" id="L38"><a class="ln" href="#L38">38</a><span class="c-comment">⍝</span><span class="c-comment"># u:s_table h: whether no cell has 4 or more.</span></span>
+<span class="line" id="L39"><a class="ln" href="#L39">39</a><span class="c-userfunc">ᵘs̲table</span> ← { h → <span class="c-number">1</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <span class="c-number">4</span> <a href="builtins.html#-3e" class="c-symbol">&gt;</a> <span class="c-builtin">'</span><a href="builtins.html#m_ax" class="c-builtin">m̲ax</a> <a href="builtins.html#r_-2f" class="c-builtin">r̲/₁₂</a> h }</span>
+<span class="line" id="L40"><a class="ln" href="#L40">40</a></span>
+<span class="line" id="L41"><a class="ln" href="#L41">41</a><span class="c-comment">⍝</span><span class="c-comment">## A round that also counts the topples</span></span>
+<span class="line" id="L42"><a class="ln" href="#L42">42</a></span>
+<span class="line" id="L43"><a class="ln" href="#L43">43</a><span class="c-comment">⍝</span><span class="c-comment"># u:p_lane m: a matrix as one plane of a rank-3 array, for stacking</span></span>
+<span class="line" id="L44"><a class="ln" href="#L44">44</a><span class="c-comment">⍝</span><span class="c-comment"># with c_at.</span></span>
+<span class="line" id="L45"><a class="ln" href="#L45">45</a><span class="c-comment">⍝</span><span class="c-comment"># u:s_tep s: the state s is two planes, the grains and how many times</span></span>
+<span class="line" id="L46"><a class="ln" href="#L46">46</a><span class="c-comment">⍝</span><span class="c-comment"># each cell has toppled so far (the avalanche's shape).</span></span>
+<span class="line" id="L47"><a class="ln" href="#L47">47</a><span class="c-userfunc">ᵘp̲lane</span> ← { m → (<span class="c-number">1</span> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <a href="builtins.html#s_hape" class="c-builtin">s̲hape</a> m) <a href="builtins.html#r_eshape" class="c-builtin">r̲eshape</a> m }</span>
+<span class="line" id="L48"><a class="ln" href="#L48">48</a><span class="c-userfunc">ᵘs̲tep</span> ← { s →</span>
+<span class="line" id="L49"><a class="ln" href="#L49">49</a>  h ← <span class="c-number">1</span> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> s</span>
+<span class="line" id="L50"><a class="ln" href="#L50">50</a>  (<a href="demos-sandpile-sandpile.xtl.html#u.p_lane" class="c-userfunc">ᵘp̲lane</a> <a href="demos-sandpile-sandpile.xtl.html#u.t_opple" class="c-userfunc">ᵘt̲opple</a> h) <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <a href="demos-sandpile-sandpile.xtl.html#u.p_lane" class="c-userfunc">ᵘp̲lane</a> (<span class="c-number">2</span> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> s) <a href="builtins.html#-2b" class="c-symbol">+</a> h <a href="builtins.html#d_iv" class="c-builtin">d̲iv</a> <span class="c-number">4</span></span>
+<span class="line" id="L51"><a class="ln" href="#L51">51</a>}</span>
+<span class="line" id="L52"><a class="ln" href="#L52">52</a><span class="c-comment">⍝</span><span class="c-comment"> -- end of the core -------------------------------------</span></span>
+<span class="line" id="L53"><a class="ln" href="#L53">53</a></span>
+<span class="line" id="L54"><a class="ln" href="#L54">54</a>mid ← <a href="demos-sandpile-sandpile.xtl.html#side">side</a> <a href="builtins.html#d_iv" class="c-builtin">d̲iv</a> <span class="c-number">2</span></span>
+<span class="line" id="L55"><a class="ln" href="#L55">55</a>h0 ← <a href="demos-sandpile-sandpile.xtl.html#grains">grains</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <span class="c-number">1</span> <a href="builtins.html#-2a" class="c-symbol">×</a> ((<a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-sandpile-sandpile.xtl.html#side">side</a>) <span class="c-builtin">'</span><a href="builtins.html#l_eft" class="c-builtin">l̲eft</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-sandpile-sandpile.xtl.html#side">side</a>) <a href="builtins.html#-3d" class="c-symbol">=</a> <a href="demos-sandpile-sandpile.xtl.html#mid">mid</a></span>
+<span class="line" id="L56"><a class="ln" href="#L56">56</a>h0 ← <a href="demos-sandpile-sandpile.xtl.html#h0">h0</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <span class="c-number">1</span> <a href="builtins.html#-2a" class="c-symbol">×</a> ((<a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-sandpile-sandpile.xtl.html#side">side</a>) <span class="c-builtin">'</span><a href="builtins.html#r_ight" class="c-builtin">r̲ight</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-sandpile-sandpile.xtl.html#side">side</a>) <a href="builtins.html#-3d" class="c-symbol">=</a> <a href="demos-sandpile-sandpile.xtl.html#mid">mid</a></span>
+<span class="line" id="L57"><a class="ln" href="#L57">57</a>s ← <a href="demos-sandpile-sandpile.xtl.html#rounds">rounds</a> <span class="c-userfunc">'</span><a href="demos-sandpile-sandpile.xtl.html#u.s_tep" class="c-userfunc">ᵘs̲tep</a> <a href="builtins.html#p_ower" class="c-builtin">p̲ower</a> (<a href="demos-sandpile-sandpile.xtl.html#u.p_lane" class="c-userfunc">ᵘp̲lane</a> <a href="demos-sandpile-sandpile.xtl.html#h0">h0</a>) <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <a href="demos-sandpile-sandpile.xtl.html#u.p_lane" class="c-userfunc">ᵘp̲lane</a> <span class="c-number">0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-sandpile-sandpile.xtl.html#h0">h0</a></span>
+<span class="line" id="L58"><a class="ln" href="#L58">58</a>h ← <span class="c-number">1</span> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> <a href="demos-sandpile-sandpile.xtl.html#s">s</a></span>
+<span class="line" id="L59"><a class="ln" href="#L59">59</a><span class="c-comment">⍝</span><span class="c-comment"> Stable after the rounds (1), the grains left on the grid, and the</span></span>
+<span class="line" id="L60"><a class="ln" href="#L60">60</a><span class="c-comment">⍝</span><span class="c-comment"> topples there were.</span></span>
+<span class="line" id="L61"><a class="ln" href="#L61">61</a>(<a href="demos-sandpile-sandpile.xtl.html#u.s_table" class="c-userfunc">ᵘs̲table</a> <a href="demos-sandpile-sandpile.xtl.html#h">h</a>) <a href="builtins.html#c_at" class="c-builtin">c̲at</a> (<span class="c-symbol">'</span><a href="builtins.html#-2b" class="c-symbol">+</a> <a href="builtins.html#r_-2f" class="c-builtin">r̲/₁₂</a> <a href="demos-sandpile-sandpile.xtl.html#h">h</a>) <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <span class="c-symbol">'</span><a href="builtins.html#-2b" class="c-symbol">+</a> <a href="builtins.html#r_-2f" class="c-builtin">r̲/₁₂</a> <span class="c-number">2</span> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> <a href="demos-sandpile-sandpile.xtl.html#s">s</a></span>
+<span class="line" id="L62"><a class="ln" href="#L62">62</a><span class="c-comment">⍝</span><span class="c-comment"> The pile: blank for 0 grains, then . : # for 1, 2, 3.</span></span>
+<span class="line" id="L63"><a class="ln" href="#L63">63</a>(<span class="c-number">1</span> <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="demos-sandpile-sandpile.xtl.html#h">h</a>) <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> <span class="c-string">&quot; .:#&quot;</span></span>
+</div>
+</main>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>demos/langtons-ant/langtons-ant.xtl - X_eTaL doc</title>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+<script defer src="search-index.js"></script>
+<script defer src="search.js"></script>
+</head>
+<body>
+<nav class="side">
+<a class="home" href="index.html">X_eTaL doc</a>
+<input id="search" type="search" autocomplete="off" placeholder="Search: a name, or a type" title="A name (mean finds m_ean), or a type: Num a =&gt; a -&gt; a -&gt; a finds +, m_ax ...">
+<h2>Files</h2>
+<h3>/Users/mike/github/softwarewrighter/X_eTaL-demos/work/libraries/libs/Eigencube/src/</h3>
+<ul>
+<li><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html">Eigencube.xtl</a></li>
+</ul>
+<h3>demos/ca-lab/</h3>
+<ul>
+<li><a href="demos-ca-lab-ca-lab.xtl.html">ca-lab.xtl</a></li>
+</ul>
+<h3>demos/eigencube/</h3>
+<ul>
+<li><a href="demos-eigencube-eigencube.xtl.html">eigencube.xtl</a></li>
+</ul>
+<h3>demos/fourier-epicycles/</h3>
+<ul>
+<li><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html">fourier-epicycles.xtl</a></li>
+</ul>
+<h3>demos/image-pipeline/</h3>
+<ul>
+<li><a href="demos-image-pipeline-image-pipeline.xtl.html">image-pipeline.xtl</a></li>
+</ul>
+<h3>demos/julia/</h3>
+<ul>
+<li><a href="demos-julia-julia.xtl.html">julia.xtl</a></li>
+</ul>
+<h3>demos/langtons-ant/</h3>
+<ul>
+<li><a href="demos-langtons-ant-langtons-ant.xtl.html">langtons-ant.xtl</a></li>
+</ul>
+<h3>demos/life-microscope/</h3>
+<ul>
+<li><a href="demos-life-microscope-life-microscope.xtl.html">life-microscope.xtl</a></li>
+</ul>
+<h3>demos/mandelbrot/</h3>
+<ul>
+<li><a href="demos-mandelbrot-mandelbrot.xtl.html">mandelbrot.xtl</a></li>
+</ul>
+<h3>demos/nbody/</h3>
+<ul>
+<li><a href="demos-nbody-nbody.xtl.html">nbody.xtl</a></li>
+</ul>
+<h3>demos/reaction-diffusion/</h3>
+<ul>
+<li><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html">reaction-diffusion.xtl</a></li>
+</ul>
+<h3>demos/sandpile/</h3>
+<ul>
+<li><a href="demos-sandpile-sandpile.xtl.html">sandpile.xtl</a></li>
+</ul>
+<h3>demos/stencil-macros/</h3>
+<ul>
+<li><a href="demos-stencil-macros-stencil-macros.xtl.html">stencil-macros.xtl</a></li>
+<li><a href="demos-stencil-macros-Stencil.xtlm.html">Stencil.xtlm</a></li>
+</ul>
+<h3>demos/wave-tank/</h3>
+<ul>
+<li><a href="demos-wave-tank-wave-tank.xtl.html">wave-tank.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-xetal-pipes.xtl.html">xetal-pipes.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/stages/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-stages-Pipes.xtl.html">Pipes.xtl</a></li>
+</ul>
+<ul>
+<li><a href="builtins.html">built-ins</a></li>
+</ul>
+<h2>On this page</h2>
+<ul>
+<li class="item"><a href="#L15">rows</a></li>
+<li class="item"><a href="#L16">cols</a></li>
+<li class="item"><a href="#L17">steps</a></li>
+<li class="item"><a href="#L30"><span class="c-userfunc">ᵘs̲tep</span></a></li>
+<li class="item"><a href="#L42">row</a></li>
+<li class="item"><a href="#L43">col</a></li>
+<li class="item"><a href="#L44">b0</a></li>
+<li class="item"><a href="#L45">a0</a></li>
+<li class="item"><a href="#L46"><span class="c-error">%</span><span class="c-number">2</span></a></li>
+<li class="item"><a href="#L46">b</a></li>
+<li class="item"><a href="#L46">a</a></li>
+<li class="item"><a href="#L46">d</a></li>
+</ul>
+</nav>
+<main>
+<button class="theme" title="Light or dark">theme</button>
+<section id="results"></section>
+<h1><span class="kind">source</span><a href="demos-langtons-ant-langtons-ant.xtl.html">demos/langtons-ant/langtons-ant.xtl</a></h1>
+<div class="source"><span class="line" id="L1"><a class="ln" href="#L1">1</a><span class="c-comment">⍝</span><span class="c-comment">!/usr/bin/env xetal</span></span>
+<span class="line" id="L2"><a class="ln" href="#L2">2</a><span class="c-comment">⍝</span><span class="c-comment"># Langton's ant: on a white cell it turns right, on a black cell</span></span>
+<span class="line" id="L3"><a class="ln" href="#L3">3</a><span class="c-comment">⍝</span><span class="c-comment"># left; it flips the cell and steps forward. From two rules comes</span></span>
+<span class="line" id="L4"><a class="ln" href="#L4">4</a><span class="c-comment">⍝</span><span class="c-comment"># chaos, and then, after about 10000 steps, a &quot;highway&quot; the ant</span></span>
+<span class="line" id="L5"><a class="ln" href="#L5">5</a><span class="c-comment">⍝</span><span class="c-comment"># builds forever. Here the ant is arrays: its position is a mask</span></span>
+<span class="line" id="L6"><a class="ln" href="#L6">6</a><span class="c-comment">⍝</span><span class="c-comment"># with a single 1, its direction a number; no indexing, no loops,</span></span>
+<span class="line" id="L7"><a class="ln" href="#L7">7</a><span class="c-comment">⍝</span><span class="c-comment"># just whole-array steps. Run it with &quot;xetal run</span></span>
+<span class="line" id="L8"><a class="ln" href="#L8">8</a><span class="c-comment">⍝</span><span class="c-comment"># demos/langtons-ant/langtons-ant.xtl&quot;; it prints the state's shape,</span></span>
+<span class="line" id="L9"><a class="ln" href="#L9">9</a><span class="c-comment">⍝</span><span class="c-comment"># the board drawn with characters (black, white, the ant), and how</span></span>
+<span class="line" id="L10"><a class="ln" href="#L10">10</a><span class="c-comment">⍝</span><span class="c-comment"># many cells are black. The live page runs it frame by frame and</span></span>
+<span class="line" id="L11"><a class="ln" href="#L11">11</a><span class="c-comment">⍝</span><span class="c-comment"># pauses when the highway forms:</span></span>
+<span class="line" id="L12"><a class="ln" href="#L12">12</a><span class="c-comment">⍝</span><span class="c-comment"># https://softwarewrighter.github.io/X_eTaL-demos/langtons-ant/</span></span>
+<span class="line" id="L13"><a class="ln" href="#L13">13</a></span>
+<span class="line" id="L14"><a class="ln" href="#L14">14</a><span class="c-comment">⍝</span><span class="c-comment"># The board's size and the number of steps.</span></span>
+<span class="line" id="L15"><a class="ln" href="#L15">15</a>rows ← <span class="c-number">21</span></span>
+<span class="line" id="L16"><a class="ln" href="#L16">16</a>cols ← <span class="c-number">21</span></span>
+<span class="line" id="L17"><a class="ln" href="#L17">17</a>steps ← <span class="c-number">400</span></span>
+<span class="line" id="L18"><a class="ln" href="#L18">18</a></span>
+<span class="line" id="L19"><a class="ln" href="#L19">19</a><span class="c-comment">⍝</span><span class="c-comment">## One step of the ant</span></span>
+<span class="line" id="L20"><a class="ln" href="#L20">20</a></span>
+<span class="line" id="L21"><a class="ln" href="#L21">21</a><span class="c-comment">⍝</span><span class="c-comment"># u:s_tep (b, a, d): the state is a tuple, the board (0 white, 1</span></span>
+<span class="line" id="L22"><a class="ln" href="#L22">22</a><span class="c-comment">⍝</span><span class="c-comment"># black), the ant's mask (1 where it stands), and its direction (0</span></span>
+<span class="line" id="L23"><a class="ln" href="#L23">23</a><span class="c-comment">⍝</span><span class="c-comment"># up, 1 right, 2 down, 3 left), taken apart by the pattern and given</span></span>
+<span class="line" id="L24"><a class="ln" href="#L24">24</a><span class="c-comment">⍝</span><span class="c-comment"># back as a new tuple (D7, landed); d is a plain scalar now, not a</span></span>
+<span class="line" id="L25"><a class="ln" href="#L25">25</a><span class="c-comment">⍝</span><span class="c-comment"># plane carrying the same number everywhere. cell looks up the color</span></span>
+<span class="line" id="L26"><a class="ln" href="#L26">26</a><span class="c-comment">⍝</span><span class="c-comment"># under the ant (the board times its mask, summed); turn is right</span></span>
+<span class="line" id="L27"><a class="ln" href="#L27">27</a><span class="c-comment">⍝</span><span class="c-comment"># (+1) on white, left (+3, that is -1) on black; flip turns the</span></span>
+<span class="line" id="L28"><a class="ln" href="#L28">28</a><span class="c-comment">⍝</span><span class="c-comment"># cell's color over where the mask is 1; dy, dx move the mask one</span></span>
+<span class="line" id="L29"><a class="ln" href="#L29">29</a><span class="c-comment">⍝</span><span class="c-comment"># row or column, by its new direction.</span></span>
+<span class="line" id="L30"><a class="ln" href="#L30">30</a><span class="c-userfunc">ᵘs̲tep</span> ← { (<a href="demos-langtons-ant-langtons-ant.xtl.html#b">b</a>, <a href="demos-langtons-ant-langtons-ant.xtl.html#a">a</a>, <a href="demos-langtons-ant-langtons-ant.xtl.html#d">d</a>) →</span>
+<span class="line" id="L31"><a class="ln" href="#L31">31</a>  cell ← <span class="c-symbol">'</span><a href="builtins.html#-2b" class="c-symbol">+</a> <a href="builtins.html#r_-2f" class="c-builtin">r̲/</a> <a href="builtins.html#r_avel" class="c-builtin">r̲avel</a> <a href="demos-langtons-ant-langtons-ant.xtl.html#a">a</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-langtons-ant-langtons-ant.xtl.html#b">b</a></span>
+<span class="line" id="L32"><a class="ln" href="#L32">32</a>  turn ← (<a href="demos-langtons-ant-langtons-ant.xtl.html#d">d</a> <a href="builtins.html#-2b" class="c-symbol">+</a> <span class="c-number">1</span> <a href="builtins.html#-2b" class="c-symbol">+</a> <span class="c-number">2</span> <a href="builtins.html#-2a" class="c-symbol">×</a> cell) <a href="builtins.html#m_od" class="c-builtin">m̲od</a> <span class="c-number">4</span></span>
+<span class="line" id="L33"><a class="ln" href="#L33">33</a>  flip ← <a href="demos-langtons-ant-langtons-ant.xtl.html#b">b</a> <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="demos-langtons-ant-langtons-ant.xtl.html#a">a</a> <a href="builtins.html#-2a" class="c-symbol">×</a> <span class="c-number">1</span> <a href="builtins.html#-2d" class="c-symbol">−</a> <span class="c-number">2</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-langtons-ant-langtons-ant.xtl.html#b">b</a></span>
+<span class="line" id="L34"><a class="ln" href="#L34">34</a>  dy ← (<span class="c-number">1</span> <a href="builtins.html#-2a" class="c-symbol">×</a> turn <a href="builtins.html#-3d" class="c-symbol">=</a> <span class="c-number">0</span>) <a href="builtins.html#-2d" class="c-symbol">−</a> <span class="c-number">1</span> <a href="builtins.html#-2a" class="c-symbol">×</a> turn <a href="builtins.html#-3d" class="c-symbol">=</a> <span class="c-number">2</span></span>
+<span class="line" id="L35"><a class="ln" href="#L35">35</a>  dx ← (<span class="c-number">1</span> <a href="builtins.html#-2a" class="c-symbol">×</a> turn <a href="builtins.html#-3d" class="c-symbol">=</a> <span class="c-number">3</span>) <a href="builtins.html#-2d" class="c-symbol">−</a> <span class="c-number">1</span> <a href="builtins.html#-2a" class="c-symbol">×</a> turn <a href="builtins.html#-3d" class="c-symbol">=</a> <span class="c-number">1</span></span>
+<span class="line" id="L36"><a class="ln" href="#L36">36</a>  step ← dy <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁</a> dx <a href="builtins.html#o_-2d" class="c-builtin">o̲-₂</a> <a href="demos-langtons-ant-langtons-ant.xtl.html#a">a</a></span>
+<span class="line" id="L37"><a class="ln" href="#L37">37</a>  (flip, step, turn)</span>
+<span class="line" id="L38"><a class="ln" href="#L38">38</a>}</span>
+<span class="line" id="L39"><a class="ln" href="#L39">39</a><span class="c-comment">⍝</span><span class="c-comment"> -- end of the core ---------------------------------------------------</span></span>
+<span class="line" id="L40"><a class="ln" href="#L40">40</a></span>
+<span class="line" id="L41"><a class="ln" href="#L41">41</a><span class="c-comment">⍝</span><span class="c-comment"> Start: a white board, the ant in the middle facing up.</span></span>
+<span class="line" id="L42"><a class="ln" href="#L42">42</a>row ← (<a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-langtons-ant-langtons-ant.xtl.html#rows">rows</a>) <span class="c-builtin">'</span><a href="builtins.html#l_eft" class="c-builtin">l̲eft</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-langtons-ant-langtons-ant.xtl.html#cols">cols</a></span>
+<span class="line" id="L43"><a class="ln" href="#L43">43</a>col ← (<a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-langtons-ant-langtons-ant.xtl.html#rows">rows</a>) <span class="c-builtin">'</span><a href="builtins.html#r_ight" class="c-builtin">r̲ight</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-langtons-ant-langtons-ant.xtl.html#cols">cols</a></span>
+<span class="line" id="L44"><a class="ln" href="#L44">44</a>b0 ← <span class="c-number">0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-langtons-ant-langtons-ant.xtl.html#row">row</a></span>
+<span class="line" id="L45"><a class="ln" href="#L45">45</a>a0 ← <span class="c-number">1</span> <a href="builtins.html#-2a" class="c-symbol">×</a> (<a href="demos-langtons-ant-langtons-ant.xtl.html#row">row</a> <a href="builtins.html#-3d" class="c-symbol">=</a> <a href="demos-langtons-ant-langtons-ant.xtl.html#rows">rows</a> <a href="builtins.html#d_iv" class="c-builtin">d̲iv</a> <span class="c-number">2</span>) <a href="builtins.html#-26" class="c-symbol">∧</a> <a href="demos-langtons-ant-langtons-ant.xtl.html#col">col</a> <a href="builtins.html#-3d" class="c-symbol">=</a> <a href="demos-langtons-ant-langtons-ant.xtl.html#cols">cols</a> <a href="builtins.html#d_iv" class="c-builtin">d̲iv</a> <span class="c-number">2</span></span>
+<span class="line" id="L46"><a class="ln" href="#L46">46</a>(<a href="demos-langtons-ant-langtons-ant.xtl.html#b">b</a>, <a href="demos-langtons-ant-langtons-ant.xtl.html#a">a</a>, <a href="demos-langtons-ant-langtons-ant.xtl.html#d">d</a>) ← <a href="demos-langtons-ant-langtons-ant.xtl.html#steps">steps</a> <span class="c-userfunc">'</span><a href="demos-langtons-ant-langtons-ant.xtl.html#u.s_tep" class="c-userfunc">ᵘs̲tep</a> <a href="builtins.html#p_ower" class="c-builtin">p̲ower</a> (<a href="demos-langtons-ant-langtons-ant.xtl.html#b0">b0</a>, <a href="demos-langtons-ant-langtons-ant.xtl.html#a0">a0</a>, <span class="c-number">0</span>)</span>
+<span class="line" id="L47"><a class="ln" href="#L47">47</a><a href="builtins.html#s_hape" class="c-builtin">s̲hape</a> <a href="demos-langtons-ant-langtons-ant.xtl.html#b">b</a></span>
+<span class="line" id="L48"><a class="ln" href="#L48">48</a></span>
+<span class="line" id="L49"><a class="ln" href="#L49">49</a><span class="c-comment">⍝</span><span class="c-comment"> The board after the steps: # black, . white, A the ant.</span></span>
+<span class="line" id="L50"><a class="ln" href="#L50">50</a>((<span class="c-number">1</span> <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="demos-langtons-ant-langtons-ant.xtl.html#b">b</a> <a href="builtins.html#-2b" class="c-symbol">+</a> <span class="c-number">2</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-langtons-ant-langtons-ant.xtl.html#a">a</a>) <a href="builtins.html#m_in" class="c-builtin">m̲in</a> <span class="c-number">3</span>) <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> <span class="c-string">&quot;.#A&quot;</span></span>
+<span class="line" id="L51"><a class="ln" href="#L51">51</a><span class="c-symbol">'</span><a href="builtins.html#-2b" class="c-symbol">+</a> <a href="builtins.html#r_-2f" class="c-builtin">r̲/</a> <a href="builtins.html#r_avel" class="c-builtin">r̲avel</a> <a href="demos-langtons-ant-langtons-ant.xtl.html#b">b</a></span>
+</div>
+</main>
+</body>
+</html>

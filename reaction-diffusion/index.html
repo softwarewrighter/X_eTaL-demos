@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reaction-Diffusion</title>
+  
+<script type="module">
+import init, * as bindings from '/X_eTaL-demos/reaction-diffusion/reaction-diffusion-web-291a7fbe337f18b6.js';
+const wasm = await init({ module_or_path: '/X_eTaL-demos/reaction-diffusion/reaction-diffusion-web-291a7fbe337f18b6_bg.wasm' });
+
+
+window.wasmBindings = bindings;
+
+
+dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+
+</script>
+  
+  <link rel="icon" href="/X_eTaL-demos/reaction-diffusion/favicon-a7e9c2eccfa36f8d.ico" integrity="sha384-psp9J9hB8eK8eobi4th1YJDd8JrFRVFf4iDjuwNF8q5kIno0W8ZwGC5ZzrqyfYpY"/>
+  <link rel="stylesheet" href="/X_eTaL-demos/reaction-diffusion/microscope-b1af3913cedfcf76.css" integrity="sha384-e0tnGAQwZusBnV8b5CrYLphzusEmxUtfE+5WYEWO3Bb9HlJGUOOmdjxuRpRi9lWE"/>
+<link rel="modulepreload" href="/X_eTaL-demos/reaction-diffusion/reaction-diffusion-web-291a7fbe337f18b6.js" crossorigin="anonymous" integrity="sha384-EKEz68TFaUpLDlEI+BvOStT5Jfl9Bn+GSYbG3KH5+o8Q9vDkyLhnXsAtcrUaX5QL"><link rel="preload" href="/X_eTaL-demos/reaction-diffusion/reaction-diffusion-web-291a7fbe337f18b6_bg.wasm" crossorigin="anonymous" integrity="sha384-AsPEKnvs3c6O3sTV6FFUDcc/u3bTejcxwjfJ8ryHl3sBZss1PyXMOrT1W+vQuF9a" as="fetch" type="application/wasm"></head>
+<body></body>
+</html>

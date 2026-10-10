@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Life Microscope</title>
+  
+<script type="module">
+import init, * as bindings from '/X_eTaL-demos/life-microscope/life-microscope-web-fbd019bad0c0af34.js';
+const wasm = await init({ module_or_path: '/X_eTaL-demos/life-microscope/life-microscope-web-fbd019bad0c0af34_bg.wasm' });
+
+
+window.wasmBindings = bindings;
+
+
+dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+
+</script>
+  
+  <link rel="icon" href="/X_eTaL-demos/life-microscope/favicon-a7e9c2eccfa36f8d.ico" integrity="sha384-psp9J9hB8eK8eobi4th1YJDd8JrFRVFf4iDjuwNF8q5kIno0W8ZwGC5ZzrqyfYpY"/>
+  <link rel="stylesheet" href="/X_eTaL-demos/life-microscope/microscope-b1af3913cedfcf76.css" integrity="sha384-e0tnGAQwZusBnV8b5CrYLphzusEmxUtfE+5WYEWO3Bb9HlJGUOOmdjxuRpRi9lWE"/>
+<link rel="modulepreload" href="/X_eTaL-demos/life-microscope/life-microscope-web-fbd019bad0c0af34.js" crossorigin="anonymous" integrity="sha384-nQPS7bqVJAxLqoCm4FqUyWZHZaRjGQJ9uYYO+NLAcwPzfFHDiz1GvTeJocsyDWGi"><link rel="preload" href="/X_eTaL-demos/life-microscope/life-microscope-web-fbd019bad0c0af34_bg.wasm" crossorigin="anonymous" integrity="sha384-olMT39ewCGFWGj9uwKMn7aLJD8rESgQbDxmmXOIkjIRffLKe817pC/+dzhWeoJLP" as="fetch" type="application/wasm"></head>
+<body></body>
+</html>

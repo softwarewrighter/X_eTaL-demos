@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>demos/stencil-macros/Stencil.xtlm - X_eTaL doc</title>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+<script defer src="search-index.js"></script>
+<script defer src="search.js"></script>
+</head>
+<body>
+<nav class="side">
+<a class="home" href="index.html">X_eTaL doc</a>
+<input id="search" type="search" autocomplete="off" placeholder="Search: a name, or a type" title="A name (mean finds m_ean), or a type: Num a =&gt; a -&gt; a -&gt; a finds +, m_ax ...">
+<h2>Files</h2>
+<h3>/Users/mike/github/softwarewrighter/X_eTaL-demos/work/libraries/libs/Eigencube/src/</h3>
+<ul>
+<li><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html">Eigencube.xtl</a></li>
+</ul>
+<h3>demos/ca-lab/</h3>
+<ul>
+<li><a href="demos-ca-lab-ca-lab.xtl.html">ca-lab.xtl</a></li>
+</ul>
+<h3>demos/eigencube/</h3>
+<ul>
+<li><a href="demos-eigencube-eigencube.xtl.html">eigencube.xtl</a></li>
+</ul>
+<h3>demos/fourier-epicycles/</h3>
+<ul>
+<li><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html">fourier-epicycles.xtl</a></li>
+</ul>
+<h3>demos/image-pipeline/</h3>
+<ul>
+<li><a href="demos-image-pipeline-image-pipeline.xtl.html">image-pipeline.xtl</a></li>
+</ul>
+<h3>demos/julia/</h3>
+<ul>
+<li><a href="demos-julia-julia.xtl.html">julia.xtl</a></li>
+</ul>
+<h3>demos/langtons-ant/</h3>
+<ul>
+<li><a href="demos-langtons-ant-langtons-ant.xtl.html">langtons-ant.xtl</a></li>
+</ul>
+<h3>demos/life-microscope/</h3>
+<ul>
+<li><a href="demos-life-microscope-life-microscope.xtl.html">life-microscope.xtl</a></li>
+</ul>
+<h3>demos/mandelbrot/</h3>
+<ul>
+<li><a href="demos-mandelbrot-mandelbrot.xtl.html">mandelbrot.xtl</a></li>
+</ul>
+<h3>demos/nbody/</h3>
+<ul>
+<li><a href="demos-nbody-nbody.xtl.html">nbody.xtl</a></li>
+</ul>
+<h3>demos/reaction-diffusion/</h3>
+<ul>
+<li><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html">reaction-diffusion.xtl</a></li>
+</ul>
+<h3>demos/sandpile/</h3>
+<ul>
+<li><a href="demos-sandpile-sandpile.xtl.html">sandpile.xtl</a></li>
+</ul>
+<h3>demos/stencil-macros/</h3>
+<ul>
+<li><a href="demos-stencil-macros-stencil-macros.xtl.html">stencil-macros.xtl</a></li>
+<li><a href="demos-stencil-macros-Stencil.xtlm.html">Stencil.xtlm</a></li>
+</ul>
+<h3>demos/wave-tank/</h3>
+<ul>
+<li><a href="demos-wave-tank-wave-tank.xtl.html">wave-tank.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-xetal-pipes.xtl.html">xetal-pipes.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/stages/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-stages-Pipes.xtl.html">Pipes.xtl</a></li>
+</ul>
+<ul>
+<li><a href="builtins.html">built-ins</a></li>
+</ul>
+<h2>On this page</h2>
+<ul>
+<li class="item"><a href="#L22"><span class="c-macro">ᵐs̲tencil&lt;</span></a></li>
+<li class="item"><a href="#L36"><span class="c-libfunc">ʰs̲ide</span></a></li>
+<li class="item"><a href="#L40"><span class="c-libfunc">ʰt̲erms</span></a></li>
+<li class="item"><a href="#L54"><span class="c-libfunc">ʰt̲erm</span></a></li>
+<li class="item"><a href="#L63"><span class="c-libfunc">ʰc̲ols</span></a></li>
+<li class="item"><a href="#L66"><span class="c-libfunc">ʰr̲ows</span></a></li>
+<li class="item"><a href="#L69"><span class="c-libfunc">ʰn̲um</span></a></li>
+</ul>
+</nav>
+<main>
+<button class="theme" title="Light or dark">theme</button>
+<section id="results"></section>
+<h1><span class="kind">source</span><a href="demos-stencil-macros-Stencil.xtlm.html">demos/stencil-macros/Stencil.xtlm</a></h1>
+<div class="source"><span class="line" id="L1"><a class="ln" href="#L1">1</a><span class="c-comment">⍝</span><span class="c-comment"># Stencils written as pictures: a macro library. A kernel is written</span></span>
+<span class="line" id="L2"><a class="ln" href="#L2">2</a><span class="c-comment">⍝</span><span class="c-comment"># as its numbers, row by row (3 x 3, 5 x 5, ...); when the program is</span></span>
+<span class="line" id="L3"><a class="ln" href="#L3">3</a><span class="c-comment">⍝</span><span class="c-comment"># expanded, the macro writes the arithmetic the kernel stands for, one</span></span>
+<span class="line" id="L4"><a class="ln" href="#L4">4</a><span class="c-comment">⍝</span><span class="c-comment"># term per number that is not 0: the array moved by that number's</span></span>
+<span class="line" id="L5"><a class="ln" href="#L5">5</a><span class="c-comment">⍝</span><span class="c-comment"># offset from the center (a rotation, so the edges wrap) times the</span></span>
+<span class="line" id="L6"><a class="ln" href="#L6">6</a><span class="c-comment">⍝</span><span class="c-comment"># number. A 0 writes nothing and a 1 writes no multiply, so the code</span></span>
+<span class="line" id="L7"><a class="ln" href="#L7">7</a><span class="c-comment">⍝</span><span class="c-comment"># does exactly the work the kernel asks for.</span></span>
+<span class="line" id="L8"><a class="ln" href="#L8">8</a></span>
+<span class="line" id="L9"><a class="ln" href="#L9">9</a><span class="c-comment">⍝</span><span class="c-comment">## Stencils</span></span>
+<span class="line" id="L10"><a class="ln" href="#L10">10</a></span>
+<span class="line" id="L11"><a class="ln" href="#L11">11</a><span class="c-comment">⍝</span><span class="c-comment"># The kernel on the left applied to the array named on the right:</span></span>
+<span class="line" id="L12"><a class="ln" href="#L12">12</a><span class="c-comment">⍝</span><span class="c-comment"># each cell becomes the sum of its neighbors times the kernel's</span></span>
+<span class="line" id="L13"><a class="ln" href="#L13">13</a><span class="c-comment">⍝</span><span class="c-comment"># numbers (the kernel's center on the cell). The kernel is text, its</span></span>
+<span class="line" id="L14"><a class="ln" href="#L14">14</a><span class="c-comment">⍝</span><span class="c-comment"># rows apart by two spaces for the reader; the macro needs only that</span></span>
+<span class="line" id="L15"><a class="ln" href="#L15">15</a><span class="c-comment">⍝</span><span class="c-comment"># there are 1, 9, 25, ... numbers.</span></span>
+<span class="line" id="L16"><a class="ln" href="#L16">16</a><span class="c-comment">⍝</span><span class="c-comment"># &gt;&gt; &quot;s:&quot; u_se&lt; &quot;Stencil&quot;</span></span>
+<span class="line" id="L17"><a class="ln" href="#L17">17</a><span class="c-comment">⍝</span><span class="c-comment"># &gt;&gt; h := 3 3 r_eshape 0 0 0 0 1 0 0 0 0</span></span>
+<span class="line" id="L18"><a class="ln" href="#L18">18</a><span class="c-comment">⍝</span><span class="c-comment"># &gt;&gt; &quot;0 1 0  1 -4 1  0 1 0&quot; s:s_tencil&lt; &quot;h&quot;</span></span>
+<span class="line" id="L19"><a class="ln" href="#L19">19</a><span class="c-comment">⍝</span><span class="c-comment"># 0  1 0</span></span>
+<span class="line" id="L20"><a class="ln" href="#L20">20</a><span class="c-comment">⍝</span><span class="c-comment"># 1 -4 1</span></span>
+<span class="line" id="L21"><a class="ln" href="#L21">21</a><span class="c-comment">⍝</span><span class="c-comment"># 0  1 0</span></span>
+<span class="line" id="L22"><a class="ln" href="#L22">22</a><span class="c-macro">ᵐs̲tencil&lt;</span> ← { kernel name →</span>
+<span class="line" id="L23"><a class="ln" href="#L23">23</a>  w ← <a href="builtins.html#n_umbers" class="c-builtin">n̲umbers</a> kernel</span>
+<span class="line" id="L24"><a class="ln" href="#L24">24</a>  n ← <a href="builtins.html#t_ally" class="c-builtin">t̲ally</a> w</span>
+<span class="line" id="L25"><a class="ln" href="#L25">25</a>  k ← n <a href="demos-stencil-macros-Stencil.xtlm.html#h.s_ide" class="c-libfunc">ʰs̲ide</a> <span class="c-number">1</span></span>
+<span class="line" id="L26"><a class="ln" href="#L26">26</a>  <a href="builtins.html#n_ot" class="c-builtin">n̲ot</a> n <a href="builtins.html#-3d" class="c-symbol">=</a> k <a href="builtins.html#-2a" class="c-symbol">×</a> k ? <span class="c-string">&quot;bad-macro-argument left&quot;</span> <a href="builtins.html#-5b-5dR_EJECT" class="c-builtin">⎕R̲EJECT</a> <span class="c-string">&quot;s:s_tencil&lt; takes a square kernel: 1, 9, 25, ... numbers&quot;</span></span>
+<span class="line" id="L27"><a class="ln" href="#L27">27</a>  c ← (k <a href="builtins.html#-2d" class="c-symbol">−</a> <span class="c-number">1</span>) <a href="builtins.html#d_iv" class="c-builtin">d̲iv</a> <span class="c-number">2</span></span>
+<span class="line" id="L28"><a class="ln" href="#L28">28</a>  i ← (<a href="builtins.html#r_ange" class="c-builtin">r̲ange</a> n) <a href="builtins.html#-2d" class="c-symbol">−</a> <span class="c-number">1</span></span>
+<span class="line" id="L29"><a class="ln" href="#L29">29</a>  cells ← <a href="builtins.html#r_avel" class="c-builtin">r̲avel</a> <a href="builtins.html#o_-5c" class="c-builtin">o̲\</a> (<span class="c-number">3</span> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> n) <a href="builtins.html#r_eshape" class="c-builtin">r̲eshape</a> w <a href="builtins.html#c_at" class="c-builtin">c̲at</a> (<a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> (i <a href="builtins.html#d_iv" class="c-builtin">d̲iv</a> k) <a href="builtins.html#-2d" class="c-symbol">−</a> c) <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> (i <a href="builtins.html#m_od" class="c-builtin">m̲od</a> k) <a href="builtins.html#-2d" class="c-symbol">−</a> c</span>
+<span class="line" id="L30"><a class="ln" href="#L30">30</a>  t ← cells <a href="demos-stencil-macros-Stencil.xtlm.html#h.t_erms" class="c-libfunc">ʰt̲erms</a> name</span>
+<span class="line" id="L31"><a class="ln" href="#L31">31</a>  <span class="c-number">0</span> <a href="builtins.html#-3d" class="c-symbol">=</a> <a href="builtins.html#t_ally" class="c-builtin">t̲ally</a> t ? <span class="c-string">&quot;(0 * &quot;</span> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> name <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <span class="c-string">&quot;)&quot;</span></span>
+<span class="line" id="L32"><a class="ln" href="#L32">32</a>  <span class="c-string">&quot;(&quot;</span> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> t <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <span class="c-string">&quot;)&quot;</span></span>
+<span class="line" id="L33"><a class="ln" href="#L33">33</a>}</span>
+<span class="line" id="L34"><a class="ln" href="#L34">34</a></span>
+<span class="line" id="L35"><a class="ln" href="#L35">35</a><span class="c-comment">⍝</span><span class="c-comment"> The side of a square of n cells: the first odd k with k * k &gt;= n.</span></span>
+<span class="line" id="L36"><a class="ln" href="#L36">36</a><span class="c-libfunc">ʰs̲ide</span> ← { n k → n <a href="builtins.html#-3c-3d" class="c-symbol">≤</a> k <a href="builtins.html#-2a" class="c-symbol">×</a> k ? k◆ n <a href="demos-stencil-macros-Stencil.xtlm.html#h.s_ide" class="c-libfunc">ʰs̲ide</a> k <a href="builtins.html#-2b" class="c-symbol">+</a> <span class="c-number">2</span> }</span>
+<span class="line" id="L37"><a class="ln" href="#L37">37</a></span>
+<span class="line" id="L38"><a class="ln" href="#L38">38</a><span class="c-comment">⍝</span><span class="c-comment"> The terms of the cells (weight, row offset, column offset, then the</span></span>
+<span class="line" id="L39"><a class="ln" href="#L39">39</a><span class="c-comment">⍝</span><span class="c-comment"> next cell's), joined by +; a weight of 0 writes nothing.</span></span>
+<span class="line" id="L40"><a class="ln" href="#L40">40</a><span class="c-libfunc">ʰt̲erms</span> ← { cells name →</span>
+<span class="line" id="L41"><a class="ln" href="#L41">41</a>  <span class="c-number">0</span> <a href="builtins.html#-3d" class="c-symbol">=</a> <a href="builtins.html#t_ally" class="c-builtin">t̲ally</a> cells ? <span class="c-string">&quot;&quot;</span></span>
+<span class="line" id="L42"><a class="ln" href="#L42">42</a>  rest ← (<span class="c-number">3</span> <a href="builtins.html#d_rop" class="c-builtin">d̲rop</a> cells) <a href="demos-stencil-macros-Stencil.xtlm.html#h.t_erms" class="c-libfunc">ʰt̲erms</a> name</span>
+<span class="line" id="L43"><a class="ln" href="#L43">43</a>  w ← <a href="builtins.html#f_irst" class="c-builtin">f̲irst</a> cells</span>
+<span class="line" id="L44"><a class="ln" href="#L44">44</a>  w <a href="builtins.html#-3d" class="c-symbol">=</a> <span class="c-number">0.0</span> ? rest</span>
+<span class="line" id="L45"><a class="ln" href="#L45">45</a>  t ← (<span class="c-number">3</span> <a href="builtins.html#t_ake" class="c-builtin">t̲ake</a> cells) <a href="demos-stencil-macros-Stencil.xtlm.html#h.t_erm" class="c-libfunc">ʰt̲erm</a> name</span>
+<span class="line" id="L46"><a class="ln" href="#L46">46</a>  <span class="c-number">0</span> <a href="builtins.html#-3d" class="c-symbol">=</a> <a href="builtins.html#t_ally" class="c-builtin">t̲ally</a> rest ? t</span>
+<span class="line" id="L47"><a class="ln" href="#L47">47</a>  t <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <span class="c-string">&quot; + &quot;</span> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> rest</span>
+<span class="line" id="L48"><a class="ln" href="#L48">48</a>}</span>
+<span class="line" id="L49"><a class="ln" href="#L49">49</a></span>
+<span class="line" id="L50"><a class="ln" href="#L50">50</a><span class="c-comment">⍝</span><span class="c-comment"> One cell's term: the array moved by the cell's offsets, times its</span></span>
+<span class="line" id="L51"><a class="ln" href="#L51">51</a><span class="c-comment">⍝</span><span class="c-comment"> weight (no multiply for 1, a negation for -1). Every term is in</span></span>
+<span class="line" id="L52"><a class="ln" href="#L52">52</a><span class="c-comment">⍝</span><span class="c-comment"> parentheses: X_eTaL reads right to left, so a + b - c * d would not</span></span>
+<span class="line" id="L53"><a class="ln" href="#L53">53</a><span class="c-comment">⍝</span><span class="c-comment"> mean what the kernel does.</span></span>
+<span class="line" id="L54"><a class="ln" href="#L54">54</a><span class="c-libfunc">ʰt̲erm</span> ← { cell name →</span>
+<span class="line" id="L55"><a class="ln" href="#L55">55</a>  w ← <a href="builtins.html#f_irst" class="c-builtin">f̲irst</a> cell</span>
+<span class="line" id="L56"><a class="ln" href="#L56">56</a>  b ← (<a href="builtins.html#f_loor" class="c-builtin">f̲loor</a> <span class="c-number">2</span> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> cell) <a href="demos-stencil-macros-Stencil.xtlm.html#h.r_ows" class="c-libfunc">ʰr̲ows</a> (<a href="builtins.html#f_loor" class="c-builtin">f̲loor</a> <span class="c-number">3</span> <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> cell) <a href="demos-stencil-macros-Stencil.xtlm.html#h.c_ols" class="c-libfunc">ʰc̲ols</a> name</span>
+<span class="line" id="L57"><a class="ln" href="#L57">57</a>  w <a href="builtins.html#-3d" class="c-symbol">=</a> <span class="c-number">1.0</span> ? b</span>
+<span class="line" id="L58"><a class="ln" href="#L58">58</a>  w <a href="builtins.html#-3d" class="c-symbol">=</a> <span class="c-number">-1.0</span> ? <span class="c-string">&quot;(n_eg &quot;</span> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> b <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <span class="c-string">&quot;)&quot;</span></span>
+<span class="line" id="L59"><a class="ln" href="#L59">59</a>  <span class="c-string">&quot;(&quot;</span> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> (<a href="demos-stencil-macros-Stencil.xtlm.html#h.n_um" class="c-libfunc">ʰn̲um</a> w) <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <span class="c-string">&quot; * &quot;</span> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> b <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <span class="c-string">&quot;)&quot;</span></span>
+<span class="line" id="L60"><a class="ln" href="#L60">60</a>}</span>
+<span class="line" id="L61"><a class="ln" href="#L61">61</a></span>
+<span class="line" id="L62"><a class="ln" href="#L62">62</a><span class="c-comment">⍝</span><span class="c-comment"> The array moved d columns: the cell d to the right lands here.</span></span>
+<span class="line" id="L63"><a class="ln" href="#L63">63</a><span class="c-libfunc">ʰc̲ols</span> ← { d name → d <a href="builtins.html#-3d" class="c-symbol">=</a> <span class="c-number">0</span> ? name◆ <span class="c-string">&quot;(&quot;</span> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> (<a href="builtins.html#f_ormat" class="c-builtin">f̲ormat</a> d) <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <span class="c-string">&quot; o_-_2 &quot;</span> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> name <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <span class="c-string">&quot;)&quot;</span> }</span>
+<span class="line" id="L64"><a class="ln" href="#L64">64</a></span>
+<span class="line" id="L65"><a class="ln" href="#L65">65</a><span class="c-comment">⍝</span><span class="c-comment"> The text moved d rows: the cell d below lands here.</span></span>
+<span class="line" id="L66"><a class="ln" href="#L66">66</a><span class="c-libfunc">ʰr̲ows</span> ← { d text → d <a href="builtins.html#-3d" class="c-symbol">=</a> <span class="c-number">0</span> ? text◆ <span class="c-string">&quot;(&quot;</span> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> (<a href="builtins.html#f_ormat" class="c-builtin">f̲ormat</a> d) <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <span class="c-string">&quot; o_-_1 &quot;</span> <a href="builtins.html#c_at" class="c-builtin">c̲at</a> text <a href="builtins.html#c_at" class="c-builtin">c̲at</a> <span class="c-string">&quot;)&quot;</span> }</span>
+<span class="line" id="L67"><a class="ln" href="#L67">67</a></span>
+<span class="line" id="L68"><a class="ln" href="#L68">68</a><span class="c-comment">⍝</span><span class="c-comment"> A weight as written: 2 for 2.0, 0.25 as it is.</span></span>
+<span class="line" id="L69"><a class="ln" href="#L69">69</a><span class="c-libfunc">ʰn̲um</span> ← { w → w <a href="builtins.html#-3d" class="c-symbol">=</a> <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="builtins.html#f_loor" class="c-builtin">f̲loor</a> w ? <a href="builtins.html#f_ormat" class="c-builtin">f̲ormat</a> <a href="builtins.html#f_loor" class="c-builtin">f̲loor</a> w◆ <a href="builtins.html#f_ormat" class="c-builtin">f̲ormat</a> w }</span>
+</div>
+</main>
+</body>
+</html>

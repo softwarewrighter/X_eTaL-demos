@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>demos/stencil-macros/stencil-macros.xtl - X_eTaL doc</title>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+<script defer src="search-index.js"></script>
+<script defer src="search.js"></script>
+</head>
+<body>
+<nav class="side">
+<a class="home" href="index.html">X_eTaL doc</a>
+<input id="search" type="search" autocomplete="off" placeholder="Search: a name, or a type" title="A name (mean finds m_ean), or a type: Num a =&gt; a -&gt; a -&gt; a finds +, m_ax ...">
+<h2>Files</h2>
+<h3>/Users/mike/github/softwarewrighter/X_eTaL-demos/work/libraries/libs/Eigencube/src/</h3>
+<ul>
+<li><a href="Users-mike-github-softwarewrighter-X_eTaL-demos-work-libraries-libs-Eigencube-src-Eigencube.xtl.html">Eigencube.xtl</a></li>
+</ul>
+<h3>demos/ca-lab/</h3>
+<ul>
+<li><a href="demos-ca-lab-ca-lab.xtl.html">ca-lab.xtl</a></li>
+</ul>
+<h3>demos/eigencube/</h3>
+<ul>
+<li><a href="demos-eigencube-eigencube.xtl.html">eigencube.xtl</a></li>
+</ul>
+<h3>demos/fourier-epicycles/</h3>
+<ul>
+<li><a href="demos-fourier-epicycles-fourier-epicycles.xtl.html">fourier-epicycles.xtl</a></li>
+</ul>
+<h3>demos/image-pipeline/</h3>
+<ul>
+<li><a href="demos-image-pipeline-image-pipeline.xtl.html">image-pipeline.xtl</a></li>
+</ul>
+<h3>demos/julia/</h3>
+<ul>
+<li><a href="demos-julia-julia.xtl.html">julia.xtl</a></li>
+</ul>
+<h3>demos/langtons-ant/</h3>
+<ul>
+<li><a href="demos-langtons-ant-langtons-ant.xtl.html">langtons-ant.xtl</a></li>
+</ul>
+<h3>demos/life-microscope/</h3>
+<ul>
+<li><a href="demos-life-microscope-life-microscope.xtl.html">life-microscope.xtl</a></li>
+</ul>
+<h3>demos/mandelbrot/</h3>
+<ul>
+<li><a href="demos-mandelbrot-mandelbrot.xtl.html">mandelbrot.xtl</a></li>
+</ul>
+<h3>demos/nbody/</h3>
+<ul>
+<li><a href="demos-nbody-nbody.xtl.html">nbody.xtl</a></li>
+</ul>
+<h3>demos/reaction-diffusion/</h3>
+<ul>
+<li><a href="demos-reaction-diffusion-reaction-diffusion.xtl.html">reaction-diffusion.xtl</a></li>
+</ul>
+<h3>demos/sandpile/</h3>
+<ul>
+<li><a href="demos-sandpile-sandpile.xtl.html">sandpile.xtl</a></li>
+</ul>
+<h3>demos/stencil-macros/</h3>
+<ul>
+<li><a href="demos-stencil-macros-stencil-macros.xtl.html">stencil-macros.xtl</a></li>
+<li><a href="demos-stencil-macros-Stencil.xtlm.html">Stencil.xtlm</a></li>
+</ul>
+<h3>demos/wave-tank/</h3>
+<ul>
+<li><a href="demos-wave-tank-wave-tank.xtl.html">wave-tank.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-xetal-pipes.xtl.html">xetal-pipes.xtl</a></li>
+</ul>
+<h3>demos/xetal-pipes/stages/</h3>
+<ul>
+<li><a href="demos-xetal-pipes-stages-Pipes.xtl.html">Pipes.xtl</a></li>
+</ul>
+<ul>
+<li><a href="builtins.html">built-ins</a></li>
+</ul>
+<h2>On this page</h2>
+<ul>
+<li class="item"><a href="#rows">rows</a></li>
+<li class="item"><a href="#cols">cols</a></li>
+<li class="item"><a href="#row">row</a></li>
+<li class="item"><a href="#col">col</a></li>
+<li class="item"><a href="#disk">disk</a></li>
+<li class="item"><a href="#box">box</a></li>
+<li class="item"><a href="#img">img</a></li>
+<li class="item"><a href="#u.b_lur"><span class="c-userfunc">ᵘb̲lur</span></a></li>
+<li class="item"><a href="#u.e_dges"><span class="c-userfunc">ᵘe̲dges</span></a></li>
+<li class="item"><a href="#u.s_harpen"><span class="c-userfunc">ᵘs̲harpen</span></a></li>
+<li class="item"><a href="#u.e_mboss"><span class="c-userfunc">ᵘe̲mboss</span></a></li>
+<li class="item"><a href="#u.h_eat"><span class="c-userfunc">ᵘh̲eat</span></a></li>
+<li class="item"><a href="#smooth">smooth</a></li>
+<li class="item"><a href="#edges">edges</a></li>
+<li class="item"><a href="#sharp">sharp</a></li>
+<li class="item"><a href="#relief">relief</a></li>
+<li class="item"><a href="#spot">spot</a></li>
+<li class="item"><a href="#warm">warm</a></li>
+<li class="item"><a href="#u.d_raw"><span class="c-userfunc">ᵘd̲raw</span></a></li>
+</ul>
+</nav>
+<main>
+<button class="theme" title="Light or dark">theme</button>
+<section id="results"></section>
+<h1><span class="kind">program</span>demos/stencil-macros/stencil-macros.xtl</h1>
+<div class="doc">
+<p>Stencils by macro: image kernels written as pictures of numbers,
+and a macro library of our own (Stencil.xtlm, beside this file)
+that turns each into rotation arithmetic when the program is
+expanded. A 0 in a kernel writes no code at all and a 1 no
+multiply, so blur, edges, sharpen, emboss and heat each cost
+exactly their nonzero numbers. Run it with &quot;xetal run
+demos/stencil-macros/stencil-macros.xtl&quot;; it prints the totals a
+kernel keeps (blur and heat move the picture's total without
+changing it, edges sum to 0), then the picture and each result
+drawn with characters. See what the program becomes: &quot;xetal expand
+demos/stencil-macros/stencil-macros.xtl&quot;. The live page lets you
+edit a kernel and see its expansion:
+https://softwarewrighter.github.io/X_eTaL-demos/stencil-macros/</p>
+</div>
+<p class="meta"><a href="demos-stencil-macros-stencil-macros.xtl.src.html">source</a> &middot; imports <code><span class="c-error">s:</span></code> <a href="demos-stencil-macros-Stencil.xtlm.html">demos/stencil-macros/Stencil.xtlm</a></p>
+<div class="item" id="rows">
+<h3><a href="#rows">rows</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L19">line 19</a></div>
+<div class="doc">
+<p>rows, cols: the picture's size.</p>
+</div>
+<pre class="code">rows ← <span class="c-number">24</span></pre>
+<div class="uses">Used in: <a href="demos-stencil-macros-stencil-macros.xtl.html#row">row</a>, <a href="demos-stencil-macros-stencil-macros.xtl.html#col">col</a></div>
+</div>
+<div class="item" id="cols">
+<h3><a href="#cols">cols</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L20">line 20</a></div>
+<pre class="code">cols ← <span class="c-number">48</span></pre>
+<div class="uses">Used in: <a href="demos-stencil-macros-stencil-macros.xtl.html#row">row</a>, <a href="demos-stencil-macros-stencil-macros.xtl.html#col">col</a></div>
+</div>
+<div class="item" id="row">
+<h3><a href="#row">row</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L25">line 25</a></div>
+<div class="doc">
+<p>-- the picture: masks of coordinates, and noise. row, col: by
+broadcasting. disk, box: two masks. img: their brightness, plus a
+little noise.</p>
+</div>
+<pre class="code">row ← (<a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-stencil-macros-stencil-macros.xtl.html#rows">rows</a>) <span class="c-builtin">'</span><a href="builtins.html#l_eft" class="c-builtin">l̲eft</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-stencil-macros-stencil-macros.xtl.html#cols">cols</a></pre>
+<div class="uses">Used in: <a href="demos-stencil-macros-stencil-macros.xtl.html#disk">disk</a>, <a href="demos-stencil-macros-stencil-macros.xtl.html#box">box</a>, <a href="demos-stencil-macros-stencil-macros.xtl.html#img">img</a>, <a href="demos-stencil-macros-stencil-macros.xtl.html#spot">spot</a></div>
+</div>
+<div class="item" id="col">
+<h3><a href="#col">col</a> <span class="type">: Int</span></h3>
+<div class="meta">value &middot; <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L26">line 26</a></div>
+<pre class="code">col ← (<a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-stencil-macros-stencil-macros.xtl.html#rows">rows</a>) <span class="c-builtin">'</span><a href="builtins.html#r_ight" class="c-builtin">r̲ight</a> <a href="builtins.html#t_able" class="c-builtin">t̲able</a> <a href="builtins.html#o_ffsets" class="c-builtin">o̲ffsets</a> <a href="demos-stencil-macros-stencil-macros.xtl.html#cols">cols</a></pre>
+<div class="uses">Used in: <a href="demos-stencil-macros-stencil-macros.xtl.html#disk">disk</a>, <a href="demos-stencil-macros-stencil-macros.xtl.html#box">box</a>, <a href="demos-stencil-macros-stencil-macros.xtl.html#spot">spot</a></div>
+</div>
+<div class="item" id="disk">
+<h3><a href="#disk">disk</a> <span class="type">: Bool</span></h3>
+<div class="meta">value &middot; <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L27">line 27</a></div>
+<pre class="code">disk ← (((<a href="demos-stencil-macros-stencil-macros.xtl.html#row">row</a> <a href="builtins.html#-2d" class="c-symbol">−</a> <span class="c-number">11</span>) <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-stencil-macros-stencil-macros.xtl.html#row">row</a> <a href="builtins.html#-2d" class="c-symbol">−</a> <span class="c-number">11</span>) <a href="builtins.html#-2b" class="c-symbol">+</a> ((<a href="demos-stencil-macros-stencil-macros.xtl.html#col">col</a> <a href="builtins.html#-2d" class="c-symbol">−</a> <span class="c-number">12</span>) <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="demos-stencil-macros-stencil-macros.xtl.html#col">col</a> <a href="builtins.html#-2d" class="c-symbol">−</a> <span class="c-number">12</span>) <a href="builtins.html#d_iv" class="c-builtin">d̲iv</a> <span class="c-number">2</span>) <a href="builtins.html#-3c" class="c-symbol">&lt;</a> <span class="c-number">49</span></pre>
+<div class="uses">Used in: <a href="demos-stencil-macros-stencil-macros.xtl.html#img">img</a></div>
+</div>
+<div class="item" id="box">
+<h3><a href="#box">box</a> <span class="type">: Bool</span></h3>
+<div class="meta">value &middot; <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L28">line 28</a></div>
+<pre class="code">box ← ((<a href="demos-stencil-macros-stencil-macros.xtl.html#row">row</a> <a href="builtins.html#-3e-3d" class="c-symbol">≥</a> <span class="c-number">5</span>) <a href="builtins.html#-26" class="c-symbol">∧</a> <a href="demos-stencil-macros-stencil-macros.xtl.html#row">row</a> <a href="builtins.html#-3c" class="c-symbol">&lt;</a> <span class="c-number">19</span>) <a href="builtins.html#-26" class="c-symbol">∧</a> (<a href="demos-stencil-macros-stencil-macros.xtl.html#col">col</a> <a href="builtins.html#-3e-3d" class="c-symbol">≥</a> <span class="c-number">28</span>) <a href="builtins.html#-26" class="c-symbol">∧</a> <a href="demos-stencil-macros-stencil-macros.xtl.html#col">col</a> <a href="builtins.html#-3c" class="c-symbol">&lt;</a> <span class="c-number">41</span></pre>
+<div class="uses">Used in: <a href="demos-stencil-macros-stencil-macros.xtl.html#img">img</a></div>
+</div>
+<div class="item" id="img">
+<h3><a href="#img">img</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L29">line 29</a></div>
+<pre class="code">img ← <span class="c-number">0.1</span> <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">0.6</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="demos-stencil-macros-stencil-macros.xtl.html#disk">disk</a>) <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">0.3</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="demos-stencil-macros-stencil-macros.xtl.html#box">box</a>) <a href="builtins.html#-2b" class="c-symbol">+</a> <span class="c-number">0.001</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> <a href="builtins.html#r_oll-21" class="c-builtin">r̲oll!</a> (<a href="builtins.html#s_hape" class="c-builtin">s̲hape</a> <a href="demos-stencil-macros-stencil-macros.xtl.html#row">row</a>) <a href="builtins.html#r_eshape" class="c-builtin">r̲eshape</a> <span class="c-number">50</span></pre>
+<div class="uses">Used in: <a href="demos-stencil-macros-stencil-macros.xtl.html#smooth">smooth</a>, <a href="demos-stencil-macros-stencil-macros.xtl.html#sharp">sharp</a>, <a href="demos-stencil-macros-stencil-macros.xtl.html#relief">relief</a>, <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L57">demos/stencil-macros/stencil-macros.xtl:57</a>, <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L65">demos/stencil-macros/stencil-macros.xtl:65</a></div>
+</div>
+<div class="item" id="u.b_lur">
+<h3><a href="#u.b_lur"><span class="c-userfunc">ᵘb̲lur</span></a> <span class="type">: Num a =&gt; a -&gt; Float</span></h3>
+<div class="meta">function &middot; <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L35">line 35</a></div>
+<pre class="code"><span class="c-userfunc">ᵘb̲lur</span> ← { p → (<span class="c-string">&quot;1 2 1  2 4 2  1 2 1&quot;</span> <a href="demos-stencil-macros-Stencil.xtlm.html#m.s_tencil-3c" class="c-macro">ˢs̲tencil&lt;</a> <span class="c-string">&quot;p&quot;</span>) <a href="builtins.html#-2f" class="c-symbol">÷</a> <span class="c-number">16</span> }</pre>
+<details class="expansion"><summary><code><a href="demos-stencil-macros-Stencil.xtlm.html#m.s_tencil-3c" class="c-macro">ˢs̲tencil&lt;</a></code> expands to</summary><pre class="code">(((<span class="c-number">-1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁</a> (<span class="c-number">-1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₂</a> p)) <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">2</span> <a href="builtins.html#-2a" class="c-symbol">×</a> (<span class="c-number">-1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁</a> p)) <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">-1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁</a> (<span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₂</a> p)) <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">2</span> <a href="builtins.html#-2a" class="c-symbol">×</a> (<span class="c-number">-1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₂</a> p)) <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">4</span> <a href="builtins.html#-2a" class="c-symbol">×</a> p) <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">2</span> <a href="builtins.html#-2a" class="c-symbol">×</a> (<span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₂</a> p)) <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁</a> (<span class="c-number">-1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₂</a> p)) <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">2</span> <a href="builtins.html#-2a" class="c-symbol">×</a> (<span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁</a> p)) <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁</a> (<span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₂</a> p))))</pre></details>
+<div class="uses">Used in: <a href="demos-stencil-macros-stencil-macros.xtl.html#smooth">smooth</a></div>
+</div>
+<div class="item" id="u.e_dges">
+<h3><a href="#u.e_dges"><span class="c-userfunc">ᵘe̲dges</span></a> <span class="type">: Num a =&gt; a -&gt; a</span></h3>
+<div class="meta">function &middot; <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L36">line 36</a></div>
+<pre class="code"><span class="c-userfunc">ᵘe̲dges</span> ← { p → <span class="c-string">&quot;-1 -1 -1  -1 8 -1  -1 -1 -1&quot;</span> <a href="demos-stencil-macros-Stencil.xtlm.html#m.s_tencil-3c" class="c-macro">ˢs̲tencil&lt;</a> <span class="c-string">&quot;p&quot;</span> }</pre>
+<details class="expansion"><summary><code><a href="demos-stencil-macros-Stencil.xtlm.html#m.s_tencil-3c" class="c-macro">ˢs̲tencil&lt;</a></code> expands to</summary><pre class="code">((<a href="builtins.html#n_eg" class="c-builtin">n̲eg</a> (<span class="c-number">-1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁</a> (<span class="c-number">-1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₂</a> p))) <a href="builtins.html#-2b" class="c-symbol">+</a> (<a href="builtins.html#n_eg" class="c-builtin">n̲eg</a> (<span class="c-number">-1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁</a> p)) <a href="builtins.html#-2b" class="c-symbol">+</a> (<a href="builtins.html#n_eg" class="c-builtin">n̲eg</a> (<span class="c-number">-1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁</a> (<span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₂</a> p))) <a href="builtins.html#-2b" class="c-symbol">+</a> (<a href="builtins.html#n_eg" class="c-builtin">n̲eg</a> (<span class="c-number">-1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₂</a> p)) <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">8</span> <a href="builtins.html#-2a" class="c-symbol">×</a> p) <a href="builtins.html#-2b" class="c-symbol">+</a> (<a href="builtins.html#n_eg" class="c-builtin">n̲eg</a> (<span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₂</a> p)) <a href="builtins.html#-2b" class="c-symbol">+</a> (<a href="builtins.html#n_eg" class="c-builtin">n̲eg</a> (<span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁</a> (<span class="c-number">-1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₂</a> p))) <a href="builtins.html#-2b" class="c-symbol">+</a> (<a href="builtins.html#n_eg" class="c-builtin">n̲eg</a> (<span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁</a> p)) <a href="builtins.html#-2b" class="c-symbol">+</a> (<a href="builtins.html#n_eg" class="c-builtin">n̲eg</a> (<span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁</a> (<span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₂</a> p))))</pre></details>
+<div class="uses">Used in: <a href="demos-stencil-macros-stencil-macros.xtl.html#edges">edges</a></div>
+</div>
+<div class="item" id="u.s_harpen">
+<h3><a href="#u.s_harpen"><span class="c-userfunc">ᵘs̲harpen</span></a> <span class="type">: Num a =&gt; a -&gt; a</span></h3>
+<div class="meta">function &middot; <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L37">line 37</a></div>
+<pre class="code"><span class="c-userfunc">ᵘs̲harpen</span> ← { p → <span class="c-string">&quot;0 -1 0  -1 5 -1  0 -1 0&quot;</span> <a href="demos-stencil-macros-Stencil.xtlm.html#m.s_tencil-3c" class="c-macro">ˢs̲tencil&lt;</a> <span class="c-string">&quot;p&quot;</span> }</pre>
+<details class="expansion"><summary><code><a href="demos-stencil-macros-Stencil.xtlm.html#m.s_tencil-3c" class="c-macro">ˢs̲tencil&lt;</a></code> expands to</summary><pre class="code">((<a href="builtins.html#n_eg" class="c-builtin">n̲eg</a> (<span class="c-number">-1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁</a> p)) <a href="builtins.html#-2b" class="c-symbol">+</a> (<a href="builtins.html#n_eg" class="c-builtin">n̲eg</a> (<span class="c-number">-1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₂</a> p)) <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">5</span> <a href="builtins.html#-2a" class="c-symbol">×</a> p) <a href="builtins.html#-2b" class="c-symbol">+</a> (<a href="builtins.html#n_eg" class="c-builtin">n̲eg</a> (<span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₂</a> p)) <a href="builtins.html#-2b" class="c-symbol">+</a> (<a href="builtins.html#n_eg" class="c-builtin">n̲eg</a> (<span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁</a> p)))</pre></details>
+<div class="uses">Used in: <a href="demos-stencil-macros-stencil-macros.xtl.html#sharp">sharp</a></div>
+</div>
+<div class="item" id="u.e_mboss">
+<h3><a href="#u.e_mboss"><span class="c-userfunc">ᵘe̲mboss</span></a> <span class="type">: Num a =&gt; a -&gt; a</span></h3>
+<div class="meta">function &middot; <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L38">line 38</a></div>
+<pre class="code"><span class="c-userfunc">ᵘe̲mboss</span> ← { p → <span class="c-string">&quot;-2 -1 0  -1 1 1  0 1 2&quot;</span> <a href="demos-stencil-macros-Stencil.xtlm.html#m.s_tencil-3c" class="c-macro">ˢs̲tencil&lt;</a> <span class="c-string">&quot;p&quot;</span> }</pre>
+<details class="expansion"><summary><code><a href="demos-stencil-macros-Stencil.xtlm.html#m.s_tencil-3c" class="c-macro">ˢs̲tencil&lt;</a></code> expands to</summary><pre class="code">((<span class="c-number">-2</span> <a href="builtins.html#-2a" class="c-symbol">×</a> (<span class="c-number">-1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁</a> (<span class="c-number">-1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₂</a> p))) <a href="builtins.html#-2b" class="c-symbol">+</a> (<a href="builtins.html#n_eg" class="c-builtin">n̲eg</a> (<span class="c-number">-1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁</a> p)) <a href="builtins.html#-2b" class="c-symbol">+</a> (<a href="builtins.html#n_eg" class="c-builtin">n̲eg</a> (<span class="c-number">-1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₂</a> p)) <a href="builtins.html#-2b" class="c-symbol">+</a> p <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₂</a> p) <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁</a> p) <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">2</span> <a href="builtins.html#-2a" class="c-symbol">×</a> (<span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁</a> (<span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₂</a> p))))</pre></details>
+<div class="uses">Used in: <a href="demos-stencil-macros-stencil-macros.xtl.html#relief">relief</a></div>
+</div>
+<div class="item" id="u.h_eat">
+<h3><a href="#u.h_eat"><span class="c-userfunc">ᵘh̲eat</span></a> <span class="type">: Float -&gt; Float</span></h3>
+<div class="meta">function &middot; <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L42">line 42</a></div>
+<pre class="code"><span class="c-userfunc">ᵘh̲eat</span> ← { p → p <a href="builtins.html#-2b" class="c-symbol">+</a> <span class="c-number">0.2</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <span class="c-string">&quot;0 1 0  1 -4 1  0 1 0&quot;</span> <a href="demos-stencil-macros-Stencil.xtlm.html#m.s_tencil-3c" class="c-macro">ˢs̲tencil&lt;</a> <span class="c-string">&quot;p&quot;</span> }</pre>
+<details class="expansion"><summary><code><a href="demos-stencil-macros-Stencil.xtlm.html#m.s_tencil-3c" class="c-macro">ˢs̲tencil&lt;</a></code> expands to</summary><pre class="code">(((<span class="c-number">-1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁</a> p) <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">-1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₂</a> p) <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">-4</span> <a href="builtins.html#-2a" class="c-symbol">×</a> p) <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₂</a> p) <a href="builtins.html#-2b" class="c-symbol">+</a> (<span class="c-number">1</span> <a href="builtins.html#o_-2d" class="c-builtin">o̲-₁</a> p)))</pre></details>
+<div class="uses">Used in: <a href="demos-stencil-macros-stencil-macros.xtl.html#warm">warm</a></div>
+</div>
+<div class="item" id="smooth">
+<h3><a href="#smooth">smooth</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L47">line 47</a></div>
+<div class="doc">
+<p>-- the results. smooth, edges, sharp, relief: the four kernels
+applied to the picture. spot, warm: one hot cell, and the heat
+after 60 steps (function power).</p>
+</div>
+<pre class="code">smooth ← <a href="demos-stencil-macros-stencil-macros.xtl.html#u.b_lur" class="c-userfunc">ᵘb̲lur</a> <a href="demos-stencil-macros-stencil-macros.xtl.html#img">img</a></pre>
+<div class="uses">Used in: <a href="demos-stencil-macros-stencil-macros.xtl.html#edges">edges</a>, <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L58">demos/stencil-macros/stencil-macros.xtl:58</a>, <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L66">demos/stencil-macros/stencil-macros.xtl:66</a></div>
+</div>
+<div class="item" id="edges">
+<h3><a href="#edges">edges</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L48">line 48</a></div>
+<pre class="code">edges ← <a href="demos-stencil-macros-stencil-macros.xtl.html#u.e_dges" class="c-userfunc">ᵘe̲dges</a> <a href="demos-stencil-macros-stencil-macros.xtl.html#smooth">smooth</a></pre>
+<div class="uses">Used in: <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L60">demos/stencil-macros/stencil-macros.xtl:60</a>, <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L67">demos/stencil-macros/stencil-macros.xtl:67</a></div>
+</div>
+<div class="item" id="sharp">
+<h3><a href="#sharp">sharp</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L49">line 49</a></div>
+<pre class="code">sharp ← <a href="demos-stencil-macros-stencil-macros.xtl.html#u.s_harpen" class="c-userfunc">ᵘs̲harpen</a> <a href="demos-stencil-macros-stencil-macros.xtl.html#img">img</a></pre>
+<div class="uses">Used in: <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L68">demos/stencil-macros/stencil-macros.xtl:68</a></div>
+</div>
+<div class="item" id="relief">
+<h3><a href="#relief">relief</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L50">line 50</a></div>
+<pre class="code">relief ← <a href="demos-stencil-macros-stencil-macros.xtl.html#u.e_mboss" class="c-userfunc">ᵘe̲mboss</a> <a href="demos-stencil-macros-stencil-macros.xtl.html#img">img</a></pre>
+<div class="uses">Used in: <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L69">demos/stencil-macros/stencil-macros.xtl:69</a></div>
+</div>
+<div class="item" id="spot">
+<h3><a href="#spot">spot</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L51">line 51</a></div>
+<pre class="code">spot ← <span class="c-number">1000.0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> <a href="builtins.html#f_loat" class="c-builtin">f̲loat</a> (<a href="demos-stencil-macros-stencil-macros.xtl.html#row">row</a> <a href="builtins.html#-3d" class="c-symbol">=</a> <span class="c-number">12</span>) <a href="builtins.html#-26" class="c-symbol">∧</a> <a href="demos-stencil-macros-stencil-macros.xtl.html#col">col</a> <a href="builtins.html#-3d" class="c-symbol">=</a> <span class="c-number">24</span></pre>
+<div class="uses">Used in: <a href="demos-stencil-macros-stencil-macros.xtl.html#warm">warm</a></div>
+</div>
+<div class="item" id="warm">
+<h3><a href="#warm">warm</a> <span class="type">: Float</span></h3>
+<div class="meta">value &middot; <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L52">line 52</a></div>
+<pre class="code">warm ← <span class="c-number">60</span> <span class="c-userfunc">'</span><a href="demos-stencil-macros-stencil-macros.xtl.html#u.h_eat" class="c-userfunc">ᵘh̲eat</a> <a href="builtins.html#p_ower" class="c-builtin">p̲ower</a> <a href="demos-stencil-macros-stencil-macros.xtl.html#spot">spot</a></pre>
+<div class="uses">Used in: <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L59">demos/stencil-macros/stencil-macros.xtl:59</a>, <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L70">demos/stencil-macros/stencil-macros.xtl:70</a></div>
+</div>
+<div class="item" id="u.d_raw">
+<h3><a href="#u.d_raw"><span class="c-userfunc">ᵘd̲raw</span></a> <span class="type">: Float -&gt; Char</span></h3>
+<div class="meta">function &middot; <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L64">line 64</a></div>
+<div class="doc">
+<p>u:d_raw a: the picture, smoothed, its edges, sharpened, embossed,
+and the heat of one hot cell after 60 steps, drawn with characters
+(darkest first).</p>
+</div>
+<pre class="code"><span class="c-userfunc">ᵘd̲raw</span> ← { a → (<span class="c-number">1</span> <a href="builtins.html#-2b" class="c-symbol">+</a> <a href="builtins.html#f_loor" class="c-builtin">f̲loor</a> <span class="c-number">0</span> <a href="builtins.html#m_ax" class="c-builtin">m̲ax</a> <span class="c-number">7</span> <a href="builtins.html#m_in" class="c-builtin">m̲in</a> <span class="c-number">8.0</span> <a href="builtins.html#-2a" class="c-symbol">×</a> a) <a href="builtins.html#s_elect" class="c-builtin">s̲elect</a> <span class="c-string">&quot; .:-=+*#&quot;</span> }</pre>
+<div class="uses">Used in: <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L65">demos/stencil-macros/stencil-macros.xtl:65</a>, <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L66">demos/stencil-macros/stencil-macros.xtl:66</a>, <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L67">demos/stencil-macros/stencil-macros.xtl:67</a>, <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L68">demos/stencil-macros/stencil-macros.xtl:68</a>, <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L69">demos/stencil-macros/stencil-macros.xtl:69</a>, <a href="demos-stencil-macros-stencil-macros.xtl.src.html#L70">demos/stencil-macros/stencil-macros.xtl:70</a></div>
+</div>
+</main>
+</body>
+</html>
