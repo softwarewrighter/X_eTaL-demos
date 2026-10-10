@@ -1,6 +1,6 @@
 number = 4
 slug = "tuples-release"
-status = "pending"
+status = "in-progress"
 description = "Mark docs/xetal-asks.md's 'A state of several arrays' ask fully landed (all f..."
 role = "production"
 context_files = []

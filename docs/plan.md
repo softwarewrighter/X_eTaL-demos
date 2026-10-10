@@ -381,6 +381,42 @@ them explicitly after writing a file's comments.
 | 3 | doc-start-here | `##`/`###` on `sandpile.xtl`, `nbody.xtl`, `fourier-epicycles.xtl` |
 | 4 | doc-macros | Done 2026-10-08: `##`/`###` on `image-pipeline.xtl`, `stencil-macros.xtl`, `xetal-pipes.xtl` (its stage files stay out, as Saga 8 left them out of the site). Two more marker-concatenation cases found and kept plain `#` (`image-pipeline.xtl`'s `prelude`/scene boundary, `stencil-macros.xtl`'s `picture`/call boundary -- both the same shape as `wave-tank`'s). Found a `[]A`/`[]D` cleanup along the way (unrelated to this saga, from a landed X_eTaL ask): `xetal-pipes/stages/{head,tail}.xtl`'s `"0123456789\n"` replaced with `[]D c_at "\n"`. Re-blessed `stencil-macros`' `xetal expand` golden (comments changed, the expansion's arithmetic did not). All output byte-identical; `pages/doc` and every touched live page rebuilt and browser-checked, alongside `eigencube` (landed on `main` mid-saga by another session, pulled cleanly)
 
+## Saga 10 -- tuples-retrofit  [DONE]
+
+Goal: remove the "extra plane of a rank-3 array" workaround (the
+`docs/xetal-asks.md` ask "A state of several arrays") from the four
+demos that used it, now that X_eTaL has tuples through `p_ower`
+(landed 175acf5, X_eTaL PR #111, pinned at 1998414): wave-tank
+(time), langtons-ant (direction), mandelbrot and julia (counts).
+`u:p_lane` goes away in each; the state is a tuple, taken apart by a
+pattern in the step function and in the binding that reads `p_ower`'s
+result; `1`/`2`/`3 s_elect` indexing becomes named destructuring.
+
+Per demo: a scratch `.xtl` prototype checked bit-for-bit against the
+old plane-stacked output before touching the real file; the `.xtl`'s
+step function and state rewritten; the web app's `micro.rs` (the
+program it writes, how it reads back `p_ower`'s tuple result),
+`view.rs`/`app.rs` labels, tests and reg-rs goldens updated; the live
+page rebuilt and browser-checked; the README's code block,
+How-it-works table and Workarounds section updated.
+
+One new gotcha, beyond CLAUDE.md rule 1's marker rules (which still
+applied: wave-tank's two `section()` calls, and every demo whose old
+start marker text lived inside the now-deleted `u:p_lane` comment had
+to move to a new anchor): a tuple component seeded from Rust as a
+literal must match the type `p_ower`'s function infers for that slot,
+not just read back the same -- langtons-ant's initial direction,
+`u:p_lane b0` (an Int plane) before, had to become the literal `0`
+(Int), not `0.0` (Float): `error[type-mismatch]: expected Int, found
+Float`.
+
+| # | Step slug | Delivers |
+| - | --------- | -------- |
+| 1 | tuples-mandelbrot-julia | Done 2026-10-09: `mandelbrot.xtl`'s `u:s_tep` and `julia.xtl`'s `u:i_terate` carry `(zr, zi, counts)` as a 3-tuple; `u:p_lane` removed from both. Both demos' web apps (`micro.rs`, `view.rs`, `app.rs`, tests), reg goldens and READMEs updated; `docs/xetal-asks.md` noted 2 of 4 landed |
+| 2 | tuples-wave-tank | Done 2026-10-09: `wave-tank.xtl`'s `u:s_tep` carries `(u, p, t)`, `t` a plain scalar read directly (no more `f_irst r_avel t`); `u:p_lane` removed. `micro.rs`'s two-section program assembly (prelude's start marker moved off the deleted `u:p_lane` comment), `app.rs`'s step chip, tests, reg goldens and the README updated |
+| 3 | tuples-langtons-ant | Done 2026-10-09: `langtons-ant.xtl`'s `u:s_tep` carries `(b, a, d)`, `d` a plain scalar; `u:p_lane` removed. `micro.rs`'s program assembly (`prev`/`next` states via tuple destructuring, no more whole-state `s_elect`), `app.rs`'s panel label, tests, reg goldens and the README updated. Found the Int/Float seed-type gotcha above |
+| 4 | tuples-release | Done 2026-10-09: `docs/xetal-asks.md`'s "A state of several arrays" ask marked fully landed (all four demos); this saga entry added; no stale README mentions found; `just gate`, publish, `just check-live` all clean |
+
 ## Saga 4 -- deferred (blocked on asks): MOVED to X_eTaL-ML
 
 All four demos below are machine learning: X_eTaL-ML plans them
